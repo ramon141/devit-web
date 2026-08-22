@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
-import Header from '@/components/layout/Header'
-import Sidebar from '@/components/layout/Sidebar'
+import { useIsDesktop } from '@/hooks/useIsDesktop'
+import DesktopLayout from '@/components/layout/DesktopLayout'
+import MobileLayout from '@/components/layout/MobileLayout'
 
 type AppLayoutProps = {
   title: string
@@ -9,17 +10,17 @@ type AppLayoutProps = {
 }
 
 function AppLayout({ title, description, children }: AppLayoutProps) {
-  return (
-    <div className="flex h-svh w-full overflow-hidden bg-muted/40">
-      <Sidebar />
+  const isDesktop = useIsDesktop()
 
-      <div className="flex min-w-0 flex-1 flex-col">
-        <Header title={title} description={description} />
+  if (isDesktop) {
+    return (
+      <DesktopLayout title={title} description={description}>
+        {children}
+      </DesktopLayout>
+    )
+  }
 
-        <main className="flex-1 overflow-y-auto p-4 lg:p-6">{children}</main>
-      </div>
-    </div>
-  )
+  return <MobileLayout title={title}>{children}</MobileLayout>
 }
 
 export default AppLayout

@@ -1,5 +1,6 @@
 export { default as AppLayout } from '@/components/layout/AppLayout'
-export { default as Header } from '@/components/layout/Header'
+export { default as DesktopLayout } from '@/components/layout/DesktopLayout'
+export { default as MobileLayout } from '@/components/layout/MobileLayout'
 export { default as Sidebar } from '@/components/layout/Sidebar'
-export { default as MobileNav } from '@/components/layout/MobileNav'
 export { default as SidebarNav } from '@/components/layout/SidebarNav'
+export { default as BottomNavBar } from '@/components/layout/BottomNavBar'

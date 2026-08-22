@@ -5,7 +5,7 @@ function LayoutSection() {
     <ComponentSection
       id="layout"
       title="Layout"
-      description="Header + sidebar responsivi che avvolgono tutta l'applicazione — questa stessa pagina si trova al suo interno."
+      description="Sidebar comprimibile + header su desktop, header e bottom navigation su mobile — questa stessa pagina si trova al loro interno."
     >
       <div className="flex h-40 w-full max-w-md overflow-hidden rounded-lg border border-border">
         <div className="flex w-16 flex-col gap-2 bg-sidebar p-2">
@@ -27,9 +27,9 @@ function LayoutSection() {
       </div>
 
       <p className="text-sm text-muted-foreground">
-        Su desktop la sidebar (navy, <code>#004274</code>) resta fissa a
-        sinistra; su mobile diventa un cassetto attivato dall'icona del menu
-        nell'header.
+        Su desktop la sidebar (navy) è comprimibile in una barra di sole
+        icone, con tooltip; su mobile viene sostituita da una bottom
+        navigation con un foglio "Altro" per le voci in eccesso.
       </p>
     </ComponentSection>
   )

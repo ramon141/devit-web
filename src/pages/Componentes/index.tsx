@@ -3,6 +3,7 @@ import LayoutSection from '@/pages/Componentes/components/LayoutSection'
 import ButtonsSection from '@/pages/Componentes/components/ButtonsSection'
 import InputsSection from '@/pages/Componentes/components/InputsSection'
 import SelectSection from '@/pages/Componentes/components/SelectSection'
+import SearchableSelectSection from '@/pages/Componentes/components/SearchableSelectSection'
 import InputMoneySection from '@/pages/Componentes/components/InputMoneySection'
 import FileUploadSection from '@/pages/Componentes/components/FileUploadSection'
 import FormSection from '@/pages/Componentes/components/FormSection'
@@ -21,6 +22,7 @@ function Componentes() {
         <ButtonsSection />
         <InputsSection />
         <SelectSection />
+        <SearchableSelectSection />
         <InputMoneySection />
         <FileUploadSection />
         <FormSection />

@@ -1,17 +1,14 @@
 import { Bell, CircleUser } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import MobileNav from '@/components/layout/MobileNav'
 
-type HeaderProps = {
+type DesktopHeaderProps = {
   title: string
   description?: string
 }
 
-function Header({ title, description }: HeaderProps) {
+function DesktopHeader({ title, description }: DesktopHeaderProps) {
   return (
-    <header className="flex h-16 shrink-0 items-center gap-3 border-b border-border bg-background px-4 lg:px-6">
-      <MobileNav />
-
+    <div className="mt-4 mr-4 mb-4 hidden h-16 shrink-0 items-center gap-3 rounded-xl bg-card px-4 ring-1 ring-border lg:flex">
       <div className="min-w-0 flex-1">
         <h1 className="truncate text-base font-semibold text-foreground">
           {title}
@@ -32,8 +29,8 @@ function Header({ title, description }: HeaderProps) {
         <CircleUser />
         <span className="sr-only">Account</span>
       </Button>
-    </header>
+    </div>
   )
 }
 
-export default Header
+export default DesktopHeader
