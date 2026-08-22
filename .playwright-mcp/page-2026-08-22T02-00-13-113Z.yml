@@ -1,0 +1,317 @@
+- generic [active] [ref=e1]:
+  - text:  
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e7]:
+        - link [ref=e9] [cursor=pointer]:
+          - /url: https://www.devit.it/site/
+          - img "logo" [ref=e10]
+        - navigation [ref=e11]:
+          - list [ref=e12]:
+            - listitem [ref=e13]:
+              - link "Home" [ref=e14] [cursor=pointer]:
+                - /url: https://www.devit.it/site/
+            - listitem [ref=e15]:
+              - link "Proprietà in Affitto" [ref=e16] [cursor=pointer]:
+                - /url: https://www.devit.it/site/affitto/
+            - listitem [ref=e17]:
+              - link "Proprietà in Vendita" [ref=e18] [cursor=pointer]:
+                - /url: https://www.devit.it/site/vendita/
+            - listitem [ref=e19]:
+              - link "Chi Siamo" [ref=e20] [cursor=pointer]:
+                - /url: https://www.devit.it/site/chi-siamo/
+            - listitem [ref=e21]:
+              - link "Richieste" [ref=e22] [cursor=pointer]:
+                - /url: https://www.devit.it/site/richieste/
+            - listitem [ref=e23]:
+              - link "Contatti" [ref=e24] [cursor=pointer]:
+                - /url: https://www.devit.it/site/contatti/
+            - listitem [ref=e25]:
+              - link "News" [ref=e26] [cursor=pointer]:
+                - /url: https://www.devit.it/site/news/
+        - list [ref=e28]:
+          - listitem [ref=e29]:
+            - link "" [ref=e30] [cursor=pointer]:
+              - /url: "#"
+      - text:  
+    - generic [ref=e37]:
+      - generic [ref=e41]:
+        - generic [ref=e46]:
+          - generic [ref=e49]:
+            - combobox "Tutte le città" [ref=e50]:
+              - option [selected]
+              - option "Tutte le città"
+              - option "Arzano"
+              - option "Ercolano"
+              - option "Massa Lubrense"
+              - option "Napoli"
+              - option "Pollena Trocchia"
+              - option "Portici"
+              - option "San Giorgio a Cremano"
+              - option "Torre del Greco"
+            - combobox "Tutte le città" [ref=e51] [cursor=pointer]: 
+          - generic [ref=e57]:
+            - text: 
+            - textbox "Inserisci un indirizzo, città, via, CAP o ID proprietà" [ref=e58]
+          - generic [ref=e61]:
+            - listbox "Tipo" [ref=e62]:
+              - option "Appartamento" [ref=e63]
+              - option "Appartamento in villa" [ref=e64]
+              - option "Attico" [ref=e65]
+              - option "Attività commerciale" [ref=e66]
+              - option "Box auto" [ref=e67]
+              - option "Capannoni" [ref=e68]
+              - option "Deposito" [ref=e69]
+              - option "Immobile - Negozio" [ref=e70]
+              - option "Locale commerciale" [ref=e71]
+              - option "Loft" [ref=e72]
+              - option "Magazzino" [ref=e73]
+              - option "Magazzino o deposito in Vendita" [ref=e74]
+              - option "Masseria" [ref=e75]
+              - option "Masseria/Complesso immobiliare" [ref=e76]
+              - option "Negozio" [ref=e77]
+              - option "Palazzi - Edifici" [ref=e78]
+              - option "Posti auto" [ref=e79]
+              - option "Posto auto" [ref=e80]
+              - option "Soluzione idipendente" [ref=e81]
+              - option "Terreni" [ref=e82]
+              - option "Ufficio" [ref=e83]
+              - option "Villa" [ref=e84]
+              - option "Villa a schiera" [ref=e85]
+              - option "Villa Bifamiliare" [ref=e86]
+              - option "Villa plurifamiliare" [ref=e87]
+              - option "Villa unifamiliare" [ref=e88]
+            - combobox "Tipo" [ref=e89] [cursor=pointer]: 
+          - generic [ref=e95]:
+            - combobox "Camere" [ref=e96]:
+              - option [selected]
+              - option "Camere"
+              - option "1"
+              - option "2"
+              - option "3"
+              - option "4"
+              - option "5"
+              - option "6"
+              - option "7"
+              - option "8"
+              - option "9"
+              - option "10"
+              - option "Qualunque"
+            - combobox "Camere" [ref=e97] [cursor=pointer]: 
+          - generic [ref=e103]:
+            - combobox "Bagni" [ref=e104]:
+              - option [selected]
+              - option "Bagni"
+              - option "1"
+              - option "2"
+              - option "3"
+              - option "4"
+              - option "5"
+              - option "6"
+              - option "7"
+              - option "8"
+              - option "9"
+              - option "10"
+              - option "Qualunque"
+            - combobox "Bagni" [ref=e105] [cursor=pointer]: 
+          - textbox "Min. Area" [ref=e111]:
+            - /placeholder: "Min. Area "
+          - textbox "Max. Area" [ref=e114]:
+            - /placeholder: "Max. Area "
+          - generic [ref=e115]:
+            - generic [ref=e117]:
+              - combobox "Min. Prezzo" [ref=e118]:
+                - option [selected]
+                - option "Min. Prezzo"
+                - option "Qualunque"
+                - option "€1.000"
+                - option "€5.000"
+                - option "€10.000"
+                - option "€50.000"
+                - option "€100.000"
+                - option "€200.000"
+                - option "€300.000"
+                - option "€400.000"
+                - option "€500.000"
+                - option "€600.000"
+                - option "€700.000"
+                - option "€800.000"
+                - option "€900.000"
+                - option "€1.000.000"
+                - option "€1.500.000"
+                - option "€2.000.000"
+                - option "€2.500.000"
+                - option "€5.000.000"
+              - combobox "Min. Prezzo" [ref=e119] [cursor=pointer]: 
+            - text: 
+          - generic [ref=e123]:
+            - generic [ref=e125]:
+              - combobox "Max. Prezzo" [ref=e126]:
+                - option [selected]
+                - option "Max. Prezzo"
+                - option "Qualunque"
+                - option "€5.000"
+                - option "€10.000"
+                - option "€50.000"
+                - option "€100.000"
+                - option "€200.000"
+                - option "€300.000"
+                - option "€400.000"
+                - option "€500.000"
+                - option "€600.000"
+                - option "€700.000"
+                - option "€800.000"
+                - option "€900.000"
+                - option "€1.000.000"
+                - option "€1.500.000"
+                - option "€2.000.000"
+                - option "€2.500.000"
+                - option "€5.000.000"
+                - option "€10.000.000"
+              - combobox "Max. Prezzo" [ref=e127] [cursor=pointer]: 
+            - text: 
+          - textbox "Proprietà ID" [ref=e133]
+          - button "Ricerca" [ref=e135] [cursor=pointer]
+        - generic [ref=e138]:
+          - heading "Le nostre proposte esclusive" [level=1] [ref=e140]
+          - paragraph [ref=e141]:
+            - strong [ref=e142]: Scegli la proprietà che fa al caso tuo.
+        - generic [ref=e148]:
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - generic [ref=e153]: Esclusiva
+              - link [ref=e155] [cursor=pointer]:
+                - /url: https://www.devit.it/site/status/vendita/
+                - text: Vendita
+              - list [ref=e156]:
+                - listitem [ref=e157]: €835.000
+              - list [ref=e158]:
+                - listitem [ref=e159]:
+                  - generic [ref=e160] [cursor=pointer]: 
+                - listitem [ref=e162]:
+                  - generic [ref=e163] [cursor=pointer]: 
+                - listitem [ref=e165]:
+                  - generic [ref=e166] [cursor=pointer]: 
+              - generic [ref=e169]:
+                - link [ref=e170] [cursor=pointer]:
+                  - /url: https://www.devit.it/site/property/villa-in-parco-esclusivo/
+                - generic [ref=e172]:
+                  - text: 
+                  - link [ref=e176] [cursor=pointer]:
+                    - /url: https://www.devit.it/site/property/villa-in-parco-esclusivo/
+                  - text: 
+            - generic [ref=e201]:
+              - heading [level=2] [ref=e202]:
+                - link [ref=e203] [cursor=pointer]:
+                  - /url: https://www.devit.it/site/property/villa-in-parco-esclusivo/
+                  - text: VILLA IN PARCO ESCLUSIVO
+              - generic [ref=e204]: Via Partenope, Massa Lubrense, NA, Italia
+              - list [ref=e205]:
+                - listitem [ref=e206]:
+                  - generic [ref=e207]:
+                    - text: "4"
+                    - generic [ref=e208]: 
+                  - text: Camere
+                - listitem [ref=e209]:
+                  - generic [ref=e210]:
+                    - text: "2"
+                    - generic [ref=e211]: 
+                  - text: Bagni
+                - listitem [ref=e212]:
+                  - generic [ref=e213]:
+                    - text: "105"
+                    - generic [ref=e214]: 
+          - generic [ref=e217]:
+            - generic [ref=e218]:
+              - generic [ref=e219]: Esclusiva
+              - link [ref=e221] [cursor=pointer]:
+                - /url: https://www.devit.it/site/status/vendita/
+                - text: Vendita
+              - list [ref=e222]:
+                - listitem [ref=e223]: €4.300.000
+              - list [ref=e224]:
+                - listitem [ref=e225]:
+                  - generic [ref=e226] [cursor=pointer]: 
+                - listitem [ref=e228]:
+                  - generic [ref=e229] [cursor=pointer]: 
+                - listitem [ref=e231]:
+                  - generic [ref=e232] [cursor=pointer]: 
+              - generic [ref=e235]:
+                - link [ref=e236] [cursor=pointer]:
+                  - /url: https://www.devit.it/site/property/napoli-incanto-del-xvii-secolo-monumentale-masseria-nobiliare/
+                - generic [ref=e238]:
+                  - text: 
+                  - link [ref=e242] [cursor=pointer]:
+                    - /url: https://www.devit.it/site/property/napoli-incanto-del-xvii-secolo-monumentale-masseria-nobiliare/
+                  - text: 
+            - generic [ref=e273]:
+              - heading [level=2] [ref=e274]:
+                - link [ref=e275] [cursor=pointer]:
+                  - /url: https://www.devit.it/site/property/napoli-incanto-del-xvii-secolo-monumentale-masseria-nobiliare/
+                  - text: "Incanto del XVII Secolo: Monumentale Masseria Nobiliare"
+              - generic [ref=e276]: Via Angelo Camillo de Meis, Napoli, NA, Italia
+              - list [ref=e277]:
+                - listitem [ref=e278]:
+                  - generic [ref=e279]:
+                    - text: "11.900"
+                    - generic [ref=e280]: 
+      - generic [ref=e291]:
+        - paragraph
+        - heading "\"...garantiamo la massima collaborazione, la massima adesione ai nostri clienti affinché tutto avvenga con serenità ed ognuno possa realizzare nel modo migliore il proprio sogno\"." [level=5] [ref=e292]
+        - heading [level=5] [ref=e293]:
+          - strong [ref=e294]: A.D.S. e M.V
+        - paragraph
+  - contentinfo [ref=e300]:
+    - generic [ref=e303]:
+      - generic [ref=e304]:
+        - figure [ref=e306]
+        - generic [ref=e307]:
+          - link "" [ref=e308] [cursor=pointer]:
+            - /url: https://www.facebook.com/Devit-Servizi-Immobiliari-100268998175142
+          - link "" [ref=e310] [cursor=pointer]:
+            - /url: https://www.instagram.com/devit_servizi_immobiliari/
+          - link "" [ref=e312] [cursor=pointer]:
+            - /url: https://www.youtube.com/channel/UCSGTClTwX4ogI3UXpkJvi5A
+      - generic [ref=e314]:
+        - heading [level=6] [ref=e316]:
+          - link "Richieste" [ref=e317] [cursor=pointer]:
+            - /url: https://www.devit.it/site/richieste/
+        - heading [level=6] [ref=e319]:
+          - link "Contatti" [ref=e320] [cursor=pointer]:
+            - /url: https://www.devit.it/site/contatti/
+        - heading [level=6] [ref=e322]:
+          - link "News" [ref=e323] [cursor=pointer]:
+            - /url: https://www.devit.it/site/news/
+      - generic [ref=e324]:
+        - heading [level=6] [ref=e326]:
+          - link "Chi Siamo" [ref=e327] [cursor=pointer]:
+            - /url: https://www.devit.it/site/chi-siamo/
+        - heading [level=6] [ref=e329]:
+          - link "Proprietà in vendita" [ref=e330] [cursor=pointer]:
+            - /url: https://www.devit.it/site/vendita/
+        - heading [level=6] [ref=e332]:
+          - link "Proprietà in affitto" [ref=e333] [cursor=pointer]:
+            - /url: https://www.devit.it/site/affitto/
+      - generic [ref=e334]:
+        - heading "Info Legali" [level=6] [ref=e336]
+        - heading [level=6] [ref=e338]:
+          - link "Uso dei Cookies" [ref=e339] [cursor=pointer]:
+            - /url: https://www.devit.it/site/privacy-cookies/
+        - heading [level=6] [ref=e341]:
+          - link "Privacy Policy" [ref=e342] [cursor=pointer]:
+            - /url: https://www.devit.it/site/privacy-cookies/
+        - generic:
+          - list
+    - generic [ref=e346]:
+      - text: © Devit Servizi immobiliari S.n.c. - IT07609021212
+      - link "- Privacy e Cookies" [ref=e347] [cursor=pointer]:
+        - /url: https://www.devit.it/site/privacy-cookies/
+  - generic: 
+  - generic [ref=e348]:
+    - text: 
+    - paragraph [ref=e349]:
+      - strong [ref=e350]: Confronta Strutture
+    - link "Confronta" [ref=e351] [cursor=pointer]:
+      - /url: "?ids="
+    - button "Chiudi" [ref=e352] [cursor=pointer]
+  - text:       
