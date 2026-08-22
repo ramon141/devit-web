@@ -1,13 +1,13 @@
 # Devit — Design System (extraído de https://www.devit.it/site/)
 
 > Site roda em WordPress com tema **Houzez** (v2.8.6.1, tema para agências imobiliárias).
-> Dados extraídos direto do HTML/CSS servido pela página (não via screenshot — não houve acesso ao navegador nesta sessão). Cores e fontes abaixo são as regras reais aplicadas no site (`styling-options.css`, `main.css`, `<style>` inline no `<head>`).
+> Dados verificados **ao vivo no navegador** (Playwright: screenshot real + `getComputedStyle` + amostragem de pixel), não só por leitura estática de CSS. Cores e fontes abaixo são as regras que o site realmente renderiza — inclusive overrides via customizer que não batem com o CSS padrão do tema.
 
 ---
 
 ## 1. Logos
 
-Ficam em `src/assets/design-system/logos/`.
+Ficam em `src/assets/logos/`.
 
 | Arquivo | Origem | Tamanho | Uso |
 |---|---|---|---|
@@ -25,26 +25,21 @@ Ficam listadas por função real de uso no CSS do tema (não são só cores "que
 
 ### Cores de marca
 
-**Correção:** a cor de marca real é o **amarelo da logo**, extraído por pixel do arquivo `devit-logo.png` (não do CSS do tema — o `#00aeff` abaixo é cor de *UI/interação* do template Houzez, não a cor da identidade visual).
+Verificado ao vivo (Playwright, `getComputedStyle` nos elementos reais renderizados): o site tem um CSS customizado injetado por cima do tema Houzez padrão, que troca a cor de destaque original do tema (azul) por **amarelo**. É esse amarelo customizado — não o CSS padrão do tema — que é a cor de sistema real.
 
 | Cor | Hex | Origem / Uso |
 |---|---|---|
-| 🟡 **Amarelo (cor de marca — logo)** | `#fecc13` | Extraído por pixel do `devit-logo.png` (382×148, cor sólida dominante, 18549 pixels 100% opacos amostrados). Esta é a cor oficial da marca Devit. |
-| 🟡 Amarelo (variante — logo mobile) | `#ffd200` | Extraído do `devit-logo-mobile.png` — pequena variação de tom por reamostragem/compressão do PNG menor, mesma família de cor. |
-| 🟡 Amarelo (variante — favicon) | `#f3d200` | Extraído do `devit-favicon.png` (46×46) — idem, variação por reamostragem em tamanho pequeno. |
+| 🟡 **Amarelo (cor primária do sistema)** | `#e7cc27` | Confirmado via `getComputedStyle` ao vivo: `.btn-primary`, `.btn-secondary`, links (`a`), badge "ESCLUSIVA" (`.label-featured`), bordas/estados ativos, ícones de slider. É a cor que o customizer do site define como primária — usar como principal em qualquer novo projeto. |
+| 🟡 Amarelo (logo, variante) | `#fecc13` | Extraído por pixel do `devit-logo.png` (382×148, cor sólida dominante). Tom bem próximo do primário `#e7cc27` mas não idêntico — é a cor de impressão/arte do logo, não a cor de UI. Guardar como referência de logo, usar `#e7cc27` pra componentes de interface. |
 
-Use `#fecc13` como hex de referência oficial (vem do asset de maior resolução, menos sujeito a artefato de compressão/reamostragem).
+### Cores de apoio (header/footer)
 
-### Cores de UI do template (Houzez) — não são a cor de marca
-
-Essas cores vêm do tema WordPress/Houzez usado no site (CSS de botões, links, hover) e **não da logo**. Mantidas aqui só como referência de como o site atual usa cor de interação — não confundir com identidade visual.
-
-| Cor | Hex | Uso |
+| Cor | Hex | Origem / Uso |
 |---|---|---|
-| Azul de UI (destaque de interação) | `#00aeff` | Botões, links, hover, bordas ativas no template Houzez atual. |
-| Azul de UI (hover/variante) | `#33beff` | Variante do azul de UI em estados de hover/tab ativa. |
-| Azul-marinho de UI (secundário) | `#004274` | Cor escura usada em header/footer do template atual. |
-| Azul-marinho de UI (variante) | `#00335A` / `#002B4B` | Tons mais escuros, detalhes pontuais (gradientes/hover) no template atual. |
+| Azul-marinho | `#004274` | Confirmado via CSS customizer (`.header-v1`): fundo do header em estado sólido (não transparente sobre hero). |
+| Azul (acento pontual) | `#00aeff` | Confirmado via CSS customizer: cor do link do menu **apenas no hover**, dentro do header navy (`.header-v1 a.nav-link:hover`). Uso bem específico — não é cor de botão nem de link geral. |
+| Cinza-azulado escuro (footer) | `#303c41` | Amostrado por pixel direto do screenshot renderizado — é o fundo real do rodapé (o CSS não expõe isso via `background-color` porque é aplicado por um wrapper com efeito de camada; a cor visual efetiva é essa). |
+| Cinza neutro (botão utilitário) | `#676767` | Amostrado por pixel do botão "Ricerca" (busca) — botão utilitário neutro, não usa a cor primária. |
 
 ### Cores neutras
 
@@ -56,8 +51,9 @@ Essas cores vêm do tema WordPress/Houzez usado no site (CSS de botões, links, 
 | Cinza médio | `#555555` | Texto secundário (ex: disclaimers). |
 | Cinza claro (borda) | `#dce0e0` | Bordas de inputs, cards, divisórias. |
 | Cinza claro (texto apagado) | `#a1a7a8` | Texto desabilitado / placeholder / labels secundárias. |
-| Cinza off-white | `#f9f9f9` / `#f8f8f8` | Fundos de seção alternados. |
+| Cinza off-white | `#f8f8f8` | Confirmado via `getComputedStyle`: fundo do `<body>` no site real. |
 | Cinza ícone | `#ebebeb` | Ícones em estado neutro/inativo. |
+| Preto translúcido (badge de status) | `rgba(0,0,0,0.65)` | Confirmado via `getComputedStyle`: fundo do badge "VENDITA"/"AFFITTO" sobre foto do card — é overlay translúcido sobre a imagem, não cor sólida. |
 
 ### Cores de sistema (feedback)
 
@@ -122,33 +118,37 @@ Resumo de papel: **Poppins = títulos e navegação (peso de "marca")**, **Ralew
 
 ## 7. Imagens de referência (conteúdo, não UI-kit)
 
-Ficam em `src/assets/design-system/images/`. São fotos de imóveis usadas no site — servem de referência de estilo fotográfico (imagens de propriedades reais, tratamento de cor neutro/natural, proporção 4:3 ≈ 592×444px), não são parte do design system de componentes.
+Ficam em `src/assets/images/`. São fotos de imóveis usadas no site — servem de referência de estilo fotográfico (imagens de propriedades reais, tratamento de cor neutro/natural, proporção 4:3 ≈ 592×444px), não são parte do design system de componentes.
 
 | Arquivo | Uso no site |
 |---|---|
 | `property-sample-1.jpg` | Thumbnail de imóvel em destaque na home. |
 | `property-sample-2.jpg` | Thumbnail de imóvel em destaque na home. |
 | `property-detail-gallery-1.jpg` | Foto de galeria da página de detalhe de imóvel (1170×785, corte wide usado no topo da ficha). |
+| `reference-screenshot-home.png` | Screenshot real da home (Playwright, viewport completo) — referência visual de como os componentes se combinam na prática: header transparente sobre hero, busca avançada, cards com badge amarela. |
+| `reference-screenshot-property-detail.png` | Screenshot real da ficha de imóvel — referência de galeria, badges, box de detalhes, bloco de características. |
 
 ---
 
 ## 7.1 Catálogo de componentes
 
-Levantado a partir das 8 telas pedidas + home (HTML/CSS real via `curl`, sem screenshot — extensão Chrome offline nesta sessão). Todas as telas usam o mesmo CSS global (seções 1–6); o que muda de tela pra tela são estes componentes reutilizáveis:
+Levantado a partir das 8 telas pedidas + home. Home e ficha de imóvel foram **verificadas ao vivo** (Playwright: screenshot real + `getComputedStyle`) — badges, botões e links confirmados em amarelo (`#e7cc27`) igual à home. As demais 6 telas (affitto, vendita, richieste, chi-siamo, contatti, news, favoritos) foram levantadas por HTML/CSS estático (`curl`) — os componentes e classes existem e batem com o CSS global, mas cor/pixel não foi reconferida individualmente em cada uma (mesmo CSS compartilhado da seção 2, então a paleta vale igual).
 
 | Componente | Classe(s) de referência | Descrição | Onde aparece |
 |---|---|---|---|
-| **Card de imóvel** | `.item-listing-wrap`, `.item-listing-wrap-v3.card` | Card com foto, preço, título (`.item-title`, fonte Poppins), localização e ícones de características. Base de qualquer grid de listagem. | Home, `/affitto/`, `/vendita/`, `/status/vendita/`, favoritos |
+| **Card de imóvel** | `.item-listing-wrap`, `.item-listing-wrap-v3.card` | Card com foto, badge amarela "ESCLUSIVA" (`.label-featured`, `#e7cc27`), badge de status translúcida (`.label-status`, `rgba(0,0,0,.65)`), preço, título (`.item-title`, fonte Poppins), localização e ícones de características. Base de qualquer grid de listagem. Confirmado ao vivo na home. | Home, `/affitto/`, `/vendita/`, `/status/vendita/`, favoritos |
 | **Grid de listagem** | `.property-grids-module-v4`, wrapper 3 colunas | Grid responsivo de cards de imóvel. | `/affitto/`, `/vendita/`, favoritos |
-| **Busca avançada** | `.advanced-search`, `.advanced-search-filters`, `.advanced-search-v1`, `.advanced-search-btn` | Formulário de filtro (localização, tipo, preço, quartos etc.), barra fixa no topo da listagem. | `/affitto/`, `/vendita/` |
-| **Galeria de imóvel** | `.top-gallery-section`, `.lightbox-gallery`, `.lightbox-gallery-wrap` | Galeria de fotos com abertura em lightbox, usa Slick Carousel. | Ficha de imóvel (`/property/...`) |
+| **Busca avançada** | `.advanced-search`, `.advanced-search-filters`, `.advanced-search-v1`, `.advanced-search-btn` | Formulário de filtro (localização, tipo, preço, quartos etc.), botão de busca em cinza neutro (`#676767`, confirmado ao vivo — não usa a cor primária). | Home, `/affitto/`, `/vendita/` |
+| **Galeria de imóvel** | `.top-gallery-section`, `.lightbox-gallery`, `.lightbox-gallery-wrap` | Galeria de fotos com abertura em lightbox (Slick Carousel), ícone de visualização ativo em amarelo. Confirmado ao vivo. | Ficha de imóvel (`/property/...`) |
 | **Bloco de características** | `.property-features-wrap`, `.property-section-wrap` | Lista de atributos do imóvel (m², quartos, banheiros etc.), ícones `houzez-iconfont`. | Ficha de imóvel |
-| **Card do agente/corretor** | `.agent-information` | Foto, nome, telefone, e-mail do corretor responsável. | Ficha de imóvel |
+| **Card do agente/corretor** | `.agent-information` | Foto, nome, telefone, e-mail do corretor responsável, link em amarelo. | Ficha de imóvel |
 | **Formulário de contato (padrão)** | `.wpcf7-form` (Contact Form 7) | Campos: nome, e-mail, telefone, assunto, mensagem, checkbox de aceite. | `/contatti/` |
 | **Formulário customizado (Ninja Forms)** | `.nf-form-cont`, campos `nf-field-*` | Formulário de layout livre (texto, telefone, textarea, radio) — usado quando o form padrão não serve. | `/richieste/` |
-| **Modal de login/registro** | `#login_register_form`, campos `username`, `useremail`, `register_pass` | Modal global do tema (login, cadastro, "esqueci senha"), injetado em toda página, não é página própria. | Global (todas as telas) |
+| **Modal de login/registro** | `#login_register_form`, campos `username`, `useremail`, `register_pass` | Modal global do tema (login, cadastro, "esqueci senha"), injetado em toda página, não é página própria. Header (ícone de usuário) `#004274` com hover `#00aeff`. | Global (todas as telas) |
 | **Header dashboard (sem menu público)** | `.houzez-dashboard`, `houzez-header-none` | Variante de header sem navegação pública, usada em áreas logadas. | Favoritos |
-| **Botão primário** | `.btn` | Botão padrão do sistema — ver seção 4 (radius) e seção 2 pra cor. | Global |
+| **Footer** | `.footer-wrap`, `.footer-wrap-v1` | Fundo `#303c41` (confirmado por pixel), links em amarelo `#e7cc27`, texto Roboto 300. | Global |
+| **Botão primário** | `.btn-primary`, `.btn-secondary` | Fundo/borda `#e7cc27`, texto branco. Confirmado ao vivo. | Global |
+| **Botão outline** | `.btn-primary-outlined`, `.btn-secondary-outlined` | Borda e texto `#e7cc27`, fundo transparente; hover preenche com `#e7cc27` e texto branco. | Global |
 
 ### Páginas sem componente próprio (reaproveitam os de cima)
 
@@ -162,7 +162,6 @@ Dashboard completo do usuário (editar perfil, "minhas propriedades", mensagens)
 
 ## 8. Limitações desta extração
 
-- Feita sem acesso ao Chrome (extensão não conectada nesta sessão) — dados vieram do HTML/CSS baixado via `curl`, não de inspeção visual renderizada nem screenshot. Isso vale pra home **e** pras 8 telas da seção 7.1.
+- Home verificada ao vivo via Playwright (navegador real): screenshot, `getComputedStyle` e amostragem de pixel — corrigiu cores erradas que a leitura estática de CSS tinha sugerido (ver seção 2). As outras 7 telas (afitto, vendita, ficha de imóvel, richieste, chi-siamo, contatti, news, favoritos) ainda foram levantadas só por HTML/CSS estático (`curl`), sem verificação visual ao vivo — os componentes existem e as classes batem, mas não confirmei cor/pixel em cada uma individualmente.
 - Não peguei estados de hover/animação/transição em detalhe, nem breakpoints completos de responsividade.
-- Dashboard logado, login/registro, 404 e página de agente individual **não foram visitados** (sem link direto encontrado / exigem login) — ver tabela em 7.1.
-- Se precisar de mais fidelidade visual (espaçamento exato entre seções, grid, comportamento responsivo real, telas que exigem login), o ideal é reconectar a extensão Claude in Chrome e navegar ao vivo.
+- Dashboard logado, login/registro, 404 e página de agente individual **não foram visitados** (sem link direto encontrado / exigem login).
