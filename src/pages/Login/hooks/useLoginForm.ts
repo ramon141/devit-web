@@ -1,16 +1,36 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router'
+import type { AxiosError } from 'axios'
+import {
+  useAuthControllerLogin,
+  useAuthControllerMe,
+} from '@/api/generated/api'
+import type {
+  AuthControllerLogin401,
+  AuthControllerLogin422,
+  AuthControllerLogin429,
+} from '@/api/generated/models'
+import { Auth } from '@/auth'
+import { getErrorMessageFromRequest } from '@/utils/getErrorMessageFromRequest'
 import { loginSchema, type LoginFormValues } from '@/pages/Login/schemas/loginSchema'
 
-const DEMO_EMAIL = 'admin@devit.com'
-const DEMO_PASSWORD = 'admin123'
+type LoginError = AuthControllerLogin401 | AuthControllerLogin422 | AuthControllerLogin429
 
 export function useLoginForm() {
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | undefined>(undefined)
+
+  const { mutateAsync: login, isPending: loading } = useAuthControllerLogin()
+
+  const { data: me } = useAuthControllerMe({
+    query: { enabled: Auth.isAuthenticated(), retry: false },
+  })
+
+  useEffect(() => {
+    if (me) navigate('/')
+  }, [me, navigate])
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -19,20 +39,14 @@ export function useLoginForm() {
 
   async function onSubmit(values: LoginFormValues) {
     setError(undefined)
-    setLoading(true)
 
-    await new Promise((resolve) => setTimeout(resolve, 700))
-
-    const isValid = values.email === DEMO_EMAIL && values.password === DEMO_PASSWORD
-
-    if (!isValid) {
-      setError('E-mail o password non corretti.')
-      setLoading(false)
-      return
+    try {
+      const response = await login({ data: values })
+      Auth.login(response)
+      navigate('/')
+    } catch (err) {
+      setError(getErrorMessageFromRequest(err as AxiosError<LoginError>))
     }
-
-    setLoading(false)
-    navigate('/')
   }
 
   return {

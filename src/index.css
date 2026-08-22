@@ -36,7 +36,7 @@
     font-size: 16px;
   }
 
-  /* Devit design system — see docs/DESIGN_SYSTEM.md */
+  /* Devit design system — ver docs/DESIGN_SYSTEM.md */
   --devit-yellow: #e7cc27;
   --devit-navy: #004274;
   --devit-navy-dark: #0f1b24;
@@ -130,7 +130,7 @@
   }
 }
 
-/* Scope of the initial Vite template (Home page) — must not leak into the rest of the app */
+/* Escopo do template inicial do Vite (página Home) — não deve vazar pro resto do app */
 .vite-shell {
   width: 1126px;
   max-width: 100%;

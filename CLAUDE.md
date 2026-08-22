@@ -26,3 +26,5 @@ e prefira
 - Consulte o arquivo: src/constants/index.ts
 - Sempre opte por criar linhas curtas e nunca/jamais muito longas
 - Uma pasta de uma página deve ser organizada como components/ schemas/ types/ hooks/ index.tsx; nem sempre vai precisar de todas essas subpastas, se nao for necessario nao crie
+- Todo o código que inclui nome de arquivos, nome de funcoes, nome de variaveis, etc... estão em ingles; com exceção de comentário do código que estarão em portuguÊs
+- Todos os labels do sistema, tudo que o usuário ler deve estar em italiano

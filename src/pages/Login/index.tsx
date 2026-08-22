@@ -1,18 +1,17 @@
+import { useIsDesktop } from '@/hooks/useIsDesktop'
 import { useLoginForm } from '@/pages/Login/hooks/useLoginForm'
-import LoginPanel from '@/pages/Login/components/LoginPanel'
-import LoginForm from '@/pages/Login/components/LoginForm'
+import DesktopLogin from '@/pages/Login/components/DesktopLogin'
+import MobileLogin from '@/pages/Login/components/MobileLogin'
 
 function Login() {
+  const isDesktop = useIsDesktop()
   const { form, loading, error, onSubmit } = useLoginForm()
 
-  return (
-    <div className="flex min-h-dvh items-center justify-center bg-muted/40 p-4 md:p-8">
-      <div className="isolate flex w-full max-w-[860px] flex-col overflow-hidden rounded-3xl bg-card ring-1 ring-border md:min-h-[540px] md:flex-row">
-        <LoginPanel />
-        <LoginForm form={form} onSubmit={onSubmit} loading={loading} error={error} />
-      </div>
-    </div>
-  )
+  if (isDesktop) {
+    return <DesktopLogin form={form} onSubmit={onSubmit} loading={loading} error={error} />
+  }
+
+  return <MobileLogin form={form} onSubmit={onSubmit} loading={loading} error={error} />
 }
 
 export default Login
