@@ -47,6 +47,7 @@ import type {
   AttachmentControllerCountParams,
   AttachmentControllerCreate401,
   AttachmentControllerCreate422,
+  AttachmentControllerCreateBody,
   AttachmentControllerDeleteById401,
   AttachmentControllerDeleteById404,
   AttachmentControllerFind401,
@@ -57,7 +58,7 @@ import type {
   AttachmentControllerUpdateById401,
   AttachmentControllerUpdateById404,
   AttachmentControllerUpdateById422,
-  AttachmentPartial,
+  AttachmentPartialExcludingIdBodyBase64PathUrlSize,
   AttachmentWithRelations,
   AuditLog,
   AuditLogControllerCount401,
@@ -313,7 +314,6 @@ import type {
   LeadsReportControllerTodayAppointments401,
   LoopbackCount,
   NewAddress,
-  NewAttachment,
   NewAuditLog,
   NewBranch,
   NewCalendarEvent,
@@ -1543,14 +1543,14 @@ export function useAttachmentControllerCount<TData = Awaited<ReturnType<typeof a
  */
 export const attachmentControllerUpdateById = (
     id: string,
-    attachmentPartial: BodyType<AttachmentPartial>,
+    attachmentPartialExcludingIdBodyBase64PathUrlSize: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/attachments/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: attachmentPartial
+      data: attachmentPartialExcludingIdBodyBase64PathUrlSize
     },
       options);
     }
@@ -1558,8 +1558,8 @@ export const attachmentControllerUpdateById = (
 
 
 export const getAttachmentControllerUpdateByIdMutationOptions = <TError = ErrorType<AttachmentControllerUpdateById401 | AttachmentControllerUpdateById404 | AttachmentControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>}, TContext> => {
 
 const mutationKey = ['attachmentControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1571,7 +1571,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, {id: string;data: BodyType<AttachmentPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, {id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  attachmentControllerUpdateById(id,data,requestOptions)
@@ -1583,18 +1583,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AttachmentControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof attachmentControllerUpdateById>>>
-    export type AttachmentControllerUpdateByIdMutationBody = BodyType<AttachmentPartial>
+    export type AttachmentControllerUpdateByIdMutationBody = BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>
     export type AttachmentControllerUpdateByIdMutationError = ErrorType<AttachmentControllerUpdateById401 | AttachmentControllerUpdateById404 | AttachmentControllerUpdateById422>
 
     /**
  * @summary Update a Attachment by id
  */
 export const useAttachmentControllerUpdateById = <TError = ErrorType<AttachmentControllerUpdateById401 | AttachmentControllerUpdateById404 | AttachmentControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof attachmentControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<AttachmentPartial>},
+        {id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>},
         TContext
       > => {
 
@@ -1767,10 +1767,10 @@ export const useAttachmentControllerDeleteById = <TError = ErrorType<AttachmentC
     }
     
 /**
- * @summary Create a new Attachment
+ * @summary Upload a new Attachment to MinIO
  */
 export const attachmentControllerCreate = (
-    newAttachment: BodyType<NewAttachment>,
+    attachmentControllerCreateBody: BodyType<AttachmentControllerCreateBody>,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -1778,7 +1778,7 @@ export const attachmentControllerCreate = (
       return mutator<Attachment>(
       {url: `/attachments`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: newAttachment, signal
+      data: attachmentControllerCreateBody, signal
     },
       options);
     }
@@ -1786,8 +1786,8 @@ export const attachmentControllerCreate = (
 
 
 export const getAttachmentControllerCreateMutationOptions = <TError = ErrorType<AttachmentControllerCreate401 | AttachmentControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerCreate>>, TError,{data: BodyType<NewAttachment>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerCreate>>, TError,{data: BodyType<NewAttachment>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerCreate>>, TError,{data: BodyType<AttachmentControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerCreate>>, TError,{data: BodyType<AttachmentControllerCreateBody>}, TContext> => {
 
 const mutationKey = ['attachmentControllerCreate'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1799,7 +1799,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof attachmentControllerCreate>>, {data: BodyType<NewAttachment>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof attachmentControllerCreate>>, {data: BodyType<AttachmentControllerCreateBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  attachmentControllerCreate(data,requestOptions)
@@ -1811,18 +1811,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AttachmentControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof attachmentControllerCreate>>>
-    export type AttachmentControllerCreateMutationBody = BodyType<NewAttachment>
+    export type AttachmentControllerCreateMutationBody = BodyType<AttachmentControllerCreateBody>
     export type AttachmentControllerCreateMutationError = ErrorType<AttachmentControllerCreate401 | AttachmentControllerCreate422>
 
     /**
- * @summary Create a new Attachment
+ * @summary Upload a new Attachment to MinIO
  */
 export const useAttachmentControllerCreate = <TError = ErrorType<AttachmentControllerCreate401 | AttachmentControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerCreate>>, TError,{data: BodyType<NewAttachment>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerCreate>>, TError,{data: BodyType<AttachmentControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof attachmentControllerCreate>>,
         TError,
-        {data: BodyType<NewAttachment>},
+        {data: BodyType<AttachmentControllerCreateBody>},
         TContext
       > => {
 

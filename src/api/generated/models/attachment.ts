@@ -19,4 +19,6 @@ export interface Attachment {
   /** @nullable */
   originalName?: string | null;
   createdAt?: string;
+  /** @nullable */
+  url?: string | null;
 }

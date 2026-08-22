@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "generate:api": "orval",
+    "api:generate": "orval",
     "preview": "vite preview"
   },
   "dependencies": {
