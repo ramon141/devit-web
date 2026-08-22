@@ -1,6 +1,7 @@
 import type { ReactElement } from 'react'
 import { Route, Routes, useLocation } from 'react-router'
 import Home from '@/pages/Home'
+import Login from '@/pages/Login'
 import Componentes from '@/pages/Componentes'
 import NotFound from '@/pages/NotFound'
 
@@ -14,6 +15,11 @@ const routes: RouteConfig[] = [
   {
     path: '/',
     element: <Home />,
+    isPrivate: false,
+  },
+  {
+    path: '/login',
+    element: <Login />,
     isPrivate: false,
   },
   {
