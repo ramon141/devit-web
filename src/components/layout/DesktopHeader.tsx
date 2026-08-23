@@ -1,5 +1,5 @@
-import { Bell, CircleUser } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import HeaderActions from '@/components/layout/HeaderActions'
+import SessionInfo from '@/components/layout/SessionInfo'
 
 type DesktopHeaderProps = {
   title: string
@@ -20,15 +20,8 @@ function DesktopHeader({ title, description }: DesktopHeaderProps) {
         )}
       </div>
 
-      <Button variant="ghost" size="icon">
-        <Bell />
-        <span className="sr-only">Notifiche</span>
-      </Button>
-
-      <Button variant="ghost" size="icon">
-        <CircleUser />
-        <span className="sr-only">Account</span>
-      </Button>
+      <SessionInfo className="text-right" />
+      <HeaderActions className="flex items-center gap-1" />
     </div>
   )
 }

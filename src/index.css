@@ -12,8 +12,6 @@
   --border: oklch(0.922 0 0);
   --code-bg: #f4f3ec;
   --accent: oklch(0.97 0 0);
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
@@ -111,20 +109,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
   #social .button-icon {
     filter: invert(1) brightness(2);
   }
@@ -281,3 +265,65 @@ body {
     @apply bg-background text-foreground;}
   html {
     @apply font-sans;}}
+
+/* FullCalendar — restyle per allinearsi al design system Devit */
+.devit-calendar .fc {
+  --fc-border-color: var(--border);
+  --fc-page-bg-color: var(--card);
+  --fc-neutral-bg-color: var(--muted);
+  --fc-list-event-hover-bg-color: var(--muted);
+  --fc-today-bg-color: var(--accent);
+  --fc-button-bg-color: var(--card);
+  --fc-button-border-color: var(--border);
+  --fc-button-text-color: var(--foreground);
+  --fc-button-hover-bg-color: var(--muted);
+  --fc-button-hover-border-color: var(--border);
+  --fc-button-active-bg-color: var(--primary);
+  --fc-button-active-border-color: var(--primary);
+  font-family: var(--sans);
+}
+
+.devit-calendar .fc .fc-button {
+  text-transform: capitalize;
+  border-radius: var(--radius);
+  box-shadow: none;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+}
+
+.devit-calendar .fc .fc-button-primary:not(:disabled).fc-button-active {
+  color: var(--primary-foreground);
+}
+
+.devit-calendar .fc .fc-toolbar-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.devit-calendar .fc .fc-daygrid-day-frame,
+.devit-calendar .fc .fc-timegrid-slot {
+  border-radius: 0;
+}
+
+.devit-calendar .fc-theme-standard .fc-scrollgrid,
+.devit-calendar .fc-theme-standard td,
+.devit-calendar .fc-theme-standard th {
+  border-color: var(--border);
+}
+
+.devit-calendar .fc .fc-daygrid-day-number,
+.devit-calendar .fc .fc-col-header-cell-cushion {
+  color: var(--foreground);
+}
+
+.devit-calendar .fc .fc-event {
+  border: none;
+  border-radius: 6px;
+  padding: 1px 4px;
+  font-size: 0.75rem;
+  cursor: grab;
+}
+
+.devit-calendar .fc .fc-list-event-dot {
+  border-color: var(--primary);
+}

@@ -2,19 +2,23 @@ import { useState } from 'react'
 import { MoreHorizontal } from 'lucide-react'
 import { NavLink, useLocation } from 'react-router'
 import { cn } from '@/lib/utils'
-import { navItems } from '@/components/layout/nav-items'
+import { getNavItems, type NavItem } from '@/components/layout/nav-items'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import { BOTTOM_NAV_MAX_MAIN_ITEMS } from '@/constants/ui'
 
-const MAX_MAIN_ITEMS = 4
+function itemPath(item: NavItem) {
+  return item.children?.[0]?.path ?? item.path
+}
 
 function BottomNavBar() {
   const location = useLocation()
   const [moreOpen, setMoreOpen] = useState(false)
 
-  const mainItems = navItems.slice(0, MAX_MAIN_ITEMS)
-  const moreItems = navItems.slice(MAX_MAIN_ITEMS)
+  const items = getNavItems()
+  const mainItems = items.slice(0, BOTTOM_NAV_MAX_MAIN_ITEMS)
+  const moreItems = items.slice(BOTTOM_NAV_MAX_MAIN_ITEMS)
   const hasMore = moreItems.length > 0
-  const isMoreActive = moreItems.some((item) => item.path === location.pathname)
+  const isMoreActive = moreItems.some((item) => location.pathname.startsWith(itemPath(item)))
 
   return (
     <>
@@ -28,7 +32,7 @@ function BottomNavBar() {
         {mainItems.map((item) => (
           <NavLink
             key={item.path}
-            to={item.path}
+            to={itemPath(item)}
             className={({ isActive }) =>
               cn(
                 'flex flex-1 flex-col items-center gap-1 py-2 text-[0.65rem] font-medium',
@@ -65,22 +69,38 @@ function BottomNavBar() {
 
             <div className="grid gap-1 px-4 pb-2">
               {moreItems.map((item) => (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setMoreOpen(false)}
-                  className={({ isActive }) =>
-                    cn(
-                      'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium',
-                      isActive
-                        ? 'bg-accent text-primary'
-                        : 'text-foreground hover:bg-muted'
-                    )
-                  }
-                >
-                  <item.icon className="size-4.5" />
-                  {item.label}
-                </NavLink>
+                <div key={item.path} className="grid gap-1">
+                  <NavLink
+                    to={itemPath(item)}
+                    onClick={() => setMoreOpen(false)}
+                    className={({ isActive }) =>
+                      cn(
+                        'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium',
+                        isActive ? 'bg-accent text-primary' : 'text-foreground hover:bg-muted'
+                      )
+                    }
+                  >
+                    <item.icon className="size-4.5" />
+                    {item.label}
+                  </NavLink>
+
+                  {item.children?.map((child) => (
+                    <NavLink
+                      key={child.path}
+                      to={child.path}
+                      end
+                      onClick={() => setMoreOpen(false)}
+                      className={({ isActive }) =>
+                        cn(
+                          'ml-8 rounded-lg px-3 py-1.5 text-sm',
+                          isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
+                        )
+                      }
+                    >
+                      {child.label}
+                    </NavLink>
+                  ))}
+                </div>
               ))}
             </div>
           </SheetContent>

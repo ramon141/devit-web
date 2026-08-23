@@ -24,7 +24,7 @@ function Sidebar() {
         />
       </Link>
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="w-full flex-1 overflow-y-auto">
         <SidebarNav expanded={expanded} />
       </div>
 

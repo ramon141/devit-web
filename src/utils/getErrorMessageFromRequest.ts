@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios'
 
-type ApiErrorResponse = {
+export type ApiErrorResponse = {
   error?: {
     statusCode?: number
     name?: string

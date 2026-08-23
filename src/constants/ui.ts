@@ -1,0 +1,2 @@
+export const TOAST_AUTO_DISMISS_MS = 4000
+export const BOTTOM_NAV_MAX_MAIN_ITEMS = 4

@@ -1,6 +1,6 @@
-import { Bell, CircleUser } from 'lucide-react'
 import devitFavicon from '@/assets/logos/devit-favicon.png'
-import { Button } from '@/components/ui/button'
+import HeaderActions from '@/components/layout/HeaderActions'
+import SessionInfo from '@/components/layout/SessionInfo'
 
 type MobileHeaderProps = {
   title: string
@@ -22,16 +22,9 @@ function MobileHeader({ title }: MobileHeaderProps) {
         </span>
       </div>
 
-      <div className="flex shrink-0 items-center">
-        <Button variant="ghost" size="icon" className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-          <Bell />
-          <span className="sr-only">Notifiche</span>
-        </Button>
-
-        <Button variant="ghost" size="icon" className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-          <CircleUser />
-          <span className="sr-only">Account</span>
-        </Button>
+      <div className="flex shrink-0 items-center gap-1">
+        <HeaderActions className="flex items-center text-sidebar-foreground [&_button]:text-sidebar-foreground [&_button:hover]:bg-sidebar-accent [&_button:hover]:text-sidebar-accent-foreground" />
+        <SessionInfo avatarOnly />
       </div>
     </header>
   )
