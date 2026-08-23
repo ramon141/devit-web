@@ -1,6 +1,6 @@
 import AppLayout from '@/components/layout/AppLayout'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import ChannelStatusDashboard from '@/pages/Marketing/components/ChannelStatusDashboard'
 
 function Marketing() {

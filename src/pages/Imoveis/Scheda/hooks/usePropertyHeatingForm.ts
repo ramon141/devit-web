@@ -10,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
+import type { PropertyHeatingDetailPartialHeatingType } from '@/api/generated/models'
 
 export type HeatingFormValues = {
   heatingType: string
@@ -52,7 +53,12 @@ export function usePropertyHeatingForm(propertyId: string) {
 
   function onSubmit(values: HeatingFormValues) {
     const cleaned = emptyStringsToNull(values)
-    const data = { ...cleaned, monthlyCost: toNumberOrNull(values.monthlyCost), propertyId }
+    const data = {
+      ...cleaned,
+      heatingType: cleaned.heatingType as PropertyHeatingDetailPartialHeatingType,
+      monthlyCost: toNumberOrNull(values.monthlyCost),
+      propertyId,
+    }
 
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 

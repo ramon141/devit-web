@@ -88,7 +88,7 @@ export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
       downPayment: toNumberOrNull(values.downPayment),
       installmentsCount: toNumberOrNull(values.installmentsCount),
       commissionAmount: toNumberOrNull(values.commissionAmount),
-      saleDate: toISODateOrNull(values.saleDate) ?? undefined,
+      saleDate: toISODateOrNull(values.saleDate)!,
       deedDate: toISODateOrNull(values.deedDate),
     }
 

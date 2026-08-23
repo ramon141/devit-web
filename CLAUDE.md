@@ -1,4 +1,4 @@
-- Sempre execute "npx tsc --noEmit" depois de alguma alteração no código e corrija qualquer problema que apareça
+- Sempre execute "npx tsc -b" depois de alguma alteração no código e corrija qualquer problema que apareça (o projeto usa project references entre tsconfig.app.json e tsconfig.node.json; "npx tsc --noEmit" na raiz não checa os referenced projects e não pega erros reais)
 - Para campos que usam Select use o Controller do useForm, se for Input utilize o register do useForm
 - Jamais crie um arquivo com mais de 300 linhas, refatore
 - Jamais crie uma função com mais de 40 linhas, refatore

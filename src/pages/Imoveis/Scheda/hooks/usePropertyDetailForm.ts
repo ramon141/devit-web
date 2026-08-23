@@ -11,6 +11,13 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
+import type {
+  PropertyDetailPartialRating,
+  PropertyDetailPartialMediationType,
+  PropertyDetailPartialAvailability,
+  PropertyDetailPartialCondition,
+  PropertyDetailPartialFurnished,
+} from '@/api/generated/models'
 
 export type DettagliFormValues = {
   acquisitionDate: string
@@ -94,6 +101,11 @@ export function usePropertyDetailForm(propertyId: string) {
     const cleaned = emptyStringsToNull(values)
     const data = {
       ...cleaned,
+      rating: cleaned.rating as PropertyDetailPartialRating,
+      mediationType: cleaned.mediationType as PropertyDetailPartialMediationType,
+      availability: cleaned.availability as PropertyDetailPartialAvailability,
+      condition: cleaned.condition as PropertyDetailPartialCondition,
+      furnished: cleaned.furnished as PropertyDetailPartialFurnished,
       acquisitionDate: toISODateOrNull(values.acquisitionDate),
       mediationFeeClientPct: toNumberOrNull(values.mediationFeeClientPct),
       mediationFeeOwnerPct: toNumberOrNull(values.mediationFeeOwnerPct),

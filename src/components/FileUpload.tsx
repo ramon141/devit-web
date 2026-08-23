@@ -33,7 +33,10 @@ function FileUpload({
   function addFiles(files: FileList | null) {
     if (!files || files.length === 0) return
 
-    const next = multiple ? [...value, ...Array.from(files)] : [files[0]]
+    const first = files[0]
+    if (!first) return
+
+    const next = multiple ? [...value, ...Array.from(files)] : [first]
     onChange(next)
   }
 

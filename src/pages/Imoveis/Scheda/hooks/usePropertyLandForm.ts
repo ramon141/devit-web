@@ -10,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
+import type { PropertyLandDetailPartialTerrainType } from '@/api/generated/models'
 
 export type LandFormValues = {
   terrainType: string
@@ -69,6 +70,7 @@ export function usePropertyLandForm(propertyId: string) {
     const cleaned = emptyStringsToNull(values)
     const data = {
       ...cleaned,
+      terrainType: cleaned.terrainType as PropertyLandDetailPartialTerrainType,
       buildabilityIndex: toNumberOrNull(values.buildabilityIndex),
       buildableAreaSqm: toNumberOrNull(values.buildableAreaSqm),
       agriculturalAreaSqm: toNumberOrNull(values.agriculturalAreaSqm),

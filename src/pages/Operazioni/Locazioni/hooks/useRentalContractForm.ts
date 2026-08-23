@@ -90,7 +90,7 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
       condoFee: toNumberOrNull(values.condoFee),
       depositAmount: toNumberOrNull(values.depositAmount),
       noticeDays: toNumberOrNull(values.noticeDays),
-      startDate: toISODateOrNull(values.startDate) ?? undefined,
+      startDate: toISODateOrNull(values.startDate)!,
       endDate: toISODateOrNull(values.endDate),
     }
 

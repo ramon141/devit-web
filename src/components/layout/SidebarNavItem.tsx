@@ -82,7 +82,7 @@ function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
 
   const link = (
     <NavLink
-      to={hasChildren ? (item.children?.[0].path ?? item.path) : item.path}
+      to={hasChildren ? (item.children?.[0]?.path ?? item.path) : item.path}
       onClick={onNavigate}
       className={linkClassName}
     >

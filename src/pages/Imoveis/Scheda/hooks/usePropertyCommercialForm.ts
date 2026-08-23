@@ -8,6 +8,7 @@ import {
 } from '@/api/generated/api'
 import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
+import type { PropertyCommercialDetailPartialScope } from '@/api/generated/models'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
@@ -87,6 +88,7 @@ export function usePropertyCommercialForm(propertyId: string) {
     const cleaned = emptyStringsToNull(values)
     const data = {
       ...cleaned,
+      scope: cleaned.scope as PropertyCommercialDetailPartialScope,
       activityValue: toNumberOrNull(values.activityValue),
       averageRevenueFrom: toNumberOrNull(values.averageRevenueFrom),
       averageRevenueTo: toNumberOrNull(values.averageRevenueTo),

@@ -31,7 +31,11 @@ function SelectField({
 }: SelectFieldProps) {
   return (
     <div className="grid gap-1.5">
-      <Select value={value} onValueChange={onValueChange} disabled={disabled}>
+      <Select
+        value={value}
+        onValueChange={(newValue) => onValueChange(newValue ?? '')}
+        disabled={disabled}
+      >
         <SelectTrigger className="w-full" aria-invalid={!!error}>
           <SelectValue placeholder={placeholder}>
             {(selected: string) => options.find((option) => option.value === selected)?.label}

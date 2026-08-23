@@ -79,7 +79,7 @@ export function useProposalForm({ proposal, onSaved }: UseProposalFormProps) {
     const data = {
       ...cleaned,
       proposalAmount: toNumberOrNull(values.proposalAmount) ?? 0,
-      proposalDate: toISODateOrNull(values.proposalDate) ?? undefined,
+      proposalDate: toISODateOrNull(values.proposalDate)!,
       validUntil: toISODateOrNull(values.validUntil),
     }
 
