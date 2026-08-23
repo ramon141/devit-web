@@ -1,8 +1,7 @@
+import { useLayoutEffect } from 'react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
-import { useIsDesktop } from '@/hooks/useIsDesktop'
-import DesktopLayout from '@/components/layout/DesktopLayout'
-import MobileLayout from '@/components/layout/MobileLayout'
+import { usePageHeader } from '@/contexts/PageHeaderContext'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,10 +23,16 @@ type AppLayoutProps = {
   children: ReactNode
 }
 
+// Pubblica titolo/descrizione alla Shell persistente (vedi PageHeaderContext) e
+// renderizza il breadcrumb + contenuto della pagina
 function AppLayout({ title, description, breadcrumbItems, children }: AppLayoutProps) {
-  const isDesktop = useIsDesktop()
+  const { setPageHeader } = usePageHeader()
 
-  const content = (
+  useLayoutEffect(() => {
+    setPageHeader({ title, description })
+  }, [title, description, setPageHeader])
+
+  return (
     <>
       {breadcrumbItems && breadcrumbItems.length > 0 && (
         <Breadcrumb className="mb-4 animate-in fade-in slide-in-from-top-1 duration-300">
@@ -55,16 +60,6 @@ function AppLayout({ title, description, breadcrumbItems, children }: AppLayoutP
       {children}
     </>
   )
-
-  if (isDesktop) {
-    return (
-      <DesktopLayout title={title} description={description}>
-        {content}
-      </DesktopLayout>
-    )
-  }
-
-  return <MobileLayout title={title}>{content}</MobileLayout>
 }
 
 export default AppLayout

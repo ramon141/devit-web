@@ -44,7 +44,21 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
   })
 
   useEffect(() => {
-    form.reset(person ? { ...emptyValues, ...person } : emptyValues)
+    form.reset(
+      person
+        ? {
+            name: person.name,
+            role: person.role,
+            email: person.email ?? '',
+            phone: person.phone ?? '',
+            secondaryPhone: person.secondaryPhone ?? '',
+            documentType: person.documentType ?? '',
+            documentNumber: person.documentNumber ?? '',
+            birthDate: person.birthDate ?? '',
+            notes: person.notes ?? '',
+          }
+        : emptyValues
+    )
   }, [person, form])
 
   function invalidateList() {

@@ -20,138 +20,53 @@ import FilialiPage from '@/pages/Amministrazione/Filiali/page'
 import CategoriePage from '@/pages/Amministrazione/Categorie/page'
 import BannerPage from '@/pages/Amministrazione/Banner/page'
 import AuditPage from '@/pages/Amministrazione/Audit/page'
+import Profilo from '@/pages/Profilo'
 import NotFound from '@/pages/NotFound'
+import Shell from '@/components/layout/Shell'
+import { PageHeaderProvider } from '@/contexts/PageHeaderContext'
 import { Auth } from '@/auth'
 
 export type RouteConfig = {
   path: string
   element: ReactElement
-  isPrivate?: boolean
 }
 
 const routes: RouteConfig[] = [
-  {
-    path: '/',
-    element: <Home />,
-    isPrivate: true,
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    isPrivate: false,
-  },
-  {
-    path: '/agenda',
-    element: <Agenda />,
-    isPrivate: true,
-  },
-  {
-    path: '/clienti',
-    element: <ClientiPage />,
-    isPrivate: true,
-  },
-  {
-    path: '/clienti/richieste',
-    element: <LeadsPage />,
-    isPrivate: true,
-  },
-  {
-    path: '/clienti/:id',
-    element: <ClienteScheda />,
-    isPrivate: true,
-  },
-  {
-    path: '/proprieta',
-    element: <Imoveis />,
-    isPrivate: true,
-  },
-  {
-    path: '/proprieta/nuovo',
-    element: <ImovelScheda />,
-    isPrivate: true,
-  },
-  {
-    path: '/proprieta/:id',
-    element: <ImovelScheda />,
-    isPrivate: true,
-  },
-  {
-    path: '/proposte',
-    element: <Proposte />,
-    isPrivate: true,
-  },
-  {
-    path: '/operazioni',
-    element: <Navigate to="/operazioni/vendite" replace />,
-    isPrivate: true,
-  },
-  {
-    path: '/operazioni/vendite',
-    element: <VenditePage />,
-    isPrivate: true,
-  },
-  {
-    path: '/operazioni/locazioni',
-    element: <LocazioniPage />,
-    isPrivate: true,
-  },
-  {
-    path: '/marketing',
-    element: <Marketing />,
-    isPrivate: true,
-  },
-  {
-    path: '/statistiche',
-    element: <Statistiche />,
-    isPrivate: true,
-  },
-  {
-    path: '/notifiche',
-    element: <Notifiche />,
-    isPrivate: true,
-  },
-  {
-    path: '/amministrazione',
-    element: <Navigate to="/amministrazione/utenti" replace />,
-    isPrivate: true,
-  },
-  {
-    path: '/amministrazione/utenti',
-    element: <UtentiPage />,
-    isPrivate: true,
-  },
-  {
-    path: '/amministrazione/filiali',
-    element: <FilialiPage />,
-    isPrivate: true,
-  },
-  {
-    path: '/amministrazione/categorie',
-    element: <CategoriePage />,
-    isPrivate: true,
-  },
-  {
-    path: '/amministrazione/banner',
-    element: <BannerPage />,
-    isPrivate: true,
-  },
-  {
-    path: '/amministrazione/audit',
-    element: <AuditPage />,
-    isPrivate: true,
-  },
-  {
-    path: '/componenti',
-    element: <Componentes />,
-    isPrivate: true,
-  },
+  { path: '/', element: <Home /> },
+  { path: '/agenda', element: <Agenda /> },
+  { path: '/clienti', element: <ClientiPage /> },
+  { path: '/clienti/richieste', element: <LeadsPage /> },
+  { path: '/clienti/:id', element: <ClienteScheda /> },
+  { path: '/proprieta', element: <Imoveis /> },
+  { path: '/proprieta/nuovo', element: <ImovelScheda /> },
+  { path: '/proprieta/:id', element: <ImovelScheda /> },
+  { path: '/proposte', element: <Proposte /> },
+  { path: '/operazioni', element: <Navigate to="/operazioni/vendite" replace /> },
+  { path: '/operazioni/vendite', element: <VenditePage /> },
+  { path: '/operazioni/locazioni', element: <LocazioniPage /> },
+  { path: '/marketing', element: <Marketing /> },
+  { path: '/statistiche', element: <Statistiche /> },
+  { path: '/notifiche', element: <Notifiche /> },
+  { path: '/profilo', element: <Profilo /> },
+  { path: '/amministrazione', element: <Navigate to="/amministrazione/utenti" replace /> },
+  { path: '/amministrazione/utenti', element: <UtentiPage /> },
+  { path: '/amministrazione/filiali', element: <FilialiPage /> },
+  { path: '/amministrazione/categorie', element: <CategoriePage /> },
+  { path: '/amministrazione/banner', element: <BannerPage /> },
+  { path: '/amministrazione/audit', element: <AuditPage /> },
+  { path: '/componenti', element: <Componentes /> },
 ]
 
-function RouteComponent({ element, isPrivate }: RouteConfig) {
-  if (!isPrivate) return element
+// Layout persistente: Sidebar/Header non rimontano più ad ogni navigazione,
+// solo il contenuto dentro <Outlet/> (vedi Shell)
+function PrivateRoute() {
   if (!Auth.isAuthenticated()) return <Navigate to="/login" replace />
 
-  return element
+  return (
+    <PageHeaderProvider>
+      <Shell />
+    </PageHeaderProvider>
+  )
 }
 
 function AppRoutes() {
@@ -159,13 +74,14 @@ function AppRoutes() {
 
   return (
     <Routes location={location}>
-      {routes.map((route) => (
-        <Route
-          key={route.path}
-          path={route.path}
-          element={<RouteComponent {...route} />}
-        />
-      ))}
+      <Route path="/login" element={<Login />} />
+
+      <Route element={<PrivateRoute />}>
+        {routes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
+      </Route>
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

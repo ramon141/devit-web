@@ -11,30 +11,18 @@ type SidebarNavItemProps = {
   onNavigate?: () => void
 }
 
-// Ogni pagina rimonta il layout (nessun layout persistente sopra le rotte),
-// quindi lo stato "aperto" è salvato in sessionStorage per sopravvivere alla navigazione
 function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
   const location = useLocation()
   const hasChildren = !!item.children?.length
   const isChildActive = item.children?.some((child) => location.pathname === child.path) ?? false
-  const storageKey = `sidebar-section-open:${item.path}`
-  const [open, setOpen] = useState(
-    () => isChildActive || sessionStorage.getItem(storageKey) === 'true'
-  )
+  const [open, setOpen] = useState(isChildActive)
 
   useEffect(() => {
-    if (isChildActive) {
-      setOpen(true)
-      sessionStorage.setItem(storageKey, 'true')
-    }
-  }, [isChildActive, storageKey])
+    if (isChildActive) setOpen(true)
+  }, [isChildActive])
 
   function toggleOpen() {
-    setOpen((value) => {
-      const next = !value
-      sessionStorage.setItem(storageKey, String(next))
-      return next
-    })
+    setOpen((value) => !value)
   }
 
   const linkClassName = ({ isActive }: { isActive: boolean }) =>
