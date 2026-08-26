@@ -7,6 +7,7 @@
  */
 import type { BranchFilterOrder } from './branchFilterOrder';
 import type { BranchFilterFields } from './branchFilterFields';
+import type { BranchFilterIncludeItem } from './branchFilterIncludeItem';
 
 export interface BranchFilter {
   /** @minimum 0 */
@@ -17,4 +18,5 @@ export interface BranchFilter {
   skip?: number;
   order?: BranchFilterOrder;
   fields?: BranchFilterFields;
+  include?: BranchFilterIncludeItem[];
 }

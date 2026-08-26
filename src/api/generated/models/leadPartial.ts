@@ -7,6 +7,7 @@
  */
 import type { LeadPartialStatus } from './leadPartialStatus';
 import type { LeadPartialSource } from './leadPartialSource';
+import type { LeadPartialRequestType } from './leadPartialRequestType';
 
 /**
  * (tsType: Partial<Lead>, schemaOptions: { partial: true })
@@ -33,6 +34,14 @@ export interface LeadPartial {
   lossReason?: string | null;
   /** @nullable */
   notes?: string | null;
+  /** @nullable */
+  requestType?: LeadPartialRequestType;
+  /** @nullable */
+  desiredCity?: string | null;
+  /** @nullable */
+  maxBudget?: number | null;
+  /** @nullable */
+  subject?: string | null;
   /** @nullable */
   syncedAt?: string | null;
   createdAt?: string;

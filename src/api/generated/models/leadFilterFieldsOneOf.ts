@@ -19,6 +19,10 @@ export type LeadFilterFieldsOneOf = {
   convertedAt?: boolean;
   lossReason?: boolean;
   notes?: boolean;
+  requestType?: boolean;
+  desiredCity?: boolean;
+  maxBudget?: boolean;
+  subject?: boolean;
   syncedAt?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;

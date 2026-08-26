@@ -7,6 +7,7 @@
  */
 import type { LeadWithRelationsStatus } from './leadWithRelationsStatus';
 import type { LeadWithRelationsSource } from './leadWithRelationsSource';
+import type { LeadWithRelationsRequestType } from './leadWithRelationsRequestType';
 import type { User } from './user';
 import type { LeadProperty } from './leadProperty';
 import type { PurchaseProposal } from './purchaseProposal';
@@ -36,6 +37,14 @@ export interface LeadWithRelations {
   lossReason?: string | null;
   /** @nullable */
   notes?: string | null;
+  /** @nullable */
+  requestType?: LeadWithRelationsRequestType;
+  /** @nullable */
+  desiredCity?: string | null;
+  /** @nullable */
+  maxBudget?: number | null;
+  /** @nullable */
+  subject?: string | null;
   /** @nullable */
   syncedAt?: string | null;
   createdAt?: string;

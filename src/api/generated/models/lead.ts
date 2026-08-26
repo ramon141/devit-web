@@ -7,6 +7,7 @@
  */
 import type { LeadStatus } from './leadStatus';
 import type { LeadSource } from './leadSource';
+import type { LeadRequestType } from './leadRequestType';
 
 export interface Lead {
   id?: string;
@@ -30,6 +31,14 @@ export interface Lead {
   lossReason?: string | null;
   /** @nullable */
   notes?: string | null;
+  /** @nullable */
+  requestType?: LeadRequestType;
+  /** @nullable */
+  desiredCity?: string | null;
+  /** @nullable */
+  maxBudget?: number | null;
+  /** @nullable */
+  subject?: string | null;
   /** @nullable */
   syncedAt?: string | null;
   createdAt?: string;

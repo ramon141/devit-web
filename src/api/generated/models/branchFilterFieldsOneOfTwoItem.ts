@@ -13,6 +13,11 @@ export type BranchFilterFieldsOneOfTwoItem = typeof BranchFilterFieldsOneOfTwoIt
 export const BranchFilterFieldsOneOfTwoItem = {
   id: 'id',
   name: 'name',
+  phone: 'phone',
+  email: 'email',
+  latitude: 'latitude',
+  longitude: 'longitude',
   active: 'active',
   createdAt: 'createdAt',
+  addressId: 'addressId',
 } as const;

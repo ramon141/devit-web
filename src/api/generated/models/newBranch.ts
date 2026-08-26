@@ -11,6 +11,16 @@
  */
 export interface NewBranch {
   name: string;
+  /** @nullable */
+  phone?: string | null;
+  /** @nullable */
+  email?: string | null;
+  /** @nullable */
+  latitude?: number | null;
+  /** @nullable */
+  longitude?: number | null;
   active?: boolean;
   createdAt?: string;
+  /** @nullable */
+  addressId?: string | null;
 }

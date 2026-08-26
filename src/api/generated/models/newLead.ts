@@ -7,6 +7,7 @@
  */
 import type { NewLeadStatus } from './newLeadStatus';
 import type { NewLeadSource } from './newLeadSource';
+import type { NewLeadRequestType } from './newLeadRequestType';
 
 /**
  * (tsType: Omit<Lead, 'id'>, schemaOptions: { title: 'NewLead', exclude: [ 'id' ] })
@@ -32,6 +33,14 @@ export interface NewLead {
   lossReason?: string | null;
   /** @nullable */
   notes?: string | null;
+  /** @nullable */
+  requestType?: NewLeadRequestType;
+  /** @nullable */
+  desiredCity?: string | null;
+  /** @nullable */
+  maxBudget?: number | null;
+  /** @nullable */
+  subject?: string | null;
   /** @nullable */
   syncedAt?: string | null;
   createdAt?: string;

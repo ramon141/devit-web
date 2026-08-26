@@ -5,6 +5,7 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { Address } from './address';
 
 /**
  * (tsType: BranchWithRelations, schemaOptions: { includeRelations: true })
@@ -12,6 +13,18 @@
 export interface BranchWithRelations {
   id?: string;
   name: string;
+  /** @nullable */
+  phone?: string | null;
+  /** @nullable */
+  email?: string | null;
+  /** @nullable */
+  latitude?: number | null;
+  /** @nullable */
+  longitude?: number | null;
   active?: boolean;
   createdAt?: string;
+  /** @nullable */
+  addressId?: string | null;
+  address?: Address;
+  foreignKey?: unknown;
 }

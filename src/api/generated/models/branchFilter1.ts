@@ -8,6 +8,7 @@
 import type { BranchFilter1Order } from './branchFilter1Order';
 import type { BranchFilter1Where } from './branchFilter1Where';
 import type { BranchFilter1Fields } from './branchFilter1Fields';
+import type { BranchFilter1IncludeItem } from './branchFilter1IncludeItem';
 
 export interface BranchFilter1 {
   /** @minimum 0 */
@@ -19,4 +20,5 @@ export interface BranchFilter1 {
   order?: BranchFilter1Order;
   where?: BranchFilter1Where;
   fields?: BranchFilter1Fields;
+  include?: BranchFilter1IncludeItem[];
 }

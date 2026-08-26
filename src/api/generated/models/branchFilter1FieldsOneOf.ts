@@ -9,6 +9,11 @@
 export type BranchFilter1FieldsOneOf = {
   id?: boolean;
   name?: boolean;
+  phone?: boolean;
+  email?: boolean;
+  latitude?: boolean;
+  longitude?: boolean;
   active?: boolean;
   createdAt?: boolean;
+  addressId?: boolean;
 };

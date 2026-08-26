@@ -13,6 +13,7 @@ import type { Person } from './person';
 import type { User } from './user';
 import type { PropertyFee } from './propertyFee';
 import type { PropertyPhoto } from './propertyPhoto';
+import type { PropertyDocument } from './propertyDocument';
 import type { PropertyStatusHistory } from './propertyStatusHistory';
 import type { LeadProperty } from './leadProperty';
 import type { RentalContract } from './rentalContract';
@@ -69,6 +70,7 @@ export interface PropertyWithRelations {
   createdBy?: User;
   propertyFees?: PropertyFee[];
   propertyPhotos?: PropertyPhoto[];
+  propertyDocuments?: PropertyDocument[];
   propertyStatusHistories?: PropertyStatusHistory[];
   leadProperties?: LeadProperty[];
   rentalContracts?: RentalContract[];

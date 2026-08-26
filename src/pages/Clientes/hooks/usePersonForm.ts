@@ -112,7 +112,7 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
       number: values.number || undefined,
       complement: values.complement || undefined,
       neighborhood: values.neighborhood || undefined,
-      city: values.city || undefined,
+      city: values.city as string,
       region: values.region || undefined,
       postalCode: values.postalCode || undefined,
     }

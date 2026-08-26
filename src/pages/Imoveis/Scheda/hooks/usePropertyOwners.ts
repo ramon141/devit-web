@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { AxiosError } from 'axios'
 import {
   getPropertyOwnerControllerFindQueryKey,
-  usePropertyOwnerControllerCreate,
+  usePropertyControllerUpdateById,
   usePropertyOwnerControllerDeleteById,
   usePropertyOwnerControllerFind,
 } from '@/api/generated/api'
@@ -20,7 +20,7 @@ export function usePropertyOwners(propertyId: string) {
   const { data: owners } = usePropertyOwnerControllerFind({
     filter: { where: { propertyId }, include: [{ relation: 'person' }] },
   })
-  const { mutateAsync: create } = usePropertyOwnerControllerCreate()
+  const { mutateAsync: updateProperty } = usePropertyControllerUpdateById()
   const { mutateAsync: remove } = usePropertyOwnerControllerDeleteById()
 
   function invalidate() {
@@ -30,8 +30,9 @@ export function usePropertyOwners(propertyId: string) {
   function addOwner() {
     if (!personId) return
 
-    const promise = create({
-      data: { propertyId, personId, ownershipPercent: toNumberOrNull(percent) },
+    const promise = updateProperty({
+      id: propertyId,
+      data: { owners: [{ personId, ownershipPercent: toNumberOrNull(percent) }] },
     })
 
     toastPromise(promise, {

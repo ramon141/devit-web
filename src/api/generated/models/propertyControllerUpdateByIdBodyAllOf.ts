@@ -6,11 +6,14 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyControllerUpdateByIdBodyAllOfPhotosItem } from './propertyControllerUpdateByIdBodyAllOfPhotosItem';
+import type { PropertyControllerUpdateByIdBodyAllOfDocumentsItem } from './propertyControllerUpdateByIdBodyAllOfDocumentsItem';
 import type { PropertyControllerUpdateByIdBodyAllOfOwnersItem } from './propertyControllerUpdateByIdBodyAllOfOwnersItem';
 
 export type PropertyControllerUpdateByIdBodyAllOf = {
   /** Fotos do imóvel a serem enviadas para o MinIO e vinculadas */
   photos?: PropertyControllerUpdateByIdBodyAllOfPhotosItem[];
+  /** Documentos do imóvel (ex.: planimetria) a serem enviados para o MinIO e vinculados */
+  documents?: PropertyControllerUpdateByIdBodyAllOfDocumentsItem[];
   /** Proprietários (pessoas) a vincular ao imóvel */
   owners?: PropertyControllerUpdateByIdBodyAllOfOwnersItem[];
 };

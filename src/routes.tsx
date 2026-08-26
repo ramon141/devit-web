@@ -28,11 +28,36 @@ import NotFound from '@/pages/NotFound'
 import Shell from '@/components/layout/Shell'
 import { PageHeaderProvider } from '@/contexts/PageHeaderContext'
 import { Auth } from '@/auth'
+import SiteLayout from '@/pages/Site/components/SiteLayout'
+import SiteHome from '@/pages/Site/Home'
+import SiteVendita from '@/pages/Site/Vendita'
+import SiteAffitto from '@/pages/Site/Affitto'
+import SiteRisultati from '@/pages/Site/Risultati'
+import SitePropertyDetail from '@/pages/Site/PropertyDetail'
+import SiteChiSiamo from '@/pages/Site/ChiSiamo'
+import SiteRichieste from '@/pages/Site/Richieste'
+import SiteContatti from '@/pages/Site/Contatti'
+import SiteNews from '@/pages/Site/News'
+import SitePrivacyCookies from '@/pages/Site/PrivacyCookies'
 
 export type RouteConfig = {
   path: string
   element: ReactElement
 }
+
+// Site pubblico (senza login): usa SiteLayout invece dello Shell del CRM
+const siteRoutes: RouteConfig[] = [
+  { path: '/site', element: <SiteHome /> },
+  { path: '/site/vendita', element: <SiteVendita /> },
+  { path: '/site/affitto', element: <SiteAffitto /> },
+  { path: '/site/risultati', element: <SiteRisultati /> },
+  { path: '/site/property/:id', element: <SitePropertyDetail /> },
+  { path: '/site/chi-siamo', element: <SiteChiSiamo /> },
+  { path: '/site/richieste', element: <SiteRichieste /> },
+  { path: '/site/contatti', element: <SiteContatti /> },
+  { path: '/site/news', element: <SiteNews /> },
+  { path: '/site/privacy-cookies', element: <SitePrivacyCookies /> },
+]
 
 const routes: RouteConfig[] = [
   { path: '/', element: <Home /> },
@@ -81,6 +106,12 @@ function AppRoutes() {
   return (
     <Routes location={location}>
       <Route path="/login" element={<Login />} />
+
+      <Route element={<SiteLayout />}>
+        {siteRoutes.map((route) => (
+          <Route key={route.path} path={route.path} element={route.element} />
+        ))}
+      </Route>
 
       <Route element={<PrivateRoute />}>
         {routes.map((route) => (
