@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
+import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { AuditLog } from '@/api/generated/models'
 
 const actionLabels: Record<string, string> = {
@@ -18,43 +18,29 @@ type AuditLogTableProps = {
 }
 
 function AuditLogTable({ logs, isLoading }: AuditLogTableProps) {
-  return (
-    <div className="overflow-hidden rounded-xl ring-1 ring-border">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Azione</TableHead>
-            <TableHead>Entità</TableHead>
-            <TableHead>ID entità</TableHead>
-            <TableHead>Utente</TableHead>
-            <TableHead>Data</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {!isLoading && logs.length === 0 && (
-            <TableRow>
-              <TableCell colSpan={5} className="py-8 text-center text-muted-foreground">
-                Nessun log trovato.
-              </TableCell>
-            </TableRow>
-          )}
+  const columns: DataTableColumn<AuditLog>[] = [
+    {
+      header: 'Azione',
+      cell: (log) => <Badge variant="secondary">{actionLabels[log.action] ?? log.action}</Badge>,
+    },
+    { header: 'Entità', cell: (log) => <span className="font-medium">{log.entity}</span> },
+    {
+      header: 'ID entità',
+      cellClassName: 'max-w-40 truncate text-xs text-muted-foreground',
+      cell: (log) => log.entityId ?? '—',
+    },
+    { header: 'Utente', cell: (log) => log.userId ?? '—' },
+    { header: 'Data', cell: (log) => dayjs(log.createdAt).format('DD/MM/YYYY HH:mm') },
+  ]
 
-          {logs.map((log) => (
-            <TableRow key={log.id}>
-              <TableCell>
-                <Badge variant="secondary">{actionLabels[log.action] ?? log.action}</Badge>
-              </TableCell>
-              <TableCell className="font-medium">{log.entity}</TableCell>
-              <TableCell className="max-w-40 truncate text-xs text-muted-foreground">
-                {log.entityId ?? '—'}
-              </TableCell>
-              <TableCell>{log.userId ?? '—'}</TableCell>
-              <TableCell>{dayjs(log.createdAt).format('DD/MM/YYYY HH:mm')}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+  return (
+    <DataTable
+      columns={columns}
+      data={logs}
+      keyExtractor={(log) => String(log.id ?? '')}
+      isLoading={isLoading}
+      emptyMessage="Nessun log trovato."
+    />
   )
 }
 

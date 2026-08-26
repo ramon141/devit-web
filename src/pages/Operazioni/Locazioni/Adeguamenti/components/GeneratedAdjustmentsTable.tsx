@@ -1,12 +1,5 @@
 import dayjs from 'dayjs'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
+import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { RentalAdjustmentWithRelations } from '@/api/generated/models'
 
 type GeneratedAdjustmentsTableProps = {
@@ -20,34 +13,29 @@ function formatAmount(value: number) {
 function GeneratedAdjustmentsTable({ adjustments }: GeneratedAdjustmentsTableProps) {
   if (adjustments.length === 0) return null
 
+  const columns: DataTableColumn<RentalAdjustmentWithRelations>[] = [
+    {
+      header: 'Contratto',
+      cell: (adjustment) => (
+        <span className="font-medium">{adjustment.rentalContract?.number ?? '—'}</span>
+      ),
+    },
+    { header: 'Indice %', cell: (adjustment) => `${adjustment.indexPercent}%` },
+    { header: 'Valore precedente', cell: (adjustment) => formatAmount(adjustment.oldAmount) },
+    { header: 'Nuovo valore', cell: (adjustment) => formatAmount(adjustment.newAmount) },
+    { header: 'Data', cell: (adjustment) => dayjs(adjustment.effectiveDate).format('DD/MM/YYYY') },
+  ]
+
   return (
     <div className="mt-6">
       <p className="mb-2 text-sm font-medium">Ultimi adeguamenti generati</p>
 
-      <div className="overflow-hidden rounded-xl ring-1 ring-border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Contratto</TableHead>
-              <TableHead>Indice %</TableHead>
-              <TableHead>Valore precedente</TableHead>
-              <TableHead>Nuovo valore</TableHead>
-              <TableHead>Data</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {adjustments.map((adjustment) => (
-              <TableRow key={adjustment.id}>
-                <TableCell className="font-medium">{adjustment.rentalContract?.number ?? '—'}</TableCell>
-                <TableCell>{adjustment.indexPercent}%</TableCell>
-                <TableCell>{formatAmount(adjustment.oldAmount)}</TableCell>
-                <TableCell>{formatAmount(adjustment.newAmount)}</TableCell>
-                <TableCell>{dayjs(adjustment.effectiveDate).format('DD/MM/YYYY')}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+      <DataTable
+        columns={columns}
+        data={adjustments}
+        keyExtractor={(adjustment) => adjustment.id ?? ''}
+        emptyMessage=""
+      />
     </div>
   )
 }

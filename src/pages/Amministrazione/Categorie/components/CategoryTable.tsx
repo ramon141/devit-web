@@ -1,18 +1,9 @@
 import { useState } from 'react'
-import { PencilIcon, Trash2Icon } from 'lucide-react'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import ConfirmPopup from '@/components/ConfirmPopup'
+import DataTable from '@/components/DataTable'
 import type { PropertyCategory } from '@/api/generated/models'
 import { useDeleteCategory } from '@/pages/Amministrazione/Categorie/hooks/useDeleteCategory'
+import { buildCategoryTableColumns } from '@/pages/Amministrazione/Categorie/components/CategoryTableColumns'
 
 type CategoryTableProps = {
   categories: PropertyCategory[]
@@ -29,49 +20,17 @@ function CategoryTable({ categories, isLoading, onEdit }: CategoryTableProps) {
     setDeleteTarget(null)
   }
 
-  return (
-    <div className="overflow-hidden rounded-xl ring-1 ring-border">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Nome</TableHead>
-            <TableHead>Slug</TableHead>
-            <TableHead>Ordine</TableHead>
-            <TableHead>Stato</TableHead>
-            <TableHead className="w-24 text-right">Azioni</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {!isLoading && categories.length === 0 && (
-            <TableRow>
-              <TableCell colSpan={5} className="py-8 text-center text-muted-foreground">
-                Nessuna categoria trovata.
-              </TableCell>
-            </TableRow>
-          )}
+  const columns = buildCategoryTableColumns({ onEdit, onDelete: setDeleteTarget })
 
-          {categories.map((category) => (
-            <TableRow key={category.id}>
-              <TableCell className="font-medium">{category.name}</TableCell>
-              <TableCell>{category.slug}</TableCell>
-              <TableCell>{category.displayOrder ?? '—'}</TableCell>
-              <TableCell>
-                <Badge variant={category.active ? 'default' : 'secondary'}>
-                  {category.active ? 'Attiva' : 'Inattiva'}
-                </Badge>
-              </TableCell>
-              <TableCell className="text-right">
-                <Button variant="ghost" size="icon-sm" onClick={() => onEdit(category)}>
-                  <PencilIcon className="size-4" />
-                </Button>
-                <Button variant="ghost" size="icon-sm" onClick={() => setDeleteTarget(category)}>
-                  <Trash2Icon className="size-4 text-destructive" />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+  return (
+    <>
+      <DataTable
+        columns={columns}
+        data={categories}
+        keyExtractor={(category) => category.id ?? ''}
+        isLoading={isLoading}
+        emptyMessage="Nessuna categoria trovata."
+      />
 
       <ConfirmPopup
         open={!!deleteTarget}
@@ -82,7 +41,7 @@ function CategoryTable({ categories, isLoading, onEdit }: CategoryTableProps) {
         confirmLabel="Elimina"
         onConfirm={confirmDelete}
       />
-    </div>
+    </>
   )
 }
 
