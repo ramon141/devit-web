@@ -1,4 +1,5 @@
 import { useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import InputMoney from '@/components/InputMoney'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -9,6 +10,7 @@ type SaleFinancialFieldsProps = {
 }
 
 function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
+  const { t } = useTranslation('operazioni')
   const { register, control, setValue } = form
   const { errors } = useFormState({ control })
   const finalAmount = useWatch({ control, name: 'finalAmount' })
@@ -19,7 +21,7 @@ function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
     <>
       <InputMoney
         name="finalAmount"
-        label="Valore finale"
+        label={t('vendite.financialFields.finalAmountLabel')}
         required
         value={finalAmount}
         setValue={(value) => setValue('finalAmount', value ?? '')}
@@ -28,23 +30,33 @@ function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
 
       <InputMoney
         name="downPayment"
-        label="Entrata"
+        label={t('vendite.financialFields.downPaymentLabel')}
         value={downPayment}
         setValue={(value) => setValue('downPayment', value)}
       />
 
       <InputMoney
         name="commissionAmount"
-        label="Valore della commissione"
+        label={t('vendite.financialFields.commissionAmountLabel')}
         value={commissionAmount}
         setValue={(value) => setValue('commissionAmount', value)}
       />
 
-      <FormFieldWrapper label="Numero di rate" error={errors.installmentsCount?.message}>
-        <Input {...register('installmentsCount')} type="number" placeholder="12" />
+      <FormFieldWrapper
+        label={t('vendite.financialFields.installmentsCountLabel')}
+        error={errors.installmentsCount?.message}
+      >
+        <Input
+          {...register('installmentsCount')}
+          type="number"
+          placeholder={t('vendite.financialFields.installmentsCountPlaceholder')}
+        />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Istituto finanziario" error={errors.financialInstitution?.message}>
+      <FormFieldWrapper
+        label={t('vendite.financialFields.financialInstitutionLabel')}
+        error={errors.financialInstitution?.message}
+      >
         <Input {...register('financialInstitution')} />
       </FormFieldWrapper>
     </>

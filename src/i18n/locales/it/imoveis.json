@@ -1,0 +1,592 @@
+{
+  "list": {
+    "pageTitle": "Immobili",
+    "pageDescription": "Gestisci il portafoglio immobiliare dell'agenzia",
+    "breadcrumb": "Immobili",
+    "searchPlaceholder": "Cerca per codice, titolo o descrizione...",
+    "newLabel": "Nuovo immobile",
+    "emptyCards": "Nessun immobile trovato."
+  },
+  "filters": {
+    "categoryLabel": "Categoria",
+    "categoryPlaceholder": "Categoria",
+    "purposeLabel": "Finalità",
+    "purposePlaceholder": "Finalità",
+    "statusLabel": "Stato",
+    "statusPlaceholder": "Stato",
+    "priceFromLabel": "Prezzo da",
+    "priceFromPlaceholder": "Prezzo da",
+    "priceToLabel": "Prezzo a",
+    "priceToPlaceholder": "Prezzo a",
+    "advancedFilters": "Filtri avanzati",
+    "ownerLabel": "Proprietario",
+    "ownerPlaceholder": "Proprietario",
+    "searchClientPlaceholder": "Cerca un cliente...",
+    "orderByLabel": "Ordina per",
+    "orderByPlaceholder": "Ordina per",
+    "bedroomsFromLabel": "Camere da",
+    "bedroomsFromPlaceholder": "Camere da",
+    "bedroomsToLabel": "Camere a",
+    "bedroomsToPlaceholder": "Camere a",
+    "bathroomsFromLabel": "Bagni da",
+    "bathroomsFromPlaceholder": "Bagni da",
+    "bathroomsToLabel": "Bagni a",
+    "bathroomsToPlaceholder": "Bagni a",
+    "areaFromLabel": "m² da",
+    "areaFromPlaceholder": "m² da",
+    "areaToLabel": "m² a",
+    "areaToPlaceholder": "m² a",
+    "orderBy": {
+      "createdAtDesc": "Più recenti",
+      "createdAtAsc": "Meno recenti",
+      "codeAsc": "Codice crescente",
+      "codeDesc": "Codice decrescente",
+      "salePriceAsc": "Prezzo crescente",
+      "salePriceDesc": "Prezzo decrescente"
+    }
+  },
+  "card": {
+    "new": "Nuovo",
+    "modifiedOn": "Modificato il {{date}}",
+    "deleteTitle": "Eliminare l'immobile?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{title}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "table": {
+    "emptyMessage": "Nessun immobile trovato.",
+    "deleteTitle": "Eliminare l'immobile?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{title}}\".",
+    "deleteConfirm": "Elimina",
+    "columns": {
+      "code": "Codice",
+      "title": "Titolo",
+      "city": "Città",
+      "owner": "Proprietario",
+      "price": "Prezzo",
+      "status": "Stato",
+      "actions": "Azioni"
+    }
+  },
+  "categoryOwnerFields": {
+    "categoryLabel": "Categoria",
+    "ownerLabel": "Proprietario",
+    "ownerPlaceholder": "Seleziona un proprietario",
+    "searchClientPlaceholder": "Cerca un cliente..."
+  },
+  "descriptionTab": {
+    "areaLabel": "M² totali",
+    "bedroomsLabel": "Camere da letto",
+    "bathroomsLabel": "Bagni",
+    "parkingLabel": "Posti auto",
+    "descriptionLabel": "Descrizione",
+    "save": "Salva descrizione"
+  },
+  "flagsRow": {
+    "featured": "In evidenza",
+    "featuredOrderPlaceholder": "Ordine in evidenza",
+    "publishedOnSite": "Pubblicato sul sito",
+    "active": "Attivo"
+  },
+  "generalTab": {
+    "codeLabel": "Codice",
+    "codePlaceholder": "AP001",
+    "titleLabel": "Titolo",
+    "titlePlaceholder": "Appartamento in centro",
+    "purposeLabel": "Finalità",
+    "statusLabel": "Stato",
+    "save": "Salva generale"
+  },
+  "locationTab": {
+    "countryLabel": "Paese",
+    "countryPlaceholder": "Italia",
+    "cityLabel": "Città",
+    "cityPlaceholder": "Milano",
+    "regionLabel": "Regione",
+    "regionPlaceholder": "Lombardia",
+    "postalCodeLabel": "CAP",
+    "postalCodePlaceholder": "20121",
+    "streetLabel": "Via",
+    "streetPlaceholder": "Via Roma",
+    "numberLabel": "Numero civico",
+    "numberPlaceholder": "12",
+    "neighborhoodLabel": "Quartiere",
+    "neighborhoodPlaceholder": "Centro",
+    "complementLabel": "Complemento",
+    "complementPlaceholder": "Piano 3, interno 2",
+    "save": "Salva localizzazione"
+  },
+  "priceTab": {
+    "salePriceLabel": "Prezzo di vendita",
+    "rentPriceLabel": "Prezzo di affitto",
+    "condoFeeLabel": "Spese condominiali mensili",
+    "save": "Salva prezzo"
+  },
+  "formFields": {
+    "steps": {
+      "general": "Generale",
+      "price": "Prezzo",
+      "location": "Localizzazione",
+      "description": "Descrizione",
+      "details": "Dettagli",
+      "commercial": "Commerciale",
+      "industrial": "Industriale",
+      "land": "Terreno",
+      "taxes": "Tasse",
+      "history": "Storico"
+    }
+  },
+  "scheda": {
+    "pageTitle": "Nuovo immobile",
+    "pageDescription": "Gestisci tutti i dati dell'immobile",
+    "breadcrumbList": "Proprietà",
+    "commercialActivityFields": {
+      "scopeLabel": "Ambito",
+      "scopePlaceholder": "Nessuno",
+      "scopeOptions": {
+        "property": "Solo immobile",
+        "activity": "Solo attività",
+        "propertyAndActivity": "Immobile e attività"
+      },
+      "mainActivityLabel": "Attività principale",
+      "alternativeActivitiesLabel": "Attività alternative",
+      "alternativeActivitiesPlaceholder": "separate da virgola",
+      "activityValueLabel": "Valore dell'attività",
+      "averageRevenueFromLabel": "Fatturato medio da",
+      "averageRevenueToLabel": "Fatturato medio a",
+      "monthlyRentLabel": "Affitto mensile",
+      "weeklyRestDayLabel": "Giorno di riposo settimanale"
+    },
+    "commercialAreaFields": {
+      "showcaseCountLabel": "Numero di vetrine",
+      "showcaseExposureLabel": "Esposizione vetrine",
+      "coveredAreaLabel": "M² coperti",
+      "uncoveredAreaLabel": "M² scoperti",
+      "coverableAreaLabel": "M² copribili",
+      "roomSeparationLabel": "Separazione ambienti",
+      "contextLabel": "Contesto",
+      "manageable": "Gestibile in affitto"
+    },
+    "dettagliMainFields": {
+      "acquisitionDateLabel": "Data di acquisizione",
+      "listingStageLabel": "Stato dell'annuncio",
+      "listingStagePlaceholder": "Proponibile",
+      "ratingLabel": "Rating",
+      "agentLabel": "Agente responsabile",
+      "agentPlaceholder": "Nessuno",
+      "mediationTypeLabel": "Tipo di mediazione",
+      "mediationTypePlaceholder": "Nessuno",
+      "subtypeLabel": "Tipologia",
+      "subtypePlaceholder": "Bilocale",
+      "mediationFeeClientLabel": "% mediazione cliente",
+      "mediationFeeOwnerLabel": "% mediazione proprietario"
+    },
+    "dettagliStatoFields": {
+      "availabilityLabel": "Disponibilità",
+      "availabilityPlaceholder": "Nessuna",
+      "conditionLabel": "Stato di conservazione",
+      "conditionPlaceholder": "Nessuno",
+      "furnishedLabel": "Arredato",
+      "furnishedPlaceholder": "Nessuno",
+      "exposureLabel": "Esposizione",
+      "exposurePlaceholder": "Sud",
+      "bareOwnership": "Nuda proprietà",
+      "prestige": "Immobile di prestigio",
+      "newConstruction": "Nuova costruzione",
+      "availableImmediately": "Disponibile subito",
+      "internalNoteLabel": "Nota interna",
+      "sharedNoteLabel": "Nota condivisa con i colleghi"
+    },
+    "industrialDetailFields": {
+      "heightLabel": "Altezza (m)",
+      "heightUnderBeamLabel": "Altezza sotto trave (m)",
+      "floorsCountLabel": "Numero di piani",
+      "entrancesCountLabel": "Numero di entrate",
+      "loadingBaysCountLabel": "Numero di baie di carico",
+      "allowedActivitiesLabel": "Attività consentite",
+      "hasOverheadCrane": "Ponte rolante",
+      "hasAlarm": "Allarme"
+    },
+    "landDetailFields": {
+      "terrainTypeLabel": "Tipo di terreno",
+      "terrainTypePlaceholder": "Nessuno",
+      "terrainTypeOptions": {
+        "flat": "Pianeggiante",
+        "sloped": "In pendenza"
+      },
+      "buildabilityIndexLabel": "Indice di edificabilità",
+      "buildableAreaLabel": "M² edificabili",
+      "agriculturalAreaLabel": "M² agricoli",
+      "possibleConstructionLabel": "Possibilità di realizzazione",
+      "rightOfWayLabel": "Servitù di passaggio",
+      "preemptionRightsLabel": "Diritto di prelazione",
+      "plantationsLabel": "Piantumazioni",
+      "hasExistingConstruction": "Costruzione esistente",
+      "projectApproved": "Progetto approvato"
+    },
+    "additionalSection": {
+      "title": "Caratteristiche aggiuntive",
+      "roomsCountLabel": "Numero di locali",
+      "qualityLabel": "Qualità",
+      "habitabilityLabel": "Abitabilità",
+      "windowFramesLabel": "Infissi",
+      "save": "Salva caratteristiche"
+    },
+    "cadastralSection": {
+      "title": "Dati catastali",
+      "registeredAtLabel": "Registrato il",
+      "partitaLabel": "Partita",
+      "mappaliLabel": "Mappali",
+      "categoryLabel": "Categoria",
+      "foglioLabel": "Foglio",
+      "particellaLabel": "Particella",
+      "subalternoLabel": "Subalterno",
+      "renditaLabel": "Rendita",
+      "save": "Salva dati catastali"
+    },
+    "commercialeTab": {
+      "save": "Salva dati commerciali",
+      "otherDataTitle": "Altri dati",
+      "systemsTitle": "Impianti"
+    },
+    "descrizioneTab": {
+      "otherDataTitle": "Altri dati",
+      "neighborhoodTitle": "Caratteristiche di zona"
+    },
+    "dettagliTab": {
+      "save": "Salva dettagli"
+    },
+    "feesManager": {
+      "title": "Tasse e spese",
+      "namePlaceholder": "Nome tassa",
+      "frequencyPlaceholder": "Frequenza",
+      "notePlaceholder": "Note",
+      "add": "Aggiungi"
+    },
+    "heatingSection": {
+      "title": "Riscaldamento",
+      "typeLabel": "Tipo",
+      "typePlaceholder": "Nessuno",
+      "typeOptions": {
+        "autonomous": "Autonomo",
+        "centralized": "Centralizzato",
+        "none": "Nessuno"
+      },
+      "fuelLabel": "Combustibile",
+      "fuelPlaceholder": "Metano",
+      "systemLabel": "Sistema",
+      "systemPlaceholder": "A pavimento",
+      "monthlyCostLabel": "Costo mensile",
+      "hasRadiators": "Con radiatori",
+      "save": "Salva riscaldamento"
+    },
+    "industrialAreasManager": {
+      "title": "Superfici e altezze per ambiente",
+      "areaTypePlaceholder": "Tipo area",
+      "areaPlaceholder": "M²",
+      "heightPlaceholder": "Altezza (m)",
+      "add": "Aggiungi"
+    },
+    "industrialeTab": {
+      "save": "Salva dati industriali",
+      "otherDataTitle": "Altri dati"
+    },
+    "locationDetailSection": {
+      "title": "Dettagli aggiuntivi",
+      "latitudeLabel": "Latitudine",
+      "longitudeLabel": "Longitudine",
+      "positionLabel": "Posizione",
+      "positionPlaceholder": "Centrale",
+      "distanceToWaterLabel": "Distanza dal mare/lago (m)",
+      "floorLabel": "Piano",
+      "totalFloorsLabel": "Totale piani",
+      "builtYearLabel": "Anno di costruzione",
+      "totalUnitsLabel": "Totale unità nell'edificio",
+      "usableAreaLabel": "M² utili",
+      "hasElevator": "Ascensore",
+      "hasArchitecturalBarriers": "Barriere architettoniche",
+      "save": "Salva posizione"
+    },
+    "ownersManager": {
+      "title": "Proprietari aggiuntivi",
+      "ownerPlaceholder": "Seleziona un proprietario",
+      "searchClientPlaceholder": "Cerca un cliente...",
+      "percentPlaceholder": "% quota",
+      "add": "Aggiungi"
+    },
+    "priceDetailSection": {
+      "title": "Opzioni di prezzo",
+      "estimatedValueLabel": "Valore di stima",
+      "flags": {
+        "negotiable": "Prezzo trattabile",
+        "priceFrom": "Prezzo \"a partire da\"",
+        "hiddenOnPrint": "Nascosto su stampati",
+        "hiddenOnInternet": "Nascosto su internet",
+        "boxIncludedInPrice": "Box incluso nel prezzo",
+        "auction": "Immobile all'asta"
+      },
+      "save": "Salva opzioni di prezzo"
+    },
+    "roomsManager": {
+      "title": "Ambienti e pertinenze",
+      "roomTypePlaceholder": "Tipo ambiente",
+      "quantityPlaceholder": "Quantità",
+      "widthPlaceholder": "Larghezza (m)",
+      "lengthPlaceholder": "Lunghezza (m)",
+      "equipmentPlaceholder": "Equipaggiamento",
+      "add": "Aggiungi"
+    },
+    "storicoTab": {
+      "priceHistoryTitle": "Storico prezzo",
+      "statusHistoryTitle": "Storico stato",
+      "emptyHistory": "Nessuna modifica registrata."
+    },
+    "terrenoTab": {
+      "save": "Salva dati terreno",
+      "otherDataTitle": "Altri dati"
+    }
+  },
+  "toasts": {
+    "deleteProperty": {
+      "pending": "Eliminazione immobile...",
+      "success": "Immobile eliminato con successo!",
+      "error": "Errore durante l'eliminazione dell'immobile"
+    },
+    "duplicateProperty": {
+      "pending": "Duplicazione immobile...",
+      "success": "Immobile duplicato con successo!",
+      "error": "Errore durante la duplicazione dell'immobile"
+    },
+    "saveProperty": {
+      "pendingUpdate": "Salvataggio immobile...",
+      "pendingCreate": "Creazione immobile...",
+      "successUpdate": "Immobile aggiornato con successo!",
+      "successCreate": "Immobile creato con successo!",
+      "error": "Errore durante il salvataggio dell'immobile"
+    },
+    "additionalForm": {
+      "pending": "Salvataggio caratteristiche...",
+      "success": "Caratteristiche aggiornate con successo!",
+      "error": "Errore durante il salvataggio delle caratteristiche"
+    },
+    "cadastralForm": {
+      "pending": "Salvataggio dati catastali...",
+      "success": "Dati catastali aggiornati con successo!",
+      "error": "Errore durante il salvataggio dei dati catastali"
+    },
+    "commercialForm": {
+      "pending": "Salvataggio dati commerciali...",
+      "success": "Dati commerciali aggiornati con successo!",
+      "error": "Errore durante il salvataggio dei dati commerciali"
+    },
+    "detailForm": {
+      "pending": "Salvataggio dettagli...",
+      "success": "Dettagli aggiornati con successo!",
+      "error": "Errore durante il salvataggio dei dettagli"
+    },
+    "features": {
+      "pending": "Aggiornamento caratteristiche...",
+      "error": "Errore durante l'aggiornamento delle caratteristiche"
+    },
+    "fees": {
+      "addPending": "Aggiunta tassa...",
+      "addSuccess": "Tassa aggiunta con successo!",
+      "addError": "Errore durante l'aggiunta della tassa",
+      "removePending": "Rimozione tassa...",
+      "removeSuccess": "Tassa rimossa con successo!",
+      "removeError": "Errore durante la rimozione della tassa"
+    },
+    "heatingForm": {
+      "pending": "Salvataggio riscaldamento...",
+      "success": "Dati di riscaldamento aggiornati con successo!",
+      "error": "Errore durante il salvataggio del riscaldamento"
+    },
+    "industrialAreas": {
+      "addPending": "Aggiunta area...",
+      "addSuccess": "Area aggiunta con successo!",
+      "addError": "Errore durante l'aggiunta dell'area",
+      "removePending": "Rimozione area...",
+      "removeSuccess": "Area rimossa con successo!",
+      "removeError": "Errore durante la rimozione dell'area"
+    },
+    "industrialForm": {
+      "pending": "Salvataggio dati industriali...",
+      "success": "Dati industriali aggiornati con successo!",
+      "error": "Errore durante il salvataggio dei dati industriali"
+    },
+    "landForm": {
+      "pending": "Salvataggio dati terreno...",
+      "success": "Dati terreno aggiornati con successo!",
+      "error": "Errore durante il salvataggio dei dati terreno"
+    },
+    "locationDetailForm": {
+      "pending": "Salvataggio posizione...",
+      "success": "Dati di posizione aggiornati con successo!",
+      "error": "Errore durante il salvataggio della posizione"
+    },
+    "owners": {
+      "addPending": "Aggiunta proprietario...",
+      "addSuccess": "Proprietario aggiunto con successo!",
+      "addError": "Errore durante l'aggiunta del proprietario",
+      "removePending": "Rimozione proprietario...",
+      "removeSuccess": "Proprietario rimosso con successo!",
+      "removeError": "Errore durante la rimozione del proprietario"
+    },
+    "priceDetailForm": {
+      "pending": "Salvataggio opzioni di prezzo...",
+      "success": "Opzioni di prezzo aggiornate con successo!",
+      "error": "Errore durante il salvataggio delle opzioni di prezzo"
+    },
+    "rooms": {
+      "addPending": "Aggiunta ambiente...",
+      "addSuccess": "Ambiente aggiunto con successo!",
+      "addError": "Errore durante l'aggiunta dell'ambiente",
+      "removePending": "Rimozione ambiente...",
+      "removeSuccess": "Ambiente rimosso con successo!",
+      "removeError": "Errore durante la rimozione dell'ambiente"
+    }
+  },
+  "options": {
+    "purpose": {
+      "sale": "Vendita",
+      "rent": "Affitto",
+      "rentOrSale": "Vendita e affitto"
+    },
+    "status": {
+      "available": "Disponibile",
+      "reserved": "Riservato",
+      "rented": "Affittato",
+      "sold": "Venduto",
+      "underMaintenance": "In manutenzione",
+      "unavailable": "Non disponibile"
+    },
+    "validation": {
+      "code": "Inserisci il codice",
+      "title": "Inserisci almeno 3 caratteri",
+      "category": "Seleziona una categoria",
+      "owner": "Seleziona un proprietario",
+      "purpose": "Seleziona una finalità",
+      "status": "Seleziona uno stato",
+      "city": "Inserisci la città"
+    },
+    "feeFrequency": {
+      "once": "Una tantum",
+      "monthly": "Mensile",
+      "yearly": "Annuale"
+    },
+    "industrialAreaType": {
+      "workArea": "Locali di lavoro",
+      "warehouse": "Magazzino",
+      "office": "Uffici",
+      "mezzanine": "Soppalco",
+      "service": "Servizi",
+      "shed": "Tettoia",
+      "courtyard": "Cortile",
+      "coveredArea": "Area coperta",
+      "uncoveredArea": "Area scoperta"
+    },
+    "rating": {
+      "standard": "Standard",
+      "gold": "Gold"
+    },
+    "mediation": {
+      "exclusive": "Esclusiva",
+      "open": "Aperta"
+    },
+    "availability": {
+      "available": "Libero",
+      "occupied": "Occupato",
+      "underRenovation": "In ristrutturazione"
+    },
+    "condition": {
+      "new": "Nuovo",
+      "excellent": "Ottimo",
+      "good": "Buono",
+      "toRenovate": "Da ristrutturare"
+    },
+    "furnished": {
+      "yes": "Sì",
+      "partial": "Parziale",
+      "no": "No"
+    },
+    "roomType": {
+      "kitchen": "Cucina",
+      "balcony": "Balcone",
+      "terrace": "Terrazzo",
+      "garden": "Giardino",
+      "land": "Terreno",
+      "garage": "Garage",
+      "coveredParking": "Posto auto coperto",
+      "uncoveredParking": "Posto auto scoperto",
+      "motorcycleSpot": "Posto moto",
+      "camperSpot": "Posto camper",
+      "boatSpot": "Posto barca",
+      "cellar": "Cantina",
+      "warehouse": "Deposito",
+      "storage": "Ripostiglio",
+      "attic": "Soffitta",
+      "loft": "Sottotetto",
+      "carriageHouse": "Rimessa",
+      "stable": "Stalla",
+      "veranda": "Veranda"
+    },
+    "features": {
+      "lifestyle": {
+        "studentFriendly": "Adatto a studenti",
+        "petsAllowed": "Accetta animali",
+        "luxury": "Lusso",
+        "panoramic": "Vista panoramica",
+        "quietArea": "Zona tranquilla",
+        "cityCenter": "Centro città"
+      },
+      "amenity": {
+        "airConditioning": "Aria condizionata",
+        "fireplace": "Camino",
+        "safe": "Cassaforte",
+        "adslFastweb": "Copertura ADSL/Fastweb",
+        "shower": "Doccia",
+        "videoIntercom": "Citofono con video",
+        "aluminumFrames": "Infissi in alluminio",
+        "woodFrames": "Infissi in legno",
+        "parquet": "Parquet",
+        "blinds": "Persiane",
+        "alarm": "Allarme",
+        "suspendedToilets": "Sanitari sospesi",
+        "hydroTub": "Vasca idromassaggio",
+        "tvAntenna": "Antenna TV",
+        "cableTv": "TV via cavo"
+      },
+      "neighborhood": {
+        "kindergarten": "Asilo nido",
+        "bar": "Bar",
+        "sportsField": "Campo sportivo",
+        "wellnessCenter": "Centro benessere",
+        "shoppingCenter": "Centro commerciale",
+        "gym": "Palestra",
+        "playground": "Parco giochi",
+        "bikePath": "Pista ciclabile",
+        "schools": "Scuole",
+        "trainStation": "Stazione ferroviaria",
+        "publicTransport": "Trasporto pubblico",
+        "townHall": "Comune",
+        "postOffice": "Ufficio postale"
+      },
+      "industrial": {
+        "industrialWater": "Acqua a uso industriale",
+        "fireAlarm": "Antincendio",
+        "transformerCabin": "Cabina di trasformazione",
+        "loadingDocks": "Docks di carico",
+        "freightElevator": "Montacarichi",
+        "fence": "Recinzione",
+        "ramps": "Rampe"
+      },
+      "land": {
+        "waterConduits": "Condutture d'acqua",
+        "streetFrontage": "Fronte strada",
+        "phoneLines": "Linee telefoniche",
+        "subdividable": "Lotto frazionabile",
+        "electricity": "Luce",
+        "gas": "Gas"
+      }
+    }
+  }
+}

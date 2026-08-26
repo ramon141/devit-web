@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPropertyIndustrialAreaControllerFindQueryKey,
@@ -13,6 +14,7 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
 export function usePropertyIndustrialAreas(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const [areaType, setAreaType] = useState<PropertyIndustrialAreaAreaType | ''>('')
@@ -35,28 +37,28 @@ export function usePropertyIndustrialAreas(propertyId: string) {
     })
 
     toastPromise(promise, {
-      pending: 'Aggiunta area...',
+      pending: t('toasts.industrialAreas.addPending'),
       success: () => {
         invalidate()
         setAreaType('')
         setAreaSqm('')
         setHeightM('')
-        return 'Area aggiunta con successo!'
+        return t('toasts.industrialAreas.addSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’aggiunta dell’area'),
+        getErrorMessageFromRequest(error, t('toasts.industrialAreas.addError')),
     })
   }
 
   function removeArea(id: string) {
     toastPromise(remove({ id }), {
-      pending: 'Rimozione area...',
+      pending: t('toasts.industrialAreas.removePending'),
       success: () => {
         invalidate()
-        return 'Area rimossa con successo!'
+        return t('toasts.industrialAreas.removeSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la rimozione dell’area'),
+        getErrorMessageFromRequest(error, t('toasts.industrialAreas.removeError')),
     })
   }
 

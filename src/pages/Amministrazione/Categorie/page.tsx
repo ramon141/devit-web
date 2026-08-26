@@ -1,12 +1,15 @@
+import { useTranslation } from 'react-i18next'
 import SectionPage from '@/components/layout/SectionPage'
 import Categorie from '@/pages/Amministrazione/Categorie'
 
 function CategoriePage() {
+  const { t } = useTranslation('amministrazione')
+
   return (
     <SectionPage
-      title="Categorie"
-      description="Gestisci le categorie di immobile"
-      parentLabel="Amministrazione"
+      title={t('categoriePage.title')}
+      description={t('categoriePage.description')}
+      parentLabel={t('common.parentLabel')}
       parentPath="/gestionale/amministrazione/utenti"
     >
       <Categorie />

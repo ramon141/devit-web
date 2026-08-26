@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { HomeBanner } from '@/api/generated/models'
@@ -7,6 +8,7 @@ import BannerTable from '@/pages/Amministrazione/Banner/components/BannerTable'
 import BannerFormModal from '@/pages/Amministrazione/Banner/components/BannerFormModal'
 
 function Banner() {
+  const { t } = useTranslation('amministrazione')
   const { banners, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useBannerList()
   const { open, setOpen, editing, openNew, openEdit } = useEditModalState<HomeBanner>()
@@ -16,9 +18,9 @@ function Banner() {
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
-        searchPlaceholder="Cerca un banner..."
+        searchPlaceholder={t('banner.searchPlaceholder')}
         onNewClick={openNew}
-        newLabel="Nuovo banner"
+        newLabel={t('banner.newLabel')}
       />
 
       <BannerTable banners={banners} isLoading={isLoading} onEdit={openEdit} />

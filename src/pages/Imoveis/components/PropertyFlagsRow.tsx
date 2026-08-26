@@ -1,4 +1,5 @@
 import { Controller, useWatch, type Control } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Switch } from '@/components/ui/switch'
 import { Input } from '@/components/ui/input'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
@@ -8,6 +9,7 @@ type PropertyFlagsRowProps = {
 }
 
 function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
+  const { t } = useTranslation('imoveis')
   const featured = useWatch({ control, name: 'featured' })
 
   return (
@@ -18,7 +20,7 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
         render={({ field }) => (
           <label className="flex items-center gap-2 text-sm">
             <Switch checked={field.value} onCheckedChange={field.onChange} />
-            In evidenza
+            {t('flagsRow.featured')}
           </label>
         )}
       />
@@ -30,7 +32,7 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
             <Input
               {...field}
               type="number"
-              placeholder="Ordine in evidenza"
+              placeholder={t('flagsRow.featuredOrderPlaceholder')}
               className="w-40"
             />
           )}
@@ -42,7 +44,7 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
         render={({ field }) => (
           <label className="flex items-center gap-2 text-sm">
             <Switch checked={field.value} onCheckedChange={field.onChange} />
-            Pubblicato sul sito
+            {t('flagsRow.publishedOnSite')}
           </label>
         )}
       />
@@ -52,7 +54,7 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
         render={({ field }) => (
           <label className="flex items-center gap-2 text-sm">
             <Switch checked={field.value} onCheckedChange={field.onChange} />
-            Attivo
+            {t('flagsRow.active')}
           </label>
         )}
       />

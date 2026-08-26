@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -43,6 +44,7 @@ function buildQueryString(filters: SearchFilters) {
 }
 
 function SearchBar() {
+  const { t } = useTranslation('site')
   const navigate = useNavigate()
   const [filters, setFilters] = useState<SearchFilters>(EMPTY_FILTERS)
   const [showAdvanced, setShowAdvanced] = useState(false)
@@ -63,7 +65,7 @@ function SearchBar() {
     >
       <div className="grid divide-y divide-border sm:grid-cols-[1.2fr_1.6fr_auto] sm:divide-x sm:divide-y-0">
         <Input
-          placeholder="Città"
+          placeholder={t('searchBar.cityPlaceholder')}
           value={filters.city}
           onChange={(event) => updateField('city', event.target.value)}
           className={cn(FIELD_CLASS, 'px-4')}
@@ -72,7 +74,7 @@ function SearchBar() {
         <div className="relative flex items-center">
           <Search className="pointer-events-none absolute left-4 size-4 text-muted-foreground" />
           <Input
-            placeholder="Inserisci un indirizzo, città, via, CAP o codice"
+            placeholder={t('searchBar.keywordPlaceholder')}
             value={filters.keyword}
             onChange={(event) => updateField('keyword', event.target.value)}
             className={cn(FIELD_CLASS, 'pl-10')}
@@ -83,7 +85,7 @@ function SearchBar() {
           type="submit"
           className="h-12 rounded-none bg-[var(--devit-navy-dark)] px-8 text-white hover:bg-[var(--devit-navy-dark)]/90"
         >
-          Ricerca
+          {t('searchBar.searchButton')}
         </Button>
       </div>
 
@@ -92,13 +94,15 @@ function SearchBar() {
         className="w-full border-t border-border bg-muted/40 px-4 py-2 text-left text-sm font-medium text-primary hover:underline"
         onClick={() => setShowAdvanced((current) => !current)}
       >
-        {showAdvanced ? 'Nascondi filtri avanzati' : 'Avanzate'}
+        {showAdvanced
+          ? t('searchBar.hideAdvanced')
+          : t('searchBar.showAdvanced')}
       </button>
 
       {showAdvanced && (
         <div className="grid divide-y divide-border border-t border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0 md:grid-cols-6">
           <Input
-            placeholder="Camere"
+            placeholder={t('searchBar.bedroomsPlaceholder')}
             type="number"
             value={filters.bedrooms}
             onChange={(event) => updateField('bedrooms', event.target.value)}
@@ -106,7 +110,7 @@ function SearchBar() {
           />
 
           <Input
-            placeholder="Bagni"
+            placeholder={t('searchBar.bathroomsPlaceholder')}
             type="number"
             value={filters.bathrooms}
             onChange={(event) => updateField('bathrooms', event.target.value)}
@@ -114,7 +118,7 @@ function SearchBar() {
           />
 
           <Input
-            placeholder="Superficie min. (m²)"
+            placeholder={t('searchBar.minAreaPlaceholder')}
             type="number"
             value={filters.minArea}
             onChange={(event) => updateField('minArea', event.target.value)}
@@ -122,7 +126,7 @@ function SearchBar() {
           />
 
           <Input
-            placeholder="Superficie max. (m²)"
+            placeholder={t('searchBar.maxAreaPlaceholder')}
             type="number"
             value={filters.maxArea}
             onChange={(event) => updateField('maxArea', event.target.value)}
@@ -130,7 +134,7 @@ function SearchBar() {
           />
 
           <Input
-            placeholder="Prezzo min. (€)"
+            placeholder={t('searchBar.minPricePlaceholder')}
             type="number"
             value={filters.minPrice}
             onChange={(event) => updateField('minPrice', event.target.value)}
@@ -138,7 +142,7 @@ function SearchBar() {
           />
 
           <Input
-            placeholder="Prezzo max. (€)"
+            placeholder={t('searchBar.maxPricePlaceholder')}
             type="number"
             value={filters.maxPrice}
             onChange={(event) => updateField('maxPrice', event.target.value)}
@@ -150,7 +154,7 @@ function SearchBar() {
       {showAdvanced && (
         <div className="border-t border-border p-3">
           <Input
-            placeholder="Codice proprietà"
+            placeholder={t('searchBar.codePlaceholder')}
             value={filters.code}
             onChange={(event) => updateField('code', event.target.value)}
           />

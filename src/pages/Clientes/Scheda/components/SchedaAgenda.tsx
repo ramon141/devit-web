@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { usePersonEvents } from '@/pages/Clientes/Scheda/hooks/usePersonEvents'
 import { formatDateTime } from '@/utils/formatDate'
 
@@ -6,12 +7,13 @@ type SchedaAgendaProps = {
 }
 
 function SchedaAgenda({ personId }: SchedaAgendaProps) {
+  const { t } = useTranslation('clientes')
   const { participants } = usePersonEvents(personId)
 
   return (
     <div className="grid gap-2">
       {participants.length === 0 && (
-        <p className="text-sm text-muted-foreground">Nessun impegno collegato.</p>
+        <p className="text-sm text-muted-foreground">{t('schedaAgenda.empty')}</p>
       )}
 
       {participants.map((participant) => (

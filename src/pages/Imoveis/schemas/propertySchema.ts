@@ -1,51 +1,58 @@
 import { z } from 'zod'
+import type { TFunction } from 'i18next'
 import { PropertyPurpose, PropertyStatus } from '@/api/generated/models'
 
-export const purposeOptions = [
-  { value: PropertyPurpose.sale, label: 'Vendita' },
-  { value: PropertyPurpose.rent, label: 'Affitto' },
-  { value: PropertyPurpose.rent_or_sale, label: 'Vendita e affitto' },
-]
+export function getPurposeOptions(t: TFunction<'imoveis'>) {
+  return [
+    { value: PropertyPurpose.sale, label: t('options.purpose.sale') },
+    { value: PropertyPurpose.rent, label: t('options.purpose.rent') },
+    { value: PropertyPurpose.rent_or_sale, label: t('options.purpose.rentOrSale') },
+  ]
+}
 
-export const statusOptions = [
-  { value: PropertyStatus.available, label: 'Disponibile' },
-  { value: PropertyStatus.reserved, label: 'Riservato' },
-  { value: PropertyStatus.rented, label: 'Affittato' },
-  { value: PropertyStatus.sold, label: 'Venduto' },
-  { value: PropertyStatus.under_maintenance, label: 'In manutenzione' },
-  { value: PropertyStatus.unavailable, label: 'Non disponibile' },
-]
+export function getStatusOptions(t: TFunction<'imoveis'>) {
+  return [
+    { value: PropertyStatus.available, label: t('options.status.available') },
+    { value: PropertyStatus.reserved, label: t('options.status.reserved') },
+    { value: PropertyStatus.rented, label: t('options.status.rented') },
+    { value: PropertyStatus.sold, label: t('options.status.sold') },
+    { value: PropertyStatus.under_maintenance, label: t('options.status.underMaintenance') },
+    { value: PropertyStatus.unavailable, label: t('options.status.unavailable') },
+  ]
+}
 
-export const propertySchema = z.object({
-  code: z.string().min(1, 'Inserisci il codice'),
-  title: z.string().min(3, 'Inserisci almeno 3 caratteri'),
-  categoryId: z.string().min(1, 'Seleziona una categoria'),
-  ownerId: z.string().min(1, 'Seleziona un proprietario'),
-  purpose: z.enum(PropertyPurpose, { error: 'Seleziona una finalità' }),
-  status: z.enum(PropertyStatus, { error: 'Seleziona uno stato' }),
-  featured: z.boolean(),
-  featuredOrder: z.string().optional(),
-  active: z.boolean(),
-  publishedOnSite: z.boolean(),
+export function createPropertySchema(t: TFunction<'imoveis'>) {
+  return z.object({
+    code: z.string().min(1, t('options.validation.code')),
+    title: z.string().min(3, t('options.validation.title')),
+    categoryId: z.string().min(1, t('options.validation.category')),
+    ownerId: z.string().min(1, t('options.validation.owner')),
+    purpose: z.enum(PropertyPurpose, { error: t('options.validation.purpose') }),
+    status: z.enum(PropertyStatus, { error: t('options.validation.status') }),
+    featured: z.boolean(),
+    featuredOrder: z.string().optional(),
+    active: z.boolean(),
+    publishedOnSite: z.boolean(),
 
-  salePrice: z.string().optional(),
-  rentPrice: z.string().optional(),
-  condoFee: z.string().optional(),
+    salePrice: z.string().optional(),
+    rentPrice: z.string().optional(),
+    condoFee: z.string().optional(),
 
-  bedrooms: z.string().optional(),
-  bathrooms: z.string().optional(),
-  parkingSpots: z.string().optional(),
-  areaSqm: z.string().optional(),
-  description: z.string().optional(),
+    bedrooms: z.string().optional(),
+    bathrooms: z.string().optional(),
+    parkingSpots: z.string().optional(),
+    areaSqm: z.string().optional(),
+    description: z.string().optional(),
 
-  country: z.string().optional(),
-  street: z.string().optional(),
-  number: z.string().optional(),
-  complement: z.string().optional(),
-  neighborhood: z.string().optional(),
-  city: z.string().min(1, 'Inserisci la città'),
-  region: z.string().optional(),
-  postalCode: z.string().optional(),
-})
+    country: z.string().optional(),
+    street: z.string().optional(),
+    number: z.string().optional(),
+    complement: z.string().optional(),
+    neighborhood: z.string().optional(),
+    city: z.string().min(1, t('options.validation.city')),
+    region: z.string().optional(),
+    postalCode: z.string().optional(),
+  })
+}
 
-export type PropertyFormValues = z.infer<typeof propertySchema>
+export type PropertyFormValues = z.infer<ReturnType<typeof createPropertySchema>>

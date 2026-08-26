@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import SearchableSelect from '@/components/SearchableSelect'
 import RemovableRow from '@/components/RemovableRow'
@@ -9,6 +10,7 @@ type CalendarEventPropertiesManagerProps = {
 }
 
 function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventPropertiesManagerProps) {
+  const { t } = useTranslation('agenda')
   const { links, propertyId, setPropertyId, addProperty, removeProperty } =
     useCalendarEventProperties(calendarEventId)
   const { data: properties } = usePropertyControllerFind({ filter: { order: ['title ASC'], limit: 200 } })
@@ -19,7 +21,7 @@ function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventProper
 
   return (
     <div className="grid gap-3">
-      <p className="text-sm font-medium">Immobili collegati</p>
+      <p className="text-sm font-medium">{t('agenda:propertiesManager.title')}</p>
 
       {links.map((link) => (
         <RemovableRow key={link.id} onRemove={() => link.id && removeProperty(link.id)}>
@@ -35,12 +37,12 @@ function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventProper
             value={propertyId}
             onValueChange={setPropertyId}
             options={propertyOptions}
-            placeholder="Seleziona un immobile"
-            searchPlaceholder="Cerca un immobile..."
+            placeholder={t('agenda:propertiesManager.placeholder')}
+            searchPlaceholder={t('agenda:propertiesManager.searchPlaceholder')}
           />
         </div>
         <Button type="button" onClick={addProperty}>
-          Aggiungi
+          {t('agenda:propertiesManager.add')}
         </Button>
       </div>
     </div>

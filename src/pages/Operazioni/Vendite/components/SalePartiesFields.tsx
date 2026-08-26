@@ -1,4 +1,5 @@
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
@@ -16,6 +17,7 @@ type SalePartiesFieldsProps = {
 }
 
 function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
+  const { t } = useTranslation('operazioni')
   const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { data: proposals } = usePurchaseProposalControllerFind({ filter: { order: ['number ASC'], limit: 200 } })
@@ -45,12 +47,12 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
         name="propertyId"
         render={({ field }) => (
           <SearchableSelect
-            label="Immobile"
+            label={t('vendite.partiesFields.propertyLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={propertyOptions}
-            placeholder="Seleziona un immobile"
-            searchPlaceholder="Cerca per codice o titolo..."
+            placeholder={t('vendite.partiesFields.propertyPlaceholder')}
+            searchPlaceholder={t('vendite.partiesFields.propertySearchPlaceholder')}
             error={errors.propertyId?.message}
           />
         )}
@@ -61,12 +63,12 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
         name="sellerId"
         render={({ field }) => (
           <SearchableSelect
-            label="Venditore"
+            label={t('vendite.partiesFields.sellerLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={personOptions}
-            placeholder="Seleziona un venditore"
-            searchPlaceholder="Cerca un cliente..."
+            placeholder={t('vendite.partiesFields.sellerPlaceholder')}
+            searchPlaceholder={t('vendite.partiesFields.personSearchPlaceholder')}
             error={errors.sellerId?.message}
           />
         )}
@@ -77,12 +79,12 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
         name="buyerId"
         render={({ field }) => (
           <SearchableSelect
-            label="Acquirente"
+            label={t('vendite.partiesFields.buyerLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={personOptions}
-            placeholder="Seleziona un acquirente"
-            searchPlaceholder="Cerca un cliente..."
+            placeholder={t('vendite.partiesFields.buyerPlaceholder')}
+            searchPlaceholder={t('vendite.partiesFields.personSearchPlaceholder')}
             error={errors.buyerId?.message}
           />
         )}
@@ -93,33 +95,49 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
         name="proposalId"
         render={({ field }) => (
           <SearchableSelect
-            label="Proposta di origine"
+            label={t('vendite.partiesFields.proposalLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={proposalOptions}
-            placeholder="Nessuna"
-            searchPlaceholder="Cerca per numero..."
+            placeholder={t('vendite.partiesFields.proposalPlaceholder')}
+            searchPlaceholder={t('vendite.partiesFields.proposalSearchPlaceholder')}
             error={errors.proposalId?.message}
           />
         )}
       />
 
-      <FormFieldWrapper label="Agente del venditore" error={errors.sellerAgentId?.message}>
+      <FormFieldWrapper
+        label={t('vendite.partiesFields.sellerAgentLabel')}
+        error={errors.sellerAgentId?.message}
+      >
         <Controller
           control={control}
           name="sellerAgentId"
           render={({ field }) => (
-            <SelectField value={field.value} onValueChange={field.onChange} options={userOptions} placeholder="Nessuno" />
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder={t('vendite.partiesFields.noneOption')}
+            />
           )}
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Agente dell'acquirente" error={errors.buyerAgentId?.message}>
+      <FormFieldWrapper
+        label={t('vendite.partiesFields.buyerAgentLabel')}
+        error={errors.buyerAgentId?.message}
+      >
         <Controller
           control={control}
           name="buyerAgentId"
           render={({ field }) => (
-            <SelectField value={field.value} onValueChange={field.onChange} options={userOptions} placeholder="Nessuno" />
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder={t('vendite.partiesFields.noneOption')}
+            />
           )}
         />
       </FormFieldWrapper>

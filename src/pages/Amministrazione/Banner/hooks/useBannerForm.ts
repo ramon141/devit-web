@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -34,6 +35,7 @@ type UseBannerFormProps = {
 }
 
 export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
+  const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { uploadFile } = useAttachmentUpload()
@@ -92,20 +94,20 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
 
   function onSubmit(values: BannerFormValues) {
     if (!banner && !imageFiles[0]) {
-      setImageError('Seleziona un’immagine per il banner')
+      setImageError(t('bannerForm.imageRequired'))
       return
     }
     setImageError(undefined)
 
     toastPromise(saveBanner(values), {
-      pending: banner ? 'Salvataggio banner...' : 'Creazione banner...',
+      pending: banner ? t('bannerForm.pendingUpdate') : t('bannerForm.pendingCreate'),
       success: () => {
         invalidateList()
         onSaved()
-        return banner ? 'Banner aggiornato con successo!' : 'Banner creato con successo!'
+        return banner ? t('bannerForm.successUpdate') : t('bannerForm.successCreate')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio del banner'),
+        getErrorMessageFromRequest(error, t('bannerForm.error')),
     })
   }
 

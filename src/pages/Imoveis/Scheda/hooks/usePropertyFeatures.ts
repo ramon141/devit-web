@@ -1,5 +1,6 @@
 import type { AxiosError } from 'axios'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import {
   getPropertyFeatureControllerFindQueryKey,
   usePropertyFeatureControllerCreate,
@@ -11,6 +12,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function usePropertyFeatures(propertyId: string, category: PropertyFeatureCategory) {
+  const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
 
@@ -33,13 +35,13 @@ export function usePropertyFeatures(propertyId: string, category: PropertyFeatur
       : create({ data: { propertyId, category, featureKey } })
 
     toastPromise(promise, {
-      pending: 'Aggiornamento caratteristiche...',
+      pending: t('toasts.features.pending'),
       success: () => {
         invalidate()
         return undefined
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’aggiornamento delle caratteristiche'),
+        getErrorMessageFromRequest(error, t('toasts.features.error')),
     })
   }
 

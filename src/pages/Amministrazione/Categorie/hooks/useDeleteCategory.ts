@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteCategory() {
+  const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: deleteCategory } = usePropertyCategoryControllerDeleteById()
@@ -17,14 +19,14 @@ export function useDeleteCategory() {
     const promise = deleteCategory({ id })
 
     toastPromise(promise, {
-      pending: 'Eliminazione categoria...',
+      pending: t('deleteCategory.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPropertyCategoryControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getPropertyCategoryControllerCountQueryKey() })
-        return 'Categoria eliminata con successo!'
+        return t('deleteCategory.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione della categoria'),
+        getErrorMessageFromRequest(error, t('deleteCategory.error')),
     })
   }
 

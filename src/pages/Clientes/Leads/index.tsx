@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { PlusIcon } from 'lucide-react'
 import { DndContext, DragOverlay } from '@dnd-kit/core'
 import { Button } from '@/components/ui/button'
@@ -12,6 +13,7 @@ import LeadCard from '@/pages/Clientes/Leads/components/LeadCard'
 import LeadFormModal from '@/pages/Clientes/Leads/components/LeadFormModal'
 
 function Leads() {
+  const { t } = useTranslation('clientes')
   const { columns, leads } = useLeadBoard()
   const { handleDelete } = useDeleteLead()
   const { sensors, activeLead, handleDragStart, handleDragEnd } = useKanbanDragDrop({ leads })
@@ -39,7 +41,7 @@ function Leads() {
       <div className="mb-4 flex justify-end">
         <Button onClick={handleNew} className="gap-1.5">
           <PlusIcon className="size-4" />
-          Nuova richiesta
+          {t('leads.newButton')}
         </Button>
       </div>
 
@@ -69,10 +71,10 @@ function Leads() {
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare la richiesta?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.name}".`}
+        title={t('leads.deleteTitle')}
+        description={t('leads.deleteDescription', { name: deleteTarget?.name })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('leads.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </div>

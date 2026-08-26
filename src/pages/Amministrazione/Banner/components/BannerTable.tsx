@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import DataTable from '@/components/DataTable'
 import type { HomeBanner } from '@/api/generated/models'
@@ -12,6 +13,7 @@ type BannerTableProps = {
 }
 
 function BannerTable({ banners, isLoading, onEdit }: BannerTableProps) {
+  const { t } = useTranslation('amministrazione')
   const [deleteTarget, setDeleteTarget] = useState<HomeBanner | null>(null)
   const { handleDelete } = useDeleteBanner()
 
@@ -29,16 +31,16 @@ function BannerTable({ banners, isLoading, onEdit }: BannerTableProps) {
         data={banners}
         keyExtractor={(banner) => banner.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessun banner trovato."
+        emptyMessage={t('bannerTable.empty')}
       />
 
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare il banner?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.title}".`}
+        title={t('bannerTable.deleteTitle')}
+        description={t('bannerTable.deleteDescription', { title: deleteTarget?.title })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('bannerTable.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </>

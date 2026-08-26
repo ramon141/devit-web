@@ -1,16 +1,19 @@
+import { useTranslation } from 'react-i18next'
 import { Separator } from '@/components/ui/separator'
 import PropertyAdditionalSection from '@/pages/Imoveis/Scheda/components/PropertyAdditionalSection'
 import PropertyRoomsManager from '@/pages/Imoveis/Scheda/components/PropertyRoomsManager'
 import PropertyHeatingSection from '@/pages/Imoveis/Scheda/components/PropertyHeatingSection'
 import PropertyCadastralSection from '@/pages/Imoveis/Scheda/components/PropertyCadastralSection'
 import PropertyFeaturesSection from '@/pages/Imoveis/Scheda/components/PropertyFeaturesSection'
-import { amenityOptions, neighborhoodOptions } from '@/pages/Imoveis/Scheda/schemas/featureOptions'
+import { getAmenityOptions, getNeighborhoodOptions } from '@/pages/Imoveis/Scheda/schemas/featureOptions'
 
 type PropertyDescrizioneTabProps = {
   propertyId: string
 }
 
 function PropertyDescrizioneTab({ propertyId }: PropertyDescrizioneTabProps) {
+  const { t } = useTranslation('imoveis')
+
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <PropertyAdditionalSection propertyId={propertyId} />
@@ -24,14 +27,14 @@ function PropertyDescrizioneTab({ propertyId }: PropertyDescrizioneTabProps) {
       <PropertyFeaturesSection
         propertyId={propertyId}
         category="amenity"
-        title="Altri dati"
-        options={amenityOptions}
+        title={t('scheda.descrizioneTab.otherDataTitle')}
+        options={getAmenityOptions(t)}
       />
       <PropertyFeaturesSection
         propertyId={propertyId}
         category="neighborhood"
-        title="Caratteristiche di zona"
-        options={neighborhoodOptions}
+        title={t('scheda.descrizioneTab.neighborhoodTitle')}
+        options={getNeighborhoodOptions(t)}
       />
     </div>
   )

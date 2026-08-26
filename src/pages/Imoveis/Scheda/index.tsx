@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
 import {
   Breadcrumb,
@@ -14,6 +15,7 @@ import { usePropertyForm } from '@/pages/Imoveis/hooks/usePropertyForm'
 import PropertyFormFields from '@/pages/Imoveis/components/PropertyFormFields'
 
 function PropertyScheda() {
+  const { t } = useTranslation('imoveis')
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const isNew = !id
@@ -33,17 +35,17 @@ function PropertyScheda() {
 
   return (
     <AppLayout
-      title={property?.title ?? 'Nuovo immobile'}
-      description="Gestisci tutti i dati dell'immobile"
+      title={property?.title ?? t('scheda.pageTitle')}
+      description={t('scheda.pageDescription')}
     >
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink render={<Link to="/gestionale/proprieta" />}>Proprietà</BreadcrumbLink>
+            <BreadcrumbLink render={<Link to="/gestionale/proprieta" />}>{t('scheda.breadcrumbList')}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{property?.title ?? 'Nuovo immobile'}</BreadcrumbPage>
+            <BreadcrumbPage>{property?.title ?? t('scheda.pageTitle')}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

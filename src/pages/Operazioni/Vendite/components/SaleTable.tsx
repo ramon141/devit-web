@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import DataTable from '@/components/DataTable'
 import type { SaleWithRelations } from '@/api/generated/models'
@@ -12,6 +13,7 @@ type SaleTableProps = {
 }
 
 function SaleTable({ sales, isLoading, onEdit }: SaleTableProps) {
+  const { t } = useTranslation('operazioni')
   const [deleteTarget, setDeleteTarget] = useState<SaleWithRelations | null>(null)
   const { handleDelete } = useDeleteSale()
 
@@ -20,7 +22,7 @@ function SaleTable({ sales, isLoading, onEdit }: SaleTableProps) {
     setDeleteTarget(null)
   }
 
-  const columns = buildSaleTableColumns({ onEdit, onDelete: setDeleteTarget })
+  const columns = buildSaleTableColumns({ onEdit, onDelete: setDeleteTarget }, t)
 
   return (
     <>
@@ -29,16 +31,16 @@ function SaleTable({ sales, isLoading, onEdit }: SaleTableProps) {
         data={sales}
         keyExtractor={(sale) => sale.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessuna vendita trovata."
+        emptyMessage={t('vendite.table.emptyMessage')}
       />
 
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare la vendita?"
-        description={`Questa azione eliminerà definitivamente la vendita "${deleteTarget?.number}".`}
+        title={t('vendite.table.deleteTitle')}
+        description={t('vendite.table.deleteDescription', { number: deleteTarget?.number })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('vendite.table.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </>

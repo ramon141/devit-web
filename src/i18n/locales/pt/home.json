@@ -1,0 +1,28 @@
+{
+  "page": {
+    "title": "Painel",
+    "description": "Visão geral da atividade da agência",
+    "breadcrumb": "Painel"
+  },
+  "dormantPropertiesCard": {
+    "title": "Imóveis inativos",
+    "empty": "Nenhum imóvel inativo.",
+    "deleting": "Excluindo imóvel...",
+    "deleteSuccess": "Imóvel excluído com sucesso!",
+    "deleteError": "Erro ao excluir o imóvel",
+    "confirmTitle": "Excluir o imóvel?",
+    "confirmDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
+    "confirmLabel": "Excluir"
+  },
+  "leadsByStatusCard": {
+    "title": "Leads por status"
+  },
+  "recentPropertiesCard": {
+    "title": "Últimos imóveis modificados",
+    "empty": "Nenhum imóvel modificado recentemente."
+  },
+  "todayAppointmentsCard": {
+    "title": "Compromissos de hoje",
+    "empty": "Nenhum resultado."
+  }
+}

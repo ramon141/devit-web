@@ -1,5 +1,6 @@
 import { UserIcon, LogOutIcon } from 'lucide-react'
 import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { useSessionInfo } from '@/hooks/useSessionInfo'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -27,6 +28,7 @@ function initials(fullName: string) {
 
 // Nome, filiale e livello dell'utente loggato, fisso in ogni schermata
 function SessionInfo({ className, avatarOnly = false }: SessionInfoProps) {
+  const { t } = useTranslation('common')
   const { fullName, accessLevelLabel, branchName, avatarUrl } = useSessionInfo()
   const navigate = useNavigate()
 
@@ -61,11 +63,11 @@ function SessionInfo({ className, avatarOnly = false }: SessionInfoProps) {
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => navigate(`${CRM_BASE_PATH}/profilo`)}>
           <UserIcon />
-          Il mio profilo
+          {t('sessionInfo.myProfile')}
         </DropdownMenuItem>
         <DropdownMenuItem variant="destructive" onClick={() => Auth.logout()}>
           <LogOutIcon />
-          Esci
+          {t('sessionInfo.logout')}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

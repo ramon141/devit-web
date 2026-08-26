@@ -1,0 +1,279 @@
+{
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Próxima"
+  },
+  "propertyCard": {
+    "noPhoto": "Nenhuma foto disponível",
+    "exclusive": "Exclusiva",
+    "statusSale": "Venda",
+    "statusRent": "Aluguel",
+    "statusRentOrSale": "Venda / Aluguel",
+    "removeFavorite": "Remover dos favoritos",
+    "addFavorite": "Adicionar aos favoritos"
+  },
+  "propertySort": {
+    "featured": "Ordem padrão",
+    "priceAsc": "Preço - Do menor ao maior",
+    "priceDesc": "Preço - Do maior ao menor",
+    "dateAsc": "Data - da menos recente",
+    "dateDesc": "Data - da mais recente",
+    "titleAsc": "Título - ASC",
+    "titleDesc": "Título - DESC"
+  },
+  "searchBar": {
+    "cityPlaceholder": "Cidade",
+    "keywordPlaceholder": "Digite um endereço, cidade, rua, CEP ou código",
+    "searchButton": "Buscar",
+    "hideAdvanced": "Ocultar filtros avançados",
+    "showAdvanced": "Avançado",
+    "bedroomsPlaceholder": "Quartos",
+    "bathroomsPlaceholder": "Banheiros",
+    "minAreaPlaceholder": "Área mín. (m²)",
+    "maxAreaPlaceholder": "Área máx. (m²)",
+    "minPricePlaceholder": "Preço mín. (€)",
+    "maxPricePlaceholder": "Preço máx. (€)",
+    "codePlaceholder": "Código do imóvel"
+  },
+  "siteHeader": {
+    "nav": {
+      "home": "Início",
+      "rentalProperties": "Imóveis para Alugar",
+      "saleProperties": "Imóveis à Venda",
+      "aboutUs": "Quem Somos",
+      "requests": "Solicitações",
+      "contacts": "Contatos",
+      "news": "Notícias"
+    }
+  },
+  "siteFooter": {
+    "requests": "Solicitações",
+    "contacts": "Contatos",
+    "news": "Notícias",
+    "aboutUs": "Quem Somos",
+    "saleProperties": "Imóveis à venda",
+    "rentalProperties": "Imóveis para alugar",
+    "legalInfo": "Informações Legais",
+    "cookiesUsage": "Uso de Cookies",
+    "privacyPolicy": "Política de Privacidade",
+    "copyright": "© Devit Servizi immobiliari S.n.c. - IT07609021212 —",
+    "privacyAndCookies": "Privacidade e Cookies"
+  },
+  "cookieBanner": {
+    "title": "Valorizamos sua privacidade",
+    "description": "Utilizamos cookies para melhorar sua experiência no site.",
+    "customize": "Personalizar",
+    "rejectAll": "Rejeitar tudo",
+    "acceptAll": "Aceitar tudo"
+  },
+  "chiSiamo": {
+    "title": "Quem Somos",
+    "origins": {
+      "title": "Os primórdios",
+      "body": "A Devit Servizi Immobiliari nasceu em 1995 por iniciativa de Angelo De Santis e Massimiliano Vitale, com o objetivo de oferecer um serviço imobiliário sério e profissional em Nápoles e região."
+    },
+    "offices": {
+      "title": "As sedes",
+      "body": "Iniciada no bairro de Chiaia, a agência cresceu ao longo dos anos até abrir uma segunda sede em Portici, ampliando sua presença no território e a capacidade de acompanhar de perto as necessidades dos clientes."
+    },
+    "goals": {
+      "title": "Objetivos da Devit",
+      "body": "Garantimos a máxima colaboração e a máxima transparência com nossos clientes, para que cada negociação ocorra com tranquilidade e cada um possa realizar da melhor forma o seu projeto imobiliário."
+    }
+  },
+  "chiSiamoBranchList": {
+    "title": "Nossas Agências"
+  },
+  "contatti": {
+    "title": "Contatos",
+    "intro": "Tem uma dúvida geral? Escreva para nós. Se você procura um imóvel ou quer uma avaliação, use a página",
+    "introLink": "Solicitações",
+    "nameLabel": "Nome Completo",
+    "emailLabel": "Seu email",
+    "phoneLabel": "Telefone",
+    "subjectLabel": "Assunto",
+    "messageLabel": "Sua mensagem",
+    "acceptPrivacyPrefix": "Li e aceito a",
+    "acceptPrivacyLink": "Política de Privacidade e Cookies",
+    "submit": "Enviar",
+    "toastPending": "Enviando mensagem...",
+    "toastSuccess": "Mensagem enviada com sucesso! Responderemos em breve.",
+    "toastError": "Erro ao enviar a mensagem"
+  },
+  "contattiBranchList": {
+    "title": "Nossas Agências",
+    "empty": "Nenhuma agência disponível no momento. Entre em contato através do formulário ao lado."
+  },
+  "contattiSchema": {
+    "nameMin": "Digite seu nome completo",
+    "emailInvalid": "Digite um endereço de email válido",
+    "phoneMin": "Digite um número de telefone válido",
+    "messageMin": "Escreva sua mensagem",
+    "acceptPrivacy": "Você deve aceitar a Política de Privacidade e Cookies"
+  },
+  "home": {
+    "heroTitle": "Encontre a casa dos seus sonhos",
+    "heroSubtitle": "Venda e aluguel de imóveis em Nápoles e região desde 1995.",
+    "sectionTitle": "Nossas propostas exclusivas",
+    "sectionSubtitle": "Escolha o imóvel que combina com você.",
+    "noFeatured": "Nenhum imóvel em destaque no momento.",
+    "quote": "\"...garantimos a máxima colaboração, a máxima dedicação aos nossos clientes para que tudo ocorra com tranquilidade e cada um possa realizar da melhor forma o seu sonho\".",
+    "quoteAuthor": "A.D.S. e M.V"
+  },
+  "listings": {
+    "breadcrumbHome": "Início",
+    "titleSale": "Imóveis à Venda",
+    "titleRent": "Imóveis para Alugar",
+    "titleSearch": "Resultados da busca",
+    "propertiesCount": "{{count}} Imóveis",
+    "noResults": "Nenhum imóvel encontrado com esses critérios."
+  },
+  "news": {
+    "title": "Notícias",
+    "body": "Em breve publicaremos aqui as novidades, eventos e iniciativas da Devit Servizi Immobiliari. Volte para ficar por dentro."
+  },
+  "privacyCookies": {
+    "title": "Privacidade e Cookies",
+    "intro": "A Devit Servizi immobiliari S.n.c. - IT07609021212 trata os dados pessoais fornecidos através dos formulários deste site exclusivamente para responder às solicitações recebidas (busca de imóveis, avaliações, contatos gerais) e para as finalidades administrativas relacionadas a eventual relação comercial.",
+    "purpose": {
+      "title": "Finalidade do tratamento",
+      "body": "Os dados coletados (nome, email, telefone, conteúdo da mensagem) são utilizados exclusivamente para gerenciar a solicitação do usuário e para eventuais comunicações relativas a imóveis de seu interesse."
+    },
+    "rights": {
+      "title": "Direitos do titular",
+      "body": "A qualquer momento é possível solicitar o acesso, a retificação ou a exclusão dos próprios dados pessoais, escrevendo para o endereço de email indicado na página Contatos."
+    },
+    "retention": {
+      "title": "Conservação e compartilhamento",
+      "body": "Os dados não são cedidos a terceiros para fins de marketing e são conservados pelo tempo necessário para gerenciar a solicitação e cumprir as obrigações legais aplicáveis."
+    }
+  },
+  "propertyAdditionalDetailsGrid": {
+    "title": "Detalhes adicionais",
+    "type": "Tipologia",
+    "mediationType": "Tipo de mediação",
+    "condition": "Estado",
+    "furnished": "Mobiliado",
+    "exposure": "Exposição",
+    "availability": "Disponibilidade",
+    "negotiable": "Negociável",
+    "newConstruction": "Nova construção",
+    "bareOwnership": "Nua propriedade",
+    "prestige": "Imóvel de prestígio",
+    "estimatedValue": "Valor estimado",
+    "roomsCount": "Cômodos",
+    "quality": "Qualidade",
+    "habitability": "Habitabilidade",
+    "windowFrames": "Esquadrias",
+    "floor": "Andar",
+    "floorOf": "{{floor}} de {{total}}",
+    "elevator": "Elevador",
+    "builtYear": "Ano de construção",
+    "usableArea": "Área útil",
+    "condoFee": "Taxa de condomínio",
+    "parkingSpots": "Vagas de garagem"
+  },
+  "propertyAddressBlock": {
+    "title": "Endereço",
+    "openMaps": "Abrir no Google Maps",
+    "address": "Endereço",
+    "city": "Cidade",
+    "postalCode": "CEP",
+    "empty": "—"
+  },
+  "propertyDescription": {
+    "title": "Descrição",
+    "empty": "Nenhuma descrição disponível.",
+    "documentsTitle": "Documentos do imóvel",
+    "defaultDocumentLabel": "Documento"
+  },
+  "propertyDetailsGrid": {
+    "title": "Detalhes",
+    "code": "ID do Imóvel",
+    "price": "Preço",
+    "size": "Tamanho",
+    "bedrooms": "Quartos",
+    "bathrooms": "Banheiros",
+    "propertyType": "Tipo de imóvel",
+    "status": "Situação",
+    "statusRent": "Aluguel",
+    "statusSale": "Venda"
+  },
+  "propertyFeatures": {
+    "title": "Características",
+    "defaultFeature": "Característica"
+  },
+  "propertyGallery": {
+    "noPhoto": "Nenhuma foto disponível",
+    "photoAlt": "Foto do imóvel"
+  },
+  "propertyHeader": {
+    "home": "Início",
+    "removeFavorite": "Remover dos favoritos",
+    "addFavorite": "Adicionar aos favoritos",
+    "share": "Compartilhar",
+    "print": "Imprimir",
+    "exclusive": "Exclusiva",
+    "statusRent": "Aluguel",
+    "statusSale": "Venda",
+    "code": "Ref. {{code}}",
+    "defaultTitle": "Imóvel",
+    "sharePending": "Copiando link...",
+    "shareSuccess": "Link copiado para a área de transferência!",
+    "shareError": "Não foi possível copiar o link."
+  },
+  "propertyDetail": {
+    "notFound": "Imóvel não encontrado.",
+    "backToHome": "Voltar à página inicial"
+  },
+  "richieste": {
+    "title": "Solicitações",
+    "intro": "Deixe sua solicitação: você está procurando um imóvel ou quer uma avaliação da sua propriedade?",
+    "searchProperty": "Procuro imóvel",
+    "valuation": "Avaliação de propriedade",
+    "desiredCityLabel": "Cidade do imóvel",
+    "maxBudgetLabel": "Preço máximo",
+    "nameLabel": "Nome Completo",
+    "emailLabel": "Email",
+    "phoneLabel": "Contato Telefônico",
+    "messageLabel": "Mensagem",
+    "acceptTermsPrefix": "Aceito os termos da lei de Privacidade (Dlgs 196/2003). Leia a",
+    "acceptTermsLink": "Política de Privacidade e Cookies",
+    "submit": "Enviar solicitação",
+    "toastPending": "Enviando solicitação...",
+    "toastSuccess": "Solicitação enviada com sucesso! Entraremos em contato em breve.",
+    "toastError": "Erro ao enviar a solicitação"
+  },
+  "richiesteSchema": {
+    "desiredCityMin": "Digite a cidade",
+    "nameMin": "Digite seu nome completo",
+    "emailInvalid": "Digite um endereço de email válido",
+    "phoneMin": "Digite um número de telefone válido",
+    "messageMin": "Descreva sua solicitação",
+    "acceptTerms": "Você deve aceitar os termos de privacidade"
+  },
+  "formatters": {
+    "yes": "Sim",
+    "no": "Não",
+    "condition": {
+      "new": "Novo",
+      "excellent": "Excelente",
+      "good": "Bom",
+      "toRenovate": "A reformar"
+    },
+    "furnished": {
+      "yes": "Sim",
+      "partial": "Parcialmente",
+      "no": "Não"
+    },
+    "availability": {
+      "available": "Livre",
+      "occupied": "Ocupado",
+      "underRenovation": "Em reforma"
+    },
+    "mediationType": {
+      "exclusive": "Exclusiva",
+      "open": "Aberta"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import DataTable from '@/components/DataTable'
 import { useBranchControllerFind } from '@/api/generated/api'
@@ -13,6 +14,7 @@ type UserTableProps = {
 }
 
 function UserTable({ users, isLoading, onEdit }: UserTableProps) {
+  const { t } = useTranslation('amministrazione')
   const [deleteTarget, setDeleteTarget] =
     useState<UserExcludingPasswordHashWithRelations | null>(null)
   const { handleDelete } = useDeleteUser()
@@ -37,16 +39,16 @@ function UserTable({ users, isLoading, onEdit }: UserTableProps) {
         data={users}
         keyExtractor={(user) => user.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessun utente trovato."
+        emptyMessage={t('userTable.empty')}
       />
 
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare l'utente?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.fullName}".`}
+        title={t('userTable.deleteTitle')}
+        description={t('userTable.deleteDescription', { fullName: deleteTarget?.fullName })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('userTable.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </>

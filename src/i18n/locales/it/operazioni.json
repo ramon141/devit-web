@@ -1,0 +1,328 @@
+{
+  "common": {
+    "parentLabel": "Operazioni"
+  },
+  "locazioni": {
+    "page": {
+      "title": "Locazioni",
+      "description": "Gestisci i contratti di locazione"
+    },
+    "index": {
+      "searchPlaceholder": "Cerca per numero...",
+      "newLabel": "Nuovo contratto"
+    },
+    "registrazioni": {
+      "page": {
+        "title": "Registrazioni",
+        "description": "Registrazione e rinnovo dei contratti di locazione"
+      },
+      "table": {
+        "numero": "Numero",
+        "scadenza": "Scadenza",
+        "statoRegistrazione": "Stato registrazione",
+        "registrato": "Registrato",
+        "daRegistrare": "Da registrare",
+        "periodo": "Periodo",
+        "immobile": "Immobile",
+        "inquilino": "Inquilino",
+        "emptyMessage": "Nessun contratto da registrare o rinnovare."
+      }
+    },
+    "scadenziario": {
+      "page": {
+        "title": "Scadenziario",
+        "description": "Contratti di locazione in scadenza"
+      },
+      "index": {
+        "windowLabel": "Finestra di giorni"
+      },
+      "table": {
+        "emptyMessage": "Nessun contratto in scadenza nel periodo selezionato."
+      },
+      "tableColumns": {
+        "numero": "Numero",
+        "scadenza": "Scadenza",
+        "affitto": "Affitto",
+        "azioni": "Azioni"
+      }
+    },
+    "adeguamenti": {
+      "page": {
+        "title": "Adeguamento canone",
+        "description": "Genera le comunicazioni di adeguamento del canone di locazione"
+      },
+      "index": {
+        "description": "Seleziona i contratti attivi da adeguare (lascia tutto deselezionato per applicare a tutti i contratti attivi), inserisci la variazione percentuale ISTAT e genera le comunicazioni.",
+        "indexPercentLabel": "Variazione percentuale ISTAT",
+        "indexPercentPlaceholder": "Es. 5",
+        "generateButton": "Genera documenti"
+      },
+      "eligibleTable": {
+        "numero": "Numero",
+        "immobile": "Immobile",
+        "inquilino": "Inquilino",
+        "proprietario": "Proprietario",
+        "affittoAttuale": "Affitto attuale",
+        "emptyMessage": "Nessun contratto attivo trovato."
+      },
+      "generatedTable": {
+        "title": "Ultimi adeguamenti generati",
+        "contratto": "Contratto",
+        "indicePercent": "Indice %",
+        "valorePrecedente": "Valore precedente",
+        "nuovoValore": "Nuovo valore",
+        "data": "Data"
+      },
+      "toasts": {
+        "pending": "Generazione documenti...",
+        "success": "Documenti di adeguamento generati con successo!",
+        "error": "Errore durante la generazione dei documenti"
+      }
+    },
+    "schema": {
+      "situationActive": "Attivo",
+      "situationTerminated": "Rescisso",
+      "situationClosed": "Chiuso",
+      "numberRequired": "Inserisci il numero",
+      "propertyRequired": "Seleziona un immobile",
+      "tenantRequired": "Seleziona un inquilino",
+      "ownerRequired": "Seleziona un proprietario",
+      "startDateRequired": "Inserisci la data di inizio",
+      "dueDayRequired": "Inserisci il giorno di scadenza",
+      "rentAmountRequired": "Inserisci il valore dell’affitto",
+      "situationRequired": "Seleziona una situazione"
+    },
+    "renewModal": {
+      "title": "Proroga contratto",
+      "newEndDateLabel": "Nuova data di fine",
+      "newAmountLabel": "Nuovo valore dell'affitto",
+      "newAmountPlaceholder": "Lascia vuoto per mantenere il valore attuale",
+      "noteLabel": "Osservazione",
+      "submitLabel": "Proroga",
+      "newEndDateRequired": "Inserisci la nuova data di fine"
+    },
+    "terminationModal": {
+      "title": "Rescindi contratto",
+      "terminationDateLabel": "Data di rescissione",
+      "reasonLabel": "Motivo",
+      "penaltyLabel": "Penale",
+      "requestedByLabel": "Richiesto da",
+      "requestedByPlaceholder": "Nome del richiedente",
+      "submitLabel": "Rescindi",
+      "terminationDateRequired": "Inserisci la data"
+    },
+    "tableModals": {
+      "deleteTitle": "Eliminare il contratto?",
+      "deleteDescription": "Questa azione eliminerà definitivamente il contratto \"{{number}}\".",
+      "deleteConfirm": "Elimina"
+    },
+    "partiesFields": {
+      "propertyLabel": "Immobile",
+      "propertyPlaceholder": "Seleziona un immobile",
+      "propertySearchPlaceholder": "Cerca per codice o titolo...",
+      "ownerLabel": "Proprietario",
+      "ownerPlaceholder": "Seleziona un proprietario",
+      "personSearchPlaceholder": "Cerca un cliente...",
+      "tenantLabel": "Inquilino",
+      "tenantPlaceholder": "Seleziona un inquilino",
+      "ownerAgentLabel": "Agente del proprietario",
+      "tenantAgentLabel": "Agente dell'inquilino",
+      "noneOption": "Nessuno"
+    },
+    "formFields": {
+      "numberLabel": "Numero",
+      "numberPlaceholder": "LOC-0001",
+      "situationLabel": "Situazione",
+      "startDateLabel": "Data di inizio",
+      "endDateLabel": "Data di fine",
+      "registeredAtLabel": "Data di registrazione",
+      "renewalDueDateLabel": "Data prevista di rinnovo",
+      "notesLabel": "Note"
+    },
+    "financialFields": {
+      "rentAmountLabel": "Valore dell'affitto",
+      "condoFeeLabel": "Spese condominiali",
+      "depositAmountLabel": "Deposito cauzionale",
+      "dueDayLabel": "Giorno di scadenza",
+      "dueDayPlaceholder": "5",
+      "adjustmentIndexLabel": "Indice di adeguamento",
+      "adjustmentIndexPlaceholder": "ISTAT",
+      "noticeDaysLabel": "Preavviso (giorni)",
+      "noticeDaysPlaceholder": "30"
+    },
+    "formModal": {
+      "editTitle": "Modifica contratto",
+      "newTitle": "Nuovo contratto",
+      "dataTab": "Dati",
+      "attachmentsTab": "Allegati",
+      "historyTab": "Storico"
+    },
+    "renewalsHistory": {
+      "emptyMessage": "Nessuna proroga registrata."
+    },
+    "table": {
+      "emptyMessage": "Nessun contratto trovato."
+    },
+    "tableColumns": {
+      "numero": "Numero",
+      "immobile": "Immobile",
+      "proprietario": "Proprietario",
+      "inquilino": "Inquilino",
+      "affitto": "Affitto",
+      "inizio": "Inizio",
+      "situazione": "Situazione",
+      "azioni": "Azioni"
+    },
+    "hooks": {
+      "attachments": {
+        "uploading": "Caricamento allegati...",
+        "uploadSuccess": "Allegati caricati con successo!",
+        "uploadError": "Errore durante il caricamento degli allegati",
+        "deleting": "Eliminazione allegato...",
+        "deleteSuccess": "Allegato eliminato con successo!",
+        "deleteError": "Errore durante l’eliminazione dell’allegato"
+      },
+      "terminate": {
+        "pending": "Rescissione del contratto...",
+        "success": "Contratto rescisso con successo!",
+        "error": "Errore durante la rescissione del contratto"
+      },
+      "form": {
+        "saving": "Salvataggio contratto...",
+        "creating": "Creazione contratto...",
+        "updateSuccess": "Contratto aggiornato con successo!",
+        "createSuccess": "Contratto creato con successo!",
+        "error": "Errore durante il salvataggio del contratto"
+      },
+      "renew": {
+        "pending": "Proroga del contratto...",
+        "success": "Contratto prorogato con successo!",
+        "error": "Errore durante la proroga del contratto"
+      },
+      "delete": {
+        "pending": "Eliminazione contratto...",
+        "success": "Contratto eliminato con successo!",
+        "error": "Errore durante l’eliminazione del contratto"
+      }
+    }
+  },
+  "vendite": {
+    "page": {
+      "title": "Vendite",
+      "description": "Gestisci le vendite dell'agenzia"
+    },
+    "index": {
+      "searchPlaceholder": "Cerca per numero...",
+      "newLabel": "Nuova vendita"
+    },
+    "schema": {
+      "paymentCash": "Contanti",
+      "paymentFinanced": "Finanziato",
+      "paymentDirectInstallments": "Rate dirette",
+      "paymentExchange": "Permuta",
+      "paymentOther": "Altro",
+      "statusNegotiating": "In trattativa",
+      "statusSold": "Venduta",
+      "statusCanceled": "Annullata",
+      "numberRequired": "Inserisci il numero",
+      "propertyRequired": "Seleziona un immobile",
+      "buyerRequired": "Seleziona un acquirente",
+      "sellerRequired": "Seleziona un venditore",
+      "finalAmountRequired": "Inserisci il valore finale",
+      "saleDateRequired": "Inserisci la data",
+      "paymentMethodRequired": "Seleziona una modalità",
+      "statusRequired": "Seleziona uno stato"
+    },
+    "financialFields": {
+      "finalAmountLabel": "Valore finale",
+      "downPaymentLabel": "Entrata",
+      "commissionAmountLabel": "Valore della commissione",
+      "installmentsCountLabel": "Numero di rate",
+      "installmentsCountPlaceholder": "12",
+      "financialInstitutionLabel": "Istituto finanziario"
+    },
+    "paymentStepFields": {
+      "paymentMethodLabel": "Modalità di pagamento",
+      "statusLabel": "Stato",
+      "deedDateLabel": "Data di escritura",
+      "cancellationReasonLabel": "Motivo di annullamento",
+      "notesLabel": "Note"
+    },
+    "generalStepFields": {
+      "numberLabel": "Numero",
+      "numberPlaceholder": "VEN-0001",
+      "saleDateLabel": "Data della vendita"
+    },
+    "partiesFields": {
+      "propertyLabel": "Immobile",
+      "propertyPlaceholder": "Seleziona un immobile",
+      "propertySearchPlaceholder": "Cerca per codice o titolo...",
+      "sellerLabel": "Venditore",
+      "sellerPlaceholder": "Seleziona un venditore",
+      "personSearchPlaceholder": "Cerca un cliente...",
+      "buyerLabel": "Acquirente",
+      "buyerPlaceholder": "Seleziona un acquirente",
+      "proposalLabel": "Proposta di origine",
+      "proposalPlaceholder": "Nessuna",
+      "proposalSearchPlaceholder": "Cerca per numero...",
+      "sellerAgentLabel": "Agente del venditore",
+      "buyerAgentLabel": "Agente dell'acquirente",
+      "noneOption": "Nessuno"
+    },
+    "formModal": {
+      "editTitle": "Modifica vendita",
+      "newTitle": "Nuova vendita",
+      "generalStep": "Generale",
+      "paymentStep": "Pagamento",
+      "documentsStep": "Documenti",
+      "historyStep": "Storico"
+    },
+    "statusHistoryTab": {
+      "emptyMessage": "Nessuna modifica di stato registrata."
+    },
+    "table": {
+      "emptyMessage": "Nessuna vendita trovata.",
+      "deleteTitle": "Eliminare la vendita?",
+      "deleteDescription": "Questa azione eliminerà definitivamente la vendita \"{{number}}\".",
+      "deleteConfirm": "Elimina"
+    },
+    "tableColumns": {
+      "numero": "Numero",
+      "immobile": "Immobile",
+      "venditore": "Venditore",
+      "acquirente": "Acquirente",
+      "valore": "Valore",
+      "data": "Data",
+      "stato": "Stato",
+      "azioni": "Azioni",
+      "lockedTooltip": "Vendita conclusa: non modificabile"
+    },
+    "documentsManager": {
+      "typePlaceholder": "Tipo di documento (facoltativo)",
+      "uploadLabel": "Carica documento",
+      "emptyMessage": "Nessun documento caricato."
+    },
+    "hooks": {
+      "form": {
+        "saving": "Salvataggio vendita...",
+        "creating": "Creazione vendita...",
+        "updateSuccess": "Vendita aggiornata con successo!",
+        "createSuccess": "Vendita creata con successo!",
+        "error": "Errore durante il salvataggio della vendita"
+      },
+      "delete": {
+        "pending": "Eliminazione vendita...",
+        "success": "Vendita eliminata con successo!",
+        "error": "Errore durante l’eliminazione della vendita"
+      },
+      "documents": {
+        "uploading": "Caricamento documenti...",
+        "uploadSuccess": "Documenti caricati con successo!",
+        "uploadError": "Errore durante il caricamento dei documenti",
+        "deleting": "Eliminazione documento...",
+        "deleteSuccess": "Documento eliminato con successo!",
+        "deleteError": "Errore durante l’eliminazione del documento"
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -24,6 +25,7 @@ type UseCategoryFormProps = {
 }
 
 export function useCategoryForm({ category, onSaved }: UseCategoryFormProps) {
+  const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = usePropertyCategoryControllerCreate()
@@ -60,14 +62,14 @@ export function useCategoryForm({ category, onSaved }: UseCategoryFormProps) {
     const promise = category?.id ? update({ id: category.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: category ? 'Salvataggio categoria...' : 'Creazione categoria...',
+      pending: category ? t('categoryForm.pendingUpdate') : t('categoryForm.pendingCreate'),
       success: () => {
         invalidateList()
         onSaved()
-        return category ? 'Categoria aggiornata con successo!' : 'Categoria creata con successo!'
+        return category ? t('categoryForm.successUpdate') : t('categoryForm.successCreate')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio della categoria'),
+        getErrorMessageFromRequest(error, t('categoryForm.error')),
     })
   }
 

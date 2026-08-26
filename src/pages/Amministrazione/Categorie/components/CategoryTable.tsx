@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import DataTable from '@/components/DataTable'
 import type { PropertyCategory } from '@/api/generated/models'
@@ -12,6 +13,7 @@ type CategoryTableProps = {
 }
 
 function CategoryTable({ categories, isLoading, onEdit }: CategoryTableProps) {
+  const { t } = useTranslation('amministrazione')
   const [deleteTarget, setDeleteTarget] = useState<PropertyCategory | null>(null)
   const { handleDelete } = useDeleteCategory()
 
@@ -29,16 +31,16 @@ function CategoryTable({ categories, isLoading, onEdit }: CategoryTableProps) {
         data={categories}
         keyExtractor={(category) => category.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessuna categoria trovata."
+        emptyMessage={t('categoryTable.empty')}
       />
 
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare la categoria?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.name}".`}
+        title={t('categoryTable.deleteTitle')}
+        description={t('categoryTable.deleteDescription', { name: deleteTarget?.name })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('categoryTable.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </>

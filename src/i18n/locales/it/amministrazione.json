@@ -1,0 +1,236 @@
+{
+  "common": {
+    "parentLabel": "Amministrazione"
+  },
+  "auditLogTable": {
+    "actions": {
+      "create": "Creazione",
+      "update": "Aggiornamento",
+      "delete": "Eliminazione",
+      "login": "Accesso",
+      "logout": "Uscita",
+      "export": "Esportazione"
+    },
+    "columns": {
+      "action": "Azione",
+      "entity": "Entità",
+      "entityId": "ID entità",
+      "user": "Utente",
+      "date": "Data"
+    },
+    "empty": "Nessun log trovato."
+  },
+  "auditPage": {
+    "title": "Log di audit",
+    "description": "Cronologia delle azioni nel sistema"
+  },
+  "bannerFormModal": {
+    "editTitle": "Modifica banner",
+    "newTitle": "Nuovo banner",
+    "imageLabel": "Immagine",
+    "imageHint": "Lascia vuoto per mantenere l’immagine attuale",
+    "titleLabel": "Titolo",
+    "subtitleLabel": "Sottotitolo",
+    "linkLabel": "Link",
+    "orderLabel": "Ordine",
+    "startDateLabel": "Data inizio",
+    "endDateLabel": "Data fine",
+    "activeLabel": "Banner attivo"
+  },
+  "bannerTable": {
+    "empty": "Nessun banner trovato.",
+    "deleteTitle": "Eliminare il banner?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{title}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "bannerTableColumns": {
+    "title": "Titolo",
+    "link": "Link",
+    "order": "Ordine",
+    "status": "Stato",
+    "active": "Attivo",
+    "inactive": "Inattivo",
+    "actions": "Azioni"
+  },
+  "bannerForm": {
+    "imageRequired": "Seleziona un’immagine per il banner",
+    "pendingUpdate": "Salvataggio banner...",
+    "pendingCreate": "Creazione banner...",
+    "successUpdate": "Banner aggiornato con successo!",
+    "successCreate": "Banner creato con successo!",
+    "error": "Errore durante il salvataggio del banner"
+  },
+  "deleteBanner": {
+    "pending": "Eliminazione banner...",
+    "success": "Banner eliminato con successo!",
+    "error": "Errore durante l’eliminazione del banner"
+  },
+  "banner": {
+    "searchPlaceholder": "Cerca un banner...",
+    "newLabel": "Nuovo banner"
+  },
+  "bannerPage": {
+    "title": "Banner",
+    "description": "Gestisci i banner della home"
+  },
+  "bannerSchema": {
+    "titleMin": "Inserisci almeno 2 caratteri"
+  },
+  "categoryFormModal": {
+    "editTitle": "Modifica categoria",
+    "newTitle": "Nuova categoria",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Appartamento",
+    "slugLabel": "Slug",
+    "slugPlaceholder": "appartamento",
+    "iconLabel": "Icona",
+    "iconPlaceholder": "home",
+    "orderLabel": "Ordine di visualizzazione",
+    "activeLabel": "Categoria attiva"
+  },
+  "categoryTable": {
+    "empty": "Nessuna categoria trovata.",
+    "deleteTitle": "Eliminare la categoria?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "categoryTableColumns": {
+    "name": "Nome",
+    "slug": "Slug",
+    "order": "Ordine",
+    "status": "Stato",
+    "active": "Attiva",
+    "inactive": "Inattiva",
+    "actions": "Azioni"
+  },
+  "categoryForm": {
+    "pendingUpdate": "Salvataggio categoria...",
+    "pendingCreate": "Creazione categoria...",
+    "successUpdate": "Categoria aggiornata con successo!",
+    "successCreate": "Categoria creata con successo!",
+    "error": "Errore durante il salvataggio della categoria"
+  },
+  "deleteCategory": {
+    "pending": "Eliminazione categoria...",
+    "success": "Categoria eliminata con successo!",
+    "error": "Errore durante l’eliminazione della categoria"
+  },
+  "categorie": {
+    "searchPlaceholder": "Cerca una categoria...",
+    "newLabel": "Nuova categoria"
+  },
+  "categoriePage": {
+    "title": "Categorie",
+    "description": "Gestisci le categorie di immobile"
+  },
+  "categorySchema": {
+    "nameMin": "Inserisci almeno 2 caratteri",
+    "slugMin": "Inserisci almeno 2 caratteri"
+  },
+  "branchFormModal": {
+    "editTitle": "Modifica filiale",
+    "newTitle": "Nuova filiale",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Filiale Milano Centro",
+    "activeLabel": "Filiale attiva"
+  },
+  "branchTable": {
+    "empty": "Nessuna filiale trovata.",
+    "deleteTitle": "Eliminare la filiale?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "branchTableColumns": {
+    "name": "Nome",
+    "status": "Stato",
+    "active": "Attiva",
+    "inactive": "Inattiva",
+    "actions": "Azioni"
+  },
+  "branchForm": {
+    "pendingUpdate": "Salvataggio filiale...",
+    "pendingCreate": "Creazione filiale...",
+    "successUpdate": "Filiale aggiornata con successo!",
+    "successCreate": "Filiale creata con successo!",
+    "error": "Errore durante il salvataggio della filiale"
+  },
+  "deleteBranch": {
+    "pending": "Eliminazione filiale...",
+    "success": "Filiale eliminata con successo!",
+    "error": "Errore durante l’eliminazione della filiale"
+  },
+  "filiali": {
+    "searchPlaceholder": "Cerca una filiale...",
+    "newLabel": "Nuova filiale"
+  },
+  "filialiPage": {
+    "title": "Filiali",
+    "description": "Gestisci le filiali dell'agenzia"
+  },
+  "branchSchema": {
+    "nameMin": "Inserisci almeno 2 caratteri"
+  },
+  "userFormFields": {
+    "avatarLabel": "Foto profilo",
+    "avatarHint": "Lascia vuoto per mantenere la foto attuale",
+    "fullNameLabel": "Nome completo",
+    "fullNamePlaceholder": "Mario Rossi",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "mario@devit.it",
+    "accessLevelLabel": "Livello di accesso",
+    "branchLabel": "Filiale",
+    "branchPlaceholder": "Nessuna filiale",
+    "passwordEditLabel": "Nuova password (opzionale)",
+    "passwordLabel": "Password",
+    "activeLabel": "Utente attivo"
+  },
+  "userFormModal": {
+    "editTitle": "Modifica utente",
+    "newTitle": "Nuovo utente"
+  },
+  "userTable": {
+    "empty": "Nessun utente trovato.",
+    "deleteTitle": "Eliminare l'utente?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{fullName}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "userTableColumns": {
+    "name": "Nome",
+    "email": "E-mail",
+    "level": "Livello",
+    "branch": "Filiale",
+    "status": "Stato",
+    "active": "Attivo",
+    "inactive": "Inattivo",
+    "actions": "Azioni"
+  },
+  "deleteUser": {
+    "pending": "Eliminazione utente...",
+    "success": "Utente eliminato con successo!",
+    "error": "Errore durante l’eliminazione dell’utente"
+  },
+  "userForm": {
+    "passwordRequired": "La password è obbligatoria per un nuovo utente",
+    "pendingUpdate": "Salvataggio utente...",
+    "pendingCreate": "Creazione utente...",
+    "successUpdate": "Utente aggiornato con successo!",
+    "successCreate": "Utente creato con successo!",
+    "error": "Errore durante il salvataggio dell’utente"
+  },
+  "utenti": {
+    "searchPlaceholder": "Cerca un utente per nome...",
+    "newLabel": "Nuovo utente"
+  },
+  "utentiPage": {
+    "title": "Utenti",
+    "description": "Gestisci gli utenti dell'agenzia"
+  },
+  "userSchema": {
+    "fullNameMin": "Inserisci almeno 2 caratteri",
+    "emailInvalid": "E-mail non valida",
+    "accessLevelRequired": "Seleziona un livello",
+    "passwordMin": "La password deve contenere almeno 6 caratteri",
+    "accessLevelAdmin": "Amministratore",
+    "accessLevelBroker": "Agente"
+  }
+}

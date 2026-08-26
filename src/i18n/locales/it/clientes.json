@@ -1,0 +1,194 @@
+{
+  "page": {
+    "title": "Clienti",
+    "description": "Gestisci l'anagrafica di clienti e contatti",
+    "parentLabel": "Clienti"
+  },
+  "anagrafica": {
+    "searchPlaceholder": "Cerca un cliente per nome...",
+    "newLabel": "Nuovo cliente"
+  },
+  "personRoleOptions": {
+    "owner": "Proprietario",
+    "tenant": "Inquilino",
+    "buyer": "Acquirente",
+    "guarantor": "Garante",
+    "contact": "Contatto"
+  },
+  "personSchema": {
+    "nameMin": "Inserisci almeno 2 caratteri",
+    "roleRequired": "Seleziona un ruolo",
+    "emailInvalid": "E-mail non valida",
+    "cityRequired": "Inserisci la città per salvare l'indirizzo"
+  },
+  "personFormFields": {
+    "name": "Nome",
+    "namePlaceholder": "Mario Rossi",
+    "role": "Ruolo",
+    "email": "E-mail",
+    "emailPlaceholder": "mario@devit.it",
+    "birthDate": "Data di nascita",
+    "phone": "Telefono",
+    "phonePlaceholder": "+39 333 1234567",
+    "secondaryPhone": "Telefono secondario",
+    "documentType": "Tipo documento",
+    "documentTypePlaceholder": "Carta d'identità",
+    "documentNumber": "Numero documento",
+    "notes": "Note",
+    "active": "Attivo",
+    "country": "Paese",
+    "countryPlaceholder": "Italia",
+    "city": "Città",
+    "cityPlaceholder": "Milano",
+    "region": "Regione",
+    "regionPlaceholder": "Lombardia",
+    "postalCode": "CAP",
+    "postalCodePlaceholder": "20121",
+    "street": "Via",
+    "streetPlaceholder": "Via Roma",
+    "number": "Numero civico",
+    "numberPlaceholder": "12",
+    "neighborhood": "Quartiere",
+    "neighborhoodPlaceholder": "Centro",
+    "complement": "Complemento",
+    "complementPlaceholder": "Piano 3, interno 2"
+  },
+  "personFormModal": {
+    "editTitle": "Modifica cliente",
+    "newTitle": "Nuovo cliente",
+    "description": "Dati anagrafici del cliente"
+  },
+  "personTable": {
+    "emptyMessage": "Nessun cliente trovato.",
+    "deleteTitle": "Eliminare il cliente?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "personTableColumns": {
+    "name": "Nome",
+    "role": "Ruolo",
+    "email": "E-mail",
+    "phone": "Telefono",
+    "actions": "Azioni"
+  },
+  "usePersonForm": {
+    "pendingUpdate": "Salvataggio cliente...",
+    "pendingCreate": "Creazione cliente...",
+    "successUpdate": "Cliente aggiornato con successo!",
+    "successCreate": "Cliente creato con successo!",
+    "error": "Errore durante il salvataggio del cliente"
+  },
+  "useDeletePerson": {
+    "pending": "Eliminazione cliente...",
+    "success": "Cliente eliminato con successo!",
+    "error": "Errore durante l'eliminazione del cliente"
+  },
+  "leadsPage": {
+    "title": "Richieste",
+    "description": "Funnel di captazione dei contatti",
+    "parentLabel": "Clienti"
+  },
+  "leads": {
+    "newButton": "Nuova richiesta",
+    "deleteTitle": "Eliminare la richiesta?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "leadStatusOptions": {
+    "new": "Nuovo",
+    "contacted": "Contattato",
+    "negotiating": "In trattativa",
+    "converted": "Convertito",
+    "lost": "Perso"
+  },
+  "leadSourceOptions": {
+    "portal": "Portale",
+    "site": "Sito",
+    "phone": "Telefono",
+    "referral": "Passaparola",
+    "socialMedia": "Social media",
+    "walkIn": "Visita spontanea",
+    "other": "Altro"
+  },
+  "leadSchema": {
+    "nameMin": "Inserisci almeno 2 caratteri",
+    "emailInvalid": "E-mail non valida",
+    "statusRequired": "Seleziona uno stato"
+  },
+  "leadFormFields": {
+    "name": "Nome",
+    "namePlaceholder": "Mario Rossi",
+    "phone": "Telefono",
+    "phonePlaceholder": "+39 333 1234567",
+    "email": "E-mail",
+    "firstContactAt": "Primo contatto",
+    "status": "Stato",
+    "source": "Origine",
+    "sourcePlaceholder": "Nessuna",
+    "assignedTo": "Responsabile",
+    "assignedToPlaceholder": "Nessuno",
+    "lossReason": "Motivo di perdita",
+    "notes": "Note"
+  },
+  "leadFormModal": {
+    "editTitle": "Modifica richiesta",
+    "newTitle": "Nuova richiesta"
+  },
+  "useLeadForm": {
+    "pendingUpdate": "Salvataggio richiesta...",
+    "pendingCreate": "Creazione richiesta...",
+    "successUpdate": "Richiesta aggiornata con successo!",
+    "successCreate": "Richiesta creata con successo!",
+    "error": "Errore durante il salvataggio della richiesta"
+  },
+  "useDeleteLead": {
+    "pending": "Eliminazione richiesta...",
+    "success": "Richiesta eliminata con successo!",
+    "error": "Errore durante l'eliminazione della richiesta"
+  },
+  "useMoveLead": {
+    "pending": "Spostamento richiesta...",
+    "success": "Richiesta spostata con successo!",
+    "error": "Errore durante lo spostamento della richiesta"
+  },
+  "scheda": {
+    "defaultTitle": "Scheda cliente",
+    "description": "Anagrafica completa del cliente",
+    "breadcrumbClients": "Clienti",
+    "tabDati": "Dati",
+    "tabAllegati": "Allegati",
+    "tabImmobili": "Immobili",
+    "tabAgenda": "Agenda",
+    "tabComunicazioni": "Comunicazioni"
+  },
+  "schedaAgenda": {
+    "empty": "Nessun impegno collegato."
+  },
+  "schedaAllegati": {
+    "uploadLabel": "Carica documento",
+    "empty": "Nessun allegato."
+  },
+  "schedaComunicazioni": {
+    "empty": "Nessuna comunicazione registrata."
+  },
+  "schedaDati": {
+    "saveButton": "Salva modifiche"
+  },
+  "schedaImmobili": {
+    "empty": "Nessun immobile collegato.",
+    "owner": "Proprietario",
+    "tenant": "Inquilino",
+    "buyer": "Acquirente",
+    "proposal": "Proposta",
+    "contractPrefix": "Contratto {{number}}",
+    "salePrefix": "Vendita {{number}}"
+  },
+  "usePersonAttachments": {
+    "pendingUpload": "Caricamento allegati...",
+    "successUpload": "Allegati caricati con successo!",
+    "errorUpload": "Errore durante il caricamento degli allegati",
+    "pendingDelete": "Eliminazione allegato...",
+    "successDelete": "Allegato eliminato con successo!",
+    "errorDelete": "Errore durante l'eliminazione dell'allegato"
+  }
+}

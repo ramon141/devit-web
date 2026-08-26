@@ -1,4 +1,5 @@
 import { useFormState, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -15,37 +16,38 @@ type PropertyDescriptionTabProps = {
 }
 
 function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId }: PropertyDescriptionTabProps) {
+  const { t } = useTranslation('imoveis')
   const { control } = form
   const { errors } = useFormState({ control })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
-        <FormFieldWrapper label="M² totali" error={errors.areaSqm?.message}>
+        <FormFieldWrapper label={t('descriptionTab.areaLabel')} error={errors.areaSqm?.message}>
           <ControlledInput control={control} name="areaSqm" type="number" placeholder="90" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Camere da letto" error={errors.bedrooms?.message}>
+        <FormFieldWrapper label={t('descriptionTab.bedroomsLabel')} error={errors.bedrooms?.message}>
           <ControlledInput control={control} name="bedrooms" type="number" placeholder="2" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Bagni" error={errors.bathrooms?.message}>
+        <FormFieldWrapper label={t('descriptionTab.bathroomsLabel')} error={errors.bathrooms?.message}>
           <ControlledInput control={control} name="bathrooms" type="number" placeholder="1" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Posti auto" error={errors.parkingSpots?.message}>
+        <FormFieldWrapper label={t('descriptionTab.parkingLabel')} error={errors.parkingSpots?.message}>
           <ControlledInput control={control} name="parkingSpots" type="number" placeholder="1" />
         </FormFieldWrapper>
 
         <div className="sm:col-span-2">
-          <FormFieldWrapper label="Descrizione" error={errors.description?.message}>
+          <FormFieldWrapper label={t('descriptionTab.descriptionLabel')} error={errors.description?.message}>
             <ControlledTextarea control={control} name="description" rows={4} />
           </FormFieldWrapper>
         </div>
 
         <div className="flex justify-end sm:col-span-2">
           <Button type="submit" disabled={isSubmitting}>
-            Salva descrizione
+            {t('descriptionTab.save')}
           </Button>
         </div>
       </form>

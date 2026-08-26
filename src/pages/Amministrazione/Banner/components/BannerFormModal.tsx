@@ -1,4 +1,5 @@
 import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Input } from '@/components/ui/input'
@@ -15,6 +16,7 @@ type BannerFormModalProps = {
 }
 
 function BannerFormModal({ open, onOpenChange, banner }: BannerFormModalProps) {
+  const { t } = useTranslation('amministrazione')
   const { form, imageFiles, setImageFiles, imageError, isSubmitting, onSubmit } = useBannerForm({
     banner,
     onSaved: () => onOpenChange(false),
@@ -26,39 +28,47 @@ function BannerFormModal({ open, onOpenChange, banner }: BannerFormModalProps) {
   } = form
 
   return (
-    <ModalRegister open={open} onOpenChange={onOpenChange} title={banner ? 'Modifica banner' : 'Nuovo banner'}>
+    <ModalRegister
+      open={open}
+      onOpenChange={onOpenChange}
+      title={banner ? t('bannerFormModal.editTitle') : t('bannerFormModal.newTitle')}
+    >
       <form onSubmit={onSubmit} className="grid gap-4">
         <FileUpload
-          label="Immagine"
+          label={t('bannerFormModal.imageLabel')}
           value={imageFiles}
           onChange={setImageFiles}
           accept="image/*"
           error={imageError}
-          hint={banner ? 'Lascia vuoto per mantenere l’immagine attuale' : undefined}
+          hint={banner ? t('bannerFormModal.imageHint') : undefined}
         />
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <FormFieldWrapper label="Titolo" required error={errors.title?.message}>
+          <FormFieldWrapper
+            label={t('bannerFormModal.titleLabel')}
+            required
+            error={errors.title?.message}
+          >
             <Input {...register('title')} />
           </FormFieldWrapper>
 
-          <FormFieldWrapper label="Sottotitolo" error={errors.subtitle?.message}>
+          <FormFieldWrapper label={t('bannerFormModal.subtitleLabel')} error={errors.subtitle?.message}>
             <Input {...register('subtitle')} />
           </FormFieldWrapper>
 
-          <FormFieldWrapper label="Link" error={errors.targetLink?.message}>
+          <FormFieldWrapper label={t('bannerFormModal.linkLabel')} error={errors.targetLink?.message}>
             <Input {...register('targetLink')} placeholder="https://" />
           </FormFieldWrapper>
 
-          <FormFieldWrapper label="Ordine" error={errors.displayOrder?.message}>
+          <FormFieldWrapper label={t('bannerFormModal.orderLabel')} error={errors.displayOrder?.message}>
             <Input {...register('displayOrder')} type="number" />
           </FormFieldWrapper>
 
-          <FormFieldWrapper label="Data inizio" error={errors.startDate?.message}>
+          <FormFieldWrapper label={t('bannerFormModal.startDateLabel')} error={errors.startDate?.message}>
             <Input {...register('startDate')} type="date" />
           </FormFieldWrapper>
 
-          <FormFieldWrapper label="Data fine" error={errors.endDate?.message}>
+          <FormFieldWrapper label={t('bannerFormModal.endDateLabel')} error={errors.endDate?.message}>
             <Input {...register('endDate')} type="date" />
           </FormFieldWrapper>
 
@@ -68,7 +78,7 @@ function BannerFormModal({ open, onOpenChange, banner }: BannerFormModalProps) {
             render={({ field }) => (
               <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
                 <Switch checked={field.value} onCheckedChange={field.onChange} />
-                Banner attivo
+                {t('bannerFormModal.activeLabel')}
               </label>
             )}
           />

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SearchableSelect from '@/components/SearchableSelect'
@@ -10,6 +11,7 @@ type PropertyOwnersManagerProps = {
 }
 
 function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
+  const { t } = useTranslation('imoveis')
   const { owners, personId, setPersonId, percent, setPercent, addOwner, removeOwner } =
     usePropertyOwners(propertyId)
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
@@ -17,7 +19,7 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
 
   return (
     <div className="grid gap-3 sm:col-span-2">
-      <p className="text-sm font-medium">Proprietari aggiuntivi</p>
+      <p className="text-sm font-medium">{t('scheda.ownersManager.title')}</p>
 
       {owners.map((owner) => (
         <RemovableRow key={owner.id} onRemove={() => owner.id && removeOwner(owner.id)}>
@@ -33,19 +35,19 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
             value={personId}
             onValueChange={setPersonId}
             options={personOptions}
-            placeholder="Seleziona un proprietario"
-            searchPlaceholder="Cerca un cliente..."
+            placeholder={t('scheda.ownersManager.ownerPlaceholder')}
+            searchPlaceholder={t('scheda.ownersManager.searchClientPlaceholder')}
           />
         </div>
         <Input
           value={percent}
           onChange={(event) => setPercent(event.target.value)}
           type="number"
-          placeholder="% quota"
+          placeholder={t('scheda.ownersManager.percentPlaceholder')}
           className="w-28"
         />
         <Button type="button" onClick={addOwner}>
-          Aggiungi
+          {t('scheda.ownersManager.add')}
         </Button>
       </div>
     </div>

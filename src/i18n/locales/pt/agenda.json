@@ -1,0 +1,159 @@
+{
+  "page": {
+    "title": "Agenda",
+    "description": "Compromissos e agendamentos da agência",
+    "breadcrumb": "Agenda",
+    "deleteEventTitle": "Excluir o compromisso?",
+    "deleteEventDescription": "Esta ação excluirá definitivamente \"{{title}}\".",
+    "deleteConfirm": "Excluir"
+  },
+  "eventTypeOptions": {
+    "acquisition": "Aquisição",
+    "appointment": "Nomeação",
+    "genericAppointment": "Compromisso genérico",
+    "salePreliminary": "Preliminar de venda",
+    "propertyViewing": "Visita ao imóvel",
+    "callScheduled": "Chamada a fazer",
+    "callCompleted": "Chamada realizada",
+    "rentalProposal": "Proposta de aluguel",
+    "purchaseProposal": "Proposta de compra"
+  },
+  "confirmationStatusOptions": {
+    "pending": "Aguardando",
+    "confirmed": "Confirmado",
+    "cancelled": "Cancelado"
+  },
+  "recurrenceOptions": {
+    "none": "Nenhuma",
+    "daily": "Diária",
+    "weekly": "Semanal",
+    "monthly": "Mensal"
+  },
+  "backgroundColorOptions": {
+    "blue": "Azul",
+    "green": "Verde",
+    "red": "Vermelho",
+    "orange": "Laranja",
+    "purple": "Roxo",
+    "cyan": "Ciano"
+  },
+  "reminderOptions": {
+    "none": "Nenhum",
+    "atTime": "No momento",
+    "5min": "5 minutos antes",
+    "15min": "15 minutos antes",
+    "30min": "30 minutos antes",
+    "1hour": "1 hora antes",
+    "1day": "1 dia antes"
+  },
+  "schema": {
+    "titleMin": "Digite pelo menos 2 caracteres",
+    "typeRequired": "Selecione um tipo",
+    "startDateRequired": "Digite a data",
+    "startTimeRequired": "Digite o horário de início",
+    "endTimeRequired": "Digite o horário de término",
+    "confirmationStatusRequired": "Selecione um status",
+    "reminderRequired": "Selecione um lembrete",
+    "recurrenceRequired": "Selecione uma recorrência"
+  },
+  "formFields": {
+    "title": "Título",
+    "titlePlaceholder": "Visita ao imóvel com cliente",
+    "type": "Tipo de compromisso",
+    "place": "Local",
+    "placePlaceholder": "Via Roma 12, Milão",
+    "keysLocation": "Local das chaves",
+    "keysLocationPlaceholder": "Portaria, agência...",
+    "date": "Data",
+    "startTime": "Hora de início",
+    "endTime": "Hora de término",
+    "confirmationStatus": "Status de confirmação",
+    "reminder": "Lembrete",
+    "recurrence": "Recorrência",
+    "eventColor": "Cor do evento",
+    "privateEvent": "Compromisso privado",
+    "description": "Descrição"
+  },
+  "formModal": {
+    "editTitle": "Editar compromisso",
+    "createTitle": "Novo compromisso",
+    "delete": "Excluir",
+    "cancel": "Cancelar",
+    "save": "Salvar"
+  },
+  "outcomeSection": {
+    "title": "Resultado do compromisso",
+    "placeholder": "Descreva como foi a visita/chamada...",
+    "save": "Registrar resultado"
+  },
+  "participantsManager": {
+    "title": "Clientes/proprietários vinculados",
+    "placeholder": "Selecione um cliente",
+    "searchPlaceholder": "Buscar um cliente...",
+    "add": "Adicionar"
+  },
+  "propertiesManager": {
+    "title": "Imóveis vinculados",
+    "placeholder": "Selecione um imóvel",
+    "searchPlaceholder": "Buscar um imóvel...",
+    "add": "Adicionar"
+  },
+  "attachmentsManager": {
+    "title": "Ficha de visualização",
+    "emptyMessage": "Nenhum anexo."
+  },
+  "previewModal": {
+    "typeLabel": "Tipo:",
+    "placeLabel": "Local:",
+    "close": "Fechar",
+    "edit": "Editar"
+  },
+  "toasts": {
+    "attachments": {
+      "uploading": "Enviando anexos...",
+      "uploadSuccess": "Anexos enviados com sucesso!",
+      "uploadError": "Erro ao enviar os anexos",
+      "deleting": "Excluindo anexo...",
+      "deleteSuccess": "Anexo excluído com sucesso!",
+      "deleteError": "Erro ao excluir o anexo"
+    },
+    "form": {
+      "saving": "Salvando compromisso...",
+      "creating": "Criando compromisso...",
+      "updateSuccess": "Compromisso atualizado com sucesso!",
+      "createSuccess": "Compromisso criado com sucesso!",
+      "error": "Erro ao salvar o compromisso"
+    },
+    "outcome": {
+      "saving": "Registrando resultado...",
+      "success": "Resultado registrado com sucesso!",
+      "error": "Erro ao registrar o resultado"
+    },
+    "participants": {
+      "adding": "Adicionando cliente...",
+      "addSuccess": "Cliente vinculado com sucesso!",
+      "addError": "Erro ao vincular o cliente",
+      "removing": "Removendo cliente...",
+      "removeSuccess": "Cliente removido com sucesso!",
+      "removeError": "Erro ao remover o cliente"
+    },
+    "properties": {
+      "adding": "Adicionando imóvel...",
+      "addSuccess": "Imóvel vinculado com sucesso!",
+      "addError": "Erro ao vincular o imóvel",
+      "removing": "Removendo imóvel...",
+      "removeSuccess": "Imóvel removido com sucesso!",
+      "removeError": "Erro ao remover o imóvel"
+    },
+    "delete": {
+      "deleting": "Excluindo compromisso...",
+      "success": "Compromisso excluído com sucesso!",
+      "error": "Erro ao excluir o compromisso"
+    },
+    "reschedule": {
+      "moving": "Movendo compromisso...",
+      "success": "Compromisso movido com sucesso!",
+      "error": "Erro ao mover o compromisso"
+    }
+  }
+}

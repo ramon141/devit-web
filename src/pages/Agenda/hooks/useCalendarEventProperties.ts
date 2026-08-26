@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { AxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
 import {
   getCalendarEventPropertyControllerFindQueryKey,
   useCalendarEventPropertyControllerCreate,
@@ -11,6 +12,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useCalendarEventProperties(calendarEventId: string) {
+  const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const [propertyId, setPropertyId] = useState('')
@@ -31,26 +33,26 @@ export function useCalendarEventProperties(calendarEventId: string) {
     const promise = create({ data: { calendarEventId, propertyId } })
 
     toastPromise(promise, {
-      pending: 'Aggiunta immobile...',
+      pending: t('agenda:toasts.properties.adding'),
       success: () => {
         invalidate()
         setPropertyId('')
-        return 'Immobile collegato con successo!'
+        return t('agenda:toasts.properties.addSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il collegamento dell’immobile'),
+        getErrorMessageFromRequest(error, t('agenda:toasts.properties.addError')),
     })
   }
 
   function removeProperty(id: string) {
     toastPromise(remove({ id }), {
-      pending: 'Rimozione immobile...',
+      pending: t('agenda:toasts.properties.removing'),
       success: () => {
         invalidate()
-        return 'Immobile rimosso con successo!'
+        return t('agenda:toasts.properties.removeSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la rimozione dell’immobile'),
+        getErrorMessageFromRequest(error, t('agenda:toasts.properties.removeError')),
     })
   }
 

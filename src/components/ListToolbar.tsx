@@ -1,4 +1,5 @@
 import { PlusIcon, SearchIcon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -15,20 +16,24 @@ type ListToolbarProps = {
 function ListToolbar({
   search,
   onSearchChange,
-  searchPlaceholder = 'Cerca...',
+  searchPlaceholder,
   onNewClick,
-  newLabel = 'Nuovo',
+  newLabel,
 }: ListToolbarProps) {
+  const { t } = useTranslation('common')
+  const resolvedSearchPlaceholder = searchPlaceholder ?? t('listToolbar.searchPlaceholder')
+  const resolvedNewLabel = newLabel ?? t('listToolbar.newLabel')
+
   return (
     <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="w-full sm:max-w-xs">
-        <FormFieldWrapper label="Cerca">
+        <FormFieldWrapper label={t('listToolbar.searchLabel')}>
           <div className="relative">
             <SearchIcon className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={search}
               onChange={(event) => onSearchChange(event.target.value)}
-              placeholder={searchPlaceholder}
+              placeholder={resolvedSearchPlaceholder}
               className="pl-9"
             />
           </div>
@@ -38,7 +43,7 @@ function ListToolbar({
       {onNewClick && (
         <Button onClick={onNewClick} className="gap-1.5">
           <PlusIcon className="size-4" />
-          {newLabel}
+          {resolvedNewLabel}
         </Button>
       )}
     </div>

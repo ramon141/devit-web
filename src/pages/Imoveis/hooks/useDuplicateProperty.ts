@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPropertyControllerFindQueryKey,
@@ -13,6 +14,7 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 
 // ponytail: duplica reaproveitando o mesmo addressId (não clona o endereço)
 export function useDuplicateProperty() {
+  const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
@@ -40,15 +42,15 @@ export function useDuplicateProperty() {
     })
 
     toastPromise(promise, {
-      pending: 'Duplicazione immobile...',
+      pending: t('toasts.duplicateProperty.pending'),
       success: (created) => {
         queryClient.invalidateQueries({ queryKey: getPropertyControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getPropertyControllerCountQueryKey() })
         if (created.id) navigate(`${CRM_BASE_PATH}/proprieta/${created.id}`)
-        return 'Immobile duplicato con successo!'
+        return t('toasts.duplicateProperty.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la duplicazione dell’immobile'),
+        getErrorMessageFromRequest(error, t('toasts.duplicateProperty.error')),
     })
   }
 

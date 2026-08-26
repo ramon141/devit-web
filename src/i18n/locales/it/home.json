@@ -1,0 +1,28 @@
+{
+  "page": {
+    "title": "Bacheca",
+    "description": "Panoramica dell'attività dell'agenzia",
+    "breadcrumb": "Bacheca"
+  },
+  "dormantPropertiesCard": {
+    "title": "Immobili dormienti",
+    "empty": "Nessun immobile dormiente.",
+    "deleting": "Eliminazione immobile...",
+    "deleteSuccess": "Immobile eliminato con successo!",
+    "deleteError": "Errore durante l’eliminazione dell’immobile",
+    "confirmTitle": "Eliminare l'immobile?",
+    "confirmDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
+    "confirmLabel": "Elimina"
+  },
+  "leadsByStatusCard": {
+    "title": "Lead per stato"
+  },
+  "recentPropertiesCard": {
+    "title": "Ultimi immobili modificati",
+    "empty": "Nessun immobile modificato di recente."
+  },
+  "todayAppointmentsCard": {
+    "title": "Impegni di oggi",
+    "empty": "Nessun risultato."
+  }
+}

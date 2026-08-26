@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import dayjs from 'dayjs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -14,7 +15,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import {
-  calendarEventSchema,
+  createCalendarEventSchema,
   type CalendarEventFormValues,
 } from '@/pages/Agenda/schemas/calendarEventSchema'
 
@@ -61,13 +62,14 @@ type UseCalendarEventFormProps = {
 }
 
 export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalendarEventFormProps) {
+  const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = useCalendarEventControllerCreate()
   const { mutateAsync: update, isPending: updating } = useCalendarEventControllerUpdateById()
 
   const form = useForm<CalendarEventFormValues>({
-    resolver: zodResolver(calendarEventSchema),
+    resolver: zodResolver(createCalendarEventSchema(t)),
     defaultValues: emptyValues(defaultDate),
   })
 
@@ -95,14 +97,14 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
     const promise = event?.id ? update({ id: event.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: event ? 'Salvataggio impegno...' : 'Creazione impegno...',
+      pending: event ? t('agenda:toasts.form.saving') : t('agenda:toasts.form.creating'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getCalendarEventControllerFindQueryKey() })
         onSaved()
-        return event ? 'Impegno aggiornato con successo!' : 'Impegno creato con successo!'
+        return event ? t('agenda:toasts.form.updateSuccess') : t('agenda:toasts.form.createSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio dell’impegno'),
+        getErrorMessageFromRequest(error, t('agenda:toasts.form.error')),
     })
   }
 

@@ -1,4 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getLeadControllerFindQueryKey,
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useMoveLead() {
+  const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: updateLead } = useLeadControllerUpdateById()
@@ -17,13 +19,13 @@ export function useMoveLead() {
     const promise = updateLead({ id, data: { status, kanbanPosition } })
 
     toastPromise(promise, {
-      pending: 'Spostamento richiesta...',
+      pending: t('useMoveLead.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getLeadControllerFindQueryKey() })
-        return 'Richiesta spostata con successo!'
+        return t('useMoveLead.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante lo spostamento della richiesta'),
+        getErrorMessageFromRequest(error, t('useMoveLead.error')),
     })
   }
 

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import FileUpload from '@/components/FileUpload'
@@ -9,6 +10,7 @@ type SchedaAllegatiProps = {
 }
 
 function SchedaAllegati({ personId }: SchedaAllegatiProps) {
+  const { t } = useTranslation('clientes')
   const { attachments, uploadFiles, removeAttachment } = usePersonAttachments(personId)
   const [pendingFiles, setPendingFiles] = useState<File[]>([])
 
@@ -22,11 +24,16 @@ function SchedaAllegati({ personId }: SchedaAllegatiProps) {
 
   return (
     <div className="grid gap-4">
-      <FileUpload label="Carica documento" value={pendingFiles} onChange={handleChange} multiple />
+      <FileUpload
+        label={t('schedaAllegati.uploadLabel')}
+        value={pendingFiles}
+        onChange={handleChange}
+        multiple
+      />
 
       <div className="grid gap-2">
         {attachments.length === 0 && (
-          <p className="text-sm text-muted-foreground">Nessun allegato.</p>
+          <p className="text-sm text-muted-foreground">{t('schedaAllegati.empty')}</p>
         )}
         {attachments.map((link) => (
           <div

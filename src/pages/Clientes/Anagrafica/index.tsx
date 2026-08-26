@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { PersonWithRelations } from '@/api/generated/models'
@@ -7,6 +8,7 @@ import PersonTable from '@/pages/Clientes/components/PersonTable'
 import PersonFormModal from '@/pages/Clientes/components/PersonFormModal'
 
 function Anagrafica() {
+  const { t } = useTranslation('clientes')
   const { people, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     usePersonList()
   const { open, setOpen, editing, openNew, openEdit } = useEditModalState<PersonWithRelations>()
@@ -16,9 +18,9 @@ function Anagrafica() {
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
-        searchPlaceholder="Cerca un cliente per nome..."
+        searchPlaceholder={t('anagrafica.searchPlaceholder')}
         onNewClick={openNew}
-        newLabel="Nuovo cliente"
+        newLabel={t('anagrafica.newLabel')}
       />
 
       <PersonTable people={people} isLoading={isLoading} onEdit={openEdit} />

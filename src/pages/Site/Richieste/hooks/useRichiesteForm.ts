@@ -1,5 +1,7 @@
+import { useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import { usePublicLeadControllerCreate } from '@/api/generated/api'
 import { useToast } from '@/contexts/ToastContext'
@@ -8,7 +10,7 @@ import {
   type ApiErrorResponse,
 } from '@/utils/getErrorMessageFromRequest'
 import {
-  richiesteSchema,
+  createRichiesteSchema,
   type RichiesteFormValues,
 } from '@/pages/Site/Richieste/schemas/richiesteSchema'
 
@@ -24,8 +26,11 @@ const emptyValues: RichiesteFormValues = {
 }
 
 export function useRichiesteForm() {
+  const { t } = useTranslation('site')
   const { toastPromise } = useToast()
   const { mutateAsync, isPending } = usePublicLeadControllerCreate()
+
+  const richiesteSchema = useMemo(() => createRichiesteSchema(t), [t])
 
   const form = useForm<RichiesteFormValues>({
     resolver: zodResolver(richiesteSchema),
@@ -46,13 +51,13 @@ export function useRichiesteForm() {
     })
 
     toastPromise(promise, {
-      pending: 'Invio della richiesta...',
+      pending: t('richieste.toastPending'),
       success: () => {
         form.reset(emptyValues)
-        return 'Richiesta inviata con successo! Ti contatteremo al più presto.'
+        return t('richieste.toastSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’invio della richiesta'),
+        getErrorMessageFromRequest(error, t('richieste.toastError')),
     })
   }
 

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
 import { usePersonCommunications } from '@/pages/Clientes/Scheda/hooks/usePersonCommunications'
 import { formatDateTime } from '@/utils/formatDate'
@@ -7,12 +8,13 @@ type SchedaComunicazioniProps = {
 }
 
 function SchedaComunicazioni({ personId }: SchedaComunicazioniProps) {
+  const { t } = useTranslation('clientes')
   const { logs } = usePersonCommunications(personId)
 
   return (
     <div className="grid gap-2">
       {logs.length === 0 && (
-        <p className="text-sm text-muted-foreground">Nessuna comunicazione registrata.</p>
+        <p className="text-sm text-muted-foreground">{t('schedaComunicazioni.empty')}</p>
       )}
 
       {logs.map((log) => (

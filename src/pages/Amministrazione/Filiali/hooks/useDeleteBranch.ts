@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteBranch() {
+  const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: deleteBranch } = useBranchControllerDeleteById()
@@ -17,14 +19,14 @@ export function useDeleteBranch() {
     const promise = deleteBranch({ id })
 
     toastPromise(promise, {
-      pending: 'Eliminazione filiale...',
+      pending: t('deleteBranch.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getBranchControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getBranchControllerCountQueryKey() })
-        return 'Filiale eliminata con successo!'
+        return t('deleteBranch.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione della filiale'),
+        getErrorMessageFromRequest(error, t('deleteBranch.error')),
     })
   }
 

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   usePropertyAdditionalDetailControllerFind,
@@ -21,6 +22,7 @@ export type AdditionalFormValues = {
 const emptyValues: AdditionalFormValues = { roomsCount: '', quality: '', habitability: '', windowFrames: '' }
 
 export function usePropertyAdditionalForm(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const { toastPromise } = useToast()
   const { data: rows, isLoading } = usePropertyAdditionalDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
@@ -49,10 +51,10 @@ export function usePropertyAdditionalForm(propertyId: string) {
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: 'Salvataggio caratteristiche...',
-      success: 'Caratteristiche aggiornate con successo!',
+      pending: t('toasts.additionalForm.pending'),
+      success: t('toasts.additionalForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio delle caratteristiche'),
+        getErrorMessageFromRequest(error, t('toasts.additionalForm.error')),
     })
   }
 

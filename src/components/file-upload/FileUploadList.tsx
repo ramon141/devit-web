@@ -1,4 +1,5 @@
 import { Paperclip, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 function formatFileSize(bytes: number) {
   if (bytes < 1024) return `${bytes} B`
@@ -13,6 +14,8 @@ type FileUploadListProps = {
 }
 
 function FileUploadList({ files, disabled, onRemove }: FileUploadListProps) {
+  const { t } = useTranslation('common')
+
   if (files.length === 0) return null
 
   return (
@@ -34,7 +37,9 @@ function FileUploadList({ files, disabled, onRemove }: FileUploadListProps) {
             className="shrink-0 text-muted-foreground hover:text-destructive"
           >
             <X className="size-4" />
-            <span className="sr-only">Rimuovi {file.name}</span>
+            <span className="sr-only">
+              {t('fileUpload.removeFile', { fileName: file.name })}
+            </span>
           </button>
         </li>
       ))}

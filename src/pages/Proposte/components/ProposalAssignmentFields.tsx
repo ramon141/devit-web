@@ -1,4 +1,5 @@
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import {
   useLeadControllerFind,
@@ -12,6 +13,7 @@ type ProposalAssignmentFieldsProps = {
 }
 
 function ProposalAssignmentFields({ control, errors }: ProposalAssignmentFieldsProps) {
+  const { t } = useTranslation('proposte')
   const { data: leads } = useLeadControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
@@ -31,12 +33,12 @@ function ProposalAssignmentFields({ control, errors }: ProposalAssignmentFieldsP
         name="leadId"
         render={({ field }) => (
           <SearchableSelect
-            label="Lead di origine"
+            label={t('assignmentFields.leadLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={leadOptions}
-            placeholder="Nessuno"
-            searchPlaceholder="Cerca un lead..."
+            placeholder={t('assignmentFields.leadPlaceholder')}
+            searchPlaceholder={t('assignmentFields.leadSearchPlaceholder')}
             error={errors.leadId?.message}
           />
         )}
@@ -47,12 +49,12 @@ function ProposalAssignmentFields({ control, errors }: ProposalAssignmentFieldsP
         name="assignedToId"
         render={({ field }) => (
           <SearchableSelect
-            label="Responsabile"
+            label={t('assignmentFields.assignedToLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={userOptions}
-            placeholder="Nessuno"
-            searchPlaceholder="Cerca un utente..."
+            placeholder={t('assignmentFields.assignedToPlaceholder')}
+            searchPlaceholder={t('assignmentFields.assignedToSearchPlaceholder')}
             error={errors.assignedToId?.message}
           />
         )}
@@ -63,12 +65,12 @@ function ProposalAssignmentFields({ control, errors }: ProposalAssignmentFieldsP
         name="sellerAgentId"
         render={({ field }) => (
           <SearchableSelect
-            label="Agente venditore"
+            label={t('assignmentFields.sellerAgentLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={userOptions}
-            placeholder="Nessuno"
-            searchPlaceholder="Cerca un utente..."
+            placeholder={t('assignmentFields.sellerAgentPlaceholder')}
+            searchPlaceholder={t('assignmentFields.sellerAgentSearchPlaceholder')}
             error={errors.sellerAgentId?.message}
           />
         )}

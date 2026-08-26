@@ -1,5 +1,7 @@
 import type { MouseEvent } from 'react'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
 import { BedDouble, Bath, Ruler, Maximize2, Heart } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
@@ -7,10 +9,10 @@ import { useFavorite } from '@/pages/Site/hooks/useFavorite'
 import type { PublicPropertyControllerFind200ItemsItem } from '@/api/generated/models'
 import { formatAmount } from '@/utils/formatAmount'
 
-function statusLabel(purpose?: string) {
-  if (purpose === 'sale') return 'Vendita'
-  if (purpose === 'rent') return 'Affitto'
-  if (purpose === 'rent_or_sale') return 'Vendita / Affitto'
+function statusLabel(t: TFunction<'site'>, purpose?: string) {
+  if (purpose === 'sale') return t('propertyCard.statusSale')
+  if (purpose === 'rent') return t('propertyCard.statusRent')
+  if (purpose === 'rent_or_sale') return t('propertyCard.statusRentOrSale')
   return null
 }
 
@@ -24,7 +26,8 @@ type PropertyCardProps = {
 }
 
 function PropertyCard({ property }: PropertyCardProps) {
-  const status = statusLabel(property.purpose)
+  const { t } = useTranslation('site')
+  const status = statusLabel(t, property.purpose)
   const address = addressLine(property)
   const detailUrl = `/property/${property.id}`
   const { isFavorite, toggle } = useFavorite(property.id ?? '')
@@ -46,14 +49,14 @@ function PropertyCard({ property }: PropertyCardProps) {
           />
         ) : (
           <div className="flex aspect-4/3 w-full items-center justify-center bg-muted text-xs text-muted-foreground">
-            Nessuna foto disponibile
+            {t('propertyCard.noPhoto')}
           </div>
         )}
 
         <div className="absolute inset-x-0 top-0 flex items-start justify-between p-2.5">
           {property.featured ? (
             <span className="rounded bg-primary px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-primary-foreground">
-              Esclusiva
+              {t('propertyCard.exclusive')}
             </span>
           ) : (
             <span />
@@ -80,7 +83,11 @@ function PropertyCard({ property }: PropertyCardProps) {
             <button
               type="button"
               onClick={handleFavoriteClick}
-              aria-label={isFavorite ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}
+              aria-label={
+                isFavorite
+                  ? t('propertyCard.removeFavorite')
+                  : t('propertyCard.addFavorite')
+              }
               className="flex size-7 items-center justify-center rounded-full bg-white/85 text-foreground"
             >
               <Heart className={cn('size-3.5', isFavorite && 'fill-red-500 text-red-500')} />

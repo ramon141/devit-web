@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPersonControllerFindQueryKey,
@@ -15,7 +16,7 @@ import type { PersonWithRelations } from '@/api/generated/models'
 import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
-import { personSchema, type PersonFormValues } from '@/pages/Clientes/schemas/personSchema'
+import { createPersonSchema, type PersonFormValues } from '@/pages/Clientes/schemas/personSchema'
 
 const emptyValues: PersonFormValues = {
   name: '',
@@ -80,6 +81,7 @@ function hasAddressData(values: PersonFormValues) {
 }
 
 export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
+  const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: createAddress } = useAddressControllerCreate()
@@ -88,7 +90,7 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
   const { mutateAsync: update, isPending: updating } = usePersonControllerUpdateById()
 
   const form = useForm<PersonFormValues>({
-    resolver: zodResolver(personSchema),
+    resolver: zodResolver(createPersonSchema(t)),
     defaultValues: emptyValues,
   })
 
@@ -147,14 +149,16 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
 
   function onSubmit(values: PersonFormValues) {
     toastPromise(savePerson(values), {
-      pending: person ? 'Salvataggio cliente...' : 'Creazione cliente...',
+      pending: person ? t('usePersonForm.pendingUpdate') : t('usePersonForm.pendingCreate'),
       success: () => {
         invalidateList()
         onSaved()
-        return person ? 'Cliente aggiornato con successo!' : 'Cliente creato con successo!'
+        return person
+          ? t('usePersonForm.successUpdate')
+          : t('usePersonForm.successCreate')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio del cliente'),
+        getErrorMessageFromRequest(error, t('usePersonForm.error')),
     })
   }
 

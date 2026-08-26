@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteBanner() {
+  const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: deleteBanner } = useHomeBannerControllerDeleteById()
@@ -17,14 +19,14 @@ export function useDeleteBanner() {
     const promise = deleteBanner({ id })
 
     toastPromise(promise, {
-      pending: 'Eliminazione banner...',
+      pending: t('deleteBanner.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getHomeBannerControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getHomeBannerControllerCountQueryKey() })
-        return 'Banner eliminato con successo!'
+        return t('deleteBanner.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione del banner'),
+        getErrorMessageFromRequest(error, t('deleteBanner.error')),
     })
   }
 

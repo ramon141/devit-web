@@ -1,4 +1,5 @@
 import { Loader2, TriangleAlert } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -27,12 +28,16 @@ function ConfirmPopup({
   onOpenChange,
   title,
   description,
-  confirmLabel = 'Conferma',
-  cancelLabel = 'Annulla',
+  confirmLabel,
+  cancelLabel,
   variant = 'default',
   loading = false,
   onConfirm,
 }: ConfirmPopupProps) {
+  const { t } = useTranslation('common')
+  const resolvedConfirmLabel = confirmLabel ?? t('confirmPopup.confirm')
+  const resolvedCancelLabel = cancelLabel ?? t('confirmPopup.cancel')
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-sm">
@@ -59,7 +64,7 @@ function ConfirmPopup({
             onClick={() => onOpenChange(false)}
             disabled={loading}
           >
-            {cancelLabel}
+            {resolvedCancelLabel}
           </Button>
           <Button
             variant={variant === 'destructive' ? 'destructive' : 'default'}
@@ -67,7 +72,7 @@ function ConfirmPopup({
             disabled={loading}
           >
             {loading && <Loader2 className="animate-spin" />}
-            {confirmLabel}
+            {resolvedConfirmLabel}
           </Button>
         </DialogFooter>
       </DialogContent>

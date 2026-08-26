@@ -1,0 +1,236 @@
+{
+  "common": {
+    "parentLabel": "Administração"
+  },
+  "auditLogTable": {
+    "actions": {
+      "create": "Criação",
+      "update": "Atualização",
+      "delete": "Exclusão",
+      "login": "Acesso",
+      "logout": "Saída",
+      "export": "Exportação"
+    },
+    "columns": {
+      "action": "Ação",
+      "entity": "Entidade",
+      "entityId": "ID da entidade",
+      "user": "Usuário",
+      "date": "Data"
+    },
+    "empty": "Nenhum log encontrado."
+  },
+  "auditPage": {
+    "title": "Log de auditoria",
+    "description": "Histórico das ações no sistema"
+  },
+  "bannerFormModal": {
+    "editTitle": "Editar banner",
+    "newTitle": "Novo banner",
+    "imageLabel": "Imagem",
+    "imageHint": "Deixe em branco para manter a imagem atual",
+    "titleLabel": "Título",
+    "subtitleLabel": "Subtítulo",
+    "linkLabel": "Link",
+    "orderLabel": "Ordem",
+    "startDateLabel": "Data de início",
+    "endDateLabel": "Data de término",
+    "activeLabel": "Banner ativo"
+  },
+  "bannerTable": {
+    "empty": "Nenhum banner encontrado.",
+    "deleteTitle": "Excluir o banner?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{title}}\".",
+    "deleteConfirm": "Excluir"
+  },
+  "bannerTableColumns": {
+    "title": "Título",
+    "link": "Link",
+    "order": "Ordem",
+    "status": "Status",
+    "active": "Ativo",
+    "inactive": "Inativo",
+    "actions": "Ações"
+  },
+  "bannerForm": {
+    "imageRequired": "Selecione uma imagem para o banner",
+    "pendingUpdate": "Salvando banner...",
+    "pendingCreate": "Criando banner...",
+    "successUpdate": "Banner atualizado com sucesso!",
+    "successCreate": "Banner criado com sucesso!",
+    "error": "Erro ao salvar o banner"
+  },
+  "deleteBanner": {
+    "pending": "Excluindo banner...",
+    "success": "Banner excluído com sucesso!",
+    "error": "Erro ao excluir o banner"
+  },
+  "banner": {
+    "searchPlaceholder": "Buscar um banner...",
+    "newLabel": "Novo banner"
+  },
+  "bannerPage": {
+    "title": "Banner",
+    "description": "Gerencie os banners da home"
+  },
+  "bannerSchema": {
+    "titleMin": "Digite pelo menos 2 caracteres"
+  },
+  "categoryFormModal": {
+    "editTitle": "Editar categoria",
+    "newTitle": "Nova categoria",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Apartamento",
+    "slugLabel": "Slug",
+    "slugPlaceholder": "apartamento",
+    "iconLabel": "Ícone",
+    "iconPlaceholder": "home",
+    "orderLabel": "Ordem de exibição",
+    "activeLabel": "Categoria ativa"
+  },
+  "categoryTable": {
+    "empty": "Nenhuma categoria encontrada.",
+    "deleteTitle": "Excluir a categoria?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
+    "deleteConfirm": "Excluir"
+  },
+  "categoryTableColumns": {
+    "name": "Nome",
+    "slug": "Slug",
+    "order": "Ordem",
+    "status": "Status",
+    "active": "Ativa",
+    "inactive": "Inativa",
+    "actions": "Ações"
+  },
+  "categoryForm": {
+    "pendingUpdate": "Salvando categoria...",
+    "pendingCreate": "Criando categoria...",
+    "successUpdate": "Categoria atualizada com sucesso!",
+    "successCreate": "Categoria criada com sucesso!",
+    "error": "Erro ao salvar a categoria"
+  },
+  "deleteCategory": {
+    "pending": "Excluindo categoria...",
+    "success": "Categoria excluída com sucesso!",
+    "error": "Erro ao excluir a categoria"
+  },
+  "categorie": {
+    "searchPlaceholder": "Buscar uma categoria...",
+    "newLabel": "Nova categoria"
+  },
+  "categoriePage": {
+    "title": "Categorias",
+    "description": "Gerencie as categorias de imóvel"
+  },
+  "categorySchema": {
+    "nameMin": "Digite pelo menos 2 caracteres",
+    "slugMin": "Digite pelo menos 2 caracteres"
+  },
+  "branchFormModal": {
+    "editTitle": "Editar filial",
+    "newTitle": "Nova filial",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Filial Milão Centro",
+    "activeLabel": "Filial ativa"
+  },
+  "branchTable": {
+    "empty": "Nenhuma filial encontrada.",
+    "deleteTitle": "Excluir a filial?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
+    "deleteConfirm": "Excluir"
+  },
+  "branchTableColumns": {
+    "name": "Nome",
+    "status": "Status",
+    "active": "Ativa",
+    "inactive": "Inativa",
+    "actions": "Ações"
+  },
+  "branchForm": {
+    "pendingUpdate": "Salvando filial...",
+    "pendingCreate": "Criando filial...",
+    "successUpdate": "Filial atualizada com sucesso!",
+    "successCreate": "Filial criada com sucesso!",
+    "error": "Erro ao salvar a filial"
+  },
+  "deleteBranch": {
+    "pending": "Excluindo filial...",
+    "success": "Filial excluída com sucesso!",
+    "error": "Erro ao excluir a filial"
+  },
+  "filiali": {
+    "searchPlaceholder": "Buscar uma filial...",
+    "newLabel": "Nova filial"
+  },
+  "filialiPage": {
+    "title": "Filiais",
+    "description": "Gerencie as filiais da agência"
+  },
+  "branchSchema": {
+    "nameMin": "Digite pelo menos 2 caracteres"
+  },
+  "userFormFields": {
+    "avatarLabel": "Foto de perfil",
+    "avatarHint": "Deixe em branco para manter a foto atual",
+    "fullNameLabel": "Nome completo",
+    "fullNamePlaceholder": "Mario Rossi",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "mario@devit.it",
+    "accessLevelLabel": "Nível de acesso",
+    "branchLabel": "Filial",
+    "branchPlaceholder": "Nenhuma filial",
+    "passwordEditLabel": "Nova senha (opcional)",
+    "passwordLabel": "Senha",
+    "activeLabel": "Usuário ativo"
+  },
+  "userFormModal": {
+    "editTitle": "Editar usuário",
+    "newTitle": "Novo usuário"
+  },
+  "userTable": {
+    "empty": "Nenhum usuário encontrado.",
+    "deleteTitle": "Excluir o usuário?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{fullName}}\".",
+    "deleteConfirm": "Excluir"
+  },
+  "userTableColumns": {
+    "name": "Nome",
+    "email": "E-mail",
+    "level": "Nível",
+    "branch": "Filial",
+    "status": "Status",
+    "active": "Ativo",
+    "inactive": "Inativo",
+    "actions": "Ações"
+  },
+  "deleteUser": {
+    "pending": "Excluindo usuário...",
+    "success": "Usuário excluído com sucesso!",
+    "error": "Erro ao excluir o usuário"
+  },
+  "userForm": {
+    "passwordRequired": "A senha é obrigatória para um novo usuário",
+    "pendingUpdate": "Salvando usuário...",
+    "pendingCreate": "Criando usuário...",
+    "successUpdate": "Usuário atualizado com sucesso!",
+    "successCreate": "Usuário criado com sucesso!",
+    "error": "Erro ao salvar o usuário"
+  },
+  "utenti": {
+    "searchPlaceholder": "Buscar um usuário por nome...",
+    "newLabel": "Novo usuário"
+  },
+  "utentiPage": {
+    "title": "Usuários",
+    "description": "Gerencie os usuários da agência"
+  },
+  "userSchema": {
+    "fullNameMin": "Digite pelo menos 2 caracteres",
+    "emailInvalid": "E-mail inválido",
+    "accessLevelRequired": "Selecione um nível",
+    "passwordMin": "A senha deve ter pelo menos 6 caracteres",
+    "accessLevelAdmin": "Administrador",
+    "accessLevelBroker": "Corretor"
+  }
+}

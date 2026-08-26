@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import dayjs from 'dayjs'
 import { BedDoubleIcon, CopyIcon, ImageIcon, PencilIcon, RulerIcon, ShowerHeadIcon, Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -7,7 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import type { Attachment, PropertyPhoto, PropertyWithRelations } from '@/api/generated/models'
-import { statusOptions } from '@/pages/Imoveis/schemas/propertySchema'
+import { getStatusOptions } from '@/pages/Imoveis/schemas/propertySchema'
 import { useDeleteProperty } from '@/pages/Imoveis/hooks/useDeleteProperty'
 import { useDuplicateProperty } from '@/pages/Imoveis/hooks/useDuplicateProperty'
 import { formatAmount } from '@/utils/formatAmount'
@@ -28,6 +29,7 @@ function isNew(createdAt?: string) {
 }
 
 function PropertyCard({ property }: PropertyCardProps) {
+  const { t } = useTranslation('imoveis')
   const [deleteTarget, setDeleteTarget] = useState<PropertyWithRelations | null>(null)
   const { handleDelete } = useDeleteProperty()
   const { handleDuplicate } = useDuplicateProperty()
@@ -46,13 +48,13 @@ function PropertyCard({ property }: PropertyCardProps) {
         ) : (
           <ImageIcon className="size-10 text-muted-foreground" />
         )}
-        {isNew(property.createdAt) && <Badge className="absolute top-2 left-2">Nuovo</Badge>}
+        {isNew(property.createdAt) && <Badge className="absolute top-2 left-2">{t('card.new')}</Badge>}
       </div>
 
       <div className="grid gap-2 p-3">
         <div className="flex items-center justify-between gap-2">
           <p className="text-xs text-muted-foreground">{property.code}</p>
-          <Badge variant="secondary">{getOptionLabel(statusOptions, property.status)}</Badge>
+          <Badge variant="secondary">{getOptionLabel(getStatusOptions(t), property.status)}</Badge>
         </div>
 
         <p className="line-clamp-1 font-medium">{property.title}</p>
@@ -84,7 +86,7 @@ function PropertyCard({ property }: PropertyCardProps) {
 
         <p className="font-semibold">{formatAmount(property.salePrice ?? property.rentPrice)}</p>
         <p className="text-xs text-muted-foreground">
-          Modificato il {formatDate(property.updatedAt ?? property.createdAt)}
+          {t('card.modifiedOn', { date: formatDate(property.updatedAt ?? property.createdAt) })}
         </p>
 
         <div className="flex justify-end gap-1 pt-1">
@@ -103,10 +105,10 @@ function PropertyCard({ property }: PropertyCardProps) {
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare l'immobile?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.title}".`}
+        title={t('card.deleteTitle')}
+        description={t('card.deleteDescription', { title: deleteTarget?.title })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('card.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </div>

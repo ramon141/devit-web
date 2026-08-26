@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPropertyControllerCountQueryKey,
@@ -16,7 +17,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
-import { propertySchema, type PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
+import { createPropertySchema, type PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 const emptyValues: PropertyFormValues = {
   code: '',
@@ -84,6 +85,7 @@ function propertyToFormValues(property: PropertyWithRelations): PropertyFormValu
 }
 
 export function usePropertyForm({ property, onSaved }: UsePropertyFormProps) {
+  const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: createAddress } = useAddressControllerCreate()
@@ -92,7 +94,7 @@ export function usePropertyForm({ property, onSaved }: UsePropertyFormProps) {
   const { mutateAsync: updateProperty, isPending: updating } = usePropertyControllerUpdateById()
 
   const form = useForm<PropertyFormValues>({
-    resolver: zodResolver(propertySchema),
+    resolver: zodResolver(createPropertySchema(t)),
     defaultValues: emptyValues,
   })
 
@@ -152,14 +154,14 @@ export function usePropertyForm({ property, onSaved }: UsePropertyFormProps) {
 
   function onSubmit(values: PropertyFormValues) {
     toastPromise(saveProperty(values), {
-      pending: property ? 'Salvataggio immobile...' : 'Creazione immobile...',
+      pending: property ? t('toasts.saveProperty.pendingUpdate') : t('toasts.saveProperty.pendingCreate'),
       success: (savedId) => {
         invalidateList()
         onSaved(savedId)
-        return property ? 'Immobile aggiornato con successo!' : 'Immobile creato con successo!'
+        return property ? t('toasts.saveProperty.successUpdate') : t('toasts.saveProperty.successCreate')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio dell’immobile'),
+        getErrorMessageFromRequest(error, t('toasts.saveProperty.error')),
     })
   }
 

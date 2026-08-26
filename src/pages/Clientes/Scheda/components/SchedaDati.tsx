@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import type { Person } from '@/api/generated/models'
 import { usePersonForm } from '@/pages/Clientes/hooks/usePersonForm'
@@ -8,6 +9,7 @@ type SchedaDatiProps = {
 }
 
 function SchedaDati({ person }: SchedaDatiProps) {
+  const { t } = useTranslation('clientes')
   const { form, isSubmitting, onSubmit } = usePersonForm({ person, onSaved: () => {} })
 
   return (
@@ -16,7 +18,7 @@ function SchedaDati({ person }: SchedaDatiProps) {
 
       <div className="flex justify-end">
         <Button type="submit" disabled={isSubmitting}>
-          Salva modifiche
+          {t('schedaDati.saveButton')}
         </Button>
       </div>
     </form>

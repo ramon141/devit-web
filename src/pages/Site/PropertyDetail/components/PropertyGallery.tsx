@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import type { PublicPropertyControllerFindById200PhotosItem } from '@/api/generated/models'
 
@@ -15,10 +16,12 @@ function sortPhotos(
 }
 
 function PropertyGallery({ photos }: PropertyGalleryProps) {
+  const { t } = useTranslation('site')
+
   if (!photos || photos.length === 0) {
     return (
       <div className="flex h-64 items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">
-        Nessuna foto disponibile
+        {t('propertyGallery.noPhoto')}
       </div>
     )
   }
@@ -39,7 +42,7 @@ function PropertyGallery({ photos }: PropertyGalleryProps) {
       >
         <img
           src={cover.url}
-          alt={cover.caption ?? 'Foto immobile'}
+          alt={cover.caption ?? t('propertyGallery.photoAlt')}
           className="h-full w-full object-cover"
         />
       </a>
@@ -54,7 +57,7 @@ function PropertyGallery({ photos }: PropertyGalleryProps) {
         >
           <img
             src={photo.url}
-            alt={photo.caption ?? 'Foto immobile'}
+            alt={photo.caption ?? t('propertyGallery.photoAlt')}
             className="h-full w-full object-cover"
           />
         </a>

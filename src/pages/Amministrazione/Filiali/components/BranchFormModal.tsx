@@ -1,4 +1,5 @@
 import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Input } from '@/components/ui/input'
@@ -14,6 +15,7 @@ type BranchFormModalProps = {
 }
 
 function BranchFormModal({ open, onOpenChange, branch }: BranchFormModalProps) {
+  const { t } = useTranslation('amministrazione')
   const { form, isSubmitting, onSubmit } = useBranchForm({
     branch,
     onSaved: () => onOpenChange(false),
@@ -28,11 +30,11 @@ function BranchFormModal({ open, onOpenChange, branch }: BranchFormModalProps) {
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={branch ? 'Modifica filiale' : 'Nuova filiale'}
+      title={branch ? t('branchFormModal.editTitle') : t('branchFormModal.newTitle')}
     >
       <form onSubmit={onSubmit} className="grid gap-4">
-        <FormFieldWrapper label="Nome" required error={errors.name?.message}>
-          <Input {...register('name')} placeholder="Filiale Milano Centro" />
+        <FormFieldWrapper label={t('branchFormModal.nameLabel')} required error={errors.name?.message}>
+          <Input {...register('name')} placeholder={t('branchFormModal.namePlaceholder')} />
         </FormFieldWrapper>
 
         <Controller
@@ -41,7 +43,7 @@ function BranchFormModal({ open, onOpenChange, branch }: BranchFormModalProps) {
           render={({ field }) => (
             <div className="flex items-center gap-2">
               <Switch checked={field.value} onCheckedChange={field.onChange} />
-              <span className="text-sm">Filiale attiva</span>
+              <span className="text-sm">{t('branchFormModal.activeLabel')}</span>
             </div>
           )}
         />

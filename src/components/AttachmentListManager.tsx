@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Trash2Icon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import FileUpload from '@/components/FileUpload'
 import RemovableRow from '@/components/RemovableRow'
 
@@ -48,10 +49,13 @@ function AttachmentListManager({
   items,
   onUpload,
   onRemove,
-  uploadLabel = 'Carica allegato',
-  emptyMessage = 'Nessun allegato caricato.',
+  uploadLabel,
+  emptyMessage,
 }: AttachmentListManagerProps) {
+  const { t } = useTranslation('common')
   const [pendingFiles, setPendingFiles] = useState<File[]>([])
+  const resolvedUploadLabel = uploadLabel ?? t('attachmentListManager.uploadLabel')
+  const resolvedEmptyMessage = emptyMessage ?? t('attachmentListManager.emptyMessage')
 
   function handleChange(files: File[]) {
     if (files.length > 0) {
@@ -62,10 +66,12 @@ function AttachmentListManager({
 
   return (
     <div className="grid gap-4">
-      <FileUpload label={uploadLabel} value={pendingFiles} onChange={handleChange} multiple />
+      <FileUpload label={resolvedUploadLabel} value={pendingFiles} onChange={handleChange} multiple />
 
       <div className="grid gap-2">
-        {items.length === 0 && <p className="text-sm text-muted-foreground">{emptyMessage}</p>}
+        {items.length === 0 && (
+          <p className="text-sm text-muted-foreground">{resolvedEmptyMessage}</p>
+        )}
 
         {items.map((item) => (
           <AttachmentRow key={item.id} item={item} onRemove={() => onRemove(item.id)} />

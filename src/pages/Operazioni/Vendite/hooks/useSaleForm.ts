@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -15,7 +16,7 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
-import { saleSchema, type SaleFormValues } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
+import { createSaleSchema, type SaleFormValues } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
 
 const emptyValues: SaleFormValues = {
   number: '',
@@ -67,13 +68,14 @@ type UseSaleFormProps = {
 }
 
 export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = useSaleControllerCreate()
   const { mutateAsync: update, isPending: updating } = useSaleControllerUpdateById()
 
   const form = useForm<SaleFormValues>({
-    resolver: zodResolver(saleSchema),
+    resolver: zodResolver(createSaleSchema(t)),
     defaultValues: emptyValues,
   })
 
@@ -101,14 +103,14 @@ export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
     const promise = sale?.id ? update({ id: sale.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: sale ? 'Salvataggio vendita...' : 'Creazione vendita...',
+      pending: sale ? t('vendite.hooks.form.saving') : t('vendite.hooks.form.creating'),
       success: () => {
         invalidateList()
         onSaved()
-        return sale ? 'Vendita aggiornata con successo!' : 'Vendita creata con successo!'
+        return sale ? t('vendite.hooks.form.updateSuccess') : t('vendite.hooks.form.createSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio della vendita'),
+        getErrorMessageFromRequest(error, t('vendite.hooks.form.error')),
     })
   }
 

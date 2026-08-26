@@ -1,9 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SelectField from '@/components/SelectField'
 import RemovableRow from '@/components/RemovableRow'
 import type { PropertyRoomRoomType } from '@/api/generated/models'
-import { roomTypeOptions } from '@/pages/Imoveis/Scheda/schemas/roomTypeOptions'
+import { getRoomTypeOptions } from '@/pages/Imoveis/Scheda/schemas/roomTypeOptions'
 import { usePropertyRooms } from '@/pages/Imoveis/Scheda/hooks/usePropertyRooms'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 
@@ -12,6 +13,7 @@ type PropertyRoomsManagerProps = {
 }
 
 function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
+  const { t } = useTranslation('imoveis')
   const {
     rooms,
     roomType,
@@ -27,10 +29,11 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
     addRoom,
     removeRoom,
   } = usePropertyRooms(propertyId)
+  const roomTypeOptions = getRoomTypeOptions(t)
 
   return (
     <div className="sm:col-span-2">
-      <p className="mb-2 text-sm font-medium">Ambienti e pertinenze</p>
+      <p className="mb-2 text-sm font-medium">{t('scheda.roomsManager.title')}</p>
 
       <div className="grid gap-2">
         {rooms.map((room) => (
@@ -51,25 +54,37 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
             value={roomType}
             onValueChange={(value) => setRoomType(value as PropertyRoomRoomType)}
             options={roomTypeOptions}
-            placeholder="Tipo ambiente"
+            placeholder={t('scheda.roomsManager.roomTypePlaceholder')}
           />
         </div>
         <Input
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
           type="number"
-          placeholder="Quantità"
+          placeholder={t('scheda.roomsManager.quantityPlaceholder')}
           className="w-24"
         />
-        <Input value={widthM} onChange={(e) => setWidthM(e.target.value)} type="number" placeholder="Larghezza (m)" className="w-32" />
-        <Input value={lengthM} onChange={(e) => setLengthM(e.target.value)} type="number" placeholder="Lunghezza (m)" className="w-32" />
+        <Input
+          value={widthM}
+          onChange={(e) => setWidthM(e.target.value)}
+          type="number"
+          placeholder={t('scheda.roomsManager.widthPlaceholder')}
+          className="w-32"
+        />
+        <Input
+          value={lengthM}
+          onChange={(e) => setLengthM(e.target.value)}
+          type="number"
+          placeholder={t('scheda.roomsManager.lengthPlaceholder')}
+          className="w-32"
+        />
         <Input
           value={equipment}
           onChange={(e) => setEquipment(e.target.value)}
-          placeholder="Equipaggiamento"
+          placeholder={t('scheda.roomsManager.equipmentPlaceholder')}
           className="w-40"
         />
-        <Button type="button" onClick={addRoom}>Aggiungi</Button>
+        <Button type="button" onClick={addRoom}>{t('scheda.roomsManager.add')}</Button>
       </div>
     </div>
   )

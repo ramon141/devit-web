@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   usePropertyLandDetailControllerFind,
@@ -39,6 +40,7 @@ const emptyValues: LandFormValues = {
 }
 
 export function usePropertyLandForm(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const { toastPromise } = useToast()
   const { data: rows, isLoading } = usePropertyLandDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
@@ -82,10 +84,10 @@ export function usePropertyLandForm(propertyId: string) {
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: 'Salvataggio dati terreno...',
-      success: 'Dati terreno aggiornati con successo!',
+      pending: t('toasts.landForm.pending'),
+      success: t('toasts.landForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio dei dati terreno'),
+        getErrorMessageFromRequest(error, t('toasts.landForm.error')),
     })
   }
 

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   usePropertyDetailControllerFind,
@@ -62,6 +63,7 @@ const emptyValues: DettagliFormValues = {
 }
 
 export function usePropertyDetailForm(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const { toastPromise } = useToast()
   const { data: rows, isLoading } = usePropertyDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
@@ -115,10 +117,10 @@ export function usePropertyDetailForm(propertyId: string) {
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: 'Salvataggio dettagli...',
-      success: 'Dettagli aggiornati con successo!',
+      pending: t('toasts.detailForm.pending'),
+      success: t('toasts.detailForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio dei dettagli'),
+        getErrorMessageFromRequest(error, t('toasts.detailForm.error')),
     })
   }
 

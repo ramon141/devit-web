@@ -1,0 +1,16 @@
+{
+  "index": {
+    "title": "Marketing",
+    "description": "Monitore as comunicações enviadas aos clientes",
+    "breadcrumb": "Marketing",
+    "emailTab": "E-mail Marketing",
+    "whatsappTab": "WhatsApp Marketing",
+    "whatsappHint": "Para enviar uma mensagem, vá até a ficha do imóvel ou do cliente.",
+    "comingSoonTitle": "Em breve",
+    "comingSoonDescription": "Área do proprietário, Customer Satisfaction, Gestim Analytics, Revista da agência, Watermark e Gestão de publicidade."
+  },
+  "channelStatusDashboard": {
+    "total": "Total",
+    "distributionByStatus": "Distribuição por status"
+  }
+}

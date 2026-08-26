@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   usePropertyCadastralInfoControllerFind,
@@ -34,6 +35,7 @@ const emptyValues: CadastralFormValues = {
 }
 
 export function usePropertyCadastralForm(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const { toastPromise } = useToast()
   const { data: rows, isLoading } = usePropertyCadastralInfoControllerFind({
     filter: { where: { propertyId }, limit: 1 },
@@ -66,10 +68,10 @@ export function usePropertyCadastralForm(propertyId: string) {
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: 'Salvataggio dati catastali...',
-      success: 'Dati catastali aggiornati con successo!',
+      pending: t('toasts.cadastralForm.pending'),
+      success: t('toasts.cadastralForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio dei dati catastali'),
+        getErrorMessageFromRequest(error, t('toasts.cadastralForm.error')),
     })
   }
 

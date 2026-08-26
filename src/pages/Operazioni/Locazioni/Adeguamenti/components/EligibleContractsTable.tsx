@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Checkbox } from '@/components/ui/checkbox'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
@@ -11,6 +12,8 @@ type EligibleContractsTableProps = {
 }
 
 function EligibleContractsTable({ contracts, isLoading, selectedIds, onToggle }: EligibleContractsTableProps) {
+  const { t } = useTranslation('operazioni')
+
   const columns: DataTableColumn<RentalContractWithRelations>[] = [
     {
       header: '',
@@ -21,11 +24,26 @@ function EligibleContractsTable({ contracts, isLoading, selectedIds, onToggle }:
         />
       ),
     },
-    { header: 'Numero', cell: (contract) => <span className="font-medium">{contract.number}</span> },
-    { header: 'Immobile', cell: (contract) => contract.property?.code ?? '—' },
-    { header: 'Inquilino', cell: (contract) => contract.tenant?.name ?? '—' },
-    { header: 'Proprietario', cell: (contract) => contract.owner?.name ?? '—' },
-    { header: 'Affitto attuale', cell: (contract) => formatAmount(contract.rentAmount) },
+    {
+      header: t('locazioni.adeguamenti.eligibleTable.numero'),
+      cell: (contract) => <span className="font-medium">{contract.number}</span>,
+    },
+    {
+      header: t('locazioni.adeguamenti.eligibleTable.immobile'),
+      cell: (contract) => contract.property?.code ?? '—',
+    },
+    {
+      header: t('locazioni.adeguamenti.eligibleTable.inquilino'),
+      cell: (contract) => contract.tenant?.name ?? '—',
+    },
+    {
+      header: t('locazioni.adeguamenti.eligibleTable.proprietario'),
+      cell: (contract) => contract.owner?.name ?? '—',
+    },
+    {
+      header: t('locazioni.adeguamenti.eligibleTable.affittoAttuale'),
+      cell: (contract) => formatAmount(contract.rentAmount),
+    },
   ]
 
   return (
@@ -34,7 +52,7 @@ function EligibleContractsTable({ contracts, isLoading, selectedIds, onToggle }:
       data={contracts}
       keyExtractor={(contract) => contract.id ?? ''}
       isLoading={isLoading}
-      emptyMessage="Nessun contratto attivo trovato."
+      emptyMessage={t('locazioni.adeguamenti.eligibleTable.emptyMessage')}
     />
   )
 }

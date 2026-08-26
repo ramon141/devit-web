@@ -1,4 +1,5 @@
 import type { UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import Stepper from '@/components/Stepper'
 import PropertyGeneralTab from '@/pages/Imoveis/components/PropertyGeneralTab'
@@ -20,20 +21,22 @@ type PropertyFormFieldsProps = {
   propertyId?: string
 }
 
-const steps = [
-  { value: 'generale', label: 'Generale', step: 1, requiresId: false },
-  { value: 'prezzo', label: 'Prezzo', step: 2, requiresId: false },
-  { value: 'localizzazione', label: 'Localizzazione', step: 3, requiresId: false },
-  { value: 'descrizione', label: 'Descrizione', step: 4, requiresId: false },
-  { value: 'dettagli', label: 'Dettagli', step: 5, requiresId: true },
-  { value: 'commerciale', label: 'Commerciale', step: 6, requiresId: true },
-  { value: 'industriale', label: 'Industriale', step: 7, requiresId: true },
-  { value: 'terreno', label: 'Terreno', step: 8, requiresId: true },
-  { value: 'tasse', label: 'Tasse', step: 9, requiresId: true },
-  { value: 'storico', label: 'Storico', step: 10, requiresId: true },
-]
-
 function PropertyFormFields({ form, onSubmit, isSubmitting, propertyId }: PropertyFormFieldsProps) {
+  const { t } = useTranslation('imoveis')
+
+  const steps = [
+    { value: 'generale', label: t('formFields.steps.general'), step: 1, requiresId: false },
+    { value: 'prezzo', label: t('formFields.steps.price'), step: 2, requiresId: false },
+    { value: 'localizzazione', label: t('formFields.steps.location'), step: 3, requiresId: false },
+    { value: 'descrizione', label: t('formFields.steps.description'), step: 4, requiresId: false },
+    { value: 'dettagli', label: t('formFields.steps.details'), step: 5, requiresId: true },
+    { value: 'commerciale', label: t('formFields.steps.commercial'), step: 6, requiresId: true },
+    { value: 'industriale', label: t('formFields.steps.industrial'), step: 7, requiresId: true },
+    { value: 'terreno', label: t('formFields.steps.land'), step: 8, requiresId: true },
+    { value: 'tasse', label: t('formFields.steps.taxes'), step: 9, requiresId: true },
+    { value: 'storico', label: t('formFields.steps.history'), step: 10, requiresId: true },
+  ]
+
   const stepperSteps = steps.map((step) => ({
     ...step,
     locked: step.requiresId && !propertyId,

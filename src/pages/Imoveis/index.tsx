@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { LayoutGridIcon, TableIcon } from 'lucide-react'
 import AppLayout from '@/components/layout/AppLayout'
 import ListToolbar from '@/components/ListToolbar'
@@ -11,6 +12,7 @@ import PropertyCard from '@/pages/Imoveis/components/PropertyCard'
 import PropertyFilters from '@/pages/Imoveis/components/PropertyFilters'
 
 function Imoveis() {
+  const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table')
   const {
@@ -28,16 +30,16 @@ function Imoveis() {
 
   return (
     <AppLayout
-      title="Immobili"
-      description="Gestisci il portafoglio immobiliare dell'agenzia"
-      breadcrumbItems={[{ label: 'Immobili' }]}
+      title={t('list.pageTitle')}
+      description={t('list.pageDescription')}
+      breadcrumbItems={[{ label: t('list.breadcrumb') }]}
     >
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
-        searchPlaceholder="Cerca per codice, titolo o descrizione..."
+        searchPlaceholder={t('list.searchPlaceholder')}
         onNewClick={() => navigate('/gestionale/proprieta/nuovo')}
-        newLabel="Nuovo immobile"
+        newLabel={t('list.newLabel')}
       />
 
       <PropertyFilters filters={filters} onChange={setFilters} />
@@ -64,7 +66,7 @@ function Imoveis() {
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {!isLoading && properties.length === 0 && (
-            <p className="col-span-full py-8 text-center text-muted-foreground">Nessun immobile trovato.</p>
+            <p className="col-span-full py-8 text-center text-muted-foreground">{t('list.emptyCards')}</p>
           )}
           {properties.map((property) => (
             <PropertyCard key={property.id} property={property} />

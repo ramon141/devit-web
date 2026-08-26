@@ -1,40 +1,34 @@
+import { useTranslation } from 'react-i18next'
+
 function PrivacyCookies() {
+  const { t } = useTranslation('site')
+
   return (
     <div className="mx-auto px-4 py-12">
-      <h1 className="text-2xl font-semibold">Privacy e Cookies</h1>
+      <h1 className="text-2xl font-semibold">{t('privacyCookies.title')}</h1>
 
       <p className="mt-4 text-sm text-muted-foreground">
-        Devit Servizi immobiliari S.n.c. - IT07609021212 tratta i dati
-        personali forniti tramite i moduli di questo sito esclusivamente per
-        rispondere alle richieste ricevute (ricerca immobili, valutazioni,
-        contatti generici) e per le finalità amministrative connesse
-        all'eventuale rapporto commerciale.
+        {t('privacyCookies.intro')}
       </p>
 
       <section className="mt-6">
-        <h2 className="text-lg font-semibold">Finalità del trattamento</h2>
+        <h2 className="text-lg font-semibold">{t('privacyCookies.purpose.title')}</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          I dati raccolti (nome, email, telefono, contenuto del messaggio)
-          sono utilizzati unicamente per gestire la richiesta dell'utente e
-          per eventuali comunicazioni relative a immobili di suo interesse.
+          {t('privacyCookies.purpose.body')}
         </p>
       </section>
 
       <section className="mt-6">
-        <h2 className="text-lg font-semibold">Diritti dell'interessato</h2>
+        <h2 className="text-lg font-semibold">{t('privacyCookies.rights.title')}</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          In qualsiasi momento è possibile richiedere l'accesso, la
-          rettifica o la cancellazione dei propri dati personali, scrivendo
-          all'indirizzo email indicato nella pagina Contatti.
+          {t('privacyCookies.rights.body')}
         </p>
       </section>
 
       <section className="mt-6">
-        <h2 className="text-lg font-semibold">Conservazione e condivisione</h2>
+        <h2 className="text-lg font-semibold">{t('privacyCookies.retention.title')}</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          I dati non vengono ceduti a terzi per finalità di marketing e sono
-          conservati per il tempo necessario a gestire la richiesta e gli
-          obblighi di legge applicabili.
+          {t('privacyCookies.retention.body')}
         </p>
       </section>
     </div>

@@ -1,4 +1,5 @@
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import { usePropertyControllerFind, usePersonControllerFind } from '@/api/generated/api'
 import type { ProposalFormValues } from '@/pages/Proposte/schemas/proposalSchema'
@@ -9,6 +10,7 @@ type ProposalPropertyBuyerFieldsProps = {
 }
 
 function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerFieldsProps) {
+  const { t } = useTranslation('proposte')
   const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
   const { data: buyers } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
 
@@ -28,12 +30,12 @@ function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerF
         name="propertyId"
         render={({ field }) => (
           <SearchableSelect
-            label="Immobile"
+            label={t('propertyBuyerFields.propertyLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={propertyOptions}
-            placeholder="Seleziona un immobile"
-            searchPlaceholder="Cerca per codice o titolo..."
+            placeholder={t('propertyBuyerFields.propertyPlaceholder')}
+            searchPlaceholder={t('propertyBuyerFields.propertySearchPlaceholder')}
             error={errors.propertyId?.message}
           />
         )}
@@ -44,12 +46,12 @@ function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerF
         name="buyerId"
         render={({ field }) => (
           <SearchableSelect
-            label="Acquirente"
+            label={t('propertyBuyerFields.buyerLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={buyerOptions}
-            placeholder="Seleziona un acquirente"
-            searchPlaceholder="Cerca un cliente..."
+            placeholder={t('propertyBuyerFields.buyerPlaceholder')}
+            searchPlaceholder={t('propertyBuyerFields.buyerSearchPlaceholder')}
             error={errors.buyerId?.message}
           />
         )}

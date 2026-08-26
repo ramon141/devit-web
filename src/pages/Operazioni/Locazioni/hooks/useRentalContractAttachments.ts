@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
 import {
   getContractAttachmentControllerFindQueryKey,
   useContractAttachmentControllerCreate,
@@ -11,6 +12,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useRentalContractAttachments(contractId: string) {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { uploadFile } = useAttachmentUpload()
@@ -32,25 +34,25 @@ export function useRentalContractAttachments(contractId: string) {
 
   function uploadFiles(files: File[]) {
     toastPromise(Promise.all(files.map((file) => addFile(file))), {
-      pending: 'Caricamento allegati...',
+      pending: t('locazioni.hooks.attachments.uploading'),
       success: () => {
         invalidate()
-        return 'Allegati caricati con successo!'
+        return t('locazioni.hooks.attachments.uploadSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il caricamento degli allegati'),
+        getErrorMessageFromRequest(error, t('locazioni.hooks.attachments.uploadError')),
     })
   }
 
   function removeAttachment(id: string) {
     toastPromise(deleteLink({ id }), {
-      pending: 'Eliminazione allegato...',
+      pending: t('locazioni.hooks.attachments.deleting'),
       success: () => {
         invalidate()
-        return 'Allegato eliminato con successo!'
+        return t('locazioni.hooks.attachments.deleteSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione dell’allegato'),
+        getErrorMessageFromRequest(error, t('locazioni.hooks.attachments.deleteError')),
     })
   }
 

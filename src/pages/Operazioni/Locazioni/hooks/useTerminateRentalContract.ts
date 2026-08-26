@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
 import { z } from 'zod'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
@@ -14,14 +16,18 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
 
-export const terminateRentalContractSchema = z.object({
-  terminationDate: z.string().min(1, 'Inserisci la data'),
-  reason: z.string().optional(),
-  penaltyAmount: z.string().optional(),
-  requestedBy: z.string().optional(),
-})
+function createTerminateRentalContractSchema(t: TFunction) {
+  return z.object({
+    terminationDate: z.string().min(1, t('operazioni:locazioni.terminationModal.terminationDateRequired')),
+    reason: z.string().optional(),
+    penaltyAmount: z.string().optional(),
+    requestedBy: z.string().optional(),
+  })
+}
 
-export type TerminateRentalContractFormValues = z.infer<typeof terminateRentalContractSchema>
+export type TerminateRentalContractFormValues = z.infer<
+  ReturnType<typeof createTerminateRentalContractSchema>
+>
 
 const emptyValues: TerminateRentalContractFormValues = {
   terminationDate: '',
@@ -36,13 +42,14 @@ type UseTerminateRentalContractProps = {
 }
 
 export function useTerminateRentalContract({ contractId, onTerminated }: UseTerminateRentalContractProps) {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: createTermination, isPending: creating } = useContractTerminationControllerCreate()
   const { mutateAsync: updateContract, isPending: updating } = useRentalContractControllerUpdateById()
 
   const form = useForm<TerminateRentalContractFormValues>({
-    resolver: zodResolver(terminateRentalContractSchema),
+    resolver: zodResolver(createTerminateRentalContractSchema(t)),
     defaultValues: emptyValues,
   })
 
@@ -64,14 +71,14 @@ export function useTerminateRentalContract({ contractId, onTerminated }: UseTerm
     }).then(() => updateContract({ id: contractId, data: { situation: 'terminated' } }))
 
     toastPromise(promise, {
-      pending: 'Rescissione del contratto...',
+      pending: t('locazioni.hooks.terminate.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })
         onTerminated()
-        return 'Contratto rescisso con successo!'
+        return t('locazioni.hooks.terminate.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la rescissione del contratto'),
+        getErrorMessageFromRequest(error, t('locazioni.hooks.terminate.error')),
     })
   }
 

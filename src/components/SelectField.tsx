@@ -1,4 +1,5 @@
 import { XIcon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import {
   Select,
   SelectContent,
@@ -26,10 +27,12 @@ function SelectField({
   value,
   onValueChange,
   options,
-  placeholder = 'Seleziona',
+  placeholder,
   disabled,
   error,
 }: SelectFieldProps) {
+  const { t } = useTranslation('common')
+  const resolvedPlaceholder = placeholder ?? t('selectField.placeholder')
   const showClear = !!value && !disabled
 
   return (
@@ -45,7 +48,7 @@ function SelectField({
             aria-invalid={!!error}
             icon={showClear ? <span className="size-4" /> : undefined}
           >
-            <SelectValue placeholder={placeholder}>
+            <SelectValue placeholder={resolvedPlaceholder}>
               {(selected: string) => options.find((option) => option.value === selected)?.label}
             </SelectValue>
           </SelectTrigger>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import AttachmentListManager from '@/components/AttachmentListManager'
 import { useSaleDocuments } from '@/pages/Operazioni/Vendite/hooks/useSaleDocuments'
@@ -9,6 +10,7 @@ type SaleDocumentsManagerProps = {
 }
 
 function SaleDocumentsManager({ saleId }: SaleDocumentsManagerProps) {
+  const { t } = useTranslation('operazioni')
   const { documents, uploadFiles, removeDocument } = useSaleDocuments(saleId)
   const [type, setType] = useState('')
 
@@ -32,7 +34,7 @@ function SaleDocumentsManager({ saleId }: SaleDocumentsManagerProps) {
         <Input
           value={type}
           onChange={(event) => setType(event.target.value)}
-          placeholder="Tipo di documento (facoltativo)"
+          placeholder={t('vendite.documentsManager.typePlaceholder')}
           className="max-w-64"
         />
       </div>
@@ -41,8 +43,8 @@ function SaleDocumentsManager({ saleId }: SaleDocumentsManagerProps) {
         items={items}
         onUpload={handleUpload}
         onRemove={removeDocument}
-        uploadLabel="Carica documento"
-        emptyMessage="Nessun documento caricato."
+        uploadLabel={t('vendite.documentsManager.uploadLabel')}
+        emptyMessage={t('vendite.documentsManager.emptyMessage')}
       />
     </div>
   )

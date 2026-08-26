@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPropertyFeeControllerFindQueryKey,
@@ -12,6 +13,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function usePropertyFees(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const [name, setName] = useState('')
@@ -41,29 +43,29 @@ export function usePropertyFees(propertyId: string) {
     })
 
     toastPromise(promise, {
-      pending: 'Aggiunta tassa...',
+      pending: t('toasts.fees.addPending'),
       success: () => {
         invalidate()
         setName('')
         setAmount(undefined)
         setFrequency('')
         setNote('')
-        return 'Tassa aggiunta con successo!'
+        return t('toasts.fees.addSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’aggiunta della tassa'),
+        getErrorMessageFromRequest(error, t('toasts.fees.addError')),
     })
   }
 
   function removeFee(id: string) {
     toastPromise(remove({ id }), {
-      pending: 'Rimozione tassa...',
+      pending: t('toasts.fees.removePending'),
       success: () => {
         invalidate()
-        return 'Tassa rimossa con successo!'
+        return t('toasts.fees.removeSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la rimozione della tassa'),
+        getErrorMessageFromRequest(error, t('toasts.fees.removeError')),
     })
   }
 

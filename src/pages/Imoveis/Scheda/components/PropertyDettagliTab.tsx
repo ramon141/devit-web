@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { usePropertyDetailForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyDetailForm'
 import DettagliMainFields from '@/pages/Imoveis/Scheda/components/DettagliMainFields'
@@ -8,6 +9,7 @@ type PropertyDettagliTabProps = {
 }
 
 function PropertyDettagliTab({ propertyId }: PropertyDettagliTabProps) {
+  const { t } = useTranslation('imoveis')
   const { form, isLoading, isSubmitting, onSubmit } = usePropertyDetailForm(propertyId)
 
   if (isLoading) return null
@@ -19,7 +21,7 @@ function PropertyDettagliTab({ propertyId }: PropertyDettagliTabProps) {
 
       <div className="flex justify-end sm:col-span-2">
         <Button type="submit" disabled={isSubmitting}>
-          Salva dettagli
+          {t('scheda.dettagliTab.save')}
         </Button>
       </div>
     </form>

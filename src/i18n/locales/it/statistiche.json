@@ -1,0 +1,20 @@
+{
+  "page": {
+    "title": "Statistiche",
+    "description": "Report e indicatori dell'agenzia",
+    "breadcrumb": "Statistiche"
+  },
+  "leadsByStatus": {
+    "title": "Lead per stato",
+    "description": "Distribuzione dei contatti nella pipeline"
+  },
+  "salesByStatus": {
+    "title": "Vendite per stato",
+    "description": "Numero di vendite raggruppate per stato",
+    "seriesName": "Vendite"
+  },
+  "communicationsByChannel": {
+    "title": "Comunicazioni per canale e stato",
+    "description": "E-mail e WhatsApp inviati, raggruppati per stato"
+  }
+}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
@@ -7,6 +8,7 @@ import UserTable from '@/pages/Amministrazione/Utenti/components/UserTable'
 import UserFormModal from '@/pages/Amministrazione/Utenti/components/UserFormModal'
 
 function Utenti() {
+  const { t } = useTranslation('amministrazione')
   const { users, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useUserList()
   const { open, setOpen, editing, openNew, openEdit } =
@@ -17,9 +19,9 @@ function Utenti() {
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
-        searchPlaceholder="Cerca un utente per nome..."
+        searchPlaceholder={t('utenti.searchPlaceholder')}
         onNewClick={openNew}
-        newLabel="Nuovo utente"
+        newLabel={t('utenti.newLabel')}
       />
 
       <UserTable users={users} isLoading={isLoading} onEdit={openEdit} />

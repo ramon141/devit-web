@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   usePropertyDetailControllerFind,
@@ -31,6 +32,7 @@ const emptyValues: PriceDetailFormValues = {
 }
 
 export function usePropertyPriceDetailForm(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const { toastPromise } = useToast()
   const { data: rows, isLoading } = usePropertyDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
@@ -61,10 +63,10 @@ export function usePropertyPriceDetailForm(propertyId: string) {
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: 'Salvataggio opzioni di prezzo...',
-      success: 'Opzioni di prezzo aggiornate con successo!',
+      pending: t('toasts.priceDetailForm.pending'),
+      success: t('toasts.priceDetailForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio delle opzioni di prezzo'),
+        getErrorMessageFromRequest(error, t('toasts.priceDetailForm.error')),
     })
   }
 

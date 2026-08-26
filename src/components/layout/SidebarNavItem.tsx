@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { NavLink, useLocation } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import type { NavItem } from '@/components/layout/nav-items'
@@ -12,6 +13,7 @@ type SidebarNavItemProps = {
 }
 
 function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
+  const { t } = useTranslation('common')
   const location = useLocation()
   const hasChildren = !!item.children?.length
   const isChildActive = item.children?.some((child) => location.pathname === child.path) ?? false
@@ -49,7 +51,7 @@ function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
         >
           <span className="flex items-center gap-3">
             <item.icon className="size-4.5 shrink-0" />
-            <span className="whitespace-nowrap">{item.label}</span>
+            <span className="whitespace-nowrap">{t(item.label)}</span>
           </span>
           <ChevronDown className={cn('size-4 shrink-0 transition-transform', open && 'rotate-180')} />
         </button>
@@ -77,7 +79,7 @@ function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
                     )
                   }
                 >
-                  {child.label}
+                  {t(child.label)}
                 </NavLink>
               ))}
             </div>
@@ -95,7 +97,7 @@ function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
       className={linkClassName}
     >
       <item.icon className="size-4.5 shrink-0" />
-      {expanded && <span className="whitespace-nowrap">{item.label}</span>}
+      {expanded && <span className="whitespace-nowrap">{t(item.label)}</span>}
     </NavLink>
   )
 
@@ -104,7 +106,7 @@ function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
   return (
     <Tooltip>
       <TooltipTrigger render={link} />
-      <TooltipContent side="right">{item.label}</TooltipContent>
+      <TooltipContent side="right">{t(item.label)}</TooltipContent>
     </Tooltip>
   )
 }

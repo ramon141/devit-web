@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import SearchableSelect from '@/components/SearchableSelect'
 import RemovableRow from '@/components/RemovableRow'
@@ -9,6 +10,7 @@ type CalendarEventParticipantsManagerProps = {
 }
 
 function CalendarEventParticipantsManager({ calendarEventId }: CalendarEventParticipantsManagerProps) {
+  const { t } = useTranslation('agenda')
   const { participants, personId, setPersonId, addParticipant, removeParticipant } =
     useCalendarEventParticipants(calendarEventId)
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
@@ -16,7 +18,7 @@ function CalendarEventParticipantsManager({ calendarEventId }: CalendarEventPart
 
   return (
     <div className="grid gap-3">
-      <p className="text-sm font-medium">Clienti/proprietari collegati</p>
+      <p className="text-sm font-medium">{t('agenda:participantsManager.title')}</p>
 
       {participants.map((participant) => (
         <RemovableRow
@@ -33,12 +35,12 @@ function CalendarEventParticipantsManager({ calendarEventId }: CalendarEventPart
             value={personId}
             onValueChange={setPersonId}
             options={personOptions}
-            placeholder="Seleziona un cliente"
-            searchPlaceholder="Cerca un cliente..."
+            placeholder={t('agenda:participantsManager.placeholder')}
+            searchPlaceholder={t('agenda:participantsManager.searchPlaceholder')}
           />
         </div>
         <Button type="button" onClick={addParticipant}>
-          Aggiungi
+          {t('agenda:participantsManager.add')}
         </Button>
       </div>
     </div>

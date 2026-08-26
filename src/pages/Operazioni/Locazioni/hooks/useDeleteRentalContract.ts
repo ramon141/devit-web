@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
 import {
   getRentalContractControllerCountQueryKey,
   getRentalContractControllerFindQueryKey,
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteRentalContract() {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: deleteContract } = useRentalContractControllerDeleteById()
@@ -17,14 +19,14 @@ export function useDeleteRentalContract() {
     const promise = deleteContract({ id })
 
     toastPromise(promise, {
-      pending: 'Eliminazione contratto...',
+      pending: t('locazioni.hooks.delete.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerCountQueryKey() })
-        return 'Contratto eliminato con successo!'
+        return t('locazioni.hooks.delete.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione del contratto'),
+        getErrorMessageFromRequest(error, t('locazioni.hooks.delete.error')),
     })
   }
 

@@ -1,4 +1,5 @@
 import type { AuthControllerLogin200 } from '@/api/generated/models'
+import i18n from '@/i18n'
 
 export const UserInfo = {
   getFullName: (): string | null => localStorage.getItem('fullName'),
@@ -51,7 +52,7 @@ export const Auth = {
 
   login: (response: AuthControllerLogin200): void => {
     if (!response.token) {
-      throw new Error('Token inesistente. Prova a effettuare nuovamente il login.')
+      throw new Error(i18n.t('auth.tokenMissing', { ns: 'common' }))
     }
 
     Auth.setToken(response.token)

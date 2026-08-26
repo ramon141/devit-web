@@ -1,4 +1,5 @@
 import Chart from 'react-apexcharts'
+import { useTranslation } from 'react-i18next'
 import { useChartColors } from '@/components/charts/useChartColors'
 
 type BarChartSeries = {
@@ -14,13 +15,14 @@ type BarChartProps = {
 }
 
 function BarChart({ categories, series, height = 280, stacked = false }: BarChartProps) {
+  const { t } = useTranslation('common')
   const colors = useChartColors()
 
   if (colors.length === 0) return null
 
   const hasData = series.some((item) => item.data.some((value) => value > 0))
   if (!hasData) {
-    return <p className="py-8 text-center text-sm text-muted-foreground">Nessun dato disponibile.</p>
+    return <p className="py-8 text-center text-sm text-muted-foreground">{t('chart.noData')}</p>
   }
 
   return (

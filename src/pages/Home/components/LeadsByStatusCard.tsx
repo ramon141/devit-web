@@ -1,20 +1,23 @@
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import DonutChart from '@/components/charts/DonutChart'
 import { useLeadsReportControllerByStatus } from '@/api/generated/api'
-import { leadStatusOptions } from '@/pages/Clientes/Leads/schemas/leadSchema'
-
-const leadStatusLabels: Record<string, string> = Object.fromEntries(
-  leadStatusOptions.map((option) => [option.value, option.label])
-)
+import { getLeadStatusOptions } from '@/pages/Clientes/Leads/schemas/leadSchema'
 
 function LeadsByStatusCard() {
+  const { t } = useTranslation('home')
+  const { t: tClientes } = useTranslation('clientes')
   const { data } = useLeadsReportControllerByStatus()
   const rows = data ?? []
+
+  const leadStatusLabels: Record<string, string> = Object.fromEntries(
+    getLeadStatusOptions(tClientes).map((option) => [option.value, option.label])
+  )
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Lead per stato</CardTitle>
+        <CardTitle>{t('leadsByStatusCard.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <DonutChart

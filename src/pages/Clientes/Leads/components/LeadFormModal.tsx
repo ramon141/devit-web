@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import type { Lead } from '@/api/generated/models'
@@ -11,13 +12,18 @@ type LeadFormModalProps = {
 }
 
 function LeadFormModal({ open, onOpenChange, lead }: LeadFormModalProps) {
+  const { t } = useTranslation('clientes')
   const { form, isSubmitting, onSubmit } = useLeadForm({
     lead,
     onSaved: () => onOpenChange(false),
   })
 
   return (
-    <ModalRegister open={open} onOpenChange={onOpenChange} title={lead ? 'Modifica richiesta' : 'Nuova richiesta'}>
+    <ModalRegister
+      open={open}
+      onOpenChange={onOpenChange}
+      title={lead ? t('leadFormModal.editTitle') : t('leadFormModal.newTitle')}
+    >
       <form onSubmit={onSubmit} className="grid gap-4">
         <LeadFormFields form={form} />
 

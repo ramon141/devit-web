@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -15,7 +16,7 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
-import { proposalSchema, type ProposalFormValues } from '@/pages/Proposte/schemas/proposalSchema'
+import { createProposalSchema, type ProposalFormValues } from '@/pages/Proposte/schemas/proposalSchema'
 
 const emptyValues: ProposalFormValues = {
   number: '',
@@ -61,13 +62,14 @@ type UseProposalFormProps = {
 }
 
 export function useProposalForm({ proposal, onSaved }: UseProposalFormProps) {
+  const { t } = useTranslation('proposte')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = usePurchaseProposalControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePurchaseProposalControllerUpdateById()
 
   const form = useForm<ProposalFormValues>({
-    resolver: zodResolver(proposalSchema),
+    resolver: zodResolver(createProposalSchema(t)),
     defaultValues: emptyValues,
   })
 
@@ -94,14 +96,14 @@ export function useProposalForm({ proposal, onSaved }: UseProposalFormProps) {
       : create({ data })
 
     toastPromise(promise, {
-      pending: proposal ? 'Salvataggio proposta...' : 'Creazione proposta...',
+      pending: proposal ? t('form.pendingUpdate') : t('form.pendingCreate'),
       success: () => {
         invalidateList()
         onSaved()
-        return proposal ? 'Proposta aggiornata con successo!' : 'Proposta creata con successo!'
+        return proposal ? t('form.successUpdate') : t('form.successCreate')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio della proposta'),
+        getErrorMessageFromRequest(error, t('form.error')),
     })
   }
 

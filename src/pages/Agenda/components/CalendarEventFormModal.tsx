@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -24,6 +25,7 @@ function CalendarEventFormModal({
   defaultDate,
   onRequestDelete,
 }: CalendarEventFormModalProps) {
+  const { t } = useTranslation('agenda')
   const { form, isSubmitting, onSubmit } = useCalendarEventForm({
     event,
     defaultDate,
@@ -34,7 +36,7 @@ function CalendarEventFormModal({
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={event ? 'Modifica impegno' : 'Nuovo impegno'}
+      title={event ? t('agenda:formModal.editTitle') : t('agenda:formModal.createTitle')}
     >
       <form onSubmit={onSubmit} className="grid gap-4">
         <CalendarEventFormFields form={form} />
@@ -54,8 +56,13 @@ function CalendarEventFormModal({
 
         <div className="flex items-center justify-between gap-2">
           {event && onRequestDelete ? (
-            <Button type="button" variant="ghost" className="text-destructive" onClick={() => onRequestDelete(event)}>
-              Elimina
+            <Button
+              type="button"
+              variant="ghost"
+              className="text-destructive"
+              onClick={() => onRequestDelete(event)}
+            >
+              {t('agenda:formModal.delete')}
             </Button>
           ) : (
             <span />
@@ -63,10 +70,10 @@ function CalendarEventFormModal({
 
           <div className="flex gap-2">
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-              Annulla
+              {t('agenda:formModal.cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting}>
-              Salva
+              {t('agenda:formModal.save')}
             </Button>
           </div>
         </div>

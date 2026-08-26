@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -11,6 +12,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useCalendarEventAttachments(calendarEventId: string) {
+  const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { uploadFile } = useAttachmentUpload()
@@ -32,25 +34,25 @@ export function useCalendarEventAttachments(calendarEventId: string) {
 
   function uploadFiles(files: File[]) {
     toastPromise(Promise.all(files.map(addFile)), {
-      pending: 'Caricamento allegati...',
+      pending: t('agenda:toasts.attachments.uploading'),
       success: () => {
         invalidate()
-        return 'Allegati caricati con successo!'
+        return t('agenda:toasts.attachments.uploadSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il caricamento degli allegati'),
+        getErrorMessageFromRequest(error, t('agenda:toasts.attachments.uploadError')),
     })
   }
 
   function removeAttachment(id: string) {
     toastPromise(deleteLink({ id }), {
-      pending: 'Eliminazione allegato...',
+      pending: t('agenda:toasts.attachments.deleting'),
       success: () => {
         invalidate()
-        return 'Allegato eliminato con successo!'
+        return t('agenda:toasts.attachments.deleteSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione dell’allegato'),
+        getErrorMessageFromRequest(error, t('agenda:toasts.attachments.deleteError')),
     })
   }
 

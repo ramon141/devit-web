@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import DataTable from '@/components/DataTable'
 import type { SalesRentalsReportControllerUpcomingRenewals200Item } from '@/api/generated/models'
 import RentalRenewModal from '@/pages/Operazioni/Locazioni/components/RentalRenewModal'
@@ -10,11 +11,12 @@ type ScadenziarioTableProps = {
 }
 
 function ScadenziarioTable({ contracts, isLoading }: ScadenziarioTableProps) {
+  const { t } = useTranslation('operazioni')
   const [renewTarget, setRenewTarget] = useState<SalesRentalsReportControllerUpcomingRenewals200Item | null>(
     null
   )
 
-  const columns = buildScadenziarioTableColumns({ onRenew: setRenewTarget })
+  const columns = buildScadenziarioTableColumns({ onRenew: setRenewTarget }, t)
 
   return (
     <>
@@ -23,7 +25,7 @@ function ScadenziarioTable({ contracts, isLoading }: ScadenziarioTableProps) {
         data={contracts}
         keyExtractor={(contract) => contract.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessun contratto in scadenza nel periodo selezionato."
+        emptyMessage={t('locazioni.scadenziario.table.emptyMessage')}
       />
 
       <RentalRenewModal

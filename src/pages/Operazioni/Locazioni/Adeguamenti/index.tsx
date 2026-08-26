@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -6,6 +7,7 @@ import EligibleContractsTable from '@/pages/Operazioni/Locazioni/Adeguamenti/com
 import GeneratedAdjustmentsTable from '@/pages/Operazioni/Locazioni/Adeguamenti/components/GeneratedAdjustmentsTable'
 
 function AdeguamentiCanone() {
+  const { t } = useTranslation('operazioni')
   const {
     contracts,
     isLoading,
@@ -20,25 +22,22 @@ function AdeguamentiCanone() {
 
   return (
     <div>
-      <p className="mb-4 text-sm text-muted-foreground">
-        Seleziona i contratti attivi da adeguare (lascia tutto deselezionato per applicare a tutti i
-        contratti attivi), inserisci la variazione percentuale ISTAT e genera le comunicazioni.
-      </p>
+      <p className="mb-4 text-sm text-muted-foreground">{t('locazioni.adeguamenti.index.description')}</p>
 
       <div className="mb-4 flex flex-wrap items-end gap-3">
         <div className="w-48">
-          <FormFieldWrapper label="Variazione percentuale ISTAT">
+          <FormFieldWrapper label={t('locazioni.adeguamenti.index.indexPercentLabel')}>
             <Input
               value={indexPercent}
               onChange={(event) => setIndexPercent(event.target.value)}
               type="number"
               step="0.01"
-              placeholder="Es. 5"
+              placeholder={t('locazioni.adeguamenti.index.indexPercentPlaceholder')}
             />
           </FormFieldWrapper>
         </div>
         <Button onClick={generateAdjustments} disabled={!indexPercent || isGenerating}>
-          Genera documenti
+          {t('locazioni.adeguamenti.index.generateButton')}
         </Button>
       </div>
 

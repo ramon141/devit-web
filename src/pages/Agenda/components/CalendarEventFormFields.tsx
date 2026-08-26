@@ -1,15 +1,16 @@
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import {
-  eventTypeOptions,
-  confirmationStatusOptions,
-  reminderOptions,
-  recurrenceOptions,
-  backgroundColorOptions,
+  getEventTypeOptions,
+  getConfirmationStatusOptions,
+  getReminderOptions,
+  getRecurrenceOptions,
+  getBackgroundColorOptions,
   type CalendarEventFormValues,
 } from '@/pages/Agenda/schemas/calendarEventSchema'
 import { cn } from '@/lib/utils'
@@ -19,18 +20,25 @@ type CalendarEventFormFieldsProps = {
 }
 
 function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
+  const { t } = useTranslation('agenda')
   const { register, control } = form
   const { errors } = useFormState({ control })
+
+  const eventTypeOptions = getEventTypeOptions(t)
+  const confirmationStatusOptions = getConfirmationStatusOptions(t)
+  const reminderOptions = getReminderOptions(t)
+  const recurrenceOptions = getRecurrenceOptions(t)
+  const backgroundColorOptions = getBackgroundColorOptions(t)
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <div className="sm:col-span-2">
-        <FormFieldWrapper label="Titolo" required error={errors.title?.message}>
-          <Input {...register('title')} placeholder="Visita immobile con cliente" />
+        <FormFieldWrapper label={t('agenda:formFields.title')} required error={errors.title?.message}>
+          <Input {...register('title')} placeholder={t('agenda:formFields.titlePlaceholder')} />
         </FormFieldWrapper>
       </div>
 
-      <FormFieldWrapper label="Tipo di impegno" required error={errors.type?.message}>
+      <FormFieldWrapper label={t('agenda:formFields.type')} required error={errors.type?.message}>
         <Controller
           control={control}
           name="type"
@@ -40,38 +48,60 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Luogo" error={errors.place?.message}>
-        <Input {...register('place')} placeholder="Via Roma 12, Milano" />
+      <FormFieldWrapper label={t('agenda:formFields.place')} error={errors.place?.message}>
+        <Input {...register('place')} placeholder={t('agenda:formFields.placePlaceholder')} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Luogo delle chiavi" error={errors.keysLocation?.message}>
-        <Input {...register('keysLocation')} placeholder="Portineria, agenzia..." />
+      <FormFieldWrapper
+        label={t('agenda:formFields.keysLocation')}
+        error={errors.keysLocation?.message}
+      >
+        <Input
+          {...register('keysLocation')}
+          placeholder={t('agenda:formFields.keysLocationPlaceholder')}
+        />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Data" required error={errors.startDate?.message}>
+      <FormFieldWrapper label={t('agenda:formFields.date')} required error={errors.startDate?.message}>
         <Input {...register('startDate')} type="date" />
       </FormFieldWrapper>
 
       <div className="grid grid-cols-2 gap-4">
-        <FormFieldWrapper label="Ora inizio" required error={errors.startTime?.message}>
+        <FormFieldWrapper
+          label={t('agenda:formFields.startTime')}
+          required
+          error={errors.startTime?.message}
+        >
           <Input {...register('startTime')} type="time" />
         </FormFieldWrapper>
-        <FormFieldWrapper label="Ora fine" required error={errors.endTime?.message}>
+        <FormFieldWrapper
+          label={t('agenda:formFields.endTime')}
+          required
+          error={errors.endTime?.message}
+        >
           <Input {...register('endTime')} type="time" />
         </FormFieldWrapper>
       </div>
 
-      <FormFieldWrapper label="Stato di conferma" required error={errors.confirmationStatus?.message}>
+      <FormFieldWrapper
+        label={t('agenda:formFields.confirmationStatus')}
+        required
+        error={errors.confirmationStatus?.message}
+      >
         <Controller
           control={control}
           name="confirmationStatus"
           render={({ field }) => (
-            <SelectField value={field.value} onValueChange={field.onChange} options={confirmationStatusOptions} />
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={confirmationStatusOptions}
+            />
           )}
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Promemoria" required error={errors.reminder?.message}>
+      <FormFieldWrapper label={t('agenda:formFields.reminder')} required error={errors.reminder?.message}>
         <Controller
           control={control}
           name="reminder"
@@ -81,7 +111,11 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Ricorrenza" required error={errors.recurrence?.message}>
+      <FormFieldWrapper
+        label={t('agenda:formFields.recurrence')}
+        required
+        error={errors.recurrence?.message}
+      >
         <Controller
           control={control}
           name="recurrence"
@@ -96,7 +130,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         name="backgroundColor"
         render={({ field }) => (
           <div className="grid gap-1.5">
-            <span className="text-sm font-medium">Colore evento</span>
+            <span className="text-sm font-medium">{t('agenda:formFields.eventColor')}</span>
             <div className="flex flex-wrap items-center gap-2">
               {backgroundColorOptions.map((option) => (
                 <button
@@ -122,13 +156,13 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         render={({ field }) => (
           <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
             <Switch checked={field.value} onCheckedChange={field.onChange} />
-            Impegno privato
+            {t('agenda:formFields.privateEvent')}
           </label>
         )}
       />
 
       <div className="sm:col-span-2">
-        <FormFieldWrapper label="Descrizione" error={errors.description?.message}>
+        <FormFieldWrapper label={t('agenda:formFields.description')} error={errors.description?.message}>
           <Textarea {...register('description')} rows={3} />
         </FormFieldWrapper>
       </div>

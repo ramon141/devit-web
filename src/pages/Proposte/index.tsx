@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
@@ -8,6 +9,7 @@ import ProposalTable from '@/pages/Proposte/components/ProposalTable'
 import ProposalFormModal from '@/pages/Proposte/components/ProposalFormModal'
 
 function Proposte() {
+  const { t } = useTranslation('proposte')
   const { proposals, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useProposalList()
   const { open, setOpen, editing, openNew, openEdit } =
@@ -15,16 +17,16 @@ function Proposte() {
 
   return (
     <AppLayout
-      title="Proposte"
-      description="Gestisci le proposte di acquisto ricevute"
-      breadcrumbItems={[{ label: 'Proposte' }]}
+      title={t('page.title')}
+      description={t('page.description')}
+      breadcrumbItems={[{ label: t('page.breadcrumb') }]}
     >
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
-        searchPlaceholder="Cerca per numero..."
+        searchPlaceholder={t('page.searchPlaceholder')}
         onNewClick={openNew}
-        newLabel="Nuova proposta"
+        newLabel={t('page.newLabel')}
       />
 
       <ProposalTable proposals={proposals} isLoading={isLoading} onEdit={openEdit} />

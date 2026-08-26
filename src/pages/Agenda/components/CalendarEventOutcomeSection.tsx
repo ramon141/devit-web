@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { useCalendarEventOutcome } from '@/pages/Agenda/hooks/useCalendarEventOutcome'
@@ -8,21 +9,22 @@ type CalendarEventOutcomeSectionProps = {
 }
 
 function CalendarEventOutcomeSection({ calendarEventId }: CalendarEventOutcomeSectionProps) {
+  const { t } = useTranslation('agenda')
   const { outcomes, outcome, setOutcome, saveOutcome, isSaving } = useCalendarEventOutcome(calendarEventId)
 
   return (
     <div className="grid gap-3">
-      <p className="text-sm font-medium">Esito dell’impegno</p>
+      <p className="text-sm font-medium">{t('agenda:outcomeSection.title')}</p>
 
       <Textarea
         value={outcome}
         onChange={(event) => setOutcome(event.target.value)}
-        placeholder="Descrivi come è andata la visita/chiamata..."
+        placeholder={t('agenda:outcomeSection.placeholder')}
         rows={3}
       />
       <div>
         <Button type="button" onClick={saveOutcome} disabled={isSaving}>
-          Registra esito
+          {t('agenda:outcomeSection.save')}
         </Button>
       </div>
 

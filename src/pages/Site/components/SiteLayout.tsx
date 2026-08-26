@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import devitLogo from '@/assets/logos/devit-logo.png'
 
-const NAV_LINKS = [
-  { to: '/', label: 'Home' },
-  { to: '/affitto', label: 'Proprietà in Affitto' },
-  { to: '/vendita', label: 'Proprietà in Vendita' },
-  { to: '/chi-siamo', label: 'Chi Siamo' },
-  { to: '/richieste', label: 'Richieste' },
-  { to: '/contatti', label: 'Contatti' },
-  { to: '/news', label: 'News' },
-]
+function getNavLinks(t: TFunction<'site'>) {
+  return [
+    { to: '/', label: t('siteHeader.nav.home') },
+    { to: '/affitto', label: t('siteHeader.nav.rentalProperties') },
+    { to: '/vendita', label: t('siteHeader.nav.saleProperties') },
+    { to: '/chi-siamo', label: t('siteHeader.nav.aboutUs') },
+    { to: '/richieste', label: t('siteHeader.nav.requests') },
+    { to: '/contatti', label: t('siteHeader.nav.contacts') },
+    { to: '/news', label: t('siteHeader.nav.news') },
+  ]
+}
 
 const COOKIE_CONSENT_KEY = 'site_cookie_consent'
 
@@ -33,7 +37,9 @@ const YOUTUBE_PATH =
   'M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.7-.8-2.1-.9C15.9 4 12 4 12 4h0s-3.9 0-6.7.2c-.4 0-1.3.1-2.1.9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.4c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.9.8 2.3.9 1.7.2 7.3.2 7.5.2s3.9 0 6.7-.3c.4 0 1.3-.1 2.1-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.4c0-1.8-.2-3.6-.2-3.6M9.9 15.1V8.9l6 3.1z'
 
 function SiteHeader() {
+  const { t } = useTranslation('site')
   const location = useLocation()
+  const navLinks = getNavLinks(t)
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
@@ -43,7 +49,7 @@ function SiteHeader() {
         </Link>
 
         <nav className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm">
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
@@ -62,6 +68,8 @@ function SiteHeader() {
 }
 
 function SiteFooter() {
+  const { t } = useTranslation('site')
+
   return (
     <footer className="bg-[var(--devit-navy-dark)] text-neutral-300">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-4">
@@ -78,27 +86,27 @@ function SiteFooter() {
         </div>
 
         <div className="flex flex-col gap-2 text-sm">
-          <Link to="/richieste" className="hover:text-primary">Richieste</Link>
-          <Link to="/contatti" className="hover:text-primary">Contatti</Link>
-          <Link to="/news" className="hover:text-primary">News</Link>
+          <Link to="/richieste" className="hover:text-primary">{t('siteFooter.requests')}</Link>
+          <Link to="/contatti" className="hover:text-primary">{t('siteFooter.contacts')}</Link>
+          <Link to="/news" className="hover:text-primary">{t('siteFooter.news')}</Link>
         </div>
 
         <div className="flex flex-col gap-2 text-sm">
-          <Link to="/chi-siamo" className="hover:text-primary">Chi Siamo</Link>
-          <Link to="/vendita" className="hover:text-primary">Proprietà in vendita</Link>
-          <Link to="/affitto" className="hover:text-primary">Proprietà in affitto</Link>
+          <Link to="/chi-siamo" className="hover:text-primary">{t('siteFooter.aboutUs')}</Link>
+          <Link to="/vendita" className="hover:text-primary">{t('siteFooter.saleProperties')}</Link>
+          <Link to="/affitto" className="hover:text-primary">{t('siteFooter.rentalProperties')}</Link>
         </div>
 
         <div className="flex flex-col gap-2 text-sm">
-          <span className="font-semibold text-white">Info Legali</span>
-          <Link to="/privacy-cookies" className="hover:text-primary">Uso dei Cookies</Link>
-          <Link to="/privacy-cookies" className="hover:text-primary">Privacy Policy</Link>
+          <span className="font-semibold text-white">{t('siteFooter.legalInfo')}</span>
+          <Link to="/privacy-cookies" className="hover:text-primary">{t('siteFooter.cookiesUsage')}</Link>
+          <Link to="/privacy-cookies" className="hover:text-primary">{t('siteFooter.privacyPolicy')}</Link>
         </div>
       </div>
 
       <div className="border-t border-white/10 px-4 py-4 text-center text-xs text-neutral-400">
-        © Devit Servizi immobiliari S.n.c. - IT07609021212 —{' '}
-        <Link to="/privacy-cookies" className="hover:text-primary">Privacy e Cookies</Link>
+        {t('siteFooter.copyright')}{' '}
+        <Link to="/privacy-cookies" className="hover:text-primary">{t('siteFooter.privacyAndCookies')}</Link>
       </div>
     </footer>
   )
@@ -106,6 +114,7 @@ function SiteFooter() {
 
 // ponytail: banner só grava a escolha, sem central de preferências por categoria de cookie
 function CookieBanner() {
+  const { t } = useTranslation('site')
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -123,21 +132,21 @@ function CookieBanner() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 p-4 shadow-lg backdrop-blur">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-semibold">Diamo valore alla tua privacy</p>
+          <p className="font-semibold">{t('cookieBanner.title')}</p>
           <p className="text-sm text-muted-foreground">
-            Utilizziamo i cookie per migliorare la tua esperienza sul sito.
+            {t('cookieBanner.description')}
           </p>
         </div>
 
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={() => choose('customized')}>
-            Personalizza
+            {t('cookieBanner.customize')}
           </Button>
           <Button variant="outline" size="sm" onClick={() => choose('rejected')}>
-            Rifiuta tutto
+            {t('cookieBanner.rejectAll')}
           </Button>
           <Button size="sm" onClick={() => choose('accepted')}>
-            Accettare tutto
+            {t('cookieBanner.acceptAll')}
           </Button>
         </div>
       </div>

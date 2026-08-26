@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -16,7 +17,7 @@ import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
 import {
-  rentalContractSchema,
+  createRentalContractSchema,
   type RentalContractFormValues,
 } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 
@@ -70,13 +71,14 @@ type UseRentalContractFormProps = {
 }
 
 export function useRentalContractForm({ contract, onSaved }: UseRentalContractFormProps) {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = useRentalContractControllerCreate()
   const { mutateAsync: update, isPending: updating } = useRentalContractControllerUpdateById()
 
   const form = useForm<RentalContractFormValues>({
-    resolver: zodResolver(rentalContractSchema),
+    resolver: zodResolver(createRentalContractSchema(t)),
     defaultValues: emptyValues,
   })
 
@@ -107,14 +109,16 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
     const promise = contract?.id ? update({ id: contract.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: contract ? 'Salvataggio contratto...' : 'Creazione contratto...',
+      pending: contract ? t('locazioni.hooks.form.saving') : t('locazioni.hooks.form.creating'),
       success: () => {
         invalidateList()
         onSaved()
-        return contract ? 'Contratto aggiornato con successo!' : 'Contratto creato con successo!'
+        return contract
+          ? t('locazioni.hooks.form.updateSuccess')
+          : t('locazioni.hooks.form.createSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio del contratto'),
+        getErrorMessageFromRequest(error, t('locazioni.hooks.form.error')),
     })
   }
 

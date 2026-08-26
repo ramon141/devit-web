@@ -1,4 +1,5 @@
 import Chart from 'react-apexcharts'
+import { useTranslation } from 'react-i18next'
 import { useChartColors } from '@/components/charts/useChartColors'
 
 type DonutChartProps = {
@@ -8,12 +9,13 @@ type DonutChartProps = {
 }
 
 function DonutChart({ labels, values, height = 260 }: DonutChartProps) {
+  const { t } = useTranslation('common')
   const colors = useChartColors()
 
   if (colors.length === 0) return null
 
   if (values.every((value) => value === 0)) {
-    return <p className="py-8 text-center text-sm text-muted-foreground">Nessun dato disponibile.</p>
+    return <p className="py-8 text-center text-sm text-muted-foreground">{t('chart.noData')}</p>
   }
 
   return (

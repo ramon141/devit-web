@@ -1,37 +1,49 @@
 import { z } from 'zod'
+import type { TFunction } from 'i18next'
 import { PurchaseProposalPaymentMethod, PurchaseProposalStatus } from '@/api/generated/models'
 
-export const paymentMethodOptions = [
-  { value: PurchaseProposalPaymentMethod.cash, label: 'Contanti' },
-  { value: PurchaseProposalPaymentMethod.financed, label: 'Finanziato' },
-  { value: PurchaseProposalPaymentMethod.direct_installments, label: 'Rate dirette' },
-  { value: PurchaseProposalPaymentMethod.exchange, label: 'Permuta' },
-  { value: PurchaseProposalPaymentMethod.other, label: 'Altro' },
-]
+export function getPaymentMethodOptions(t: TFunction<'proposte'>) {
+  return [
+    { value: PurchaseProposalPaymentMethod.cash, label: t('paymentMethodOptions.cash') },
+    { value: PurchaseProposalPaymentMethod.financed, label: t('paymentMethodOptions.financed') },
+    {
+      value: PurchaseProposalPaymentMethod.direct_installments,
+      label: t('paymentMethodOptions.directInstallments'),
+    },
+    { value: PurchaseProposalPaymentMethod.exchange, label: t('paymentMethodOptions.exchange') },
+    { value: PurchaseProposalPaymentMethod.other, label: t('paymentMethodOptions.other') },
+  ]
+}
 
-export const proposalStatusOptions = [
-  { value: PurchaseProposalStatus.received, label: 'Ricevuta' },
-  { value: PurchaseProposalStatus.negotiating, label: 'In trattativa' },
-  { value: PurchaseProposalStatus.accepted, label: 'Accettata' },
-  { value: PurchaseProposalStatus.rejected, label: 'Rifiutata' },
-]
+export function getProposalStatusOptions(t: TFunction<'proposte'>) {
+  return [
+    { value: PurchaseProposalStatus.received, label: t('statusOptions.received') },
+    { value: PurchaseProposalStatus.negotiating, label: t('statusOptions.negotiating') },
+    { value: PurchaseProposalStatus.accepted, label: t('statusOptions.accepted') },
+    { value: PurchaseProposalStatus.rejected, label: t('statusOptions.rejected') },
+  ]
+}
 
-export const proposalSchema = z.object({
-  number: z.string().min(1, 'Inserisci il numero'),
-  propertyId: z.string().min(1, 'Seleziona un immobile'),
-  buyerId: z.string().min(1, 'Seleziona un acquirente'),
-  proposalAmount: z.string().min(1, 'Inserisci il valore della proposta'),
-  paymentMethod: z.enum(PurchaseProposalPaymentMethod, { error: 'Seleziona una modalità' }),
-  paymentTerms: z.string().optional(),
-  status: z.enum(PurchaseProposalStatus, { error: 'Seleziona uno stato' }),
-  financed: z.boolean(),
-  proposalDate: z.string().min(1, 'Inserisci la data'),
-  validUntil: z.string().optional(),
-  rejectionReason: z.string().optional(),
-  notes: z.string().optional(),
-  leadId: z.string().optional(),
-  assignedToId: z.string().optional(),
-  sellerAgentId: z.string().optional(),
-})
+export function createProposalSchema(t: TFunction<'proposte'>) {
+  return z.object({
+    number: z.string().min(1, t('schema.numberRequired')),
+    propertyId: z.string().min(1, t('schema.propertyRequired')),
+    buyerId: z.string().min(1, t('schema.buyerRequired')),
+    proposalAmount: z.string().min(1, t('schema.amountRequired')),
+    paymentMethod: z.enum(PurchaseProposalPaymentMethod, {
+      error: t('schema.paymentMethodRequired'),
+    }),
+    paymentTerms: z.string().optional(),
+    status: z.enum(PurchaseProposalStatus, { error: t('schema.statusRequired') }),
+    financed: z.boolean(),
+    proposalDate: z.string().min(1, t('schema.dateRequired')),
+    validUntil: z.string().optional(),
+    rejectionReason: z.string().optional(),
+    notes: z.string().optional(),
+    leadId: z.string().optional(),
+    assignedToId: z.string().optional(),
+    sellerAgentId: z.string().optional(),
+  })
+}
 
-export type ProposalFormValues = z.infer<typeof proposalSchema>
+export type ProposalFormValues = z.infer<ReturnType<typeof createProposalSchema>>

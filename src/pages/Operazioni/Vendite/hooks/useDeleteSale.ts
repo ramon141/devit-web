@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
 import {
   getSaleControllerCountQueryKey,
   getSaleControllerFindQueryKey,
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteSale() {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: deleteSale } = useSaleControllerDeleteById()
@@ -17,14 +19,14 @@ export function useDeleteSale() {
     const promise = deleteSale({ id })
 
     toastPromise(promise, {
-      pending: 'Eliminazione vendita...',
+      pending: t('vendite.hooks.delete.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getSaleControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getSaleControllerCountQueryKey() })
-        return 'Vendita eliminata con successo!'
+        return t('vendite.hooks.delete.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione della vendita'),
+        getErrorMessageFromRequest(error, t('vendite.hooks.delete.error')),
     })
   }
 

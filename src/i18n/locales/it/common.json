@@ -1,0 +1,82 @@
+{
+  "notFound": {
+    "message": "Pagina non trovata.",
+    "backHome": "Torna alla home"
+  },
+  "auth": {
+    "tokenMissing": "Token inesistente. Prova a effettuare nuovamente il login."
+  },
+  "attachmentListManager": {
+    "uploadLabel": "Carica allegato",
+    "emptyMessage": "Nessun allegato caricato."
+  },
+  "chart": {
+    "noData": "Nessun dato disponibile."
+  },
+  "confirmPopup": {
+    "confirm": "Conferma",
+    "cancel": "Annulla"
+  },
+  "fileUpload": {
+    "clickToUpload": "Clicca per caricare",
+    "dragHint": "o trascina il file qui",
+    "removeFile": "Rimuovi {{fileName}}"
+  },
+  "formModalFooter": {
+    "save": "Salva",
+    "cancel": "Annulla"
+  },
+  "listToolbar": {
+    "searchLabel": "Cerca",
+    "searchPlaceholder": "Cerca...",
+    "newLabel": "Nuovo"
+  },
+  "searchableSelect": {
+    "placeholder": "Seleziona un’opzione",
+    "searchPlaceholder": "Cerca...",
+    "emptyText": "Nessun risultato."
+  },
+  "selectField": {
+    "placeholder": "Seleziona"
+  },
+  "tablePagination": {
+    "summary": "Pagina {{page}} di {{totalPages}} · {{totalItems}} risultati"
+  },
+  "sidebar": {
+    "collapseMenu": "Comprimi il menu",
+    "expandMenu": "Espandi il menu",
+    "more": "Altro",
+    "nav": {
+      "bacheca": "Bacheca",
+      "agenda": "Agenda",
+      "proprieta": "Proprietà",
+      "clienti": "Clienti",
+      "richieste": "Richieste",
+      "proposte": "Proposte",
+      "operazioni": "Operazioni",
+      "vendite": "Vendite",
+      "locazioni": "Locazioni",
+      "adeguamentoCanone": "Adeguamento canone",
+      "scadenziario": "Scadenziario",
+      "registrazioni": "Registrazioni",
+      "marketing": "Marketing",
+      "statistiche": "Statistiche",
+      "amministrazione": "Amministrazione",
+      "utenti": "Utenti",
+      "filiali": "Filiali",
+      "categorie": "Categorie",
+      "banner": "Banner",
+      "auditLog": "Log di audit",
+      "componenti": "Componenti"
+    }
+  },
+  "notificationsPopover": {
+    "title": "Notifiche",
+    "empty": "Nessuna notifica.",
+    "viewAll": "Vedi tutte"
+  },
+  "sessionInfo": {
+    "myProfile": "Il mio profilo",
+    "logout": "Esci"
+  }
+}

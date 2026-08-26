@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -12,17 +13,20 @@ type FormModalFooterProps = {
 function FormModalFooter({
   onCancel,
   isSubmitting = false,
-  submitLabel = 'Salva',
+  submitLabel,
   submitVariant = 'default',
   className,
 }: FormModalFooterProps) {
+  const { t } = useTranslation('common')
+  const resolvedSubmitLabel = submitLabel ?? t('formModalFooter.save')
+
   return (
     <div className={cn('flex justify-end gap-2', className)}>
       <Button type="button" variant="outline" onClick={onCancel}>
-        Annulla
+        {t('formModalFooter.cancel')}
       </Button>
       <Button type="submit" variant={submitVariant} disabled={isSubmitting}>
-        {submitLabel}
+        {resolvedSubmitLabel}
       </Button>
     </div>
   )

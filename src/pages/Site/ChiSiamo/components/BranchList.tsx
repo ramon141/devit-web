@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { usePublicBranchControllerFind } from '@/api/generated/api'
 import type { BranchWithRelations } from '@/api/generated/models'
 
@@ -12,6 +13,7 @@ function formatAddress(branch: BranchWithRelations): string {
 }
 
 function BranchList() {
+  const { t } = useTranslation('site')
   const { data: branches, isLoading } = usePublicBranchControllerFind()
 
   if (isLoading) return null
@@ -19,7 +21,7 @@ function BranchList() {
 
   return (
     <div className="mt-10">
-      <h2 className="text-lg font-semibold">Le Nostre Agenzie</h2>
+      <h2 className="text-lg font-semibold">{t('chiSiamoBranchList.title')}</h2>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         {branches.map((branch) => (

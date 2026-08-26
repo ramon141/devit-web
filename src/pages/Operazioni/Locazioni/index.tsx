@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { RentalContractWithRelations } from '@/api/generated/models'
@@ -7,6 +8,7 @@ import RentalTable from '@/pages/Operazioni/Locazioni/components/RentalTable'
 import RentalFormModal from '@/pages/Operazioni/Locazioni/components/RentalFormModal'
 
 function Locazioni() {
+  const { t } = useTranslation('operazioni')
   const { contracts, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useRentalContractList()
   const { open, setOpen, editing, openNew, openEdit } =
@@ -17,9 +19,9 @@ function Locazioni() {
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
-        searchPlaceholder="Cerca per numero..."
+        searchPlaceholder={t('locazioni.index.searchPlaceholder')}
         onNewClick={openNew}
-        newLabel="Nuovo contratto"
+        newLabel={t('locazioni.index.newLabel')}
       />
 
       <RentalTable contracts={contracts} isLoading={isLoading} onEdit={openEdit} />

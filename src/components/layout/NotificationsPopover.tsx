@@ -1,5 +1,6 @@
 import { Bell } from 'lucide-react'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import {
   Popover,
@@ -16,6 +17,7 @@ import { formatDateTime } from '@/utils/formatDate'
 
 // Popover com as últimas notificações, com link para a lista completa
 function NotificationsPopover() {
+  const { t } = useTranslation('common')
   const unreadCount = useUnreadNotificationsCount()
   const { notifications, isLoading } = useNotificationList(NOTIFICATION_POPOVER_LIMIT)
 
@@ -30,19 +32,21 @@ function NotificationsPopover() {
                 {unreadCount > 9 ? '9+' : unreadCount}
               </span>
             )}
-            <span className="sr-only">Notifiche</span>
+            <span className="sr-only">{t('notificationsPopover.title')}</span>
           </Button>
         }
       />
 
       <PopoverContent className="w-80">
         <PopoverHeader>
-          <PopoverTitle>Notifiche</PopoverTitle>
+          <PopoverTitle>{t('notificationsPopover.title')}</PopoverTitle>
         </PopoverHeader>
 
         <div className="grid gap-1">
           {!isLoading && notifications.length === 0 && (
-            <p className="py-4 text-center text-xs text-muted-foreground">Nessuna notifica.</p>
+            <p className="py-4 text-center text-xs text-muted-foreground">
+              {t('notificationsPopover.empty')}
+            </p>
           )}
 
           {notifications.map((notification) => (
@@ -62,7 +66,7 @@ function NotificationsPopover() {
         </div>
 
         <Button variant="ghost" size="sm" className="w-full" nativeButton={false} render={<Link to={`${CRM_BASE_PATH}/notifiche`} />}>
-          Vedi tutte
+          {t('notificationsPopover.viewAll')}
         </Button>
       </PopoverContent>
     </Popover>

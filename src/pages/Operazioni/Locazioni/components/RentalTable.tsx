@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import DataTable from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import { useDeleteRentalContract } from '@/pages/Operazioni/Locazioni/hooks/useDeleteRentalContract'
@@ -12,6 +13,7 @@ type RentalTableProps = {
 }
 
 function RentalTable({ contracts, isLoading, onEdit }: RentalTableProps) {
+  const { t } = useTranslation('operazioni')
   const [deleteTarget, setDeleteTarget] = useState<RentalContractWithRelations | null>(null)
   const [renewTarget, setRenewTarget] = useState<RentalContractWithRelations | null>(null)
   const [terminateTarget, setTerminateTarget] = useState<RentalContractWithRelations | null>(null)
@@ -22,12 +24,15 @@ function RentalTable({ contracts, isLoading, onEdit }: RentalTableProps) {
     setDeleteTarget(null)
   }
 
-  const columns = buildRentalTableColumns({
-    onEdit,
-    onRenew: setRenewTarget,
-    onTerminate: setTerminateTarget,
-    onDelete: setDeleteTarget,
-  })
+  const columns = buildRentalTableColumns(
+    {
+      onEdit,
+      onRenew: setRenewTarget,
+      onTerminate: setTerminateTarget,
+      onDelete: setDeleteTarget,
+    },
+    t
+  )
 
   return (
     <>
@@ -36,7 +41,7 @@ function RentalTable({ contracts, isLoading, onEdit }: RentalTableProps) {
         data={contracts}
         keyExtractor={(contract) => contract.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessun contratto trovato."
+        emptyMessage={t('locazioni.table.emptyMessage')}
       />
 
       <RentalTableModals

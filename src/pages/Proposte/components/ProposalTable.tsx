@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import DataTable from '@/components/DataTable'
 import type { PurchaseProposalWithRelations } from '@/api/generated/models'
@@ -12,6 +13,7 @@ type ProposalTableProps = {
 }
 
 function ProposalTable({ proposals, isLoading, onEdit }: ProposalTableProps) {
+  const { t } = useTranslation('proposte')
   const [deleteTarget, setDeleteTarget] = useState<PurchaseProposalWithRelations | null>(null)
   const { handleDelete } = useDeleteProposal()
 
@@ -20,7 +22,7 @@ function ProposalTable({ proposals, isLoading, onEdit }: ProposalTableProps) {
     setDeleteTarget(null)
   }
 
-  const columns = buildProposalTableColumns({ onEdit, onDelete: setDeleteTarget })
+  const columns = buildProposalTableColumns({ t, onEdit, onDelete: setDeleteTarget })
 
   return (
     <>
@@ -29,16 +31,16 @@ function ProposalTable({ proposals, isLoading, onEdit }: ProposalTableProps) {
         data={proposals}
         keyExtractor={(proposal) => proposal.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessuna proposta trovata."
+        emptyMessage={t('table.emptyMessage')}
       />
 
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare la proposta?"
-        description={`Questa azione eliminerà definitivamente la proposta "${deleteTarget?.number}".`}
+        title={t('table.deleteTitle')}
+        description={t('table.deleteDescription', { number: deleteTarget?.number })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('table.deleteConfirmLabel')}
         onConfirm={confirmDelete}
       />
     </>

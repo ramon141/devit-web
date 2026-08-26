@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
 import { formatCurrency } from '@/pages/Site/PropertyDetail/utils/formatters'
 import type { PublicPropertyControllerFindById200 } from '@/api/generated/models'
 
@@ -10,26 +12,36 @@ type DetailRow = {
   value: string | null
 }
 
-function buildRows(property: PublicPropertyControllerFindById200): DetailRow[] {
+function buildRows(
+  t: TFunction<'site'>,
+  property: PublicPropertyControllerFindById200,
+): DetailRow[] {
   const isRent = property.purpose === 'rent'
 
   return [
-    { label: 'ID Proprietà', value: property.code ?? null },
-    { label: 'Prezzo', value: formatCurrency(property.price) },
-    { label: 'Dimensione', value: property.areaSqm ? `${property.areaSqm} m²` : null },
-    { label: 'Camere', value: property.bedrooms?.toString() ?? null },
-    { label: 'Bagni', value: property.bathrooms?.toString() ?? null },
-    { label: 'Tipo di proprietà', value: property.category?.name ?? null },
-    { label: 'Stato', value: isRent ? 'Affitto' : 'Vendita' },
+    { label: t('propertyDetailsGrid.code'), value: property.code ?? null },
+    { label: t('propertyDetailsGrid.price'), value: formatCurrency(property.price) },
+    {
+      label: t('propertyDetailsGrid.size'),
+      value: property.areaSqm ? `${property.areaSqm} m²` : null,
+    },
+    { label: t('propertyDetailsGrid.bedrooms'), value: property.bedrooms?.toString() ?? null },
+    { label: t('propertyDetailsGrid.bathrooms'), value: property.bathrooms?.toString() ?? null },
+    { label: t('propertyDetailsGrid.propertyType'), value: property.category?.name ?? null },
+    {
+      label: t('propertyDetailsGrid.status'),
+      value: isRent ? t('propertyDetailsGrid.statusRent') : t('propertyDetailsGrid.statusSale'),
+    },
   ]
 }
 
 function PropertyDetailsGrid({ property }: PropertyDetailsGridProps) {
-  const rows = buildRows(property).filter((row) => row.value !== null)
+  const { t } = useTranslation('site')
+  const rows = buildRows(t, property).filter((row) => row.value !== null)
 
   return (
     <div>
-      <h2 className="font-heading text-lg font-semibold">Dettagli</h2>
+      <h2 className="font-heading text-lg font-semibold">{t('propertyDetailsGrid.title')}</h2>
 
       <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm sm:grid-cols-2">
         {rows.map((row) => (

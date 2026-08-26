@@ -1,4 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPersonAttachmentControllerFindQueryKey,
@@ -11,6 +12,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function usePersonAttachments(personId: string) {
+  const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { uploadFile } = useAttachmentUpload()
@@ -32,25 +34,25 @@ export function usePersonAttachments(personId: string) {
 
   function uploadFiles(files: File[]) {
     toastPromise(Promise.all(files.map(addFile)), {
-      pending: 'Caricamento allegati...',
+      pending: t('usePersonAttachments.pendingUpload'),
       success: () => {
         invalidate()
-        return 'Allegati caricati con successo!'
+        return t('usePersonAttachments.successUpload')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il caricamento degli allegati'),
+        getErrorMessageFromRequest(error, t('usePersonAttachments.errorUpload')),
     })
   }
 
   function removeAttachment(id: string) {
     toastPromise(deleteLink({ id }), {
-      pending: 'Eliminazione allegato...',
+      pending: t('usePersonAttachments.pendingDelete'),
       success: () => {
         invalidate()
-        return 'Allegato eliminato con successo!'
+        return t('usePersonAttachments.successDelete')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione dell’allegato'),
+        getErrorMessageFromRequest(error, t('usePersonAttachments.errorDelete')),
     })
   }
 

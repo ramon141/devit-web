@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
 import { Heart, Share2, Printer } from 'lucide-react'
 import DropCapHeading from '@/pages/Site/components/DropCapHeading'
 import { formatCurrency } from '@/pages/Site/PropertyDetail/utils/formatters'
@@ -44,7 +46,11 @@ function ActionIcon({ label, icon, active, onClick }: ActionIconProps) {
   )
 }
 
-function shareProperty(title: string, toastPromise: ReturnType<typeof useToast>['toastPromise']) {
+function shareProperty(
+  t: TFunction<'site'>,
+  title: string,
+  toastPromise: ReturnType<typeof useToast>['toastPromise'],
+) {
   const shareUrl = window.location.href
 
   if (navigator.share) {
@@ -53,13 +59,14 @@ function shareProperty(title: string, toastPromise: ReturnType<typeof useToast>[
   }
 
   toastPromise(navigator.clipboard.writeText(shareUrl), {
-    pending: 'Copio il link...',
-    success: 'Link copiato negli appunti!',
-    error: 'Impossibile copiare il link.',
+    pending: t('propertyHeader.sharePending'),
+    success: t('propertyHeader.shareSuccess'),
+    error: t('propertyHeader.shareError'),
   })
 }
 
 function PropertyHeader({ property }: PropertyHeaderProps) {
+  const { t } = useTranslation('site')
   const isRent = property.purpose === 'rent'
   const price = formatCurrency(property.price)
   const { isFavorite, toggle } = useFavorite(property.id ?? '')
@@ -68,7 +75,7 @@ function PropertyHeader({ property }: PropertyHeaderProps) {
   return (
     <div className="flex flex-col gap-3">
       <nav className="flex items-center gap-1.5 text-xs text-muted-foreground">
-        <Link to="/" className="hover:text-primary">Home</Link>
+        <Link to="/" className="hover:text-primary">{t('propertyHeader.home')}</Link>
         <span>/</span>
         {property.category?.name && <span>{property.category.name}</span>}
         <span>/</span>
@@ -80,17 +87,25 @@ function PropertyHeader({ property }: PropertyHeaderProps) {
 
         <div className="flex items-center gap-2">
           <ActionIcon
-            label={isFavorite ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}
+            label={
+              isFavorite
+                ? t('propertyHeader.removeFavorite')
+                : t('propertyHeader.addFavorite')
+            }
             icon={<Heart className={cn('size-4', isFavorite && 'fill-red-500')} />}
             active={isFavorite}
             onClick={toggle}
           />
           <ActionIcon
-            label="Condividi"
+            label={t('propertyHeader.share')}
             icon={<Share2 className="size-4" />}
-            onClick={() => shareProperty(property.title ?? 'Immobile', toastPromise)}
+            onClick={() => shareProperty(t, property.title ?? t('propertyHeader.defaultTitle'), toastPromise)}
           />
-          <ActionIcon label="Stampa" icon={<Printer className="size-4" />} onClick={() => window.print()} />
+          <ActionIcon
+            label={t('propertyHeader.print')}
+            icon={<Printer className="size-4" />}
+            onClick={() => window.print()}
+          />
         </div>
       </div>
 
@@ -98,16 +113,18 @@ function PropertyHeader({ property }: PropertyHeaderProps) {
         <div className="flex flex-wrap items-center gap-2">
           {property.featured && (
             <span className="rounded bg-primary px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-primary-foreground">
-              Esclusiva
+              {t('propertyHeader.exclusive')}
             </span>
           )}
 
           <span className="rounded bg-[var(--devit-navy-dark)] px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white">
-            {isRent ? 'Affitto' : 'Vendita'}
+            {isRent ? t('propertyHeader.statusRent') : t('propertyHeader.statusSale')}
           </span>
 
           {property.code && (
-            <span className="text-xs text-muted-foreground">Rif. {property.code}</span>
+            <span className="text-xs text-muted-foreground">
+              {t('propertyHeader.code', { code: property.code })}
+            </span>
           )}
         </div>
 

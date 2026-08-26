@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { ChevronsUpDown } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import {
@@ -37,14 +38,18 @@ function SearchableSelect({
   onValueChange,
   label,
   required = false,
-  placeholder = 'Seleziona un’opzione',
-  searchPlaceholder = 'Cerca...',
-  emptyText = 'Nessun risultato.',
+  placeholder,
+  searchPlaceholder,
+  emptyText,
   disabled = false,
   error,
 }: SearchableSelectProps) {
+  const { t } = useTranslation('common')
   const triggerId = useId()
   const [open, setOpen] = useState(false)
+  const resolvedPlaceholder = placeholder ?? t('searchableSelect.placeholder')
+  const resolvedSearchPlaceholder = searchPlaceholder ?? t('searchableSelect.searchPlaceholder')
+  const resolvedEmptyText = emptyText ?? t('searchableSelect.emptyText')
 
   const selected = options.find((option) => option.value === value)
 
@@ -76,7 +81,7 @@ function SearchableSelect({
                 !selected && 'text-muted-foreground'
               )}
             >
-              {selected ? selected.label : placeholder}
+              {selected ? selected.label : resolvedPlaceholder}
               <ChevronsUpDown className="text-muted-foreground" />
             </Button>
           }
@@ -84,9 +89,9 @@ function SearchableSelect({
 
         <PopoverContent className="w-(--anchor-width) p-0" align="start">
           <Command>
-            <CommandInput placeholder={searchPlaceholder} />
+            <CommandInput placeholder={resolvedSearchPlaceholder} />
             <CommandList>
-              <CommandEmpty>{emptyText}</CommandEmpty>
+              <CommandEmpty>{resolvedEmptyText}</CommandEmpty>
               <CommandGroup>
                 {options.map((option) => (
                   <CommandItem

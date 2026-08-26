@@ -1,4 +1,5 @@
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import SearchableSelect from '@/components/SearchableSelect'
@@ -11,6 +12,7 @@ type PropertyCategoryOwnerFieldsProps = {
 }
 
 function PropertyCategoryOwnerFields({ control, errors }: PropertyCategoryOwnerFieldsProps) {
+  const { t } = useTranslation('imoveis')
   const { data: categories } = usePropertyCategoryControllerFind({ filter: { order: ['name ASC'] } })
   const { data: owners } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
 
@@ -25,7 +27,7 @@ function PropertyCategoryOwnerFields({ control, errors }: PropertyCategoryOwnerF
 
   return (
     <>
-      <FormFieldWrapper label="Categoria" required error={errors.categoryId?.message}>
+      <FormFieldWrapper label={t('categoryOwnerFields.categoryLabel')} required error={errors.categoryId?.message}>
         <Controller
           control={control}
           name="categoryId"
@@ -40,13 +42,13 @@ function PropertyCategoryOwnerFields({ control, errors }: PropertyCategoryOwnerF
         name="ownerId"
         render={({ field }) => (
           <SearchableSelect
-            label="Proprietario"
+            label={t('categoryOwnerFields.ownerLabel')}
             required
             value={field.value}
             onValueChange={field.onChange}
             options={ownerOptions}
-            placeholder="Seleziona un proprietario"
-            searchPlaceholder="Cerca un cliente..."
+            placeholder={t('categoryOwnerFields.ownerPlaceholder')}
+            searchPlaceholder={t('categoryOwnerFields.searchClientPlaceholder')}
             error={errors.ownerId?.message}
           />
         )}

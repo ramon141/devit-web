@@ -1,4 +1,5 @@
 import { useFormState } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Input } from '@/components/ui/input'
@@ -19,6 +20,7 @@ function RentalContractTerminationModal({
   contractId,
   contractNumber,
 }: RentalContractTerminationModalProps) {
+  const { t } = useTranslation('operazioni')
   const { form, isSubmitting, onSubmit } = useTerminateRentalContract({
     contractId,
     onTerminated: () => onOpenChange(false),
@@ -30,29 +32,42 @@ function RentalContractTerminationModal({
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={`Rescindi contratto${contractNumber ? ` ${contractNumber}` : ''}`}
+      title={`${t('locazioni.terminationModal.title')}${contractNumber ? ` ${contractNumber}` : ''}`}
     >
       <form onSubmit={onSubmit} className="grid gap-4">
-        <FormFieldWrapper label="Data di rescissione" required error={errors.terminationDate?.message}>
+        <FormFieldWrapper
+          label={t('locazioni.terminationModal.terminationDateLabel')}
+          required
+          error={errors.terminationDate?.message}
+        >
           <Input {...register('terminationDate')} type="date" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Motivo" error={errors.reason?.message}>
+        <FormFieldWrapper label={t('locazioni.terminationModal.reasonLabel')} error={errors.reason?.message}>
           <Textarea {...register('reason')} rows={3} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Penale" error={errors.penaltyAmount?.message}>
+        <FormFieldWrapper
+          label={t('locazioni.terminationModal.penaltyLabel')}
+          error={errors.penaltyAmount?.message}
+        >
           <Input {...register('penaltyAmount')} type="number" step="0.01" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Richiesto da" error={errors.requestedBy?.message}>
-          <Input {...register('requestedBy')} placeholder="Nome del richiedente" />
+        <FormFieldWrapper
+          label={t('locazioni.terminationModal.requestedByLabel')}
+          error={errors.requestedBy?.message}
+        >
+          <Input
+            {...register('requestedBy')}
+            placeholder={t('locazioni.terminationModal.requestedByPlaceholder')}
+          />
         </FormFieldWrapper>
 
         <FormModalFooter
           onCancel={() => onOpenChange(false)}
           isSubmitting={isSubmitting}
-          submitLabel="Rescindi"
+          submitLabel={t('locazioni.terminationModal.submitLabel')}
           submitVariant="destructive"
         />
       </form>

@@ -1,0 +1,122 @@
+{
+  "page": {
+    "title": "Componentes",
+    "description": "Catálogo vivo dos componentes do design system Devit"
+  },
+  "breadcrumb": {
+    "title": "Breadcrumb",
+    "description": "Indica a posição atual dentro da hierarquia das páginas.",
+    "dashboard": "Painel",
+    "properties": "Propriedades",
+    "currentPage": "Villa em Parque Exclusivo"
+  },
+  "buttons": {
+    "title": "Button",
+    "description": "Variantes e tamanhos do botão padrão do sistema.",
+    "primary": "Primário",
+    "secondary": "Secundário",
+    "outline": "Outline",
+    "ghost": "Ghost",
+    "delete": "Excluir",
+    "link": "Link",
+    "small": "Pequeno",
+    "default": "Padrão",
+    "large": "Grande",
+    "disabled": "Desabilitado"
+  },
+  "confirmPopup": {
+    "title": "Confirm Popup",
+    "description": "Modal de confirmação para ações destrutivas ou sensíveis.",
+    "deleteProperty": "Excluir imóvel",
+    "deletedMessage": "Imóvel excluído.",
+    "confirmTitle": "Excluir imóvel",
+    "confirmDescription": "Esta ação não pode ser desfeita. O anúncio será removido definitivamente.",
+    "confirmLabel": "Excluir"
+  },
+  "fileUpload": {
+    "title": "File Upload",
+    "description": "Área de upload com drag & drop e lista dos arquivos selecionados.",
+    "label": "Documentos do imóvel",
+    "hint": "PDF, JPG ou PNG até 10MB"
+  },
+  "form": {
+    "title": "Form",
+    "description": "Composição de Input (register), Select (Controller) e InputMoney com validação via zod.",
+    "titleField": "Título do anúncio",
+    "titlePlaceholder": "Villa em Parque Exclusivo",
+    "titleError": "Digite um título com pelo menos 3 letras",
+    "typeField": "Tipo de imóvel",
+    "typePlaceholder": "Selecione",
+    "typeError": "Selecione um tipo",
+    "priceLabel": "Preço",
+    "submit": "Salvar anúncio"
+  },
+  "inputMoney": {
+    "title": "Input Money",
+    "description": "Campo monetário com máscara em euros, valor em string decimal.",
+    "priceLabel": "Preço do imóvel",
+    "rawValue": "Valor bruto: {{value}}"
+  },
+  "inputs": {
+    "title": "Input",
+    "description": "Campo de texto padrão, usado com o register do react-hook-form.",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Digite seu nome",
+    "emailLabel": "E-mail",
+    "disabledLabel": "Desabilitado",
+    "disabledValue": "Não editável",
+    "invalidLabel": "Com erro",
+    "invalidValue": "valor inválido",
+    "requiredError": "Campo obrigatório."
+  },
+  "layout": {
+    "title": "Layout",
+    "description": "Sidebar recolhível + header no desktop, header e bottom navigation no mobile — esta própria página está dentro deles.",
+    "note": "No desktop a sidebar (navy) é recolhível em uma barra de apenas ícones, com tooltip; no mobile é substituída por uma bottom navigation com uma folha \"Mais\" para os itens excedentes."
+  },
+  "searchableSelect": {
+    "title": "Select com busca",
+    "description": "Combobox com campo de busca, para listas longas. Usado com o Controller do react-hook-form.",
+    "cityLabel": "Cidade",
+    "placeholder": "Selecione uma cidade",
+    "searchPlaceholder": "Buscar cidade...",
+    "emptyText": "Nenhuma cidade encontrada.",
+    "cities": {
+      "napoli": "Nápoles",
+      "sorrento": "Sorrento",
+      "positano": "Positano",
+      "massaLubrense": "Massa Lubrense",
+      "capri": "Capri",
+      "amalfi": "Amalfi",
+      "ravello": "Ravello",
+      "roma": "Roma",
+      "milano": "Milão",
+      "torino": "Turim"
+    }
+  },
+  "select": {
+    "title": "Select",
+    "description": "Usado com o Controller do react-hook-form, conforme o padrão do projeto.",
+    "propertyTypeLabel": "Tipo de imóvel",
+    "placeholder": "Selecione um tipo"
+  },
+  "propertyTypes": {
+    "villa": "Casa",
+    "appartamento": "Apartamento",
+    "attico": "Cobertura",
+    "casale": "Casa de campo"
+  },
+  "table": {
+    "title": "Table",
+    "description": "Lista tabular, aqui aplicada aos imóveis do sistema.",
+    "headerProperty": "Imóvel",
+    "headerCity": "Cidade",
+    "headerPrice": "Preço",
+    "headerStatus": "Status",
+    "status": {
+      "disponibile": "Disponível",
+      "riservato": "Reservado",
+      "venduto": "Vendido"
+    }
+  }
+}

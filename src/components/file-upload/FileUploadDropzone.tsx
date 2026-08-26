@@ -1,5 +1,6 @@
 import type { DragEvent, RefObject } from 'react'
 import { CloudUpload } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 
 type FileUploadDropzoneProps = {
@@ -27,6 +28,8 @@ function FileUploadDropzone({
   setIsDragging,
   onFilesSelected,
 }: FileUploadDropzoneProps) {
+  const { t } = useTranslation('common')
+
   function handleDrop(event: DragEvent<HTMLDivElement>) {
     event.preventDefault()
     setIsDragging(false)
@@ -56,8 +59,8 @@ function FileUploadDropzone({
     >
       <CloudUpload className="size-6 text-muted-foreground" />
       <p className="text-sm text-foreground">
-        <span className="font-medium text-primary">Clicca per caricare</span>{' '}
-        o trascina il file qui
+        <span className="font-medium text-primary">{t('fileUpload.clickToUpload')}</span>{' '}
+        {t('fileUpload.dragHint')}
       </p>
       {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
 

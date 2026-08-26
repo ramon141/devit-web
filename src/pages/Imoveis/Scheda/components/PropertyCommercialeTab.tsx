@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { usePropertyCommercialForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyCommercialForm'
@@ -6,13 +7,14 @@ import CommercialAreaFields from '@/pages/Imoveis/Scheda/components/CommercialAr
 import PropertyRoomsManager from '@/pages/Imoveis/Scheda/components/PropertyRoomsManager'
 import PropertyHeatingSection from '@/pages/Imoveis/Scheda/components/PropertyHeatingSection'
 import PropertyFeaturesSection from '@/pages/Imoveis/Scheda/components/PropertyFeaturesSection'
-import { amenityOptions, industrialFeatureOptions } from '@/pages/Imoveis/Scheda/schemas/featureOptions'
+import { getAmenityOptions, getIndustrialFeatureOptions } from '@/pages/Imoveis/Scheda/schemas/featureOptions'
 
 type PropertyCommercialeTabProps = {
   propertyId: string
 }
 
 function PropertyCommercialeTab({ propertyId }: PropertyCommercialeTabProps) {
+  const { t } = useTranslation('imoveis')
   const { form, isLoading, isSubmitting, onSubmit } = usePropertyCommercialForm(propertyId)
 
   if (isLoading) return null
@@ -23,7 +25,7 @@ function PropertyCommercialeTab({ propertyId }: PropertyCommercialeTabProps) {
         <CommercialActivityFields form={form} />
         <CommercialAreaFields form={form} />
         <div className="flex justify-end sm:col-span-2">
-          <Button type="submit" disabled={isSubmitting}>Salva dati commerciali</Button>
+          <Button type="submit" disabled={isSubmitting}>{t('scheda.commercialeTab.save')}</Button>
         </div>
       </form>
 
@@ -32,8 +34,18 @@ function PropertyCommercialeTab({ propertyId }: PropertyCommercialeTabProps) {
       <Separator className="sm:col-span-2" />
       <PropertyHeatingSection propertyId={propertyId} />
       <Separator className="sm:col-span-2" />
-      <PropertyFeaturesSection propertyId={propertyId} category="amenity" title="Altri dati" options={amenityOptions} />
-      <PropertyFeaturesSection propertyId={propertyId} category="industrial" title="Impianti" options={industrialFeatureOptions} />
+      <PropertyFeaturesSection
+        propertyId={propertyId}
+        category="amenity"
+        title={t('scheda.commercialeTab.otherDataTitle')}
+        options={getAmenityOptions(t)}
+      />
+      <PropertyFeaturesSection
+        propertyId={propertyId}
+        category="industrial"
+        title={t('scheda.commercialeTab.systemsTitle')}
+        options={getIndustrialFeatureOptions(t)}
+      />
     </div>
   )
 }

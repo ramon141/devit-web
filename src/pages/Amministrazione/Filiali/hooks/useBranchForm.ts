@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -22,6 +23,7 @@ type UseBranchFormProps = {
 }
 
 export function useBranchForm({ branch, onSaved }: UseBranchFormProps) {
+  const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = useBranchControllerCreate()
@@ -47,14 +49,14 @@ export function useBranchForm({ branch, onSaved }: UseBranchFormProps) {
       : create({ data: values })
 
     toastPromise(promise, {
-      pending: branch ? 'Salvataggio filiale...' : 'Creazione filiale...',
+      pending: branch ? t('branchForm.pendingUpdate') : t('branchForm.pendingCreate'),
       success: () => {
         invalidateList()
         onSaved()
-        return branch ? 'Filiale aggiornata con successo!' : 'Filiale creata con successo!'
+        return branch ? t('branchForm.successUpdate') : t('branchForm.successCreate')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio della filiale'),
+        getErrorMessageFromRequest(error, t('branchForm.error')),
     })
   }
 

@@ -1,0 +1,122 @@
+{
+  "page": {
+    "title": "Componenti",
+    "description": "Catalogo vivo dei componenti del design system Devit"
+  },
+  "breadcrumb": {
+    "title": "Breadcrumb",
+    "description": "Indica la posizione attuale all'interno della gerarchia delle pagine.",
+    "dashboard": "Bacheca",
+    "properties": "Proprietà",
+    "currentPage": "Villa in Parco Esclusivo"
+  },
+  "buttons": {
+    "title": "Button",
+    "description": "Varianti e dimensioni del pulsante standard del sistema.",
+    "primary": "Primario",
+    "secondary": "Secondario",
+    "outline": "Outline",
+    "ghost": "Ghost",
+    "delete": "Elimina",
+    "link": "Link",
+    "small": "Piccolo",
+    "default": "Standard",
+    "large": "Grande",
+    "disabled": "Disabilitato"
+  },
+  "confirmPopup": {
+    "title": "Confirm Popup",
+    "description": "Modale di conferma per azioni distruttive o sensibili.",
+    "deleteProperty": "Elimina immobile",
+    "deletedMessage": "Immobile eliminato.",
+    "confirmTitle": "Elimina immobile",
+    "confirmDescription": "Questa azione non può essere annullata. L'annuncio verrà rimosso definitivamente.",
+    "confirmLabel": "Elimina"
+  },
+  "fileUpload": {
+    "title": "File Upload",
+    "description": "Area di caricamento con drag & drop e lista dei file selezionati.",
+    "label": "Documenti dell'immobile",
+    "hint": "PDF, JPG o PNG fino a 10MB"
+  },
+  "form": {
+    "title": "Form",
+    "description": "Composizione di Input (register), Select (Controller) e InputMoney con validazione via zod.",
+    "titleField": "Titolo dell'annuncio",
+    "titlePlaceholder": "Villa in Parco Esclusivo",
+    "titleError": "Inserisci un titolo di almeno 3 lettere",
+    "typeField": "Tipo di immobile",
+    "typePlaceholder": "Seleziona",
+    "typeError": "Seleziona un tipo",
+    "priceLabel": "Prezzo",
+    "submit": "Salva annuncio"
+  },
+  "inputMoney": {
+    "title": "Input Money",
+    "description": "Campo monetario con maschera in euro, valore in stringa decimale.",
+    "priceLabel": "Prezzo dell'immobile",
+    "rawValue": "Valore grezzo: {{value}}"
+  },
+  "inputs": {
+    "title": "Input",
+    "description": "Campo di testo standard, usato con il register del react-hook-form.",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Inserisci il tuo nome",
+    "emailLabel": "E-mail",
+    "disabledLabel": "Disabilitato",
+    "disabledValue": "Non modificabile",
+    "invalidLabel": "Con errore",
+    "invalidValue": "valore non valido",
+    "requiredError": "Campo obbligatorio."
+  },
+  "layout": {
+    "title": "Layout",
+    "description": "Sidebar comprimibile + header su desktop, header e bottom navigation su mobile — questa stessa pagina si trova al loro interno.",
+    "note": "Su desktop la sidebar (navy) è comprimibile in una barra di sole icone, con tooltip; su mobile viene sostituita da una bottom navigation con un foglio \"Altro\" per le voci in eccesso."
+  },
+  "searchableSelect": {
+    "title": "Select con ricerca",
+    "description": "Combobox con campo di ricerca, per liste lunghe. Usato con il Controller del react-hook-form.",
+    "cityLabel": "Città",
+    "placeholder": "Seleziona una città",
+    "searchPlaceholder": "Cerca città...",
+    "emptyText": "Nessuna città trovata.",
+    "cities": {
+      "napoli": "Napoli",
+      "sorrento": "Sorrento",
+      "positano": "Positano",
+      "massaLubrense": "Massa Lubrense",
+      "capri": "Capri",
+      "amalfi": "Amalfi",
+      "ravello": "Ravello",
+      "roma": "Roma",
+      "milano": "Milano",
+      "torino": "Torino"
+    }
+  },
+  "select": {
+    "title": "Select",
+    "description": "Usato con il Controller del react-hook-form, secondo lo standard del progetto.",
+    "propertyTypeLabel": "Tipo di immobile",
+    "placeholder": "Seleziona un tipo"
+  },
+  "propertyTypes": {
+    "villa": "Villa",
+    "appartamento": "Appartamento",
+    "attico": "Attico",
+    "casale": "Casale"
+  },
+  "table": {
+    "title": "Table",
+    "description": "Elenco tabellare, qui applicato agli immobili del sistema.",
+    "headerProperty": "Immobile",
+    "headerCity": "Città",
+    "headerPrice": "Prezzo",
+    "headerStatus": "Stato",
+    "status": {
+      "disponibile": "Disponibile",
+      "riservato": "Riservato",
+      "venduto": "Venduto"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "notificheList": {
+    "title": "Notificações",
+    "description": "Todos os avisos relacionados à sua atividade",
+    "breadcrumb": "Notificações",
+    "emptyState": "Nenhuma notificação.",
+    "markAsRead": "Marcar como lida"
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -32,6 +33,7 @@ type UseUserFormProps = {
 }
 
 export function useUserForm({ user, onSaved }: UseUserFormProps) {
+  const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = useUserControllerCreate()
@@ -81,19 +83,19 @@ export function useUserForm({ user, onSaved }: UseUserFormProps) {
 
   function onSubmit(values: UserFormValues) {
     if (!user && !values.password) {
-      form.setError('password', { message: 'La password è obbligatoria per un nuovo utente' })
+      form.setError('password', { message: t('userForm.passwordRequired') })
       return
     }
 
     toastPromise(saveUser(values), {
-      pending: user ? 'Salvataggio utente...' : 'Creazione utente...',
+      pending: user ? t('userForm.pendingUpdate') : t('userForm.pendingCreate'),
       success: () => {
         invalidateList()
         onSaved()
-        return user ? 'Utente aggiornato con successo!' : 'Utente creato con successo!'
+        return user ? t('userForm.successUpdate') : t('userForm.successCreate')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio dell’utente'),
+        getErrorMessageFromRequest(error, t('userForm.error')),
     })
   }
 

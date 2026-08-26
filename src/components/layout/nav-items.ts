@@ -31,73 +31,75 @@ function crmPath(path: string): string {
   return path === '/' ? CRM_BASE_PATH : `${CRM_BASE_PATH}${path}`
 }
 
+// Os "label" abaixo são chaves i18n (namespace 'common'), traduzidas no render
+// pelos componentes de sidebar/bottom nav, não texto exibido diretamente
 const allNavItems: NavItem[] = [
   {
-    label: 'Bacheca',
+    label: 'sidebar.nav.bacheca',
     path: crmPath('/'),
     icon: LayoutDashboard,
   },
   {
-    label: 'Agenda',
+    label: 'sidebar.nav.agenda',
     path: crmPath('/agenda'),
     icon: CalendarDays,
   },
   {
-    label: 'Proprietà',
+    label: 'sidebar.nav.proprieta',
     path: crmPath('/proprieta'),
     icon: Building2,
   },
   {
-    label: 'Clienti',
+    label: 'sidebar.nav.clienti',
     path: crmPath('/clienti'),
     icon: Users,
     children: [
-      { label: 'Clienti', path: crmPath('/clienti') },
-      { label: 'Richieste', path: crmPath('/clienti/richieste') },
+      { label: 'sidebar.nav.clienti', path: crmPath('/clienti') },
+      { label: 'sidebar.nav.richieste', path: crmPath('/clienti/richieste') },
     ],
   },
   {
-    label: 'Proposte',
+    label: 'sidebar.nav.proposte',
     path: crmPath('/proposte'),
     icon: FileText,
   },
   {
-    label: 'Operazioni',
+    label: 'sidebar.nav.operazioni',
     path: crmPath('/operazioni'),
     icon: Handshake,
     children: [
-      { label: 'Vendite', path: crmPath('/operazioni/vendite') },
-      { label: 'Locazioni', path: crmPath('/operazioni/locazioni') },
-      { label: 'Adeguamento canone', path: crmPath('/operazioni/adeguamenti-canone') },
-      { label: 'Scadenziario', path: crmPath('/operazioni/scadenziario') },
-      { label: 'Registrazioni', path: crmPath('/operazioni/registrazioni') },
+      { label: 'sidebar.nav.vendite', path: crmPath('/operazioni/vendite') },
+      { label: 'sidebar.nav.locazioni', path: crmPath('/operazioni/locazioni') },
+      { label: 'sidebar.nav.adeguamentoCanone', path: crmPath('/operazioni/adeguamenti-canone') },
+      { label: 'sidebar.nav.scadenziario', path: crmPath('/operazioni/scadenziario') },
+      { label: 'sidebar.nav.registrazioni', path: crmPath('/operazioni/registrazioni') },
     ],
   },
   {
-    label: 'Marketing',
+    label: 'sidebar.nav.marketing',
     path: crmPath('/marketing'),
     icon: Megaphone,
   },
   {
-    label: 'Statistiche',
+    label: 'sidebar.nav.statistiche',
     path: crmPath('/statistiche'),
     icon: BarChart3,
   },
   {
-    label: 'Amministrazione',
+    label: 'sidebar.nav.amministrazione',
     path: crmPath('/amministrazione'),
     icon: ShieldCheck,
     adminOnly: true,
     children: [
-      { label: 'Utenti', path: crmPath('/amministrazione/utenti') },
-      { label: 'Filiali', path: crmPath('/amministrazione/filiali') },
-      { label: 'Categorie', path: crmPath('/amministrazione/categorie') },
-      { label: 'Banner', path: crmPath('/amministrazione/banner') },
-      { label: 'Log di audit', path: crmPath('/amministrazione/audit') },
+      { label: 'sidebar.nav.utenti', path: crmPath('/amministrazione/utenti') },
+      { label: 'sidebar.nav.filiali', path: crmPath('/amministrazione/filiali') },
+      { label: 'sidebar.nav.categorie', path: crmPath('/amministrazione/categorie') },
+      { label: 'sidebar.nav.banner', path: crmPath('/amministrazione/banner') },
+      { label: 'sidebar.nav.auditLog', path: crmPath('/amministrazione/audit') },
     ],
   },
   {
-    label: 'Componenti',
+    label: 'sidebar.nav.componenti',
     path: crmPath('/componenti'),
     icon: Settings,
   },

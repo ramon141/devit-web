@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   usePropertyLocationDetailControllerFind,
@@ -40,6 +41,7 @@ const emptyValues: LocationDetailFormValues = {
 }
 
 export function usePropertyLocationDetailForm(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const { toastPromise } = useToast()
   const { data: rows, isLoading } = usePropertyLocationDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
@@ -88,10 +90,10 @@ export function usePropertyLocationDetailForm(propertyId: string) {
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: 'Salvataggio posizione...',
-      success: 'Dati di posizione aggiornati con successo!',
+      pending: t('toasts.locationDetailForm.pending'),
+      success: t('toasts.locationDetailForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio della posizione'),
+        getErrorMessageFromRequest(error, t('toasts.locationDetailForm.error')),
     })
   }
 

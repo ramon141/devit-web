@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import devitLogo from '@/assets/logos/devit-logo.png'
 import devitFavicon from '@/assets/logos/devit-favicon.png'
 import SidebarNav from '@/components/layout/SidebarNav'
@@ -8,6 +9,7 @@ import { cn } from '@/lib/utils'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
 function Sidebar() {
+  const { t } = useTranslation('common')
   const [expanded, setExpanded] = useState(true)
 
   return (
@@ -36,7 +38,7 @@ function Sidebar() {
       >
         {expanded ? <ChevronLeft size={14} /> : <ChevronRight size={14} />}
         <span className="sr-only">
-          {expanded ? 'Comprimi il menu' : 'Espandi il menu'}
+          {expanded ? t('sidebar.collapseMenu') : t('sidebar.expandMenu')}
         </span>
       </button>
     </aside>

@@ -1,9 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SelectField from '@/components/SelectField'
 import RemovableRow from '@/components/RemovableRow'
 import type { PropertyIndustrialAreaAreaType } from '@/api/generated/models'
-import { industrialAreaTypeOptions } from '@/pages/Imoveis/Scheda/schemas/industrialAreaOptions'
+import { getIndustrialAreaTypeOptions } from '@/pages/Imoveis/Scheda/schemas/industrialAreaOptions'
 import { usePropertyIndustrialAreas } from '@/pages/Imoveis/Scheda/hooks/usePropertyIndustrialAreas'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 
@@ -12,12 +13,14 @@ type PropertyIndustrialAreasManagerProps = {
 }
 
 function PropertyIndustrialAreasManager({ propertyId }: PropertyIndustrialAreasManagerProps) {
+  const { t } = useTranslation('imoveis')
   const { areas, areaType, setAreaType, areaSqm, setAreaSqm, heightM, setHeightM, addArea, removeArea } =
     usePropertyIndustrialAreas(propertyId)
+  const industrialAreaTypeOptions = getIndustrialAreaTypeOptions(t)
 
   return (
     <div className="sm:col-span-2">
-      <p className="mb-2 text-sm font-medium">Superfici e altezze per ambiente</p>
+      <p className="mb-2 text-sm font-medium">{t('scheda.industrialAreasManager.title')}</p>
 
       <div className="grid gap-2">
         {areas.map((area) => (
@@ -37,12 +40,24 @@ function PropertyIndustrialAreasManager({ propertyId }: PropertyIndustrialAreasM
             value={areaType}
             onValueChange={(value) => setAreaType(value as PropertyIndustrialAreaAreaType)}
             options={industrialAreaTypeOptions}
-            placeholder="Tipo area"
+            placeholder={t('scheda.industrialAreasManager.areaTypePlaceholder')}
           />
         </div>
-        <Input value={areaSqm} onChange={(e) => setAreaSqm(e.target.value)} type="number" placeholder="M²" className="w-28" />
-        <Input value={heightM} onChange={(e) => setHeightM(e.target.value)} type="number" placeholder="Altezza (m)" className="w-32" />
-        <Button type="button" onClick={addArea}>Aggiungi</Button>
+        <Input
+          value={areaSqm}
+          onChange={(e) => setAreaSqm(e.target.value)}
+          type="number"
+          placeholder={t('scheda.industrialAreasManager.areaPlaceholder')}
+          className="w-28"
+        />
+        <Input
+          value={heightM}
+          onChange={(e) => setHeightM(e.target.value)}
+          type="number"
+          placeholder={t('scheda.industrialAreasManager.heightPlaceholder')}
+          className="w-32"
+        />
+        <Button type="button" onClick={addArea}>{t('scheda.industrialAreasManager.add')}</Button>
       </div>
     </div>
   )

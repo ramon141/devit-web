@@ -1,4 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPurchaseProposalControllerCountQueryKey,
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteProposal() {
+  const { t } = useTranslation('proposte')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: deleteProposal } = usePurchaseProposalControllerDeleteById()
@@ -17,14 +19,14 @@ export function useDeleteProposal() {
     const promise = deleteProposal({ id })
 
     toastPromise(promise, {
-      pending: 'Eliminazione proposta...',
+      pending: t('deleteProposal.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPurchaseProposalControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getPurchaseProposalControllerCountQueryKey() })
-        return 'Proposta eliminata con successo!'
+        return t('deleteProposal.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione della proposta'),
+        getErrorMessageFromRequest(error, t('deleteProposal.error')),
     })
   }
 

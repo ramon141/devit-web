@@ -1,16 +1,8 @@
+import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { AuditLog } from '@/api/generated/models'
 import { formatDateTime } from '@/utils/formatDate'
-
-const actionLabels: Record<string, string> = {
-  create: 'Creazione',
-  update: 'Aggiornamento',
-  delete: 'Eliminazione',
-  login: 'Accesso',
-  logout: 'Uscita',
-  export: 'Esportazione',
-}
 
 type AuditLogTableProps = {
   logs: AuditLog[]
@@ -18,19 +10,33 @@ type AuditLogTableProps = {
 }
 
 function AuditLogTable({ logs, isLoading }: AuditLogTableProps) {
+  const { t } = useTranslation('amministrazione')
+
+  const actionLabels: Record<string, string> = {
+    create: t('auditLogTable.actions.create'),
+    update: t('auditLogTable.actions.update'),
+    delete: t('auditLogTable.actions.delete'),
+    login: t('auditLogTable.actions.login'),
+    logout: t('auditLogTable.actions.logout'),
+    export: t('auditLogTable.actions.export'),
+  }
+
   const columns: DataTableColumn<AuditLog>[] = [
     {
-      header: 'Azione',
+      header: t('auditLogTable.columns.action'),
       cell: (log) => <Badge variant="secondary">{actionLabels[log.action] ?? log.action}</Badge>,
     },
-    { header: 'Entità', cell: (log) => <span className="font-medium">{log.entity}</span> },
     {
-      header: 'ID entità',
+      header: t('auditLogTable.columns.entity'),
+      cell: (log) => <span className="font-medium">{log.entity}</span>,
+    },
+    {
+      header: t('auditLogTable.columns.entityId'),
       cellClassName: 'max-w-40 truncate text-xs text-muted-foreground',
       cell: (log) => log.entityId ?? '—',
     },
-    { header: 'Utente', cell: (log) => log.userId ?? '—' },
-    { header: 'Data', cell: (log) => formatDateTime(log.createdAt) },
+    { header: t('auditLogTable.columns.user'), cell: (log) => log.userId ?? '—' },
+    { header: t('auditLogTable.columns.date'), cell: (log) => formatDateTime(log.createdAt) },
   ]
 
   return (
@@ -39,7 +45,7 @@ function AuditLogTable({ logs, isLoading }: AuditLogTableProps) {
       data={logs}
       keyExtractor={(log) => String(log.id ?? '')}
       isLoading={isLoading}
-      emptyMessage="Nessun log trovato."
+      emptyMessage={t('auditLogTable.empty')}
     />
   )
 }

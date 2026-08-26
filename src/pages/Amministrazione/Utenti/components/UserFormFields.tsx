@@ -1,4 +1,5 @@
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -21,6 +22,7 @@ function initials(fullName: string) {
 }
 
 function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUrl }: UserFormFieldsProps) {
+  const { t } = useTranslation('amministrazione')
   const { register, control, watch } = form
   const { errors } = useFormState({ control })
   const { data: branches } = useBranchControllerFind({ filter: { order: ['name ASC'] } })
@@ -33,24 +35,28 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
     <div className="grid gap-4 sm:grid-cols-2">
       <div className="sm:col-span-2">
         <AvatarUpload
-          label="Foto profilo"
+          label={t('userFormFields.avatarLabel')}
           value={avatarFiles}
           onChange={setAvatarFiles}
           currentUrl={avatarUrl}
           fallbackText={initials(watch('fullName') ?? '')}
-          hint={isEditing ? 'Lascia vuoto per mantenere la foto attuale' : undefined}
+          hint={isEditing ? t('userFormFields.avatarHint') : undefined}
         />
       </div>
 
-      <FormFieldWrapper label="Nome completo" required error={errors.fullName?.message}>
-        <Input {...register('fullName')} placeholder="Mario Rossi" />
+      <FormFieldWrapper label={t('userFormFields.fullNameLabel')} required error={errors.fullName?.message}>
+        <Input {...register('fullName')} placeholder={t('userFormFields.fullNamePlaceholder')} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="E-mail" required error={errors.email?.message}>
-        <Input {...register('email')} type="email" placeholder="mario@devit.it" />
+      <FormFieldWrapper label={t('userFormFields.emailLabel')} required error={errors.email?.message}>
+        <Input {...register('email')} type="email" placeholder={t('userFormFields.emailPlaceholder')} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Livello di accesso" required error={errors.accessLevel?.message}>
+      <FormFieldWrapper
+        label={t('userFormFields.accessLevelLabel')}
+        required
+        error={errors.accessLevel?.message}
+      >
         <Controller
           control={control}
           name="accessLevel"
@@ -64,7 +70,7 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Filiale" error={errors.branchId?.message}>
+      <FormFieldWrapper label={t('userFormFields.branchLabel')} error={errors.branchId?.message}>
         <Controller
           control={control}
           name="branchId"
@@ -73,14 +79,14 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
               value={field.value}
               onValueChange={field.onChange}
               options={branchOptions}
-              placeholder="Nessuna filiale"
+              placeholder={t('userFormFields.branchPlaceholder')}
             />
           )}
         />
       </FormFieldWrapper>
 
       <FormFieldWrapper
-        label={isEditing ? 'Nuova password (opzionale)' : 'Password'}
+        label={isEditing ? t('userFormFields.passwordEditLabel') : t('userFormFields.passwordLabel')}
         required={!isEditing}
         error={errors.password?.message}
       >
@@ -93,7 +99,7 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
         render={({ field }) => (
           <div className="flex items-center gap-2 self-end pb-1.5">
             <Switch checked={field.value} onCheckedChange={field.onChange} />
-            <span className="text-sm">Utente attivo</span>
+            <span className="text-sm">{t('userFormFields.activeLabel')}</span>
           </div>
         )}
       />

@@ -1,10 +1,11 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SelectField from '@/components/SelectField'
 import InputMoney from '@/components/InputMoney'
 import RemovableRow from '@/components/RemovableRow'
 import type { NewPropertyFeeFrequency } from '@/api/generated/models'
-import { feeFrequencyOptions } from '@/pages/Imoveis/Scheda/schemas/feeFrequencyOptions'
+import { getFeeFrequencyOptions } from '@/pages/Imoveis/Scheda/schemas/feeFrequencyOptions'
 import { usePropertyFees } from '@/pages/Imoveis/Scheda/hooks/usePropertyFees'
 import { formatAmount } from '@/utils/formatAmount'
 import { getOptionLabel } from '@/utils/getOptionLabel'
@@ -14,6 +15,7 @@ type PropertyFeesManagerProps = {
 }
 
 function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
+  const { t } = useTranslation('imoveis')
   const {
     fees,
     name,
@@ -27,10 +29,11 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
     addFee,
     removeFee,
   } = usePropertyFees(propertyId)
+  const feeFrequencyOptions = getFeeFrequencyOptions(t)
 
   return (
     <div className="sm:col-span-2">
-      <p className="mb-2 text-sm font-medium">Tasse e spese</p>
+      <p className="mb-2 text-sm font-medium">{t('scheda.feesManager.title')}</p>
 
       <div className="grid gap-2">
         {fees.map((fee) => (
@@ -47,7 +50,7 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
         <Input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="Nome tassa"
+          placeholder={t('scheda.feesManager.namePlaceholder')}
           className="w-40"
         />
         <div className="w-32">
@@ -58,16 +61,16 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
             value={frequency}
             onValueChange={(value) => setFrequency(value as NewPropertyFeeFrequency)}
             options={feeFrequencyOptions}
-            placeholder="Frequenza"
+            placeholder={t('scheda.feesManager.frequencyPlaceholder')}
           />
         </div>
         <Input
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          placeholder="Note"
+          placeholder={t('scheda.feesManager.notePlaceholder')}
           className="w-40"
         />
-        <Button type="button" onClick={addFee}>Aggiungi</Button>
+        <Button type="button" onClick={addFee}>{t('scheda.feesManager.add')}</Button>
       </div>
     </div>
   )

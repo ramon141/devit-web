@@ -1,14 +1,15 @@
-import { Controller, useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
+import { useFormState, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
-import SelectField from '@/components/SelectField'
-import InputMoney from '@/components/InputMoney'
+import ControlledSelectField from '@/components/ControlledSelectField'
+import ControlledMoney from '@/components/ControlledMoney'
 import ProposalPropertyBuyerFields from '@/pages/Proposte/components/ProposalPropertyBuyerFields'
 import ProposalAssignmentFields from '@/pages/Proposte/components/ProposalAssignmentFields'
 import ProposalDatesAndNotesFields from '@/pages/Proposte/components/ProposalDatesAndNotesFields'
 import {
-  paymentMethodOptions,
-  proposalStatusOptions,
+  getPaymentMethodOptions,
+  getProposalStatusOptions,
   type ProposalFormValues,
 } from '@/pages/Proposte/schemas/proposalSchema'
 
@@ -17,46 +18,48 @@ type ProposalFormFieldsProps = {
 }
 
 function ProposalFormFields({ form }: ProposalFormFieldsProps) {
+  const { t } = useTranslation('proposte')
   const { register, control, setValue } = form
   const { errors } = useFormState({ control })
-  const proposalAmount = useWatch({ control, name: 'proposalAmount' })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper label="Numero" required error={errors.number?.message}>
-        <Input {...register('number')} placeholder="PROP-0001" />
+      <FormFieldWrapper
+        label={t('formFields.numberLabel')}
+        required
+        error={errors.number?.message}
+      >
+        <Input {...register('number')} placeholder={t('formFields.numberPlaceholder')} />
       </FormFieldWrapper>
 
-      <InputMoney
+      <ControlledMoney
+        control={control}
+        setValue={setValue}
         name="proposalAmount"
-        label="Valore della proposta"
+        label={t('formFields.amountLabel')}
         required
-        value={proposalAmount}
-        setValue={(value) => setValue('proposalAmount', value ?? '')}
         error={errors.proposalAmount?.message}
       />
 
       <ProposalPropertyBuyerFields control={control} errors={errors} />
 
-      <FormFieldWrapper label="Modalità di pagamento" required error={errors.paymentMethod?.message}>
-        <Controller
-          control={control}
-          name="paymentMethod"
-          render={({ field }) => (
-            <SelectField value={field.value} onValueChange={field.onChange} options={paymentMethodOptions} />
-          )}
-        />
-      </FormFieldWrapper>
+      <ControlledSelectField
+        control={control}
+        name="paymentMethod"
+        label={t('formFields.paymentMethodLabel')}
+        required
+        options={getPaymentMethodOptions(t)}
+        error={errors.paymentMethod?.message}
+      />
 
-      <FormFieldWrapper label="Stato" required error={errors.status?.message}>
-        <Controller
-          control={control}
-          name="status"
-          render={({ field }) => (
-            <SelectField value={field.value} onValueChange={field.onChange} options={proposalStatusOptions} />
-          )}
-        />
-      </FormFieldWrapper>
+      <ControlledSelectField
+        control={control}
+        name="status"
+        label={t('formFields.statusLabel')}
+        required
+        options={getProposalStatusOptions(t)}
+        error={errors.status?.message}
+      />
 
       <ProposalAssignmentFields control={control} errors={errors} />
 

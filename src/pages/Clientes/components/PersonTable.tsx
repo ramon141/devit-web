@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import DataTable from '@/components/DataTable'
 import type { PersonWithRelations } from '@/api/generated/models'
@@ -12,6 +13,7 @@ type PersonTableProps = {
 }
 
 function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
+  const { t } = useTranslation('clientes')
   const [deleteTarget, setDeleteTarget] = useState<PersonWithRelations | null>(null)
   const { handleDelete } = useDeletePerson()
 
@@ -20,7 +22,7 @@ function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
     setDeleteTarget(null)
   }
 
-  const columns = buildPersonTableColumns({ onEdit, onDelete: setDeleteTarget })
+  const columns = buildPersonTableColumns({ t, onEdit, onDelete: setDeleteTarget })
 
   return (
     <>
@@ -29,16 +31,16 @@ function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
         data={people}
         keyExtractor={(person) => person.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessun cliente trovato."
+        emptyMessage={t('personTable.emptyMessage')}
       />
 
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare il cliente?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.name}".`}
+        title={t('personTable.deleteTitle')}
+        description={t('personTable.deleteDescription', { name: deleteTarget?.name })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('personTable.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </>

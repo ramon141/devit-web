@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { PropertyCategory } from '@/api/generated/models'
@@ -7,6 +8,7 @@ import CategoryTable from '@/pages/Amministrazione/Categorie/components/Category
 import CategoryFormModal from '@/pages/Amministrazione/Categorie/components/CategoryFormModal'
 
 function Categorie() {
+  const { t } = useTranslation('amministrazione')
   const { categories, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useCategoryList()
   const { open, setOpen, editing, openNew, openEdit } = useEditModalState<PropertyCategory>()
@@ -16,9 +18,9 @@ function Categorie() {
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
-        searchPlaceholder="Cerca una categoria..."
+        searchPlaceholder={t('categorie.searchPlaceholder')}
         onNewClick={openNew}
-        newLabel="Nuova categoria"
+        newLabel={t('categorie.newLabel')}
       />
 
       <CategoryTable categories={categories} isLoading={isLoading} onEdit={openEdit} />

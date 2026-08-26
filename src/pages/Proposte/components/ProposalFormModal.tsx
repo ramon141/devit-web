@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import type { PurchaseProposalWithRelations } from '@/api/generated/models'
@@ -11,6 +12,7 @@ type ProposalFormModalProps = {
 }
 
 function ProposalFormModal({ open, onOpenChange, proposal }: ProposalFormModalProps) {
+  const { t } = useTranslation('proposte')
   const { form, isSubmitting, onSubmit } = useProposalForm({
     proposal,
     onSaved: () => onOpenChange(false),
@@ -20,7 +22,7 @@ function ProposalFormModal({ open, onOpenChange, proposal }: ProposalFormModalPr
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={proposal ? 'Modifica proposta' : 'Nuova proposta'}
+      title={proposal ? t('formModal.editTitle') : t('formModal.newTitle')}
     >
       <form onSubmit={onSubmit} className="grid gap-4">
         <ProposalFormFields form={form} />

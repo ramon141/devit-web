@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPropertyRoomControllerFindQueryKey,
@@ -13,6 +14,7 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
 export function usePropertyRooms(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const [roomType, setRoomType] = useState<PropertyRoomRoomType | ''>('')
@@ -50,7 +52,7 @@ export function usePropertyRooms(propertyId: string) {
     })
 
     toastPromise(promise, {
-      pending: 'Aggiunta ambiente...',
+      pending: t('toasts.rooms.addPending'),
       success: () => {
         invalidate()
         setRoomType('')
@@ -58,22 +60,22 @@ export function usePropertyRooms(propertyId: string) {
         setWidthM('')
         setLengthM('')
         setEquipment('')
-        return 'Ambiente aggiunto con successo!'
+        return t('toasts.rooms.addSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’aggiunta dell’ambiente'),
+        getErrorMessageFromRequest(error, t('toasts.rooms.addError')),
     })
   }
 
   function removeRoom(id: string) {
     toastPromise(remove({ id }), {
-      pending: 'Rimozione ambiente...',
+      pending: t('toasts.rooms.removePending'),
       success: () => {
         invalidate()
-        return 'Ambiente rimosso con successo!'
+        return t('toasts.rooms.removeSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la rimozione dell’ambiente'),
+        getErrorMessageFromRequest(error, t('toasts.rooms.removeError')),
     })
   }
 

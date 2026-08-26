@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import RentalRenewModal from '@/pages/Operazioni/Locazioni/components/RentalRenewModal'
@@ -22,15 +23,17 @@ function RentalTableModals({
   terminateTarget,
   onTerminateTargetChange,
 }: RentalTableModalsProps) {
+  const { t } = useTranslation('operazioni')
+
   return (
     <>
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && onDeleteTargetChange(null)}
-        title="Eliminare il contratto?"
-        description={`Questa azione eliminerà definitivamente il contratto "${deleteTarget?.number}".`}
+        title={t('locazioni.tableModals.deleteTitle')}
+        description={t('locazioni.tableModals.deleteDescription', { number: deleteTarget?.number })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('locazioni.tableModals.deleteConfirm')}
         onConfirm={onConfirmDelete}
       />
 

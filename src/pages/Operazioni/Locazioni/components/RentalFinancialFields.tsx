@@ -1,4 +1,5 @@
 import { useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import InputMoney from '@/components/InputMoney'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -9,6 +10,7 @@ type RentalFinancialFieldsProps = {
 }
 
 function RentalFinancialFields({ form }: RentalFinancialFieldsProps) {
+  const { t } = useTranslation('operazioni')
   const { register, control, setValue } = form
   const { errors } = useFormState({ control })
   const rentAmount = useWatch({ control, name: 'rentAmount' })
@@ -19,7 +21,7 @@ function RentalFinancialFields({ form }: RentalFinancialFieldsProps) {
     <>
       <InputMoney
         name="rentAmount"
-        label="Valore dell'affitto"
+        label={t('locazioni.financialFields.rentAmountLabel')}
         required
         value={rentAmount}
         setValue={(value) => setValue('rentAmount', value ?? '')}
@@ -28,28 +30,41 @@ function RentalFinancialFields({ form }: RentalFinancialFieldsProps) {
 
       <InputMoney
         name="condoFee"
-        label="Spese condominiali"
+        label={t('locazioni.financialFields.condoFeeLabel')}
         value={condoFee}
         setValue={(value) => setValue('condoFee', value)}
       />
 
       <InputMoney
         name="depositAmount"
-        label="Deposito cauzionale"
+        label={t('locazioni.financialFields.depositAmountLabel')}
         value={depositAmount}
         setValue={(value) => setValue('depositAmount', value)}
       />
 
-      <FormFieldWrapper label="Giorno di scadenza" required error={errors.dueDay?.message}>
-        <Input {...register('dueDay')} type="number" placeholder="5" />
+      <FormFieldWrapper label={t('locazioni.financialFields.dueDayLabel')} required error={errors.dueDay?.message}>
+        <Input {...register('dueDay')} type="number" placeholder={t('locazioni.financialFields.dueDayPlaceholder')} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Indice di adeguamento" error={errors.adjustmentIndex?.message}>
-        <Input {...register('adjustmentIndex')} placeholder="ISTAT" />
+      <FormFieldWrapper
+        label={t('locazioni.financialFields.adjustmentIndexLabel')}
+        error={errors.adjustmentIndex?.message}
+      >
+        <Input
+          {...register('adjustmentIndex')}
+          placeholder={t('locazioni.financialFields.adjustmentIndexPlaceholder')}
+        />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Preavviso (giorni)" error={errors.noticeDays?.message}>
-        <Input {...register('noticeDays')} type="number" placeholder="30" />
+      <FormFieldWrapper
+        label={t('locazioni.financialFields.noticeDaysLabel')}
+        error={errors.noticeDays?.message}
+      >
+        <Input
+          {...register('noticeDays')}
+          type="number"
+          placeholder={t('locazioni.financialFields.noticeDaysPlaceholder')}
+        />
       </FormFieldWrapper>
     </>
   )

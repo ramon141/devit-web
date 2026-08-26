@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -8,6 +9,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useRescheduleCalendarEvent() {
+  const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: update } = useCalendarEventControllerUpdateById()
@@ -16,13 +18,13 @@ export function useRescheduleCalendarEvent() {
     const promise = update({ id, data: { startAt, endAt } })
 
     toastPromise(promise, {
-      pending: 'Spostamento impegno...',
+      pending: t('agenda:toasts.reschedule.moving'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getCalendarEventControllerFindQueryKey() })
-        return 'Impegno spostato con successo!'
+        return t('agenda:toasts.reschedule.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante lo spostamento dell’impegno'),
+        getErrorMessageFromRequest(error, t('agenda:toasts.reschedule.error')),
     })
 
     return promise

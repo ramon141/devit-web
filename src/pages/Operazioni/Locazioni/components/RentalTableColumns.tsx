@@ -1,9 +1,10 @@
+import type { TFunction } from 'i18next'
 import { BanIcon, PencilIcon, RefreshCwIcon, Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
-import { rentalSituationOptions } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
+import { getRentalSituationOptions } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 import { formatAmount } from '@/utils/formatAmount'
 import { formatDate } from '@/utils/formatDate'
 import { getOptionLabel } from '@/utils/getOptionLabel'
@@ -47,23 +48,44 @@ function RentalTableActions({
 }
 
 export function buildRentalTableColumns(
-  props: BuildRentalTableColumnsProps
+  props: BuildRentalTableColumnsProps,
+  t: TFunction
 ): DataTableColumn<RentalContractWithRelations>[] {
+  const situationOptions = getRentalSituationOptions(t)
+
   return [
-    { header: 'Numero', cell: (contract) => <span className="font-medium">{contract.number}</span> },
-    { header: 'Immobile', cell: (contract) => contract.property?.code ?? '—' },
-    { header: 'Proprietario', cell: (contract) => contract.owner?.name ?? '—' },
-    { header: 'Inquilino', cell: (contract) => contract.tenant?.name ?? '—' },
-    { header: 'Affitto', cell: (contract) => formatAmount(contract.rentAmount) },
-    { header: 'Inizio', cell: (contract) => formatDate(contract.startDate) },
     {
-      header: 'Situazione',
+      header: t('operazioni:locazioni.tableColumns.numero'),
+      cell: (contract) => <span className="font-medium">{contract.number}</span>,
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.immobile'),
+      cell: (contract) => contract.property?.code ?? '—',
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.proprietario'),
+      cell: (contract) => contract.owner?.name ?? '—',
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.inquilino'),
+      cell: (contract) => contract.tenant?.name ?? '—',
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.affitto'),
+      cell: (contract) => formatAmount(contract.rentAmount),
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.inizio'),
+      cell: (contract) => formatDate(contract.startDate),
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.situazione'),
       cell: (contract) => (
-        <Badge variant="secondary">{getOptionLabel(rentalSituationOptions, contract.situation)}</Badge>
+        <Badge variant="secondary">{getOptionLabel(situationOptions, contract.situation)}</Badge>
       ),
     },
     {
-      header: 'Azioni',
+      header: t('operazioni:locazioni.tableColumns.azioni'),
       headerClassName: 'w-24 text-right',
       cellClassName: 'text-right',
       isActions: true,

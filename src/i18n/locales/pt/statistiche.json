@@ -1,0 +1,20 @@
+{
+  "page": {
+    "title": "Estatísticas",
+    "description": "Relatórios e indicadores da agência",
+    "breadcrumb": "Estatísticas"
+  },
+  "leadsByStatus": {
+    "title": "Leads por status",
+    "description": "Distribuição dos contatos no funil"
+  },
+  "salesByStatus": {
+    "title": "Vendas por status",
+    "description": "Número de vendas agrupadas por status",
+    "seriesName": "Vendas"
+  },
+  "communicationsByChannel": {
+    "title": "Comunicações por canal e status",
+    "description": "E-mails e WhatsApp enviados, agrupados por status"
+  }
+}

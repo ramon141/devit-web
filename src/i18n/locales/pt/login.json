@@ -1,0 +1,35 @@
+{
+  "loginPanel": {
+    "welcomeBack": "Bem-vindo de volta ao",
+    "brand": "Devit",
+    "tagline": "Gerencie seus imóveis de forma simples e eficiente"
+  },
+  "desktopLoginForm": {
+    "title": "Entrar",
+    "subtitle": "Digite suas credenciais para continuar",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "voce@devit.it",
+    "passwordLabel": "Senha",
+    "passwordPlaceholder": "••••••••",
+    "togglePasswordSr": "Mostrar/ocultar senha",
+    "submit": "Entrar",
+    "forgotPassword": "Esqueceu a senha?"
+  },
+  "mobileFormFields": {
+    "emailLabel": "Digite seu e-mail",
+    "emailPlaceholder": "usuario@devit.it",
+    "passwordLabel": "Digite sua senha",
+    "passwordPlaceholder": "••••••••",
+    "togglePasswordSr": "Mostrar/ocultar senha",
+    "showPassword": "Mostrar senha",
+    "forgotPassword": "Esqueceu a senha?"
+  },
+  "mobileLoginForm": {
+    "submit": "Entrar"
+  },
+  "loginSchema": {
+    "emailRequired": "O e-mail é obrigatório",
+    "emailInvalid": "E-mail inválido",
+    "passwordMin": "A senha deve conter pelo menos 6 caracteres"
+  }
+}

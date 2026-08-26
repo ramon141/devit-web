@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { Branch } from '@/api/generated/models'
@@ -7,6 +8,7 @@ import BranchTable from '@/pages/Amministrazione/Filiali/components/BranchTable'
 import BranchFormModal from '@/pages/Amministrazione/Filiali/components/BranchFormModal'
 
 function Filiali() {
+  const { t } = useTranslation('amministrazione')
   const { branches, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useBranchList()
   const { open, setOpen, editing, openNew, openEdit } = useEditModalState<Branch>()
@@ -16,9 +18,9 @@ function Filiali() {
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
-        searchPlaceholder="Cerca una filiale..."
+        searchPlaceholder={t('filiali.searchPlaceholder')}
         onNewClick={openNew}
-        newLabel="Nuova filiale"
+        newLabel={t('filiali.newLabel')}
       />
 
       <BranchTable branches={branches} isLoading={isLoading} onEdit={openEdit} />

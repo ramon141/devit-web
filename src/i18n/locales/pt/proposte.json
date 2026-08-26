@@ -1,0 +1,96 @@
+{
+  "assignmentFields": {
+    "leadLabel": "Lead de origem",
+    "leadPlaceholder": "Nenhum",
+    "leadSearchPlaceholder": "Buscar um lead...",
+    "assignedToLabel": "Responsável",
+    "assignedToPlaceholder": "Nenhum",
+    "assignedToSearchPlaceholder": "Buscar um usuário...",
+    "sellerAgentLabel": "Agente vendedor",
+    "sellerAgentPlaceholder": "Nenhum",
+    "sellerAgentSearchPlaceholder": "Buscar um usuário..."
+  },
+  "datesAndNotesFields": {
+    "proposalDateLabel": "Data da proposta",
+    "validUntilLabel": "Válida até",
+    "financedLabel": "Vinculada a financiamento",
+    "paymentTermsLabel": "Condições de pagamento",
+    "rejectionReasonLabel": "Motivo da recusa",
+    "notesLabel": "Observações"
+  },
+  "formFields": {
+    "numberLabel": "Número",
+    "numberPlaceholder": "PROP-0001",
+    "amountLabel": "Valor da proposta",
+    "paymentMethodLabel": "Forma de pagamento",
+    "statusLabel": "Status"
+  },
+  "formModal": {
+    "editTitle": "Editar proposta",
+    "newTitle": "Nova proposta"
+  },
+  "propertyBuyerFields": {
+    "propertyLabel": "Imóvel",
+    "propertyPlaceholder": "Selecione um imóvel",
+    "propertySearchPlaceholder": "Buscar por código ou título...",
+    "buyerLabel": "Comprador",
+    "buyerPlaceholder": "Selecione um comprador",
+    "buyerSearchPlaceholder": "Buscar um cliente..."
+  },
+  "table": {
+    "emptyMessage": "Nenhuma proposta encontrada.",
+    "deleteTitle": "Excluir a proposta?",
+    "deleteDescription": "Esta ação excluirá definitivamente a proposta \"{{number}}\".",
+    "deleteConfirmLabel": "Excluir"
+  },
+  "tableColumns": {
+    "number": "Número",
+    "property": "Imóvel",
+    "buyer": "Comprador",
+    "amount": "Valor",
+    "date": "Data",
+    "status": "Status",
+    "actions": "Ações"
+  },
+  "paymentMethodOptions": {
+    "cash": "Dinheiro",
+    "financed": "Financiado",
+    "directInstallments": "Parcelas diretas",
+    "exchange": "Permuta",
+    "other": "Outro"
+  },
+  "statusOptions": {
+    "received": "Recebida",
+    "negotiating": "Em negociação",
+    "accepted": "Aceita",
+    "rejected": "Recusada"
+  },
+  "schema": {
+    "numberRequired": "Informe o número",
+    "propertyRequired": "Selecione um imóvel",
+    "buyerRequired": "Selecione um comprador",
+    "amountRequired": "Informe o valor da proposta",
+    "paymentMethodRequired": "Selecione uma forma de pagamento",
+    "statusRequired": "Selecione um status",
+    "dateRequired": "Informe a data"
+  },
+  "deleteProposal": {
+    "pending": "Excluindo proposta...",
+    "success": "Proposta excluída com sucesso!",
+    "error": "Erro ao excluir a proposta"
+  },
+  "form": {
+    "pendingUpdate": "Salvando proposta...",
+    "pendingCreate": "Criando proposta...",
+    "successUpdate": "Proposta atualizada com sucesso!",
+    "successCreate": "Proposta criada com sucesso!",
+    "error": "Erro ao salvar a proposta"
+  },
+  "page": {
+    "title": "Propostas",
+    "description": "Gerencie as propostas de compra recebidas",
+    "breadcrumb": "Propostas",
+    "searchPlaceholder": "Buscar por número...",
+    "newLabel": "Nova proposta"
+  }
+}

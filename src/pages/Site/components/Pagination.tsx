@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 
 type PaginationProps = {
@@ -18,6 +19,7 @@ function visiblePages(page: number, totalPages: number) {
 }
 
 function Pagination({ total, page, limit, onPageChange }: PaginationProps) {
+  const { t } = useTranslation('site')
   const totalPages = Math.max(1, Math.ceil(total / limit))
 
   if (totalPages <= 1) return null
@@ -30,7 +32,7 @@ function Pagination({ total, page, limit, onPageChange }: PaginationProps) {
         disabled={page <= 1}
         onClick={() => onPageChange(page - 1)}
       >
-        Precedente
+        {t('pagination.previous')}
       </Button>
 
       {visiblePages(page, totalPages).map((pageNumber) => (
@@ -50,7 +52,7 @@ function Pagination({ total, page, limit, onPageChange }: PaginationProps) {
         disabled={page >= totalPages}
         onClick={() => onPageChange(page + 1)}
       >
-        Successivo
+        {t('pagination.next')}
       </Button>
     </div>
   )

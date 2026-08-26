@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getLeadControllerFindQueryKey,
@@ -13,7 +14,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
-import { leadSchema, type LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
+import { createLeadSchema, type LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
 
 const emptyValues: LeadFormValues = {
   name: '',
@@ -33,13 +34,14 @@ type UseLeadFormProps = {
 }
 
 export function useLeadForm({ lead, onSaved }: UseLeadFormProps) {
+  const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = useLeadControllerCreate()
   const { mutateAsync: update, isPending: updating } = useLeadControllerUpdateById()
 
   const form = useForm<LeadFormValues>({
-    resolver: zodResolver(leadSchema),
+    resolver: zodResolver(createLeadSchema(t)),
     defaultValues: emptyValues,
   })
 
@@ -72,14 +74,14 @@ export function useLeadForm({ lead, onSaved }: UseLeadFormProps) {
     const promise = lead?.id ? update({ id: lead.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: lead ? 'Salvataggio richiesta...' : 'Creazione richiesta...',
+      pending: lead ? t('useLeadForm.pendingUpdate') : t('useLeadForm.pendingCreate'),
       success: () => {
         invalidateList()
         onSaved()
-        return lead ? 'Richiesta aggiornata con successo!' : 'Richiesta creata con successo!'
+        return lead ? t('useLeadForm.successUpdate') : t('useLeadForm.successCreate')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio della richiesta'),
+        getErrorMessageFromRequest(error, t('useLeadForm.error')),
     })
   }
 

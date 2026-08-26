@@ -1,0 +1,159 @@
+{
+  "page": {
+    "title": "Agenda",
+    "description": "Impegni e appuntamenti dell'agenzia",
+    "breadcrumb": "Agenda",
+    "deleteEventTitle": "Eliminare l'impegno?",
+    "deleteEventDescription": "Questa azione eliminerà definitivamente \"{{title}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "eventTypeOptions": {
+    "acquisition": "Acquisizione",
+    "appointment": "Nomina",
+    "genericAppointment": "Appuntamento generico",
+    "salePreliminary": "Preliminare di vendita",
+    "propertyViewing": "Visita immobile",
+    "callScheduled": "Chiamata da fare",
+    "callCompleted": "Chiamata effettuata",
+    "rentalProposal": "Proposta di affitto",
+    "purchaseProposal": "Proposta di acquisto"
+  },
+  "confirmationStatusOptions": {
+    "pending": "In attesa",
+    "confirmed": "Confermato",
+    "cancelled": "Annullato"
+  },
+  "recurrenceOptions": {
+    "none": "Nessuna",
+    "daily": "Giornaliera",
+    "weekly": "Settimanale",
+    "monthly": "Mensile"
+  },
+  "backgroundColorOptions": {
+    "blue": "Blu",
+    "green": "Verde",
+    "red": "Rosso",
+    "orange": "Arancione",
+    "purple": "Viola",
+    "cyan": "Ciano"
+  },
+  "reminderOptions": {
+    "none": "Nessuno",
+    "atTime": "Al momento",
+    "5min": "5 minuti prima",
+    "15min": "15 minuti prima",
+    "30min": "30 minuti prima",
+    "1hour": "1 ora prima",
+    "1day": "1 giorno prima"
+  },
+  "schema": {
+    "titleMin": "Inserisci almeno 2 caratteri",
+    "typeRequired": "Seleziona un tipo",
+    "startDateRequired": "Inserisci la data",
+    "startTimeRequired": "Inserisci l’ora di inizio",
+    "endTimeRequired": "Inserisci l’ora di fine",
+    "confirmationStatusRequired": "Seleziona uno stato",
+    "reminderRequired": "Seleziona un promemoria",
+    "recurrenceRequired": "Seleziona una ricorrenza"
+  },
+  "formFields": {
+    "title": "Titolo",
+    "titlePlaceholder": "Visita immobile con cliente",
+    "type": "Tipo di impegno",
+    "place": "Luogo",
+    "placePlaceholder": "Via Roma 12, Milano",
+    "keysLocation": "Luogo delle chiavi",
+    "keysLocationPlaceholder": "Portineria, agenzia...",
+    "date": "Data",
+    "startTime": "Ora inizio",
+    "endTime": "Ora fine",
+    "confirmationStatus": "Stato di conferma",
+    "reminder": "Promemoria",
+    "recurrence": "Ricorrenza",
+    "eventColor": "Colore evento",
+    "privateEvent": "Impegno privato",
+    "description": "Descrizione"
+  },
+  "formModal": {
+    "editTitle": "Modifica impegno",
+    "createTitle": "Nuovo impegno",
+    "delete": "Elimina",
+    "cancel": "Annulla",
+    "save": "Salva"
+  },
+  "outcomeSection": {
+    "title": "Esito dell’impegno",
+    "placeholder": "Descrivi come è andata la visita/chiamata...",
+    "save": "Registra esito"
+  },
+  "participantsManager": {
+    "title": "Clienti/proprietari collegati",
+    "placeholder": "Seleziona un cliente",
+    "searchPlaceholder": "Cerca un cliente...",
+    "add": "Aggiungi"
+  },
+  "propertiesManager": {
+    "title": "Immobili collegati",
+    "placeholder": "Seleziona un immobile",
+    "searchPlaceholder": "Cerca un immobile...",
+    "add": "Aggiungi"
+  },
+  "attachmentsManager": {
+    "title": "Scheda di visualizzazione",
+    "emptyMessage": "Nessun allegato."
+  },
+  "previewModal": {
+    "typeLabel": "Tipo:",
+    "placeLabel": "Luogo:",
+    "close": "Chiudi",
+    "edit": "Modifica"
+  },
+  "toasts": {
+    "attachments": {
+      "uploading": "Caricamento allegati...",
+      "uploadSuccess": "Allegati caricati con successo!",
+      "uploadError": "Errore durante il caricamento degli allegati",
+      "deleting": "Eliminazione allegato...",
+      "deleteSuccess": "Allegato eliminato con successo!",
+      "deleteError": "Errore durante l’eliminazione dell’allegato"
+    },
+    "form": {
+      "saving": "Salvataggio impegno...",
+      "creating": "Creazione impegno...",
+      "updateSuccess": "Impegno aggiornato con successo!",
+      "createSuccess": "Impegno creato con successo!",
+      "error": "Errore durante il salvataggio dell’impegno"
+    },
+    "outcome": {
+      "saving": "Registrazione esito...",
+      "success": "Esito registrato con successo!",
+      "error": "Errore durante la registrazione dell’esito"
+    },
+    "participants": {
+      "adding": "Aggiunta cliente...",
+      "addSuccess": "Cliente collegato con successo!",
+      "addError": "Errore durante il collegamento del cliente",
+      "removing": "Rimozione cliente...",
+      "removeSuccess": "Cliente rimosso con successo!",
+      "removeError": "Errore durante la rimozione del cliente"
+    },
+    "properties": {
+      "adding": "Aggiunta immobile...",
+      "addSuccess": "Immobile collegato con successo!",
+      "addError": "Errore durante il collegamento dell’immobile",
+      "removing": "Rimozione immobile...",
+      "removeSuccess": "Immobile rimosso con successo!",
+      "removeError": "Errore durante la rimozione dell’immobile"
+    },
+    "delete": {
+      "deleting": "Eliminazione impegno...",
+      "success": "Impegno eliminato con successo!",
+      "error": "Errore durante l’eliminazione dell’impegno"
+    },
+    "reschedule": {
+      "moving": "Spostamento impegno...",
+      "success": "Impegno spostato con successo!",
+      "error": "Errore durante lo spostamento dell’impegno"
+    }
+  }
+}

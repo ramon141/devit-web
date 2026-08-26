@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -24,6 +25,7 @@ const confirmationColors: Record<string, string> = {
 }
 
 function Agenda() {
+  const { t } = useTranslation('agenda')
   const { events, setRange } = useCalendarEventList()
   const { handleDelete } = useDeleteCalendarEvent()
   const { reschedule } = useRescheduleCalendarEvent()
@@ -82,9 +84,9 @@ function Agenda() {
 
   return (
     <AppLayout
-      title="Agenda"
-      description="Impegni e appuntamenti dell'agenzia"
-      breadcrumbItems={[{ label: 'Agenda' }]}
+      title={t('agenda:page.title')}
+      description={t('agenda:page.description')}
+      breadcrumbItems={[{ label: t('agenda:page.breadcrumb') }]}
     >
       <div className="devit-calendar rounded-xl border border-border p-3">
         <FullCalendar
@@ -136,10 +138,10 @@ function Agenda() {
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare l'impegno?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.title}".`}
+        title={t('agenda:page.deleteEventTitle')}
+        description={t('agenda:page.deleteEventDescription', { title: deleteTarget?.title })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('agenda:page.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </AppLayout>

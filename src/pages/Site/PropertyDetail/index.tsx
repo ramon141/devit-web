@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { Skeleton } from '@/components/ui/skeleton'
 import { usePublicPropertyControllerFindById } from '@/api/generated/api'
 import PropertyHeader from '@/pages/Site/PropertyDetail/components/PropertyHeader'
@@ -21,11 +22,13 @@ function PropertyDetailSkeleton() {
 }
 
 function PropertyNotFound() {
+  const { t } = useTranslation('site')
+
   return (
     <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-16 text-center">
-      <h1 className="font-heading text-xl font-semibold">Immobile non trovato.</h1>
+      <h1 className="font-heading text-xl font-semibold">{t('propertyDetail.notFound')}</h1>
       <Link to="/" className="text-sm text-primary underline underline-offset-2">
-        Torna alla home
+        {t('propertyDetail.backToHome')}
       </Link>
     </div>
   )

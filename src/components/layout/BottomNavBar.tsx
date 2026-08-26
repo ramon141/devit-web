@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { MoreHorizontal } from 'lucide-react'
 import { NavLink, useLocation } from 'react-router'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { getNavItems, type NavItem } from '@/components/layout/nav-items'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
@@ -11,6 +12,7 @@ function itemPath(item: NavItem) {
 }
 
 function BottomNavBar() {
+  const { t } = useTranslation('common')
   const location = useLocation()
   const [moreOpen, setMoreOpen] = useState(false)
 
@@ -41,7 +43,7 @@ function BottomNavBar() {
             }
           >
             <item.icon className="size-5" />
-            {item.label}
+            {t(item.label)}
           </NavLink>
         ))}
 
@@ -55,7 +57,7 @@ function BottomNavBar() {
             )}
           >
             <MoreHorizontal className="size-5" />
-            Altro
+            {t('sidebar.more')}
           </button>
         )}
       </nav>
@@ -64,7 +66,7 @@ function BottomNavBar() {
         <Sheet open={moreOpen} onOpenChange={setMoreOpen}>
           <SheetContent side="bottom" className="rounded-t-2xl pb-[calc(1rem+env(safe-area-inset-bottom))]">
             <SheetHeader>
-              <SheetTitle>Altro</SheetTitle>
+              <SheetTitle>{t('sidebar.more')}</SheetTitle>
             </SheetHeader>
 
             <div className="grid gap-1 px-4 pb-2">
@@ -81,7 +83,7 @@ function BottomNavBar() {
                     }
                   >
                     <item.icon className="size-4.5" />
-                    {item.label}
+                    {t(item.label)}
                   </NavLink>
 
                   {item.children?.map((child) => (
@@ -97,7 +99,7 @@ function BottomNavBar() {
                         )
                       }
                     >
-                      {child.label}
+                      {t(child.label)}
                     </NavLink>
                   ))}
                 </div>

@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
 import {
   getSaleDocumentControllerFindQueryKey,
   useSaleDocumentControllerCreate,
@@ -11,6 +12,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useSaleDocuments(saleId: string) {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { uploadFile } = useAttachmentUpload()
@@ -39,25 +41,25 @@ export function useSaleDocuments(saleId: string) {
 
   function uploadFiles(files: File[], type: string) {
     toastPromise(Promise.all(files.map((file) => addFile(file, type))), {
-      pending: 'Caricamento documenti...',
+      pending: t('vendite.hooks.documents.uploading'),
       success: () => {
         invalidate()
-        return 'Documenti caricati con successo!'
+        return t('vendite.hooks.documents.uploadSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il caricamento dei documenti'),
+        getErrorMessageFromRequest(error, t('vendite.hooks.documents.uploadError')),
     })
   }
 
   function removeDocument(id: string) {
     toastPromise(deleteLink({ id }), {
-      pending: 'Eliminazione documento...',
+      pending: t('vendite.hooks.documents.deleting'),
       success: () => {
         invalidate()
-        return 'Documento eliminato con successo!'
+        return t('vendite.hooks.documents.deleteSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione del documento'),
+        getErrorMessageFromRequest(error, t('vendite.hooks.documents.deleteError')),
     })
   }
 

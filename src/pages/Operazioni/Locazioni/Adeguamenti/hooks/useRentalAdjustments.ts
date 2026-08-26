@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { AxiosError } from 'axios'
+import { useTranslation } from 'react-i18next'
 import {
   getRentalAdjustmentControllerFindQueryKey,
   getRentalContractControllerFindQueryKey,
@@ -12,6 +13,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useRentalAdjustments() {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const [selectedIds, setSelectedIds] = useState<string[]>([])
@@ -47,16 +49,16 @@ export function useRentalAdjustments() {
     })
 
     toastPromise(promise, {
-      pending: 'Generazione documenti...',
+      pending: t('locazioni.adeguamenti.toasts.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalAdjustmentControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })
         setSelectedIds([])
         setIndexPercent('')
-        return 'Documenti di adeguamento generati con successo!'
+        return t('locazioni.adeguamenti.toasts.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la generazione dei documenti'),
+        getErrorMessageFromRequest(error, t('locazioni.adeguamenti.toasts.error')),
     })
   }
 

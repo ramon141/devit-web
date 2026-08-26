@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import type { PersonWithRelations } from '@/api/generated/models'
@@ -11,6 +12,7 @@ type PersonFormModalProps = {
 }
 
 function PersonFormModal({ open, onOpenChange, person }: PersonFormModalProps) {
+  const { t } = useTranslation('clientes')
   const { form, isSubmitting, onSubmit } = usePersonForm({
     person,
     onSaved: () => onOpenChange(false),
@@ -20,8 +22,8 @@ function PersonFormModal({ open, onOpenChange, person }: PersonFormModalProps) {
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={person ? 'Modifica cliente' : 'Nuovo cliente'}
-      description="Dati anagrafici del cliente"
+      title={person ? t('personFormModal.editTitle') : t('personFormModal.newTitle')}
+      description={t('personFormModal.description')}
     >
       <form onSubmit={onSubmit} className="grid gap-4">
         <PersonFormFields form={form} />

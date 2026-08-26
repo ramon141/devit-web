@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -10,6 +11,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useCalendarEventOutcome(calendarEventId: string) {
+  const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const [outcome, setOutcome] = useState('')
@@ -25,14 +27,14 @@ export function useCalendarEventOutcome(calendarEventId: string) {
     const promise = create({ data: { calendarEventId, outcome } })
 
     toastPromise(promise, {
-      pending: 'Registrazione esito...',
+      pending: t('agenda:toasts.outcome.saving'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getCalendarEventOutcomeControllerFindQueryKey() })
         setOutcome('')
-        return 'Esito registrato con successo!'
+        return t('agenda:toasts.outcome.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la registrazione dell’esito'),
+        getErrorMessageFromRequest(error, t('agenda:toasts.outcome.error')),
     })
   }
 

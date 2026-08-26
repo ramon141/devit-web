@@ -1,5 +1,7 @@
+import { useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import { usePublicLeadControllerCreate } from '@/api/generated/api'
 import { useToast } from '@/contexts/ToastContext'
@@ -8,7 +10,7 @@ import {
   type ApiErrorResponse,
 } from '@/utils/getErrorMessageFromRequest'
 import {
-  contattiSchema,
+  createContattiSchema,
   type ContattiFormValues,
 } from '@/pages/Site/Contatti/schemas/contattiSchema'
 
@@ -22,8 +24,11 @@ const emptyValues: ContattiFormValues = {
 }
 
 export function useContattiForm() {
+  const { t } = useTranslation('site')
   const { toastPromise } = useToast()
   const { mutateAsync, isPending } = usePublicLeadControllerCreate()
+
+  const contattiSchema = useMemo(() => createContattiSchema(t), [t])
 
   const form = useForm<ContattiFormValues>({
     resolver: zodResolver(contattiSchema),
@@ -43,13 +48,13 @@ export function useContattiForm() {
     })
 
     toastPromise(promise, {
-      pending: 'Invio del messaggio...',
+      pending: t('contatti.toastPending'),
       success: () => {
         form.reset(emptyValues)
-        return 'Messaggio inviato con successo! Ti risponderemo al più presto.'
+        return t('contatti.toastSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’invio del messaggio'),
+        getErrorMessageFromRequest(error, t('contatti.toastError')),
     })
   }
 

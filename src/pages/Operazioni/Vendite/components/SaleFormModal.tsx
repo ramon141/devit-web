@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
@@ -17,6 +18,7 @@ type SaleFormModalProps = {
 }
 
 function SaleFormModal({ open, onOpenChange, sale }: SaleFormModalProps) {
+  const { t } = useTranslation('operazioni')
   const { form, isSubmitting, onSubmit } = useSaleForm({
     sale,
     onSaved: () => onOpenChange(false),
@@ -24,15 +26,19 @@ function SaleFormModal({ open, onOpenChange, sale }: SaleFormModalProps) {
   const [activeStep, setActiveStep] = useState('generale')
 
   const steps = [
-    { value: 'generale', label: 'Generale', step: 1 },
-    { value: 'pagamento', label: 'Pagamento', step: 2 },
-    { value: 'documenti', label: 'Documenti', step: 3, locked: !sale?.id },
-    { value: 'storico', label: 'Storico', step: 4, locked: !sale?.id },
+    { value: 'generale', label: t('vendite.formModal.generalStep'), step: 1 },
+    { value: 'pagamento', label: t('vendite.formModal.paymentStep'), step: 2 },
+    { value: 'documenti', label: t('vendite.formModal.documentsStep'), step: 3, locked: !sale?.id },
+    { value: 'storico', label: t('vendite.formModal.historyStep'), step: 4, locked: !sale?.id },
   ]
   const isDataStep = activeStep === 'generale' || activeStep === 'pagamento'
 
   return (
-    <ModalRegister open={open} onOpenChange={onOpenChange} title={sale ? 'Modifica vendita' : 'Nuova vendita'}>
+    <ModalRegister
+      open={open}
+      onOpenChange={onOpenChange}
+      title={sale ? t('vendite.formModal.editTitle') : t('vendite.formModal.newTitle')}
+    >
       <Tabs value={activeStep} onValueChange={(value) => setActiveStep(value as string)}>
         <Stepper steps={steps} />
 

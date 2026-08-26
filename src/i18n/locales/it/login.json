@@ -1,0 +1,35 @@
+{
+  "loginPanel": {
+    "welcomeBack": "Bentornato su",
+    "brand": "Devit",
+    "tagline": "Gestisci le tue proprietà in modo semplice ed efficiente"
+  },
+  "desktopLoginForm": {
+    "title": "Accedi",
+    "subtitle": "Inserisci le tue credenziali per continuare",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "tu@devit.it",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "togglePasswordSr": "Mostra/nascondi password",
+    "submit": "Accedi",
+    "forgotPassword": "Password dimenticata?"
+  },
+  "mobileFormFields": {
+    "emailLabel": "Inserisci la tua e-mail",
+    "emailPlaceholder": "username@devit.it",
+    "passwordLabel": "Inserisci la tua password",
+    "passwordPlaceholder": "••••••••",
+    "togglePasswordSr": "Mostra/nascondi password",
+    "showPassword": "Mostra password",
+    "forgotPassword": "Password dimenticata?"
+  },
+  "mobileLoginForm": {
+    "submit": "Accedi"
+  },
+  "loginSchema": {
+    "emailRequired": "L'e-mail è obbligatoria",
+    "emailInvalid": "E-mail non valida",
+    "passwordMin": "La password deve contenere almeno 6 caratteri"
+  }
+}

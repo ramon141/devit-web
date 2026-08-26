@@ -1,4 +1,5 @@
 import { Building2, Mail, MapPin, Phone } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { usePublicBranchControllerFind } from '@/api/generated/api'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { BranchWithRelations } from '@/api/generated/models'
@@ -14,6 +15,7 @@ function formatAddress(branch: BranchWithRelations): string {
 }
 
 function BranchList() {
+  const { t } = useTranslation('site')
   const { data: branches, isLoading } = usePublicBranchControllerFind()
 
   if (isLoading) {
@@ -27,11 +29,11 @@ function BranchList() {
 
   return (
     <div className="flex flex-col gap-4 rounded-xl bg-card p-6 shadow-sm">
-      <h2 className="font-heading text-lg font-semibold">Le Nostre Agenzie</h2>
+      <h2 className="font-heading text-lg font-semibold">{t('contattiBranchList.title')}</h2>
 
       {!branches?.length ? (
         <p className="text-sm text-muted-foreground">
-          Nessuna agenzia disponibile al momento. Contattaci tramite il modulo qui accanto.
+          {t('contattiBranchList.empty')}
         </p>
       ) : (
         <div className="flex flex-col gap-4">

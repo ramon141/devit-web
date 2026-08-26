@@ -1,0 +1,328 @@
+{
+  "common": {
+    "parentLabel": "Operações"
+  },
+  "locazioni": {
+    "page": {
+      "title": "Locações",
+      "description": "Gerencie os contratos de locação"
+    },
+    "index": {
+      "searchPlaceholder": "Buscar por número...",
+      "newLabel": "Novo contrato"
+    },
+    "registrazioni": {
+      "page": {
+        "title": "Registros",
+        "description": "Registro e renovação dos contratos de locação"
+      },
+      "table": {
+        "numero": "Número",
+        "scadenza": "Vencimento",
+        "statoRegistrazione": "Status de registro",
+        "registrato": "Registrado",
+        "daRegistrare": "A registrar",
+        "periodo": "Período",
+        "immobile": "Imóvel",
+        "inquilino": "Inquilino",
+        "emptyMessage": "Nenhum contrato para registrar ou renovar."
+      }
+    },
+    "scadenziario": {
+      "page": {
+        "title": "Vencimentos",
+        "description": "Contratos de locação a vencer"
+      },
+      "index": {
+        "windowLabel": "Janela de dias"
+      },
+      "table": {
+        "emptyMessage": "Nenhum contrato a vencer no período selecionado."
+      },
+      "tableColumns": {
+        "numero": "Número",
+        "scadenza": "Vencimento",
+        "affitto": "Aluguel",
+        "azioni": "Ações"
+      }
+    },
+    "adeguamenti": {
+      "page": {
+        "title": "Reajuste de aluguel",
+        "description": "Gere as comunicações de reajuste do valor de locação"
+      },
+      "index": {
+        "description": "Selecione os contratos ativos a reajustar (deixe tudo desmarcado para aplicar a todos os contratos ativos), informe a variação percentual e gere as comunicações.",
+        "indexPercentLabel": "Variação percentual do índice",
+        "indexPercentPlaceholder": "Ex. 5",
+        "generateButton": "Gerar documentos"
+      },
+      "eligibleTable": {
+        "numero": "Número",
+        "immobile": "Imóvel",
+        "inquilino": "Inquilino",
+        "proprietario": "Proprietário",
+        "affittoAttuale": "Aluguel atual",
+        "emptyMessage": "Nenhum contrato ativo encontrado."
+      },
+      "generatedTable": {
+        "title": "Últimos reajustes gerados",
+        "contratto": "Contrato",
+        "indicePercent": "Índice %",
+        "valorePrecedente": "Valor anterior",
+        "nuovoValore": "Novo valor",
+        "data": "Data"
+      },
+      "toasts": {
+        "pending": "Gerando documentos...",
+        "success": "Documentos de reajuste gerados com sucesso!",
+        "error": "Erro ao gerar os documentos"
+      }
+    },
+    "schema": {
+      "situationActive": "Ativo",
+      "situationTerminated": "Rescindido",
+      "situationClosed": "Encerrado",
+      "numberRequired": "Informe o número",
+      "propertyRequired": "Selecione um imóvel",
+      "tenantRequired": "Selecione um inquilino",
+      "ownerRequired": "Selecione um proprietário",
+      "startDateRequired": "Informe a data de início",
+      "dueDayRequired": "Informe o dia de vencimento",
+      "rentAmountRequired": "Informe o valor do aluguel",
+      "situationRequired": "Selecione uma situação"
+    },
+    "renewModal": {
+      "title": "Renovar contrato",
+      "newEndDateLabel": "Nova data de término",
+      "newAmountLabel": "Novo valor do aluguel",
+      "newAmountPlaceholder": "Deixe em branco para manter o valor atual",
+      "noteLabel": "Observação",
+      "submitLabel": "Renovar",
+      "newEndDateRequired": "Informe a nova data de término"
+    },
+    "terminationModal": {
+      "title": "Rescindir contrato",
+      "terminationDateLabel": "Data de rescisão",
+      "reasonLabel": "Motivo",
+      "penaltyLabel": "Multa",
+      "requestedByLabel": "Solicitado por",
+      "requestedByPlaceholder": "Nome do solicitante",
+      "submitLabel": "Rescindir",
+      "terminationDateRequired": "Informe a data"
+    },
+    "tableModals": {
+      "deleteTitle": "Excluir o contrato?",
+      "deleteDescription": "Esta ação excluirá definitivamente o contrato \"{{number}}\".",
+      "deleteConfirm": "Excluir"
+    },
+    "partiesFields": {
+      "propertyLabel": "Imóvel",
+      "propertyPlaceholder": "Selecione um imóvel",
+      "propertySearchPlaceholder": "Buscar por código ou título...",
+      "ownerLabel": "Proprietário",
+      "ownerPlaceholder": "Selecione um proprietário",
+      "personSearchPlaceholder": "Buscar um cliente...",
+      "tenantLabel": "Inquilino",
+      "tenantPlaceholder": "Selecione um inquilino",
+      "ownerAgentLabel": "Agente do proprietário",
+      "tenantAgentLabel": "Agente do inquilino",
+      "noneOption": "Nenhum"
+    },
+    "formFields": {
+      "numberLabel": "Número",
+      "numberPlaceholder": "LOC-0001",
+      "situationLabel": "Situação",
+      "startDateLabel": "Data de início",
+      "endDateLabel": "Data de término",
+      "registeredAtLabel": "Data de registro",
+      "renewalDueDateLabel": "Data prevista de renovação",
+      "notesLabel": "Observações"
+    },
+    "financialFields": {
+      "rentAmountLabel": "Valor do aluguel",
+      "condoFeeLabel": "Despesas de condomínio",
+      "depositAmountLabel": "Depósito caução",
+      "dueDayLabel": "Dia de vencimento",
+      "dueDayPlaceholder": "5",
+      "adjustmentIndexLabel": "Índice de reajuste",
+      "adjustmentIndexPlaceholder": "IGPM",
+      "noticeDaysLabel": "Aviso prévio (dias)",
+      "noticeDaysPlaceholder": "30"
+    },
+    "formModal": {
+      "editTitle": "Editar contrato",
+      "newTitle": "Novo contrato",
+      "dataTab": "Dados",
+      "attachmentsTab": "Anexos",
+      "historyTab": "Histórico"
+    },
+    "renewalsHistory": {
+      "emptyMessage": "Nenhuma renovação registrada."
+    },
+    "table": {
+      "emptyMessage": "Nenhum contrato encontrado."
+    },
+    "tableColumns": {
+      "numero": "Número",
+      "immobile": "Imóvel",
+      "proprietario": "Proprietário",
+      "inquilino": "Inquilino",
+      "affitto": "Aluguel",
+      "inizio": "Início",
+      "situazione": "Situação",
+      "azioni": "Ações"
+    },
+    "hooks": {
+      "attachments": {
+        "uploading": "Enviando anexos...",
+        "uploadSuccess": "Anexos enviados com sucesso!",
+        "uploadError": "Erro ao enviar os anexos",
+        "deleting": "Excluindo anexo...",
+        "deleteSuccess": "Anexo excluído com sucesso!",
+        "deleteError": "Erro ao excluir o anexo"
+      },
+      "terminate": {
+        "pending": "Rescindindo o contrato...",
+        "success": "Contrato rescindido com sucesso!",
+        "error": "Erro ao rescindir o contrato"
+      },
+      "form": {
+        "saving": "Salvando contrato...",
+        "creating": "Criando contrato...",
+        "updateSuccess": "Contrato atualizado com sucesso!",
+        "createSuccess": "Contrato criado com sucesso!",
+        "error": "Erro ao salvar o contrato"
+      },
+      "renew": {
+        "pending": "Renovando o contrato...",
+        "success": "Contrato renovado com sucesso!",
+        "error": "Erro ao renovar o contrato"
+      },
+      "delete": {
+        "pending": "Excluindo contrato...",
+        "success": "Contrato excluído com sucesso!",
+        "error": "Erro ao excluir o contrato"
+      }
+    }
+  },
+  "vendite": {
+    "page": {
+      "title": "Vendas",
+      "description": "Gerencie as vendas da agência"
+    },
+    "index": {
+      "searchPlaceholder": "Buscar por número...",
+      "newLabel": "Nova venda"
+    },
+    "schema": {
+      "paymentCash": "Dinheiro",
+      "paymentFinanced": "Financiado",
+      "paymentDirectInstallments": "Parcelas diretas",
+      "paymentExchange": "Permuta",
+      "paymentOther": "Outro",
+      "statusNegotiating": "Em negociação",
+      "statusSold": "Vendida",
+      "statusCanceled": "Cancelada",
+      "numberRequired": "Informe o número",
+      "propertyRequired": "Selecione um imóvel",
+      "buyerRequired": "Selecione um comprador",
+      "sellerRequired": "Selecione um vendedor",
+      "finalAmountRequired": "Informe o valor final",
+      "saleDateRequired": "Informe a data",
+      "paymentMethodRequired": "Selecione uma modalidade",
+      "statusRequired": "Selecione um status"
+    },
+    "financialFields": {
+      "finalAmountLabel": "Valor final",
+      "downPaymentLabel": "Entrada",
+      "commissionAmountLabel": "Valor da comissão",
+      "installmentsCountLabel": "Número de parcelas",
+      "installmentsCountPlaceholder": "12",
+      "financialInstitutionLabel": "Instituição financeira"
+    },
+    "paymentStepFields": {
+      "paymentMethodLabel": "Forma de pagamento",
+      "statusLabel": "Status",
+      "deedDateLabel": "Data da escritura",
+      "cancellationReasonLabel": "Motivo do cancelamento",
+      "notesLabel": "Observações"
+    },
+    "generalStepFields": {
+      "numberLabel": "Número",
+      "numberPlaceholder": "VEN-0001",
+      "saleDateLabel": "Data da venda"
+    },
+    "partiesFields": {
+      "propertyLabel": "Imóvel",
+      "propertyPlaceholder": "Selecione um imóvel",
+      "propertySearchPlaceholder": "Buscar por código ou título...",
+      "sellerLabel": "Vendedor",
+      "sellerPlaceholder": "Selecione um vendedor",
+      "personSearchPlaceholder": "Buscar um cliente...",
+      "buyerLabel": "Comprador",
+      "buyerPlaceholder": "Selecione um comprador",
+      "proposalLabel": "Proposta de origem",
+      "proposalPlaceholder": "Nenhuma",
+      "proposalSearchPlaceholder": "Buscar por número...",
+      "sellerAgentLabel": "Agente do vendedor",
+      "buyerAgentLabel": "Agente do comprador",
+      "noneOption": "Nenhum"
+    },
+    "formModal": {
+      "editTitle": "Editar venda",
+      "newTitle": "Nova venda",
+      "generalStep": "Geral",
+      "paymentStep": "Pagamento",
+      "documentsStep": "Documentos",
+      "historyStep": "Histórico"
+    },
+    "statusHistoryTab": {
+      "emptyMessage": "Nenhuma alteração de status registrada."
+    },
+    "table": {
+      "emptyMessage": "Nenhuma venda encontrada.",
+      "deleteTitle": "Excluir a venda?",
+      "deleteDescription": "Esta ação excluirá definitivamente a venda \"{{number}}\".",
+      "deleteConfirm": "Excluir"
+    },
+    "tableColumns": {
+      "numero": "Número",
+      "immobile": "Imóvel",
+      "venditore": "Vendedor",
+      "acquirente": "Comprador",
+      "valore": "Valor",
+      "data": "Data",
+      "stato": "Status",
+      "azioni": "Ações",
+      "lockedTooltip": "Venda concluída: não editável"
+    },
+    "documentsManager": {
+      "typePlaceholder": "Tipo de documento (opcional)",
+      "uploadLabel": "Enviar documento",
+      "emptyMessage": "Nenhum documento enviado."
+    },
+    "hooks": {
+      "form": {
+        "saving": "Salvando venda...",
+        "creating": "Criando venda...",
+        "updateSuccess": "Venda atualizada com sucesso!",
+        "createSuccess": "Venda criada com sucesso!",
+        "error": "Erro ao salvar a venda"
+      },
+      "delete": {
+        "pending": "Excluindo venda...",
+        "success": "Venda excluída com sucesso!",
+        "error": "Erro ao excluir a venda"
+      },
+      "documents": {
+        "uploading": "Enviando documentos...",
+        "uploadSuccess": "Documentos enviados com sucesso!",
+        "uploadError": "Erro ao enviar os documentos",
+        "deleting": "Excluindo documento...",
+        "deleteSuccess": "Documento excluído com sucesso!",
+        "deleteError": "Erro ao excluir o documento"
+      }
+    }
+  }
+}

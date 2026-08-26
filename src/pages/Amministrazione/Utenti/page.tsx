@@ -1,12 +1,15 @@
+import { useTranslation } from 'react-i18next'
 import SectionPage from '@/components/layout/SectionPage'
 import Utenti from '@/pages/Amministrazione/Utenti'
 
 function UtentiPage() {
+  const { t } = useTranslation('amministrazione')
+
   return (
     <SectionPage
-      title="Utenti"
-      description="Gestisci gli utenti dell'agenzia"
-      parentLabel="Amministrazione"
+      title={t('utentiPage.title')}
+      description={t('utentiPage.description')}
+      parentLabel={t('common.parentLabel')}
       parentPath="/gestionale/amministrazione/utenti"
     >
       <Utenti />

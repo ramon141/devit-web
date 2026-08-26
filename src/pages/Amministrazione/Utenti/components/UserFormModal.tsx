@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
@@ -11,6 +12,7 @@ type UserFormModalProps = {
 }
 
 function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
+  const { t } = useTranslation('amministrazione')
   const { form, avatarFiles, setAvatarFiles, avatarUrl, isSubmitting, isEditing, onSubmit } = useUserForm({
     user,
     onSaved: () => onOpenChange(false),
@@ -20,7 +22,7 @@ function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={user ? 'Modifica utente' : 'Nuovo utente'}
+      title={user ? t('userFormModal.editTitle') : t('userFormModal.newTitle')}
     >
       <form onSubmit={onSubmit} className="grid gap-4">
         <UserFormFields

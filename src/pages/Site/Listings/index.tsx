@@ -1,4 +1,6 @@
 import { Link, useSearchParams } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
 import { usePublicPropertyControllerFind } from '@/api/generated/api'
 import { Skeleton } from '@/components/ui/skeleton'
 import PropertyCard from '@/pages/Site/components/PropertyCard'
@@ -11,10 +13,10 @@ type ListingsProps = {
   fixedPurpose?: 'sale' | 'rent'
 }
 
-function pageTitle(fixedPurpose?: 'sale' | 'rent') {
-  if (fixedPurpose === 'sale') return 'Proprietà in Vendita'
-  if (fixedPurpose === 'rent') return 'Proprietà in Affitto'
-  return 'Risultati di ricerca'
+function pageTitle(t: TFunction<'site'>, fixedPurpose?: 'sale' | 'rent') {
+  if (fixedPurpose === 'sale') return t('listings.titleSale')
+  if (fixedPurpose === 'rent') return t('listings.titleRent')
+  return t('listings.titleSearch')
 }
 
 function numberParam(params: URLSearchParams, key: string) {
@@ -23,6 +25,7 @@ function numberParam(params: URLSearchParams, key: string) {
 }
 
 function Listings({ fixedPurpose }: ListingsProps) {
+  const { t } = useTranslation('site')
   const [searchParams, setSearchParams] = useSearchParams()
 
   const page = numberParam(searchParams, 'page') ?? 1
@@ -52,17 +55,19 @@ function Listings({ fixedPurpose }: ListingsProps) {
     setSearchParams(next)
   }
 
-  const title = pageTitle(fixedPurpose)
+  const title = pageTitle(t, fixedPurpose)
 
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8">
       <nav className="text-sm text-muted-foreground">
-        <Link to="/">Home</Link> {'>'} {title}
+        <Link to="/">{t('listings.breadcrumbHome')}</Link> {'>'} {title}
       </nav>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl font-bold">
-          {isLoading ? '...' : data?.total ?? 0} Proprietà
+          {t('listings.propertiesCount', {
+            count: isLoading ? '...' : data?.total ?? 0,
+          })}
         </h1>
 
         <PropertySort value={sort} onChange={(value) => updateParam('sort', value)} />
@@ -77,7 +82,7 @@ function Listings({ fixedPurpose }: ListingsProps) {
       )}
 
       {!isLoading && (data?.items?.length ?? 0) === 0 && (
-        <p className="text-muted-foreground">Nessuna proprietà trovata con questi criteri.</p>
+        <p className="text-muted-foreground">{t('listings.noResults')}</p>
       )}
 
       {!isLoading && (data?.items?.length ?? 0) > 0 && (

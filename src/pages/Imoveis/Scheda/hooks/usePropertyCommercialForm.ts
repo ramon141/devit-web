@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   usePropertyCommercialDetailControllerFind,
@@ -51,6 +52,7 @@ const emptyValues: CommercialFormValues = {
 }
 
 export function usePropertyCommercialForm(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const { toastPromise } = useToast()
   const { data: rows, isLoading } = usePropertyCommercialDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
@@ -104,10 +106,10 @@ export function usePropertyCommercialForm(propertyId: string) {
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: 'Salvataggio dati commerciali...',
-      success: 'Dati commerciali aggiornati con successo!',
+      pending: t('toasts.commercialForm.pending'),
+      success: t('toasts.commercialForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio dei dati commerciali'),
+        getErrorMessageFromRequest(error, t('toasts.commercialForm.error')),
     })
   }
 

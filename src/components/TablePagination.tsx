@@ -1,4 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 
 type TablePaginationProps = {
@@ -15,12 +16,13 @@ function TablePagination({
   totalItems,
   onPageChange,
 }: TablePaginationProps) {
+  const { t } = useTranslation('common')
   const totalPages = Math.max(1, Math.ceil(totalItems / pageSize))
 
   return (
     <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
       <span>
-        Pagina {page} di {totalPages} · {totalItems} risultati
+        {t('tablePagination.summary', { page, totalPages, totalItems })}
       </span>
 
       <div className="flex gap-2">

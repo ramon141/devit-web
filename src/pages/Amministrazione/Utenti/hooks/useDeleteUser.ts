@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteUser() {
+  const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: deleteUser } = useUserControllerDeleteById()
@@ -17,14 +19,14 @@ export function useDeleteUser() {
     const promise = deleteUser({ id })
 
     toastPromise(promise, {
-      pending: 'Eliminazione utente...',
+      pending: t('deleteUser.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getUserControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getUserControllerCountQueryKey() })
-        return 'Utente eliminato con successo!'
+        return t('deleteUser.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione dell’utente'),
+        getErrorMessageFromRequest(error, t('deleteUser.error')),
     })
   }
 

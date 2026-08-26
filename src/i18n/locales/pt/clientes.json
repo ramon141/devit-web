@@ -1,0 +1,194 @@
+{
+  "page": {
+    "title": "Clientes",
+    "description": "Gerencie o cadastro de clientes e contatos",
+    "parentLabel": "Clientes"
+  },
+  "anagrafica": {
+    "searchPlaceholder": "Buscar um cliente por nome...",
+    "newLabel": "Novo cliente"
+  },
+  "personRoleOptions": {
+    "owner": "Proprietário",
+    "tenant": "Inquilino",
+    "buyer": "Comprador",
+    "guarantor": "Fiador",
+    "contact": "Contato"
+  },
+  "personSchema": {
+    "nameMin": "Digite pelo menos 2 caracteres",
+    "roleRequired": "Selecione um papel",
+    "emailInvalid": "E-mail inválido",
+    "cityRequired": "Digite a cidade para salvar o endereço"
+  },
+  "personFormFields": {
+    "name": "Nome",
+    "namePlaceholder": "Mario Rossi",
+    "role": "Papel",
+    "email": "E-mail",
+    "emailPlaceholder": "mario@devit.it",
+    "birthDate": "Data de nascimento",
+    "phone": "Telefone",
+    "phonePlaceholder": "+39 333 1234567",
+    "secondaryPhone": "Telefone secundário",
+    "documentType": "Tipo de documento",
+    "documentTypePlaceholder": "Carteira de identidade",
+    "documentNumber": "Número do documento",
+    "notes": "Observações",
+    "active": "Ativo",
+    "country": "País",
+    "countryPlaceholder": "Itália",
+    "city": "Cidade",
+    "cityPlaceholder": "Milão",
+    "region": "Região",
+    "regionPlaceholder": "Lombardia",
+    "postalCode": "CEP",
+    "postalCodePlaceholder": "20121",
+    "street": "Rua",
+    "streetPlaceholder": "Via Roma",
+    "number": "Número",
+    "numberPlaceholder": "12",
+    "neighborhood": "Bairro",
+    "neighborhoodPlaceholder": "Centro",
+    "complement": "Complemento",
+    "complementPlaceholder": "Andar 3, apto 2"
+  },
+  "personFormModal": {
+    "editTitle": "Editar cliente",
+    "newTitle": "Novo cliente",
+    "description": "Dados cadastrais do cliente"
+  },
+  "personTable": {
+    "emptyMessage": "Nenhum cliente encontrado.",
+    "deleteTitle": "Excluir o cliente?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
+    "deleteConfirm": "Excluir"
+  },
+  "personTableColumns": {
+    "name": "Nome",
+    "role": "Papel",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "actions": "Ações"
+  },
+  "usePersonForm": {
+    "pendingUpdate": "Salvando cliente...",
+    "pendingCreate": "Criando cliente...",
+    "successUpdate": "Cliente atualizado com sucesso!",
+    "successCreate": "Cliente criado com sucesso!",
+    "error": "Erro ao salvar o cliente"
+  },
+  "useDeletePerson": {
+    "pending": "Excluindo cliente...",
+    "success": "Cliente excluído com sucesso!",
+    "error": "Erro ao excluir o cliente"
+  },
+  "leadsPage": {
+    "title": "Solicitações",
+    "description": "Funil de captação de contatos",
+    "parentLabel": "Clientes"
+  },
+  "leads": {
+    "newButton": "Nova solicitação",
+    "deleteTitle": "Excluir a solicitação?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
+    "deleteConfirm": "Excluir"
+  },
+  "leadStatusOptions": {
+    "new": "Novo",
+    "contacted": "Contatado",
+    "negotiating": "Em negociação",
+    "converted": "Convertido",
+    "lost": "Perdido"
+  },
+  "leadSourceOptions": {
+    "portal": "Portal",
+    "site": "Site",
+    "phone": "Telefone",
+    "referral": "Indicação",
+    "socialMedia": "Redes sociais",
+    "walkIn": "Visita espontânea",
+    "other": "Outro"
+  },
+  "leadSchema": {
+    "nameMin": "Digite pelo menos 2 caracteres",
+    "emailInvalid": "E-mail inválido",
+    "statusRequired": "Selecione um status"
+  },
+  "leadFormFields": {
+    "name": "Nome",
+    "namePlaceholder": "Mario Rossi",
+    "phone": "Telefone",
+    "phonePlaceholder": "+39 333 1234567",
+    "email": "E-mail",
+    "firstContactAt": "Primeiro contato",
+    "status": "Status",
+    "source": "Origem",
+    "sourcePlaceholder": "Nenhuma",
+    "assignedTo": "Responsável",
+    "assignedToPlaceholder": "Nenhum",
+    "lossReason": "Motivo da perda",
+    "notes": "Observações"
+  },
+  "leadFormModal": {
+    "editTitle": "Editar solicitação",
+    "newTitle": "Nova solicitação"
+  },
+  "useLeadForm": {
+    "pendingUpdate": "Salvando solicitação...",
+    "pendingCreate": "Criando solicitação...",
+    "successUpdate": "Solicitação atualizada com sucesso!",
+    "successCreate": "Solicitação criada com sucesso!",
+    "error": "Erro ao salvar a solicitação"
+  },
+  "useDeleteLead": {
+    "pending": "Excluindo solicitação...",
+    "success": "Solicitação excluída com sucesso!",
+    "error": "Erro ao excluir a solicitação"
+  },
+  "useMoveLead": {
+    "pending": "Movendo solicitação...",
+    "success": "Solicitação movida com sucesso!",
+    "error": "Erro ao mover a solicitação"
+  },
+  "scheda": {
+    "defaultTitle": "Ficha do cliente",
+    "description": "Cadastro completo do cliente",
+    "breadcrumbClients": "Clientes",
+    "tabDati": "Dados",
+    "tabAllegati": "Anexos",
+    "tabImmobili": "Imóveis",
+    "tabAgenda": "Agenda",
+    "tabComunicazioni": "Comunicações"
+  },
+  "schedaAgenda": {
+    "empty": "Nenhum compromisso vinculado."
+  },
+  "schedaAllegati": {
+    "uploadLabel": "Enviar documento",
+    "empty": "Nenhum anexo."
+  },
+  "schedaComunicazioni": {
+    "empty": "Nenhuma comunicação registrada."
+  },
+  "schedaDati": {
+    "saveButton": "Salvar alterações"
+  },
+  "schedaImmobili": {
+    "empty": "Nenhum imóvel vinculado.",
+    "owner": "Proprietário",
+    "tenant": "Inquilino",
+    "buyer": "Comprador",
+    "proposal": "Proposta",
+    "contractPrefix": "Contrato {{number}}",
+    "salePrefix": "Venda {{number}}"
+  },
+  "usePersonAttachments": {
+    "pendingUpload": "Enviando anexos...",
+    "successUpload": "Anexos enviados com sucesso!",
+    "errorUpload": "Erro ao enviar os anexos",
+    "pendingDelete": "Excluindo anexo...",
+    "successDelete": "Anexo excluído com sucesso!",
+    "errorDelete": "Erro ao excluir o anexo"
+  }
+}

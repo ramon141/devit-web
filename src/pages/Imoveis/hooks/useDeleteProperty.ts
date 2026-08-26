@@ -1,4 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPropertyControllerCountQueryKey,
@@ -9,6 +10,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteProperty() {
+  const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: deleteProperty } = usePropertyControllerDeleteById()
@@ -17,14 +19,14 @@ export function useDeleteProperty() {
     const promise = deleteProperty({ id })
 
     toastPromise(promise, {
-      pending: 'Eliminazione immobile...',
+      pending: t('toasts.deleteProperty.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPropertyControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getPropertyControllerCountQueryKey() })
-        return 'Immobile eliminato con successo!'
+        return t('toasts.deleteProperty.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione dell’immobile'),
+        getErrorMessageFromRequest(error, t('toasts.deleteProperty.error')),
     })
   }
 

@@ -1,4 +1,5 @@
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import SelectField from '@/components/SelectField'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -15,6 +16,7 @@ type RentalPartiesFieldsProps = {
 }
 
 function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
+  const { t } = useTranslation('operazioni')
   const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
@@ -39,12 +41,12 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
         name="propertyId"
         render={({ field }) => (
           <SearchableSelect
-            label="Immobile"
+            label={t('locazioni.partiesFields.propertyLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={propertyOptions}
-            placeholder="Seleziona un immobile"
-            searchPlaceholder="Cerca per codice o titolo..."
+            placeholder={t('locazioni.partiesFields.propertyPlaceholder')}
+            searchPlaceholder={t('locazioni.partiesFields.propertySearchPlaceholder')}
             error={errors.propertyId?.message}
           />
         )}
@@ -55,12 +57,12 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
         name="ownerId"
         render={({ field }) => (
           <SearchableSelect
-            label="Proprietario"
+            label={t('locazioni.partiesFields.ownerLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={personOptions}
-            placeholder="Seleziona un proprietario"
-            searchPlaceholder="Cerca un cliente..."
+            placeholder={t('locazioni.partiesFields.ownerPlaceholder')}
+            searchPlaceholder={t('locazioni.partiesFields.personSearchPlaceholder')}
             error={errors.ownerId?.message}
           />
         )}
@@ -71,18 +73,21 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
         name="tenantId"
         render={({ field }) => (
           <SearchableSelect
-            label="Inquilino"
+            label={t('locazioni.partiesFields.tenantLabel')}
             value={field.value}
             onValueChange={field.onChange}
             options={personOptions}
-            placeholder="Seleziona un inquilino"
-            searchPlaceholder="Cerca un cliente..."
+            placeholder={t('locazioni.partiesFields.tenantPlaceholder')}
+            searchPlaceholder={t('locazioni.partiesFields.personSearchPlaceholder')}
             error={errors.tenantId?.message}
           />
         )}
       />
 
-      <FormFieldWrapper label="Agente del proprietario" error={errors.ownerAgentId?.message}>
+      <FormFieldWrapper
+        label={t('locazioni.partiesFields.ownerAgentLabel')}
+        error={errors.ownerAgentId?.message}
+      >
         <Controller
           control={control}
           name="ownerAgentId"
@@ -91,13 +96,16 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
               value={field.value}
               onValueChange={field.onChange}
               options={userOptions}
-              placeholder="Nessuno"
+              placeholder={t('locazioni.partiesFields.noneOption')}
             />
           )}
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Agente dell'inquilino" error={errors.tenantAgentId?.message}>
+      <FormFieldWrapper
+        label={t('locazioni.partiesFields.tenantAgentLabel')}
+        error={errors.tenantAgentId?.message}
+      >
         <Controller
           control={control}
           name="tenantAgentId"
@@ -106,7 +114,7 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
               value={field.value}
               onValueChange={field.onChange}
               options={userOptions}
-              placeholder="Nessuno"
+              placeholder={t('locazioni.partiesFields.noneOption')}
             />
           )}
         />

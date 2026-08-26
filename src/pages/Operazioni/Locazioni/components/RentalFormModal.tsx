@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
@@ -14,6 +15,7 @@ type RentalFormModalProps = {
 }
 
 function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps) {
+  const { t } = useTranslation('operazioni')
   const { form, isSubmitting, onSubmit } = useRentalContractForm({
     contract,
     onSaved: () => onOpenChange(false),
@@ -23,16 +25,16 @@ function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps)
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={contract ? 'Modifica contratto' : 'Nuovo contratto'}
+      title={contract ? t('locazioni.formModal.editTitle') : t('locazioni.formModal.newTitle')}
     >
       <Tabs defaultValue="dati" className="w-full">
         <TabsList>
-          <TabsTrigger value="dati">Dati</TabsTrigger>
+          <TabsTrigger value="dati">{t('locazioni.formModal.dataTab')}</TabsTrigger>
           <TabsTrigger value="allegati" disabled={!contract?.id}>
-            Allegati
+            {t('locazioni.formModal.attachmentsTab')}
           </TabsTrigger>
           <TabsTrigger value="storico" disabled={!contract?.id}>
-            Storico
+            {t('locazioni.formModal.historyTab')}
           </TabsTrigger>
         </TabsList>
 

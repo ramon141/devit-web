@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPropertyOwnerControllerFindQueryKey,
@@ -12,6 +13,7 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
 export function usePropertyOwners(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const [personId, setPersonId] = useState('')
@@ -36,27 +38,27 @@ export function usePropertyOwners(propertyId: string) {
     })
 
     toastPromise(promise, {
-      pending: 'Aggiunta proprietario...',
+      pending: t('toasts.owners.addPending'),
       success: () => {
         invalidate()
         setPersonId('')
         setPercent('')
-        return 'Proprietario aggiunto con successo!'
+        return t('toasts.owners.addSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’aggiunta del proprietario'),
+        getErrorMessageFromRequest(error, t('toasts.owners.addError')),
     })
   }
 
   function removeOwner(id: string) {
     toastPromise(remove({ id }), {
-      pending: 'Rimozione proprietario...',
+      pending: t('toasts.owners.removePending'),
       success: () => {
         invalidate()
-        return 'Proprietario rimosso con successo!'
+        return t('toasts.owners.removeSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la rimozione del proprietario'),
+        getErrorMessageFromRequest(error, t('toasts.owners.removeError')),
     })
   }
 

@@ -1,12 +1,13 @@
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import { useUserControllerFind } from '@/api/generated/api'
 import {
-  leadSourceOptions,
-  leadStatusOptions,
+  getLeadSourceOptions,
+  getLeadStatusOptions,
   type LeadFormValues,
 } from '@/pages/Clientes/Leads/schemas/leadSchema'
 
@@ -15,30 +16,42 @@ type LeadFormFieldsProps = {
 }
 
 function LeadFormFields({ form }: LeadFormFieldsProps) {
+  const { t } = useTranslation('clientes')
   const { register, control } = form
   const { errors } = useFormState({ control })
   const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
   const userOptions = (users ?? []).map((user) => ({ value: user.id ?? '', label: user.fullName }))
+  const leadStatusOptions = getLeadStatusOptions(t)
+  const leadSourceOptions = getLeadSourceOptions(t)
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper label="Nome" required error={errors.name?.message}>
-        <Input {...register('name')} placeholder="Mario Rossi" />
+      <FormFieldWrapper label={t('leadFormFields.name')} required error={errors.name?.message}>
+        <Input
+          {...register('name')}
+          placeholder={t('leadFormFields.namePlaceholder')}
+        />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Telefono" error={errors.phone?.message}>
-        <Input {...register('phone')} placeholder="+39 333 1234567" />
+      <FormFieldWrapper label={t('leadFormFields.phone')} error={errors.phone?.message}>
+        <Input
+          {...register('phone')}
+          placeholder={t('leadFormFields.phonePlaceholder')}
+        />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="E-mail" error={errors.email?.message}>
+      <FormFieldWrapper label={t('leadFormFields.email')} error={errors.email?.message}>
         <Input {...register('email')} type="email" />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Primo contatto" error={errors.firstContactAt?.message}>
+      <FormFieldWrapper
+        label={t('leadFormFields.firstContactAt')}
+        error={errors.firstContactAt?.message}
+      >
         <Input {...register('firstContactAt')} type="date" />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Stato" required error={errors.status?.message}>
+      <FormFieldWrapper label={t('leadFormFields.status')} required error={errors.status?.message}>
         <Controller
           control={control}
           name="status"
@@ -48,7 +61,7 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Origine" error={errors.source?.message}>
+      <FormFieldWrapper label={t('leadFormFields.source')} error={errors.source?.message}>
         <Controller
           control={control}
           name="source"
@@ -57,30 +70,38 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
               value={field.value ?? undefined}
               onValueChange={field.onChange}
               options={leadSourceOptions}
-              placeholder="Nessuna"
+              placeholder={t('leadFormFields.sourcePlaceholder')}
             />
           )}
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label="Responsabile" error={errors.assignedToId?.message}>
+      <FormFieldWrapper
+        label={t('leadFormFields.assignedTo')}
+        error={errors.assignedToId?.message}
+      >
         <Controller
           control={control}
           name="assignedToId"
           render={({ field }) => (
-            <SelectField value={field.value} onValueChange={field.onChange} options={userOptions} placeholder="Nessuno" />
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder={t('leadFormFields.assignedToPlaceholder')}
+            />
           )}
         />
       </FormFieldWrapper>
 
       <div className="sm:col-span-2">
-        <FormFieldWrapper label="Motivo di perdita" error={errors.lossReason?.message}>
+        <FormFieldWrapper label={t('leadFormFields.lossReason')} error={errors.lossReason?.message}>
           <Input {...register('lossReason')} />
         </FormFieldWrapper>
       </div>
 
       <div className="sm:col-span-2">
-        <FormFieldWrapper label="Note" error={errors.notes?.message}>
+        <FormFieldWrapper label={t('leadFormFields.notes')} error={errors.notes?.message}>
           <Textarea {...register('notes')} rows={3} />
         </FormFieldWrapper>
       </div>

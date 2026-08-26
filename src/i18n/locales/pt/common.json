@@ -1,0 +1,82 @@
+{
+  "notFound": {
+    "message": "Página não encontrada.",
+    "backHome": "Voltar para a home"
+  },
+  "auth": {
+    "tokenMissing": "Token inexistente. Tente fazer login novamente."
+  },
+  "attachmentListManager": {
+    "uploadLabel": "Anexar arquivo",
+    "emptyMessage": "Nenhum anexo enviado."
+  },
+  "chart": {
+    "noData": "Nenhum dado disponível."
+  },
+  "confirmPopup": {
+    "confirm": "Confirmar",
+    "cancel": "Cancelar"
+  },
+  "fileUpload": {
+    "clickToUpload": "Clique para enviar",
+    "dragHint": "ou arraste o arquivo aqui",
+    "removeFile": "Remover {{fileName}}"
+  },
+  "formModalFooter": {
+    "save": "Salvar",
+    "cancel": "Cancelar"
+  },
+  "listToolbar": {
+    "searchLabel": "Buscar",
+    "searchPlaceholder": "Buscar...",
+    "newLabel": "Novo"
+  },
+  "searchableSelect": {
+    "placeholder": "Selecione uma opção",
+    "searchPlaceholder": "Buscar...",
+    "emptyText": "Nenhum resultado."
+  },
+  "selectField": {
+    "placeholder": "Selecione"
+  },
+  "tablePagination": {
+    "summary": "Página {{page}} de {{totalPages}} · {{totalItems}} resultados"
+  },
+  "sidebar": {
+    "collapseMenu": "Recolher menu",
+    "expandMenu": "Expandir menu",
+    "more": "Mais",
+    "nav": {
+      "bacheca": "Painel",
+      "agenda": "Agenda",
+      "proprieta": "Imóveis",
+      "clienti": "Clientes",
+      "richieste": "Solicitações",
+      "proposte": "Propostas",
+      "operazioni": "Operações",
+      "vendite": "Vendas",
+      "locazioni": "Locações",
+      "adeguamentoCanone": "Reajuste de aluguel",
+      "scadenziario": "Vencimentos",
+      "registrazioni": "Registros",
+      "marketing": "Marketing",
+      "statistiche": "Estatísticas",
+      "amministrazione": "Administração",
+      "utenti": "Usuários",
+      "filiali": "Filiais",
+      "categorie": "Categorias",
+      "banner": "Banner",
+      "auditLog": "Log de auditoria",
+      "componenti": "Componentes"
+    }
+  },
+  "notificationsPopover": {
+    "title": "Notificações",
+    "empty": "Nenhuma notificação.",
+    "viewAll": "Ver todas"
+  },
+  "sessionInfo": {
+    "myProfile": "Meu perfil",
+    "logout": "Sair"
+  }
+}

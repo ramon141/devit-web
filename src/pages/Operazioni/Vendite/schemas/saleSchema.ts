@@ -1,39 +1,51 @@
 import { z } from 'zod'
+import type { TFunction } from 'i18next'
 import { SalePaymentMethod, SaleStatus } from '@/api/generated/models'
 
-export const salePaymentMethodOptions = [
-  { value: SalePaymentMethod.cash, label: 'Contanti' },
-  { value: SalePaymentMethod.financed, label: 'Finanziato' },
-  { value: SalePaymentMethod.direct_installments, label: 'Rate dirette' },
-  { value: SalePaymentMethod.exchange, label: 'Permuta' },
-  { value: SalePaymentMethod.other, label: 'Altro' },
-]
+export function getSalePaymentMethodOptions(t: TFunction) {
+  return [
+    { value: SalePaymentMethod.cash, label: t('operazioni:vendite.schema.paymentCash') },
+    { value: SalePaymentMethod.financed, label: t('operazioni:vendite.schema.paymentFinanced') },
+    {
+      value: SalePaymentMethod.direct_installments,
+      label: t('operazioni:vendite.schema.paymentDirectInstallments'),
+    },
+    { value: SalePaymentMethod.exchange, label: t('operazioni:vendite.schema.paymentExchange') },
+    { value: SalePaymentMethod.other, label: t('operazioni:vendite.schema.paymentOther') },
+  ]
+}
 
-export const saleStatusOptions = [
-  { value: SaleStatus.negotiating, label: 'In trattativa' },
-  { value: SaleStatus.sold, label: 'Venduta' },
-  { value: SaleStatus.canceled, label: 'Annullata' },
-]
+export function getSaleStatusOptions(t: TFunction) {
+  return [
+    { value: SaleStatus.negotiating, label: t('operazioni:vendite.schema.statusNegotiating') },
+    { value: SaleStatus.sold, label: t('operazioni:vendite.schema.statusSold') },
+    { value: SaleStatus.canceled, label: t('operazioni:vendite.schema.statusCanceled') },
+  ]
+}
 
-export const saleSchema = z.object({
-  number: z.string().min(1, 'Inserisci il numero'),
-  propertyId: z.string().min(1, 'Seleziona un immobile'),
-  buyerId: z.string().min(1, 'Seleziona un acquirente'),
-  sellerId: z.string().min(1, 'Seleziona un venditore'),
-  finalAmount: z.string().min(1, 'Inserisci il valore finale'),
-  saleDate: z.string().min(1, 'Inserisci la data'),
-  deedDate: z.string().optional(),
-  paymentMethod: z.enum(SalePaymentMethod, { error: 'Seleziona una modalità' }),
-  financialInstitution: z.string().optional(),
-  downPayment: z.string().optional(),
-  installmentsCount: z.string().optional(),
-  commissionAmount: z.string().optional(),
-  status: z.enum(SaleStatus, { error: 'Seleziona uno stato' }),
-  cancellationReason: z.string().optional(),
-  notes: z.string().optional(),
-  proposalId: z.string().optional(),
-  sellerAgentId: z.string().optional(),
-  buyerAgentId: z.string().optional(),
-})
+export function createSaleSchema(t: TFunction) {
+  return z.object({
+    number: z.string().min(1, t('operazioni:vendite.schema.numberRequired')),
+    propertyId: z.string().min(1, t('operazioni:vendite.schema.propertyRequired')),
+    buyerId: z.string().min(1, t('operazioni:vendite.schema.buyerRequired')),
+    sellerId: z.string().min(1, t('operazioni:vendite.schema.sellerRequired')),
+    finalAmount: z.string().min(1, t('operazioni:vendite.schema.finalAmountRequired')),
+    saleDate: z.string().min(1, t('operazioni:vendite.schema.saleDateRequired')),
+    deedDate: z.string().optional(),
+    paymentMethod: z.enum(SalePaymentMethod, {
+      error: t('operazioni:vendite.schema.paymentMethodRequired'),
+    }),
+    financialInstitution: z.string().optional(),
+    downPayment: z.string().optional(),
+    installmentsCount: z.string().optional(),
+    commissionAmount: z.string().optional(),
+    status: z.enum(SaleStatus, { error: t('operazioni:vendite.schema.statusRequired') }),
+    cancellationReason: z.string().optional(),
+    notes: z.string().optional(),
+    proposalId: z.string().optional(),
+    sellerAgentId: z.string().optional(),
+    buyerAgentId: z.string().optional(),
+  })
+}
 
-export type SaleFormValues = z.infer<typeof saleSchema>
+export type SaleFormValues = z.infer<ReturnType<typeof createSaleSchema>>

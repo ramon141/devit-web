@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
@@ -9,27 +10,43 @@ type RegistrazioniTableProps = {
 }
 
 function RegistrazioniTable({ contracts, isLoading }: RegistrazioniTableProps) {
+  const { t } = useTranslation('operazioni')
+
   const columns: DataTableColumn<RentalContractWithRelations>[] = [
-    { header: 'Numero', cell: (contract) => <span className="font-medium">{contract.number}</span> },
-    { header: 'Scadenza', cell: (contract) => formatDate(contract.renewalDueDate) },
     {
-      header: 'Stato registrazione',
+      header: t('locazioni.registrazioni.table.numero'),
+      cell: (contract) => <span className="font-medium">{contract.number}</span>,
+    },
+    {
+      header: t('locazioni.registrazioni.table.scadenza'),
+      cell: (contract) => formatDate(contract.renewalDueDate),
+    },
+    {
+      header: t('locazioni.registrazioni.table.statoRegistrazione'),
       cell: (contract) => (
         <Badge variant={contract.registeredAt ? 'secondary' : 'destructive'}>
-          {contract.registeredAt ? 'Registrato' : 'Da registrare'}
+          {contract.registeredAt
+            ? t('locazioni.registrazioni.table.registrato')
+            : t('locazioni.registrazioni.table.daRegistrare')}
         </Badge>
       ),
     },
     {
-      header: 'Periodo',
+      header: t('locazioni.registrazioni.table.periodo'),
       cell: (contract) => (
         <>
           {formatDate(contract.startDate)} – {formatDate(contract.endDate)}
         </>
       ),
     },
-    { header: 'Immobile', cell: (contract) => contract.property?.code ?? '—' },
-    { header: 'Inquilino', cell: (contract) => contract.tenant?.name ?? '—' },
+    {
+      header: t('locazioni.registrazioni.table.immobile'),
+      cell: (contract) => contract.property?.code ?? '—',
+    },
+    {
+      header: t('locazioni.registrazioni.table.inquilino'),
+      cell: (contract) => contract.tenant?.name ?? '—',
+    },
   ]
 
   return (
@@ -38,7 +55,7 @@ function RegistrazioniTable({ contracts, isLoading }: RegistrazioniTableProps) {
       data={contracts}
       keyExtractor={(contract) => contract.id ?? ''}
       isLoading={isLoading}
-      emptyMessage="Nessun contratto da registrare o rinnovare."
+      emptyMessage={t('locazioni.registrazioni.table.emptyMessage')}
     />
   )
 }

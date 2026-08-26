@@ -1,4 +1,5 @@
 import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
@@ -10,27 +11,28 @@ type PropertyPriceDetailSectionProps = {
   propertyId: string
 }
 
-const flagFields = [
-  { name: 'negotiable', label: 'Prezzo trattabile' },
-  { name: 'priceFrom', label: 'Prezzo "a partire da"' },
-  { name: 'hiddenOnPrint', label: 'Nascosto su stampati' },
-  { name: 'hiddenOnInternet', label: 'Nascosto su internet' },
-  { name: 'boxIncludedInPrice', label: 'Box incluso nel prezzo' },
-  { name: 'auction', label: 'Immobile all’asta' },
-] as const
-
 function PropertyPriceDetailSection({ propertyId }: PropertyPriceDetailSectionProps) {
+  const { t } = useTranslation('imoveis')
   const { form, isLoading, isSubmitting, onSubmit } = usePropertyPriceDetailForm(propertyId)
   const { register, control } = form
+
+  const flagFields = [
+    { name: 'negotiable', label: t('scheda.priceDetailSection.flags.negotiable') },
+    { name: 'priceFrom', label: t('scheda.priceDetailSection.flags.priceFrom') },
+    { name: 'hiddenOnPrint', label: t('scheda.priceDetailSection.flags.hiddenOnPrint') },
+    { name: 'hiddenOnInternet', label: t('scheda.priceDetailSection.flags.hiddenOnInternet') },
+    { name: 'boxIncludedInPrice', label: t('scheda.priceDetailSection.flags.boxIncludedInPrice') },
+    { name: 'auction', label: t('scheda.priceDetailSection.flags.auction') },
+  ] as const
 
   if (isLoading) return null
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
       <Separator className="sm:col-span-2" />
-      <p className="text-sm font-medium sm:col-span-2">Opzioni di prezzo</p>
+      <p className="text-sm font-medium sm:col-span-2">{t('scheda.priceDetailSection.title')}</p>
 
-      <FormFieldWrapper label="Valore di stima">
+      <FormFieldWrapper label={t('scheda.priceDetailSection.estimatedValueLabel')}>
         <Input {...register('estimatedValue')} type="number" />
       </FormFieldWrapper>
 
@@ -51,7 +53,7 @@ function PropertyPriceDetailSection({ propertyId }: PropertyPriceDetailSectionPr
       </div>
 
       <div className="flex justify-end sm:col-span-2">
-        <Button type="submit" disabled={isSubmitting}>Salva opzioni di prezzo</Button>
+        <Button type="submit" disabled={isSubmitting}>{t('scheda.priceDetailSection.save')}</Button>
       </div>
     </form>
   )

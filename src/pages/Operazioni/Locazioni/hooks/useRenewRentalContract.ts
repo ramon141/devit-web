@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import type { TFunction } from 'i18next'
 import { z } from 'zod'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
@@ -13,13 +15,15 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
 
-export const renewRentalContractSchema = z.object({
-  newEndDate: z.string().min(1, 'Inserisci la nuova data di fine'),
-  newAmount: z.string().optional(),
-  note: z.string().optional(),
-})
+function createRenewRentalContractSchema(t: TFunction) {
+  return z.object({
+    newEndDate: z.string().min(1, t('operazioni:locazioni.renewModal.newEndDateRequired')),
+    newAmount: z.string().optional(),
+    note: z.string().optional(),
+  })
+}
 
-export type RenewRentalContractFormValues = z.infer<typeof renewRentalContractSchema>
+export type RenewRentalContractFormValues = z.infer<ReturnType<typeof createRenewRentalContractSchema>>
 
 const emptyValues: RenewRentalContractFormValues = {
   newEndDate: '',
@@ -33,12 +37,13 @@ type UseRenewRentalContractProps = {
 }
 
 export function useRenewRentalContract({ contractId, onRenewed }: UseRenewRentalContractProps) {
+  const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const { mutateAsync: renew, isPending } = useRentalContractRenewControllerRenew()
 
   const form = useForm<RenewRentalContractFormValues>({
-    resolver: zodResolver(renewRentalContractSchema),
+    resolver: zodResolver(createRenewRentalContractSchema(t)),
     defaultValues: emptyValues,
   })
 
@@ -58,14 +63,14 @@ export function useRenewRentalContract({ contractId, onRenewed }: UseRenewRental
     const promise = renew({ id: contractId, data })
 
     toastPromise(promise, {
-      pending: 'Proroga del contratto...',
+      pending: t('locazioni.hooks.renew.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })
         onRenewed()
-        return 'Contratto prorogato con successo!'
+        return t('locazioni.hooks.renew.success')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante la proroga del contratto'),
+        getErrorMessageFromRequest(error, t('locazioni.hooks.renew.error')),
     })
   }
 

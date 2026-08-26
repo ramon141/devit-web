@@ -1,12 +1,15 @@
+import { useTranslation } from 'react-i18next'
 import SectionPage from '@/components/layout/SectionPage'
 import Locazioni from '@/pages/Operazioni/Locazioni'
 
 function LocazioniPage() {
+  const { t } = useTranslation('operazioni')
+
   return (
     <SectionPage
-      title="Locazioni"
-      description="Gestisci i contratti di locazione"
-      parentLabel="Operazioni"
+      title={t('locazioni.page.title')}
+      description={t('locazioni.page.description')}
+      parentLabel={t('common.parentLabel')}
       parentPath="/gestionale/operazioni/vendite"
     >
       <Locazioni />

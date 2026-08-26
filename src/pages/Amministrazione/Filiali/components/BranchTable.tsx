@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import DataTable from '@/components/DataTable'
 import type { Branch } from '@/api/generated/models'
@@ -12,6 +13,7 @@ type BranchTableProps = {
 }
 
 function BranchTable({ branches, isLoading, onEdit }: BranchTableProps) {
+  const { t } = useTranslation('amministrazione')
   const [deleteTarget, setDeleteTarget] = useState<Branch | null>(null)
   const { handleDelete } = useDeleteBranch()
 
@@ -29,16 +31,16 @@ function BranchTable({ branches, isLoading, onEdit }: BranchTableProps) {
         data={branches}
         keyExtractor={(branch) => branch.id ?? ''}
         isLoading={isLoading}
-        emptyMessage="Nessuna filiale trovata."
+        emptyMessage={t('branchTable.empty')}
       />
 
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare la filiale?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.name}".`}
+        title={t('branchTable.deleteTitle')}
+        description={t('branchTable.deleteDescription', { name: deleteTarget?.name })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('branchTable.deleteConfirm')}
         onConfirm={confirmDelete}
       />
     </>

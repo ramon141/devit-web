@@ -5,6 +5,7 @@ import type { DataTableColumn } from '@/components/DataTable'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
 import { accessLevelOptions } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
 import { getOptionLabel } from '@/utils/getOptionLabel'
+import i18n from '@/i18n'
 
 type UserTableActionsProps = {
   user: UserExcludingPasswordHashWithRelations
@@ -36,29 +37,34 @@ export function buildUserTableColumns({
   onEdit,
   onDelete,
 }: BuildUserTableColumnsProps): DataTableColumn<UserExcludingPasswordHashWithRelations>[] {
+  const t = (key: string) => i18n.t(`amministrazione:${key}`)
+
   return [
-    { header: 'Nome', cell: (user) => <span className="font-medium">{user.fullName}</span> },
-    { header: 'E-mail', cell: (user) => user.email },
     {
-      header: 'Livello',
+      header: t('userTableColumns.name'),
+      cell: (user) => <span className="font-medium">{user.fullName}</span>,
+    },
+    { header: t('userTableColumns.email'), cell: (user) => user.email },
+    {
+      header: t('userTableColumns.level'),
       cell: (user) => (
         <Badge variant="secondary">{getOptionLabel(accessLevelOptions, user.accessLevel)}</Badge>
       ),
     },
     {
-      header: 'Filiale',
+      header: t('userTableColumns.branch'),
       cell: (user) => branchNameById.get(user.branchId ?? '') ?? '—',
     },
     {
-      header: 'Stato',
+      header: t('userTableColumns.status'),
       cell: (user) => (
         <Badge variant={user.active ? 'default' : 'secondary'}>
-          {user.active ? 'Attivo' : 'Inattivo'}
+          {user.active ? t('userTableColumns.active') : t('userTableColumns.inactive')}
         </Badge>
       ),
     },
     {
-      header: 'Azioni',
+      header: t('userTableColumns.actions'),
       headerClassName: 'w-24 text-right',
       cellClassName: 'text-right',
       isActions: true,

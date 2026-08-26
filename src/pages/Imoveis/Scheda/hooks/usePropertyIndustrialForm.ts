@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   usePropertyIndustrialDetailControllerFind,
@@ -34,6 +35,7 @@ const emptyValues: IndustrialFormValues = {
 }
 
 export function usePropertyIndustrialForm(propertyId: string) {
+  const { t } = useTranslation('imoveis')
   const { toastPromise } = useToast()
   const { data: rows, isLoading } = usePropertyIndustrialDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
@@ -76,10 +78,10 @@ export function usePropertyIndustrialForm(propertyId: string) {
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
     toastPromise(promise, {
-      pending: 'Salvataggio dati industriali...',
-      success: 'Dati industriali aggiornati con successo!',
+      pending: t('toasts.industrialForm.pending'),
+      success: t('toasts.industrialForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante il salvataggio dei dati industriali'),
+        getErrorMessageFromRequest(error, t('toasts.industrialForm.error')),
     })
   }
 

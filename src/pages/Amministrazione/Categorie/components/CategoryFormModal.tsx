@@ -1,4 +1,5 @@
 import { Controller } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Input } from '@/components/ui/input'
@@ -14,6 +15,7 @@ type CategoryFormModalProps = {
 }
 
 function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalProps) {
+  const { t } = useTranslation('amministrazione')
   const { form, isSubmitting, onSubmit } = useCategoryForm({
     category,
     onSaved: () => onOpenChange(false),
@@ -28,22 +30,25 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={category ? 'Modifica categoria' : 'Nuova categoria'}
+      title={category ? t('categoryFormModal.editTitle') : t('categoryFormModal.newTitle')}
     >
       <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
-        <FormFieldWrapper label="Nome" required error={errors.name?.message}>
-          <Input {...register('name')} placeholder="Appartamento" />
+        <FormFieldWrapper label={t('categoryFormModal.nameLabel')} required error={errors.name?.message}>
+          <Input {...register('name')} placeholder={t('categoryFormModal.namePlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Slug" required error={errors.slug?.message}>
-          <Input {...register('slug')} placeholder="appartamento" />
+        <FormFieldWrapper label={t('categoryFormModal.slugLabel')} required error={errors.slug?.message}>
+          <Input {...register('slug')} placeholder={t('categoryFormModal.slugPlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Icona" error={errors.icon?.message}>
-          <Input {...register('icon')} placeholder="home" />
+        <FormFieldWrapper label={t('categoryFormModal.iconLabel')} error={errors.icon?.message}>
+          <Input {...register('icon')} placeholder={t('categoryFormModal.iconPlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label="Ordine di visualizzazione" error={errors.displayOrder?.message}>
+        <FormFieldWrapper
+          label={t('categoryFormModal.orderLabel')}
+          error={errors.displayOrder?.message}
+        >
           <Input {...register('displayOrder')} type="number" placeholder="1" />
         </FormFieldWrapper>
 
@@ -53,7 +58,7 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
           render={({ field }) => (
             <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
               <Switch checked={field.value} onCheckedChange={field.onChange} />
-              Categoria attiva
+              {t('categoryFormModal.activeLabel')}
             </label>
           )}
         />
