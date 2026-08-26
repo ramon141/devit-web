@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { NewLeadStatus } from './newLeadStatus';
+import type { NewLeadSource } from './newLeadSource';
 
 /**
  * (tsType: Omit<Lead, 'id'>, schemaOptions: { title: 'NewLead', exclude: [ 'id' ] })
@@ -21,6 +22,8 @@ export interface NewLead {
   /** @nullable */
   firstContactAt?: string | null;
   status?: NewLeadStatus;
+  /** @nullable */
+  source?: NewLeadSource;
   /** @nullable */
   kanbanPosition?: number | null;
   /** @nullable */

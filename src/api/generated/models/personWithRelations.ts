@@ -8,6 +8,7 @@
 import type { PersonWithRelationsRole } from './personWithRelationsRole';
 import type { Address } from './address';
 import type { User } from './user';
+import type { Attachment } from './attachment';
 import type { PersonAttachment } from './personAttachment';
 
 /**
@@ -41,8 +42,11 @@ export interface PersonWithRelations {
   addressId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** @nullable */
+  photoId?: string | null;
   address?: Address;
   foreignKey?: unknown;
   createdBy?: User;
+  photo?: Attachment;
   personAttachments?: PersonAttachment[];
 }

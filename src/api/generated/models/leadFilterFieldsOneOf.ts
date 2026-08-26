@@ -14,6 +14,7 @@ export type LeadFilterFieldsOneOf = {
   email?: boolean;
   firstContactAt?: boolean;
   status?: boolean;
+  source?: boolean;
   kanbanPosition?: boolean;
   convertedAt?: boolean;
   lossReason?: boolean;

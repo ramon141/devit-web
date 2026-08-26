@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { LeadStatus } from './leadStatus';
+import type { LeadSource } from './leadSource';
 
 export interface Lead {
   id?: string;
@@ -19,6 +20,8 @@ export interface Lead {
   /** @nullable */
   firstContactAt?: string | null;
   status?: LeadStatus;
+  /** @nullable */
+  source?: LeadSource;
   /** @nullable */
   kanbanPosition?: number | null;
   /** @nullable */

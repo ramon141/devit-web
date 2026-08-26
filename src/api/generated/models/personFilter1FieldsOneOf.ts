@@ -23,4 +23,5 @@ export type PersonFilter1FieldsOneOf = {
   updatedAt?: boolean;
   addressId?: boolean;
   createdById?: boolean;
+  photoId?: boolean;
 };

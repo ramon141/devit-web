@@ -18,6 +18,7 @@ export const LeadFilter1FieldsOneOfTwoItem = {
   email: 'email',
   firstContactAt: 'firstContactAt',
   status: 'status',
+  source: 'source',
   kanbanPosition: 'kanbanPosition',
   convertedAt: 'convertedAt',
   lossReason: 'lossReason',

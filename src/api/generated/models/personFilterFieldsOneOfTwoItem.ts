@@ -27,4 +27,5 @@ export const PersonFilterFieldsOneOfTwoItem = {
   updatedAt: 'updatedAt',
   addressId: 'addressId',
   createdById: 'createdById',
+  photoId: 'photoId',
 } as const;

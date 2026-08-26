@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { LeadPartialStatus } from './leadPartialStatus';
+import type { LeadPartialSource } from './leadPartialSource';
 
 /**
  * (tsType: Partial<Lead>, schemaOptions: { partial: true })
@@ -22,6 +23,8 @@ export interface LeadPartial {
   /** @nullable */
   firstContactAt?: string | null;
   status?: LeadPartialStatus;
+  /** @nullable */
+  source?: LeadPartialSource;
   /** @nullable */
   kanbanPosition?: number | null;
   /** @nullable */

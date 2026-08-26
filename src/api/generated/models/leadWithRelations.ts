@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { LeadWithRelationsStatus } from './leadWithRelationsStatus';
+import type { LeadWithRelationsSource } from './leadWithRelationsSource';
 import type { User } from './user';
 import type { LeadProperty } from './leadProperty';
 import type { PurchaseProposal } from './purchaseProposal';
@@ -25,6 +26,8 @@ export interface LeadWithRelations {
   /** @nullable */
   firstContactAt?: string | null;
   status?: LeadWithRelationsStatus;
+  /** @nullable */
+  source?: LeadWithRelationsSource;
   /** @nullable */
   kanbanPosition?: number | null;
   /** @nullable */

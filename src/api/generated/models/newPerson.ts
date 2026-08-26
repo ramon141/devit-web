@@ -8,7 +8,7 @@
 import type { NewPersonRole } from './newPersonRole';
 
 /**
- * (tsType: Omit<Person, 'id'>, schemaOptions: { title: 'NewPerson', exclude: [ 'id' ] })
+ * (tsType: Omit<Person, 'id' | 'photoId'>, schemaOptions: { title: 'NewPerson', exclude: [ 'id', 'photoId' ] })
  */
 export interface NewPerson {
   /** @nullable */

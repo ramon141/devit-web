@@ -124,6 +124,7 @@ import type {
   CalendarEventControllerCountParams,
   CalendarEventControllerCreate401,
   CalendarEventControllerCreate422,
+  CalendarEventControllerCreateBody,
   CalendarEventControllerDeleteById401,
   CalendarEventControllerDeleteById404,
   CalendarEventControllerFind401,
@@ -134,6 +135,7 @@ import type {
   CalendarEventControllerUpdateById401,
   CalendarEventControllerUpdateById404,
   CalendarEventControllerUpdateById422,
+  CalendarEventControllerUpdateByIdBody,
   CalendarEventOutcome,
   CalendarEventOutcomeControllerCount401,
   CalendarEventOutcomeControllerCountParams,
@@ -151,7 +153,6 @@ import type {
   CalendarEventOutcomeControllerUpdateById422,
   CalendarEventOutcomePartial,
   CalendarEventOutcomeWithRelations,
-  CalendarEventPartial,
   CalendarEventParticipant,
   CalendarEventParticipantControllerCount401,
   CalendarEventParticipantControllerCountParams,
@@ -206,6 +207,8 @@ import type {
   CommunicationLogWithRelations,
   CommunicationsReportControllerByChannelStatus200Item,
   CommunicationsReportControllerByChannelStatus401,
+  CommunicationsReportControllerSummary200Item,
+  CommunicationsReportControllerSummary401,
   ContractAttachment,
   ContractAttachmentControllerCount401,
   ContractAttachmentControllerCountParams,
@@ -308,15 +311,20 @@ import type {
   LeadPropertyPartial,
   LeadPropertyWithRelations,
   LeadWithRelations,
+  LeadsReportControllerBySource200Item,
+  LeadsReportControllerBySource401,
   LeadsReportControllerByStatus200Item,
   LeadsReportControllerByStatus401,
   LeadsReportControllerTodayAppointments200Item,
   LeadsReportControllerTodayAppointments401,
   LoopbackCount,
+  MarketingCampaignControllerSend200,
+  MarketingCampaignControllerSend401,
+  MarketingCampaignControllerSend422,
+  MarketingCampaignControllerSendBody,
   NewAddress,
   NewAuditLog,
   NewBranch,
-  NewCalendarEvent,
   NewCalendarEventAttachment,
   NewCalendarEventOutcome,
   NewCalendarEventParticipant,
@@ -329,9 +337,7 @@ import type {
   NewLead,
   NewLeadProperty,
   NewNotification,
-  NewPerson,
   NewPersonAttachment,
-  NewProperty,
   NewPropertyAdditionalDetail,
   NewPropertyCadastralInfo,
   NewPropertyCategory,
@@ -344,18 +350,14 @@ import type {
   NewPropertyIndustrialDetail,
   NewPropertyLandDetail,
   NewPropertyLocationDetail,
-  NewPropertyOwner,
   NewPropertyPhoto,
   NewPropertyPriceHistory,
   NewPropertyRoom,
   NewPropertyStatusHistory,
-  NewPurchaseProposal,
   NewPurchaseProposalBuyer,
   NewRentalAdjustment,
-  NewRentalContract,
   NewRentalContractOwner,
   NewRentalContractTenant,
-  NewSale,
   NewSaleBuyer,
   NewSaleDocument,
   NewSaleSeller,
@@ -399,6 +401,7 @@ import type {
   PersonControllerCountParams,
   PersonControllerCreate401,
   PersonControllerCreate422,
+  PersonControllerCreateBody,
   PersonControllerDeleteById401,
   PersonControllerDeleteById404,
   PersonControllerFind401,
@@ -409,7 +412,7 @@ import type {
   PersonControllerUpdateById401,
   PersonControllerUpdateById404,
   PersonControllerUpdateById422,
-  PersonPartial,
+  PersonControllerUpdateByIdBody,
   PersonWithRelations,
   PingResponse,
   PropertiesReportControllerDormant200Item,
@@ -491,6 +494,7 @@ import type {
   PropertyControllerCountParams,
   PropertyControllerCreate401,
   PropertyControllerCreate422,
+  PropertyControllerCreateBody,
   PropertyControllerDeleteById401,
   PropertyControllerDeleteById404,
   PropertyControllerFind401,
@@ -501,6 +505,7 @@ import type {
   PropertyControllerUpdateById401,
   PropertyControllerUpdateById404,
   PropertyControllerUpdateById422,
+  PropertyControllerUpdateByIdBody,
   PropertyDetail,
   PropertyDetailControllerCount401,
   PropertyDetailControllerCountParams,
@@ -637,11 +642,8 @@ import type {
   PropertyLocationDetailControllerUpdateById422,
   PropertyLocationDetailPartial,
   PropertyLocationDetailWithRelations,
-  PropertyOwner,
   PropertyOwnerControllerCount401,
   PropertyOwnerControllerCountParams,
-  PropertyOwnerControllerCreate401,
-  PropertyOwnerControllerCreate422,
   PropertyOwnerControllerDeleteById401,
   PropertyOwnerControllerDeleteById404,
   PropertyOwnerControllerFind401,
@@ -649,12 +651,7 @@ import type {
   PropertyOwnerControllerFindById404,
   PropertyOwnerControllerFindByIdParams,
   PropertyOwnerControllerFindParams,
-  PropertyOwnerControllerUpdateById401,
-  PropertyOwnerControllerUpdateById404,
-  PropertyOwnerControllerUpdateById422,
-  PropertyOwnerPartial,
   PropertyOwnerWithRelations,
-  PropertyPartial,
   PropertyPhoto,
   PropertyPhotoControllerCount401,
   PropertyPhotoControllerCountParams,
@@ -746,6 +743,7 @@ import type {
   PurchaseProposalControllerCountParams,
   PurchaseProposalControllerCreate401,
   PurchaseProposalControllerCreate422,
+  PurchaseProposalControllerCreateBody,
   PurchaseProposalControllerDeleteById401,
   PurchaseProposalControllerDeleteById404,
   PurchaseProposalControllerDeleteById422,
@@ -757,7 +755,7 @@ import type {
   PurchaseProposalControllerUpdateById401,
   PurchaseProposalControllerUpdateById404,
   PurchaseProposalControllerUpdateById422,
-  PurchaseProposalPartial,
+  PurchaseProposalControllerUpdateByIdBody,
   PurchaseProposalWithRelations,
   RentalAdjustment,
   RentalAdjustmentControllerCount401,
@@ -784,6 +782,7 @@ import type {
   RentalContractControllerCountParams,
   RentalContractControllerCreate401,
   RentalContractControllerCreate422,
+  RentalContractControllerCreateBody,
   RentalContractControllerDeleteById401,
   RentalContractControllerDeleteById404,
   RentalContractControllerDeleteById422,
@@ -792,13 +791,10 @@ import type {
   RentalContractControllerFindById404,
   RentalContractControllerFindByIdParams,
   RentalContractControllerFindParams,
-  RentalContractControllerRenew401,
-  RentalContractControllerRenew404,
-  RentalContractControllerRenew422,
-  RentalContractControllerRenewBody,
   RentalContractControllerUpdateById401,
   RentalContractControllerUpdateById404,
   RentalContractControllerUpdateById422,
+  RentalContractControllerUpdateByIdBody,
   RentalContractOwner,
   RentalContractOwnerControllerCount401,
   RentalContractOwnerControllerCountParams,
@@ -816,7 +812,10 @@ import type {
   RentalContractOwnerControllerUpdateById422,
   RentalContractOwnerPartial,
   RentalContractOwnerWithRelations,
-  RentalContractPartial,
+  RentalContractRenewControllerRenew401,
+  RentalContractRenewControllerRenew404,
+  RentalContractRenewControllerRenew422,
+  RentalContractRenewControllerRenewBody,
   RentalContractTenant,
   RentalContractTenantControllerCount401,
   RentalContractTenantControllerCountParams,
@@ -857,6 +856,7 @@ import type {
   SaleControllerCountParams,
   SaleControllerCreate401,
   SaleControllerCreate422,
+  SaleControllerCreateBody,
   SaleControllerDeleteById401,
   SaleControllerDeleteById404,
   SaleControllerDeleteById422,
@@ -868,6 +868,7 @@ import type {
   SaleControllerUpdateById401,
   SaleControllerUpdateById404,
   SaleControllerUpdateById422,
+  SaleControllerUpdateByIdBody,
   SaleDocument,
   SaleDocumentControllerCount401,
   SaleDocumentControllerCountParams,
@@ -885,7 +886,6 @@ import type {
   SaleDocumentControllerUpdateById422,
   SaleDocumentPartial,
   SaleDocumentWithRelations,
-  SalePartial,
   SaleSeller,
   SaleSellerControllerCount401,
   SaleSellerControllerCountParams,
@@ -5068,14 +5068,14 @@ export function useCalendarEventControllerCount<TData = Awaited<ReturnType<typeo
  */
 export const calendarEventControllerUpdateById = (
     id: string,
-    calendarEventPartial: BodyType<CalendarEventPartial>,
+    calendarEventControllerUpdateByIdBody: BodyType<CalendarEventControllerUpdateByIdBody>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/calendar-events/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: calendarEventPartial
+      data: calendarEventControllerUpdateByIdBody
     },
       options);
     }
@@ -5083,8 +5083,8 @@ export const calendarEventControllerUpdateById = (
 
 
 export const getCalendarEventControllerUpdateByIdMutationOptions = <TError = ErrorType<CalendarEventControllerUpdateById401 | CalendarEventControllerUpdateById404 | CalendarEventControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventControllerUpdateByIdBody>}, TContext> => {
 
 const mutationKey = ['calendarEventControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -5096,7 +5096,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, {id: string;data: BodyType<CalendarEventPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, {id: string;data: BodyType<CalendarEventControllerUpdateByIdBody>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  calendarEventControllerUpdateById(id,data,requestOptions)
@@ -5108,18 +5108,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CalendarEventControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>>
-    export type CalendarEventControllerUpdateByIdMutationBody = BodyType<CalendarEventPartial>
+    export type CalendarEventControllerUpdateByIdMutationBody = BodyType<CalendarEventControllerUpdateByIdBody>
     export type CalendarEventControllerUpdateByIdMutationError = ErrorType<CalendarEventControllerUpdateById401 | CalendarEventControllerUpdateById404 | CalendarEventControllerUpdateById422>
 
     /**
  * @summary Update a Calendar Event by id
  */
 export const useCalendarEventControllerUpdateById = <TError = ErrorType<CalendarEventControllerUpdateById401 | CalendarEventControllerUpdateById404 | CalendarEventControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof calendarEventControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<CalendarEventPartial>},
+        {id: string;data: BodyType<CalendarEventControllerUpdateByIdBody>},
         TContext
       > => {
 
@@ -5295,7 +5295,7 @@ export const useCalendarEventControllerDeleteById = <TError = ErrorType<Calendar
  * @summary Create a new Calendar Event
  */
 export const calendarEventControllerCreate = (
-    newCalendarEvent: BodyType<NewCalendarEvent>,
+    calendarEventControllerCreateBody: BodyType<CalendarEventControllerCreateBody>,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -5303,7 +5303,7 @@ export const calendarEventControllerCreate = (
       return mutator<CalendarEvent>(
       {url: `/calendar-events`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: newCalendarEvent, signal
+      data: calendarEventControllerCreateBody, signal
     },
       options);
     }
@@ -5311,8 +5311,8 @@ export const calendarEventControllerCreate = (
 
 
 export const getCalendarEventControllerCreateMutationOptions = <TError = ErrorType<CalendarEventControllerCreate401 | CalendarEventControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerCreate>>, TError,{data: BodyType<NewCalendarEvent>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerCreate>>, TError,{data: BodyType<NewCalendarEvent>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerCreate>>, TError,{data: BodyType<CalendarEventControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerCreate>>, TError,{data: BodyType<CalendarEventControllerCreateBody>}, TContext> => {
 
 const mutationKey = ['calendarEventControllerCreate'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -5324,7 +5324,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventControllerCreate>>, {data: BodyType<NewCalendarEvent>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventControllerCreate>>, {data: BodyType<CalendarEventControllerCreateBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  calendarEventControllerCreate(data,requestOptions)
@@ -5336,18 +5336,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CalendarEventControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof calendarEventControllerCreate>>>
-    export type CalendarEventControllerCreateMutationBody = BodyType<NewCalendarEvent>
+    export type CalendarEventControllerCreateMutationBody = BodyType<CalendarEventControllerCreateBody>
     export type CalendarEventControllerCreateMutationError = ErrorType<CalendarEventControllerCreate401 | CalendarEventControllerCreate422>
 
     /**
  * @summary Create a new Calendar Event
  */
 export const useCalendarEventControllerCreate = <TError = ErrorType<CalendarEventControllerCreate401 | CalendarEventControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerCreate>>, TError,{data: BodyType<NewCalendarEvent>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerCreate>>, TError,{data: BodyType<CalendarEventControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof calendarEventControllerCreate>>,
         TError,
-        {data: BodyType<NewCalendarEvent>},
+        {data: BodyType<CalendarEventControllerCreateBody>},
         TContext
       > => {
 
@@ -8818,6 +8818,71 @@ export function useLeadControllerFind<TData = Awaited<ReturnType<typeof leadCont
 
 
 /**
+ * @summary Enviar campanha de e-mail ou WhatsApp em massa
+ */
+export const marketingCampaignControllerSend = (
+    marketingCampaignControllerSendBody: BodyType<MarketingCampaignControllerSendBody>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<MarketingCampaignControllerSend200>(
+      {url: `/marketing/campaigns/send`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: marketingCampaignControllerSendBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getMarketingCampaignControllerSendMutationOptions = <TError = ErrorType<MarketingCampaignControllerSend401 | MarketingCampaignControllerSend422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof marketingCampaignControllerSend>>, TError,{data: BodyType<MarketingCampaignControllerSendBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof marketingCampaignControllerSend>>, TError,{data: BodyType<MarketingCampaignControllerSendBody>}, TContext> => {
+
+const mutationKey = ['marketingCampaignControllerSend'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof marketingCampaignControllerSend>>, {data: BodyType<MarketingCampaignControllerSendBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  marketingCampaignControllerSend(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type MarketingCampaignControllerSendMutationResult = NonNullable<Awaited<ReturnType<typeof marketingCampaignControllerSend>>>
+    export type MarketingCampaignControllerSendMutationBody = BodyType<MarketingCampaignControllerSendBody>
+    export type MarketingCampaignControllerSendMutationError = ErrorType<MarketingCampaignControllerSend401 | MarketingCampaignControllerSend422>
+
+    /**
+ * @summary Enviar campanha de e-mail ou WhatsApp em massa
+ */
+export const useMarketingCampaignControllerSend = <TError = ErrorType<MarketingCampaignControllerSend401 | MarketingCampaignControllerSend422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof marketingCampaignControllerSend>>, TError,{data: BodyType<MarketingCampaignControllerSendBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof marketingCampaignControllerSend>>,
+        TError,
+        {data: BodyType<MarketingCampaignControllerSendBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getMarketingCampaignControllerSendMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
  * @summary Count Notifications
  */
 export const notificationControllerCount = (
@@ -9397,14 +9462,14 @@ export function usePersonControllerCount<TData = Awaited<ReturnType<typeof perso
  */
 export const personControllerUpdateById = (
     id: string,
-    personPartial: BodyType<PersonPartial>,
+    personControllerUpdateByIdBody: BodyType<PersonControllerUpdateByIdBody>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/people/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: personPartial
+      data: personControllerUpdateByIdBody
     },
       options);
     }
@@ -9412,8 +9477,8 @@ export const personControllerUpdateById = (
 
 
 export const getPersonControllerUpdateByIdMutationOptions = <TError = ErrorType<PersonControllerUpdateById401 | PersonControllerUpdateById404 | PersonControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonControllerUpdateByIdBody>}, TContext> => {
 
 const mutationKey = ['personControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -9425,7 +9490,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personControllerUpdateById>>, {id: string;data: BodyType<PersonPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personControllerUpdateById>>, {id: string;data: BodyType<PersonControllerUpdateByIdBody>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  personControllerUpdateById(id,data,requestOptions)
@@ -9437,18 +9502,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PersonControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof personControllerUpdateById>>>
-    export type PersonControllerUpdateByIdMutationBody = BodyType<PersonPartial>
+    export type PersonControllerUpdateByIdMutationBody = BodyType<PersonControllerUpdateByIdBody>
     export type PersonControllerUpdateByIdMutationError = ErrorType<PersonControllerUpdateById401 | PersonControllerUpdateById404 | PersonControllerUpdateById422>
 
     /**
  * @summary Update a Person by id
  */
 export const usePersonControllerUpdateById = <TError = ErrorType<PersonControllerUpdateById401 | PersonControllerUpdateById404 | PersonControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof personControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PersonPartial>},
+        {id: string;data: BodyType<PersonControllerUpdateByIdBody>},
         TContext
       > => {
 
@@ -9624,7 +9689,7 @@ export const usePersonControllerDeleteById = <TError = ErrorType<PersonControlle
  * @summary Create a new Person
  */
 export const personControllerCreate = (
-    newPerson: BodyType<NewPerson>,
+    personControllerCreateBody: BodyType<PersonControllerCreateBody>,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -9632,7 +9697,7 @@ export const personControllerCreate = (
       return mutator<Person>(
       {url: `/people`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: newPerson, signal
+      data: personControllerCreateBody, signal
     },
       options);
     }
@@ -9640,8 +9705,8 @@ export const personControllerCreate = (
 
 
 export const getPersonControllerCreateMutationOptions = <TError = ErrorType<PersonControllerCreate401 | PersonControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerCreate>>, TError,{data: BodyType<NewPerson>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof personControllerCreate>>, TError,{data: BodyType<NewPerson>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerCreate>>, TError,{data: BodyType<PersonControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof personControllerCreate>>, TError,{data: BodyType<PersonControllerCreateBody>}, TContext> => {
 
 const mutationKey = ['personControllerCreate'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -9653,7 +9718,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personControllerCreate>>, {data: BodyType<NewPerson>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personControllerCreate>>, {data: BodyType<PersonControllerCreateBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  personControllerCreate(data,requestOptions)
@@ -9665,18 +9730,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PersonControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof personControllerCreate>>>
-    export type PersonControllerCreateMutationBody = BodyType<NewPerson>
+    export type PersonControllerCreateMutationBody = BodyType<PersonControllerCreateBody>
     export type PersonControllerCreateMutationError = ErrorType<PersonControllerCreate401 | PersonControllerCreate422>
 
     /**
  * @summary Create a new Person
  */
 export const usePersonControllerCreate = <TError = ErrorType<PersonControllerCreate401 | PersonControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerCreate>>, TError,{data: BodyType<NewPerson>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerCreate>>, TError,{data: BodyType<PersonControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof personControllerCreate>>,
         TError,
-        {data: BodyType<NewPerson>},
+        {data: BodyType<PersonControllerCreateBody>},
         TContext
       > => {
 
@@ -10452,14 +10517,14 @@ export function usePropertyControllerCount<TData = Awaited<ReturnType<typeof pro
  */
 export const propertyControllerUpdateById = (
     id: string,
-    propertyPartial: BodyType<PropertyPartial>,
+    propertyControllerUpdateByIdBody: BodyType<PropertyControllerUpdateByIdBody>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/properties/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: propertyPartial
+      data: propertyControllerUpdateByIdBody
     },
       options);
     }
@@ -10467,8 +10532,8 @@ export const propertyControllerUpdateById = (
 
 
 export const getPropertyControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyControllerUpdateByIdBody>}, TContext> => {
 
 const mutationKey = ['propertyControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -10480,7 +10545,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyControllerUpdateById>>, {id: string;data: BodyType<PropertyPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyControllerUpdateById>>, {id: string;data: BodyType<PropertyControllerUpdateByIdBody>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  propertyControllerUpdateById(id,data,requestOptions)
@@ -10492,18 +10557,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PropertyControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyControllerUpdateById>>>
-    export type PropertyControllerUpdateByIdMutationBody = BodyType<PropertyPartial>
+    export type PropertyControllerUpdateByIdMutationBody = BodyType<PropertyControllerUpdateByIdBody>
     export type PropertyControllerUpdateByIdMutationError = ErrorType<PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById422>
 
     /**
  * @summary Update a Property by id
  */
 export const usePropertyControllerUpdateById = <TError = ErrorType<PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof propertyControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PropertyPartial>},
+        {id: string;data: BodyType<PropertyControllerUpdateByIdBody>},
         TContext
       > => {
 
@@ -10679,7 +10744,7 @@ export const usePropertyControllerDeleteById = <TError = ErrorType<PropertyContr
  * @summary Create a new Property
  */
 export const propertyControllerCreate = (
-    newProperty: BodyType<NewProperty>,
+    propertyControllerCreateBody: BodyType<PropertyControllerCreateBody>,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -10687,7 +10752,7 @@ export const propertyControllerCreate = (
       return mutator<Property>(
       {url: `/properties`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: newProperty, signal
+      data: propertyControllerCreateBody, signal
     },
       options);
     }
@@ -10695,8 +10760,8 @@ export const propertyControllerCreate = (
 
 
 export const getPropertyControllerCreateMutationOptions = <TError = ErrorType<PropertyControllerCreate401 | PropertyControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<NewProperty>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<NewProperty>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<PropertyControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<PropertyControllerCreateBody>}, TContext> => {
 
 const mutationKey = ['propertyControllerCreate'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -10708,7 +10773,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyControllerCreate>>, {data: BodyType<NewProperty>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyControllerCreate>>, {data: BodyType<PropertyControllerCreateBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  propertyControllerCreate(data,requestOptions)
@@ -10720,18 +10785,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PropertyControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof propertyControllerCreate>>>
-    export type PropertyControllerCreateMutationBody = BodyType<NewProperty>
+    export type PropertyControllerCreateMutationBody = BodyType<PropertyControllerCreateBody>
     export type PropertyControllerCreateMutationError = ErrorType<PropertyControllerCreate401 | PropertyControllerCreate422>
 
     /**
  * @summary Create a new Property
  */
 export const usePropertyControllerCreate = <TError = ErrorType<PropertyControllerCreate401 | PropertyControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<NewProperty>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<PropertyControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof propertyControllerCreate>>,
         TError,
-        {data: BodyType<NewProperty>},
+        {data: BodyType<PropertyControllerCreateBody>},
         TContext
       > => {
 
@@ -16701,71 +16766,6 @@ export function usePropertyOwnerControllerCount<TData = Awaited<ReturnType<typeo
 
 
 /**
- * @summary Update a Property Owner by id
- */
-export const propertyOwnerControllerUpdateById = (
-    id: string,
-    propertyOwnerPartial: BodyType<PropertyOwnerPartial>,
- options?: SecondParameter<typeof mutator>,) => {
-      
-      
-      return mutator<unknown>(
-      {url: `/property-owners/${id}`, method: 'PATCH',
-      headers: {'Content-Type': 'application/json', },
-      data: propertyOwnerPartial
-    },
-      options);
-    }
-  
-
-
-export const getPropertyOwnerControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyOwnerControllerUpdateById401 | PropertyOwnerControllerUpdateById404 | PropertyOwnerControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyOwnerControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyOwnerPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyOwnerControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyOwnerPartial>}, TContext> => {
-
-const mutationKey = ['propertyOwnerControllerUpdateById'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyOwnerControllerUpdateById>>, {id: string;data: BodyType<PropertyOwnerPartial>}> = (props) => {
-          const {id,data} = props ?? {};
-
-          return  propertyOwnerControllerUpdateById(id,data,requestOptions)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type PropertyOwnerControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyOwnerControllerUpdateById>>>
-    export type PropertyOwnerControllerUpdateByIdMutationBody = BodyType<PropertyOwnerPartial>
-    export type PropertyOwnerControllerUpdateByIdMutationError = ErrorType<PropertyOwnerControllerUpdateById401 | PropertyOwnerControllerUpdateById404 | PropertyOwnerControllerUpdateById422>
-
-    /**
- * @summary Update a Property Owner by id
- */
-export const usePropertyOwnerControllerUpdateById = <TError = ErrorType<PropertyOwnerControllerUpdateById401 | PropertyOwnerControllerUpdateById404 | PropertyOwnerControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyOwnerControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyOwnerPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof propertyOwnerControllerUpdateById>>,
-        TError,
-        {id: string;data: BodyType<PropertyOwnerPartial>},
-        TContext
-      > => {
-
-      const mutationOptions = getPropertyOwnerControllerUpdateByIdMutationOptions(options);
-
-      return useMutation(mutationOptions, queryClient);
-    }
-    
-/**
  * @summary Get a Property Owner by id
  */
 export const propertyOwnerControllerFindById = (
@@ -16924,71 +16924,6 @@ export const usePropertyOwnerControllerDeleteById = <TError = ErrorType<Property
       > => {
 
       const mutationOptions = getPropertyOwnerControllerDeleteByIdMutationOptions(options);
-
-      return useMutation(mutationOptions, queryClient);
-    }
-    
-/**
- * @summary Create a new Property Owner
- */
-export const propertyOwnerControllerCreate = (
-    newPropertyOwner: BodyType<NewPropertyOwner>,
- options?: SecondParameter<typeof mutator>,signal?: AbortSignal
-) => {
-      
-      
-      return mutator<PropertyOwner>(
-      {url: `/property-owners`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: newPropertyOwner, signal
-    },
-      options);
-    }
-  
-
-
-export const getPropertyOwnerControllerCreateMutationOptions = <TError = ErrorType<PropertyOwnerControllerCreate401 | PropertyOwnerControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyOwnerControllerCreate>>, TError,{data: BodyType<NewPropertyOwner>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyOwnerControllerCreate>>, TError,{data: BodyType<NewPropertyOwner>}, TContext> => {
-
-const mutationKey = ['propertyOwnerControllerCreate'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyOwnerControllerCreate>>, {data: BodyType<NewPropertyOwner>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  propertyOwnerControllerCreate(data,requestOptions)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type PropertyOwnerControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof propertyOwnerControllerCreate>>>
-    export type PropertyOwnerControllerCreateMutationBody = BodyType<NewPropertyOwner>
-    export type PropertyOwnerControllerCreateMutationError = ErrorType<PropertyOwnerControllerCreate401 | PropertyOwnerControllerCreate422>
-
-    /**
- * @summary Create a new Property Owner
- */
-export const usePropertyOwnerControllerCreate = <TError = ErrorType<PropertyOwnerControllerCreate401 | PropertyOwnerControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyOwnerControllerCreate>>, TError,{data: BodyType<NewPropertyOwner>}, TContext>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof propertyOwnerControllerCreate>>,
-        TError,
-        {data: BodyType<NewPropertyOwner>},
-        TContext
-      > => {
-
-      const mutationOptions = getPropertyOwnerControllerCreateMutationOptions(options);
 
       return useMutation(mutationOptions, queryClient);
     }
@@ -19591,14 +19526,14 @@ export function usePurchaseProposalControllerCount<TData = Awaited<ReturnType<ty
  */
 export const purchaseProposalControllerUpdateById = (
     id: string,
-    purchaseProposalPartial: BodyType<PurchaseProposalPartial>,
+    purchaseProposalControllerUpdateByIdBody: BodyType<PurchaseProposalControllerUpdateByIdBody>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/purchase-proposals/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: purchaseProposalPartial
+      data: purchaseProposalControllerUpdateByIdBody
     },
       options);
     }
@@ -19606,8 +19541,8 @@ export const purchaseProposalControllerUpdateById = (
 
 
 export const getPurchaseProposalControllerUpdateByIdMutationOptions = <TError = ErrorType<PurchaseProposalControllerUpdateById401 | PurchaseProposalControllerUpdateById404 | PurchaseProposalControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalControllerUpdateByIdBody>}, TContext> => {
 
 const mutationKey = ['purchaseProposalControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -19619,7 +19554,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, {id: string;data: BodyType<PurchaseProposalPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, {id: string;data: BodyType<PurchaseProposalControllerUpdateByIdBody>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  purchaseProposalControllerUpdateById(id,data,requestOptions)
@@ -19631,18 +19566,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PurchaseProposalControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>>
-    export type PurchaseProposalControllerUpdateByIdMutationBody = BodyType<PurchaseProposalPartial>
+    export type PurchaseProposalControllerUpdateByIdMutationBody = BodyType<PurchaseProposalControllerUpdateByIdBody>
     export type PurchaseProposalControllerUpdateByIdMutationError = ErrorType<PurchaseProposalControllerUpdateById401 | PurchaseProposalControllerUpdateById404 | PurchaseProposalControllerUpdateById422>
 
     /**
  * @summary Update a Purchase Proposal by id
  */
 export const usePurchaseProposalControllerUpdateById = <TError = ErrorType<PurchaseProposalControllerUpdateById401 | PurchaseProposalControllerUpdateById404 | PurchaseProposalControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PurchaseProposalPartial>},
+        {id: string;data: BodyType<PurchaseProposalControllerUpdateByIdBody>},
         TContext
       > => {
 
@@ -19818,7 +19753,7 @@ export const usePurchaseProposalControllerDeleteById = <TError = ErrorType<Purch
  * @summary Create a new Purchase Proposal
  */
 export const purchaseProposalControllerCreate = (
-    newPurchaseProposal: BodyType<NewPurchaseProposal>,
+    purchaseProposalControllerCreateBody: BodyType<PurchaseProposalControllerCreateBody>,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -19826,7 +19761,7 @@ export const purchaseProposalControllerCreate = (
       return mutator<PurchaseProposal>(
       {url: `/purchase-proposals`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: newPurchaseProposal, signal
+      data: purchaseProposalControllerCreateBody, signal
     },
       options);
     }
@@ -19834,8 +19769,8 @@ export const purchaseProposalControllerCreate = (
 
 
 export const getPurchaseProposalControllerCreateMutationOptions = <TError = ErrorType<PurchaseProposalControllerCreate401 | PurchaseProposalControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>, TError,{data: BodyType<NewPurchaseProposal>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>, TError,{data: BodyType<NewPurchaseProposal>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>, TError,{data: BodyType<PurchaseProposalControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>, TError,{data: BodyType<PurchaseProposalControllerCreateBody>}, TContext> => {
 
 const mutationKey = ['purchaseProposalControllerCreate'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -19847,7 +19782,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>, {data: BodyType<NewPurchaseProposal>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>, {data: BodyType<PurchaseProposalControllerCreateBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  purchaseProposalControllerCreate(data,requestOptions)
@@ -19859,18 +19794,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PurchaseProposalControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>>
-    export type PurchaseProposalControllerCreateMutationBody = BodyType<NewPurchaseProposal>
+    export type PurchaseProposalControllerCreateMutationBody = BodyType<PurchaseProposalControllerCreateBody>
     export type PurchaseProposalControllerCreateMutationError = ErrorType<PurchaseProposalControllerCreate401 | PurchaseProposalControllerCreate422>
 
     /**
  * @summary Create a new Purchase Proposal
  */
 export const usePurchaseProposalControllerCreate = <TError = ErrorType<PurchaseProposalControllerCreate401 | PurchaseProposalControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>, TError,{data: BodyType<NewPurchaseProposal>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerCreate>>, TError,{data: BodyType<PurchaseProposalControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof purchaseProposalControllerCreate>>,
         TError,
-        {data: BodyType<NewPurchaseProposal>},
+        {data: BodyType<PurchaseProposalControllerCreateBody>},
         TContext
       > => {
 
@@ -21578,9 +21513,9 @@ export function useRentalContractControllerCount<TData = Awaited<ReturnType<type
 /**
  * @summary Prorrogar contrato de locação
  */
-export const rentalContractControllerRenew = (
+export const rentalContractRenewControllerRenew = (
     id: string,
-    rentalContractControllerRenewBody: BodyType<RentalContractControllerRenewBody>,
+    rentalContractRenewControllerRenewBody: BodyType<RentalContractRenewControllerRenewBody>,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -21588,18 +21523,18 @@ export const rentalContractControllerRenew = (
       return mutator<RentalContract>(
       {url: `/rental-contracts/${id}/renew`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: rentalContractControllerRenewBody, signal
+      data: rentalContractRenewControllerRenewBody, signal
     },
       options);
     }
   
 
 
-export const getRentalContractControllerRenewMutationOptions = <TError = ErrorType<RentalContractControllerRenew401 | RentalContractControllerRenew404 | RentalContractControllerRenew422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerRenew>>, TError,{id: string;data: BodyType<RentalContractControllerRenewBody>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerRenew>>, TError,{id: string;data: BodyType<RentalContractControllerRenewBody>}, TContext> => {
+export const getRentalContractRenewControllerRenewMutationOptions = <TError = ErrorType<RentalContractRenewControllerRenew401 | RentalContractRenewControllerRenew404 | RentalContractRenewControllerRenew422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractRenewControllerRenew>>, TError,{id: string;data: BodyType<RentalContractRenewControllerRenewBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof rentalContractRenewControllerRenew>>, TError,{id: string;data: BodyType<RentalContractRenewControllerRenewBody>}, TContext> => {
 
-const mutationKey = ['rentalContractControllerRenew'];
+const mutationKey = ['rentalContractRenewControllerRenew'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -21609,10 +21544,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalContractControllerRenew>>, {id: string;data: BodyType<RentalContractControllerRenewBody>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalContractRenewControllerRenew>>, {id: string;data: BodyType<RentalContractRenewControllerRenewBody>}> = (props) => {
           const {id,data} = props ?? {};
 
-          return  rentalContractControllerRenew(id,data,requestOptions)
+          return  rentalContractRenewControllerRenew(id,data,requestOptions)
         }
 
         
@@ -21620,23 +21555,23 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type RentalContractControllerRenewMutationResult = NonNullable<Awaited<ReturnType<typeof rentalContractControllerRenew>>>
-    export type RentalContractControllerRenewMutationBody = BodyType<RentalContractControllerRenewBody>
-    export type RentalContractControllerRenewMutationError = ErrorType<RentalContractControllerRenew401 | RentalContractControllerRenew404 | RentalContractControllerRenew422>
+    export type RentalContractRenewControllerRenewMutationResult = NonNullable<Awaited<ReturnType<typeof rentalContractRenewControllerRenew>>>
+    export type RentalContractRenewControllerRenewMutationBody = BodyType<RentalContractRenewControllerRenewBody>
+    export type RentalContractRenewControllerRenewMutationError = ErrorType<RentalContractRenewControllerRenew401 | RentalContractRenewControllerRenew404 | RentalContractRenewControllerRenew422>
 
     /**
  * @summary Prorrogar contrato de locação
  */
-export const useRentalContractControllerRenew = <TError = ErrorType<RentalContractControllerRenew401 | RentalContractControllerRenew404 | RentalContractControllerRenew422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerRenew>>, TError,{id: string;data: BodyType<RentalContractControllerRenewBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+export const useRentalContractRenewControllerRenew = <TError = ErrorType<RentalContractRenewControllerRenew401 | RentalContractRenewControllerRenew404 | RentalContractRenewControllerRenew422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractRenewControllerRenew>>, TError,{id: string;data: BodyType<RentalContractRenewControllerRenewBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof rentalContractControllerRenew>>,
+        Awaited<ReturnType<typeof rentalContractRenewControllerRenew>>,
         TError,
-        {id: string;data: BodyType<RentalContractControllerRenewBody>},
+        {id: string;data: BodyType<RentalContractRenewControllerRenewBody>},
         TContext
       > => {
 
-      const mutationOptions = getRentalContractControllerRenewMutationOptions(options);
+      const mutationOptions = getRentalContractRenewControllerRenewMutationOptions(options);
 
       return useMutation(mutationOptions, queryClient);
     }
@@ -21646,14 +21581,14 @@ export const useRentalContractControllerRenew = <TError = ErrorType<RentalContra
  */
 export const rentalContractControllerUpdateById = (
     id: string,
-    rentalContractPartial: BodyType<RentalContractPartial>,
+    rentalContractControllerUpdateByIdBody: BodyType<RentalContractControllerUpdateByIdBody>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/rental-contracts/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: rentalContractPartial
+      data: rentalContractControllerUpdateByIdBody
     },
       options);
     }
@@ -21661,8 +21596,8 @@ export const rentalContractControllerUpdateById = (
 
 
 export const getRentalContractControllerUpdateByIdMutationOptions = <TError = ErrorType<RentalContractControllerUpdateById401 | RentalContractControllerUpdateById404 | RentalContractControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractControllerUpdateByIdBody>}, TContext> => {
 
 const mutationKey = ['rentalContractControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -21674,7 +21609,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, {id: string;data: BodyType<RentalContractPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, {id: string;data: BodyType<RentalContractControllerUpdateByIdBody>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  rentalContractControllerUpdateById(id,data,requestOptions)
@@ -21686,18 +21621,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type RentalContractControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>>
-    export type RentalContractControllerUpdateByIdMutationBody = BodyType<RentalContractPartial>
+    export type RentalContractControllerUpdateByIdMutationBody = BodyType<RentalContractControllerUpdateByIdBody>
     export type RentalContractControllerUpdateByIdMutationError = ErrorType<RentalContractControllerUpdateById401 | RentalContractControllerUpdateById404 | RentalContractControllerUpdateById422>
 
     /**
  * @summary Update a Rental Contract by id
  */
 export const useRentalContractControllerUpdateById = <TError = ErrorType<RentalContractControllerUpdateById401 | RentalContractControllerUpdateById404 | RentalContractControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof rentalContractControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<RentalContractPartial>},
+        {id: string;data: BodyType<RentalContractControllerUpdateByIdBody>},
         TContext
       > => {
 
@@ -21873,7 +21808,7 @@ export const useRentalContractControllerDeleteById = <TError = ErrorType<RentalC
  * @summary Create a new Rental Contract
  */
 export const rentalContractControllerCreate = (
-    newRentalContract: BodyType<NewRentalContract>,
+    rentalContractControllerCreateBody: BodyType<RentalContractControllerCreateBody>,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -21881,7 +21816,7 @@ export const rentalContractControllerCreate = (
       return mutator<RentalContract>(
       {url: `/rental-contracts`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: newRentalContract, signal
+      data: rentalContractControllerCreateBody, signal
     },
       options);
     }
@@ -21889,8 +21824,8 @@ export const rentalContractControllerCreate = (
 
 
 export const getRentalContractControllerCreateMutationOptions = <TError = ErrorType<RentalContractControllerCreate401 | RentalContractControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerCreate>>, TError,{data: BodyType<NewRentalContract>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerCreate>>, TError,{data: BodyType<NewRentalContract>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerCreate>>, TError,{data: BodyType<RentalContractControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerCreate>>, TError,{data: BodyType<RentalContractControllerCreateBody>}, TContext> => {
 
 const mutationKey = ['rentalContractControllerCreate'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -21902,7 +21837,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalContractControllerCreate>>, {data: BodyType<NewRentalContract>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalContractControllerCreate>>, {data: BodyType<RentalContractControllerCreateBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  rentalContractControllerCreate(data,requestOptions)
@@ -21914,18 +21849,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type RentalContractControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof rentalContractControllerCreate>>>
-    export type RentalContractControllerCreateMutationBody = BodyType<NewRentalContract>
+    export type RentalContractControllerCreateMutationBody = BodyType<RentalContractControllerCreateBody>
     export type RentalContractControllerCreateMutationError = ErrorType<RentalContractControllerCreate401 | RentalContractControllerCreate422>
 
     /**
  * @summary Create a new Rental Contract
  */
 export const useRentalContractControllerCreate = <TError = ErrorType<RentalContractControllerCreate401 | RentalContractControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerCreate>>, TError,{data: BodyType<NewRentalContract>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerCreate>>, TError,{data: BodyType<RentalContractControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof rentalContractControllerCreate>>,
         TError,
-        {data: BodyType<NewRentalContract>},
+        {data: BodyType<RentalContractControllerCreateBody>},
         TContext
       > => {
 
@@ -22109,6 +22044,192 @@ export function useCommunicationsReportControllerByChannelStatus<TData = Awaited
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getCommunicationsReportControllerByChannelStatusQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Totais de envios por canal nos últimos 30 dias
+ */
+export const communicationsReportControllerSummary = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<CommunicationsReportControllerSummary200Item[]>(
+      {url: `/reports/communications/summary`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCommunicationsReportControllerSummaryQueryKey = () => {
+    return [
+    `/reports/communications/summary`
+    ] as const;
+    }
+
+    
+export const getCommunicationsReportControllerSummaryQueryOptions = <TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCommunicationsReportControllerSummaryQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof communicationsReportControllerSummary>>> = ({ signal }) => communicationsReportControllerSummary(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CommunicationsReportControllerSummaryQueryResult = NonNullable<Awaited<ReturnType<typeof communicationsReportControllerSummary>>>
+export type CommunicationsReportControllerSummaryQueryError = ErrorType<CommunicationsReportControllerSummary401>
+
+
+export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof communicationsReportControllerSummary>>,
+          TError,
+          Awaited<ReturnType<typeof communicationsReportControllerSummary>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof communicationsReportControllerSummary>>,
+          TError,
+          Awaited<ReturnType<typeof communicationsReportControllerSummary>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Totais de envios por canal nos últimos 30 dias
+ */
+
+export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCommunicationsReportControllerSummaryQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Relatório de leads por origem
+ */
+export const leadsReportControllerBySource = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadsReportControllerBySource200Item[]>(
+      {url: `/reports/leads/by-source`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getLeadsReportControllerBySourceQueryKey = () => {
+    return [
+    `/reports/leads/by-source`
+    ] as const;
+    }
+
+    
+export const getLeadsReportControllerBySourceQueryOptions = <TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getLeadsReportControllerBySourceQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadsReportControllerBySource>>> = ({ signal }) => leadsReportControllerBySource(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type LeadsReportControllerBySourceQueryResult = NonNullable<Awaited<ReturnType<typeof leadsReportControllerBySource>>>
+export type LeadsReportControllerBySourceQueryError = ErrorType<LeadsReportControllerBySource401>
+
+
+export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadsReportControllerBySource>>,
+          TError,
+          Awaited<ReturnType<typeof leadsReportControllerBySource>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadsReportControllerBySource>>,
+          TError,
+          Awaited<ReturnType<typeof leadsReportControllerBySource>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Relatório de leads por origem
+ */
+
+export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getLeadsReportControllerBySourceQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -24705,14 +24826,14 @@ export function useSaleControllerCount<TData = Awaited<ReturnType<typeof saleCon
  */
 export const saleControllerUpdateById = (
     id: string,
-    salePartial: BodyType<SalePartial>,
+    saleControllerUpdateByIdBody: BodyType<SaleControllerUpdateByIdBody>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/sales/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: salePartial
+      data: saleControllerUpdateByIdBody
     },
       options);
     }
@@ -24720,8 +24841,8 @@ export const saleControllerUpdateById = (
 
 
 export const getSaleControllerUpdateByIdMutationOptions = <TError = ErrorType<SaleControllerUpdateById401 | SaleControllerUpdateById404 | SaleControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SaleControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SaleControllerUpdateByIdBody>}, TContext> => {
 
 const mutationKey = ['saleControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -24733,7 +24854,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof saleControllerUpdateById>>, {id: string;data: BodyType<SalePartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof saleControllerUpdateById>>, {id: string;data: BodyType<SaleControllerUpdateByIdBody>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  saleControllerUpdateById(id,data,requestOptions)
@@ -24745,18 +24866,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SaleControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof saleControllerUpdateById>>>
-    export type SaleControllerUpdateByIdMutationBody = BodyType<SalePartial>
+    export type SaleControllerUpdateByIdMutationBody = BodyType<SaleControllerUpdateByIdBody>
     export type SaleControllerUpdateByIdMutationError = ErrorType<SaleControllerUpdateById401 | SaleControllerUpdateById404 | SaleControllerUpdateById422>
 
     /**
  * @summary Update a Sale by id
  */
 export const useSaleControllerUpdateById = <TError = ErrorType<SaleControllerUpdateById401 | SaleControllerUpdateById404 | SaleControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SaleControllerUpdateByIdBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof saleControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<SalePartial>},
+        {id: string;data: BodyType<SaleControllerUpdateByIdBody>},
         TContext
       > => {
 
@@ -24932,7 +25053,7 @@ export const useSaleControllerDeleteById = <TError = ErrorType<SaleControllerDel
  * @summary Create a new Sale
  */
 export const saleControllerCreate = (
-    newSale: BodyType<NewSale>,
+    saleControllerCreateBody: BodyType<SaleControllerCreateBody>,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -24940,7 +25061,7 @@ export const saleControllerCreate = (
       return mutator<Sale>(
       {url: `/sales`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: newSale, signal
+      data: saleControllerCreateBody, signal
     },
       options);
     }
@@ -24948,8 +25069,8 @@ export const saleControllerCreate = (
 
 
 export const getSaleControllerCreateMutationOptions = <TError = ErrorType<SaleControllerCreate401 | SaleControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerCreate>>, TError,{data: BodyType<NewSale>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof saleControllerCreate>>, TError,{data: BodyType<NewSale>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerCreate>>, TError,{data: BodyType<SaleControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof saleControllerCreate>>, TError,{data: BodyType<SaleControllerCreateBody>}, TContext> => {
 
 const mutationKey = ['saleControllerCreate'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -24961,7 +25082,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof saleControllerCreate>>, {data: BodyType<NewSale>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof saleControllerCreate>>, {data: BodyType<SaleControllerCreateBody>}> = (props) => {
           const {data} = props ?? {};
 
           return  saleControllerCreate(data,requestOptions)
@@ -24973,18 +25094,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SaleControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof saleControllerCreate>>>
-    export type SaleControllerCreateMutationBody = BodyType<NewSale>
+    export type SaleControllerCreateMutationBody = BodyType<SaleControllerCreateBody>
     export type SaleControllerCreateMutationError = ErrorType<SaleControllerCreate401 | SaleControllerCreate422>
 
     /**
  * @summary Create a new Sale
  */
 export const useSaleControllerCreate = <TError = ErrorType<SaleControllerCreate401 | SaleControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerCreate>>, TError,{data: BodyType<NewSale>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerCreate>>, TError,{data: BodyType<SaleControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof saleControllerCreate>>,
         TError,
-        {data: BodyType<NewSale>},
+        {data: BodyType<SaleControllerCreateBody>},
         TContext
       > => {
 

@@ -35,4 +35,6 @@ export interface Person {
   addressId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** @nullable */
+  photoId?: string | null;
 }
