@@ -3,6 +3,9 @@ import { Link } from 'react-router'
 import { Heart, Share2, Printer } from 'lucide-react'
 import DropCapHeading from '@/pages/Site/components/DropCapHeading'
 import { formatCurrency } from '@/pages/Site/PropertyDetail/utils/formatters'
+import { useFavorite } from '@/pages/Site/hooks/useFavorite'
+import { useToast } from '@/contexts/ToastContext'
+import { cn } from '@/lib/utils'
 import type { PublicPropertyControllerFindById200 } from '@/api/generated/models'
 
 type PropertyHeaderProps = {
@@ -17,20 +20,50 @@ function buildShortAddress(property: PublicPropertyControllerFindById200): strin
   return parts.join(', ')
 }
 
-function ActionIcon({ label, icon }: { label: string; icon: ReactNode }) {
+type ActionIconProps = {
+  label: string
+  icon: ReactNode
+  active?: boolean
+  onClick: () => void
+}
+
+function ActionIcon({ label, icon, active, onClick }: ActionIconProps) {
   return (
-    <span
+    <button
+      type="button"
       title={label}
-      className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground"
+      aria-label={label}
+      onClick={onClick}
+      className={cn(
+        'flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-primary',
+        active && 'border-red-500 text-red-500'
+      )}
     >
       {icon}
-    </span>
+    </button>
   )
+}
+
+function shareProperty(title: string, toastPromise: ReturnType<typeof useToast>['toastPromise']) {
+  const shareUrl = window.location.href
+
+  if (navigator.share) {
+    navigator.share({ title, url: shareUrl }).catch(() => undefined)
+    return
+  }
+
+  toastPromise(navigator.clipboard.writeText(shareUrl), {
+    pending: 'Copio il link...',
+    success: 'Link copiato negli appunti!',
+    error: 'Impossibile copiare il link.',
+  })
 }
 
 function PropertyHeader({ property }: PropertyHeaderProps) {
   const isRent = property.purpose === 'rent'
   const price = formatCurrency(property.price)
+  const { isFavorite, toggle } = useFavorite(property.id ?? '')
+  const { toastPromise } = useToast()
 
   return (
     <div className="flex flex-col gap-3">
@@ -46,9 +79,18 @@ function PropertyHeader({ property }: PropertyHeaderProps) {
         <DropCapHeading as="h1" text={property.title ?? ''} className="text-2xl font-bold sm:text-3xl" />
 
         <div className="flex items-center gap-2">
-          <ActionIcon label="Preferiti" icon={<Heart className="size-4" />} />
-          <ActionIcon label="Condividi" icon={<Share2 className="size-4" />} />
-          <ActionIcon label="Stampa" icon={<Printer className="size-4" />} />
+          <ActionIcon
+            label={isFavorite ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}
+            icon={<Heart className={cn('size-4', isFavorite && 'fill-red-500')} />}
+            active={isFavorite}
+            onClick={toggle}
+          />
+          <ActionIcon
+            label="Condividi"
+            icon={<Share2 className="size-4" />}
+            onClick={() => shareProperty(property.title ?? 'Immobile', toastPromise)}
+          />
+          <ActionIcon label="Stampa" icon={<Printer className="size-4" />} onClick={() => window.print()} />
         </div>
       </div>
 

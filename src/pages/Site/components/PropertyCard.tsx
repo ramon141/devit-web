@@ -1,6 +1,9 @@
+import type { MouseEvent } from 'react'
 import { Link } from 'react-router'
 import { BedDouble, Bath, Ruler, Maximize2, Heart } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
+import { useFavorite } from '@/pages/Site/hooks/useFavorite'
 import type { PublicPropertyControllerFind200ItemsItem } from '@/api/generated/models'
 
 const currencyFormatter = new Intl.NumberFormat('it-IT', {
@@ -29,6 +32,13 @@ function PropertyCard({ property }: PropertyCardProps) {
   const status = statusLabel(property.purpose)
   const address = addressLine(property)
   const detailUrl = `/property/${property.id}`
+  const { isFavorite, toggle } = useFavorite(property.id ?? '')
+
+  function handleFavoriteClick(event: MouseEvent) {
+    event.preventDefault()
+    event.stopPropagation()
+    toggle()
+  }
 
   return (
     <Card className="h-full overflow-hidden py-0 gap-0">
@@ -72,9 +82,14 @@ function PropertyCard({ property }: PropertyCardProps) {
             <span className="flex size-7 items-center justify-center rounded-full bg-white/85 text-foreground">
               <Maximize2 className="size-3.5" />
             </span>
-            <span className="flex size-7 items-center justify-center rounded-full bg-white/85 text-foreground">
-              <Heart className="size-3.5" />
-            </span>
+            <button
+              type="button"
+              onClick={handleFavoriteClick}
+              aria-label={isFavorite ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti'}
+              className="flex size-7 items-center justify-center rounded-full bg-white/85 text-foreground"
+            >
+              <Heart className={cn('size-3.5', isFavorite && 'fill-red-500 text-red-500')} />
+            </button>
           </span>
         </div>
       </Link>
