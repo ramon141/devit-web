@@ -10,7 +10,7 @@ function Profilo() {
   const { data: user } = useUserControllerFindById(userId, undefined, {
     query: { enabled: !!userId },
   })
-  const { form, avatarFiles, setAvatarFiles, isSubmitting, isEditing, onSubmit } = useUserForm({
+  const { form, avatarFiles, setAvatarFiles, avatarUrl, isSubmitting, isEditing, onSubmit } = useUserForm({
     user,
     onSaved: () => {},
   })
@@ -27,6 +27,7 @@ function Profilo() {
           isEditing={isEditing}
           avatarFiles={avatarFiles}
           setAvatarFiles={setAvatarFiles}
+          avatarUrl={avatarUrl}
         />
 
         <div className="flex justify-end">

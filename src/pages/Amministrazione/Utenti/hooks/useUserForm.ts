@@ -6,6 +6,7 @@ import type { AxiosError } from 'axios'
 import {
   getUserControllerCountQueryKey,
   getUserControllerFindQueryKey,
+  useAttachmentControllerFindById,
   useUserControllerCreate,
   useUserControllerUpdateById,
 } from '@/api/generated/api'
@@ -37,6 +38,9 @@ export function useUserForm({ user, onSaved }: UseUserFormProps) {
   const { mutateAsync: update, isPending: updating } = useUserControllerUpdateById()
   const { uploadFile } = useAttachmentUpload()
   const [avatarFiles, setAvatarFiles] = useState<File[]>([])
+  const { data: avatar } = useAttachmentControllerFindById(user?.avatarId ?? '', undefined, {
+    query: { enabled: !!user?.avatarId },
+  })
 
   const form = useForm<UserFormValues>({
     resolver: zodResolver(userSchema),
@@ -97,6 +101,7 @@ export function useUserForm({ user, onSaved }: UseUserFormProps) {
     form,
     avatarFiles,
     setAvatarFiles,
+    avatarUrl: avatar?.url ?? undefined,
     isSubmitting: creating || updating,
     isEditing: !!user,
     onSubmit: form.handleSubmit(onSubmit),

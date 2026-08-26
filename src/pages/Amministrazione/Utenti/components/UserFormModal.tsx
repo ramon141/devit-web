@@ -11,7 +11,7 @@ type UserFormModalProps = {
 }
 
 function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
-  const { form, avatarFiles, setAvatarFiles, isSubmitting, isEditing, onSubmit } = useUserForm({
+  const { form, avatarFiles, setAvatarFiles, avatarUrl, isSubmitting, isEditing, onSubmit } = useUserForm({
     user,
     onSaved: () => onOpenChange(false),
   })
@@ -28,6 +28,7 @@ function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
           isEditing={isEditing}
           avatarFiles={avatarFiles}
           setAvatarFiles={setAvatarFiles}
+          avatarUrl={avatarUrl}
         />
 
         <div className="flex justify-end gap-2">

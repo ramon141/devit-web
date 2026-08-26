@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
-import FileUpload from '@/components/FileUpload'
+import AvatarUpload from '@/components/AvatarUpload'
 import { useBranchControllerFind } from '@/api/generated/api'
 import { accessLevelOptions, type UserFormValues } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
 
@@ -12,10 +12,16 @@ type UserFormFieldsProps = {
   isEditing: boolean
   avatarFiles: File[]
   setAvatarFiles: (files: File[]) => void
+  avatarUrl?: string
 }
 
-function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles }: UserFormFieldsProps) {
-  const { register, control } = form
+function initials(fullName: string) {
+  const parts = fullName.trim().split(/\s+/)
+  return ((parts[0]?.[0] ?? '') + (parts[1]?.[0] ?? '')).toUpperCase()
+}
+
+function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUrl }: UserFormFieldsProps) {
+  const { register, control, watch } = form
   const { errors } = useFormState({ control })
   const { data: branches } = useBranchControllerFind({ filter: { order: ['name ASC'] } })
   const branchOptions = (branches ?? []).map((branch) => ({
@@ -26,11 +32,12 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles }: UserFo
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <div className="sm:col-span-2">
-        <FileUpload
+        <AvatarUpload
           label="Foto profilo"
           value={avatarFiles}
           onChange={setAvatarFiles}
-          accept="image/*"
+          currentUrl={avatarUrl}
+          fallbackText={initials(watch('fullName') ?? '')}
           hint={isEditing ? 'Lascia vuoto per mantenere la foto attuale' : undefined}
         />
       </div>
