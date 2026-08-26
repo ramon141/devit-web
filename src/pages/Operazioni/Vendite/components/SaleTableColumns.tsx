@@ -1,6 +1,7 @@
 import { PencilIcon, Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { SaleWithRelations } from '@/api/generated/models'
 import { saleStatusOptions } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
@@ -21,7 +22,7 @@ type SaleTableActionsProps = {
 function SaleTableActions({ sale, onEdit, onDelete }: SaleTableActionsProps) {
   const locked = isLocked(sale.status)
 
-  return (
+  const actions = (
     <>
       <Button variant="ghost" size="icon-sm" disabled={locked} onClick={() => onEdit(sale)}>
         <PencilIcon className="size-4" />
@@ -30,6 +31,17 @@ function SaleTableActions({ sale, onEdit, onDelete }: SaleTableActionsProps) {
         <Trash2Icon className="size-4 text-destructive" />
       </Button>
     </>
+  )
+
+  if (!locked) {
+    return actions
+  }
+
+  return (
+    <Tooltip>
+      <TooltipTrigger render={<span className="inline-flex gap-1" />}>{actions}</TooltipTrigger>
+      <TooltipContent>Vendita conclusa: non modificabile</TooltipContent>
+    </Tooltip>
   )
 }
 

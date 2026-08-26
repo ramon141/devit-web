@@ -1,5 +1,5 @@
 import ModalRegister from '@/components/ModalRegister'
-import { Button } from '@/components/ui/button'
+import FormModalFooter from '@/components/FormModalFooter'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import { useRentalContractForm } from '@/pages/Operazioni/Locazioni/hooks/useRentalContractForm'
@@ -40,14 +40,7 @@ function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps)
           <form onSubmit={onSubmit} className="grid gap-4">
             <RentalFormFields form={form} />
 
-            <div className="flex justify-end gap-2">
-              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-                Annulla
-              </Button>
-              <Button type="submit" disabled={isSubmitting}>
-                Salva
-              </Button>
-            </div>
+            <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
           </form>
         </TabsContent>
 

@@ -53,7 +53,7 @@ function DataTableGrid<TRow>({
   onRowClick,
 }: DataTableGridProps<TRow>) {
   return (
-    <div className="overflow-hidden rounded-xl ring-1 ring-border">
+    <div className="overflow-hidden rounded-xl bg-card ring-1 ring-border">
       <Table>
         <TableHeader>
           <TableRow>

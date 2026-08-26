@@ -1,6 +1,6 @@
 import { useFormState } from 'react-hook-form'
 import ModalRegister from '@/components/ModalRegister'
-import { Button } from '@/components/ui/button'
+import FormModalFooter from '@/components/FormModalFooter'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -45,14 +45,11 @@ function RentalRenewModal({ open, onOpenChange, contractId, contractNumber }: Re
           <Textarea {...register('note')} rows={3} />
         </FormFieldWrapper>
 
-        <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-            Annulla
-          </Button>
-          <Button type="submit" disabled={isSubmitting}>
-            Proroga
-          </Button>
-        </div>
+        <FormModalFooter
+          onCancel={() => onOpenChange(false)}
+          isSubmitting={isSubmitting}
+          submitLabel="Proroga"
+        />
       </form>
     </ModalRegister>
   )

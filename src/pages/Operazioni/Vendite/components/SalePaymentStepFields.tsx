@@ -3,7 +3,6 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
-import SalePartiesFields from '@/pages/Operazioni/Vendite/components/SalePartiesFields'
 import SaleFinancialFields from '@/pages/Operazioni/Vendite/components/SaleFinancialFields'
 import {
   salePaymentMethodOptions,
@@ -11,26 +10,16 @@ import {
   type SaleFormValues,
 } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
 
-type SaleFormFieldsProps = {
+type SalePaymentStepFieldsProps = {
   form: UseFormReturn<SaleFormValues>
 }
 
-function SaleFormFields({ form }: SaleFormFieldsProps) {
+function SalePaymentStepFields({ form }: SalePaymentStepFieldsProps) {
   const { register, control } = form
   const { errors } = useFormState({ control })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper label="Numero" required error={errors.number?.message}>
-        <Input {...register('number')} placeholder="VEN-0001" />
-      </FormFieldWrapper>
-
-      <FormFieldWrapper label="Data della vendita" required error={errors.saleDate?.message}>
-        <Input {...register('saleDate')} type="date" />
-      </FormFieldWrapper>
-
-      <SalePartiesFields control={control} errors={errors} />
-
       <FormFieldWrapper label="Modalità di pagamento" required error={errors.paymentMethod?.message}>
         <Controller
           control={control}
@@ -72,4 +61,4 @@ function SaleFormFields({ form }: SaleFormFieldsProps) {
   )
 }
 
-export default SaleFormFields
+export default SalePaymentStepFields

@@ -1,5 +1,5 @@
 import ModalRegister from '@/components/ModalRegister'
-import { Button } from '@/components/ui/button'
+import FormModalFooter from '@/components/FormModalFooter'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
 import { useUserForm } from '@/pages/Amministrazione/Utenti/hooks/useUserForm'
 import UserFormFields from '@/pages/Amministrazione/Utenti/components/UserFormFields'
@@ -31,14 +31,7 @@ function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
           avatarUrl={avatarUrl}
         />
 
-        <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-            Annulla
-          </Button>
-          <Button type="submit" disabled={isSubmitting}>
-            Salva
-          </Button>
-        </div>
+        <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
       </form>
     </ModalRegister>
   )

@@ -1,8 +1,8 @@
-import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SelectField from '@/components/SelectField'
 import InputMoney from '@/components/InputMoney'
+import RemovableRow from '@/components/RemovableRow'
 import type { NewPropertyFeeFrequency } from '@/api/generated/models'
 import { feeFrequencyOptions } from '@/pages/Imoveis/Scheda/schemas/feeFrequencyOptions'
 import { usePropertyFees } from '@/pages/Imoveis/Scheda/hooks/usePropertyFees'
@@ -34,15 +34,12 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
 
       <div className="grid gap-2">
         {fees.map((fee) => (
-          <div key={fee.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
+          <RemovableRow key={fee.id} onRemove={() => fee.id && removeFee(fee.id)}>
             <span className="text-sm">
               {fee.name} · {formatAmount(fee.amount)} · {getOptionLabel(feeFrequencyOptions, fee.frequency)}
               {fee.note && ` · ${fee.note}`}
             </span>
-            <Button variant="ghost" size="icon-sm" onClick={() => fee.id && removeFee(fee.id)}>
-              <XIcon className="size-4" />
-            </Button>
-          </div>
+          </RemovableRow>
         ))}
       </div>
 

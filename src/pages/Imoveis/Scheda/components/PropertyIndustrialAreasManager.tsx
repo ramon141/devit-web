@@ -1,7 +1,7 @@
-import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SelectField from '@/components/SelectField'
+import RemovableRow from '@/components/RemovableRow'
 import type { PropertyIndustrialAreaAreaType } from '@/api/generated/models'
 import { industrialAreaTypeOptions } from '@/pages/Imoveis/Scheda/schemas/industrialAreaOptions'
 import { usePropertyIndustrialAreas } from '@/pages/Imoveis/Scheda/hooks/usePropertyIndustrialAreas'
@@ -21,16 +21,13 @@ function PropertyIndustrialAreasManager({ propertyId }: PropertyIndustrialAreasM
 
       <div className="grid gap-2">
         {areas.map((area) => (
-          <div key={area.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
+          <RemovableRow key={area.id} onRemove={() => area.id && removeArea(area.id)}>
             <span className="text-sm">
               {getOptionLabel(industrialAreaTypeOptions, area.areaType)}
               {area.areaSqm != null && ` · ${area.areaSqm} m²`}
               {area.heightM != null && ` · h ${area.heightM}m`}
             </span>
-            <Button variant="ghost" size="icon-sm" onClick={() => area.id && removeArea(area.id)}>
-              <XIcon className="size-4" />
-            </Button>
-          </div>
+          </RemovableRow>
         ))}
       </div>
 

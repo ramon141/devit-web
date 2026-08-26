@@ -328,23 +328,37 @@ body {
   border-color: var(--primary);
 }
 
-/* Scrollbar sottile per aree con overflow (es. sidebar) */
-.thin-scrollbar {
+/* Scrollbar sottile per tutto il sistema */
+* {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.22) transparent;
 }
 
-.thin-scrollbar::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
-.thin-scrollbar::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.22);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+/* Aree su sfondo scuro (es. sidebar): thumb chiaro */
+.thin-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.18);
-  border-radius: 9999px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb:hover {

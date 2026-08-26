@@ -1,7 +1,7 @@
-import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SearchableSelect from '@/components/SearchableSelect'
+import RemovableRow from '@/components/RemovableRow'
 import { usePersonControllerFind } from '@/api/generated/api'
 import { usePropertyOwners } from '@/pages/Imoveis/Scheda/hooks/usePropertyOwners'
 
@@ -20,14 +20,11 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
       <p className="text-sm font-medium">Proprietari aggiuntivi</p>
 
       {owners.map((owner) => (
-        <div key={owner.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
+        <RemovableRow key={owner.id} onRemove={() => owner.id && removeOwner(owner.id)}>
           <span className="text-sm">
             {owner.person?.name} {owner.ownershipPercent != null && `· ${owner.ownershipPercent}%`}
           </span>
-          <Button variant="ghost" size="icon-sm" onClick={() => owner.id && removeOwner(owner.id)}>
-            <XIcon className="size-4" />
-          </Button>
-        </div>
+        </RemovableRow>
       ))}
 
       <div className="flex flex-wrap items-end gap-2">

@@ -1,5 +1,5 @@
 import ModalRegister from '@/components/ModalRegister'
-import { Button } from '@/components/ui/button'
+import FormModalFooter from '@/components/FormModalFooter'
 import type { Lead } from '@/api/generated/models'
 import { useLeadForm } from '@/pages/Clientes/Leads/hooks/useLeadForm'
 import LeadFormFields from '@/pages/Clientes/Leads/components/LeadFormFields'
@@ -21,14 +21,7 @@ function LeadFormModal({ open, onOpenChange, lead }: LeadFormModalProps) {
       <form onSubmit={onSubmit} className="grid gap-4">
         <LeadFormFields form={form} />
 
-        <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-            Annulla
-          </Button>
-          <Button type="submit" disabled={isSubmitting}>
-            Salva
-          </Button>
-        </div>
+        <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
       </form>
     </ModalRegister>
   )

@@ -1,6 +1,6 @@
-import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import SearchableSelect from '@/components/SearchableSelect'
+import RemovableRow from '@/components/RemovableRow'
 import { usePropertyControllerFind } from '@/api/generated/api'
 import { useCalendarEventProperties } from '@/pages/Agenda/hooks/useCalendarEventProperties'
 
@@ -22,14 +22,11 @@ function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventProper
       <p className="text-sm font-medium">Immobili collegati</p>
 
       {links.map((link) => (
-        <div key={link.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
+        <RemovableRow key={link.id} onRemove={() => link.id && removeProperty(link.id)}>
           <span className="text-sm">
             {link.property?.code} · {link.property?.title}
           </span>
-          <Button variant="ghost" size="icon-sm" onClick={() => link.id && removeProperty(link.id)}>
-            <XIcon className="size-4" />
-          </Button>
-        </div>
+        </RemovableRow>
       ))}
 
       <div className="flex flex-wrap items-end gap-2">

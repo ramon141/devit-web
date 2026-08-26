@@ -2,18 +2,18 @@ import { LockIcon } from 'lucide-react'
 import { TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 
-type PropertyStep = {
+type StepperStep = {
   value: string
   label: string
   step: number
   locked?: boolean
 }
 
-type PropertyStepperProps = {
-  steps: PropertyStep[]
+type StepperProps = {
+  steps: StepperStep[]
 }
 
-function PropertyStepper({ steps }: PropertyStepperProps) {
+function Stepper({ steps }: StepperProps) {
   return (
     <TabsList className="relative !h-auto w-full items-start justify-between gap-1 bg-transparent p-0 mb-6">
       <div className="absolute top-4 right-4 left-4 h-0.5 bg-border" />
@@ -42,4 +42,5 @@ function PropertyStepper({ steps }: PropertyStepperProps) {
   )
 }
 
-export default PropertyStepper
+export default Stepper
+export type { StepperStep }

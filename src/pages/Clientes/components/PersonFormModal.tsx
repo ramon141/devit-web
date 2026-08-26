@@ -1,5 +1,5 @@
 import ModalRegister from '@/components/ModalRegister'
-import { Button } from '@/components/ui/button'
+import FormModalFooter from '@/components/FormModalFooter'
 import type { PersonWithRelations } from '@/api/generated/models'
 import { usePersonForm } from '@/pages/Clientes/hooks/usePersonForm'
 import PersonFormFields from '@/pages/Clientes/components/PersonFormFields'
@@ -26,14 +26,7 @@ function PersonFormModal({ open, onOpenChange, person }: PersonFormModalProps) {
       <form onSubmit={onSubmit} className="grid gap-4">
         <PersonFormFields form={form} />
 
-        <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-            Annulla
-          </Button>
-          <Button type="submit" disabled={isSubmitting}>
-            Salva
-          </Button>
-        </div>
+        <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
       </form>
     </ModalRegister>
   )

@@ -1,7 +1,7 @@
-import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SelectField from '@/components/SelectField'
+import RemovableRow from '@/components/RemovableRow'
 import type { PropertyRoomRoomType } from '@/api/generated/models'
 import { roomTypeOptions } from '@/pages/Imoveis/Scheda/schemas/roomTypeOptions'
 import { usePropertyRooms } from '@/pages/Imoveis/Scheda/hooks/usePropertyRooms'
@@ -34,17 +34,14 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
 
       <div className="grid gap-2">
         {rooms.map((room) => (
-          <div key={room.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
+          <RemovableRow key={room.id} onRemove={() => room.id && removeRoom(room.id)}>
             <span className="text-sm">
               {room.quantity != null && room.quantity > 1 && `${room.quantity}x `}
               {getOptionLabel(roomTypeOptions, room.roomType)}
               {room.areaSqm != null && ` · ${room.areaSqm} m²`}
               {room.equipment && ` · ${room.equipment}`}
             </span>
-            <Button variant="ghost" size="icon-sm" onClick={() => room.id && removeRoom(room.id)}>
-              <XIcon className="size-4" />
-            </Button>
-          </div>
+          </RemovableRow>
         ))}
       </div>
 

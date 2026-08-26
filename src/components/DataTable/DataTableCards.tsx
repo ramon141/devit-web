@@ -26,7 +26,7 @@ function DataTableCard<TRow>({
     <div
       onClick={onRowClick ? () => onRowClick(row) : undefined}
       className={cn(
-        'grid gap-2 rounded-xl border border-border p-4',
+        'grid gap-2 rounded-xl border border-border bg-card p-4',
         onRowClick && 'cursor-pointer hover:bg-muted/50'
       )}
     >

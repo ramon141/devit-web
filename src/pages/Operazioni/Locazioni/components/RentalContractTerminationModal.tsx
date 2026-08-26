@@ -1,6 +1,6 @@
 import { useFormState } from 'react-hook-form'
 import ModalRegister from '@/components/ModalRegister'
-import { Button } from '@/components/ui/button'
+import FormModalFooter from '@/components/FormModalFooter'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -49,14 +49,12 @@ function RentalContractTerminationModal({
           <Input {...register('requestedBy')} placeholder="Nome del richiedente" />
         </FormFieldWrapper>
 
-        <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-            Annulla
-          </Button>
-          <Button type="submit" variant="destructive" disabled={isSubmitting}>
-            Rescindi
-          </Button>
-        </div>
+        <FormModalFooter
+          onCancel={() => onOpenChange(false)}
+          isSubmitting={isSubmitting}
+          submitLabel="Rescindi"
+          submitVariant="destructive"
+        />
       </form>
     </ModalRegister>
   )

@@ -1,6 +1,6 @@
-import { XIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import SearchableSelect from '@/components/SearchableSelect'
+import RemovableRow from '@/components/RemovableRow'
 import { usePersonControllerFind } from '@/api/generated/api'
 import { useCalendarEventParticipants } from '@/pages/Agenda/hooks/useCalendarEventParticipants'
 
@@ -19,15 +19,12 @@ function CalendarEventParticipantsManager({ calendarEventId }: CalendarEventPart
       <p className="text-sm font-medium">Clienti/proprietari collegati</p>
 
       {participants.map((participant) => (
-        <div
+        <RemovableRow
           key={participant.id}
-          className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border"
+          onRemove={() => participant.id && removeParticipant(participant.id)}
         >
           <span className="text-sm">{participant.person?.name ?? '—'}</span>
-          <Button variant="ghost" size="icon-sm" onClick={() => participant.id && removeParticipant(participant.id)}>
-            <XIcon className="size-4" />
-          </Button>
-        </div>
+        </RemovableRow>
       ))}
 
       <div className="flex flex-wrap items-end gap-2">

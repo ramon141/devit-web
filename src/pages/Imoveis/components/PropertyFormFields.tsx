@@ -1,6 +1,6 @@
 import type { UseFormReturn } from 'react-hook-form'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
-import PropertyStepper from '@/pages/Imoveis/components/PropertyStepper'
+import Stepper from '@/components/Stepper'
 import PropertyGeneralTab from '@/pages/Imoveis/components/PropertyGeneralTab'
 import PropertyPriceTab from '@/pages/Imoveis/components/PropertyPriceTab'
 import PropertyLocationTab from '@/pages/Imoveis/components/PropertyLocationTab'
@@ -41,7 +41,7 @@ function PropertyFormFields({ form, onSubmit, isSubmitting, propertyId }: Proper
 
   return (
     <Tabs defaultValue="generale">
-      <PropertyStepper steps={stepperSteps} />
+      <Stepper steps={stepperSteps} />
 
       <TabsContent value="generale">
         <PropertyGeneralTab form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} propertyId={propertyId} />
