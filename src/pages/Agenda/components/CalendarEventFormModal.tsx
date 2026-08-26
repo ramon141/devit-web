@@ -1,8 +1,13 @@
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import type { CalendarEvent } from '@/api/generated/models'
 import { useCalendarEventForm } from '@/pages/Agenda/hooks/useCalendarEventForm'
 import CalendarEventFormFields from '@/pages/Agenda/components/CalendarEventFormFields'
+import CalendarEventParticipantsManager from '@/pages/Agenda/components/CalendarEventParticipantsManager'
+import CalendarEventPropertiesManager from '@/pages/Agenda/components/CalendarEventPropertiesManager'
+import CalendarEventAttachmentsManager from '@/pages/Agenda/components/CalendarEventAttachmentsManager'
+import CalendarEventOutcomeSection from '@/pages/Agenda/components/CalendarEventOutcomeSection'
 
 type CalendarEventFormModalProps = {
   open: boolean
@@ -33,6 +38,19 @@ function CalendarEventFormModal({
     >
       <form onSubmit={onSubmit} className="grid gap-4">
         <CalendarEventFormFields form={form} />
+
+        {event?.id && (
+          <>
+            <Separator />
+            <CalendarEventParticipantsManager calendarEventId={event.id} />
+            <Separator />
+            <CalendarEventPropertiesManager calendarEventId={event.id} />
+            <Separator />
+            <CalendarEventAttachmentsManager calendarEventId={event.id} />
+            <Separator />
+            <CalendarEventOutcomeSection calendarEventId={event.id} />
+          </>
+        )}
 
         <div className="flex items-center justify-between gap-2">
           {event && onRequestDelete ? (

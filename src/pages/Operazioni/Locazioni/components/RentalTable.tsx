@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import dayjs from 'dayjs'
-import { PencilIcon, Trash2Icon } from 'lucide-react'
+import { BanIcon, PencilIcon, RefreshCwIcon, Trash2Icon } from 'lucide-react'
 import {
   Table,
   TableBody,
@@ -15,6 +15,8 @@ import ConfirmPopup from '@/components/ConfirmPopup'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import { rentalSituationOptions } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 import { useDeleteRentalContract } from '@/pages/Operazioni/Locazioni/hooks/useDeleteRentalContract'
+import RentalRenewModal from '@/pages/Operazioni/Locazioni/components/RentalRenewModal'
+import RentalContractTerminationModal from '@/pages/Operazioni/Locazioni/components/RentalContractTerminationModal'
 
 type RentalTableProps = {
   contracts: RentalContractWithRelations[]
@@ -36,6 +38,8 @@ function formatAmount(value: number) {
 
 function RentalTable({ contracts, isLoading, onEdit }: RentalTableProps) {
   const [deleteTarget, setDeleteTarget] = useState<RentalContractWithRelations | null>(null)
+  const [renewTarget, setRenewTarget] = useState<RentalContractWithRelations | null>(null)
+  const [terminateTarget, setTerminateTarget] = useState<RentalContractWithRelations | null>(null)
   const { handleDelete } = useDeleteRentalContract()
 
   function confirmDelete() {
@@ -91,6 +95,22 @@ function RentalTable({ contracts, isLoading, onEdit }: RentalTableProps) {
                   variant="ghost"
                   size="icon-sm"
                   disabled={isLocked(contract.situation)}
+                  onClick={() => setRenewTarget(contract)}
+                >
+                  <RefreshCwIcon className="size-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  disabled={isLocked(contract.situation)}
+                  onClick={() => setTerminateTarget(contract)}
+                >
+                  <BanIcon className="size-4" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  disabled={isLocked(contract.situation)}
                   onClick={() => setDeleteTarget(contract)}
                 >
                   <Trash2Icon className="size-4 text-destructive" />
@@ -109,6 +129,20 @@ function RentalTable({ contracts, isLoading, onEdit }: RentalTableProps) {
         variant="destructive"
         confirmLabel="Elimina"
         onConfirm={confirmDelete}
+      />
+
+      <RentalRenewModal
+        open={!!renewTarget}
+        onOpenChange={(open) => !open && setRenewTarget(null)}
+        contractId={renewTarget?.id}
+        contractNumber={renewTarget?.number}
+      />
+
+      <RentalContractTerminationModal
+        open={!!terminateTarget}
+        onOpenChange={(open) => !open && setTerminateTarget(null)}
+        contractId={terminateTarget?.id}
+        contractNumber={terminateTarget?.number}
       />
     </div>
   )

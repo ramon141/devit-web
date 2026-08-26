@@ -15,6 +15,7 @@ import { useCalendarEventList } from '@/pages/Agenda/hooks/useCalendarEventList'
 import { useDeleteCalendarEvent } from '@/pages/Agenda/hooks/useDeleteCalendarEvent'
 import { useRescheduleCalendarEvent } from '@/pages/Agenda/hooks/useRescheduleCalendarEvent'
 import CalendarEventFormModal from '@/pages/Agenda/components/CalendarEventFormModal'
+import CalendarEventPreviewModal from '@/pages/Agenda/components/CalendarEventPreviewModal'
 
 const confirmationColors: Record<string, string> = {
   pending: 'var(--muted-foreground)',
@@ -28,6 +29,7 @@ function Agenda() {
   const { reschedule } = useRescheduleCalendarEvent()
   const [formOpen, setFormOpen] = useState(false)
   const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null)
+  const [previewEvent, setPreviewEvent] = useState<CalendarEvent | null>(null)
   const [deleteTarget, setDeleteTarget] = useState<CalendarEvent | null>(null)
   const [defaultDate, setDefaultDate] = useState<string | undefined>(undefined)
 
@@ -37,7 +39,7 @@ function Agenda() {
     start: event.startAt,
     end: event.endAt,
     allDay: event.allDay ?? false,
-    backgroundColor: confirmationColors[event.confirmationStatus ?? 'pending'],
+    backgroundColor: event.backgroundColor ?? confirmationColors[event.confirmationStatus ?? 'pending'],
     borderColor: 'transparent',
     textColor: event.confirmationStatus === 'confirmed' ? 'var(--primary-foreground)' : '#fff',
     extendedProps: { event },
@@ -48,8 +50,7 @@ function Agenda() {
   }
 
   function handleEventClick(arg: EventClickArg) {
-    setEditingEvent(arg.event.extendedProps.event as CalendarEvent)
-    setFormOpen(true)
+    setPreviewEvent(arg.event.extendedProps.event as CalendarEvent)
   }
 
   function handleDateClick(dateStr: string) {
@@ -110,6 +111,16 @@ function Agenda() {
           eventResize={handleEventResize}
         />
       </div>
+
+      <CalendarEventPreviewModal
+        event={previewEvent}
+        onOpenChange={(open) => !open && setPreviewEvent(null)}
+        onEdit={(event) => {
+          setPreviewEvent(null)
+          setEditingEvent(event)
+          setFormOpen(true)
+        }}
+      />
 
       <CalendarEventFormModal
         open={formOpen}

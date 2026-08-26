@@ -12,6 +12,9 @@ import ImovelScheda from '@/pages/Imoveis/Scheda'
 import Proposte from '@/pages/Proposte'
 import VenditePage from '@/pages/Operazioni/Vendite/page'
 import LocazioniPage from '@/pages/Operazioni/Locazioni/page'
+import AdeguamentiCanonePage from '@/pages/Operazioni/Locazioni/Adeguamenti/page'
+import ScadenziarioPage from '@/pages/Operazioni/Locazioni/Scadenziario/page'
+import RegistrazioniPage from '@/pages/Operazioni/Locazioni/Registrazioni/page'
 import Marketing from '@/pages/Marketing'
 import Statistiche from '@/pages/Statistiche'
 import Notifiche from '@/pages/Notifiche'
@@ -44,6 +47,9 @@ const routes: RouteConfig[] = [
   { path: '/operazioni', element: <Navigate to="/operazioni/vendite" replace /> },
   { path: '/operazioni/vendite', element: <VenditePage /> },
   { path: '/operazioni/locazioni', element: <LocazioniPage /> },
+  { path: '/operazioni/adeguamenti-canone', element: <AdeguamentiCanonePage /> },
+  { path: '/operazioni/scadenziario', element: <ScadenziarioPage /> },
+  { path: '/operazioni/registrazioni', element: <RegistrazioniPage /> },
   { path: '/marketing', element: <Marketing /> },
   { path: '/statistiche', element: <Statistiche /> },
   { path: '/notifiche', element: <Notifiche /> },

@@ -1,8 +1,11 @@
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import { useRentalContractForm } from '@/pages/Operazioni/Locazioni/hooks/useRentalContractForm'
 import RentalFormFields from '@/pages/Operazioni/Locazioni/components/RentalFormFields'
+import RentalContractAttachmentsManager from '@/pages/Operazioni/Locazioni/components/RentalContractAttachmentsManager'
+import RentalContractRenewalsHistory from '@/pages/Operazioni/Locazioni/components/RentalContractRenewalsHistory'
 
 type RentalFormModalProps = {
   open: boolean
@@ -22,18 +25,44 @@ function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps)
       onOpenChange={onOpenChange}
       title={contract ? 'Modifica contratto' : 'Nuovo contratto'}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
-        <RentalFormFields form={form} />
+      <Tabs defaultValue="dati" className="w-full">
+        <TabsList>
+          <TabsTrigger value="dati">Dati</TabsTrigger>
+          <TabsTrigger value="allegati" disabled={!contract?.id}>
+            Allegati
+          </TabsTrigger>
+          <TabsTrigger value="storico" disabled={!contract?.id}>
+            Storico
+          </TabsTrigger>
+        </TabsList>
 
-        <div className="flex justify-end gap-2">
-          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-            Annulla
-          </Button>
-          <Button type="submit" disabled={isSubmitting}>
-            Salva
-          </Button>
-        </div>
-      </form>
+        <TabsContent value="dati">
+          <form onSubmit={onSubmit} className="grid gap-4">
+            <RentalFormFields form={form} />
+
+            <div className="flex justify-end gap-2">
+              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+                Annulla
+              </Button>
+              <Button type="submit" disabled={isSubmitting}>
+                Salva
+              </Button>
+            </div>
+          </form>
+        </TabsContent>
+
+        {contract?.id && (
+          <TabsContent value="allegati">
+            <RentalContractAttachmentsManager contractId={contract.id} />
+          </TabsContent>
+        )}
+
+        {contract?.id && (
+          <TabsContent value="storico">
+            <RentalContractRenewalsHistory contractId={contract.id} />
+          </TabsContent>
+        )}
+      </Tabs>
     </ModalRegister>
   )
 }

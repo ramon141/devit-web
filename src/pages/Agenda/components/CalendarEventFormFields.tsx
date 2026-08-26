@@ -8,8 +8,11 @@ import {
   eventTypeOptions,
   confirmationStatusOptions,
   reminderOptions,
+  recurrenceOptions,
+  backgroundColorOptions,
   type CalendarEventFormValues,
 } from '@/pages/Agenda/schemas/calendarEventSchema'
+import { cn } from '@/lib/utils'
 
 type CalendarEventFormFieldsProps = {
   form: UseFormReturn<CalendarEventFormValues>
@@ -39,6 +42,10 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
 
       <FormFieldWrapper label="Luogo" error={errors.place?.message}>
         <Input {...register('place')} placeholder="Via Roma 12, Milano" />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label="Luogo delle chiavi" error={errors.keysLocation?.message}>
+        <Input {...register('keysLocation')} placeholder="Portineria, agenzia..." />
       </FormFieldWrapper>
 
       <FormFieldWrapper label="Data" required error={errors.startDate?.message}>
@@ -73,6 +80,41 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
           )}
         />
       </FormFieldWrapper>
+
+      <FormFieldWrapper label="Ricorrenza" required error={errors.recurrence?.message}>
+        <Controller
+          control={control}
+          name="recurrence"
+          render={({ field }) => (
+            <SelectField value={field.value} onValueChange={field.onChange} options={recurrenceOptions} />
+          )}
+        />
+      </FormFieldWrapper>
+
+      <Controller
+        control={control}
+        name="backgroundColor"
+        render={({ field }) => (
+          <div className="grid gap-1.5">
+            <span className="text-sm font-medium">Colore evento</span>
+            <div className="flex flex-wrap items-center gap-2">
+              {backgroundColorOptions.map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  aria-label={option.label}
+                  onClick={() => field.onChange(option.value)}
+                  className={cn(
+                    'size-6 rounded-full ring-2 ring-offset-2 ring-offset-background',
+                    field.value === option.value ? 'ring-foreground' : 'ring-transparent'
+                  )}
+                  style={{ backgroundColor: option.value }}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      />
 
       <Controller
         control={control}

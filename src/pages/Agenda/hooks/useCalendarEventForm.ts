@@ -28,6 +28,9 @@ function emptyValues(defaultDate?: string): CalendarEventFormValues {
     place: '',
     confirmationStatus: 'pending',
     reminder: 'none',
+    recurrence: 'none',
+    keysLocation: '',
+    backgroundColor: '',
     private: false,
     description: '',
   }
@@ -43,6 +46,9 @@ function eventToFormValues(event: CalendarEvent): CalendarEventFormValues {
     place: event.place ?? '',
     confirmationStatus: event.confirmationStatus ?? 'pending',
     reminder: event.reminder ?? 'none',
+    recurrence: event.recurrence ?? 'none',
+    keysLocation: event.keysLocation ?? '',
+    backgroundColor: event.backgroundColor ?? '',
     private: event.private ?? false,
     description: event.description ?? '',
   }
@@ -76,9 +82,12 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
       type: values.type,
       confirmationStatus: values.confirmationStatus,
       reminder: values.reminder,
+      recurrence: values.recurrence,
       private: values.private,
       place: cleaned.place,
       description: cleaned.description,
+      keysLocation: cleaned.keysLocation,
+      backgroundColor: cleaned.backgroundColor,
       startAt: dayjs(`${values.startDate}T${values.startTime}`).toISOString(),
       endAt: dayjs(`${values.startDate}T${values.endTime}`).toISOString(),
     }

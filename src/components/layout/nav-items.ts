@@ -63,6 +63,9 @@ const allNavItems: NavItem[] = [
     children: [
       { label: 'Vendite', path: '/operazioni/vendite' },
       { label: 'Locazioni', path: '/operazioni/locazioni' },
+      { label: 'Adeguamento canone', path: '/operazioni/adeguamenti-canone' },
+      { label: 'Scadenziario', path: '/operazioni/scadenziario' },
+      { label: 'Registrazioni', path: '/operazioni/registrazioni' },
     ],
   },
   {

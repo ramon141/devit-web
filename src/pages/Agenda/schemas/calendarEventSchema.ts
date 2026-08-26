@@ -1,5 +1,10 @@
 import { z } from 'zod'
-import { CalendarEventType, CalendarEventConfirmationStatus, CalendarEventReminder } from '@/api/generated/models'
+import {
+  CalendarEventType,
+  CalendarEventConfirmationStatus,
+  CalendarEventReminder,
+  CalendarEventRecurrence,
+} from '@/api/generated/models'
 
 export const eventTypeOptions = [
   { value: CalendarEventType.acquisition, label: 'Acquisizione' },
@@ -17,6 +22,22 @@ export const confirmationStatusOptions = [
   { value: CalendarEventConfirmationStatus.pending, label: 'In attesa' },
   { value: CalendarEventConfirmationStatus.confirmed, label: 'Confermato' },
   { value: CalendarEventConfirmationStatus.cancelled, label: 'Annullato' },
+]
+
+export const recurrenceOptions = [
+  { value: CalendarEventRecurrence.none, label: 'Nessuna' },
+  { value: CalendarEventRecurrence.daily, label: 'Giornaliera' },
+  { value: CalendarEventRecurrence.weekly, label: 'Settimanale' },
+  { value: CalendarEventRecurrence.monthly, label: 'Mensile' },
+]
+
+export const backgroundColorOptions = [
+  { value: '#2563eb', label: 'Blu' },
+  { value: '#16a34a', label: 'Verde' },
+  { value: '#dc2626', label: 'Rosso' },
+  { value: '#d97706', label: 'Arancione' },
+  { value: '#7c3aed', label: 'Viola' },
+  { value: '#0891b2', label: 'Ciano' },
 ]
 
 export const reminderOptions = [
@@ -38,6 +59,9 @@ export const calendarEventSchema = z.object({
   place: z.string().optional(),
   confirmationStatus: z.enum(CalendarEventConfirmationStatus, { error: 'Seleziona uno stato' }),
   reminder: z.enum(CalendarEventReminder, { error: 'Seleziona un promemoria' }),
+  recurrence: z.enum(CalendarEventRecurrence, { error: 'Seleziona una ricorrenza' }),
+  keysLocation: z.string().optional(),
+  backgroundColor: z.string().optional(),
   private: z.boolean(),
   description: z.string().optional(),
 })
