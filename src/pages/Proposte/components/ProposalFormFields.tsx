@@ -1,4 +1,4 @@
-import { Controller, useWatch, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
@@ -16,12 +16,8 @@ type ProposalFormFieldsProps = {
 }
 
 function ProposalFormFields({ form }: ProposalFormFieldsProps) {
-  const {
-    register,
-    control,
-    setValue,
-    formState: { errors },
-  } = form
+  const { register, control, setValue } = form
+  const { errors } = useFormState({ control })
   const proposalAmount = useWatch({ control, name: 'proposalAmount' })
 
   return (

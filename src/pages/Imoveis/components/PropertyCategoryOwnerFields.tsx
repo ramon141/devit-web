@@ -41,6 +41,7 @@ function PropertyCategoryOwnerFields({ control, errors }: PropertyCategoryOwnerF
         render={({ field }) => (
           <SearchableSelect
             label="Proprietario"
+            required
             value={field.value}
             onValueChange={field.onChange}
             options={ownerOptions}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
-import type { UseFormReturn } from 'react-hook-form'
+import { useFormState, type UseFormReturn } from 'react-hook-form'
 import type { LoginFormValues } from '@/pages/Login/schemas/loginSchema'
 import { MobileEmailField, MobilePasswordField } from '@/pages/Login/components/MobileFormFields'
 
@@ -13,10 +13,8 @@ type MobileLoginFormProps = {
 
 function MobileLoginForm({ form, onSubmit, loading, error }: MobileLoginFormProps) {
   const [showPassword, setShowPassword] = useState(false)
-  const {
-    register,
-    formState: { errors },
-  } = form
+  const { register, control } = form
+  const { errors } = useFormState({ control })
 
   return (
     <form onSubmit={onSubmit} className="w-full">

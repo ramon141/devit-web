@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
-import type { UseFormReturn } from 'react-hook-form'
+import { useFormState, type UseFormReturn } from 'react-hook-form'
 import type { LoginFormValues } from '@/pages/Login/schemas/loginSchema'
 import { cn } from '@/lib/utils'
 
@@ -19,10 +19,8 @@ const underlineInputClass = cn(
 
 function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormProps) {
   const [showPassword, setShowPassword] = useState(false)
-  const {
-    register,
-    formState: { errors },
-  } = form
+  const { register, control } = form
+  const { errors } = useFormState({ control })
 
   return (
     <div className="flex-1 px-14 py-14">

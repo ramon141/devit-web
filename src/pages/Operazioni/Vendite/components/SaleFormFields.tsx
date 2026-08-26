@@ -1,4 +1,4 @@
-import { Controller, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -16,11 +16,8 @@ type SaleFormFieldsProps = {
 }
 
 function SaleFormFields({ form }: SaleFormFieldsProps) {
-  const {
-    register,
-    control,
-    formState: { errors },
-  } = form
+  const { register, control } = form
+  const { errors } = useFormState({ control })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">

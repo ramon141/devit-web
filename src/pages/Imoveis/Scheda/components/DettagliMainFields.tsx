@@ -1,4 +1,4 @@
-import { Controller, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
@@ -11,7 +11,8 @@ type DettagliMainFieldsProps = {
 }
 
 function DettagliMainFields({ form }: DettagliMainFieldsProps) {
-  const { register, control, formState: { errors } } = form
+  const { register, control } = form
+  const { errors } = useFormState({ control })
   const { data: agents } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
   const agentOptions = (agents ?? []).map((agent) => ({ value: agent.id ?? '', label: agent.fullName }))
 

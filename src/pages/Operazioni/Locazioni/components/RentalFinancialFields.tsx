@@ -1,4 +1,4 @@
-import { useWatch, type UseFormReturn } from 'react-hook-form'
+import { useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import InputMoney from '@/components/InputMoney'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -9,12 +9,8 @@ type RentalFinancialFieldsProps = {
 }
 
 function RentalFinancialFields({ form }: RentalFinancialFieldsProps) {
-  const {
-    register,
-    control,
-    setValue,
-    formState: { errors },
-  } = form
+  const { register, control, setValue } = form
+  const { errors } = useFormState({ control })
   const rentAmount = useWatch({ control, name: 'rentAmount' })
   const condoFee = useWatch({ control, name: 'condoFee' })
   const depositAmount = useWatch({ control, name: 'depositAmount' })

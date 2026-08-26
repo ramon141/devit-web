@@ -1,4 +1,4 @@
-import type { UseFormReturn } from 'react-hook-form'
+import { useFormState, type UseFormReturn } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -15,10 +15,8 @@ type PropertyDescriptionTabProps = {
 }
 
 function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId }: PropertyDescriptionTabProps) {
-  const {
-    control,
-    formState: { errors },
-  } = form
+  const { control } = form
+  const { errors } = useFormState({ control })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">

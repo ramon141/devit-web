@@ -1,4 +1,4 @@
-import { Controller, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
@@ -16,7 +16,8 @@ type DettagliStatoFieldsProps = {
 }
 
 function DettagliStatoFields({ form }: DettagliStatoFieldsProps) {
-  const { register, control, formState: { errors } } = form
+  const { register, control } = form
+  const { errors } = useFormState({ control })
 
   return (
     <>

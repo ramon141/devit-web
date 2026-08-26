@@ -1,4 +1,4 @@
-import type { UseFormReturn } from 'react-hook-form'
+import { useFormState, type UseFormReturn } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import ControlledInput from '@/components/ControlledInput'
@@ -13,10 +13,8 @@ type PropertyLocationTabProps = {
 }
 
 function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: PropertyLocationTabProps) {
-  const {
-    control,
-    formState: { errors },
-  } = form
+  const { control } = form
+  const { errors } = useFormState({ control })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">

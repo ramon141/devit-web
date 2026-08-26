@@ -1,4 +1,4 @@
-import { Controller, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -15,11 +15,8 @@ type UserFormFieldsProps = {
 }
 
 function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles }: UserFormFieldsProps) {
-  const {
-    register,
-    control,
-    formState: { errors },
-  } = form
+  const { register, control } = form
+  const { errors } = useFormState({ control })
   const { data: branches } = useBranchControllerFind({ filter: { order: ['name ASC'] } })
   const branchOptions = (branches ?? []).map((branch) => ({
     value: branch.id ?? '',

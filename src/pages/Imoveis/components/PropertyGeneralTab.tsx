@@ -1,4 +1,4 @@
-import { Controller, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
@@ -16,10 +16,8 @@ type PropertyGeneralTabProps = {
 }
 
 function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId }: PropertyGeneralTabProps) {
-  const {
-    control,
-    formState: { errors },
-  } = form
+  const { control } = form
+  const { errors } = useFormState({ control })
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">

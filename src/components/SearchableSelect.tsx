@@ -23,6 +23,7 @@ type SearchableSelectProps = {
   value: string | undefined
   onValueChange: (value: string) => void
   label?: string
+  required?: boolean
   placeholder?: string
   searchPlaceholder?: string
   emptyText?: string
@@ -35,6 +36,7 @@ function SearchableSelect({
   value,
   onValueChange,
   label,
+  required = false,
   placeholder = 'Seleziona un’opzione',
   searchPlaceholder = 'Cerca...',
   emptyText = 'Nessun risultato.',
@@ -53,7 +55,12 @@ function SearchableSelect({
 
   return (
     <div className="grid gap-2">
-      {label && <Label htmlFor={triggerId}>{label}</Label>}
+      {label && (
+        <Label htmlFor={triggerId}>
+          {label}
+          {required && <span className="text-destructive"> *</span>}
+        </Label>
+      )}
 
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger
