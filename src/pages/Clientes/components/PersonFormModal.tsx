@@ -1,13 +1,13 @@
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
-import type { Person } from '@/api/generated/models'
+import type { PersonWithRelations } from '@/api/generated/models'
 import { usePersonForm } from '@/pages/Clientes/hooks/usePersonForm'
 import PersonFormFields from '@/pages/Clientes/components/PersonFormFields'
 
 type PersonFormModalProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
-  person?: Person | null
+  person?: PersonWithRelations | null
 }
 
 function PersonFormModal({ open, onOpenChange, person }: PersonFormModalProps) {

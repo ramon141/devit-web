@@ -33,6 +33,9 @@ const emptyValues: SaleFormValues = {
   status: 'negotiating',
   cancellationReason: '',
   notes: '',
+  proposalId: '',
+  sellerAgentId: '',
+  buyerAgentId: '',
 }
 
 function saleToFormValues(sale: SaleWithRelations): SaleFormValues {
@@ -52,6 +55,9 @@ function saleToFormValues(sale: SaleWithRelations): SaleFormValues {
     status: sale.status ?? 'negotiating',
     cancellationReason: sale.cancellationReason ?? '',
     notes: sale.notes ?? '',
+    proposalId: sale.proposalId ?? '',
+    sellerAgentId: sale.sellerAgentId ?? '',
+    buyerAgentId: sale.buyerAgentId ?? '',
   }
 }
 

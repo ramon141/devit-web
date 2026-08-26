@@ -13,8 +13,8 @@ export function useMoveLead() {
   const { toastPromise } = useToast()
   const { mutateAsync: updateLead } = useLeadControllerUpdateById()
 
-  function moveLead(id: string, status: LeadStatus) {
-    const promise = updateLead({ id, data: { status } })
+  function moveLead(id: string, status: LeadStatus, kanbanPosition: number) {
+    const promise = updateLead({ id, data: { status, kanbanPosition } })
 
     toastPromise(promise, {
       pending: 'Spostamento richiesta...',

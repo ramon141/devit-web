@@ -17,6 +17,7 @@ function PropertyCadastralSection({ propertyId }: PropertyCadastralSectionProps)
     <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-3">
       <p className="text-sm font-medium sm:col-span-3">Dati catastali</p>
 
+      <FormFieldWrapper label="Registrato il"><Input {...register('registeredAt')} /></FormFieldWrapper>
       <FormFieldWrapper label="Partita"><Input {...register('partita')} /></FormFieldWrapper>
       <FormFieldWrapper label="Mappali"><Input {...register('mappali')} /></FormFieldWrapper>
       <FormFieldWrapper label="Categoria"><Input {...register('category')} /></FormFieldWrapper>

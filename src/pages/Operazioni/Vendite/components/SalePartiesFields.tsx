@@ -1,6 +1,13 @@
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
 import SearchableSelect from '@/components/SearchableSelect'
-import { usePropertyControllerFind, usePersonControllerFind } from '@/api/generated/api'
+import FormFieldWrapper from '@/components/FormFieldWrapper'
+import SelectField from '@/components/SelectField'
+import {
+  usePropertyControllerFind,
+  usePersonControllerFind,
+  usePurchaseProposalControllerFind,
+  useUserControllerFind,
+} from '@/api/generated/api'
 import type { SaleFormValues } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
 
 type SalePartiesFieldsProps = {
@@ -11,6 +18,8 @@ type SalePartiesFieldsProps = {
 function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
   const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
+  const { data: proposals } = usePurchaseProposalControllerFind({ filter: { order: ['number ASC'], limit: 200 } })
+  const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
   const propertyOptions = (properties ?? []).map((property) => ({
     value: property.id ?? '',
@@ -19,6 +28,14 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
   const personOptions = (people ?? []).map((person) => ({
     value: person.id ?? '',
     label: person.name,
+  }))
+  const proposalOptions = (proposals ?? []).map((proposal) => ({
+    value: proposal.id ?? '',
+    label: proposal.number,
+  }))
+  const userOptions = (users ?? []).map((user) => ({
+    value: user.id ?? '',
+    label: user.fullName,
   }))
 
   return (
@@ -70,6 +87,42 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
           />
         )}
       />
+
+      <Controller
+        control={control}
+        name="proposalId"
+        render={({ field }) => (
+          <SearchableSelect
+            label="Proposta di origine"
+            value={field.value}
+            onValueChange={field.onChange}
+            options={proposalOptions}
+            placeholder="Nessuna"
+            searchPlaceholder="Cerca per numero..."
+            error={errors.proposalId?.message}
+          />
+        )}
+      />
+
+      <FormFieldWrapper label="Agente del venditore" error={errors.sellerAgentId?.message}>
+        <Controller
+          control={control}
+          name="sellerAgentId"
+          render={({ field }) => (
+            <SelectField value={field.value} onValueChange={field.onChange} options={userOptions} placeholder="Nessuno" />
+          )}
+        />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label="Agente dell'acquirente" error={errors.buyerAgentId?.message}>
+        <Controller
+          control={control}
+          name="buyerAgentId"
+          render={({ field }) => (
+            <SelectField value={field.value} onValueChange={field.onChange} options={userOptions} placeholder="Nessuno" />
+          )}
+        />
+      </FormFieldWrapper>
     </>
   )
 }

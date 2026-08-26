@@ -16,8 +16,10 @@ export function usePropertyRooms(propertyId: string) {
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
   const [roomType, setRoomType] = useState<PropertyRoomRoomType | ''>('')
+  const [quantity, setQuantity] = useState('')
   const [widthM, setWidthM] = useState('')
   const [lengthM, setLengthM] = useState('')
+  const [equipment, setEquipment] = useState('')
 
   const { data: rooms } = usePropertyRoomControllerFind({ filter: { where: { propertyId } } })
   const { mutateAsync: create } = usePropertyRoomControllerCreate()
@@ -33,16 +35,29 @@ export function usePropertyRooms(propertyId: string) {
     const width = toNumberOrNull(widthM)
     const length = toNumberOrNull(lengthM)
     const areaSqm = width && length ? width * length : null
+    const quantityValue = toNumberOrNull(quantity)
 
-    const promise = create({ data: { propertyId, roomType, widthM: width, lengthM: length, areaSqm } })
+    const promise = create({
+      data: {
+        propertyId,
+        roomType,
+        quantity: quantityValue ?? undefined,
+        widthM: width,
+        lengthM: length,
+        areaSqm,
+        equipment: equipment || null,
+      },
+    })
 
     toastPromise(promise, {
       pending: 'Aggiunta ambiente...',
       success: () => {
         invalidate()
         setRoomType('')
+        setQuantity('')
         setWidthM('')
         setLengthM('')
+        setEquipment('')
         return 'Ambiente aggiunto con successo!'
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
@@ -62,5 +77,19 @@ export function usePropertyRooms(propertyId: string) {
     })
   }
 
-  return { rooms: rooms ?? [], roomType, setRoomType, widthM, setWidthM, lengthM, setLengthM, addRoom, removeRoom }
+  return {
+    rooms: rooms ?? [],
+    roomType,
+    setRoomType,
+    quantity,
+    setQuantity,
+    widthM,
+    setWidthM,
+    lengthM,
+    setLengthM,
+    equipment,
+    setEquipment,
+    addRoom,
+    removeRoom,
+  }
 }

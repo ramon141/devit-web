@@ -35,7 +35,11 @@ export function useKanbanDragDrop({ leads }: UseKanbanDragDropProps) {
 
     if (!lead || lead.status === newStatus) return
 
-    moveLead(leadId, newStatus)
+    const positionInColumn = leads.filter(
+      (item) => item.status === newStatus && item.id !== leadId
+    ).length
+
+    moveLead(leadId, newStatus, positionInColumn)
   }
 
   return { sensors, activeLead, handleDragStart, handleDragEnd }

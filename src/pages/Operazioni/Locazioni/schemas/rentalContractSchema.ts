@@ -22,6 +22,10 @@ export const rentalContractSchema = z.object({
   situation: z.enum(RentalContractSituation, { error: 'Seleziona una situazione' }),
   noticeDays: z.string().optional(),
   notes: z.string().optional(),
+  registeredAt: z.string().optional(),
+  renewalDueDate: z.string().optional(),
+  ownerAgentId: z.string().optional(),
+  tenantAgentId: z.string().optional(),
 })
 
 export type RentalContractFormValues = z.infer<typeof rentalContractSchema>

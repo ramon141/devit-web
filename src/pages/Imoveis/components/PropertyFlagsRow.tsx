@@ -1,5 +1,6 @@
-import { Controller, type Control } from 'react-hook-form'
+import { Controller, useWatch, type Control } from 'react-hook-form'
 import { Switch } from '@/components/ui/switch'
+import { Input } from '@/components/ui/input'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyFlagsRowProps = {
@@ -7,6 +8,8 @@ type PropertyFlagsRowProps = {
 }
 
 function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
+  const featured = useWatch({ control, name: 'featured' })
+
   return (
     <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
       <Controller
@@ -19,6 +22,20 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
           </label>
         )}
       />
+      {featured && (
+        <Controller
+          control={control}
+          name="featuredOrder"
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="number"
+              placeholder="Ordine in evidenza"
+              className="w-40"
+            />
+          )}
+        />
+      )}
       <Controller
         control={control}
         name="publishedOnSite"

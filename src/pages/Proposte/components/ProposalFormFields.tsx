@@ -4,6 +4,7 @@ import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import InputMoney from '@/components/InputMoney'
 import ProposalPropertyBuyerFields from '@/pages/Proposte/components/ProposalPropertyBuyerFields'
+import ProposalAssignmentFields from '@/pages/Proposte/components/ProposalAssignmentFields'
 import ProposalDatesAndNotesFields from '@/pages/Proposte/components/ProposalDatesAndNotesFields'
 import {
   paymentMethodOptions,
@@ -56,6 +57,8 @@ function ProposalFormFields({ form }: ProposalFormFieldsProps) {
           )}
         />
       </FormFieldWrapper>
+
+      <ProposalAssignmentFields control={control} errors={errors} />
 
       <ProposalDatesAndNotesFields form={form} />
     </div>

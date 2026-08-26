@@ -12,14 +12,14 @@ import {
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import ConfirmPopup from '@/components/ConfirmPopup'
-import type { Person } from '@/api/generated/models'
+import type { PersonWithRelations } from '@/api/generated/models'
 import { personRoleOptions } from '@/pages/Clientes/schemas/personSchema'
 import { useDeletePerson } from '@/pages/Clientes/hooks/useDeletePerson'
 
 type PersonTableProps = {
-  people: Person[]
+  people: PersonWithRelations[]
   isLoading: boolean
-  onEdit: (person: Person) => void
+  onEdit: (person: PersonWithRelations) => void
 }
 
 function roleLabel(role: string) {
@@ -27,7 +27,7 @@ function roleLabel(role: string) {
 }
 
 function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
-  const [deleteTarget, setDeleteTarget] = useState<Person | null>(null)
+  const [deleteTarget, setDeleteTarget] = useState<PersonWithRelations | null>(null)
   const { handleDelete } = useDeletePerson()
 
   function confirmDelete() {

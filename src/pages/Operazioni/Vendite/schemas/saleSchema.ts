@@ -31,6 +31,9 @@ export const saleSchema = z.object({
   status: z.enum(SaleStatus, { error: 'Seleziona uno stato' }),
   cancellationReason: z.string().optional(),
   notes: z.string().optional(),
+  proposalId: z.string().optional(),
+  sellerAgentId: z.string().optional(),
+  buyerAgentId: z.string().optional(),
 })
 
 export type SaleFormValues = z.infer<typeof saleSchema>

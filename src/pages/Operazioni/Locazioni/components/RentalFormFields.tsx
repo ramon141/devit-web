@@ -44,6 +44,14 @@ function RentalFormFields({ form }: RentalFormFieldsProps) {
         <Input {...register('endDate')} type="date" />
       </FormFieldWrapper>
 
+      <FormFieldWrapper label="Data di registrazione" error={errors.registeredAt?.message}>
+        <Input {...register('registeredAt')} type="date" />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label="Data prevista di rinnovo" error={errors.renewalDueDate?.message}>
+        <Input {...register('renewalDueDate')} type="date" />
+      </FormFieldWrapper>
+
       <RentalFinancialFields form={form} />
 
       <div className="sm:col-span-2">

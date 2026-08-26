@@ -4,7 +4,11 @@ import { Textarea } from '@/components/ui/textarea'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import { useUserControllerFind } from '@/api/generated/api'
-import { leadStatusOptions, type LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
+import {
+  leadSourceOptions,
+  leadStatusOptions,
+  type LeadFormValues,
+} from '@/pages/Clientes/Leads/schemas/leadSchema'
 
 type LeadFormFieldsProps = {
   form: UseFormReturn<LeadFormValues>
@@ -40,6 +44,21 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
           name="status"
           render={({ field }) => (
             <SelectField value={field.value} onValueChange={field.onChange} options={leadStatusOptions} />
+          )}
+        />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label="Origine" error={errors.source?.message}>
+        <Controller
+          control={control}
+          name="source"
+          render={({ field }) => (
+            <SelectField
+              value={field.value ?? undefined}
+              onValueChange={field.onChange}
+              options={leadSourceOptions}
+              placeholder="Nessuna"
+            />
           )}
         />
       </FormFieldWrapper>

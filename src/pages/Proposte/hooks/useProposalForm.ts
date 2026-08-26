@@ -30,6 +30,9 @@ const emptyValues: ProposalFormValues = {
   validUntil: '',
   rejectionReason: '',
   notes: '',
+  leadId: '',
+  assignedToId: '',
+  sellerAgentId: '',
 }
 
 function proposalToFormValues(proposal: PurchaseProposalWithRelations): ProposalFormValues {
@@ -46,6 +49,9 @@ function proposalToFormValues(proposal: PurchaseProposalWithRelations): Proposal
     validUntil: proposal.validUntil?.slice(0, 10) ?? '',
     rejectionReason: proposal.rejectionReason ?? '',
     notes: proposal.notes ?? '',
+    leadId: proposal.leadId ?? '',
+    assignedToId: proposal.assignedToId ?? '',
+    sellerAgentId: proposal.sellerAgentId ?? '',
   }
 }
 

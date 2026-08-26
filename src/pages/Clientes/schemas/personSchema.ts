@@ -19,6 +19,16 @@ export const personSchema = z.object({
   documentNumber: z.string().optional(),
   birthDate: z.string().optional(),
   notes: z.string().optional(),
+  active: z.boolean(),
+
+  street: z.string().optional(),
+  number: z.string().optional(),
+  complement: z.string().optional(),
+  neighborhood: z.string().optional(),
+  city: z.string().optional(),
+  region: z.string().optional(),
+  postalCode: z.string().optional(),
+  country: z.string().optional(),
 })
 
 export type PersonFormValues = z.infer<typeof personSchema>

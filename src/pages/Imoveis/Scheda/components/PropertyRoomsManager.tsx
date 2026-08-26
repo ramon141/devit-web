@@ -15,8 +15,21 @@ type PropertyRoomsManagerProps = {
 }
 
 function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
-  const { rooms, roomType, setRoomType, widthM, setWidthM, lengthM, setLengthM, addRoom, removeRoom } =
-    usePropertyRooms(propertyId)
+  const {
+    rooms,
+    roomType,
+    setRoomType,
+    quantity,
+    setQuantity,
+    widthM,
+    setWidthM,
+    lengthM,
+    setLengthM,
+    equipment,
+    setEquipment,
+    addRoom,
+    removeRoom,
+  } = usePropertyRooms(propertyId)
 
   return (
     <div className="sm:col-span-2">
@@ -26,8 +39,10 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
         {rooms.map((room) => (
           <div key={room.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
             <span className="text-sm">
+              {room.quantity != null && room.quantity > 1 && `${room.quantity}x `}
               {roomLabel(room.roomType)}
               {room.areaSqm != null && ` · ${room.areaSqm} m²`}
+              {room.equipment && ` · ${room.equipment}`}
             </span>
             <Button variant="ghost" size="icon-sm" onClick={() => room.id && removeRoom(room.id)}>
               <XIcon className="size-4" />
@@ -45,8 +60,21 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
             placeholder="Tipo ambiente"
           />
         </div>
+        <Input
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+          type="number"
+          placeholder="Quantità"
+          className="w-24"
+        />
         <Input value={widthM} onChange={(e) => setWidthM(e.target.value)} type="number" placeholder="Larghezza (m)" className="w-32" />
         <Input value={lengthM} onChange={(e) => setLengthM(e.target.value)} type="number" placeholder="Lunghezza (m)" className="w-32" />
+        <Input
+          value={equipment}
+          onChange={(e) => setEquipment(e.target.value)}
+          placeholder="Equipaggiamento"
+          className="w-40"
+        />
         <Button type="button" onClick={addRoom}>Aggiungi</Button>
       </div>
     </div>

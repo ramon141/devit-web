@@ -1,6 +1,7 @@
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import { personRoleOptions, type PersonFormValues } from '@/pages/Clientes/schemas/personSchema'
@@ -60,6 +61,53 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
       <div className="sm:col-span-2">
         <FormFieldWrapper label="Note" error={errors.notes?.message}>
           <Textarea {...register('notes')} rows={3} />
+        </FormFieldWrapper>
+      </div>
+
+      <div className="sm:col-span-2">
+        <Controller
+          control={control}
+          name="active"
+          render={({ field }) => (
+            <label className="flex items-center gap-2 text-sm">
+              <Switch checked={field.value} onCheckedChange={field.onChange} />
+              Attivo
+            </label>
+          )}
+        />
+      </div>
+
+      <div className="sm:col-span-2 grid gap-4 sm:grid-cols-2">
+        <FormFieldWrapper label="Paese" error={errors.country?.message}>
+          <Input {...register('country')} placeholder="Italia" />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper label="Città" error={errors.city?.message}>
+          <Input {...register('city')} placeholder="Milano" />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper label="Regione" error={errors.region?.message}>
+          <Input {...register('region')} placeholder="Lombardia" />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper label="CAP" error={errors.postalCode?.message}>
+          <Input {...register('postalCode')} placeholder="20121" />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper label="Via" error={errors.street?.message}>
+          <Input {...register('street')} placeholder="Via Roma" />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper label="Numero civico" error={errors.number?.message}>
+          <Input {...register('number')} placeholder="12" />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper label="Quartiere" error={errors.neighborhood?.message}>
+          <Input {...register('neighborhood')} placeholder="Centro" />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper label="Complemento" error={errors.complement?.message}>
+          <Input {...register('complement')} placeholder="Piano 3, interno 2" />
         </FormFieldWrapper>
       </div>
     </div>

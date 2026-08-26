@@ -12,6 +12,7 @@ import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
 export type CadastralFormValues = {
+  registeredAt: string
   partita: string
   mappali: string
   category: string
@@ -22,6 +23,7 @@ export type CadastralFormValues = {
 }
 
 const emptyValues: CadastralFormValues = {
+  registeredAt: '',
   partita: '',
   mappali: '',
   category: '',
@@ -45,6 +47,7 @@ export function usePropertyCadastralForm(propertyId: string) {
   useEffect(() => {
     if (!existing) return
     form.reset({
+      registeredAt: existing.registeredAt ?? '',
       partita: existing.partita ?? '',
       mappali: existing.mappali ?? '',
       category: existing.category ?? '',

@@ -21,6 +21,7 @@ export function usePersonList() {
       order: ['createdAt DESC'],
       limit: PAGE_SIZE,
       skip: (page - 1) * PAGE_SIZE,
+      include: [{ relation: 'address' }],
     },
   })
 

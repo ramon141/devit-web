@@ -10,6 +10,7 @@ import PropertyCommercialeTab from '@/pages/Imoveis/Scheda/components/PropertyCo
 import PropertyIndustrialeTab from '@/pages/Imoveis/Scheda/components/PropertyIndustrialeTab'
 import PropertyTerrenoTab from '@/pages/Imoveis/Scheda/components/PropertyTerrenoTab'
 import PropertyStoricoTab from '@/pages/Imoveis/Scheda/components/PropertyStoricoTab'
+import PropertyTasseTab from '@/pages/Imoveis/Scheda/components/PropertyTasseTab'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyFormFieldsProps = {
@@ -28,7 +29,8 @@ const steps = [
   { value: 'commerciale', label: 'Commerciale', step: 6, requiresId: true },
   { value: 'industriale', label: 'Industriale', step: 7, requiresId: true },
   { value: 'terreno', label: 'Terreno', step: 8, requiresId: true },
-  { value: 'storico', label: 'Storico', step: 9, requiresId: true },
+  { value: 'tasse', label: 'Tasse', step: 9, requiresId: true },
+  { value: 'storico', label: 'Storico', step: 10, requiresId: true },
 ]
 
 function PropertyFormFields({ form, onSubmit, isSubmitting, propertyId }: PropertyFormFieldsProps) {
@@ -64,6 +66,9 @@ function PropertyFormFields({ form, onSubmit, isSubmitting, propertyId }: Proper
       </TabsContent>
       <TabsContent value="terreno">
         {propertyId && <PropertyTerrenoTab propertyId={propertyId} />}
+      </TabsContent>
+      <TabsContent value="tasse">
+        {propertyId && <PropertyTasseTab propertyId={propertyId} />}
       </TabsContent>
       <TabsContent value="storico">
         {propertyId && <PropertyStoricoTab propertyId={propertyId} />}

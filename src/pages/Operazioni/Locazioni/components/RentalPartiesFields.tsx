@@ -1,6 +1,12 @@
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
 import SearchableSelect from '@/components/SearchableSelect'
-import { usePropertyControllerFind, usePersonControllerFind } from '@/api/generated/api'
+import SelectField from '@/components/SelectField'
+import FormFieldWrapper from '@/components/FormFieldWrapper'
+import {
+  usePropertyControllerFind,
+  usePersonControllerFind,
+  useUserControllerFind,
+} from '@/api/generated/api'
 import type { RentalContractFormValues } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 
 type RentalPartiesFieldsProps = {
@@ -11,6 +17,7 @@ type RentalPartiesFieldsProps = {
 function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
   const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
+  const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
   const propertyOptions = (properties ?? []).map((property) => ({
     value: property.id ?? '',
@@ -19,6 +26,10 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
   const personOptions = (people ?? []).map((person) => ({
     value: person.id ?? '',
     label: person.name,
+  }))
+  const userOptions = (users ?? []).map((user) => ({
+    value: user.id ?? '',
+    label: user.fullName,
   }))
 
   return (
@@ -70,6 +81,36 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
           />
         )}
       />
+
+      <FormFieldWrapper label="Agente del proprietario" error={errors.ownerAgentId?.message}>
+        <Controller
+          control={control}
+          name="ownerAgentId"
+          render={({ field }) => (
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder="Nessuno"
+            />
+          )}
+        />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label="Agente dell'inquilino" error={errors.tenantAgentId?.message}>
+        <Controller
+          control={control}
+          name="tenantAgentId"
+          render={({ field }) => (
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder="Nessuno"
+            />
+          )}
+        />
+      </FormFieldWrapper>
     </>
   )
 }

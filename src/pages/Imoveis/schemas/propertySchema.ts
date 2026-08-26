@@ -24,6 +24,7 @@ export const propertySchema = z.object({
   purpose: z.enum(PropertyPurpose, { error: 'Seleziona una finalità' }),
   status: z.enum(PropertyStatus, { error: 'Seleziona uno stato' }),
   featured: z.boolean(),
+  featuredOrder: z.string().optional(),
   active: z.boolean(),
   publishedOnSite: z.boolean(),
 

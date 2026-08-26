@@ -29,6 +29,9 @@ export const proposalSchema = z.object({
   validUntil: z.string().optional(),
   rejectionReason: z.string().optional(),
   notes: z.string().optional(),
+  leadId: z.string().optional(),
+  assignedToId: z.string().optional(),
+  sellerAgentId: z.string().optional(),
 })
 
 export type ProposalFormValues = z.infer<typeof proposalSchema>
