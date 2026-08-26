@@ -1,3 +1,4 @@
+import { MapPin } from 'lucide-react'
 import type { PublicPropertyControllerFindById200Address } from '@/api/generated/models'
 
 type PropertyAddressBlockProps = {
@@ -15,17 +16,20 @@ function PropertyAddressBlock({ address }: PropertyAddressBlockProps) {
   const fullStreet = [address.street, address.number].filter(Boolean).join(', ')
 
   return (
-    <div className="flex flex-col gap-2">
-      <h2 className="font-heading text-lg font-semibold">Indirizzo</h2>
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="font-heading text-lg font-semibold">Indirizzo</h2>
 
-      <a
-        href={buildMapsUrl(address)}
-        target="_blank"
-        rel="noreferrer"
-        className="w-fit text-sm text-primary underline underline-offset-2"
-      >
-        Apri su Google Maps
-      </a>
+        <a
+          href={buildMapsUrl(address)}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm font-semibold text-primary-foreground hover:opacity-90"
+        >
+          <MapPin className="size-4" />
+          Apri su Google Maps
+        </a>
+      </div>
 
       <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-sm">
         <dt className="text-muted-foreground">Indirizzo</dt>

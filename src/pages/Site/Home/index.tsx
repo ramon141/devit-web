@@ -2,6 +2,8 @@ import { usePublicPropertyControllerFindFeatured } from '@/api/generated/api'
 import { Skeleton } from '@/components/ui/skeleton'
 import SearchBar from '@/pages/Site/components/SearchBar'
 import PropertyCard from '@/pages/Site/components/PropertyCard'
+import DropCapHeading from '@/pages/Site/components/DropCapHeading'
+import heroImage from '@/assets/images/property-sample-1.jpg'
 
 function FeaturedProperties() {
   const { data, isLoading } = usePublicPropertyControllerFindFeatured({ limit: 8 })
@@ -17,7 +19,11 @@ function FeaturedProperties() {
   }
 
   if (!data || data.length === 0) {
-    return <p className="text-muted-foreground">Nessuna proprietà in evidenza al momento.</p>
+    return (
+      <p className="text-center text-muted-foreground">
+        Nessuna proprietà in evidenza al momento.
+      </p>
+    )
   }
 
   return (
@@ -29,29 +35,54 @@ function FeaturedProperties() {
   )
 }
 
+function Hero() {
+  return (
+    <section className="relative h-[420px] w-full overflow-hidden sm:h-[480px]">
+      <img src={heroImage} alt="" className="h-full w-full object-cover" />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
+      <div className="absolute inset-x-0 bottom-0 pb-24 text-center text-white sm:pb-28">
+        <h1 className="font-heading text-3xl font-bold drop-shadow-sm sm:text-4xl">
+          Trova la casa dei tuoi sogni
+        </h1>
+        <p className="mt-2 text-sm text-white/90 sm:text-base">
+          Vendita e affitto di immobili a Napoli e provincia dal 1995.
+        </p>
+      </div>
+
+      <div className="absolute inset-x-4 bottom-0 translate-y-1/2">
+        <SearchBar />
+      </div>
+    </section>
+  )
+}
+
 function SiteHome() {
   return (
-    <div className="flex flex-col gap-16 py-10">
-      <section className="px-4">
-        <SearchBar />
-      </section>
+    <div className="flex flex-col gap-16 pb-16">
+      <Hero />
 
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4">
-        <div>
-          <h1 className="text-2xl font-bold">Le nostre proposte esclusive</h1>
-          <p className="text-muted-foreground">Scegli la proprietà che fa al caso tuo.</p>
+      <section className="mx-auto mt-8 flex w-full max-w-6xl flex-col gap-8 px-4 sm:mt-12">
+        <div className="text-center">
+          <DropCapHeading
+            as="h2"
+            text="Le nostre proposte esclusive"
+            className="text-3xl font-bold"
+          />
+          <p className="mt-1 text-muted-foreground">Scegli la proprietà che fa al caso tuo.</p>
         </div>
 
         <FeaturedProperties />
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 text-center">
-        <blockquote className="text-lg italic">
+      <section className="mx-auto w-full max-w-3xl px-4">
+        <blockquote className="text-lg italic text-foreground/90">
           "...garantiamo la massima collaborazione, la massima adesione ai nostri
           clienti affinché tutto avvenga con serenità ed ognuno possa realizzare nel
           modo migliore il proprio sogno".
         </blockquote>
-        <p className="mt-2 font-semibold">A.D.S. e M.V</p>
+        <p className="mt-3 text-right font-semibold">A.D.S. e M.V</p>
       </section>
     </div>
   )

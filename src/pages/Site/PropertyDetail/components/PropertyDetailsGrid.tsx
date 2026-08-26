@@ -31,9 +31,9 @@ function PropertyDetailsGrid({ property }: PropertyDetailsGridProps) {
     <div>
       <h2 className="font-heading text-lg font-semibold">Dettagli</h2>
 
-      <dl className="mt-2 grid grid-cols-1 gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+      <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 rounded-lg border border-primary/30 bg-primary/5 p-4 text-sm sm:grid-cols-2">
         {rows.map((row) => (
-          <div key={row.label} className="flex justify-between border-b py-1 sm:justify-start sm:gap-2">
+          <div key={row.label} className="flex justify-between border-b border-primary/10 py-1.5 sm:justify-start sm:gap-2">
             <dt className="text-muted-foreground">{row.label}</dt>
             <dd className="font-medium">{row.value}</dd>
           </div>

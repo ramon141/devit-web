@@ -35,7 +35,7 @@ function PropertyGallery({ photos }: PropertyGalleryProps) {
         href={cover.url}
         target="_blank"
         rel="noreferrer"
-        className={cn('col-span-2 row-span-2 block overflow-hidden rounded-xl', 'sm:col-span-2')}
+        className={cn('col-span-2 row-span-2 block aspect-video overflow-hidden rounded-xl', 'sm:col-span-2')}
       >
         <img
           src={cover.url}
@@ -50,7 +50,7 @@ function PropertyGallery({ photos }: PropertyGalleryProps) {
           href={photo.url}
           target="_blank"
           rel="noreferrer"
-          className="block overflow-hidden rounded-xl"
+          className="block aspect-square overflow-hidden rounded-xl"
         >
           <img
             src={photo.url}

@@ -2,8 +2,36 @@ import axios from 'axios'
 import type { AxiosRequestConfig, AxiosError, AxiosResponse } from 'axios'
 import { Auth } from '@/auth'
 
+type ParamValue =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | ParamValue[]
+  | { [key: string]: ParamValue }
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API_URL,
+  paramsSerializer: {
+    serialize: (params: Record<string, ParamValue>) => {
+      const searchParams = new URLSearchParams()
+
+      Object.keys(params).forEach((key) => {
+        const value = params[key]
+
+        if (value === undefined || value === null) return
+
+        if (typeof value === 'object') {
+          searchParams.append(key, JSON.stringify(value))
+        } else {
+          searchParams.append(key, String(value))
+        }
+      })
+
+      return searchParams.toString()
+    },
+  },
 })
 
 api.interceptors.request.use((config) => {

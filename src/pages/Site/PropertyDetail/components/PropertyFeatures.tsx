@@ -1,4 +1,4 @@
-import { Badge } from '@/components/ui/badge'
+import { Check } from 'lucide-react'
 import { formatFeatureLabel } from '@/pages/Site/PropertyDetail/utils/formatters'
 import type { PublicPropertyControllerFindById200FeaturesItem } from '@/api/generated/models'
 
@@ -13,11 +13,12 @@ function PropertyFeatures({ features }: PropertyFeaturesProps) {
     <div>
       <h2 className="font-heading text-lg font-semibold">Caratteristiche</h2>
 
-      <div className="mt-2 flex flex-wrap gap-2">
+      <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-3">
         {features.map((feature, index) => (
-          <Badge key={feature.featureKey ?? index} variant="outline">
+          <span key={feature.featureKey ?? index} className="flex items-center gap-2 text-sm">
+            <Check className="size-4 text-primary" />
             {feature.featureKey ? formatFeatureLabel(feature.featureKey) : 'Caratteristica'}
-          </Badge>
+          </span>
         ))}
       </div>
     </div>

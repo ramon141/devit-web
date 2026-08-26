@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Separator } from '@/components/ui/separator'
 import { usePublicPropertyControllerFindById } from '@/api/generated/api'
 import PropertyHeader from '@/pages/Site/PropertyDetail/components/PropertyHeader'
 import PropertyGallery from '@/pages/Site/PropertyDetail/components/PropertyGallery'
@@ -40,24 +39,35 @@ function PropertyDetail() {
   if (isError || !property) return <PropertyNotFound />
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-6 px-4 py-8">
-      <PropertyGallery photos={property.photos} />
-      <PropertyHeader property={property} />
+    <div className="bg-muted/40 py-8">
+      <div className="mx-auto flex max-w-4xl flex-col gap-6 px-4">
+        <div className="rounded-xl bg-card p-6 shadow-sm">
+          <PropertyHeader property={property} />
+        </div>
 
-      <Separator />
+        <div className="rounded-xl bg-card p-4 shadow-sm">
+          <PropertyGallery photos={property.photos} />
+        </div>
 
-      <PropertyDescription description={property.description} documents={property.documents} />
+        <div className="flex flex-col gap-6 rounded-xl bg-card p-6 shadow-sm">
+          <PropertyDescription description={property.description} documents={property.documents} />
+        </div>
 
-      <Separator />
+        <div className="rounded-xl bg-card p-6 shadow-sm">
+          <PropertyAddressBlock address={property.address} />
+        </div>
 
-      <PropertyAddressBlock address={property.address} />
+        <div className="flex flex-col gap-6 rounded-xl bg-card p-6 shadow-sm">
+          <PropertyDetailsGrid property={property} />
+          <PropertyAdditionalDetailsGrid property={property} />
+        </div>
 
-      <Separator />
-
-      <PropertyDetailsGrid property={property} />
-      <PropertyAdditionalDetailsGrid property={property} />
-
-      <PropertyFeatures features={property.features} />
+        {property.features && property.features.length > 0 && (
+          <div className="rounded-xl bg-card p-6 shadow-sm">
+            <PropertyFeatures features={property.features} />
+          </div>
+        )}
+      </div>
     </div>
   )
 }

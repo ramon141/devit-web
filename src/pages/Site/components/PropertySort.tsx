@@ -28,7 +28,9 @@ function PropertySort({ value, onChange }: PropertySortProps) {
       onValueChange={(next) => onChange(next ?? 'featured')}
     >
       <SelectTrigger className="w-full sm:w-64">
-        <SelectValue placeholder="Ordine predefinito" />
+        <SelectValue placeholder="Ordine predefinito">
+          {(current: string) => SORT_OPTIONS.find((option) => option.value === current)?.label ?? current}
+        </SelectValue>
       </SelectTrigger>
 
       <SelectContent>
