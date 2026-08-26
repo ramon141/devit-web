@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import { ChevronsUpDown } from 'lucide-react'
+import { ChevronsUpDown, XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -52,10 +52,15 @@ function SearchableSelect({
   const resolvedEmptyText = emptyText ?? t('searchableSelect.emptyText')
 
   const selected = options.find((option) => option.value === value)
+  const showClear = !!value && !disabled
 
   function handleSelect(nextValue: string) {
     onValueChange(nextValue)
     setOpen(false)
+  }
+
+  function handleClear() {
+    onValueChange('')
   }
 
   return (
@@ -68,24 +73,38 @@ function SearchableSelect({
       )}
 
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger
-          render={
-            <Button
-              id={triggerId}
+        <div className="relative">
+          <PopoverTrigger
+            render={
+              <Button
+                id={triggerId}
+                type="button"
+                variant="outline"
+                disabled={disabled}
+                aria-invalid={!!error}
+                className={cn(
+                  'w-full justify-between font-normal',
+                  showClear && 'pr-8',
+                  !selected && 'text-muted-foreground'
+                )}
+              >
+                {selected ? selected.label : resolvedPlaceholder}
+                {showClear ? <span className="size-4" /> : <ChevronsUpDown className="text-muted-foreground" />}
+              </Button>
+            }
+          />
+
+          {showClear && (
+            <button
               type="button"
-              variant="outline"
-              disabled={disabled}
-              aria-invalid={!!error}
-              className={cn(
-                'w-full justify-between font-normal',
-                !selected && 'text-muted-foreground'
-              )}
+              tabIndex={-1}
+              className="absolute top-1/2 right-2 flex size-4 -translate-y-1/2 items-center justify-center text-muted-foreground hover:text-foreground"
+              onClick={handleClear}
             >
-              {selected ? selected.label : resolvedPlaceholder}
-              <ChevronsUpDown className="text-muted-foreground" />
-            </Button>
-          }
-        />
+              <XIcon className="size-4" />
+            </button>
+          )}
+        </div>
 
         <PopoverContent className="w-(--anchor-width) p-0" align="start">
           <Command>
