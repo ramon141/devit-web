@@ -171,7 +171,12 @@
       "affitto": "Affitto",
       "inizio": "Inizio",
       "situazione": "Situazione",
-      "azioni": "Azioni"
+      "azioni": "Azioni",
+      "editTooltip": "Modifica",
+      "renewTooltip": "Rinnova",
+      "terminateTooltip": "Rescindi",
+      "deleteTooltip": "Elimina",
+      "lockedTooltip": "Contratto rescisso/chiuso: non modificabile"
     },
     "hooks": {
       "attachments": {

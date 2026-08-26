@@ -1,7 +1,13 @@
+import type { ReactNode } from 'react'
 import type { TFunction } from 'i18next'
 import { BanIcon, PencilIcon, RefreshCwIcon, Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import { getRentalSituationOptions } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
@@ -20,29 +26,72 @@ type BuildRentalTableColumnsProps = {
   onDelete: (contract: RentalContractWithRelations) => void
 }
 
+function RentalTableActionButton({
+  label,
+  disabled,
+  onClick,
+  children,
+}: {
+  label: string
+  disabled: boolean
+  onClick: () => void
+  children: ReactNode
+}) {
+  return (
+    <Tooltip>
+      <TooltipTrigger
+        render={
+          <Button variant="ghost" size="icon-sm" disabled={disabled} onClick={onClick}>
+            {children}
+          </Button>
+        }
+      />
+      <TooltipContent>{label}</TooltipContent>
+    </Tooltip>
+  )
+}
+
 function RentalTableActions({
   contract,
   onEdit,
   onRenew,
   onTerminate,
   onDelete,
-}: { contract: RentalContractWithRelations } & BuildRentalTableColumnsProps) {
+  t,
+}: { contract: RentalContractWithRelations; t: TFunction } & BuildRentalTableColumnsProps) {
   const locked = isLocked(contract.situation)
+
+  const editLabel = locked
+    ? t('operazioni:locazioni.tableColumns.lockedTooltip')
+    : t('operazioni:locazioni.tableColumns.editTooltip')
+  const renewLabel = locked
+    ? t('operazioni:locazioni.tableColumns.lockedTooltip')
+    : t('operazioni:locazioni.tableColumns.renewTooltip')
+  const terminateLabel = locked
+    ? t('operazioni:locazioni.tableColumns.lockedTooltip')
+    : t('operazioni:locazioni.tableColumns.terminateTooltip')
+  const deleteLabel = locked
+    ? t('operazioni:locazioni.tableColumns.lockedTooltip')
+    : t('operazioni:locazioni.tableColumns.deleteTooltip')
 
   return (
     <>
-      <Button variant="ghost" size="icon-sm" disabled={locked} onClick={() => onEdit(contract)}>
+      <RentalTableActionButton label={editLabel} disabled={locked} onClick={() => onEdit(contract)}>
         <PencilIcon className="size-4" />
-      </Button>
-      <Button variant="ghost" size="icon-sm" disabled={locked} onClick={() => onRenew(contract)}>
+      </RentalTableActionButton>
+      <RentalTableActionButton label={renewLabel} disabled={locked} onClick={() => onRenew(contract)}>
         <RefreshCwIcon className="size-4" />
-      </Button>
-      <Button variant="ghost" size="icon-sm" disabled={locked} onClick={() => onTerminate(contract)}>
+      </RentalTableActionButton>
+      <RentalTableActionButton
+        label={terminateLabel}
+        disabled={locked}
+        onClick={() => onTerminate(contract)}
+      >
         <BanIcon className="size-4" />
-      </Button>
-      <Button variant="ghost" size="icon-sm" disabled={locked} onClick={() => onDelete(contract)}>
+      </RentalTableActionButton>
+      <RentalTableActionButton label={deleteLabel} disabled={locked} onClick={() => onDelete(contract)}>
         <Trash2Icon className="size-4 text-destructive" />
-      </Button>
+      </RentalTableActionButton>
     </>
   )
 }
@@ -89,7 +138,7 @@ export function buildRentalTableColumns(
       headerClassName: 'w-24 text-right',
       cellClassName: 'text-right',
       isActions: true,
-      cell: (contract) => <RentalTableActions contract={contract} {...props} />,
+      cell: (contract) => <RentalTableActions contract={contract} t={t} {...props} />,
     },
   ]
 }
