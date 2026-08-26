@@ -3,15 +3,13 @@ import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
 import type { CalendarEvent } from '@/api/generated/models'
 import { eventTypeOptions } from '@/pages/Agenda/schemas/calendarEventSchema'
+import { formatDateTime } from '@/utils/formatDate'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type CalendarEventPreviewModalProps = {
   event: CalendarEvent | null
   onOpenChange: (open: boolean) => void
   onEdit: (event: CalendarEvent) => void
-}
-
-function typeLabel(type?: string) {
-  return eventTypeOptions.find((option) => option.value === type)?.label ?? type ?? '—'
 }
 
 function CalendarEventPreviewModal({ event, onOpenChange, onEdit }: CalendarEventPreviewModalProps) {
@@ -20,10 +18,10 @@ function CalendarEventPreviewModal({ event, onOpenChange, onEdit }: CalendarEven
       {event && (
         <div className="grid w-full gap-3">
           <p className="text-sm text-muted-foreground">
-            {dayjs(event.startAt).format('DD/MM/YYYY HH:mm')} – {dayjs(event.endAt).format('HH:mm')}
+            {formatDateTime(event.startAt)} – {dayjs(event.endAt).format('HH:mm')}
           </p>
           <p className="text-sm">
-            <span className="font-medium">Tipo:</span> {typeLabel(event.type)}
+            <span className="font-medium">Tipo:</span> {getOptionLabel(eventTypeOptions, event.type)}
           </p>
           {event.place && (
             <p className="text-sm">

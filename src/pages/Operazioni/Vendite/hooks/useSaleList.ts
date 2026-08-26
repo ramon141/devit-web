@@ -1,13 +1,9 @@
-import { useState } from 'react'
 import { useSaleControllerCount, useSaleControllerFind } from '@/api/generated/api'
-import { useDebouncedValue } from '@/hooks/useDebouncedValue'
-import { PAGE_SIZE } from '@/constants/pagination'
-
+import { useListPagination } from '@/hooks/useListPagination'
 
 export function useSaleList() {
-  const [search, setSearch] = useState('')
-  const [page, setPage] = useState(1)
-  const debouncedSearch = useDebouncedValue(search)
+  const { search, debouncedSearch, page, setPage, pageSize, skip, onSearchChange } =
+    useListPagination()
 
   const where = debouncedSearch ? { number: { ilike: `%${debouncedSearch}%` } } : undefined
 
@@ -16,26 +12,21 @@ export function useSaleList() {
       where,
       include: [{ relation: 'property' }, { relation: 'buyer' }, { relation: 'seller' }],
       order: ['saleDate DESC'],
-      limit: PAGE_SIZE,
-      skip: (page - 1) * PAGE_SIZE,
+      limit: pageSize,
+      skip,
     },
   })
 
   const { data: countResult } = useSaleControllerCount({ where })
 
-  function handleSearchChange(value: string) {
-    setSearch(value)
-    setPage(1)
-  }
-
   return {
     sales: sales ?? [],
     isLoading,
     totalItems: countResult?.count ?? 0,
-    pageSize: PAGE_SIZE,
+    pageSize,
     page,
     setPage,
     search,
-    onSearchChange: handleSearchChange,
+    onSearchChange,
   }
 }

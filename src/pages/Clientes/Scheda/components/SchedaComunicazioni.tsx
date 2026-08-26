@@ -1,6 +1,6 @@
-import dayjs from 'dayjs'
 import { Badge } from '@/components/ui/badge'
 import { usePersonCommunications } from '@/pages/Clientes/Scheda/hooks/usePersonCommunications'
+import { formatDateTime } from '@/utils/formatDate'
 
 type SchedaComunicazioniProps = {
   personId: string
@@ -21,7 +21,7 @@ function SchedaComunicazioni({ personId }: SchedaComunicazioniProps) {
             <Badge variant="secondary">{log.channel}</Badge>
             <Badge variant="secondary">{log.status}</Badge>
             <span className="text-xs text-muted-foreground">
-              {dayjs(log.sentAt).format('DD/MM/YYYY HH:mm')}
+              {formatDateTime(log.sentAt)}
             </span>
           </div>
           <p className="truncate text-sm">{log.content}</p>

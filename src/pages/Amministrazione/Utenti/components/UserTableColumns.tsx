@@ -4,10 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
 import { accessLevelOptions } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
-
-function accessLevelLabel(accessLevel: string) {
-  return accessLevelOptions.find((option) => option.value === accessLevel)?.label ?? accessLevel
-}
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type UserTableActionsProps = {
   user: UserExcludingPasswordHashWithRelations
@@ -44,7 +41,9 @@ export function buildUserTableColumns({
     { header: 'E-mail', cell: (user) => user.email },
     {
       header: 'Livello',
-      cell: (user) => <Badge variant="secondary">{accessLevelLabel(user.accessLevel)}</Badge>,
+      cell: (user) => (
+        <Badge variant="secondary">{getOptionLabel(accessLevelOptions, user.accessLevel)}</Badge>
+      ),
     },
     {
       header: 'Filiale',

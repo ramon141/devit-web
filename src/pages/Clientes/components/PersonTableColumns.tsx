@@ -6,10 +6,7 @@ import type { DataTableColumn } from '@/components/DataTable'
 import type { PersonWithRelations } from '@/api/generated/models'
 import { personRoleOptions } from '@/pages/Clientes/schemas/personSchema'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
-
-function roleLabel(role: string) {
-  return personRoleOptions.find((option) => option.value === role)?.label ?? role
-}
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type BuildPersonTableColumnsProps = {
   onEdit: (person: PersonWithRelations) => void
@@ -24,7 +21,7 @@ export function buildPersonTableColumns({
     { header: 'Nome', cell: (person) => <span className="font-medium">{person.name}</span> },
     {
       header: 'Ruolo',
-      cell: (person) => <Badge variant="secondary">{roleLabel(person.role)}</Badge>,
+      cell: (person) => <Badge variant="secondary">{getOptionLabel(personRoleOptions, person.role)}</Badge>,
     },
     { header: 'E-mail', cell: (person) => person.email ?? '—' },
     { header: 'Telefono', cell: (person) => person.phone ?? '—' },

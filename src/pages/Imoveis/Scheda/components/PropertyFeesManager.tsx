@@ -6,14 +6,8 @@ import InputMoney from '@/components/InputMoney'
 import type { NewPropertyFeeFrequency } from '@/api/generated/models'
 import { feeFrequencyOptions } from '@/pages/Imoveis/Scheda/schemas/feeFrequencyOptions'
 import { usePropertyFees } from '@/pages/Imoveis/Scheda/hooks/usePropertyFees'
-
-function frequencyLabel(value: string) {
-  return feeFrequencyOptions.find((option) => option.value === value)?.label ?? value
-}
-
-function formatAmount(value: number) {
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
-}
+import { formatAmount } from '@/utils/formatAmount'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type PropertyFeesManagerProps = {
   propertyId: string
@@ -42,7 +36,7 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
         {fees.map((fee) => (
           <div key={fee.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
             <span className="text-sm">
-              {fee.name} · {formatAmount(fee.amount)} · {frequencyLabel(fee.frequency)}
+              {fee.name} · {formatAmount(fee.amount)} · {getOptionLabel(feeFrequencyOptions, fee.frequency)}
               {fee.note && ` · ${fee.note}`}
             </span>
             <Button variant="ghost" size="icon-sm" onClick={() => fee.id && removeFee(fee.id)}>

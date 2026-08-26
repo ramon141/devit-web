@@ -1,16 +1,12 @@
-import { useState } from 'react'
 import {
   usePurchaseProposalControllerCount,
   usePurchaseProposalControllerFind,
 } from '@/api/generated/api'
-import { useDebouncedValue } from '@/hooks/useDebouncedValue'
-import { PAGE_SIZE } from '@/constants/pagination'
-
+import { useListPagination } from '@/hooks/useListPagination'
 
 export function useProposalList() {
-  const [search, setSearch] = useState('')
-  const [page, setPage] = useState(1)
-  const debouncedSearch = useDebouncedValue(search)
+  const { search, debouncedSearch, page, setPage, pageSize, skip, onSearchChange } =
+    useListPagination()
 
   const where = debouncedSearch ? { number: { ilike: `%${debouncedSearch}%` } } : undefined
 
@@ -19,26 +15,21 @@ export function useProposalList() {
       where,
       include: [{ relation: 'property' }, { relation: 'buyer' }],
       order: ['proposalDate DESC'],
-      limit: PAGE_SIZE,
-      skip: (page - 1) * PAGE_SIZE,
+      limit: pageSize,
+      skip,
     },
   })
 
   const { data: countResult } = usePurchaseProposalControllerCount({ where })
 
-  function handleSearchChange(value: string) {
-    setSearch(value)
-    setPage(1)
-  }
-
   return {
     proposals: proposals ?? [],
     isLoading,
     totalItems: countResult?.count ?? 0,
-    pageSize: PAGE_SIZE,
+    pageSize,
     page,
     setPage,
     search,
-    onSearchChange: handleSearchChange,
+    onSearchChange,
   }
 }

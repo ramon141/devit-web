@@ -10,18 +10,12 @@ import type { Attachment, PropertyPhoto, PropertyWithRelations } from '@/api/gen
 import { statusOptions } from '@/pages/Imoveis/schemas/propertySchema'
 import { useDeleteProperty } from '@/pages/Imoveis/hooks/useDeleteProperty'
 import { useDuplicateProperty } from '@/pages/Imoveis/hooks/useDuplicateProperty'
+import { formatAmount } from '@/utils/formatAmount'
+import { formatDate } from '@/utils/formatDate'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type PropertyCardProps = {
   property: PropertyWithRelations
-}
-
-function statusLabel(status?: string) {
-  return statusOptions.find((option) => option.value === status)?.label ?? status ?? '—'
-}
-
-function formatPrice(value?: number | null) {
-  if (value == null) return '—'
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
 }
 
 function coverUrl(photos?: (PropertyPhoto & { attachment?: Attachment })[]) {
@@ -58,7 +52,7 @@ function PropertyCard({ property }: PropertyCardProps) {
       <div className="grid gap-2 p-3">
         <div className="flex items-center justify-between gap-2">
           <p className="text-xs text-muted-foreground">{property.code}</p>
-          <Badge variant="secondary">{statusLabel(property.status)}</Badge>
+          <Badge variant="secondary">{getOptionLabel(statusOptions, property.status)}</Badge>
         </div>
 
         <p className="line-clamp-1 font-medium">{property.title}</p>
@@ -88,9 +82,9 @@ function PropertyCard({ property }: PropertyCardProps) {
           )}
         </div>
 
-        <p className="font-semibold">{formatPrice(property.salePrice ?? property.rentPrice)}</p>
+        <p className="font-semibold">{formatAmount(property.salePrice ?? property.rentPrice)}</p>
         <p className="text-xs text-muted-foreground">
-          Modificato il {dayjs(property.updatedAt ?? property.createdAt).format('DD/MM/YYYY')}
+          Modificato il {formatDate(property.updatedAt ?? property.createdAt)}
         </p>
 
         <div className="flex justify-end gap-1 pt-1">

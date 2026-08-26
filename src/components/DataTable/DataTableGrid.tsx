@@ -18,6 +18,32 @@ type DataTableGridProps<TRow> = {
   onRowClick?: (row: TRow) => void
 }
 
+function DataTableGridRow<TRow>({
+  row,
+  columns,
+  keyExtractor,
+  onRowClick,
+}: {
+  row: TRow
+  columns: DataTableColumn<TRow>[]
+  keyExtractor: (row: TRow) => string
+  onRowClick?: (row: TRow) => void
+}) {
+  return (
+    <TableRow
+      key={keyExtractor(row)}
+      onClick={onRowClick ? () => onRowClick(row) : undefined}
+      className={cn(onRowClick && 'cursor-pointer')}
+    >
+      {columns.map((column, index) => (
+        <TableCell key={index} className={column.cellClassName}>
+          {column.cell(row)}
+        </TableCell>
+      ))}
+    </TableRow>
+  )
+}
+
 function DataTableGrid<TRow>({
   columns,
   data,
@@ -49,17 +75,13 @@ function DataTableGrid<TRow>({
           )}
 
           {data.map((row) => (
-            <TableRow
+            <DataTableGridRow
               key={keyExtractor(row)}
-              onClick={onRowClick ? () => onRowClick(row) : undefined}
-              className={cn(onRowClick && 'cursor-pointer')}
-            >
-              {columns.map((column, index) => (
-                <TableCell key={index} className={column.cellClassName}>
-                  {column.cell(row)}
-                </TableCell>
-              ))}
-            </TableRow>
+              row={row}
+              columns={columns}
+              keyExtractor={keyExtractor}
+              onRowClick={onRowClick}
+            />
           ))}
         </TableBody>
       </Table>

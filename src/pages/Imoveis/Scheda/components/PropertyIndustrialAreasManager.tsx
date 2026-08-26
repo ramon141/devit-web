@@ -5,10 +5,7 @@ import SelectField from '@/components/SelectField'
 import type { PropertyIndustrialAreaAreaType } from '@/api/generated/models'
 import { industrialAreaTypeOptions } from '@/pages/Imoveis/Scheda/schemas/industrialAreaOptions'
 import { usePropertyIndustrialAreas } from '@/pages/Imoveis/Scheda/hooks/usePropertyIndustrialAreas'
-
-function areaLabel(type: string) {
-  return industrialAreaTypeOptions.find((option) => option.value === type)?.label ?? type
-}
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type PropertyIndustrialAreasManagerProps = {
   propertyId: string
@@ -26,7 +23,7 @@ function PropertyIndustrialAreasManager({ propertyId }: PropertyIndustrialAreasM
         {areas.map((area) => (
           <div key={area.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
             <span className="text-sm">
-              {areaLabel(area.areaType)}
+              {getOptionLabel(industrialAreaTypeOptions, area.areaType)}
               {area.areaSqm != null && ` · ${area.areaSqm} m²`}
               {area.heightM != null && ` · h ${area.heightM}m`}
             </span>

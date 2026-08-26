@@ -1,13 +1,10 @@
-import dayjs from 'dayjs'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { RentalAdjustmentWithRelations } from '@/api/generated/models'
+import { formatAmount } from '@/utils/formatAmount'
+import { formatDate } from '@/utils/formatDate'
 
 type GeneratedAdjustmentsTableProps = {
   adjustments: RentalAdjustmentWithRelations[]
-}
-
-function formatAmount(value: number) {
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
 }
 
 function GeneratedAdjustmentsTable({ adjustments }: GeneratedAdjustmentsTableProps) {
@@ -23,7 +20,7 @@ function GeneratedAdjustmentsTable({ adjustments }: GeneratedAdjustmentsTablePro
     { header: 'Indice %', cell: (adjustment) => `${adjustment.indexPercent}%` },
     { header: 'Valore precedente', cell: (adjustment) => formatAmount(adjustment.oldAmount) },
     { header: 'Nuovo valore', cell: (adjustment) => formatAmount(adjustment.newAmount) },
-    { header: 'Data', cell: (adjustment) => dayjs(adjustment.effectiveDate).format('DD/MM/YYYY') },
+    { header: 'Data', cell: (adjustment) => formatDate(adjustment.effectiveDate) },
   ]
 
   return (

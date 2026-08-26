@@ -1,21 +1,15 @@
-import dayjs from 'dayjs'
 import { BanIcon, PencilIcon, RefreshCwIcon, Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import { rentalSituationOptions } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
-
-function situationLabel(situation?: string) {
-  return rentalSituationOptions.find((option) => option.value === situation)?.label ?? situation ?? '—'
-}
+import { formatAmount } from '@/utils/formatAmount'
+import { formatDate } from '@/utils/formatDate'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 function isLocked(situation?: string) {
   return situation === 'terminated' || situation === 'closed'
-}
-
-function formatAmount(value: number) {
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
 }
 
 type BuildRentalTableColumnsProps = {
@@ -61,10 +55,12 @@ export function buildRentalTableColumns(
     { header: 'Proprietario', cell: (contract) => contract.owner?.name ?? '—' },
     { header: 'Inquilino', cell: (contract) => contract.tenant?.name ?? '—' },
     { header: 'Affitto', cell: (contract) => formatAmount(contract.rentAmount) },
-    { header: 'Inizio', cell: (contract) => dayjs(contract.startDate).format('DD/MM/YYYY') },
+    { header: 'Inizio', cell: (contract) => formatDate(contract.startDate) },
     {
       header: 'Situazione',
-      cell: (contract) => <Badge variant="secondary">{situationLabel(contract.situation)}</Badge>,
+      cell: (contract) => (
+        <Badge variant="secondary">{getOptionLabel(rentalSituationOptions, contract.situation)}</Badge>
+      ),
     },
     {
       header: 'Azioni',

@@ -5,10 +5,7 @@ import SelectField from '@/components/SelectField'
 import type { PropertyRoomRoomType } from '@/api/generated/models'
 import { roomTypeOptions } from '@/pages/Imoveis/Scheda/schemas/roomTypeOptions'
 import { usePropertyRooms } from '@/pages/Imoveis/Scheda/hooks/usePropertyRooms'
-
-function roomLabel(type: string) {
-  return roomTypeOptions.find((option) => option.value === type)?.label ?? type
-}
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type PropertyRoomsManagerProps = {
   propertyId: string
@@ -40,7 +37,7 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
           <div key={room.id} className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
             <span className="text-sm">
               {room.quantity != null && room.quantity > 1 && `${room.quantity}x `}
-              {roomLabel(room.roomType)}
+              {getOptionLabel(roomTypeOptions, room.roomType)}
               {room.areaSqm != null && ` · ${room.areaSqm} m²`}
               {room.equipment && ` · ${room.equipment}`}
             </span>

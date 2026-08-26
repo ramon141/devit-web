@@ -1,7 +1,7 @@
-import dayjs from 'dayjs'
 import { Badge } from '@/components/ui/badge'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
+import { formatDate } from '@/utils/formatDate'
 
 type RegistrazioniTableProps = {
   contracts: RentalContractWithRelations[]
@@ -11,11 +11,7 @@ type RegistrazioniTableProps = {
 function RegistrazioniTable({ contracts, isLoading }: RegistrazioniTableProps) {
   const columns: DataTableColumn<RentalContractWithRelations>[] = [
     { header: 'Numero', cell: (contract) => <span className="font-medium">{contract.number}</span> },
-    {
-      header: 'Scadenza',
-      cell: (contract) =>
-        contract.renewalDueDate ? dayjs(contract.renewalDueDate).format('DD/MM/YYYY') : '—',
-    },
+    { header: 'Scadenza', cell: (contract) => formatDate(contract.renewalDueDate) },
     {
       header: 'Stato registrazione',
       cell: (contract) => (
@@ -28,8 +24,7 @@ function RegistrazioniTable({ contracts, isLoading }: RegistrazioniTableProps) {
       header: 'Periodo',
       cell: (contract) => (
         <>
-          {dayjs(contract.startDate).format('DD/MM/YYYY')} –{' '}
-          {contract.endDate ? dayjs(contract.endDate).format('DD/MM/YYYY') : '—'}
+          {formatDate(contract.startDate)} – {formatDate(contract.endDate)}
         </>
       ),
     },

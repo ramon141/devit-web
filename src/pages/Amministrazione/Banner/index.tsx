@@ -1,26 +1,15 @@
-import { useState } from 'react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { HomeBanner } from '@/api/generated/models'
 import { useBannerList } from '@/pages/Amministrazione/Banner/hooks/useBannerList'
+import { useEditModalState } from '@/hooks/useEditModalState'
 import BannerTable from '@/pages/Amministrazione/Banner/components/BannerTable'
 import BannerFormModal from '@/pages/Amministrazione/Banner/components/BannerFormModal'
 
 function Banner() {
   const { banners, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useBannerList()
-  const [formOpen, setFormOpen] = useState(false)
-  const [editingBanner, setEditingBanner] = useState<HomeBanner | null>(null)
-
-  function handleNew() {
-    setEditingBanner(null)
-    setFormOpen(true)
-  }
-
-  function handleEdit(banner: HomeBanner) {
-    setEditingBanner(banner)
-    setFormOpen(true)
-  }
+  const { open, setOpen, editing, openNew, openEdit } = useEditModalState<HomeBanner>()
 
   return (
     <div>
@@ -28,11 +17,11 @@ function Banner() {
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder="Cerca un banner..."
-        onNewClick={handleNew}
+        onNewClick={openNew}
         newLabel="Nuovo banner"
       />
 
-      <BannerTable banners={banners} isLoading={isLoading} onEdit={handleEdit} />
+      <BannerTable banners={banners} isLoading={isLoading} onEdit={openEdit} />
 
       <TablePagination
         page={page}
@@ -41,7 +30,7 @@ function Banner() {
         onPageChange={setPage}
       />
 
-      <BannerFormModal open={formOpen} onOpenChange={setFormOpen} banner={editingBanner} />
+      <BannerFormModal open={open} onOpenChange={setOpen} banner={editing} />
     </div>
   )
 }

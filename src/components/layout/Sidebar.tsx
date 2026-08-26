@@ -25,7 +25,7 @@ function Sidebar() {
         />
       </Link>
 
-      <div className="w-full flex-1 overflow-y-auto">
+      <div className="thin-scrollbar w-full flex-1 overflow-y-auto">
         <SidebarNav expanded={expanded} />
       </div>
 

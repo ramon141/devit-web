@@ -13,6 +13,33 @@ type AvatarUploadProps = {
   disabled?: boolean
 }
 
+type AvatarUploadButtonProps = {
+  imageUrl?: string
+  fallbackText?: string
+  disabled: boolean
+  onClick: () => void
+}
+
+function AvatarUploadButton({ imageUrl, fallbackText, disabled, onClick }: AvatarUploadButtonProps) {
+  return (
+    <button
+      type="button"
+      className="relative rounded-full disabled:opacity-50"
+      disabled={disabled}
+      onClick={onClick}
+    >
+      <Avatar className="size-20">
+        <AvatarImage src={imageUrl} alt={fallbackText} />
+        <AvatarFallback>{fallbackText}</AvatarFallback>
+      </Avatar>
+
+      <AvatarBadge className="size-7 [&>svg]:size-3.5">
+        <PencilIcon />
+      </AvatarBadge>
+    </button>
+  )
+}
+
 function AvatarUpload({
   label,
   value,
@@ -44,21 +71,12 @@ function AvatarUpload({
       {label && <Label htmlFor={inputId}>{label}</Label>}
 
       <div className="flex flex-col items-center gap-2">
-        <button
-          type="button"
-          className="relative rounded-full disabled:opacity-50"
+        <AvatarUploadButton
+          imageUrl={previewUrl ?? currentUrl}
+          fallbackText={fallbackText}
           disabled={disabled}
           onClick={() => inputRef.current?.click()}
-        >
-          <Avatar className="size-20">
-            <AvatarImage src={previewUrl ?? currentUrl} alt={fallbackText} />
-            <AvatarFallback>{fallbackText}</AvatarFallback>
-          </Avatar>
-
-          <AvatarBadge className="size-7 [&>svg]:size-3.5">
-            <PencilIcon />
-          </AvatarBadge>
-        </button>
+        />
 
         {hint && <p className="text-sm text-muted-foreground">{hint}</p>}
       </div>

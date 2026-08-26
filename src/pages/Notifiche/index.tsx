@@ -1,9 +1,9 @@
-import dayjs from 'dayjs'
 import { CheckIcon } from 'lucide-react'
 import AppLayout from '@/components/layout/AppLayout'
 import { Button } from '@/components/ui/button'
 import { useNotificationList } from '@/pages/Notifiche/hooks/useNotificationList'
 import { NOTIFICATION_TYPE_LABELS } from '@/constants/notifications'
+import { formatDateTime } from '@/utils/formatDate'
 
 function Notifiche() {
   const { notifications, isLoading, markAsRead } = useNotificationList()
@@ -33,7 +33,7 @@ function Notifiche() {
                 <p className="truncate text-sm text-muted-foreground">{notification.message}</p>
               )}
               <p className="text-xs text-muted-foreground">
-                {dayjs(notification.createdAt).format('DD/MM/YYYY HH:mm')}
+                {formatDateTime(notification.createdAt)}
               </p>
             </div>
 

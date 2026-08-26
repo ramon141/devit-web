@@ -1,4 +1,3 @@
-import dayjs from 'dayjs'
 import { Bell } from 'lucide-react'
 import { Link } from 'react-router'
 import { Button } from '@/components/ui/button'
@@ -13,6 +12,7 @@ import { useNotificationList } from '@/pages/Notifiche/hooks/useNotificationList
 import { NOTIFICATION_TYPE_LABELS, NOTIFICATION_POPOVER_LIMIT } from '@/constants/notifications'
 import { useUnreadNotificationsCount } from '@/hooks/useUnreadNotificationsCount'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
+import { formatDateTime } from '@/utils/formatDate'
 
 // Popover com as últimas notificações, com link para a lista completa
 function NotificationsPopover() {
@@ -55,7 +55,7 @@ function NotificationsPopover() {
               </p>
               <p className="truncate text-sm font-medium">{notification.title}</p>
               <p className="text-[10px] text-muted-foreground">
-                {dayjs(notification.createdAt).format('DD/MM/YYYY HH:mm')}
+                {formatDateTime(notification.createdAt)}
               </p>
             </div>
           ))}

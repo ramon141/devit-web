@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import dayjs from 'dayjs'
 import { Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import FileUpload from '@/components/FileUpload'
 import { useSaleDocuments } from '@/pages/Operazioni/Vendite/hooks/useSaleDocuments'
+import { formatDateTime } from '@/utils/formatDate'
 
 type SaleDocumentsManagerProps = {
   saleId: string
@@ -62,7 +62,7 @@ function SaleDocumentsManager({ saleId }: SaleDocumentsManagerProps) {
               )}
               <p className="text-xs text-muted-foreground">
                 {document.type && `${document.type} · `}
-                {document.generatedAt && dayjs(document.generatedAt).format('DD/MM/YYYY HH:mm')}
+                {document.generatedAt && formatDateTime(document.generatedAt)}
               </p>
             </div>
             <Button variant="ghost" size="icon-sm" onClick={() => document.id && removeDocument(document.id)}>

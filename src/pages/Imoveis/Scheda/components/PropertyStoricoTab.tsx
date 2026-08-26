@@ -1,12 +1,9 @@
-import dayjs from 'dayjs'
 import { usePropertyPriceHistoryControllerFind, usePropertyStatusHistoryControllerFind } from '@/api/generated/api'
+import { formatAmount } from '@/utils/formatAmount'
+import { formatDateTime } from '@/utils/formatDate'
 
 type PropertyStoricoTabProps = {
   propertyId: string
-}
-
-function formatAmount(value: number) {
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
 }
 
 function PropertyStoricoTab({ propertyId }: PropertyStoricoTabProps) {
@@ -30,7 +27,7 @@ function PropertyStoricoTab({ propertyId }: PropertyStoricoTabProps) {
               <p className="text-sm">
                 {entry.previousPrice != null ? formatAmount(entry.previousPrice) : '—'} → {formatAmount(entry.newPrice)}
               </p>
-              <p className="text-xs text-muted-foreground">{dayjs(entry.changedAt).format('DD/MM/YYYY HH:mm')}</p>
+              <p className="text-xs text-muted-foreground">{formatDateTime(entry.changedAt)}</p>
             </div>
           ))}
         </div>
@@ -48,7 +45,7 @@ function PropertyStoricoTab({ propertyId }: PropertyStoricoTabProps) {
                 {entry.previousStatus ?? '—'} → {entry.newStatus}
               </p>
               {entry.reason && <p className="text-xs text-muted-foreground">{entry.reason}</p>}
-              <p className="text-xs text-muted-foreground">{dayjs(entry.occurredAt).format('DD/MM/YYYY HH:mm')}</p>
+              <p className="text-xs text-muted-foreground">{formatDateTime(entry.occurredAt)}</p>
             </div>
           ))}
         </div>

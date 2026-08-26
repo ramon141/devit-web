@@ -1,13 +1,9 @@
-import dayjs from 'dayjs'
 import { useContractRenewalControllerFind } from '@/api/generated/api'
+import { formatAmount } from '@/utils/formatAmount'
+import { formatDate } from '@/utils/formatDate'
 
 type RentalContractRenewalsHistoryProps = {
   contractId: string
-}
-
-function formatAmount(value?: number | null) {
-  if (value == null) return '—'
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
 }
 
 function RentalContractRenewalsHistory({ contractId }: RentalContractRenewalsHistoryProps) {
@@ -23,7 +19,7 @@ function RentalContractRenewalsHistory({ contractId }: RentalContractRenewalsHis
       {(renewals ?? []).map((renewal) => (
         <div key={renewal.id} className="rounded-lg px-3 py-2 ring-1 ring-border">
           <p className="text-sm">
-            {dayjs(renewal.previousEndDate).format('DD/MM/YYYY')} → {dayjs(renewal.newEndDate).format('DD/MM/YYYY')}
+            {formatDate(renewal.previousEndDate)} → {formatDate(renewal.newEndDate)}
           </p>
           <p className="text-sm text-muted-foreground">
             {formatAmount(renewal.previousAmount)} → {formatAmount(renewal.newAmount)}

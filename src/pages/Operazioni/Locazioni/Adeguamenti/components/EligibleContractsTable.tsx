@@ -1,16 +1,13 @@
 import { Checkbox } from '@/components/ui/checkbox'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
+import { formatAmount } from '@/utils/formatAmount'
 
 type EligibleContractsTableProps = {
   contracts: RentalContractWithRelations[]
   isLoading: boolean
   selectedIds: string[]
   onToggle: (id: string) => void
-}
-
-function formatAmount(value: number) {
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
 }
 
 function EligibleContractsTable({ contracts, isLoading, selectedIds, onToggle }: EligibleContractsTableProps) {

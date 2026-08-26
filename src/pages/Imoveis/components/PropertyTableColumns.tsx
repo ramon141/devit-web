@@ -6,15 +6,8 @@ import type { DataTableColumn } from '@/components/DataTable'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import type { PropertyWithRelations } from '@/api/generated/models'
 import { statusOptions } from '@/pages/Imoveis/schemas/propertySchema'
-
-function statusLabel(status?: string) {
-  return statusOptions.find((option) => option.value === status)?.label ?? status ?? '—'
-}
-
-function formatPrice(value?: number | null) {
-  if (value == null) return '—'
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
-}
+import { formatAmount } from '@/utils/formatAmount'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type BuildPropertyTableColumnsProps = {
   onDelete: (property: PropertyWithRelations) => void
@@ -28,10 +21,12 @@ export function buildPropertyTableColumns({
     { header: 'Titolo', cell: (property) => property.title },
     { header: 'Città', cell: (property) => property.address?.city ?? '—' },
     { header: 'Proprietario', cell: (property) => property.owner?.name ?? '—' },
-    { header: 'Prezzo', cell: (property) => formatPrice(property.salePrice ?? property.rentPrice) },
+    { header: 'Prezzo', cell: (property) => formatAmount(property.salePrice ?? property.rentPrice) },
     {
       header: 'Stato',
-      cell: (property) => <Badge variant="secondary">{statusLabel(property.status)}</Badge>,
+      cell: (property) => (
+        <Badge variant="secondary">{getOptionLabel(statusOptions, property.status)}</Badge>
+      ),
     },
     {
       header: 'Azioni',

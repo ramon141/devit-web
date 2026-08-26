@@ -1,26 +1,15 @@
-import { useState } from 'react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { SaleWithRelations } from '@/api/generated/models'
 import { useSaleList } from '@/pages/Operazioni/Vendite/hooks/useSaleList'
+import { useEditModalState } from '@/hooks/useEditModalState'
 import SaleTable from '@/pages/Operazioni/Vendite/components/SaleTable'
 import SaleFormModal from '@/pages/Operazioni/Vendite/components/SaleFormModal'
 
 function Vendite() {
   const { sales, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useSaleList()
-  const [formOpen, setFormOpen] = useState(false)
-  const [editingSale, setEditingSale] = useState<SaleWithRelations | null>(null)
-
-  function handleNew() {
-    setEditingSale(null)
-    setFormOpen(true)
-  }
-
-  function handleEdit(sale: SaleWithRelations) {
-    setEditingSale(sale)
-    setFormOpen(true)
-  }
+  const { open, setOpen, editing, openNew, openEdit } = useEditModalState<SaleWithRelations>()
 
   return (
     <div>
@@ -28,11 +17,11 @@ function Vendite() {
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder="Cerca per numero..."
-        onNewClick={handleNew}
+        onNewClick={openNew}
         newLabel="Nuova vendita"
       />
 
-      <SaleTable sales={sales} isLoading={isLoading} onEdit={handleEdit} />
+      <SaleTable sales={sales} isLoading={isLoading} onEdit={openEdit} />
 
       <TablePagination
         page={page}
@@ -41,7 +30,7 @@ function Vendite() {
         onPageChange={setPage}
       />
 
-      <SaleFormModal open={formOpen} onOpenChange={setFormOpen} sale={editingSale} />
+      <SaleFormModal open={open} onOpenChange={setOpen} sale={editing} />
     </div>
   )
 }

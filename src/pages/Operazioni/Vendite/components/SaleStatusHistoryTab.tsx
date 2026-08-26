@@ -1,5 +1,5 @@
-import dayjs from 'dayjs'
 import { useSaleStatusHistoryControllerFind } from '@/api/generated/api'
+import { formatDateTime } from '@/utils/formatDate'
 
 type SaleStatusHistoryTabProps = {
   saleId: string
@@ -21,7 +21,7 @@ function SaleStatusHistoryTab({ saleId }: SaleStatusHistoryTabProps) {
             {entry.previousStatus ?? '—'} → {entry.newStatus}
           </p>
           {entry.note && <p className="text-xs text-muted-foreground">{entry.note}</p>}
-          <p className="text-xs text-muted-foreground">{dayjs(entry.occurredAt).format('DD/MM/YYYY HH:mm')}</p>
+          <p className="text-xs text-muted-foreground">{formatDateTime(entry.occurredAt)}</p>
         </div>
       ))}
     </div>

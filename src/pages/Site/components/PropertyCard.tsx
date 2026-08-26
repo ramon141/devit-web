@@ -5,12 +5,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import { useFavorite } from '@/pages/Site/hooks/useFavorite'
 import type { PublicPropertyControllerFind200ItemsItem } from '@/api/generated/models'
-
-const currencyFormatter = new Intl.NumberFormat('it-IT', {
-  style: 'currency',
-  currency: 'EUR',
-  maximumFractionDigits: 0,
-})
+import { formatAmount } from '@/utils/formatAmount'
 
 function statusLabel(purpose?: string) {
   if (purpose === 'sale') return 'Vendita'
@@ -74,7 +69,7 @@ function PropertyCard({ property }: PropertyCardProps) {
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/70 to-transparent p-2.5 pt-8">
           {property.price != null && (
             <span className="text-lg font-bold text-white drop-shadow-sm">
-              {currencyFormatter.format(property.price)}
+              {formatAmount(property.price, { maximumFractionDigits: 0 })}
             </span>
           )}
 

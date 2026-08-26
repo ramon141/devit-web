@@ -1,7 +1,7 @@
-import dayjs from 'dayjs'
 import { Badge } from '@/components/ui/badge'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { AuditLog } from '@/api/generated/models'
+import { formatDateTime } from '@/utils/formatDate'
 
 const actionLabels: Record<string, string> = {
   create: 'Creazione',
@@ -30,7 +30,7 @@ function AuditLogTable({ logs, isLoading }: AuditLogTableProps) {
       cell: (log) => log.entityId ?? '—',
     },
     { header: 'Utente', cell: (log) => log.userId ?? '—' },
-    { header: 'Data', cell: (log) => dayjs(log.createdAt).format('DD/MM/YYYY HH:mm') },
+    { header: 'Data', cell: (log) => formatDateTime(log.createdAt) },
   ]
 
   return (

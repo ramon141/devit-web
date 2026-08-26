@@ -1,21 +1,15 @@
-import dayjs from 'dayjs'
 import { PencilIcon, Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { SaleWithRelations } from '@/api/generated/models'
 import { saleStatusOptions } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
-
-function statusLabel(status?: string) {
-  return saleStatusOptions.find((option) => option.value === status)?.label ?? status ?? '—'
-}
+import { formatAmount } from '@/utils/formatAmount'
+import { formatDate } from '@/utils/formatDate'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 function isLocked(status?: string) {
   return status === 'sold' || status === 'canceled'
-}
-
-function formatAmount(value: number) {
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
 }
 
 type SaleTableActionsProps = {
@@ -54,10 +48,12 @@ export function buildSaleTableColumns({
     { header: 'Venditore', cell: (sale) => sale.seller?.name ?? '—' },
     { header: 'Acquirente', cell: (sale) => sale.buyer?.name ?? '—' },
     { header: 'Valore', cell: (sale) => formatAmount(sale.finalAmount) },
-    { header: 'Data', cell: (sale) => dayjs(sale.saleDate).format('DD/MM/YYYY') },
+    { header: 'Data', cell: (sale) => formatDate(sale.saleDate) },
     {
       header: 'Stato',
-      cell: (sale) => <Badge variant="secondary">{statusLabel(sale.status)}</Badge>,
+      cell: (sale) => (
+        <Badge variant="secondary">{getOptionLabel(saleStatusOptions, sale.status)}</Badge>
+      ),
     },
     {
       header: 'Azioni',

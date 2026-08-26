@@ -1,28 +1,16 @@
-import { useState } from 'react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import { useRentalContractList } from '@/pages/Operazioni/Locazioni/hooks/useRentalContractList'
+import { useEditModalState } from '@/hooks/useEditModalState'
 import RentalTable from '@/pages/Operazioni/Locazioni/components/RentalTable'
 import RentalFormModal from '@/pages/Operazioni/Locazioni/components/RentalFormModal'
 
 function Locazioni() {
   const { contracts, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useRentalContractList()
-  const [formOpen, setFormOpen] = useState(false)
-  const [editingContract, setEditingContract] = useState<RentalContractWithRelations | null>(
-    null
-  )
-
-  function handleNew() {
-    setEditingContract(null)
-    setFormOpen(true)
-  }
-
-  function handleEdit(contract: RentalContractWithRelations) {
-    setEditingContract(contract)
-    setFormOpen(true)
-  }
+  const { open, setOpen, editing, openNew, openEdit } =
+    useEditModalState<RentalContractWithRelations>()
 
   return (
     <div>
@@ -30,11 +18,11 @@ function Locazioni() {
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder="Cerca per numero..."
-        onNewClick={handleNew}
+        onNewClick={openNew}
         newLabel="Nuovo contratto"
       />
 
-      <RentalTable contracts={contracts} isLoading={isLoading} onEdit={handleEdit} />
+      <RentalTable contracts={contracts} isLoading={isLoading} onEdit={openEdit} />
 
       <TablePagination
         page={page}
@@ -43,7 +31,7 @@ function Locazioni() {
         onPageChange={setPage}
       />
 
-      <RentalFormModal open={formOpen} onOpenChange={setFormOpen} contract={editingContract} />
+      <RentalFormModal open={open} onOpenChange={setOpen} contract={editing} />
     </div>
   )
 }

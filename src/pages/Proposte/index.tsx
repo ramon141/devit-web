@@ -1,29 +1,17 @@
-import { useState } from 'react'
 import AppLayout from '@/components/layout/AppLayout'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { PurchaseProposalWithRelations } from '@/api/generated/models'
 import { useProposalList } from '@/pages/Proposte/hooks/useProposalList'
+import { useEditModalState } from '@/hooks/useEditModalState'
 import ProposalTable from '@/pages/Proposte/components/ProposalTable'
 import ProposalFormModal from '@/pages/Proposte/components/ProposalFormModal'
 
 function Proposte() {
   const { proposals, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useProposalList()
-  const [formOpen, setFormOpen] = useState(false)
-  const [editingProposal, setEditingProposal] = useState<PurchaseProposalWithRelations | null>(
-    null
-  )
-
-  function handleNew() {
-    setEditingProposal(null)
-    setFormOpen(true)
-  }
-
-  function handleEdit(proposal: PurchaseProposalWithRelations) {
-    setEditingProposal(proposal)
-    setFormOpen(true)
-  }
+  const { open, setOpen, editing, openNew, openEdit } =
+    useEditModalState<PurchaseProposalWithRelations>()
 
   return (
     <AppLayout
@@ -35,11 +23,11 @@ function Proposte() {
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder="Cerca per numero..."
-        onNewClick={handleNew}
+        onNewClick={openNew}
         newLabel="Nuova proposta"
       />
 
-      <ProposalTable proposals={proposals} isLoading={isLoading} onEdit={handleEdit} />
+      <ProposalTable proposals={proposals} isLoading={isLoading} onEdit={openEdit} />
 
       <TablePagination
         page={page}
@@ -48,7 +36,7 @@ function Proposte() {
         onPageChange={setPage}
       />
 
-      <ProposalFormModal open={formOpen} onOpenChange={setFormOpen} proposal={editingProposal} />
+      <ProposalFormModal open={open} onOpenChange={setOpen} proposal={editing} />
     </AppLayout>
   )
 }

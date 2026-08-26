@@ -1,21 +1,15 @@
-import dayjs from 'dayjs'
 import { PencilIcon, Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { PurchaseProposalWithRelations } from '@/api/generated/models'
 import { proposalStatusOptions } from '@/pages/Proposte/schemas/proposalSchema'
-
-function statusLabel(status?: string) {
-  return proposalStatusOptions.find((option) => option.value === status)?.label ?? status ?? '—'
-}
+import { formatAmount } from '@/utils/formatAmount'
+import { formatDate } from '@/utils/formatDate'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 function isLocked(status?: string) {
   return status === 'accepted' || status === 'rejected'
-}
-
-function formatAmount(value: number) {
-  return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(value)
 }
 
 type ProposalTableActionsProps = {
@@ -53,10 +47,12 @@ export function buildProposalTableColumns({
     { header: 'Immobile', cell: (proposal) => proposal.property?.code ?? '—' },
     { header: 'Acquirente', cell: (proposal) => proposal.buyer?.name ?? '—' },
     { header: 'Valore', cell: (proposal) => formatAmount(proposal.proposalAmount) },
-    { header: 'Data', cell: (proposal) => dayjs(proposal.proposalDate).format('DD/MM/YYYY') },
+    { header: 'Data', cell: (proposal) => formatDate(proposal.proposalDate) },
     {
       header: 'Stato',
-      cell: (proposal) => <Badge variant="secondary">{statusLabel(proposal.status)}</Badge>,
+      cell: (proposal) => (
+        <Badge variant="secondary">{getOptionLabel(proposalStatusOptions, proposal.status)}</Badge>
+      ),
     },
     {
       header: 'Azioni',

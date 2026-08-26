@@ -1,28 +1,16 @@
-import { useState } from 'react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
 import { useUserList } from '@/pages/Amministrazione/Utenti/hooks/useUserList'
+import { useEditModalState } from '@/hooks/useEditModalState'
 import UserTable from '@/pages/Amministrazione/Utenti/components/UserTable'
 import UserFormModal from '@/pages/Amministrazione/Utenti/components/UserFormModal'
 
 function Utenti() {
   const { users, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useUserList()
-  const [formOpen, setFormOpen] = useState(false)
-  const [editingUser, setEditingUser] = useState<UserExcludingPasswordHashWithRelations | null>(
-    null
-  )
-
-  function handleNew() {
-    setEditingUser(null)
-    setFormOpen(true)
-  }
-
-  function handleEdit(user: UserExcludingPasswordHashWithRelations) {
-    setEditingUser(user)
-    setFormOpen(true)
-  }
+  const { open, setOpen, editing, openNew, openEdit } =
+    useEditModalState<UserExcludingPasswordHashWithRelations>()
 
   return (
     <div>
@@ -30,11 +18,11 @@ function Utenti() {
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder="Cerca un utente per nome..."
-        onNewClick={handleNew}
+        onNewClick={openNew}
         newLabel="Nuovo utente"
       />
 
-      <UserTable users={users} isLoading={isLoading} onEdit={handleEdit} />
+      <UserTable users={users} isLoading={isLoading} onEdit={openEdit} />
 
       <TablePagination
         page={page}
@@ -43,7 +31,7 @@ function Utenti() {
         onPageChange={setPage}
       />
 
-      <UserFormModal open={formOpen} onOpenChange={setFormOpen} user={editingUser} />
+      <UserFormModal open={open} onOpenChange={setOpen} user={editing} />
     </div>
   )
 }

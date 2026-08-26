@@ -1,13 +1,9 @@
-const CURRENCY_FORMATTER = new Intl.NumberFormat('it-IT', {
-  style: 'currency',
-  currency: 'EUR',
-  maximumFractionDigits: 0,
-})
+import { formatAmount } from '@/utils/formatAmount'
 
 export function formatCurrency(value: number | null | undefined): string | null {
   if (value === null || value === undefined) return null
 
-  return CURRENCY_FORMATTER.format(value)
+  return formatAmount(value, { maximumFractionDigits: 0 })
 }
 
 export function formatBoolean(value: boolean | null | undefined): string {

@@ -1,5 +1,5 @@
-import dayjs from 'dayjs'
 import { usePersonEvents } from '@/pages/Clientes/Scheda/hooks/usePersonEvents'
+import { formatDateTime } from '@/utils/formatDate'
 
 type SchedaAgendaProps = {
   personId: string
@@ -18,8 +18,7 @@ function SchedaAgenda({ personId }: SchedaAgendaProps) {
         <div key={participant.id} className="rounded-lg px-3 py-2 ring-1 ring-border">
           <p className="text-sm font-medium">{participant.calendarEvent?.title}</p>
           <p className="text-xs text-muted-foreground">
-            {participant.calendarEvent?.startAt &&
-              dayjs(participant.calendarEvent.startAt).format('DD/MM/YYYY HH:mm')}
+            {formatDateTime(participant.calendarEvent?.startAt)}
           </p>
         </div>
       ))}

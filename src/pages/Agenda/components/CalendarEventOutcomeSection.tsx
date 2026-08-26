@@ -1,7 +1,7 @@
-import dayjs from 'dayjs'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { useCalendarEventOutcome } from '@/pages/Agenda/hooks/useCalendarEventOutcome'
+import { formatDateTime } from '@/utils/formatDate'
 
 type CalendarEventOutcomeSectionProps = {
   calendarEventId: string
@@ -30,7 +30,7 @@ function CalendarEventOutcomeSection({ calendarEventId }: CalendarEventOutcomeSe
         {outcomes.map((entry) => (
           <div key={entry.id} className="rounded-lg px-3 py-2 ring-1 ring-border">
             <p className="text-sm">{entry.outcome}</p>
-            <p className="text-xs text-muted-foreground">{dayjs(entry.createdAt).format('DD/MM/YYYY HH:mm')}</p>
+            <p className="text-xs text-muted-foreground">{formatDateTime(entry.createdAt)}</p>
           </div>
         ))}
       </div>
