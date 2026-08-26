@@ -1,4 +1,17 @@
 {
+  "communicationStatus": {
+    "pending": "In attesa",
+    "sent": "Inviato",
+    "delivered": "Consegnato",
+    "error": "Errore",
+    "planned": "Pianificato",
+    "clicked": "Cliccato",
+    "seen": "Visto"
+  },
+  "communicationChannel": {
+    "email": "E-mail",
+    "whatsapp": "WhatsApp"
+  },
   "notFound": {
     "message": "Pagina non trovata.",
     "backHome": "Torna alla home"
@@ -75,8 +88,15 @@
     "empty": "Nessuna notifica.",
     "viewAll": "Vedi tutte"
   },
+  "languageSwitcher": {
+    "ariaLabel": "Lingua"
+  },
   "sessionInfo": {
     "myProfile": "Il mio profilo",
-    "logout": "Esci"
+    "logout": "Esci",
+    "accessLevel": {
+      "admin": "Amministratore",
+      "broker": "Agente"
+    }
   }
 }

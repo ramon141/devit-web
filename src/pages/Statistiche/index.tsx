@@ -7,14 +7,17 @@ import { useStatisticsReports } from '@/pages/Statistiche/hooks/useStatisticsRep
 import { getLeadStatusOptions } from '@/pages/Clientes/Leads/schemas/leadSchema'
 import { getSaleStatusOptions } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
 import {
-  COMMUNICATION_CHANNEL_LABELS as channelLabels,
-  COMMUNICATION_STATUS_LABELS,
+  getCommunicationChannelLabels,
+  getCommunicationStatusLabels,
 } from '@/constants/communications'
 
 function Statistiche() {
   const { t } = useTranslation('statistiche')
   const { t: tClientes } = useTranslation('clientes')
   const { t: tOperazioni } = useTranslation('operazioni')
+  const { t: tCommon } = useTranslation('common')
+  const channelLabels = getCommunicationChannelLabels(tCommon)
+  const COMMUNICATION_STATUS_LABELS = getCommunicationStatusLabels(tCommon)
   const { leadsByStatus, salesByStatus, communicationsByChannel } = useStatisticsReports()
 
   const leadStatusLabels: Record<string, string> = Object.fromEntries(

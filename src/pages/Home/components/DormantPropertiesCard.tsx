@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import { Trash2Icon } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
@@ -18,6 +19,7 @@ type DormantPropertiesCardProps = {
 }
 
 function DormantPropertiesCard({ properties }: DormantPropertiesCardProps) {
+  const { t } = useTranslation('home')
   const [deleteTarget, setDeleteTarget] = useState<PropertiesReportControllerDormant200Item | null>(
     null
   )
@@ -30,21 +32,21 @@ function DormantPropertiesCard({ properties }: DormantPropertiesCardProps) {
 
     const promise = deleteProperty({ id: deleteTarget.id })
     toastPromise(promise, {
-      pending: 'Eliminazione immobile...',
+      pending: t('dormantPropertiesCard.deleting'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPropertiesReportControllerDormantQueryKey() })
-        return 'Immobile eliminato con successo!'
+        return t('dormantPropertiesCard.deleteSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, 'Errore durante l’eliminazione dell’immobile'),
+        getErrorMessageFromRequest(error, t('dormantPropertiesCard.deleteError')),
     })
     setDeleteTarget(null)
   }
 
   return (
-    <DashboardCard title="Immobili dormienti" count={properties.length}>
+    <DashboardCard title={t('dormantPropertiesCard.title')} count={properties.length}>
       {properties.length === 0 && (
-        <p className="text-sm text-muted-foreground">Nessun immobile dormiente.</p>
+        <p className="text-sm text-muted-foreground">{t('dormantPropertiesCard.empty')}</p>
       )}
 
       {properties.map((property) => (
@@ -65,10 +67,12 @@ function DormantPropertiesCard({ properties }: DormantPropertiesCardProps) {
       <ConfirmPopup
         open={!!deleteTarget}
         onOpenChange={(open) => !open && setDeleteTarget(null)}
-        title="Eliminare l'immobile?"
-        description={`Questa azione eliminerà definitivamente "${deleteTarget?.title ?? deleteTarget?.code}".`}
+        title={t('dormantPropertiesCard.confirmTitle')}
+        description={t('dormantPropertiesCard.confirmDescription', {
+          name: deleteTarget?.title ?? deleteTarget?.code,
+        })}
         variant="destructive"
-        confirmLabel="Elimina"
+        confirmLabel={t('dormantPropertiesCard.confirmLabel')}
         onConfirm={confirmDelete}
       />
     </DashboardCard>

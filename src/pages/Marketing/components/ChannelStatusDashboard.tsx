@@ -1,13 +1,17 @@
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import DonutChart from '@/components/charts/DonutChart'
 import { useChannelStatusReport } from '@/pages/Marketing/hooks/useChannelStatusReport'
-import { COMMUNICATION_STATUS_LABELS as statusLabels } from '@/constants/communications'
+import { getCommunicationStatusLabels } from '@/constants/communications'
 
 type ChannelStatusDashboardProps = {
   channel: 'email' | 'whatsapp'
 }
 
 function ChannelStatusDashboard({ channel }: ChannelStatusDashboardProps) {
+  const { t } = useTranslation('marketing')
+  const { t: tCommon } = useTranslation('common')
+  const statusLabels = getCommunicationStatusLabels(tCommon)
   const { rows, total } = useChannelStatusReport(channel)
 
   return (
@@ -15,7 +19,7 @@ function ChannelStatusDashboard({ channel }: ChannelStatusDashboardProps) {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader>
-            <CardTitle>Totale</CardTitle>
+            <CardTitle>{t('channelStatusDashboard.total')}</CardTitle>
           </CardHeader>
           <CardContent className="text-2xl font-semibold">{total}</CardContent>
         </Card>
@@ -32,7 +36,7 @@ function ChannelStatusDashboard({ channel }: ChannelStatusDashboardProps) {
 
       <Card>
         <CardHeader>
-          <CardTitle>Distribuzione per stato</CardTitle>
+          <CardTitle>{t('channelStatusDashboard.distributionByStatus')}</CardTitle>
         </CardHeader>
         <CardContent>
           <DonutChart

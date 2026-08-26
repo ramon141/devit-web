@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import { useTranslation } from 'react-i18next'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
 import type { LeadsReportControllerTodayAppointments200Item } from '@/api/generated/models'
 
@@ -7,10 +8,12 @@ type TodayAppointmentsCardProps = {
 }
 
 function TodayAppointmentsCard({ appointments }: TodayAppointmentsCardProps) {
+  const { t } = useTranslation('home')
+
   return (
-    <DashboardCard title="Impegni di oggi" count={appointments.length}>
+    <DashboardCard title={t('todayAppointmentsCard.title')} count={appointments.length}>
       {appointments.length === 0 && (
-        <p className="text-sm text-muted-foreground">Nessun risultato.</p>
+        <p className="text-sm text-muted-foreground">{t('todayAppointmentsCard.empty')}</p>
       )}
 
       {appointments.map((appointment) => (

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import { useFormState, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { LoginFormValues } from '@/pages/Login/schemas/loginSchema'
 import { MobileEmailField, MobilePasswordField } from '@/pages/Login/components/MobileFormFields'
 
@@ -12,6 +13,7 @@ type MobileLoginFormProps = {
 }
 
 function MobileLoginForm({ form, onSubmit, loading, error }: MobileLoginFormProps) {
+  const { t } = useTranslation('login')
   const [showPassword, setShowPassword] = useState(false)
   const { register, control } = form
   const { errors } = useFormState({ control })
@@ -38,7 +40,7 @@ function MobileLoginForm({ form, onSubmit, loading, error }: MobileLoginFormProp
         className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-2xl border-2 border-primary bg-transparent py-3.5 text-sm font-semibold text-foreground transition-colors duration-200 hover:bg-primary/10 disabled:opacity-50"
       >
         {loading && <Loader2 className="size-4 animate-spin" />}
-        Accedi
+        {t('mobileLoginForm.submit')}
       </button>
     </form>
   )

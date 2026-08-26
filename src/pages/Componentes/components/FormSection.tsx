@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
+import i18n from '@/i18n'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -22,19 +24,22 @@ import {
 import InputMoney from '@/components/InputMoney'
 import ComponentSection from '@/pages/Componentes/components/ComponentSection'
 
-const propertyFormSchema = z.object({
-  title: z.string().min(3, 'Inserisci un titolo di almeno 3 lettere'),
-  type: z.string().min(1, 'Seleziona un tipo'),
-  price: z.string().optional(),
-})
+function createPropertyFormSchema() {
+  return z.object({
+    title: z.string().min(3, i18n.t('form.titleError', { ns: 'componentes' })),
+    type: z.string().min(1, i18n.t('form.typeError', { ns: 'componentes' })),
+    price: z.string().optional(),
+  })
+}
 
-type PropertyFormValues = z.infer<typeof propertyFormSchema>
+type PropertyFormValues = z.infer<ReturnType<typeof createPropertyFormSchema>>
 
 function FormSection() {
+  const { t } = useTranslation('componentes')
   const [submitted, setSubmitted] = useState<PropertyFormValues | null>(null)
 
   const form = useForm<PropertyFormValues>({
-    resolver: zodResolver(propertyFormSchema),
+    resolver: zodResolver(createPropertyFormSchema()),
     defaultValues: { title: '', type: '', price: undefined },
   })
 
@@ -45,8 +50,8 @@ function FormSection() {
   return (
     <ComponentSection
       id="form"
-      title="Form"
-      description="Composizione di Input (register), Select (Controller) e InputMoney con validazione via zod."
+      title={t('form.title')}
+      description={t('form.description')}
     >
       <Form {...form}>
         <form
@@ -58,9 +63,9 @@ function FormSection() {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Titolo dell'annuncio</FormLabel>
+                <FormLabel>{t('form.titleField')}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Villa in Parco Esclusivo" {...field} />
+                  <Input placeholder={t('form.titlePlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -72,16 +77,16 @@ function FormSection() {
             name="type"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Tipo di immobile</FormLabel>
+                <FormLabel>{t('form.typeField')}</FormLabel>
                 <FormControl>
                   <Select value={field.value} onValueChange={field.onChange}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Seleziona" />
+                      <SelectValue placeholder={t('form.typePlaceholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="villa">Villa</SelectItem>
-                      <SelectItem value="appartamento">Appartamento</SelectItem>
-                      <SelectItem value="attico">Attico</SelectItem>
+                      <SelectItem value="villa">{t('propertyTypes.villa')}</SelectItem>
+                      <SelectItem value="appartamento">{t('propertyTypes.appartamento')}</SelectItem>
+                      <SelectItem value="attico">{t('propertyTypes.attico')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>
@@ -92,13 +97,13 @@ function FormSection() {
 
           <InputMoney
             name="price"
-            label="Prezzo"
+            label={t('form.priceLabel')}
             value={form.watch('price')}
             setValue={(value) => form.setValue('price', value)}
           />
 
           <Button type="submit" className="w-fit">
-            Salva annuncio
+            {t('form.submit')}
           </Button>
         </form>
       </Form>

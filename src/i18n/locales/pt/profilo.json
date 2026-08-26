@@ -3,6 +3,7 @@
     "title": "Meu perfil",
     "description": "Gerencie seus dados pessoais",
     "breadcrumb": "Meu perfil",
-    "save": "Salvar"
+    "save": "Salvar",
+    "languageLabel": "Idioma"
   }
 }

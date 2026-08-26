@@ -7,6 +7,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
 import itLocale from '@fullcalendar/core/locales/it'
+import ptLocale from '@fullcalendar/core/locales/pt-br'
 import type { EventClickArg, EventDropArg, DatesSetArg } from '@fullcalendar/core'
 import type { EventResizeDoneArg } from '@fullcalendar/interaction'
 import AppLayout from '@/components/layout/AppLayout'
@@ -25,7 +26,7 @@ const confirmationColors: Record<string, string> = {
 }
 
 function Agenda() {
-  const { t } = useTranslation('agenda')
+  const { t, i18n } = useTranslation('agenda')
   const { events, setRange } = useCalendarEventList()
   const { handleDelete } = useDeleteCalendarEvent()
   const { reschedule } = useRescheduleCalendarEvent()
@@ -97,8 +98,8 @@ function Agenda() {
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
           }}
-          locales={[itLocale]}
-          locale="it"
+          locales={[itLocale, ptLocale]}
+          locale={i18n.language === 'pt' ? 'pt-br' : 'it'}
           height="auto"
           firstDay={1}
           nowIndicator

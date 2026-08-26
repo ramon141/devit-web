@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { AppLayout } from '@/components/layout'
 import LayoutSection from '@/pages/Componentes/components/LayoutSection'
 import ButtonsSection from '@/pages/Componentes/components/ButtonsSection'
@@ -12,10 +13,12 @@ import ConfirmPopupSection from '@/pages/Componentes/components/ConfirmPopupSect
 import TableSection from '@/pages/Componentes/components/TableSection'
 
 function Componentes() {
+  const { t } = useTranslation('componentes')
+
   return (
     <AppLayout
-      title="Componenti"
-      description="Catalogo vivo dei componenti del design system Devit"
+      title={t('page.title')}
+      description={t('page.description')}
     >
       <div className="grid gap-4">
         <LayoutSection />

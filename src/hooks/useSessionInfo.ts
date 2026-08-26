@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import {
   useAttachmentControllerFindById,
   useBranchControllerFindById,
@@ -5,12 +6,8 @@ import {
 } from '@/api/generated/api'
 import { UserInfo } from '@/auth'
 
-const accessLevelLabels: Record<string, string> = {
-  admin: 'Amministratore',
-  broker: 'Agente',
-}
-
 export function useSessionInfo() {
+  const { t } = useTranslation('common')
   const userId = UserInfo.getUserId() ?? ''
 
   const { data: user } = useUserControllerFindById(userId, undefined, {
@@ -22,6 +19,11 @@ export function useSessionInfo() {
   const { data: avatar } = useAttachmentControllerFindById(user?.avatarId ?? '', undefined, {
     query: { enabled: !!user?.avatarId },
   })
+
+  const accessLevelLabels: Record<string, string> = {
+    admin: t('sessionInfo.accessLevel.admin'),
+    broker: t('sessionInfo.accessLevel.broker'),
+  }
 
   return {
     user,

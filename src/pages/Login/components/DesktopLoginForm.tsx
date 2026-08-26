@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { useFormState, type UseFormReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { LoginFormValues } from '@/pages/Login/schemas/loginSchema'
 import { cn } from '@/lib/utils'
 
@@ -18,15 +19,16 @@ const underlineInputClass = cn(
 )
 
 function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormProps) {
+  const { t } = useTranslation('login')
   const [showPassword, setShowPassword] = useState(false)
   const { register, control } = form
   const { errors } = useFormState({ control })
 
   return (
     <div className="flex-1 px-14 py-14">
-      <h2 className="mb-1 text-2xl font-bold text-foreground">Accedi</h2>
+      <h2 className="mb-1 text-2xl font-bold text-foreground">{t('desktopLoginForm.title')}</h2>
       <p className="mb-10 text-sm text-muted-foreground">
-        Inserisci le tue credenziali per continuare
+        {t('desktopLoginForm.subtitle')}
       </p>
 
       <form onSubmit={onSubmit} className="flex flex-col gap-7">
@@ -35,12 +37,12 @@ function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormPr
             htmlFor="login-email"
             className="mb-2 block text-xs font-semibold tracking-wide text-muted-foreground uppercase"
           >
-            E-mail
+            {t('desktopLoginForm.emailLabel')}
           </label>
           <input
             id="login-email"
             type="email"
-            placeholder="tu@devit.it"
+            placeholder={t('desktopLoginForm.emailPlaceholder')}
             aria-invalid={!!errors.email}
             className={underlineInputClass}
             {...register('email')}
@@ -57,13 +59,13 @@ function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormPr
             htmlFor="login-password"
             className="mb-2 block text-xs font-semibold tracking-wide text-muted-foreground uppercase"
           >
-            Password
+            {t('desktopLoginForm.passwordLabel')}
           </label>
           <div className="relative">
             <input
               id="login-password"
               type={showPassword ? 'text' : 'password'}
-              placeholder="••••••••"
+              placeholder={t('desktopLoginForm.passwordPlaceholder')}
               aria-invalid={!!errors.password}
               className={cn(underlineInputClass, 'pr-8')}
               {...register('password')}
@@ -74,7 +76,7 @@ function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormPr
               className="absolute right-0 bottom-2 text-muted-foreground hover:text-foreground"
             >
               {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-              <span className="sr-only">Mostra/nascondi password</span>
+              <span className="sr-only">{t('desktopLoginForm.togglePasswordSr')}</span>
             </button>
           </div>
           {errors.password && (
@@ -97,7 +99,7 @@ function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormPr
             className="inline-flex items-center gap-1.5 rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors duration-200 hover:bg-primary/85 disabled:opacity-50"
           >
             {loading && <Loader2 className="size-4 animate-spin" />}
-            Accedi
+            {t('desktopLoginForm.submit')}
           </button>
         </div>
       </form>
@@ -106,7 +108,7 @@ function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormPr
         type="button"
         className="mt-8 block w-full text-center text-sm text-primary hover:underline"
       >
-        Password dimenticata?
+        {t('desktopLoginForm.forgotPassword')}
       </button>
     </div>
   )

@@ -1,11 +1,14 @@
+import { useTranslation } from 'react-i18next'
 import ComponentSection from '@/pages/Componentes/components/ComponentSection'
 
 function LayoutSection() {
+  const { t } = useTranslation('componentes')
+
   return (
     <ComponentSection
       id="layout"
-      title="Layout"
-      description="Sidebar comprimibile + header su desktop, header e bottom navigation su mobile — questa stessa pagina si trova al loro interno."
+      title={t('layout.title')}
+      description={t('layout.description')}
     >
       <div className="flex h-40 w-full max-w-md overflow-hidden rounded-lg border border-border">
         <div className="flex w-16 flex-col gap-2 bg-sidebar p-2">
@@ -26,11 +29,7 @@ function LayoutSection() {
         </div>
       </div>
 
-      <p className="text-sm text-muted-foreground">
-        Su desktop la sidebar (navy) è comprimibile in una barra di sole
-        icone, con tooltip; su mobile viene sostituita da una bottom
-        navigation con un foglio "Altro" per le voci in eccesso.
-      </p>
+      <p className="text-sm text-muted-foreground">{t('layout.note')}</p>
     </ComponentSection>
   )
 }

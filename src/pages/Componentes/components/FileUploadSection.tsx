@@ -1,23 +1,25 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import FileUpload from '@/components/FileUpload'
 import ComponentSection from '@/pages/Componentes/components/ComponentSection'
 
 function FileUploadSection() {
+  const { t } = useTranslation('componentes')
   const [files, setFiles] = useState<File[]>([])
 
   return (
     <ComponentSection
       id="file-upload"
-      title="File Upload"
-      description="Area di caricamento con drag & drop e lista dei file selezionati."
+      title={t('fileUpload.title')}
+      description={t('fileUpload.description')}
     >
       <div className="max-w-md">
         <FileUpload
-          label="Documenti dell'immobile"
+          label={t('fileUpload.label')}
           value={files}
           onChange={setFiles}
           multiple
-          hint="PDF, JPG o PNG fino a 10MB"
+          hint={t('fileUpload.hint')}
         />
       </div>
     </ComponentSection>

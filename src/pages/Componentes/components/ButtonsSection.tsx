@@ -1,34 +1,37 @@
 import { Trash2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import ComponentSection from '@/pages/Componentes/components/ComponentSection'
 
 function ButtonsSection() {
+  const { t } = useTranslation('componentes')
+
   return (
     <ComponentSection
       id="button"
-      title="Button"
-      description="Varianti e dimensioni del pulsante standard del sistema."
+      title={t('buttons.title')}
+      description={t('buttons.description')}
     >
       <div className="flex flex-wrap items-center gap-3">
-        <Button>Primario</Button>
-        <Button variant="secondary">Secondario</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="ghost">Ghost</Button>
+        <Button>{t('buttons.primary')}</Button>
+        <Button variant="secondary">{t('buttons.secondary')}</Button>
+        <Button variant="outline">{t('buttons.outline')}</Button>
+        <Button variant="ghost">{t('buttons.ghost')}</Button>
         <Button variant="destructive">
           <Trash2 />
-          Elimina
+          {t('buttons.delete')}
         </Button>
-        <Button variant="link">Link</Button>
+        <Button variant="link">{t('buttons.link')}</Button>
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
-        <Button size="sm">Piccolo</Button>
-        <Button size="default">Standard</Button>
-        <Button size="lg">Grande</Button>
+        <Button size="sm">{t('buttons.small')}</Button>
+        <Button size="default">{t('buttons.default')}</Button>
+        <Button size="lg">{t('buttons.large')}</Button>
         <Button size="icon" variant="outline">
           <Trash2 />
         </Button>
-        <Button disabled>Disabilitato</Button>
+        <Button disabled>{t('buttons.disabled')}</Button>
       </div>
     </ComponentSection>
   )

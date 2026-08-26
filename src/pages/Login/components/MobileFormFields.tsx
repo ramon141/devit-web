@@ -1,5 +1,6 @@
 import { Eye, EyeOff, User } from 'lucide-react'
 import type { FieldError, UseFormRegister } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { LoginFormValues } from '@/pages/Login/schemas/loginSchema'
 import { cn } from '@/lib/utils'
 
@@ -16,16 +17,18 @@ type EmailFieldProps = {
 }
 
 export function MobileEmailField({ register, error }: EmailFieldProps) {
+  const { t } = useTranslation('login')
+
   return (
     <div className="mb-4">
       <label htmlFor="login-email" className={mobileLabelClass}>
-        Inserisci la tua e-mail
+        {t('mobileFormFields.emailLabel')}
       </label>
       <div className="relative">
         <input
           id="login-email"
           type="email"
-          placeholder="username@devit.it"
+          placeholder={t('mobileFormFields.emailPlaceholder')}
           aria-invalid={!!error}
           className={filledInputClass}
           {...register('email')}
@@ -50,16 +53,18 @@ export function MobilePasswordField({
   showPassword,
   onTogglePassword,
 }: PasswordFieldProps) {
+  const { t } = useTranslation('login')
+
   return (
     <div className="mb-4">
       <label htmlFor="login-password" className={mobileLabelClass}>
-        Inserisci la tua password
+        {t('mobileFormFields.passwordLabel')}
       </label>
       <div className="relative">
         <input
           id="login-password"
           type={showPassword ? 'text' : 'password'}
-          placeholder="••••••••"
+          placeholder={t('mobileFormFields.passwordPlaceholder')}
           aria-invalid={!!error}
           className={filledInputClass}
           {...register('password')}
@@ -70,7 +75,7 @@ export function MobilePasswordField({
           className="absolute top-1/2 right-4 -translate-y-1/2 text-muted-foreground hover:text-foreground"
         >
           {showPassword ? <Eye className="size-4" /> : <EyeOff className="size-4" />}
-          <span className="sr-only">Mostra/nascondi password</span>
+          <span className="sr-only">{t('mobileFormFields.togglePasswordSr')}</span>
         </button>
       </div>
       {error && <span className="mt-1.5 block text-xs text-destructive">{error.message}</span>}
@@ -83,10 +88,10 @@ export function MobilePasswordField({
             onChange={onTogglePassword}
             className="size-3.5 accent-primary"
           />
-          Mostra password
+          {t('mobileFormFields.showPassword')}
         </label>
         <button type="button" className="text-xs text-primary hover:underline">
-          Password dimenticata?
+          {t('mobileFormFields.forgotPassword')}
         </button>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import {
   Select,
   SelectContent,
@@ -10,30 +11,31 @@ import { Label } from '@/components/ui/label'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import ComponentSection from '@/pages/Componentes/components/ComponentSection'
 
-const propertyTypes = [
-  { value: 'villa', label: 'Villa' },
-  { value: 'appartamento', label: 'Appartamento' },
-  { value: 'attico', label: 'Attico' },
-  { value: 'casale', label: 'Casale' },
-]
-
 type SelectFormValues = {
   propertyType: string
 }
 
 function SelectSection() {
+  const { t } = useTranslation('componentes')
   const form = useForm<SelectFormValues>({
     defaultValues: { propertyType: 'villa' },
   })
 
+  const propertyTypes = [
+    { value: 'villa', label: t('propertyTypes.villa') },
+    { value: 'appartamento', label: t('propertyTypes.appartamento') },
+    { value: 'attico', label: t('propertyTypes.attico') },
+    { value: 'casale', label: t('propertyTypes.casale') },
+  ]
+
   return (
     <ComponentSection
       id="select"
-      title="Select"
-      description="Usato con il Controller del react-hook-form, secondo lo standard del progetto."
+      title={t('select.title')}
+      description={t('select.description')}
     >
       <div className="grid max-w-xs gap-2">
-        <Label>Tipo di immobile</Label>
+        <Label>{t('select.propertyTypeLabel')}</Label>
 
         <Form {...form}>
           <FormField
@@ -44,7 +46,7 @@ function SelectSection() {
                 <FormControl>
                   <Select value={field.value} onValueChange={field.onChange}>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Seleziona un tipo" />
+                      <SelectValue placeholder={t('select.placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
                       {propertyTypes.map((type) => (

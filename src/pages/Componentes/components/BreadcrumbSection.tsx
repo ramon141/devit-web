@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,24 +10,26 @@ import {
 import ComponentSection from '@/pages/Componentes/components/ComponentSection'
 
 function BreadcrumbSection() {
+  const { t } = useTranslation('componentes')
+
   return (
     <ComponentSection
       id="breadcrumb"
-      title="Breadcrumb"
-      description="Indica la posizione attuale all'interno della gerarchia delle pagine."
+      title={t('breadcrumb.title')}
+      description={t('breadcrumb.description')}
     >
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/gestionale">Bacheca</BreadcrumbLink>
+            <BreadcrumbLink href="/gestionale">{t('breadcrumb.dashboard')}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/gestionale/proprieta">Proprietà</BreadcrumbLink>
+            <BreadcrumbLink href="/gestionale/proprieta">{t('breadcrumb.properties')}</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Villa in Parco Esclusivo</BreadcrumbPage>
+            <BreadcrumbPage>{t('breadcrumb.currentPage')}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

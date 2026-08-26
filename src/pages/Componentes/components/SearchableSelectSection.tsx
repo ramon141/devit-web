@@ -1,39 +1,41 @@
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Label } from '@/components/ui/label'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import SearchableSelect from '@/components/SearchableSelect'
 import ComponentSection from '@/pages/Componentes/components/ComponentSection'
-
-const cities = [
-  { value: 'napoli', label: 'Napoli' },
-  { value: 'sorrento', label: 'Sorrento' },
-  { value: 'positano', label: 'Positano' },
-  { value: 'massa-lubrense', label: 'Massa Lubrense' },
-  { value: 'capri', label: 'Capri' },
-  { value: 'amalfi', label: 'Amalfi' },
-  { value: 'ravello', label: 'Ravello' },
-  { value: 'roma', label: 'Roma' },
-  { value: 'milano', label: 'Milano' },
-  { value: 'torino', label: 'Torino' },
-]
 
 type SearchableSelectFormValues = {
   city: string
 }
 
 function SearchableSelectSection() {
+  const { t } = useTranslation('componentes')
   const form = useForm<SearchableSelectFormValues>({
     defaultValues: { city: '' },
   })
 
+  const cities = [
+    { value: 'napoli', label: t('searchableSelect.cities.napoli') },
+    { value: 'sorrento', label: t('searchableSelect.cities.sorrento') },
+    { value: 'positano', label: t('searchableSelect.cities.positano') },
+    { value: 'massa-lubrense', label: t('searchableSelect.cities.massaLubrense') },
+    { value: 'capri', label: t('searchableSelect.cities.capri') },
+    { value: 'amalfi', label: t('searchableSelect.cities.amalfi') },
+    { value: 'ravello', label: t('searchableSelect.cities.ravello') },
+    { value: 'roma', label: t('searchableSelect.cities.roma') },
+    { value: 'milano', label: t('searchableSelect.cities.milano') },
+    { value: 'torino', label: t('searchableSelect.cities.torino') },
+  ]
+
   return (
     <ComponentSection
       id="searchable-select"
-      title="Select con ricerca"
-      description="Combobox con campo di ricerca, per liste lunghe. Usato con il Controller del react-hook-form."
+      title={t('searchableSelect.title')}
+      description={t('searchableSelect.description')}
     >
       <div className="grid max-w-xs gap-2">
-        <Label>Città</Label>
+        <Label>{t('searchableSelect.cityLabel')}</Label>
 
         <Form {...form}>
           <FormField
@@ -46,9 +48,9 @@ function SearchableSelectSection() {
                     options={cities}
                     value={field.value}
                     onValueChange={field.onChange}
-                    placeholder="Seleziona una città"
-                    searchPlaceholder="Cerca città..."
-                    emptyText="Nessuna città trovata."
+                    placeholder={t('searchableSelect.placeholder')}
+                    searchPlaceholder={t('searchableSelect.searchPlaceholder')}
+                    emptyText={t('searchableSelect.emptyText')}
                   />
                 </FormControl>
               </FormItem>

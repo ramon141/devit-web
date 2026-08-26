@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
 import type { PropertiesReportControllerRecent200Item } from '@/api/generated/models'
 
@@ -6,10 +7,12 @@ type RecentPropertiesCardProps = {
 }
 
 function RecentPropertiesCard({ properties }: RecentPropertiesCardProps) {
+  const { t } = useTranslation('home')
+
   return (
-    <DashboardCard title="Ultimi immobili modificati" count={properties.length}>
+    <DashboardCard title={t('recentPropertiesCard.title')} count={properties.length}>
       {properties.length === 0 && (
-        <p className="text-sm text-muted-foreground">Nessun immobile modificato di recente.</p>
+        <p className="text-sm text-muted-foreground">{t('recentPropertiesCard.empty')}</p>
       )}
 
       {properties.map((property) => (
