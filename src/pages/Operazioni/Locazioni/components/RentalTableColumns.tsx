@@ -41,7 +41,13 @@ function RentalTableActionButton({
     <Tooltip>
       <TooltipTrigger
         render={
-          <Button variant="ghost" size="icon-sm" disabled={disabled} onClick={onClick}>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            disabled={disabled}
+            onClick={onClick}
+            className="cursor-pointer hover:bg-accent hover:text-accent-foreground"
+          >
             {children}
           </Button>
         }

@@ -1,8 +1,6 @@
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
-import SelectField from '@/components/SelectField'
-import FormFieldWrapper from '@/components/FormFieldWrapper'
 import {
   usePropertyControllerFind,
   usePersonControllerFind,
@@ -84,41 +82,37 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
         )}
       />
 
-      <FormFieldWrapper
-        label={t('locazioni.partiesFields.ownerAgentLabel')}
-        error={errors.ownerAgentId?.message}
-      >
-        <Controller
-          control={control}
-          name="ownerAgentId"
-          render={({ field }) => (
-            <SelectField
-              value={field.value}
-              onValueChange={field.onChange}
-              options={userOptions}
-              placeholder={t('locazioni.partiesFields.noneOption')}
-            />
-          )}
-        />
-      </FormFieldWrapper>
+      <Controller
+        control={control}
+        name="ownerAgentId"
+        render={({ field }) => (
+          <SearchableSelect
+            label={t('locazioni.partiesFields.ownerAgentLabel')}
+            value={field.value}
+            onValueChange={field.onChange}
+            options={userOptions}
+            placeholder={t('locazioni.partiesFields.noneOption')}
+            searchPlaceholder={t('locazioni.partiesFields.agentSearchPlaceholder')}
+            error={errors.ownerAgentId?.message}
+          />
+        )}
+      />
 
-      <FormFieldWrapper
-        label={t('locazioni.partiesFields.tenantAgentLabel')}
-        error={errors.tenantAgentId?.message}
-      >
-        <Controller
-          control={control}
-          name="tenantAgentId"
-          render={({ field }) => (
-            <SelectField
-              value={field.value}
-              onValueChange={field.onChange}
-              options={userOptions}
-              placeholder={t('locazioni.partiesFields.noneOption')}
-            />
-          )}
-        />
-      </FormFieldWrapper>
+      <Controller
+        control={control}
+        name="tenantAgentId"
+        render={({ field }) => (
+          <SearchableSelect
+            label={t('locazioni.partiesFields.tenantAgentLabel')}
+            value={field.value}
+            onValueChange={field.onChange}
+            options={userOptions}
+            placeholder={t('locazioni.partiesFields.noneOption')}
+            searchPlaceholder={t('locazioni.partiesFields.agentSearchPlaceholder')}
+            error={errors.tenantAgentId?.message}
+          />
+        )}
+      />
     </>
   )
 }

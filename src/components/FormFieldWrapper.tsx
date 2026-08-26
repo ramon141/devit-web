@@ -18,7 +18,7 @@ function FormFieldWrapper({
   children,
 }: FormFieldWrapperProps) {
   return (
-    <div className="grid gap-1.5">
+    <div className="grid min-w-0 gap-1.5">
       <Label htmlFor={htmlFor}>
         {label}
         {required && <span className="text-destructive"> *</span>}

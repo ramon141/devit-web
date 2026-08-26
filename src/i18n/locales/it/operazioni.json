@@ -127,6 +127,7 @@
       "tenantPlaceholder": "Seleziona un inquilino",
       "ownerAgentLabel": "Agente del proprietario",
       "tenantAgentLabel": "Agente dell'inquilino",
+      "agentSearchPlaceholder": "Cerca un agente...",
       "noneOption": "Nessuno"
     },
     "formFields": {

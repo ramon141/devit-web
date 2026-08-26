@@ -64,7 +64,7 @@ function SearchableSelect({
   }
 
   return (
-    <div className="grid gap-2">
+    <div className="grid min-w-0 gap-2">
       {label && (
         <Label htmlFor={triggerId}>
           {label}
@@ -73,7 +73,7 @@ function SearchableSelect({
       )}
 
       <Popover open={open} onOpenChange={setOpen}>
-        <div className="relative">
+        <div className="relative min-w-0">
           <PopoverTrigger
             render={
               <Button
@@ -83,13 +83,13 @@ function SearchableSelect({
                 disabled={disabled}
                 aria-invalid={!!error}
                 className={cn(
-                  'w-full justify-between font-normal',
+                  'w-full justify-between font-normal hover:bg-primary/25 aria-expanded:bg-primary/25',
                   showClear && 'pr-8',
                   !selected && 'text-muted-foreground'
                 )}
               >
-                {selected ? selected.label : resolvedPlaceholder}
-                {showClear ? <span className="size-4" /> : <ChevronsUpDown className="text-muted-foreground" />}
+                <span className="min-w-0 truncate">{selected ? selected.label : resolvedPlaceholder}</span>
+                {showClear ? <span className="size-4 shrink-0" /> : <ChevronsUpDown className="shrink-0 text-muted-foreground" />}
               </Button>
             }
           />
