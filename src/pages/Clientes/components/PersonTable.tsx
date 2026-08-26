@@ -15,6 +15,7 @@ import ConfirmPopup from '@/components/ConfirmPopup'
 import type { PersonWithRelations } from '@/api/generated/models'
 import { personRoleOptions } from '@/pages/Clientes/schemas/personSchema'
 import { useDeletePerson } from '@/pages/Clientes/hooks/useDeletePerson'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
 type PersonTableProps = {
   people: PersonWithRelations[]
@@ -69,7 +70,7 @@ function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
                   variant="ghost"
                   size="icon-sm"
                   nativeButton={false}
-                  render={<Link to={`/clienti/${person.id}`} />}
+                  render={<Link to={`${CRM_BASE_PATH}/clienti/${person.id}`} />}
                 >
                   <EyeIcon className="size-4" />
                 </Button>

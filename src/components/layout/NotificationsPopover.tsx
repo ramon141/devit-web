@@ -12,6 +12,7 @@ import {
 import { useNotificationList } from '@/pages/Notifiche/hooks/useNotificationList'
 import { NOTIFICATION_TYPE_LABELS, NOTIFICATION_POPOVER_LIMIT } from '@/constants/notifications'
 import { useUnreadNotificationsCount } from '@/hooks/useUnreadNotificationsCount'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
 // Popover com as últimas notificações, com link para a lista completa
 function NotificationsPopover() {
@@ -60,7 +61,7 @@ function NotificationsPopover() {
           ))}
         </div>
 
-        <Button variant="ghost" size="sm" className="w-full" nativeButton={false} render={<Link to="/notifiche" />}>
+        <Button variant="ghost" size="sm" className="w-full" nativeButton={false} render={<Link to={`${CRM_BASE_PATH}/notifiche`} />}>
           Vedi tutte
         </Button>
       </PopoverContent>

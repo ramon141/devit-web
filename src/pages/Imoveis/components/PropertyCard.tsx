@@ -5,6 +5,7 @@ import { BedDoubleIcon, CopyIcon, ImageIcon, PencilIcon, RulerIcon, ShowerHeadIc
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import ConfirmPopup from '@/components/ConfirmPopup'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import type { Attachment, PropertyPhoto, PropertyWithRelations } from '@/api/generated/models'
 import { statusOptions } from '@/pages/Imoveis/schemas/propertySchema'
 import { useDeleteProperty } from '@/pages/Imoveis/hooks/useDeleteProperty'
@@ -93,7 +94,7 @@ function PropertyCard({ property }: PropertyCardProps) {
         </p>
 
         <div className="flex justify-end gap-1 pt-1">
-          <Button variant="ghost" size="icon-sm" nativeButton={false} render={<Link to={`/proprieta/${property.id}`} />}>
+          <Button variant="ghost" size="icon-sm" nativeButton={false} render={<Link to={`${CRM_BASE_PATH}/proprieta/${property.id}`} />}>
             <PencilIcon className="size-4" />
           </Button>
           <Button variant="ghost" size="icon-sm" onClick={() => handleDuplicate(property)}>

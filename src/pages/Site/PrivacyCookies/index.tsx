@@ -1,6 +1,6 @@
 function PrivacyCookies() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12">
+    <div className="mx-auto px-4 py-12">
       <h1 className="text-2xl font-semibold">Privacy e Cookies</h1>
 
       <p className="mt-4 text-sm text-muted-foreground">

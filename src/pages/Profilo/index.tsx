@@ -21,7 +21,7 @@ function Profilo() {
       description="Gestisci i tuoi dati personali"
       breadcrumbItems={[{ label: 'Il mio profilo' }]}
     >
-      <form onSubmit={onSubmit} className="grid max-w-3xl gap-4">
+      <form onSubmit={onSubmit} className="grid gap-4">
         <UserFormFields
           form={form}
           isEditing={isEditing}

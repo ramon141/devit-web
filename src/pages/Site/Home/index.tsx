@@ -76,7 +76,7 @@ function SiteHome() {
         <FeaturedProperties />
       </section>
 
-      <section className="mx-auto w-full max-w-3xl px-4">
+      <section className="mx-auto w-full px-4">
         <blockquote className="text-lg italic text-foreground/90">
           "...garantiamo la massima collaborazione, la massima adesione ai nostri
           clienti affinché tutto avvenga con serenità ed ognuno possa realizzare nel

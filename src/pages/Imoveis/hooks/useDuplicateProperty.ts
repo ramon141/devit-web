@@ -8,6 +8,7 @@ import {
 } from '@/api/generated/api'
 import type { PropertyWithRelations } from '@/api/generated/models'
 import { useToast } from '@/contexts/ToastContext'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 // ponytail: duplica reaproveitando o mesmo addressId (não clona o endereço)
@@ -43,7 +44,7 @@ export function useDuplicateProperty() {
       success: (created) => {
         queryClient.invalidateQueries({ queryKey: getPropertyControllerFindQueryKey() })
         queryClient.invalidateQueries({ queryKey: getPropertyControllerCountQueryKey() })
-        if (created.id) navigate(`/proprieta/${created.id}`)
+        if (created.id) navigate(`${CRM_BASE_PATH}/proprieta/${created.id}`)
         return 'Immobile duplicato con successo!'
       },
       error: (error: AxiosError<ApiErrorResponse>) =>

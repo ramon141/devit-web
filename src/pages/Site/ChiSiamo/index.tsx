@@ -2,7 +2,7 @@ import BranchList from '@/pages/Site/ChiSiamo/components/BranchList'
 
 function ChiSiamo() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12">
+    <div className="mx-auto px-4 py-12">
       <h1 className="text-2xl font-semibold">Chi Siamo</h1>
 
       <section className="mt-8">
