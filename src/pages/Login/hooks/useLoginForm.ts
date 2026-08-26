@@ -15,6 +15,7 @@ import type {
 import { Auth } from '@/auth'
 import { getErrorMessageFromRequest } from '@/utils/getErrorMessageFromRequest'
 import { loginSchema, type LoginFormValues } from '@/pages/Login/schemas/loginSchema'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
 type LoginError = AuthControllerLogin401 | AuthControllerLogin422 | AuthControllerLogin429
 
@@ -29,7 +30,7 @@ export function useLoginForm() {
   })
 
   useEffect(() => {
-    if (me) navigate('/')
+    if (me) navigate(CRM_BASE_PATH)
   }, [me, navigate])
 
   const form = useForm<LoginFormValues>({
@@ -43,7 +44,7 @@ export function useLoginForm() {
     try {
       const response = await login({ data: values })
       Auth.login(response)
-      navigate('/')
+      navigate(CRM_BASE_PATH)
     } catch (err) {
       setError(getErrorMessageFromRequest(err as AxiosError<LoginError>))
     }

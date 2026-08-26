@@ -7,10 +7,8 @@
  */
 import type { PurchaseProposalPartialPaymentMethod } from './purchaseProposalPartialPaymentMethod';
 import type { PurchaseProposalPartialStatus } from './purchaseProposalPartialStatus';
+import type { PurchaseProposalPartialBuyersItem } from './purchaseProposalPartialBuyersItem';
 
-/**
- * (tsType: Partial<PurchaseProposal>, schemaOptions: { partial: true })
- */
 export interface PurchaseProposalPartial {
   id?: string;
   number?: string;
@@ -42,4 +40,6 @@ export interface PurchaseProposalPartial {
   sellerAgentId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Pessoas compradoras a vincular à proposta */
+  buyers?: PurchaseProposalPartialBuyersItem[];
 }

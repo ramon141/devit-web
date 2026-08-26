@@ -7,7 +7,7 @@ function AuditPage() {
       title="Log di audit"
       description="Cronologia delle azioni nel sistema"
       parentLabel="Amministrazione"
-      parentPath="/amministrazione/utenti"
+      parentPath="/gestionale/amministrazione/utenti"
     >
       <Audit />
     </SectionPage>

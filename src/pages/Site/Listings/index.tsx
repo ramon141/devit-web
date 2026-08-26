@@ -57,7 +57,7 @@ function Listings({ fixedPurpose }: ListingsProps) {
   return (
     <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8">
       <nav className="text-sm text-muted-foreground">
-        <Link to="/site">Home</Link> {'>'} {title}
+        <Link to="/">Home</Link> {'>'} {title}
       </nav>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

@@ -48,7 +48,7 @@ function SearchBar() {
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault()
-    navigate(`/site/risultati?${buildQueryString(filters)}`)
+    navigate(`/risultati?${buildQueryString(filters)}`)
   }
 
   return (

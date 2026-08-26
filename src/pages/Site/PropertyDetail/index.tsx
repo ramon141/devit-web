@@ -25,7 +25,7 @@ function PropertyNotFound() {
   return (
     <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-16 text-center">
       <h1 className="font-heading text-xl font-semibold">Immobile non trovato.</h1>
-      <Link to="/site" className="text-sm text-primary underline underline-offset-2">
+      <Link to="/" className="text-sm text-primary underline underline-offset-2">
         Torna alla home
       </Link>
     </div>

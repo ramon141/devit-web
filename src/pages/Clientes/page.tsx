@@ -7,7 +7,7 @@ function ClientiPage() {
       title="Clienti"
       description="Gestisci l'anagrafica di clienti e contatti"
       parentLabel="Clienti"
-      parentPath="/clienti"
+      parentPath="/gestionale/clienti"
     >
       <Anagrafica />
     </SectionPage>

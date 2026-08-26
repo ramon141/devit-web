@@ -6,10 +6,9 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PersonPartialExcludingPhotoIdRole } from './personPartialExcludingPhotoIdRole';
+import type { PersonPartialExcludingPhotoIdPhoto } from './personPartialExcludingPhotoIdPhoto';
+import type { PersonPartialExcludingPhotoIdAttachmentsItem } from './personPartialExcludingPhotoIdAttachmentsItem';
 
-/**
- * (tsType: Omit<Partial<Person>, 'photoId'>, schemaOptions: { partial: true, exclude: [ 'photoId' ] })
- */
 export interface PersonPartialExcludingPhotoId {
   id?: string;
   /** @nullable */
@@ -38,4 +37,8 @@ export interface PersonPartialExcludingPhotoId {
   addressId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Foto de perfil da pessoa a enviar para o MinIO e vincular */
+  photo?: PersonPartialExcludingPhotoIdPhoto;
+  /** Anexos da pessoa a enviar para o MinIO e vincular */
+  attachments?: PersonPartialExcludingPhotoIdAttachmentsItem[];
 }

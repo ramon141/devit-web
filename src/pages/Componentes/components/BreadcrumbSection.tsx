@@ -18,11 +18,11 @@ function BreadcrumbSection() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Bacheca</BreadcrumbLink>
+            <BreadcrumbLink href="/gestionale">Bacheca</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/proprieta">Proprietà</BreadcrumbLink>
+            <BreadcrumbLink href="/gestionale/proprieta">Proprietà</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

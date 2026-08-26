@@ -102,7 +102,7 @@ function Richieste() {
               <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               <span>
                 Accetto i termini sulla legge della Privacy (Dlgs 196/2003). Leggi la{' '}
-                <Link to="/site/privacy-cookies" className="underline">
+                <Link to="/privacy-cookies" className="underline">
                   Privacy e Cookie Policy
                 </Link>
                 .

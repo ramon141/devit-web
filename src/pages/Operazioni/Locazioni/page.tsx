@@ -7,7 +7,7 @@ function LocazioniPage() {
       title="Locazioni"
       description="Gestisci i contratti di locazione"
       parentLabel="Operazioni"
-      parentPath="/operazioni/vendite"
+      parentPath="/gestionale/operazioni/vendite"
     >
       <Locazioni />
     </SectionPage>

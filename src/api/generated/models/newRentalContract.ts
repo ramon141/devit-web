@@ -6,10 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { NewRentalContractSituation } from './newRentalContractSituation';
+import type { NewRentalContractTenantsItem } from './newRentalContractTenantsItem';
+import type { NewRentalContractOwnersItem } from './newRentalContractOwnersItem';
+import type { NewRentalContractAttachmentsItem } from './newRentalContractAttachmentsItem';
 
-/**
- * (tsType: Omit<RentalContract, 'id'>, schemaOptions: { title: 'NewRentalContract', exclude: [ 'id' ] })
- */
 export interface NewRentalContract {
   number: string;
   startDate: string;
@@ -44,4 +44,10 @@ export interface NewRentalContract {
   tenantAgentId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Pessoas a vincular (inquilinos ou proprietários) */
+  tenants?: NewRentalContractTenantsItem[];
+  /** Pessoas a vincular (inquilinos ou proprietários) */
+  owners?: NewRentalContractOwnersItem[];
+  /** Anexos do contrato a enviar para o MinIO e vincular */
+  attachments?: NewRentalContractAttachmentsItem[];
 }

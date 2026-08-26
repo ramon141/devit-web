@@ -6,10 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { RentalContractPartialSituation } from './rentalContractPartialSituation';
+import type { RentalContractPartialTenantsItem } from './rentalContractPartialTenantsItem';
+import type { RentalContractPartialOwnersItem } from './rentalContractPartialOwnersItem';
+import type { RentalContractPartialAttachmentsItem } from './rentalContractPartialAttachmentsItem';
 
-/**
- * (tsType: Partial<RentalContract>, schemaOptions: { partial: true })
- */
 export interface RentalContractPartial {
   id?: string;
   number?: string;
@@ -45,4 +45,10 @@ export interface RentalContractPartial {
   tenantAgentId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Pessoas a vincular (inquilinos ou proprietários) */
+  tenants?: RentalContractPartialTenantsItem[];
+  /** Pessoas a vincular (inquilinos ou proprietários) */
+  owners?: RentalContractPartialOwnersItem[];
+  /** Anexos do contrato a enviar para o MinIO e vincular */
+  attachments?: RentalContractPartialAttachmentsItem[];
 }

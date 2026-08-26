@@ -7,7 +7,7 @@ function FilialiPage() {
       title="Filiali"
       description="Gestisci le filiali dell'agenzia"
       parentLabel="Amministrazione"
-      parentPath="/amministrazione/utenti"
+      parentPath="/gestionale/amministrazione/utenti"
     >
       <Filiali />
     </SectionPage>

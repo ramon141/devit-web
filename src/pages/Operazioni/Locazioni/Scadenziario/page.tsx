@@ -7,7 +7,7 @@ function ScadenziarioPage() {
       title="Scadenziario"
       description="Contratti di locazione in scadenza"
       parentLabel="Operazioni"
-      parentPath="/operazioni/vendite"
+      parentPath="/gestionale/operazioni/vendite"
     >
       <Scadenziario />
     </SectionPage>

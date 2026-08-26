@@ -7,7 +7,7 @@ function CategoriePage() {
       title="Categorie"
       description="Gestisci le categorie di immobile"
       parentLabel="Amministrazione"
-      parentPath="/amministrazione/utenti"
+      parentPath="/gestionale/amministrazione/utenti"
     >
       <Categorie />
     </SectionPage>

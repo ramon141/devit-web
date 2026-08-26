@@ -7,7 +7,7 @@ function LeadsPage() {
       title="Richieste"
       description="Funnel di captazione dei contatti"
       parentLabel="Clienti"
-      parentPath="/clienti"
+      parentPath="/gestionale/clienti"
     >
       <Leads />
     </SectionPage>

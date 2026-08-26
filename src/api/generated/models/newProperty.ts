@@ -7,10 +7,10 @@
  */
 import type { NewPropertyPurpose } from './newPropertyPurpose';
 import type { NewPropertyStatus } from './newPropertyStatus';
+import type { NewPropertyPhotosItem } from './newPropertyPhotosItem';
+import type { NewPropertyDocumentsItem } from './newPropertyDocumentsItem';
+import type { NewPropertyOwnersItem } from './newPropertyOwnersItem';
 
-/**
- * (tsType: Omit<Property, 'id'>, schemaOptions: { title: 'NewProperty', exclude: [ 'id' ] })
- */
 export interface NewProperty {
   code: string;
   title: string;
@@ -49,4 +49,10 @@ export interface NewProperty {
   deactivatedById?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Fotos do imóvel a serem enviadas para o MinIO e vinculadas */
+  photos?: NewPropertyPhotosItem[];
+  /** Documentos do imóvel (ex.: planimetria) a serem enviados para o MinIO e vinculados */
+  documents?: NewPropertyDocumentsItem[];
+  /** Proprietários (pessoas) a vincular ao imóvel */
+  owners?: NewPropertyOwnersItem[];
 }

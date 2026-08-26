@@ -7,7 +7,7 @@ function BannerPage() {
       title="Banner"
       description="Gestisci i banner della home"
       parentLabel="Amministrazione"
-      parentPath="/amministrazione/utenti"
+      parentPath="/gestionale/amministrazione/utenti"
     >
       <Banner />
     </SectionPage>

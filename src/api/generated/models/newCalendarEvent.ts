@@ -9,10 +9,9 @@ import type { NewCalendarEventType } from './newCalendarEventType';
 import type { NewCalendarEventConfirmationStatus } from './newCalendarEventConfirmationStatus';
 import type { NewCalendarEventRecurrence } from './newCalendarEventRecurrence';
 import type { NewCalendarEventReminder } from './newCalendarEventReminder';
+import type { NewCalendarEventLinkedPropertiesItem } from './newCalendarEventLinkedPropertiesItem';
+import type { NewCalendarEventAttachmentsItem } from './newCalendarEventAttachmentsItem';
 
-/**
- * (tsType: Omit<CalendarEvent, 'id'>, schemaOptions: { title: 'NewCalendarEvent', exclude: [ 'id' ] })
- */
 export interface NewCalendarEvent {
   title: string;
   type: NewCalendarEventType;
@@ -43,4 +42,8 @@ export interface NewCalendarEvent {
   addressId?: string | null;
   /** @nullable */
   ownerId?: string | null;
+  /** Imóveis a vincular ao compromisso */
+  linkedProperties?: NewCalendarEventLinkedPropertiesItem[];
+  /** Anexos do compromisso a enviar para o MinIO e vincular */
+  attachments?: NewCalendarEventAttachmentsItem[];
 }

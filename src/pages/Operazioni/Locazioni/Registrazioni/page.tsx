@@ -7,7 +7,7 @@ function RegistrazioniPage() {
       title="Registrazioni"
       description="Registrazione e rinnovo dei contratti di locazione"
       parentLabel="Operazioni"
-      parentPath="/operazioni/vendite"
+      parentPath="/gestionale/operazioni/vendite"
     >
       <Registrazioni />
     </SectionPage>

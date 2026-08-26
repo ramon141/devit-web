@@ -45,7 +45,8 @@ export const Auth = {
     UserInfo.removeAccessLevel()
     UserInfo.removeUserId()
 
-    if (redirect) window.location.href = '/login'
+    // Percorso hardcoded (non importato da routes.tsx) per evitare import circolare con Auth
+    if (redirect) window.location.href = '/gestionale/login'
   },
 
   login: (response: AuthControllerLogin200): void => {

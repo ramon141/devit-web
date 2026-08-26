@@ -5,6 +5,7 @@ import devitLogo from '@/assets/logos/devit-logo.png'
 import devitFavicon from '@/assets/logos/devit-favicon.png'
 import SidebarNav from '@/components/layout/SidebarNav'
 import { cn } from '@/lib/utils'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
 function Sidebar() {
   const [expanded, setExpanded] = useState(true)
@@ -16,7 +17,7 @@ function Sidebar() {
         expanded ? 'w-64 items-start px-3 py-5' : 'w-20 items-center py-5'
       )}
     >
-      <Link to="/" className={cn('mb-4 flex', expanded ? 'px-2' : '')}>
+      <Link to={CRM_BASE_PATH} className={cn('mb-4 flex', expanded ? 'px-2' : '')}>
         <img
           src={expanded ? devitLogo : devitFavicon}
           alt="Devit"

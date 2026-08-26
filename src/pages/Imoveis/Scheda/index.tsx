@@ -27,7 +27,7 @@ function PropertyScheda() {
   const { form, isSubmitting, onSubmit } = usePropertyForm({
     property,
     onSaved: (savedId) => {
-      if (isNew) navigate(`/proprieta/${savedId}`, { replace: true })
+      if (isNew) navigate(`/gestionale/proprieta/${savedId}`, { replace: true })
     },
   })
 
@@ -39,7 +39,7 @@ function PropertyScheda() {
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink render={<Link to="/proprieta" />}>Proprietà</BreadcrumbLink>
+            <BreadcrumbLink render={<Link to="/gestionale/proprieta" />}>Proprietà</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>

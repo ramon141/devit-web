@@ -6,10 +6,9 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { NewPersonRole } from './newPersonRole';
+import type { NewPersonPhoto } from './newPersonPhoto';
+import type { NewPersonAttachmentsItem } from './newPersonAttachmentsItem';
 
-/**
- * (tsType: Omit<Person, 'id' | 'photoId'>, schemaOptions: { title: 'NewPerson', exclude: [ 'id', 'photoId' ] })
- */
 export interface NewPerson {
   /** @nullable */
   externalId?: string | null;
@@ -37,4 +36,8 @@ export interface NewPerson {
   addressId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Foto de perfil da pessoa a enviar para o MinIO e vincular */
+  photo?: NewPersonPhoto;
+  /** Anexos da pessoa a enviar para o MinIO e vincular */
+  attachments?: NewPersonAttachmentsItem[];
 }

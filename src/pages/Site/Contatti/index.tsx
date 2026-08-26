@@ -20,7 +20,7 @@ function Contatti() {
       <p className="mt-2 text-sm text-muted-foreground">
         Hai una domanda generica? Scrivici. Se invece cerchi un immobile o
         vuoi una valutazione, usa la pagina{' '}
-        <Link to="/site/richieste" className="underline">
+        <Link to="/richieste" className="underline">
           Richieste
         </Link>
         .
@@ -70,7 +70,7 @@ function Contatti() {
               <Checkbox checked={field.value} onCheckedChange={field.onChange} />
               <span>
                 Ho letto e accetto la{' '}
-                <Link to="/site/privacy-cookies" className="underline">
+                <Link to="/privacy-cookies" className="underline">
                   Privacy e Cookie Policy
                 </Link>
                 .

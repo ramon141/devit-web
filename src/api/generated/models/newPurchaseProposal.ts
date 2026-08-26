@@ -7,10 +7,8 @@
  */
 import type { NewPurchaseProposalPaymentMethod } from './newPurchaseProposalPaymentMethod';
 import type { NewPurchaseProposalStatus } from './newPurchaseProposalStatus';
+import type { NewPurchaseProposalBuyersItem } from './newPurchaseProposalBuyersItem';
 
-/**
- * (tsType: Omit<PurchaseProposal, 'id'>, schemaOptions: { title: 'NewPurchaseProposal', exclude: [ 'id' ] })
- */
 export interface NewPurchaseProposal {
   number: string;
   proposalAmount: number;
@@ -41,4 +39,6 @@ export interface NewPurchaseProposal {
   sellerAgentId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Pessoas compradoras a vincular à proposta */
+  buyers?: NewPurchaseProposalBuyersItem[];
 }

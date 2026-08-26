@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 import { Auth } from '@/auth'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
 type SessionInfoProps = {
   className?: string
@@ -58,7 +59,7 @@ function SessionInfo({ className, avatarOnly = false }: SessionInfoProps) {
           <DropdownMenuLabel>{fullName}</DropdownMenuLabel>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => navigate('/profilo')}>
+        <DropdownMenuItem onClick={() => navigate(`${CRM_BASE_PATH}/profilo`)}>
           <UserIcon />
           Il mio profilo
         </DropdownMenuItem>

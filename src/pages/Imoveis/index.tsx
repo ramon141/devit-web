@@ -36,7 +36,7 @@ function Imoveis() {
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder="Cerca per codice, titolo o descrizione..."
-        onNewClick={() => navigate('/proprieta/nuovo')}
+        onNewClick={() => navigate('/gestionale/proprieta/nuovo')}
         newLabel="Nuovo immobile"
       />
 

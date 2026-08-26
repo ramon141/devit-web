@@ -7,10 +7,10 @@
  */
 import type { PropertyPartialPurpose } from './propertyPartialPurpose';
 import type { PropertyPartialStatus } from './propertyPartialStatus';
+import type { PropertyPartialPhotosItem } from './propertyPartialPhotosItem';
+import type { PropertyPartialDocumentsItem } from './propertyPartialDocumentsItem';
+import type { PropertyPartialOwnersItem } from './propertyPartialOwnersItem';
 
-/**
- * (tsType: Partial<Property>, schemaOptions: { partial: true })
- */
 export interface PropertyPartial {
   id?: string;
   code?: string;
@@ -50,4 +50,10 @@ export interface PropertyPartial {
   deactivatedById?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Fotos do imóvel a serem enviadas para o MinIO e vinculadas */
+  photos?: PropertyPartialPhotosItem[];
+  /** Documentos do imóvel (ex.: planimetria) a serem enviados para o MinIO e vinculados */
+  documents?: PropertyPartialDocumentsItem[];
+  /** Proprietários (pessoas) a vincular ao imóvel */
+  owners?: PropertyPartialOwnersItem[];
 }

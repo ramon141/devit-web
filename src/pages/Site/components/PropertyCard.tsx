@@ -32,7 +32,7 @@ function PropertyCard({ property }: PropertyCardProps) {
 
   return (
     <Card className="h-full overflow-hidden">
-      <Link to={`/site/property/${property.id}`}>
+      <Link to={`/property/${property.id}`}>
         {property.coverPhotoUrl ? (
           <img
             src={property.coverPhotoUrl}
@@ -55,7 +55,7 @@ function PropertyCard({ property }: PropertyCardProps) {
           )}
         </div>
 
-        <Link to={`/site/property/${property.id}`} className="font-semibold hover:underline">
+        <Link to={`/property/${property.id}`} className="font-semibold hover:underline">
           {property.title}
         </Link>
 

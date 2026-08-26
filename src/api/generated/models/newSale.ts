@@ -7,10 +7,9 @@
  */
 import type { NewSalePaymentMethod } from './newSalePaymentMethod';
 import type { NewSaleStatus } from './newSaleStatus';
+import type { NewSaleBuyersItem } from './newSaleBuyersItem';
+import type { NewSaleSellersItem } from './newSaleSellersItem';
 
-/**
- * (tsType: Omit<Sale, 'id'>, schemaOptions: { title: 'NewSale', exclude: [ 'id' ] })
- */
 export interface NewSale {
   number: string;
   finalAmount: number;
@@ -45,4 +44,8 @@ export interface NewSale {
   buyerAgentId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Pessoas a vincular (compradores ou vendedores) */
+  buyers?: NewSaleBuyersItem[];
+  /** Pessoas a vincular (compradores ou vendedores) */
+  sellers?: NewSaleSellersItem[];
 }

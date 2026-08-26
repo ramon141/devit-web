@@ -4,13 +4,13 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { to: '/site', label: 'Home' },
-  { to: '/site/affitto', label: 'Proprietà in Affitto' },
-  { to: '/site/vendita', label: 'Proprietà in Vendita' },
-  { to: '/site/chi-siamo', label: 'Chi Siamo' },
-  { to: '/site/richieste', label: 'Richieste' },
-  { to: '/site/contatti', label: 'Contatti' },
-  { to: '/site/news', label: 'News' },
+  { to: '/', label: 'Home' },
+  { to: '/affitto', label: 'Proprietà in Affitto' },
+  { to: '/vendita', label: 'Proprietà in Vendita' },
+  { to: '/chi-siamo', label: 'Chi Siamo' },
+  { to: '/richieste', label: 'Richieste' },
+  { to: '/contatti', label: 'Contatti' },
+  { to: '/news', label: 'News' },
 ]
 
 const COOKIE_CONSENT_KEY = 'site_cookie_consent'
@@ -21,7 +21,7 @@ function SiteHeader() {
   return (
     <header className="border-b border-border bg-background">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4">
-        <Link to="/site" className="text-xl font-bold tracking-tight">
+        <Link to="/" className="text-xl font-bold tracking-tight">
           Devit
         </Link>
 
@@ -55,27 +55,27 @@ function SiteFooter() {
         </div>
 
         <div className="flex flex-col gap-2 text-sm">
-          <Link to="/site/richieste">Richieste</Link>
-          <Link to="/site/contatti">Contatti</Link>
-          <Link to="/site/news">News</Link>
+          <Link to="/richieste">Richieste</Link>
+          <Link to="/contatti">Contatti</Link>
+          <Link to="/news">News</Link>
         </div>
 
         <div className="flex flex-col gap-2 text-sm">
-          <Link to="/site/chi-siamo">Chi Siamo</Link>
-          <Link to="/site/vendita">Proprietà in vendita</Link>
-          <Link to="/site/affitto">Proprietà in affitto</Link>
+          <Link to="/chi-siamo">Chi Siamo</Link>
+          <Link to="/vendita">Proprietà in vendita</Link>
+          <Link to="/affitto">Proprietà in affitto</Link>
         </div>
 
         <div className="flex flex-col gap-2 text-sm">
           <span className="font-semibold">Info Legali</span>
-          <Link to="/site/privacy-cookies">Uso dei Cookies</Link>
-          <Link to="/site/privacy-cookies">Privacy Policy</Link>
+          <Link to="/privacy-cookies">Uso dei Cookies</Link>
+          <Link to="/privacy-cookies">Privacy Policy</Link>
         </div>
       </div>
 
       <div className="border-t border-border px-4 py-4 text-center text-xs text-muted-foreground">
         © Devit Servizi immobiliari S.n.c. - IT07609021212 —{' '}
-        <Link to="/site/privacy-cookies">Privacy e Cookies</Link>
+        <Link to="/privacy-cookies">Privacy e Cookies</Link>
       </div>
     </footer>
   )

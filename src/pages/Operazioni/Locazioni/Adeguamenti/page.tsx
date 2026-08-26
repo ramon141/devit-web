@@ -7,7 +7,7 @@ function AdeguamentiCanonePage() {
       title="Adeguamento canone"
       description="Genera le comunicazioni di adeguamento del canone di locazione"
       parentLabel="Operazioni"
-      parentPath="/operazioni/vendite"
+      parentPath="/gestionale/operazioni/vendite"
     >
       <AdeguamentiCanone />
     </SectionPage>

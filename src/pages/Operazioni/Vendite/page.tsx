@@ -7,7 +7,7 @@ function VenditePage() {
       title="Vendite"
       description="Gestisci le vendite dell'agenzia"
       parentLabel="Operazioni"
-      parentPath="/operazioni/vendite"
+      parentPath="/gestionale/operazioni/vendite"
     >
       <Vendite />
     </SectionPage>

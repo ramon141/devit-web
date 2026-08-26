@@ -7,7 +7,7 @@ function UtentiPage() {
       title="Utenti"
       description="Gestisci gli utenti dell'agenzia"
       parentLabel="Amministrazione"
-      parentPath="/amministrazione/utenti"
+      parentPath="/gestionale/amministrazione/utenti"
     >
       <Utenti />
     </SectionPage>

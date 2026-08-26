@@ -9,10 +9,9 @@ import type { CalendarEventPartialType } from './calendarEventPartialType';
 import type { CalendarEventPartialConfirmationStatus } from './calendarEventPartialConfirmationStatus';
 import type { CalendarEventPartialRecurrence } from './calendarEventPartialRecurrence';
 import type { CalendarEventPartialReminder } from './calendarEventPartialReminder';
+import type { CalendarEventPartialLinkedPropertiesItem } from './calendarEventPartialLinkedPropertiesItem';
+import type { CalendarEventPartialAttachmentsItem } from './calendarEventPartialAttachmentsItem';
 
-/**
- * (tsType: Partial<CalendarEvent>, schemaOptions: { partial: true })
- */
 export interface CalendarEventPartial {
   id?: string;
   title?: string;
@@ -44,4 +43,8 @@ export interface CalendarEventPartial {
   addressId?: string | null;
   /** @nullable */
   ownerId?: string | null;
+  /** Imóveis a vincular ao compromisso */
+  linkedProperties?: CalendarEventPartialLinkedPropertiesItem[];
+  /** Anexos do compromisso a enviar para o MinIO e vincular */
+  attachments?: CalendarEventPartialAttachmentsItem[];
 }

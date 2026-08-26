@@ -7,10 +7,9 @@
  */
 import type { SalePartialPaymentMethod } from './salePartialPaymentMethod';
 import type { SalePartialStatus } from './salePartialStatus';
+import type { SalePartialBuyersItem } from './salePartialBuyersItem';
+import type { SalePartialSellersItem } from './salePartialSellersItem';
 
-/**
- * (tsType: Partial<Sale>, schemaOptions: { partial: true })
- */
 export interface SalePartial {
   id?: string;
   number?: string;
@@ -46,4 +45,8 @@ export interface SalePartial {
   buyerAgentId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** Pessoas a vincular (compradores ou vendedores) */
+  buyers?: SalePartialBuyersItem[];
+  /** Pessoas a vincular (compradores ou vendedores) */
+  sellers?: SalePartialSellersItem[];
 }

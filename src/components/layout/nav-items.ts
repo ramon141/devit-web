@@ -12,6 +12,7 @@ import {
   Users,
 } from 'lucide-react'
 import { Auth } from '@/auth'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
 export type NavChild = {
   label: string
@@ -26,74 +27,78 @@ export type NavItem = {
   children?: NavChild[]
 }
 
+function crmPath(path: string): string {
+  return path === '/' ? CRM_BASE_PATH : `${CRM_BASE_PATH}${path}`
+}
+
 const allNavItems: NavItem[] = [
   {
     label: 'Bacheca',
-    path: '/',
+    path: crmPath('/'),
     icon: LayoutDashboard,
   },
   {
     label: 'Agenda',
-    path: '/agenda',
+    path: crmPath('/agenda'),
     icon: CalendarDays,
   },
   {
     label: 'Proprietà',
-    path: '/proprieta',
+    path: crmPath('/proprieta'),
     icon: Building2,
   },
   {
     label: 'Clienti',
-    path: '/clienti',
+    path: crmPath('/clienti'),
     icon: Users,
     children: [
-      { label: 'Clienti', path: '/clienti' },
-      { label: 'Richieste', path: '/clienti/richieste' },
+      { label: 'Clienti', path: crmPath('/clienti') },
+      { label: 'Richieste', path: crmPath('/clienti/richieste') },
     ],
   },
   {
     label: 'Proposte',
-    path: '/proposte',
+    path: crmPath('/proposte'),
     icon: FileText,
   },
   {
     label: 'Operazioni',
-    path: '/operazioni',
+    path: crmPath('/operazioni'),
     icon: Handshake,
     children: [
-      { label: 'Vendite', path: '/operazioni/vendite' },
-      { label: 'Locazioni', path: '/operazioni/locazioni' },
-      { label: 'Adeguamento canone', path: '/operazioni/adeguamenti-canone' },
-      { label: 'Scadenziario', path: '/operazioni/scadenziario' },
-      { label: 'Registrazioni', path: '/operazioni/registrazioni' },
+      { label: 'Vendite', path: crmPath('/operazioni/vendite') },
+      { label: 'Locazioni', path: crmPath('/operazioni/locazioni') },
+      { label: 'Adeguamento canone', path: crmPath('/operazioni/adeguamenti-canone') },
+      { label: 'Scadenziario', path: crmPath('/operazioni/scadenziario') },
+      { label: 'Registrazioni', path: crmPath('/operazioni/registrazioni') },
     ],
   },
   {
     label: 'Marketing',
-    path: '/marketing',
+    path: crmPath('/marketing'),
     icon: Megaphone,
   },
   {
     label: 'Statistiche',
-    path: '/statistiche',
+    path: crmPath('/statistiche'),
     icon: BarChart3,
   },
   {
     label: 'Amministrazione',
-    path: '/amministrazione',
+    path: crmPath('/amministrazione'),
     icon: ShieldCheck,
     adminOnly: true,
     children: [
-      { label: 'Utenti', path: '/amministrazione/utenti' },
-      { label: 'Filiali', path: '/amministrazione/filiali' },
-      { label: 'Categorie', path: '/amministrazione/categorie' },
-      { label: 'Banner', path: '/amministrazione/banner' },
-      { label: 'Log di audit', path: '/amministrazione/audit' },
+      { label: 'Utenti', path: crmPath('/amministrazione/utenti') },
+      { label: 'Filiali', path: crmPath('/amministrazione/filiali') },
+      { label: 'Categorie', path: crmPath('/amministrazione/categorie') },
+      { label: 'Banner', path: crmPath('/amministrazione/banner') },
+      { label: 'Log di audit', path: crmPath('/amministrazione/audit') },
     ],
   },
   {
     label: 'Componenti',
-    path: '/componenti',
+    path: crmPath('/componenti'),
     icon: Settings,
   },
 ]

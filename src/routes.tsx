@@ -39,26 +39,28 @@ import SiteRichieste from '@/pages/Site/Richieste'
 import SiteContatti from '@/pages/Site/Contatti'
 import SiteNews from '@/pages/Site/News'
 import SitePrivacyCookies from '@/pages/Site/PrivacyCookies'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
 export type RouteConfig = {
   path: string
   element: ReactElement
 }
 
-// Site pubblico (senza login): usa SiteLayout invece dello Shell del CRM
+// Sito pubblico (senza login): usa SiteLayout invece dello Shell del CRM
 const siteRoutes: RouteConfig[] = [
-  { path: '/site', element: <SiteHome /> },
-  { path: '/site/vendita', element: <SiteVendita /> },
-  { path: '/site/affitto', element: <SiteAffitto /> },
-  { path: '/site/risultati', element: <SiteRisultati /> },
-  { path: '/site/property/:id', element: <SitePropertyDetail /> },
-  { path: '/site/chi-siamo', element: <SiteChiSiamo /> },
-  { path: '/site/richieste', element: <SiteRichieste /> },
-  { path: '/site/contatti', element: <SiteContatti /> },
-  { path: '/site/news', element: <SiteNews /> },
-  { path: '/site/privacy-cookies', element: <SitePrivacyCookies /> },
+  { path: '/', element: <SiteHome /> },
+  { path: '/vendita', element: <SiteVendita /> },
+  { path: '/affitto', element: <SiteAffitto /> },
+  { path: '/risultati', element: <SiteRisultati /> },
+  { path: '/property/:id', element: <SitePropertyDetail /> },
+  { path: '/chi-siamo', element: <SiteChiSiamo /> },
+  { path: '/richieste', element: <SiteRichieste /> },
+  { path: '/contatti', element: <SiteContatti /> },
+  { path: '/news', element: <SiteNews /> },
+  { path: '/privacy-cookies', element: <SitePrivacyCookies /> },
 ]
 
+// Rotte del gestionale, relative a CRM_BASE_PATH (prefissate in AppRoutes)
 const routes: RouteConfig[] = [
   { path: '/', element: <Home /> },
   { path: '/agenda', element: <Agenda /> },
@@ -69,7 +71,7 @@ const routes: RouteConfig[] = [
   { path: '/proprieta/nuovo', element: <ImovelScheda /> },
   { path: '/proprieta/:id', element: <ImovelScheda /> },
   { path: '/proposte', element: <Proposte /> },
-  { path: '/operazioni', element: <Navigate to="/operazioni/vendite" replace /> },
+  { path: '/operazioni', element: <Navigate to={`${CRM_BASE_PATH}/operazioni/vendite`} replace /> },
   { path: '/operazioni/vendite', element: <VenditePage /> },
   { path: '/operazioni/locazioni', element: <LocazioniPage /> },
   { path: '/operazioni/adeguamenti-canone', element: <AdeguamentiCanonePage /> },
@@ -79,7 +81,7 @@ const routes: RouteConfig[] = [
   { path: '/statistiche', element: <Statistiche /> },
   { path: '/notifiche', element: <Notifiche /> },
   { path: '/profilo', element: <Profilo /> },
-  { path: '/amministrazione', element: <Navigate to="/amministrazione/utenti" replace /> },
+  { path: '/amministrazione', element: <Navigate to={`${CRM_BASE_PATH}/amministrazione/utenti`} replace /> },
   { path: '/amministrazione/utenti', element: <UtentiPage /> },
   { path: '/amministrazione/filiali', element: <FilialiPage /> },
   { path: '/amministrazione/categorie', element: <CategoriePage /> },
@@ -88,10 +90,14 @@ const routes: RouteConfig[] = [
   { path: '/componenti', element: <Componentes /> },
 ]
 
+function toAbsoluteCrmPath(path: string): string {
+  return path === '/' ? CRM_BASE_PATH : `${CRM_BASE_PATH}${path}`
+}
+
 // Layout persistente: Sidebar/Header non rimontano più ad ogni navigazione,
 // solo il contenuto dentro <Outlet/> (vedi Shell)
 function PrivateRoute() {
-  if (!Auth.isAuthenticated()) return <Navigate to="/login" replace />
+  if (!Auth.isAuthenticated()) return <Navigate to={`${CRM_BASE_PATH}/login`} replace />
 
   return (
     <PageHeaderProvider>
@@ -105,7 +111,7 @@ function AppRoutes() {
 
   return (
     <Routes location={location}>
-      <Route path="/login" element={<Login />} />
+      <Route path={`${CRM_BASE_PATH}/login`} element={<Login />} />
 
       <Route element={<SiteLayout />}>
         {siteRoutes.map((route) => (
@@ -115,7 +121,7 @@ function AppRoutes() {
 
       <Route element={<PrivateRoute />}>
         {routes.map((route) => (
-          <Route key={route.path} path={route.path} element={route.element} />
+          <Route key={route.path} path={toAbsoluteCrmPath(route.path)} element={route.element} />
         ))}
       </Route>
 

@@ -28,7 +28,7 @@ function Scheda() {
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink render={<Link to="/clienti" />}>Clienti</BreadcrumbLink>
+            <BreadcrumbLink render={<Link to="/gestionale/clienti" />}>Clienti</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
