@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router'
 import type { LoginFormValues } from '@/pages/Login/schemas/loginSchema'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { cn } from '@/lib/utils'
 
 type DesktopLoginFormProps = {
@@ -104,12 +106,12 @@ function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormPr
         </div>
       </form>
 
-      <button
-        type="button"
+      <Link
+        to={`${CRM_BASE_PATH}/forgot-password`}
         className="mt-8 block w-full text-center text-sm text-primary hover:underline"
       >
         {t('desktopLoginForm.forgotPassword')}
-      </button>
+      </Link>
     </div>
   )
 }

@@ -33,7 +33,9 @@
   "fileUpload": {
     "clickToUpload": "Clique para enviar",
     "dragHint": "ou arraste o arquivo aqui",
-    "removeFile": "Remover {{fileName}}"
+    "removeFile": "Remover {{fileName}}",
+    "maxSizeHint": "Tamanho máximo: {{size}} MB",
+    "maxSizeError": "Arquivo muito grande. Tamanho máximo: {{size}} MB"
   },
   "formModalFooter": {
     "save": "Salvar",

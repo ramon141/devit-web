@@ -2,6 +2,8 @@ import type { ReactElement } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
+import ForgotPassword from '@/pages/ForgotPassword'
+import ResetPassword from '@/pages/ResetPassword'
 import Componentes from '@/pages/Componentes'
 import Agenda from '@/pages/Agenda'
 import ClientiPage from '@/pages/Clientes/page'
@@ -112,6 +114,8 @@ function AppRoutes() {
   return (
     <Routes location={location}>
       <Route path={`${CRM_BASE_PATH}/login`} element={<Login />} />
+      <Route path={`${CRM_BASE_PATH}/forgot-password`} element={<ForgotPassword />} />
+      <Route path={`${CRM_BASE_PATH}/reset-password`} element={<ResetPassword />} />
 
       <Route element={<SiteLayout />}>
         {siteRoutes.map((route) => (

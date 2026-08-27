@@ -31,5 +31,30 @@
     "emailRequired": "L'e-mail è obbligatoria",
     "emailInvalid": "E-mail non valida",
     "passwordMin": "La password deve contenere almeno 6 caratteri"
+  },
+  "forgotPasswordPage": {
+    "title": "Password dimenticata?",
+    "subtitle": "Inserisci la tua e-mail e ti invieremo un link per reimpostare la password",
+    "submit": "Invia link",
+    "sentMessage": "Se l'indirizzo e-mail è registrato, riceverai un link per reimpostare la password",
+    "backToLogin": "Torna al login"
+  },
+  "resetPasswordPage": {
+    "title": "Reimposta la password",
+    "subtitle": "Scegli una nuova password sicura per il tuo account",
+    "passwordLabel": "Nuova password",
+    "passwordHint": "Almeno 8 caratteri, con maiuscola, minuscola, numero e carattere speciale",
+    "confirmPasswordLabel": "Conferma nuova password",
+    "submit": "Reimposta password",
+    "tokenMissing": "Link di reimpostazione non valido. Richiedine uno nuovo."
+  },
+  "resetPasswordSchema": {
+    "passwordMin": "La password deve contenere almeno 8 caratteri",
+    "passwordUppercase": "La password deve contenere almeno una lettera maiuscola",
+    "passwordLowercase": "La password deve contenere almeno una lettera minuscola",
+    "passwordNumber": "La password deve contenere almeno un numero",
+    "passwordSpecialChar": "La password deve contenere almeno un carattere speciale",
+    "confirmPasswordRequired": "Conferma la nuova password",
+    "passwordsDontMatch": "Le password non coincidono"
   }
 }

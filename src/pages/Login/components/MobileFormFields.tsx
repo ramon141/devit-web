@@ -1,7 +1,9 @@
 import { Eye, EyeOff, User } from 'lucide-react'
 import type { FieldError, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router'
 import type { LoginFormValues } from '@/pages/Login/schemas/loginSchema'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { cn } from '@/lib/utils'
 
 const filledInputClass = cn(
@@ -90,9 +92,9 @@ export function MobilePasswordField({
           />
           {t('mobileFormFields.showPassword')}
         </label>
-        <button type="button" className="text-xs text-primary hover:underline">
+        <Link to={`${CRM_BASE_PATH}/forgot-password`} className="text-xs text-primary hover:underline">
           {t('mobileFormFields.forgotPassword')}
-        </button>
+        </Link>
       </div>
     </div>
   )

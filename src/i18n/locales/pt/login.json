@@ -31,5 +31,30 @@
     "emailRequired": "O e-mail é obrigatório",
     "emailInvalid": "E-mail inválido",
     "passwordMin": "A senha deve conter pelo menos 6 caracteres"
+  },
+  "forgotPasswordPage": {
+    "title": "Esqueceu a senha?",
+    "subtitle": "Informe seu e-mail e enviaremos um link para redefinir a senha",
+    "submit": "Enviar link",
+    "sentMessage": "Se o e-mail estiver cadastrado, você receberá um link para redefinir a senha",
+    "backToLogin": "Voltar ao login"
+  },
+  "resetPasswordPage": {
+    "title": "Redefinir senha",
+    "subtitle": "Escolha uma nova senha forte para sua conta",
+    "passwordLabel": "Nova senha",
+    "passwordHint": "Pelo menos 8 caracteres, com maiúscula, minúscula, número e caractere especial",
+    "confirmPasswordLabel": "Confirmar nova senha",
+    "submit": "Redefinir senha",
+    "tokenMissing": "Link de redefinição inválido. Solicite um novo."
+  },
+  "resetPasswordSchema": {
+    "passwordMin": "A senha deve conter pelo menos 8 caracteres",
+    "passwordUppercase": "A senha deve conter pelo menos uma letra maiúscula",
+    "passwordLowercase": "A senha deve conter pelo menos uma letra minúscula",
+    "passwordNumber": "A senha deve conter pelo menos um número",
+    "passwordSpecialChar": "A senha deve conter pelo menos um caractere especial",
+    "confirmPasswordRequired": "Confirme a nova senha",
+    "passwordsDontMatch": "As senhas não coincidem"
   }
 }

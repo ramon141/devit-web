@@ -77,6 +77,10 @@ import type {
   AuditLogControllerUpdateById422,
   AuditLogPartial,
   AuditLogWithRelations,
+  AuthControllerForgotPassword200,
+  AuthControllerForgotPassword422,
+  AuthControllerForgotPassword429,
+  AuthControllerForgotPasswordBody,
   AuthControllerLogin200,
   AuthControllerLogin401,
   AuthControllerLogin422,
@@ -85,6 +89,9 @@ import type {
   AuthControllerMe200,
   AuthControllerMe401,
   AuthControllerMe404,
+  AuthControllerResetPassword200,
+  AuthControllerResetPassword422,
+  AuthControllerResetPasswordBody,
   Branch,
   BranchControllerCount401,
   BranchControllerCountParams,
@@ -2436,6 +2443,71 @@ export function useAuditLogControllerFind<TData = Awaited<ReturnType<typeof audi
 
 
 /**
+ * @summary Solicitar link de redefinição de senha
+ */
+export const authControllerForgotPassword = (
+    authControllerForgotPasswordBody: BodyType<AuthControllerForgotPasswordBody>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<AuthControllerForgotPassword200>(
+      {url: `/auth/forgot-password`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: authControllerForgotPasswordBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getAuthControllerForgotPasswordMutationOptions = <TError = ErrorType<AuthControllerForgotPassword422 | AuthControllerForgotPassword429>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerForgotPassword>>, TError,{data: BodyType<AuthControllerForgotPasswordBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof authControllerForgotPassword>>, TError,{data: BodyType<AuthControllerForgotPasswordBody>}, TContext> => {
+
+const mutationKey = ['authControllerForgotPassword'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authControllerForgotPassword>>, {data: BodyType<AuthControllerForgotPasswordBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  authControllerForgotPassword(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthControllerForgotPasswordMutationResult = NonNullable<Awaited<ReturnType<typeof authControllerForgotPassword>>>
+    export type AuthControllerForgotPasswordMutationBody = BodyType<AuthControllerForgotPasswordBody>
+    export type AuthControllerForgotPasswordMutationError = ErrorType<AuthControllerForgotPassword422 | AuthControllerForgotPassword429>
+
+    /**
+ * @summary Solicitar link de redefinição de senha
+ */
+export const useAuthControllerForgotPassword = <TError = ErrorType<AuthControllerForgotPassword422 | AuthControllerForgotPassword429>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerForgotPassword>>, TError,{data: BodyType<AuthControllerForgotPasswordBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof authControllerForgotPassword>>,
+        TError,
+        {data: BodyType<AuthControllerForgotPasswordBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getAuthControllerForgotPasswordMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
  * @summary Autenticar com e-mail e senha
  */
 export const authControllerLogin = (
@@ -2593,6 +2665,71 @@ export function useAuthControllerMe<TData = Awaited<ReturnType<typeof authContro
 
 
 
+/**
+ * @summary Redefinir senha a partir do token do magic link
+ */
+export const authControllerResetPassword = (
+    authControllerResetPasswordBody: BodyType<AuthControllerResetPasswordBody>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<AuthControllerResetPassword200>(
+      {url: `/auth/reset-password`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: authControllerResetPasswordBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getAuthControllerResetPasswordMutationOptions = <TError = ErrorType<AuthControllerResetPassword422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerResetPassword>>, TError,{data: BodyType<AuthControllerResetPasswordBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof authControllerResetPassword>>, TError,{data: BodyType<AuthControllerResetPasswordBody>}, TContext> => {
+
+const mutationKey = ['authControllerResetPassword'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authControllerResetPassword>>, {data: BodyType<AuthControllerResetPasswordBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  authControllerResetPassword(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthControllerResetPasswordMutationResult = NonNullable<Awaited<ReturnType<typeof authControllerResetPassword>>>
+    export type AuthControllerResetPasswordMutationBody = BodyType<AuthControllerResetPasswordBody>
+    export type AuthControllerResetPasswordMutationError = ErrorType<AuthControllerResetPassword422>
+
+    /**
+ * @summary Redefinir senha a partir do token do magic link
+ */
+export const useAuthControllerResetPassword = <TError = ErrorType<AuthControllerResetPassword422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerResetPassword>>, TError,{data: BodyType<AuthControllerResetPasswordBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof authControllerResetPassword>>,
+        TError,
+        {data: BodyType<AuthControllerResetPasswordBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getAuthControllerResetPasswordMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
 /**
  * @summary Count Branchs
  */
