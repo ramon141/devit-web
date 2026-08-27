@@ -25,25 +25,28 @@ function Profilo() {
       description={t('index.description')}
       breadcrumbItems={[{ label: t('index.breadcrumb') }]}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
-        <UserFormFields
-          form={form}
-          isEditing={isEditing}
-          avatarFiles={avatarFiles}
-          setAvatarFiles={setAvatarFiles}
-          avatarUrl={avatarUrl}
-        />
+      {user && (
+        <form onSubmit={onSubmit} className="grid gap-4">
+          <UserFormFields
+            key={user.id}
+            form={form}
+            isEditing={isEditing}
+            avatarFiles={avatarFiles}
+            setAvatarFiles={setAvatarFiles}
+            avatarUrl={avatarUrl}
+          />
 
-        <FormFieldWrapper label={t('index.languageLabel')}>
-          <LanguageSwitcher />
-        </FormFieldWrapper>
+          <FormFieldWrapper label={t('index.languageLabel')}>
+            <LanguageSwitcher />
+          </FormFieldWrapper>
 
-        <div className="flex justify-end">
-          <Button type="submit" disabled={isSubmitting}>
-            {t('index.save')}
-          </Button>
-        </div>
-      </form>
+          <div className="flex justify-end">
+            <Button type="submit" disabled={isSubmitting}>
+              {t('index.save')}
+            </Button>
+          </div>
+        </form>
+      )}
     </AppLayout>
   )
 }

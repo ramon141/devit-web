@@ -6,6 +6,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import {
   getUserControllerCountQueryKey,
+  getUserControllerFindByIdQueryKey,
   getUserControllerFindQueryKey,
   useAttachmentControllerFindById,
   useUserControllerCreate,
@@ -68,6 +69,10 @@ export function useUserForm({ user, onSaved }: UseUserFormProps) {
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getUserControllerFindQueryKey() })
     queryClient.invalidateQueries({ queryKey: getUserControllerCountQueryKey() })
+
+    if (user?.id) {
+      queryClient.invalidateQueries({ queryKey: getUserControllerFindByIdQueryKey(user.id) })
+    }
   }
 
   async function saveUser(values: UserFormValues) {

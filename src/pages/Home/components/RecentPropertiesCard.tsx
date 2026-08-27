@@ -16,7 +16,7 @@ function RecentPropertiesCard({ properties }: RecentPropertiesCardProps) {
       )}
 
       {properties.map((property) => (
-        <div key={property.id} className="rounded-lg px-2 py-1.5 hover:bg-muted/50">
+        <div key={property.id} className="rounded-lg px-2 py-1.5 hover:bg-accent hover:text-accent-foreground">
           <p className="truncate text-sm font-medium">{property.title ?? property.code}</p>
           <p className="text-xs text-muted-foreground">
             {property.code} · {property.status}

@@ -52,7 +52,7 @@ function NotificationsPopover() {
           {notifications.map((notification) => (
             <div
               key={notification.id}
-              className="grid gap-0.5 rounded-lg px-2 py-1.5 hover:bg-muted"
+              className="grid gap-0.5 rounded-lg px-2 py-1.5 hover:bg-accent hover:text-accent-foreground"
             >
               <p className="text-xs font-medium text-primary">
                 {NOTIFICATION_TYPE_LABELS[notification.type] ?? notification.type}

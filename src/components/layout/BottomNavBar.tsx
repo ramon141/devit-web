@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { getNavItems, type NavItem } from '@/components/layout/nav-items'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { BOTTOM_NAV_MAX_MAIN_ITEMS } from '@/constants/ui'
 
 function itemPath(item: NavItem) {
@@ -35,6 +36,7 @@ function BottomNavBar() {
           <NavLink
             key={item.path}
             to={itemPath(item)}
+            end={itemPath(item) === CRM_BASE_PATH}
             className={({ isActive }) =>
               cn(
                 'flex flex-1 flex-col items-center gap-1 py-2 text-[0.65rem] font-medium',
@@ -78,7 +80,9 @@ function BottomNavBar() {
                     className={({ isActive }) =>
                       cn(
                         'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium',
-                        isActive ? 'bg-accent text-primary' : 'text-foreground hover:bg-muted'
+                        isActive
+                          ? 'bg-accent text-primary'
+                          : 'text-foreground hover:bg-accent hover:text-accent-foreground'
                       )
                     }
                   >

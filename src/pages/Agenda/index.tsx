@@ -89,7 +89,7 @@ function Agenda() {
       description={t('agenda:page.description')}
       breadcrumbItems={[{ label: t('agenda:page.breadcrumb') }]}
     >
-      <div className="devit-calendar rounded-xl border border-border p-3">
+      <div className="devit-calendar rounded-xl bg-card p-3">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
           initialView="dayGridMonth"

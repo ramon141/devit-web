@@ -27,7 +27,7 @@ function DataTableCard<TRow>({
       onClick={onRowClick ? () => onRowClick(row) : undefined}
       className={cn(
         'grid gap-2 rounded-xl border border-border bg-card p-4',
-        onRowClick && 'cursor-pointer hover:bg-muted/50'
+        onRowClick && 'cursor-pointer hover:bg-accent hover:text-accent-foreground'
       )}
     >
       {fieldColumns.map((column, index) => (

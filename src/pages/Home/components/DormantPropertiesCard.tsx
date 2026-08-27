@@ -52,7 +52,7 @@ function DormantPropertiesCard({ properties }: DormantPropertiesCardProps) {
       {properties.map((property) => (
         <div
           key={property.id}
-          className="flex items-center justify-between gap-2 rounded-lg px-2 py-1.5 hover:bg-muted/50"
+          className="flex items-center justify-between gap-2 rounded-lg px-2 py-1.5 hover:bg-accent hover:text-accent-foreground"
         >
           <div className="min-w-0">
             <p className="truncate text-sm font-medium">{property.title ?? property.code}</p>

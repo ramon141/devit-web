@@ -17,7 +17,7 @@ function TodayAppointmentsCard({ appointments }: TodayAppointmentsCardProps) {
       )}
 
       {appointments.map((appointment) => (
-        <div key={appointment.id} className="rounded-lg px-2 py-1.5 hover:bg-muted/50">
+        <div key={appointment.id} className="rounded-lg px-2 py-1.5 hover:bg-accent hover:text-accent-foreground">
           <p className="truncate text-sm font-medium">{appointment.title}</p>
           <p className="text-xs text-muted-foreground">
             {appointment.startAt && dayjs(appointment.startAt).format('HH:mm')}
