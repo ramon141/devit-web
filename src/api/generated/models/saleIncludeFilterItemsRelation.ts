@@ -20,4 +20,6 @@ export const SaleIncludeFilterItemsRelation = {
   createdBy: 'createdBy',
   saleStatusHistories: 'saleStatusHistories',
   saleDocuments: 'saleDocuments',
+  saleBuyers: 'saleBuyers',
+  saleSellers: 'saleSellers',
 } as const;

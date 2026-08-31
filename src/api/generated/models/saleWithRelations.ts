@@ -13,6 +13,8 @@ import type { PurchaseProposal } from './purchaseProposal';
 import type { User } from './user';
 import type { SaleStatusHistory } from './saleStatusHistory';
 import type { SaleDocument } from './saleDocument';
+import type { SaleBuyer } from './saleBuyer';
+import type { SaleSeller } from './saleSeller';
 
 /**
  * (tsType: SaleWithRelations, schemaOptions: { includeRelations: true })
@@ -62,4 +64,6 @@ export interface SaleWithRelations {
   createdBy?: User;
   saleStatusHistories?: SaleStatusHistory[];
   saleDocuments?: SaleDocument[];
+  saleBuyers?: SaleBuyer[];
+  saleSellers?: SaleSeller[];
 }

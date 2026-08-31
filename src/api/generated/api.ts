@@ -679,7 +679,7 @@ import type {
   PropertyOwnerControllerFindByIdParams,
   PropertyOwnerControllerFindParams,
   PropertyOwnerWithRelations,
-  PropertyPartial,
+  PropertyPartialExcludingCreatedAtUpdatedAt,
   PropertyPhoto,
   PropertyPhotoControllerCount401,
   PropertyPhotoControllerCountParams,
@@ -10683,14 +10683,14 @@ export function usePropertyControllerCount<TData = Awaited<ReturnType<typeof pro
  */
 export const propertyControllerUpdateById = (
     id: string,
-    propertyPartial: BodyType<PropertyPartial>,
+    propertyPartialExcludingCreatedAtUpdatedAt: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/properties/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: propertyPartial
+      data: propertyPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -10698,8 +10698,8 @@ export const propertyControllerUpdateById = (
 
 
 export const getPropertyControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['propertyControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -10711,7 +10711,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyControllerUpdateById>>, {id: string;data: BodyType<PropertyPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyControllerUpdateById>>, {id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  propertyControllerUpdateById(id,data,requestOptions)
@@ -10723,18 +10723,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PropertyControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyControllerUpdateById>>>
-    export type PropertyControllerUpdateByIdMutationBody = BodyType<PropertyPartial>
+    export type PropertyControllerUpdateByIdMutationBody = BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>
     export type PropertyControllerUpdateByIdMutationError = ErrorType<PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById422>
 
     /**
  * @summary Update a Property by id
  */
 export const usePropertyControllerUpdateById = <TError = ErrorType<PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof propertyControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PropertyPartial>},
+        {id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 

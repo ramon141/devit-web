@@ -39,9 +39,6 @@ export interface NewProperty {
   /** @nullable */
   deactivatedAt?: string | null;
   publishedOnSite?: boolean;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
   categoryId: string;
   addressId: string;
   ownerId: string;

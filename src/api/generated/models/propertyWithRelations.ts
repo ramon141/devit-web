@@ -52,9 +52,8 @@ export interface PropertyWithRelations {
   /** @nullable */
   deactivatedAt?: string | null;
   publishedOnSite?: boolean;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   categoryId: string;
   addressId: string;
   ownerId: string;

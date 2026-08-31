@@ -8,9 +8,6 @@
 
 export type AuthControllerResetPasswordBody = {
   token: string;
-  /**
-   * @minLength 8
-   * @pattern ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$
-   */
+  /** @minLength 8 */
   password: string;
 };
