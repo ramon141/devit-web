@@ -10,7 +10,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { useNotificationList } from '@/pages/Notifiche/hooks/useNotificationList'
-import { NOTIFICATION_TYPE_LABELS, NOTIFICATION_POPOVER_LIMIT } from '@/constants/notifications'
+import { getNotificationTypeLabels, NOTIFICATION_POPOVER_LIMIT } from '@/constants/notifications'
 import { useUnreadNotificationsCount } from '@/hooks/useUnreadNotificationsCount'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { formatDateTime } from '@/utils/formatDate'
@@ -18,6 +18,7 @@ import { formatDateTime } from '@/utils/formatDate'
 // Popover com as últimas notificações, com link para a lista completa
 function NotificationsPopover() {
   const { t } = useTranslation('common')
+  const notificationTypeLabels = getNotificationTypeLabels(t)
   const unreadCount = useUnreadNotificationsCount()
   const { notifications, isLoading } = useNotificationList(NOTIFICATION_POPOVER_LIMIT)
 
@@ -55,7 +56,7 @@ function NotificationsPopover() {
               className="grid gap-0.5 rounded-lg px-2 py-1.5 hover:bg-accent hover:text-accent-foreground"
             >
               <p className="text-xs font-medium text-primary">
-                {NOTIFICATION_TYPE_LABELS[notification.type] ?? notification.type}
+                {notificationTypeLabels[notification.type] ?? notification.type}
               </p>
               <p className="truncate text-sm font-medium">{notification.title}</p>
               <p className="text-[10px] text-muted-foreground">

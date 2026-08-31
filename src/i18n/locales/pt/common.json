@@ -1,12 +1,13 @@
 {
   "communicationStatus": {
     "pending": "Pendente",
+    "scheduled": "Agendado",
+    "late": "Atrasado",
     "sent": "Enviado",
     "delivered": "Entregue",
-    "error": "Erro",
-    "planned": "Planejado",
     "clicked": "Clicado",
-    "seen": "Visto"
+    "read": "Lido",
+    "failed": "Falhou"
   },
   "communicationChannel": {
     "email": "E-mail",
@@ -100,5 +101,12 @@
       "admin": "Administrador",
       "broker": "Corretor"
     }
+  },
+  "notificationType": {
+    "new_lead": "Novo contato",
+    "contract_expiring_soon": "Contrato a vencer",
+    "contract_expired": "Contrato vencido",
+    "proposal_received": "Proposta recebida",
+    "sale_completed": "Venda concluída"
   }
 }

@@ -4,6 +4,7 @@ import {
   useBranchControllerFindById,
   useUserControllerFindById,
 } from '@/api/generated/api'
+import { UserAccessLevel } from '@/api/generated/models/userAccessLevel'
 import { UserInfo } from '@/auth'
 
 export function useSessionInfo() {
@@ -20,10 +21,12 @@ export function useSessionInfo() {
     query: { enabled: !!user?.avatarId },
   })
 
-  const accessLevelLabels: Record<string, string> = {
-    admin: t('sessionInfo.accessLevel.admin'),
-    broker: t('sessionInfo.accessLevel.broker'),
-  }
+  const accessLevelLabels: Record<string, string> = Object.fromEntries(
+    Object.values(UserAccessLevel).map(level => [
+      level,
+      t(`sessionInfo.accessLevel.${level}`),
+    ]),
+  )
 
   return {
     user,

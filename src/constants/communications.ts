@@ -1,20 +1,28 @@
 import type { TFunction } from 'i18next'
 
-export function getCommunicationStatusLabels(t: TFunction<'common'>): Record<string, string> {
-  return {
-    pending: t('communicationStatus.pending'),
-    sent: t('communicationStatus.sent'),
-    delivered: t('communicationStatus.delivered'),
-    error: t('communicationStatus.error'),
-    planned: t('communicationStatus.planned'),
-    clicked: t('communicationStatus.clicked'),
-    seen: t('communicationStatus.seen'),
-  }
+import { CommunicationLogChannel } from '@/api/generated/models/communicationLogChannel'
+import { CommunicationLogStatus } from '@/api/generated/models/communicationLogStatus'
+
+// Chaves derivadas dos enums gerados pelo orval — não podem divergir do backend.
+
+export function getCommunicationStatusLabels(
+  t: TFunction<'common'>,
+): Record<string, string> {
+  return Object.fromEntries(
+    Object.values(CommunicationLogStatus).map(status => [
+      status,
+      t(`communicationStatus.${status}`),
+    ]),
+  )
 }
 
-export function getCommunicationChannelLabels(t: TFunction<'common'>): Record<string, string> {
-  return {
-    email: t('communicationChannel.email'),
-    whatsapp: t('communicationChannel.whatsapp'),
-  }
+export function getCommunicationChannelLabels(
+  t: TFunction<'common'>,
+): Record<string, string> {
+  return Object.fromEntries(
+    Object.values(CommunicationLogChannel).map(channel => [
+      channel,
+      t(`communicationChannel.${channel}`),
+    ]),
+  )
 }

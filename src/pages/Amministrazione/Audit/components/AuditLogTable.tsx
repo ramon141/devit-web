@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { AuditLog } from '@/api/generated/models'
+import { AuditLogAction } from '@/api/generated/models/auditLogAction'
 import { formatDateTime } from '@/utils/formatDate'
 
 type AuditLogTableProps = {
@@ -12,14 +13,12 @@ type AuditLogTableProps = {
 function AuditLogTable({ logs, isLoading }: AuditLogTableProps) {
   const { t } = useTranslation('amministrazione')
 
-  const actionLabels: Record<string, string> = {
-    create: t('auditLogTable.actions.create'),
-    update: t('auditLogTable.actions.update'),
-    delete: t('auditLogTable.actions.delete'),
-    login: t('auditLogTable.actions.login'),
-    logout: t('auditLogTable.actions.logout'),
-    export: t('auditLogTable.actions.export'),
-  }
+  const actionLabels: Record<string, string> = Object.fromEntries(
+    Object.values(AuditLogAction).map(action => [
+      action,
+      t(`auditLogTable.actions.${action}`),
+    ]),
+  )
 
   const columns: DataTableColumn<AuditLog>[] = [
     {

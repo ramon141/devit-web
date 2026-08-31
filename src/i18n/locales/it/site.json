@@ -259,7 +259,7 @@
       "new": "Nuovo",
       "excellent": "Eccellente",
       "good": "Buono",
-      "toRenovate": "Da ristrutturare"
+      "to_renovate": "Da ristrutturare"
     },
     "furnished": {
       "yes": "Sì",
@@ -269,7 +269,7 @@
     "availability": {
       "available": "Libero",
       "occupied": "Occupato",
-      "underRenovation": "In ristrutturazione"
+      "under_renovation": "In ristrutturazione"
     },
     "mediationType": {
       "exclusive": "Esclusiva",

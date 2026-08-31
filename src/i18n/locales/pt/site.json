@@ -259,7 +259,7 @@
       "new": "Novo",
       "excellent": "Excelente",
       "good": "Bom",
-      "toRenovate": "A reformar"
+      "to_renovate": "A reformar"
     },
     "furnished": {
       "yes": "Sim",
@@ -269,7 +269,7 @@
     "availability": {
       "available": "Livre",
       "occupied": "Ocupado",
-      "underRenovation": "Em reforma"
+      "under_renovation": "Em reforma"
     },
     "mediationType": {
       "exclusive": "Exclusiva",

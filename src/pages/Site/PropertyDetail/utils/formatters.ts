@@ -1,5 +1,9 @@
 import type { TFunction } from 'i18next'
 import { formatAmount } from '@/utils/formatAmount'
+import { PropertyDetailCondition } from '@/api/generated/models/propertyDetailCondition'
+import { PropertyDetailFurnished } from '@/api/generated/models/propertyDetailFurnished'
+import { PropertyDetailAvailability } from '@/api/generated/models/propertyDetailAvailability'
+import { PropertyDetailMediationType } from '@/api/generated/models/propertyDetailMediationType'
 
 export function formatCurrency(value: number | null | undefined): string | null {
   if (value === null || value === undefined) return null
@@ -17,36 +21,30 @@ export function formatFeatureLabel(featureKey: string): string {
   return spaced.charAt(0).toUpperCase() + spaced.slice(1)
 }
 
+// Chaves derivadas dos enums gerados pelo orval — não podem divergir do backend.
+function labelsFromEnum(
+  enumObject: Record<string, string>,
+  translate: (value: string) => string,
+): Record<string, string> {
+  return Object.fromEntries(
+    Object.values(enumObject).map(value => [value, translate(value)]),
+  )
+}
+
 function getConditionLabels(t: TFunction<'site'>): Record<string, string> {
-  return {
-    new: t('formatters.condition.new'),
-    excellent: t('formatters.condition.excellent'),
-    good: t('formatters.condition.good'),
-    to_renovate: t('formatters.condition.toRenovate'),
-  }
+  return labelsFromEnum(PropertyDetailCondition, value => t(`formatters.condition.${value}`))
 }
 
 function getFurnishedLabels(t: TFunction<'site'>): Record<string, string> {
-  return {
-    yes: t('formatters.furnished.yes'),
-    partial: t('formatters.furnished.partial'),
-    no: t('formatters.furnished.no'),
-  }
+  return labelsFromEnum(PropertyDetailFurnished, value => t(`formatters.furnished.${value}`))
 }
 
 function getAvailabilityLabels(t: TFunction<'site'>): Record<string, string> {
-  return {
-    available: t('formatters.availability.available'),
-    occupied: t('formatters.availability.occupied'),
-    under_renovation: t('formatters.availability.underRenovation'),
-  }
+  return labelsFromEnum(PropertyDetailAvailability, value => t(`formatters.availability.${value}`))
 }
 
 function getMediationTypeLabels(t: TFunction<'site'>): Record<string, string> {
-  return {
-    exclusive: t('formatters.mediationType.exclusive'),
-    open: t('formatters.mediationType.open'),
-  }
+  return labelsFromEnum(PropertyDetailMediationType, value => t(`formatters.mediationType.${value}`))
 }
 
 function translateWithFallback(dictionary: Record<string, string>, value: string): string {

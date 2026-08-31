@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
 import { Button } from '@/components/ui/button'
 import { useNotificationList } from '@/pages/Notifiche/hooks/useNotificationList'
-import { NOTIFICATION_TYPE_LABELS } from '@/constants/notifications'
+import { getNotificationTypeLabels } from '@/constants/notifications'
 import { formatDateTime } from '@/utils/formatDate'
 
 function Notifiche() {
   const { t } = useTranslation('notifiche')
+  const { t: tCommon } = useTranslation('common')
+  const notificationTypeLabels = getNotificationTypeLabels(tCommon)
   const { notifications, isLoading, markAsRead } = useNotificationList()
 
   return (
@@ -28,7 +30,7 @@ function Notifiche() {
           >
             <div className="min-w-0">
               <p className="text-xs font-medium text-primary">
-                {NOTIFICATION_TYPE_LABELS[notification.type] ?? notification.type}
+                {notificationTypeLabels[notification.type] ?? notification.type}
               </p>
               <p className="truncate text-sm font-medium">{notification.title}</p>
               {notification.message && (
