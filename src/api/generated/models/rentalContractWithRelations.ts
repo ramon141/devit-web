@@ -40,9 +40,8 @@ export interface RentalContractWithRelations {
   registeredAt?: string | null;
   /** @nullable */
   renewalDueDate?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   propertyId: string;
   tenantId: string;
   ownerId: string;

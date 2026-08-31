@@ -12,7 +12,7 @@ import type { NewPropertyDetailCondition } from './newPropertyDetailCondition';
 import type { NewPropertyDetailFurnished } from './newPropertyDetailFurnished';
 
 /**
- * (tsType: Omit<PropertyDetail, 'id'>, schemaOptions: { title: 'NewPropertyDetail', exclude: [ 'id' ] })
+ * (tsType: Omit<PropertyDetail, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewPropertyDetail', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewPropertyDetail {
   /** @nullable */
@@ -52,9 +52,6 @@ export interface NewPropertyDetail {
   furnished?: NewPropertyDetailFurnished;
   /** @nullable */
   exposure?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
   propertyId: string;
   /** @nullable */
   agentId?: string | null;

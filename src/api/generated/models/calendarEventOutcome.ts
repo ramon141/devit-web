@@ -9,7 +9,8 @@
 export interface CalendarEventOutcome {
   id?: string;
   outcome: string;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   calendarEventId: string;
   /** @nullable */
   createdById?: string | null;

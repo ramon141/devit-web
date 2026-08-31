@@ -13,13 +13,13 @@ export interface CommunicationLog {
   channel: CommunicationLogChannel;
   status?: CommunicationLogStatus;
   content: string;
+  createdAt: string;
   sentAt?: string;
   /** @nullable */
   readAt?: string | null;
   /** @nullable */
   propertyViewedAt?: string | null;
-  /** @nullable */
-  updatedAt?: string | null;
+  updatedAt: string;
   /** @nullable */
   sentById?: string | null;
   personId: string;

@@ -40,9 +40,8 @@ export interface SaleWithRelations {
   cancellationReason?: string | null;
   /** @nullable */
   notes?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   propertyId: string;
   buyerId: string;
   sellerId: string;

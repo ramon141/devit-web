@@ -21,7 +21,8 @@ export interface AttachmentExcludingPasswordHash {
   path?: string | null;
   /** @nullable */
   originalName?: string | null;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   /** @nullable */
   url?: string | null;
 }

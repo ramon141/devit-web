@@ -9,7 +9,7 @@ import type { NewNotificationType } from './newNotificationType';
 import type { NewNotificationData } from './newNotificationData';
 
 /**
- * (tsType: Omit<Notification, 'id'>, schemaOptions: { title: 'NewNotification', exclude: [ 'id' ] })
+ * (tsType: Omit<Notification, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewNotification', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewNotification {
   type: NewNotificationType;
@@ -24,6 +24,5 @@ export interface NewNotification {
   data?: NewNotificationData;
   /** @nullable */
   readAt?: string | null;
-  createdAt?: string;
   userId: string;
 }

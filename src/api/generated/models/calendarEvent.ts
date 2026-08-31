@@ -30,9 +30,8 @@ export interface CalendarEvent {
   keysLocation?: string | null;
   recurrence?: CalendarEventRecurrence;
   reminder?: CalendarEventReminder;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   /** @nullable */
   createdById?: string | null;
   /** @nullable */

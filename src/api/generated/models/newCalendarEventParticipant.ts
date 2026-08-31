@@ -7,10 +7,9 @@
  */
 
 /**
- * (tsType: Omit<CalendarEventParticipant, 'id'>, schemaOptions: { title: 'NewCalendarEventParticipant', exclude: [ 'id' ] })
+ * (tsType: Omit<CalendarEventParticipant, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewCalendarEventParticipant', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewCalendarEventParticipant {
-  createdAt?: string;
   calendarEventId: string;
   /** @nullable */
   userId?: string | null;

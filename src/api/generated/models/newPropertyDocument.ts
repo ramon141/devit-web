@@ -7,14 +7,13 @@
  */
 
 /**
- * (tsType: Omit<PropertyDocument, 'id'>, schemaOptions: { title: 'NewPropertyDocument', exclude: [ 'id' ] })
+ * (tsType: Omit<PropertyDocument, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewPropertyDocument', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewPropertyDocument {
   /** @nullable */
   label?: string | null;
   /** @nullable */
   displayOrder?: number | null;
-  createdAt?: string;
   propertyId: string;
   attachmentId: string;
 }

@@ -16,5 +16,6 @@ export type NotificationFilter1FieldsOneOf = {
   data?: boolean;
   readAt?: boolean;
   createdAt?: boolean;
+  updatedAt?: boolean;
   userId?: boolean;
 };

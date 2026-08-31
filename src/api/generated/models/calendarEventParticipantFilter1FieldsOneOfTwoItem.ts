@@ -13,6 +13,7 @@ export type CalendarEventParticipantFilter1FieldsOneOfTwoItem = typeof CalendarE
 export const CalendarEventParticipantFilter1FieldsOneOfTwoItem = {
   id: 'id',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   calendarEventId: 'calendarEventId',
   userId: 'userId',
   personId: 'personId',

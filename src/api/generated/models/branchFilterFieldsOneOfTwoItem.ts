@@ -19,5 +19,6 @@ export const BranchFilterFieldsOneOfTwoItem = {
   longitude: 'longitude',
   active: 'active',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   addressId: 'addressId',
 } as const;

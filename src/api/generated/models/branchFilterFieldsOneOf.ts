@@ -15,5 +15,6 @@ export type BranchFilterFieldsOneOf = {
   longitude?: boolean;
   active?: boolean;
   createdAt?: boolean;
+  updatedAt?: boolean;
   addressId?: boolean;
 };

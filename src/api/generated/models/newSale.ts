@@ -30,9 +30,6 @@ export interface NewSale {
   cancellationReason?: string | null;
   /** @nullable */
   notes?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
   propertyId: string;
   buyerId: string;
   sellerId: string;

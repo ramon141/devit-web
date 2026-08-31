@@ -22,6 +22,7 @@ export interface Notification {
   data?: NotificationData;
   /** @nullable */
   readAt?: string | null;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   userId: string;
 }

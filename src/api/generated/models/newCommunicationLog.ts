@@ -9,7 +9,7 @@ import type { NewCommunicationLogChannel } from './newCommunicationLogChannel';
 import type { NewCommunicationLogStatus } from './newCommunicationLogStatus';
 
 /**
- * (tsType: Omit<CommunicationLog, 'id'>, schemaOptions: { title: 'NewCommunicationLog', exclude: [ 'id' ] })
+ * (tsType: Omit<CommunicationLog, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewCommunicationLog', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewCommunicationLog {
   channel: NewCommunicationLogChannel;
@@ -20,8 +20,6 @@ export interface NewCommunicationLog {
   readAt?: string | null;
   /** @nullable */
   propertyViewedAt?: string | null;
-  /** @nullable */
-  updatedAt?: string | null;
   /** @nullable */
   sentById?: string | null;
   personId: string;

@@ -11,6 +11,7 @@ export type CommunicationLogFilterFieldsOneOf = {
   channel?: boolean;
   status?: boolean;
   content?: boolean;
+  createdAt?: boolean;
   sentAt?: boolean;
   readAt?: boolean;
   propertyViewedAt?: boolean;

@@ -7,7 +7,7 @@
  */
 
 /**
- * (tsType: Omit<Branch, 'id'>, schemaOptions: { title: 'NewBranch', exclude: [ 'id' ] })
+ * (tsType: Omit<Branch, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewBranch', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewBranch {
   name: string;
@@ -20,7 +20,6 @@ export interface NewBranch {
   /** @nullable */
   longitude?: number | null;
   active?: boolean;
-  createdAt?: string;
   /** @nullable */
   addressId?: string | null;
 }

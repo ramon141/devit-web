@@ -17,5 +17,6 @@ export const RentalAdjustmentFilterFieldsOneOfTwoItem = {
   oldAmount: 'oldAmount',
   newAmount: 'newAmount',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   rentalContractId: 'rentalContractId',
 } as const;

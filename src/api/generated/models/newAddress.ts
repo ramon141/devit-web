@@ -7,7 +7,7 @@
  */
 
 /**
- * (tsType: Omit<Address, 'id'>, schemaOptions: { title: 'NewAddress', exclude: [ 'id' ] })
+ * (tsType: Omit<Address, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewAddress', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewAddress {
   /** @nullable */
@@ -25,7 +25,4 @@ export interface NewAddress {
   region?: string | null;
   /** @nullable */
   postalCode?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
 }

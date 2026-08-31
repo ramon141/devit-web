@@ -14,6 +14,7 @@ export const CalendarEventOutcomeFilter1FieldsOneOfTwoItem = {
   id: 'id',
   outcome: 'outcome',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   calendarEventId: 'calendarEventId',
   createdById: 'createdById',
 } as const;

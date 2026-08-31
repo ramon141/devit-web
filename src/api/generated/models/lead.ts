@@ -41,9 +41,8 @@ export interface Lead {
   subject?: string | null;
   /** @nullable */
   syncedAt?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   /** @nullable */
   assignedToId?: string | null;
 }

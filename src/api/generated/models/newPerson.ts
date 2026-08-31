@@ -29,9 +29,6 @@ export interface NewPerson {
   /** @nullable */
   notes?: string | null;
   active?: boolean;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
   /** @nullable */
   addressId?: string | null;
   /** @nullable */

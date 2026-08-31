@@ -23,7 +23,6 @@ export interface Address {
   region?: string | null;
   /** @nullable */
   postalCode?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
 }

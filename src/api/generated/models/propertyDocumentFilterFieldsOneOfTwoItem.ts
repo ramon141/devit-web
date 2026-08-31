@@ -15,6 +15,7 @@ export const PropertyDocumentFilterFieldsOneOfTwoItem = {
   label: 'label',
   displayOrder: 'displayOrder',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   propertyId: 'propertyId',
   attachmentId: 'attachmentId',
 } as const;

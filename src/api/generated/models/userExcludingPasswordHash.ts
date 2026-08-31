@@ -22,9 +22,8 @@ export interface UserExcludingPasswordHash {
   /** @nullable */
   lastLoginAt?: string | null;
   active?: boolean;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   /** @nullable */
   avatarId?: string | null;
   /** @nullable */

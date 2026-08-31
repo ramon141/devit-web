@@ -55,9 +55,8 @@ export interface PropertyDetailWithRelations {
   furnished?: PropertyDetailWithRelationsFurnished;
   /** @nullable */
   exposure?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   propertyId: string;
   /** @nullable */
   agentId?: string | null;

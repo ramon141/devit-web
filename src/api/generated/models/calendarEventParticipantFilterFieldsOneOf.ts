@@ -9,6 +9,7 @@
 export type CalendarEventParticipantFilterFieldsOneOf = {
   id?: boolean;
   createdAt?: boolean;
+  updatedAt?: boolean;
   calendarEventId?: boolean;
   userId?: boolean;
   personId?: boolean;

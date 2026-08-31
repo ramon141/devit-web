@@ -50,9 +50,8 @@ export interface PropertyDetail {
   furnished?: PropertyDetailFurnished;
   /** @nullable */
   exposure?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   propertyId: string;
   /** @nullable */
   agentId?: string | null;

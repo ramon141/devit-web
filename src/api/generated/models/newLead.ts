@@ -10,7 +10,7 @@ import type { NewLeadSource } from './newLeadSource';
 import type { NewLeadRequestType } from './newLeadRequestType';
 
 /**
- * (tsType: Omit<Lead, 'id'>, schemaOptions: { title: 'NewLead', exclude: [ 'id' ] })
+ * (tsType: Omit<Lead, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewLead', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewLead {
   /** @nullable */
@@ -43,9 +43,6 @@ export interface NewLead {
   subject?: string | null;
   /** @nullable */
   syncedAt?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
   /** @nullable */
   assignedToId?: string | null;
 }

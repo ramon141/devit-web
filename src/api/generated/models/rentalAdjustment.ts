@@ -12,6 +12,7 @@ export interface RentalAdjustment {
   indexPercent: number;
   oldAmount: number;
   newAmount: number;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   rentalContractId: string;
 }

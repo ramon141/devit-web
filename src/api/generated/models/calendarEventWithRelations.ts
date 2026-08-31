@@ -41,9 +41,8 @@ export interface CalendarEventWithRelations {
   keysLocation?: string | null;
   recurrence?: CalendarEventWithRelationsRecurrence;
   reminder?: CalendarEventWithRelationsReminder;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   /** @nullable */
   createdById?: string | null;
   /** @nullable */

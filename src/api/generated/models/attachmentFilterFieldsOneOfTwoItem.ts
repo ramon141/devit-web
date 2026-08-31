@@ -18,5 +18,6 @@ export const AttachmentFilterFieldsOneOfTwoItem = {
   path: 'path',
   originalName: 'originalName',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   url: 'url',
 } as const;

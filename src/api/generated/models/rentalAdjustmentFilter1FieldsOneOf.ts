@@ -13,5 +13,6 @@ export type RentalAdjustmentFilter1FieldsOneOf = {
   oldAmount?: boolean;
   newAmount?: boolean;
   createdAt?: boolean;
+  updatedAt?: boolean;
   rentalContractId?: boolean;
 };

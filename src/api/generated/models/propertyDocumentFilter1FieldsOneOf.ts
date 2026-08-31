@@ -11,6 +11,7 @@ export type PropertyDocumentFilter1FieldsOneOf = {
   label?: boolean;
   displayOrder?: boolean;
   createdAt?: boolean;
+  updatedAt?: boolean;
   propertyId?: boolean;
   attachmentId?: boolean;
 };

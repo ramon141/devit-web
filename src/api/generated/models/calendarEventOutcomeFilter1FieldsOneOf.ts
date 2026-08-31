@@ -10,6 +10,7 @@ export type CalendarEventOutcomeFilter1FieldsOneOf = {
   id?: boolean;
   outcome?: boolean;
   createdAt?: boolean;
+  updatedAt?: boolean;
   calendarEventId?: boolean;
   createdById?: boolean;
 };

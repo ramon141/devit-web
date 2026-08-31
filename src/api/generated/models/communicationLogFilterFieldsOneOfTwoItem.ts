@@ -15,6 +15,7 @@ export const CommunicationLogFilterFieldsOneOfTwoItem = {
   channel: 'channel',
   status: 'status',
   content: 'content',
+  createdAt: 'createdAt',
   sentAt: 'sentAt',
   readAt: 'readAt',
   propertyViewedAt: 'propertyViewedAt',

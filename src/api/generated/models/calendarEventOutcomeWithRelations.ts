@@ -14,7 +14,8 @@ import type { User } from './user';
 export interface CalendarEventOutcomeWithRelations {
   id?: string;
   outcome: string;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   calendarEventId: string;
   /** @nullable */
   createdById?: string | null;

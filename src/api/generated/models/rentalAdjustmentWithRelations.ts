@@ -16,7 +16,8 @@ export interface RentalAdjustmentWithRelations {
   indexPercent: number;
   oldAmount: number;
   newAmount: number;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   rentalContractId: string;
   rentalContract?: RentalContract;
   foreignKey?: unknown;

@@ -31,9 +31,6 @@ export interface NewCalendarEvent {
   keysLocation?: string | null;
   recurrence?: NewCalendarEventRecurrence;
   reminder?: NewCalendarEventReminder;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
   /** @nullable */
   createdById?: string | null;
   /** @nullable */

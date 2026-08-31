@@ -8,7 +8,8 @@
 
 export interface CalendarEventParticipant {
   id?: string;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   calendarEventId: string;
   /** @nullable */
   userId?: string | null;

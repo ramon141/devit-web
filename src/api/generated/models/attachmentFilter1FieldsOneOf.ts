@@ -14,5 +14,6 @@ export type AttachmentFilter1FieldsOneOf = {
   path?: boolean;
   originalName?: boolean;
   createdAt?: boolean;
+  updatedAt?: boolean;
   url?: boolean;
 };

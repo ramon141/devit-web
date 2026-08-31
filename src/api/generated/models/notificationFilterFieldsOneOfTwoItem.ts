@@ -20,5 +20,6 @@ export const NotificationFilterFieldsOneOfTwoItem = {
   data: 'data',
   readAt: 'readAt',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   userId: 'userId',
 } as const;

@@ -7,13 +7,12 @@
  */
 
 /**
- * (tsType: Omit<RentalAdjustment, 'id'>, schemaOptions: { title: 'NewRentalAdjustment', exclude: [ 'id' ] })
+ * (tsType: Omit<RentalAdjustment, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewRentalAdjustment', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewRentalAdjustment {
   effectiveDate: string;
   indexPercent: number;
   oldAmount: number;
   newAmount: number;
-  createdAt?: string;
   rentalContractId: string;
 }

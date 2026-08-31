@@ -35,9 +35,8 @@ export interface PersonWithRelations {
   /** @nullable */
   notes?: string | null;
   active?: boolean;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
   /** @nullable */
   addressId?: string | null;
   /** @nullable */

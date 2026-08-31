@@ -40,7 +40,7 @@ import type {
   AddressControllerUpdateById401,
   AddressControllerUpdateById404,
   AddressControllerUpdateById422,
-  AddressPartial,
+  AddressPartialExcludingCreatedAtUpdatedAt,
   AddressWithRelations,
   Attachment,
   AttachmentControllerCount401,
@@ -58,7 +58,7 @@ import type {
   AttachmentControllerUpdateById401,
   AttachmentControllerUpdateById404,
   AttachmentControllerUpdateById422,
-  AttachmentPartialExcludingIdBodyBase64PathUrlSize,
+  AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt,
   AttachmentWithRelations,
   AuditLog,
   AuditLogControllerCount401,
@@ -107,7 +107,7 @@ import type {
   BranchControllerUpdateById401,
   BranchControllerUpdateById404,
   BranchControllerUpdateById422,
-  BranchPartial,
+  BranchPartialExcludingCreatedAtUpdatedAt,
   BranchWithRelations,
   CalendarEvent,
   CalendarEventAttachment,
@@ -156,9 +156,9 @@ import type {
   CalendarEventOutcomeControllerUpdateById401,
   CalendarEventOutcomeControllerUpdateById404,
   CalendarEventOutcomeControllerUpdateById422,
-  CalendarEventOutcomePartial,
+  CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt,
   CalendarEventOutcomeWithRelations,
-  CalendarEventPartial,
+  CalendarEventPartialExcludingCreatedAtUpdatedAt,
   CalendarEventParticipant,
   CalendarEventParticipantControllerCount401,
   CalendarEventParticipantControllerCountParams,
@@ -174,7 +174,7 @@ import type {
   CalendarEventParticipantControllerUpdateById401,
   CalendarEventParticipantControllerUpdateById404,
   CalendarEventParticipantControllerUpdateById422,
-  CalendarEventParticipantPartial,
+  CalendarEventParticipantPartialExcludingCreatedAtUpdatedAt,
   CalendarEventParticipantWithRelations,
   CalendarEventProperty,
   CalendarEventPropertyControllerCount401,
@@ -209,7 +209,7 @@ import type {
   CommunicationLogControllerUpdateById401,
   CommunicationLogControllerUpdateById404,
   CommunicationLogControllerUpdateById422,
-  CommunicationLogPartial,
+  CommunicationLogPartialExcludingCreatedAtUpdatedAt,
   CommunicationLogWithRelations,
   CommunicationsReportControllerByChannelStatus200Item,
   CommunicationsReportControllerByChannelStatus401,
@@ -298,7 +298,7 @@ import type {
   LeadControllerUpdateById401,
   LeadControllerUpdateById404,
   LeadControllerUpdateById422,
-  LeadPartial,
+  LeadPartialExcludingCreatedAtUpdatedAt,
   LeadProperty,
   LeadPropertyControllerCount401,
   LeadPropertyControllerCountParams,
@@ -390,7 +390,7 @@ import type {
   NotificationControllerUpdateById401,
   NotificationControllerUpdateById404,
   NotificationControllerUpdateById422,
-  NotificationPartial,
+  NotificationPartialExcludingCreatedAtUpdatedAt,
   NotificationWithRelations,
   Person,
   PersonAttachment,
@@ -424,7 +424,7 @@ import type {
   PersonControllerUpdateById401,
   PersonControllerUpdateById404,
   PersonControllerUpdateById422,
-  PersonPartialExcludingPhotoId,
+  PersonPartialExcludingPhotoIdCreatedAtUpdatedAt,
   PersonWithRelations,
   PingResponse,
   PropertiesReportControllerDormant200Item,
@@ -531,7 +531,7 @@ import type {
   PropertyDetailControllerUpdateById401,
   PropertyDetailControllerUpdateById404,
   PropertyDetailControllerUpdateById422,
-  PropertyDetailPartial,
+  PropertyDetailPartialExcludingCreatedAtUpdatedAt,
   PropertyDetailWithRelations,
   PropertyDocument,
   PropertyDocumentControllerCount401,
@@ -548,7 +548,7 @@ import type {
   PropertyDocumentControllerUpdateById401,
   PropertyDocumentControllerUpdateById404,
   PropertyDocumentControllerUpdateById422,
-  PropertyDocumentPartial,
+  PropertyDocumentPartialExcludingCreatedAtUpdatedAt,
   PropertyDocumentWithRelations,
   PropertyFeature,
   PropertyFeatureControllerCount401,
@@ -793,7 +793,7 @@ import type {
   PurchaseProposalControllerUpdateById401,
   PurchaseProposalControllerUpdateById404,
   PurchaseProposalControllerUpdateById422,
-  PurchaseProposalPartial,
+  PurchaseProposalPartialExcludingCreatedAtUpdatedAt,
   PurchaseProposalWithRelations,
   RentalAdjustment,
   RentalAdjustmentControllerCount401,
@@ -813,7 +813,7 @@ import type {
   RentalAdjustmentControllerUpdateById401,
   RentalAdjustmentControllerUpdateById404,
   RentalAdjustmentControllerUpdateById422,
-  RentalAdjustmentPartial,
+  RentalAdjustmentPartialExcludingCreatedAtUpdatedAt,
   RentalAdjustmentWithRelations,
   RentalContract,
   RentalContractControllerCount401,
@@ -848,7 +848,7 @@ import type {
   RentalContractOwnerControllerUpdateById422,
   RentalContractOwnerPartial,
   RentalContractOwnerWithRelations,
-  RentalContractPartial,
+  RentalContractPartialExcludingCreatedAtUpdatedAt,
   RentalContractRenewControllerRenew401,
   RentalContractRenewControllerRenew404,
   RentalContractRenewControllerRenew422,
@@ -921,7 +921,7 @@ import type {
   SaleDocumentControllerUpdateById422,
   SaleDocumentPartial,
   SaleDocumentWithRelations,
-  SalePartial,
+  SalePartialExcludingCreatedAtUpdatedAt,
   SaleSeller,
   SaleSellerControllerCount401,
   SaleSellerControllerCountParams,
@@ -988,7 +988,7 @@ import type {
   UserControllerUpdateById422,
   UserExcludingPasswordHash,
   UserExcludingPasswordHashWithRelations,
-  UserPartialExcludingPasswordHash
+  UserPartialExcludingPasswordHashCreatedAtUpdatedAt
 } from './models';
 
 import { mutator } from '../mutator';
@@ -1098,14 +1098,14 @@ export function useAddressControllerCount<TData = Awaited<ReturnType<typeof addr
  */
 export const addressControllerUpdateById = (
     id: string,
-    addressPartial: BodyType<AddressPartial>,
+    addressPartialExcludingCreatedAtUpdatedAt: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/addresses/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: addressPartial
+      data: addressPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -1113,8 +1113,8 @@ export const addressControllerUpdateById = (
 
 
 export const getAddressControllerUpdateByIdMutationOptions = <TError = ErrorType<AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['addressControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1126,7 +1126,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof addressControllerUpdateById>>, {id: string;data: BodyType<AddressPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof addressControllerUpdateById>>, {id: string;data: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  addressControllerUpdateById(id,data,requestOptions)
@@ -1138,18 +1138,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AddressControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof addressControllerUpdateById>>>
-    export type AddressControllerUpdateByIdMutationBody = BodyType<AddressPartial>
+    export type AddressControllerUpdateByIdMutationBody = BodyType<AddressPartialExcludingCreatedAtUpdatedAt>
     export type AddressControllerUpdateByIdMutationError = ErrorType<AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById422>
 
     /**
  * @summary Update a Address by id
  */
 export const useAddressControllerUpdateById = <TError = ErrorType<AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof addressControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<AddressPartial>},
+        {id: string;data: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -1579,14 +1579,14 @@ export function useAttachmentControllerCount<TData = Awaited<ReturnType<typeof a
  */
 export const attachmentControllerUpdateById = (
     id: string,
-    attachmentPartialExcludingIdBodyBase64PathUrlSize: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>,
+    attachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/attachments/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: attachmentPartialExcludingIdBodyBase64PathUrlSize
+      data: attachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt
     },
       options);
     }
@@ -1594,8 +1594,8 @@ export const attachmentControllerUpdateById = (
 
 
 export const getAttachmentControllerUpdateByIdMutationOptions = <TError = ErrorType<AttachmentControllerUpdateById401 | AttachmentControllerUpdateById404 | AttachmentControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['attachmentControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -1607,7 +1607,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, {id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, {id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  attachmentControllerUpdateById(id,data,requestOptions)
@@ -1619,18 +1619,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type AttachmentControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof attachmentControllerUpdateById>>>
-    export type AttachmentControllerUpdateByIdMutationBody = BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>
+    export type AttachmentControllerUpdateByIdMutationBody = BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt>
     export type AttachmentControllerUpdateByIdMutationError = ErrorType<AttachmentControllerUpdateById401 | AttachmentControllerUpdateById404 | AttachmentControllerUpdateById422>
 
     /**
  * @summary Update a Attachment by id
  */
 export const useAttachmentControllerUpdateById = <TError = ErrorType<AttachmentControllerUpdateById401 | AttachmentControllerUpdateById404 | AttachmentControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof attachmentControllerUpdateById>>, TError,{id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof attachmentControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSize>},
+        {id: string;data: BodyType<AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -2829,14 +2829,14 @@ export function useBranchControllerCount<TData = Awaited<ReturnType<typeof branc
  */
 export const branchControllerUpdateById = (
     id: string,
-    branchPartial: BodyType<BranchPartial>,
+    branchPartialExcludingCreatedAtUpdatedAt: BodyType<BranchPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/branches/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: branchPartial
+      data: branchPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -2844,8 +2844,8 @@ export const branchControllerUpdateById = (
 
 
 export const getBranchControllerUpdateByIdMutationOptions = <TError = ErrorType<BranchControllerUpdateById401 | BranchControllerUpdateById404 | BranchControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof branchControllerUpdateById>>, TError,{id: string;data: BodyType<BranchPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof branchControllerUpdateById>>, TError,{id: string;data: BodyType<BranchPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof branchControllerUpdateById>>, TError,{id: string;data: BodyType<BranchPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof branchControllerUpdateById>>, TError,{id: string;data: BodyType<BranchPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['branchControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -2857,7 +2857,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof branchControllerUpdateById>>, {id: string;data: BodyType<BranchPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof branchControllerUpdateById>>, {id: string;data: BodyType<BranchPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  branchControllerUpdateById(id,data,requestOptions)
@@ -2869,18 +2869,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type BranchControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof branchControllerUpdateById>>>
-    export type BranchControllerUpdateByIdMutationBody = BodyType<BranchPartial>
+    export type BranchControllerUpdateByIdMutationBody = BodyType<BranchPartialExcludingCreatedAtUpdatedAt>
     export type BranchControllerUpdateByIdMutationError = ErrorType<BranchControllerUpdateById401 | BranchControllerUpdateById404 | BranchControllerUpdateById422>
 
     /**
  * @summary Update a Branch by id
  */
 export const useBranchControllerUpdateById = <TError = ErrorType<BranchControllerUpdateById401 | BranchControllerUpdateById404 | BranchControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof branchControllerUpdateById>>, TError,{id: string;data: BodyType<BranchPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof branchControllerUpdateById>>, TError,{id: string;data: BodyType<BranchPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof branchControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<BranchPartial>},
+        {id: string;data: BodyType<BranchPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -3791,14 +3791,14 @@ export function useCalendarEventOutcomeControllerCount<TData = Awaited<ReturnTyp
  */
 export const calendarEventOutcomeControllerUpdateById = (
     id: string,
-    calendarEventOutcomePartial: BodyType<CalendarEventOutcomePartial>,
+    calendarEventOutcomePartialExcludingCreatedAtUpdatedAt: BodyType<CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/calendar-event-outcomes/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: calendarEventOutcomePartial
+      data: calendarEventOutcomePartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -3806,8 +3806,8 @@ export const calendarEventOutcomeControllerUpdateById = (
 
 
 export const getCalendarEventOutcomeControllerUpdateByIdMutationOptions = <TError = ErrorType<CalendarEventOutcomeControllerUpdateById401 | CalendarEventOutcomeControllerUpdateById404 | CalendarEventOutcomeControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventOutcomePartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventOutcomePartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['calendarEventOutcomeControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -3819,7 +3819,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>, {id: string;data: BodyType<CalendarEventOutcomePartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>, {id: string;data: BodyType<CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  calendarEventOutcomeControllerUpdateById(id,data,requestOptions)
@@ -3831,18 +3831,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CalendarEventOutcomeControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>>
-    export type CalendarEventOutcomeControllerUpdateByIdMutationBody = BodyType<CalendarEventOutcomePartial>
+    export type CalendarEventOutcomeControllerUpdateByIdMutationBody = BodyType<CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt>
     export type CalendarEventOutcomeControllerUpdateByIdMutationError = ErrorType<CalendarEventOutcomeControllerUpdateById401 | CalendarEventOutcomeControllerUpdateById404 | CalendarEventOutcomeControllerUpdateById422>
 
     /**
  * @summary Update a Calendar Event Outcome by id
  */
 export const useCalendarEventOutcomeControllerUpdateById = <TError = ErrorType<CalendarEventOutcomeControllerUpdateById401 | CalendarEventOutcomeControllerUpdateById404 | CalendarEventOutcomeControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventOutcomePartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof calendarEventOutcomeControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<CalendarEventOutcomePartial>},
+        {id: string;data: BodyType<CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -4272,14 +4272,14 @@ export function useCalendarEventParticipantControllerCount<TData = Awaited<Retur
  */
 export const calendarEventParticipantControllerUpdateById = (
     id: string,
-    calendarEventParticipantPartial: BodyType<CalendarEventParticipantPartial>,
+    calendarEventParticipantPartialExcludingCreatedAtUpdatedAt: BodyType<CalendarEventParticipantPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/calendar-event-participants/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: calendarEventParticipantPartial
+      data: calendarEventParticipantPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -4287,8 +4287,8 @@ export const calendarEventParticipantControllerUpdateById = (
 
 
 export const getCalendarEventParticipantControllerUpdateByIdMutationOptions = <TError = ErrorType<CalendarEventParticipantControllerUpdateById401 | CalendarEventParticipantControllerUpdateById404 | CalendarEventParticipantControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventParticipantPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventParticipantPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventParticipantPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventParticipantPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['calendarEventParticipantControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -4300,7 +4300,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>, {id: string;data: BodyType<CalendarEventParticipantPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>, {id: string;data: BodyType<CalendarEventParticipantPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  calendarEventParticipantControllerUpdateById(id,data,requestOptions)
@@ -4312,18 +4312,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CalendarEventParticipantControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>>
-    export type CalendarEventParticipantControllerUpdateByIdMutationBody = BodyType<CalendarEventParticipantPartial>
+    export type CalendarEventParticipantControllerUpdateByIdMutationBody = BodyType<CalendarEventParticipantPartialExcludingCreatedAtUpdatedAt>
     export type CalendarEventParticipantControllerUpdateByIdMutationError = ErrorType<CalendarEventParticipantControllerUpdateById401 | CalendarEventParticipantControllerUpdateById404 | CalendarEventParticipantControllerUpdateById422>
 
     /**
  * @summary Update a Calendar Event Participant by id
  */
 export const useCalendarEventParticipantControllerUpdateById = <TError = ErrorType<CalendarEventParticipantControllerUpdateById401 | CalendarEventParticipantControllerUpdateById404 | CalendarEventParticipantControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventParticipantPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventParticipantPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof calendarEventParticipantControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<CalendarEventParticipantPartial>},
+        {id: string;data: BodyType<CalendarEventParticipantPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -5234,14 +5234,14 @@ export function useCalendarEventControllerCount<TData = Awaited<ReturnType<typeo
  */
 export const calendarEventControllerUpdateById = (
     id: string,
-    calendarEventPartial: BodyType<CalendarEventPartial>,
+    calendarEventPartialExcludingCreatedAtUpdatedAt: BodyType<CalendarEventPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/calendar-events/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: calendarEventPartial
+      data: calendarEventPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -5249,8 +5249,8 @@ export const calendarEventControllerUpdateById = (
 
 
 export const getCalendarEventControllerUpdateByIdMutationOptions = <TError = ErrorType<CalendarEventControllerUpdateById401 | CalendarEventControllerUpdateById404 | CalendarEventControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['calendarEventControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -5262,7 +5262,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, {id: string;data: BodyType<CalendarEventPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, {id: string;data: BodyType<CalendarEventPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  calendarEventControllerUpdateById(id,data,requestOptions)
@@ -5274,18 +5274,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CalendarEventControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>>
-    export type CalendarEventControllerUpdateByIdMutationBody = BodyType<CalendarEventPartial>
+    export type CalendarEventControllerUpdateByIdMutationBody = BodyType<CalendarEventPartialExcludingCreatedAtUpdatedAt>
     export type CalendarEventControllerUpdateByIdMutationError = ErrorType<CalendarEventControllerUpdateById401 | CalendarEventControllerUpdateById404 | CalendarEventControllerUpdateById422>
 
     /**
  * @summary Update a Calendar Event by id
  */
 export const useCalendarEventControllerUpdateById = <TError = ErrorType<CalendarEventControllerUpdateById401 | CalendarEventControllerUpdateById404 | CalendarEventControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof calendarEventControllerUpdateById>>, TError,{id: string;data: BodyType<CalendarEventPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof calendarEventControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<CalendarEventPartial>},
+        {id: string;data: BodyType<CalendarEventPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -5715,14 +5715,14 @@ export function useCommunicationLogControllerCount<TData = Awaited<ReturnType<ty
  */
 export const communicationLogControllerUpdateById = (
     id: string,
-    communicationLogPartial: BodyType<CommunicationLogPartial>,
+    communicationLogPartialExcludingCreatedAtUpdatedAt: BodyType<CommunicationLogPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/communication-logs/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: communicationLogPartial
+      data: communicationLogPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -5730,8 +5730,8 @@ export const communicationLogControllerUpdateById = (
 
 
 export const getCommunicationLogControllerUpdateByIdMutationOptions = <TError = ErrorType<CommunicationLogControllerUpdateById401 | CommunicationLogControllerUpdateById404 | CommunicationLogControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>, TError,{id: string;data: BodyType<CommunicationLogPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>, TError,{id: string;data: BodyType<CommunicationLogPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>, TError,{id: string;data: BodyType<CommunicationLogPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>, TError,{id: string;data: BodyType<CommunicationLogPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['communicationLogControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -5743,7 +5743,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>, {id: string;data: BodyType<CommunicationLogPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>, {id: string;data: BodyType<CommunicationLogPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  communicationLogControllerUpdateById(id,data,requestOptions)
@@ -5755,18 +5755,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type CommunicationLogControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>>
-    export type CommunicationLogControllerUpdateByIdMutationBody = BodyType<CommunicationLogPartial>
+    export type CommunicationLogControllerUpdateByIdMutationBody = BodyType<CommunicationLogPartialExcludingCreatedAtUpdatedAt>
     export type CommunicationLogControllerUpdateByIdMutationError = ErrorType<CommunicationLogControllerUpdateById401 | CommunicationLogControllerUpdateById404 | CommunicationLogControllerUpdateById422>
 
     /**
  * @summary Update a Communication Log by id
  */
 export const useCommunicationLogControllerUpdateById = <TError = ErrorType<CommunicationLogControllerUpdateById401 | CommunicationLogControllerUpdateById404 | CommunicationLogControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>, TError,{id: string;data: BodyType<CommunicationLogPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof communicationLogControllerUpdateById>>, TError,{id: string;data: BodyType<CommunicationLogPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof communicationLogControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<CommunicationLogPartial>},
+        {id: string;data: BodyType<CommunicationLogPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -8601,14 +8601,14 @@ export function useLeadControllerCount<TData = Awaited<ReturnType<typeof leadCon
  */
 export const leadControllerUpdateById = (
     id: string,
-    leadPartial: BodyType<LeadPartial>,
+    leadPartialExcludingCreatedAtUpdatedAt: BodyType<LeadPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/leads/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: leadPartial
+      data: leadPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -8616,8 +8616,8 @@ export const leadControllerUpdateById = (
 
 
 export const getLeadControllerUpdateByIdMutationOptions = <TError = ErrorType<LeadControllerUpdateById401 | LeadControllerUpdateById404 | LeadControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadControllerUpdateById>>, TError,{id: string;data: BodyType<LeadPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof leadControllerUpdateById>>, TError,{id: string;data: BodyType<LeadPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadControllerUpdateById>>, TError,{id: string;data: BodyType<LeadPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof leadControllerUpdateById>>, TError,{id: string;data: BodyType<LeadPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['leadControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -8629,7 +8629,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof leadControllerUpdateById>>, {id: string;data: BodyType<LeadPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof leadControllerUpdateById>>, {id: string;data: BodyType<LeadPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  leadControllerUpdateById(id,data,requestOptions)
@@ -8641,18 +8641,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type LeadControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof leadControllerUpdateById>>>
-    export type LeadControllerUpdateByIdMutationBody = BodyType<LeadPartial>
+    export type LeadControllerUpdateByIdMutationBody = BodyType<LeadPartialExcludingCreatedAtUpdatedAt>
     export type LeadControllerUpdateByIdMutationError = ErrorType<LeadControllerUpdateById401 | LeadControllerUpdateById404 | LeadControllerUpdateById422>
 
     /**
  * @summary Update a Lead by id
  */
 export const useLeadControllerUpdateById = <TError = ErrorType<LeadControllerUpdateById401 | LeadControllerUpdateById404 | LeadControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadControllerUpdateById>>, TError,{id: string;data: BodyType<LeadPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadControllerUpdateById>>, TError,{id: string;data: BodyType<LeadPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof leadControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<LeadPartial>},
+        {id: string;data: BodyType<LeadPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -9147,14 +9147,14 @@ export function useNotificationControllerCount<TData = Awaited<ReturnType<typeof
  */
 export const notificationControllerUpdateById = (
     id: string,
-    notificationPartial: BodyType<NotificationPartial>,
+    notificationPartialExcludingCreatedAtUpdatedAt: BodyType<NotificationPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/notifications/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: notificationPartial
+      data: notificationPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -9162,8 +9162,8 @@ export const notificationControllerUpdateById = (
 
 
 export const getNotificationControllerUpdateByIdMutationOptions = <TError = ErrorType<NotificationControllerUpdateById401 | NotificationControllerUpdateById404 | NotificationControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof notificationControllerUpdateById>>, TError,{id: string;data: BodyType<NotificationPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof notificationControllerUpdateById>>, TError,{id: string;data: BodyType<NotificationPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof notificationControllerUpdateById>>, TError,{id: string;data: BodyType<NotificationPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof notificationControllerUpdateById>>, TError,{id: string;data: BodyType<NotificationPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['notificationControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -9175,7 +9175,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof notificationControllerUpdateById>>, {id: string;data: BodyType<NotificationPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof notificationControllerUpdateById>>, {id: string;data: BodyType<NotificationPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  notificationControllerUpdateById(id,data,requestOptions)
@@ -9187,18 +9187,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type NotificationControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof notificationControllerUpdateById>>>
-    export type NotificationControllerUpdateByIdMutationBody = BodyType<NotificationPartial>
+    export type NotificationControllerUpdateByIdMutationBody = BodyType<NotificationPartialExcludingCreatedAtUpdatedAt>
     export type NotificationControllerUpdateByIdMutationError = ErrorType<NotificationControllerUpdateById401 | NotificationControllerUpdateById404 | NotificationControllerUpdateById422>
 
     /**
  * @summary Update a Notification by id
  */
 export const useNotificationControllerUpdateById = <TError = ErrorType<NotificationControllerUpdateById401 | NotificationControllerUpdateById404 | NotificationControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof notificationControllerUpdateById>>, TError,{id: string;data: BodyType<NotificationPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof notificationControllerUpdateById>>, TError,{id: string;data: BodyType<NotificationPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof notificationControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<NotificationPartial>},
+        {id: string;data: BodyType<NotificationPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -9628,14 +9628,14 @@ export function usePersonControllerCount<TData = Awaited<ReturnType<typeof perso
  */
 export const personControllerUpdateById = (
     id: string,
-    personPartialExcludingPhotoId: BodyType<PersonPartialExcludingPhotoId>,
+    personPartialExcludingPhotoIdCreatedAtUpdatedAt: BodyType<PersonPartialExcludingPhotoIdCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/people/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: personPartialExcludingPhotoId
+      data: personPartialExcludingPhotoIdCreatedAtUpdatedAt
     },
       options);
     }
@@ -9643,8 +9643,8 @@ export const personControllerUpdateById = (
 
 
 export const getPersonControllerUpdateByIdMutationOptions = <TError = ErrorType<PersonControllerUpdateById401 | PersonControllerUpdateById404 | PersonControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartialExcludingPhotoId>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartialExcludingPhotoId>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartialExcludingPhotoIdCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartialExcludingPhotoIdCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['personControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -9656,7 +9656,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personControllerUpdateById>>, {id: string;data: BodyType<PersonPartialExcludingPhotoId>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personControllerUpdateById>>, {id: string;data: BodyType<PersonPartialExcludingPhotoIdCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  personControllerUpdateById(id,data,requestOptions)
@@ -9668,18 +9668,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PersonControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof personControllerUpdateById>>>
-    export type PersonControllerUpdateByIdMutationBody = BodyType<PersonPartialExcludingPhotoId>
+    export type PersonControllerUpdateByIdMutationBody = BodyType<PersonPartialExcludingPhotoIdCreatedAtUpdatedAt>
     export type PersonControllerUpdateByIdMutationError = ErrorType<PersonControllerUpdateById401 | PersonControllerUpdateById404 | PersonControllerUpdateById422>
 
     /**
  * @summary Update a Person by id
  */
 export const usePersonControllerUpdateById = <TError = ErrorType<PersonControllerUpdateById401 | PersonControllerUpdateById404 | PersonControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartialExcludingPhotoId>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personControllerUpdateById>>, TError,{id: string;data: BodyType<PersonPartialExcludingPhotoIdCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof personControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PersonPartialExcludingPhotoId>},
+        {id: string;data: BodyType<PersonPartialExcludingPhotoIdCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -13088,14 +13088,14 @@ export function usePropertyDetailControllerCount<TData = Awaited<ReturnType<type
  */
 export const propertyDetailControllerUpdateById = (
     id: string,
-    propertyDetailPartial: BodyType<PropertyDetailPartial>,
+    propertyDetailPartialExcludingCreatedAtUpdatedAt: BodyType<PropertyDetailPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/property-details/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: propertyDetailPartial
+      data: propertyDetailPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -13103,8 +13103,8 @@ export const propertyDetailControllerUpdateById = (
 
 
 export const getPropertyDetailControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyDetailControllerUpdateById401 | PropertyDetailControllerUpdateById404 | PropertyDetailControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDetailPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDetailPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDetailPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDetailPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['propertyDetailControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -13116,7 +13116,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>, {id: string;data: BodyType<PropertyDetailPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>, {id: string;data: BodyType<PropertyDetailPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  propertyDetailControllerUpdateById(id,data,requestOptions)
@@ -13128,18 +13128,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PropertyDetailControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>>
-    export type PropertyDetailControllerUpdateByIdMutationBody = BodyType<PropertyDetailPartial>
+    export type PropertyDetailControllerUpdateByIdMutationBody = BodyType<PropertyDetailPartialExcludingCreatedAtUpdatedAt>
     export type PropertyDetailControllerUpdateByIdMutationError = ErrorType<PropertyDetailControllerUpdateById401 | PropertyDetailControllerUpdateById404 | PropertyDetailControllerUpdateById422>
 
     /**
  * @summary Update a Property Detail by id
  */
 export const usePropertyDetailControllerUpdateById = <TError = ErrorType<PropertyDetailControllerUpdateById401 | PropertyDetailControllerUpdateById404 | PropertyDetailControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDetailPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDetailPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof propertyDetailControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PropertyDetailPartial>},
+        {id: string;data: BodyType<PropertyDetailPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -13569,14 +13569,14 @@ export function usePropertyDocumentControllerCount<TData = Awaited<ReturnType<ty
  */
 export const propertyDocumentControllerUpdateById = (
     id: string,
-    propertyDocumentPartial: BodyType<PropertyDocumentPartial>,
+    propertyDocumentPartialExcludingCreatedAtUpdatedAt: BodyType<PropertyDocumentPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/property-documents/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: propertyDocumentPartial
+      data: propertyDocumentPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -13584,8 +13584,8 @@ export const propertyDocumentControllerUpdateById = (
 
 
 export const getPropertyDocumentControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyDocumentControllerUpdateById401 | PropertyDocumentControllerUpdateById404 | PropertyDocumentControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDocumentPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDocumentPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDocumentPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDocumentPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['propertyDocumentControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -13597,7 +13597,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>, {id: string;data: BodyType<PropertyDocumentPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>, {id: string;data: BodyType<PropertyDocumentPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  propertyDocumentControllerUpdateById(id,data,requestOptions)
@@ -13609,18 +13609,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PropertyDocumentControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>>
-    export type PropertyDocumentControllerUpdateByIdMutationBody = BodyType<PropertyDocumentPartial>
+    export type PropertyDocumentControllerUpdateByIdMutationBody = BodyType<PropertyDocumentPartialExcludingCreatedAtUpdatedAt>
     export type PropertyDocumentControllerUpdateByIdMutationError = ErrorType<PropertyDocumentControllerUpdateById401 | PropertyDocumentControllerUpdateById404 | PropertyDocumentControllerUpdateById422>
 
     /**
  * @summary Update a Property Document by id
  */
 export const usePropertyDocumentControllerUpdateById = <TError = ErrorType<PropertyDocumentControllerUpdateById401 | PropertyDocumentControllerUpdateById404 | PropertyDocumentControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDocumentPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyDocumentPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof propertyDocumentControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PropertyDocumentPartial>},
+        {id: string;data: BodyType<PropertyDocumentPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -20706,14 +20706,14 @@ export function usePurchaseProposalControllerCount<TData = Awaited<ReturnType<ty
  */
 export const purchaseProposalControllerUpdateById = (
     id: string,
-    purchaseProposalPartial: BodyType<PurchaseProposalPartial>,
+    purchaseProposalPartialExcludingCreatedAtUpdatedAt: BodyType<PurchaseProposalPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/purchase-proposals/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: purchaseProposalPartial
+      data: purchaseProposalPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -20721,8 +20721,8 @@ export const purchaseProposalControllerUpdateById = (
 
 
 export const getPurchaseProposalControllerUpdateByIdMutationOptions = <TError = ErrorType<PurchaseProposalControllerUpdateById401 | PurchaseProposalControllerUpdateById404 | PurchaseProposalControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['purchaseProposalControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -20734,7 +20734,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, {id: string;data: BodyType<PurchaseProposalPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, {id: string;data: BodyType<PurchaseProposalPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  purchaseProposalControllerUpdateById(id,data,requestOptions)
@@ -20746,18 +20746,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PurchaseProposalControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>>
-    export type PurchaseProposalControllerUpdateByIdMutationBody = BodyType<PurchaseProposalPartial>
+    export type PurchaseProposalControllerUpdateByIdMutationBody = BodyType<PurchaseProposalPartialExcludingCreatedAtUpdatedAt>
     export type PurchaseProposalControllerUpdateByIdMutationError = ErrorType<PurchaseProposalControllerUpdateById401 | PurchaseProposalControllerUpdateById404 | PurchaseProposalControllerUpdateById422>
 
     /**
  * @summary Update a Purchase Proposal by id
  */
 export const usePurchaseProposalControllerUpdateById = <TError = ErrorType<PurchaseProposalControllerUpdateById401 | PurchaseProposalControllerUpdateById404 | PurchaseProposalControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof purchaseProposalControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PurchaseProposalPartial>},
+        {id: string;data: BodyType<PurchaseProposalPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -21252,14 +21252,14 @@ export const useRentalAdjustmentControllerGenerate = <TError = ErrorType<RentalA
  */
 export const rentalAdjustmentControllerUpdateById = (
     id: string,
-    rentalAdjustmentPartial: BodyType<RentalAdjustmentPartial>,
+    rentalAdjustmentPartialExcludingCreatedAtUpdatedAt: BodyType<RentalAdjustmentPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/rental-adjustments/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: rentalAdjustmentPartial
+      data: rentalAdjustmentPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -21267,8 +21267,8 @@ export const rentalAdjustmentControllerUpdateById = (
 
 
 export const getRentalAdjustmentControllerUpdateByIdMutationOptions = <TError = ErrorType<RentalAdjustmentControllerUpdateById401 | RentalAdjustmentControllerUpdateById404 | RentalAdjustmentControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>, TError,{id: string;data: BodyType<RentalAdjustmentPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>, TError,{id: string;data: BodyType<RentalAdjustmentPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>, TError,{id: string;data: BodyType<RentalAdjustmentPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>, TError,{id: string;data: BodyType<RentalAdjustmentPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['rentalAdjustmentControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -21280,7 +21280,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>, {id: string;data: BodyType<RentalAdjustmentPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>, {id: string;data: BodyType<RentalAdjustmentPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  rentalAdjustmentControllerUpdateById(id,data,requestOptions)
@@ -21292,18 +21292,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type RentalAdjustmentControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>>
-    export type RentalAdjustmentControllerUpdateByIdMutationBody = BodyType<RentalAdjustmentPartial>
+    export type RentalAdjustmentControllerUpdateByIdMutationBody = BodyType<RentalAdjustmentPartialExcludingCreatedAtUpdatedAt>
     export type RentalAdjustmentControllerUpdateByIdMutationError = ErrorType<RentalAdjustmentControllerUpdateById401 | RentalAdjustmentControllerUpdateById404 | RentalAdjustmentControllerUpdateById422>
 
     /**
  * @summary Update a Rental Adjustment by id
  */
 export const useRentalAdjustmentControllerUpdateById = <TError = ErrorType<RentalAdjustmentControllerUpdateById401 | RentalAdjustmentControllerUpdateById404 | RentalAdjustmentControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>, TError,{id: string;data: BodyType<RentalAdjustmentPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>, TError,{id: string;data: BodyType<RentalAdjustmentPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof rentalAdjustmentControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<RentalAdjustmentPartial>},
+        {id: string;data: BodyType<RentalAdjustmentPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -22761,14 +22761,14 @@ export const useRentalContractRenewControllerRenew = <TError = ErrorType<RentalC
  */
 export const rentalContractControllerUpdateById = (
     id: string,
-    rentalContractPartial: BodyType<RentalContractPartial>,
+    rentalContractPartialExcludingCreatedAtUpdatedAt: BodyType<RentalContractPartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/rental-contracts/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: rentalContractPartial
+      data: rentalContractPartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -22776,8 +22776,8 @@ export const rentalContractControllerUpdateById = (
 
 
 export const getRentalContractControllerUpdateByIdMutationOptions = <TError = ErrorType<RentalContractControllerUpdateById401 | RentalContractControllerUpdateById404 | RentalContractControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['rentalContractControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -22789,7 +22789,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, {id: string;data: BodyType<RentalContractPartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, {id: string;data: BodyType<RentalContractPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  rentalContractControllerUpdateById(id,data,requestOptions)
@@ -22801,18 +22801,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type RentalContractControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>>
-    export type RentalContractControllerUpdateByIdMutationBody = BodyType<RentalContractPartial>
+    export type RentalContractControllerUpdateByIdMutationBody = BodyType<RentalContractPartialExcludingCreatedAtUpdatedAt>
     export type RentalContractControllerUpdateByIdMutationError = ErrorType<RentalContractControllerUpdateById401 | RentalContractControllerUpdateById404 | RentalContractControllerUpdateById422>
 
     /**
  * @summary Update a Rental Contract by id
  */
 export const useRentalContractControllerUpdateById = <TError = ErrorType<RentalContractControllerUpdateById401 | RentalContractControllerUpdateById404 | RentalContractControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalContractControllerUpdateById>>, TError,{id: string;data: BodyType<RentalContractPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof rentalContractControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<RentalContractPartial>},
+        {id: string;data: BodyType<RentalContractPartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -26006,14 +26006,14 @@ export function useSaleControllerCount<TData = Awaited<ReturnType<typeof saleCon
  */
 export const saleControllerUpdateById = (
     id: string,
-    salePartial: BodyType<SalePartial>,
+    salePartialExcludingCreatedAtUpdatedAt: BodyType<SalePartialExcludingCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/sales/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: salePartial
+      data: salePartialExcludingCreatedAtUpdatedAt
     },
       options);
     }
@@ -26021,8 +26021,8 @@ export const saleControllerUpdateById = (
 
 
 export const getSaleControllerUpdateByIdMutationOptions = <TError = ErrorType<SaleControllerUpdateById401 | SaleControllerUpdateById404 | SaleControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartial>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['saleControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -26034,7 +26034,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof saleControllerUpdateById>>, {id: string;data: BodyType<SalePartial>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof saleControllerUpdateById>>, {id: string;data: BodyType<SalePartialExcludingCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  saleControllerUpdateById(id,data,requestOptions)
@@ -26046,18 +26046,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type SaleControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof saleControllerUpdateById>>>
-    export type SaleControllerUpdateByIdMutationBody = BodyType<SalePartial>
+    export type SaleControllerUpdateByIdMutationBody = BodyType<SalePartialExcludingCreatedAtUpdatedAt>
     export type SaleControllerUpdateByIdMutationError = ErrorType<SaleControllerUpdateById401 | SaleControllerUpdateById404 | SaleControllerUpdateById422>
 
     /**
  * @summary Update a Sale by id
  */
 export const useSaleControllerUpdateById = <TError = ErrorType<SaleControllerUpdateById401 | SaleControllerUpdateById404 | SaleControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof saleControllerUpdateById>>, TError,{id: string;data: BodyType<SalePartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof saleControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<SalePartial>},
+        {id: string;data: BodyType<SalePartialExcludingCreatedAtUpdatedAt>},
         TContext
       > => {
 
@@ -26581,14 +26581,14 @@ export function useUserControllerCount<TData = Awaited<ReturnType<typeof userCon
  */
 export const userControllerUpdateById = (
     id: string,
-    userPartialExcludingPasswordHash: BodyType<UserPartialExcludingPasswordHash>,
+    userPartialExcludingPasswordHashCreatedAtUpdatedAt: BodyType<UserPartialExcludingPasswordHashCreatedAtUpdatedAt>,
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
       {url: `/users/${id}`, method: 'PATCH',
       headers: {'Content-Type': 'application/json', },
-      data: userPartialExcludingPasswordHash
+      data: userPartialExcludingPasswordHashCreatedAtUpdatedAt
     },
       options);
     }
@@ -26596,8 +26596,8 @@ export const userControllerUpdateById = (
 
 
 export const getUserControllerUpdateByIdMutationOptions = <TError = ErrorType<UserControllerUpdateById401 | UserControllerUpdateById403 | UserControllerUpdateById404 | UserControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof userControllerUpdateById>>, TError,{id: string;data: BodyType<UserPartialExcludingPasswordHash>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof userControllerUpdateById>>, TError,{id: string;data: BodyType<UserPartialExcludingPasswordHash>}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof userControllerUpdateById>>, TError,{id: string;data: BodyType<UserPartialExcludingPasswordHashCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof userControllerUpdateById>>, TError,{id: string;data: BodyType<UserPartialExcludingPasswordHashCreatedAtUpdatedAt>}, TContext> => {
 
 const mutationKey = ['userControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -26609,7 +26609,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof userControllerUpdateById>>, {id: string;data: BodyType<UserPartialExcludingPasswordHash>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof userControllerUpdateById>>, {id: string;data: BodyType<UserPartialExcludingPasswordHashCreatedAtUpdatedAt>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  userControllerUpdateById(id,data,requestOptions)
@@ -26621,18 +26621,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type UserControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof userControllerUpdateById>>>
-    export type UserControllerUpdateByIdMutationBody = BodyType<UserPartialExcludingPasswordHash>
+    export type UserControllerUpdateByIdMutationBody = BodyType<UserPartialExcludingPasswordHashCreatedAtUpdatedAt>
     export type UserControllerUpdateByIdMutationError = ErrorType<UserControllerUpdateById401 | UserControllerUpdateById403 | UserControllerUpdateById404 | UserControllerUpdateById422>
 
     /**
  * @summary Update a user by id
  */
 export const useUserControllerUpdateById = <TError = ErrorType<UserControllerUpdateById401 | UserControllerUpdateById403 | UserControllerUpdateById404 | UserControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof userControllerUpdateById>>, TError,{id: string;data: BodyType<UserPartialExcludingPasswordHash>}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof userControllerUpdateById>>, TError,{id: string;data: BodyType<UserPartialExcludingPasswordHashCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof userControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<UserPartialExcludingPasswordHash>},
+        {id: string;data: BodyType<UserPartialExcludingPasswordHashCreatedAtUpdatedAt>},
         TContext
       > => {
 

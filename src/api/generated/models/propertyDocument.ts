@@ -12,7 +12,8 @@ export interface PropertyDocument {
   label?: string | null;
   /** @nullable */
   displayOrder?: number | null;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   propertyId: string;
   attachmentId: string;
 }

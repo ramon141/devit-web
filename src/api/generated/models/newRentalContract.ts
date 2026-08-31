@@ -32,9 +32,6 @@ export interface NewRentalContract {
   registeredAt?: string | null;
   /** @nullable */
   renewalDueDate?: string | null;
-  createdAt?: string;
-  /** @nullable */
-  updatedAt?: string | null;
   propertyId: string;
   tenantId: string;
   ownerId: string;

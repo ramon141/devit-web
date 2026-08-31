@@ -18,7 +18,8 @@ export interface Branch {
   /** @nullable */
   longitude?: number | null;
   active?: boolean;
-  createdAt?: string;
+  createdAt: string;
+  updatedAt: string;
   /** @nullable */
   addressId?: string | null;
 }
