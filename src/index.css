@@ -79,15 +79,15 @@
 
   --ring: var(--devit-yellow);
 
-  --chart-1: oklch(0.87 0 0);
+  --chart-1: oklch(0.55 0.13 250);
 
-  --chart-2: oklch(0.556 0 0);
+  --chart-2: oklch(0.79 0.15 95);
 
-  --chart-3: oklch(0.439 0 0);
+  --chart-3: oklch(0.65 0.14 165);
 
-  --chart-4: oklch(0.371 0 0);
+  --chart-4: oklch(0.62 0.17 25);
 
-  --chart-5: oklch(0.269 0 0);
+  --chart-5: oklch(0.58 0.14 300);
 
   --radius: 0.5rem;
 
@@ -243,11 +243,11 @@ body {
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.12);
   --ring: var(--devit-yellow);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --chart-1: oklch(0.68 0.13 250);
+  --chart-2: oklch(0.82 0.15 95);
+  --chart-3: oklch(0.72 0.14 165);
+  --chart-4: oklch(0.68 0.17 25);
+  --chart-5: oklch(0.68 0.14 300);
   --sidebar: var(--devit-navy-dark);
   --sidebar-foreground: #e5e7eb;
   --sidebar-primary: var(--devit-yellow);
