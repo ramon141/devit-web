@@ -11,7 +11,7 @@ type ParamValue =
   | ParamValue[]
   | { [key: string]: ParamValue }
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API_URL,
   paramsSerializer: {
     serialize: (params: Record<string, ParamValue>) => {

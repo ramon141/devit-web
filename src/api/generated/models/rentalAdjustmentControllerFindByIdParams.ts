@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { RentalAdjustmentFilter } from './rentalAdjustmentFilter';
+import type { RentalAdjustmentFilter1 } from './rentalAdjustmentFilter1';
 
 export type RentalAdjustmentControllerFindByIdParams = {
-filter?: RentalAdjustmentFilter;
+filter?: RentalAdjustmentFilter1;
 };

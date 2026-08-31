@@ -9,6 +9,7 @@ export function getPersonRoleOptions(t: TFunction<'clientes'>) {
     { value: NewPersonRole.buyer, label: t('personRoleOptions.buyer') },
     { value: NewPersonRole.guarantor, label: t('personRoleOptions.guarantor') },
     { value: NewPersonRole.contact, label: t('personRoleOptions.contact') },
+    { value: 'supplier', label: t('personRoleOptions.supplier') },
   ]
 }
 

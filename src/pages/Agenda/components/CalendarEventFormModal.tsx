@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import type { CalendarEvent } from '@/api/generated/models'
+import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { useCalendarEventForm } from '@/pages/Agenda/hooks/useCalendarEventForm'
 import CalendarEventFormFields from '@/pages/Agenda/components/CalendarEventFormFields'
 import CalendarEventParticipantsManager from '@/pages/Agenda/components/CalendarEventParticipantsManager'
@@ -13,9 +13,9 @@ import CalendarEventOutcomeSection from '@/pages/Agenda/components/CalendarEvent
 type CalendarEventFormModalProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
-  event?: CalendarEvent | null
+  event?: CalendarEventWithRelations | null
   defaultDate?: string
-  onRequestDelete?: (event: CalendarEvent) => void
+  onRequestDelete?: (event: CalendarEventWithRelations) => void
 }
 
 function CalendarEventFormModal({

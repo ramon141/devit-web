@@ -25,7 +25,12 @@
         "periodo": "Periodo",
         "immobile": "Immobile",
         "inquilino": "Inquilino",
-        "emptyMessage": "Nessun contratto da registrare o rinnovare."
+        "emptyMessage": "Nessun contratto da registrare o rinnovare.",
+        "azioni": "Azioni",
+        "markRegistered": "Segna come registrato",
+        "marking": "Registrazione in corso...",
+        "markSuccess": "Contratto segnato come registrato.",
+        "markError": "Impossibile registrare il contratto."
       }
     },
     "scadenziario": {
@@ -43,7 +48,8 @@
         "numero": "Numero",
         "scadenza": "Scadenza",
         "affitto": "Affitto",
-        "azioni": "Azioni"
+        "azioni": "Azioni",
+        "scaduto": "Scaduto"
       }
     },
     "adeguamenti": {
@@ -138,7 +144,8 @@
       "endDateLabel": "Data di fine",
       "registeredAtLabel": "Data di registrazione",
       "renewalDueDateLabel": "Data prevista di rinnovo",
-      "notesLabel": "Note"
+      "notesLabel": "Note",
+      "stipulaDateLabel": "Data stipula"
     },
     "financialFields": {
       "rentAmountLabel": "Valore dell'affitto",
@@ -177,7 +184,8 @@
       "renewTooltip": "Rinnova",
       "terminateTooltip": "Rescindi",
       "deleteTooltip": "Elimina",
-      "lockedTooltip": "Contratto rescisso/chiuso: non modificabile"
+      "lockedTooltip": "Contratto rescisso/chiuso: non modificabile",
+      "dataStipula": "Data stipula"
     },
     "hooks": {
       "attachments": {

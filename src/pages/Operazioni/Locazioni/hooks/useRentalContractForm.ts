@@ -36,6 +36,7 @@ const emptyValues: RentalContractFormValues = {
   situation: 'active',
   noticeDays: '',
   notes: '',
+  stipulaDate: '',
   registeredAt: '',
   renewalDueDate: '',
   ownerAgentId: '',
@@ -58,6 +59,7 @@ function contractToFormValues(contract: RentalContractWithRelations): RentalCont
     situation: contract.situation ?? 'active',
     noticeDays: contract.noticeDays != null ? String(contract.noticeDays) : '',
     notes: contract.notes ?? '',
+    stipulaDate: contract.stipulaDate?.slice(0, 10) ?? '',
     registeredAt: contract.registeredAt?.slice(0, 10) ?? '',
     renewalDueDate: contract.renewalDueDate?.slice(0, 10) ?? '',
     ownerAgentId: contract.ownerAgentId ?? '',
@@ -102,6 +104,7 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
       noticeDays: toNumberOrNull(values.noticeDays),
       startDate: toISODateOrNull(values.startDate)!,
       endDate: toISODateOrNull(values.endDate),
+      stipulaDate: toISODateOrNull(values.stipulaDate),
       registeredAt: toISODateOrNull(values.registeredAt),
       renewalDueDate: toISODateOrNull(values.renewalDueDate),
     }

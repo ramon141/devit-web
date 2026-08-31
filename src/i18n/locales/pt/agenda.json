@@ -72,7 +72,14 @@
     "recurrence": "Recorrência",
     "eventColor": "Cor do evento",
     "privateEvent": "Compromisso privado",
-    "description": "Descrição"
+    "description": "Descrição",
+    "allDay": "Dia inteiro",
+    "client": "Cliente",
+    "clientPlaceholder": "Selecione um cliente",
+    "clientSearchPlaceholder": "Buscar um cliente...",
+    "owner": "Proprietário",
+    "ownerPlaceholder": "Selecione um proprietário",
+    "ownerSearchPlaceholder": "Buscar um proprietário..."
   },
   "formModal": {
     "editTitle": "Editar compromisso",
@@ -106,7 +113,11 @@
     "typeLabel": "Tipo:",
     "placeLabel": "Local:",
     "close": "Fechar",
-    "edit": "Editar"
+    "edit": "Editar",
+    "clientLabel": "Cliente:",
+    "ownerLabel": "Proprietário:",
+    "createdByLabel": "Criado por:",
+    "propertiesLabel": "Imóveis vinculados:"
   },
   "toasts": {
     "attachments": {

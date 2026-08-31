@@ -21,6 +21,7 @@ export function useCalendarEventList() {
         startAt: { between: [range.start, range.end] },
       },
       order: ['startAt ASC'],
+      include: ['lead', 'owner', 'createdBy'],
     },
   })
 

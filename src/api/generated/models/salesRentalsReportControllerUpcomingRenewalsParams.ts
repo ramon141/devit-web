@@ -8,7 +8,7 @@
 
 export type SalesRentalsReportControllerUpcomingRenewalsParams = {
 /**
- * Janela de dias à frente (padrão 30)
+ * Janela de dias à frente (padrão 30); inclui também os já vencidos
  */
 days?: number;
 };

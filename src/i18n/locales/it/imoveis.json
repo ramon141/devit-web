@@ -132,7 +132,9 @@
       "industrial": "Industriale",
       "land": "Terreno",
       "taxes": "Tasse",
-      "history": "Storico"
+      "history": "Storico",
+      "photos": "Foto",
+      "documents": "Documenti"
     }
   },
   "scheda": {
@@ -343,6 +345,31 @@
     "terrenoTab": {
       "save": "Salva dati terreno",
       "otherDataTitle": "Altri dati"
+    },
+    "fotoTab": {
+      "uploadLabel": "Carica foto",
+      "empty": "Nessuna foto caricata",
+      "setCover": "Imposta come copertina",
+      "remove": "Rimuovi",
+      "pendingUpload": "Caricamento foto in corso...",
+      "successUpload": "Foto caricate",
+      "errorUpload": "Errore durante il caricamento delle foto",
+      "pendingDelete": "Rimozione foto in corso...",
+      "successDelete": "Foto rimossa",
+      "errorDelete": "Errore durante la rimozione della foto",
+      "pendingCover": "Aggiornamento copertina in corso...",
+      "successCover": "Copertina aggiornata",
+      "errorCover": "Errore durante l'aggiornamento della copertina"
+    },
+    "documentiTab": {
+      "uploadLabel": "Carica documenti",
+      "empty": "Nessun documento caricato",
+      "pendingUpload": "Caricamento documenti in corso...",
+      "successUpload": "Documenti caricati",
+      "errorUpload": "Errore durante il caricamento dei documenti",
+      "pendingDelete": "Rimozione documento in corso...",
+      "successDelete": "Documento rimosso",
+      "errorDelete": "Errore durante la rimozione del documento"
     }
   },
   "toasts": {

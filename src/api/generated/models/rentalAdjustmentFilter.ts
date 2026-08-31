@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { RentalAdjustmentFilterOrder } from './rentalAdjustmentFilterOrder';
+import type { RentalAdjustmentFilterWhere } from './rentalAdjustmentFilterWhere';
 import type { RentalAdjustmentFilterFields } from './rentalAdjustmentFilterFields';
 import type { RentalAdjustmentFilterIncludeItem } from './rentalAdjustmentFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface RentalAdjustmentFilter {
   /** @minimum 0 */
   skip?: number;
   order?: RentalAdjustmentFilterOrder;
+  where?: RentalAdjustmentFilterWhere;
   fields?: RentalAdjustmentFilterFields;
   include?: RentalAdjustmentFilterIncludeItem[];
 }

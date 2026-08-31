@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PurchaseProposalFilter } from './purchaseProposalFilter';
+import type { PurchaseProposalFilter1 } from './purchaseProposalFilter1';
 
 export type PurchaseProposalControllerFindByIdParams = {
-filter?: PurchaseProposalFilter;
+filter?: PurchaseProposalFilter1;
 };

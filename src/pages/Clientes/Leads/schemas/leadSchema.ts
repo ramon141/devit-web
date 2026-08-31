@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import type { TFunction } from 'i18next'
-import { LeadSource, LeadStatus } from '@/api/generated/models'
+import { LeadRequestType, LeadSource, LeadStatus } from '@/api/generated/models'
 
 export function getLeadStatusOptions(t: TFunction<'clientes'>) {
   return [
@@ -24,6 +24,14 @@ export function getLeadSourceOptions(t: TFunction<'clientes'>) {
   ]
 }
 
+export function getLeadRequestTypeOptions(t: TFunction<'clientes'>) {
+  return [
+    { value: LeadRequestType.search, label: t('leadRequestTypeOptions.search') },
+    { value: LeadRequestType.valuation, label: t('leadRequestTypeOptions.valuation') },
+    { value: LeadRequestType.contact, label: t('leadRequestTypeOptions.contact') },
+  ]
+}
+
 export function createLeadSchema(t: TFunction<'clientes'>) {
   return z.object({
     name: z.string().min(2, t('leadSchema.nameMin')),
@@ -32,6 +40,10 @@ export function createLeadSchema(t: TFunction<'clientes'>) {
     firstContactAt: z.string().optional(),
     status: z.enum(LeadStatus, { error: t('leadSchema.statusRequired') }),
     source: z.enum(LeadSource).optional(),
+    requestType: z.enum(LeadRequestType).optional(),
+    desiredCity: z.string().optional(),
+    maxBudget: z.string().optional(),
+    subject: z.string().optional(),
     lossReason: z.string().optional(),
     notes: z.string().optional(),
     assignedToId: z.string().optional(),

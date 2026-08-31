@@ -365,6 +365,7 @@ import type {
   NewPropertyRoom,
   NewPropertyStatusHistory,
   NewPurchaseProposal,
+  NewPurchaseProposalAttachment,
   NewPurchaseProposalBuyer,
   NewRentalAdjustment,
   NewRentalContract,
@@ -416,6 +417,7 @@ import type {
   PersonControllerCreate422,
   PersonControllerDeleteById401,
   PersonControllerDeleteById404,
+  PersonControllerExportParams,
   PersonControllerFind401,
   PersonControllerFindById401,
   PersonControllerFindById404,
@@ -761,6 +763,23 @@ import type {
   PublicPropertyControllerFindFeaturedParams,
   PublicPropertyControllerFindParams,
   PurchaseProposal,
+  PurchaseProposalAttachment,
+  PurchaseProposalAttachmentControllerCount401,
+  PurchaseProposalAttachmentControllerCountParams,
+  PurchaseProposalAttachmentControllerCreate401,
+  PurchaseProposalAttachmentControllerCreate422,
+  PurchaseProposalAttachmentControllerDeleteById401,
+  PurchaseProposalAttachmentControllerDeleteById404,
+  PurchaseProposalAttachmentControllerFind401,
+  PurchaseProposalAttachmentControllerFindById401,
+  PurchaseProposalAttachmentControllerFindById404,
+  PurchaseProposalAttachmentControllerFindByIdParams,
+  PurchaseProposalAttachmentControllerFindParams,
+  PurchaseProposalAttachmentControllerUpdateById401,
+  PurchaseProposalAttachmentControllerUpdateById404,
+  PurchaseProposalAttachmentControllerUpdateById422,
+  PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt,
+  PurchaseProposalAttachmentWithRelations,
   PurchaseProposalBuyer,
   PurchaseProposalBuyerControllerCount401,
   PurchaseProposalBuyerControllerCountParams,
@@ -778,6 +797,9 @@ import type {
   PurchaseProposalBuyerControllerUpdateById422,
   PurchaseProposalBuyerPartial,
   PurchaseProposalBuyerWithRelations,
+  PurchaseProposalControllerConvertToSale401,
+  PurchaseProposalControllerConvertToSale404,
+  PurchaseProposalControllerConvertToSale422,
   PurchaseProposalControllerCount401,
   PurchaseProposalControllerCountParams,
   PurchaseProposalControllerCreate401,
@@ -785,6 +807,7 @@ import type {
   PurchaseProposalControllerDeleteById401,
   PurchaseProposalControllerDeleteById404,
   PurchaseProposalControllerDeleteById422,
+  PurchaseProposalControllerExportParams,
   PurchaseProposalControllerFind401,
   PurchaseProposalControllerFindById401,
   PurchaseProposalControllerFindById404,
@@ -802,6 +825,7 @@ import type {
   RentalAdjustmentControllerCreate422,
   RentalAdjustmentControllerDeleteById401,
   RentalAdjustmentControllerDeleteById404,
+  RentalAdjustmentControllerExportParams,
   RentalAdjustmentControllerFind401,
   RentalAdjustmentControllerFindById401,
   RentalAdjustmentControllerFindById404,
@@ -823,6 +847,7 @@ import type {
   RentalContractControllerDeleteById401,
   RentalContractControllerDeleteById404,
   RentalContractControllerDeleteById422,
+  RentalContractControllerExportParams,
   RentalContractControllerFind401,
   RentalContractControllerFindById401,
   RentalContractControllerFindById404,
@@ -896,6 +921,7 @@ import type {
   SaleControllerDeleteById401,
   SaleControllerDeleteById404,
   SaleControllerDeleteById422,
+  SaleControllerExportParams,
   SaleControllerFind401,
   SaleControllerFindById401,
   SaleControllerFindById404,
@@ -9611,6 +9637,95 @@ export function usePersonControllerCount<TData = Awaited<ReturnType<typeof perso
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPersonControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+export const personControllerExport = (
+    params?: PersonControllerExportParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/people/export`, method: 'GET',
+        params,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPersonControllerExportQueryKey = (params?: PersonControllerExportParams,) => {
+    return [
+    `/people/export`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPersonControllerExportQueryOptions = <TData = Awaited<ReturnType<typeof personControllerExport>>, TError = ErrorType<unknown>>(params?: PersonControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPersonControllerExportQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof personControllerExport>>> = ({ signal }) => personControllerExport(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof personControllerExport>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PersonControllerExportQueryResult = NonNullable<Awaited<ReturnType<typeof personControllerExport>>>
+export type PersonControllerExportQueryError = ErrorType<unknown>
+
+
+export function usePersonControllerExport<TData = Awaited<ReturnType<typeof personControllerExport>>, TError = ErrorType<unknown>>(
+ params: undefined |  PersonControllerExportParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof personControllerExport>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof personControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof personControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePersonControllerExport<TData = Awaited<ReturnType<typeof personControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PersonControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personControllerExport>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof personControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof personControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePersonControllerExport<TData = Awaited<ReturnType<typeof personControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PersonControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function usePersonControllerExport<TData = Awaited<ReturnType<typeof personControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PersonControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPersonControllerExportQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -20127,6 +20242,487 @@ export function usePublicPropertyControllerFind<TData = Awaited<ReturnType<typeo
 
 
 /**
+ * @summary Count Purchase Proposal Attachments
+ */
+export const purchaseProposalAttachmentControllerCount = (
+    params?: PurchaseProposalAttachmentControllerCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LoopbackCount>(
+      {url: `/purchase-proposal-attachments/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPurchaseProposalAttachmentControllerCountQueryKey = (params?: PurchaseProposalAttachmentControllerCountParams,) => {
+    return [
+    `/purchase-proposal-attachments/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPurchaseProposalAttachmentControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError = ErrorType<PurchaseProposalAttachmentControllerCount401>>(params?: PurchaseProposalAttachmentControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPurchaseProposalAttachmentControllerCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>> = ({ signal }) => purchaseProposalAttachmentControllerCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PurchaseProposalAttachmentControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>>
+export type PurchaseProposalAttachmentControllerCountQueryError = ErrorType<PurchaseProposalAttachmentControllerCount401>
+
+
+export function usePurchaseProposalAttachmentControllerCount<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError = ErrorType<PurchaseProposalAttachmentControllerCount401>>(
+ params: undefined |  PurchaseProposalAttachmentControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePurchaseProposalAttachmentControllerCount<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError = ErrorType<PurchaseProposalAttachmentControllerCount401>>(
+ params?: PurchaseProposalAttachmentControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePurchaseProposalAttachmentControllerCount<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError = ErrorType<PurchaseProposalAttachmentControllerCount401>>(
+ params?: PurchaseProposalAttachmentControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Count Purchase Proposal Attachments
+ */
+
+export function usePurchaseProposalAttachmentControllerCount<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError = ErrorType<PurchaseProposalAttachmentControllerCount401>>(
+ params?: PurchaseProposalAttachmentControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPurchaseProposalAttachmentControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Purchase Proposal Attachment by id
+ */
+export const purchaseProposalAttachmentControllerUpdateById = (
+    id: string,
+    purchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt: BodyType<PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/purchase-proposal-attachments/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: purchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt
+    },
+      options);
+    }
+  
+
+
+export const getPurchaseProposalAttachmentControllerUpdateByIdMutationOptions = <TError = ErrorType<PurchaseProposalAttachmentControllerUpdateById401 | PurchaseProposalAttachmentControllerUpdateById404 | PurchaseProposalAttachmentControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
+
+const mutationKey = ['purchaseProposalAttachmentControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerUpdateById>>, {id: string;data: BodyType<PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  purchaseProposalAttachmentControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PurchaseProposalAttachmentControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerUpdateById>>>
+    export type PurchaseProposalAttachmentControllerUpdateByIdMutationBody = BodyType<PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt>
+    export type PurchaseProposalAttachmentControllerUpdateByIdMutationError = ErrorType<PurchaseProposalAttachmentControllerUpdateById401 | PurchaseProposalAttachmentControllerUpdateById404 | PurchaseProposalAttachmentControllerUpdateById422>
+
+    /**
+ * @summary Update a Purchase Proposal Attachment by id
+ */
+export const usePurchaseProposalAttachmentControllerUpdateById = <TError = ErrorType<PurchaseProposalAttachmentControllerUpdateById401 | PurchaseProposalAttachmentControllerUpdateById404 | PurchaseProposalAttachmentControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerUpdateById>>, TError,{id: string;data: BodyType<PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof purchaseProposalAttachmentControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt>},
+        TContext
+      > => {
+
+      const mutationOptions = getPurchaseProposalAttachmentControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Get a Purchase Proposal Attachment by id
+ */
+export const purchaseProposalAttachmentControllerFindById = (
+    id: string,
+    params?: PurchaseProposalAttachmentControllerFindByIdParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PurchaseProposalAttachmentWithRelations>(
+      {url: `/purchase-proposal-attachments/${id}`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPurchaseProposalAttachmentControllerFindByIdQueryKey = (id?: string,
+    params?: PurchaseProposalAttachmentControllerFindByIdParams,) => {
+    return [
+    `/purchase-proposal-attachments/${id}`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPurchaseProposalAttachmentControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError = ErrorType<PurchaseProposalAttachmentControllerFindById401 | PurchaseProposalAttachmentControllerFindById404>>(id: string,
+    params?: PurchaseProposalAttachmentControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPurchaseProposalAttachmentControllerFindByIdQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>> = ({ signal }) => purchaseProposalAttachmentControllerFindById(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PurchaseProposalAttachmentControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>>
+export type PurchaseProposalAttachmentControllerFindByIdQueryError = ErrorType<PurchaseProposalAttachmentControllerFindById401 | PurchaseProposalAttachmentControllerFindById404>
+
+
+export function usePurchaseProposalAttachmentControllerFindById<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError = ErrorType<PurchaseProposalAttachmentControllerFindById401 | PurchaseProposalAttachmentControllerFindById404>>(
+ id: string,
+    params: undefined |  PurchaseProposalAttachmentControllerFindByIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePurchaseProposalAttachmentControllerFindById<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError = ErrorType<PurchaseProposalAttachmentControllerFindById401 | PurchaseProposalAttachmentControllerFindById404>>(
+ id: string,
+    params?: PurchaseProposalAttachmentControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePurchaseProposalAttachmentControllerFindById<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError = ErrorType<PurchaseProposalAttachmentControllerFindById401 | PurchaseProposalAttachmentControllerFindById404>>(
+ id: string,
+    params?: PurchaseProposalAttachmentControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a Purchase Proposal Attachment by id
+ */
+
+export function usePurchaseProposalAttachmentControllerFindById<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError = ErrorType<PurchaseProposalAttachmentControllerFindById401 | PurchaseProposalAttachmentControllerFindById404>>(
+ id: string,
+    params?: PurchaseProposalAttachmentControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPurchaseProposalAttachmentControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Delete a Purchase Proposal Attachment by id
+ */
+export const purchaseProposalAttachmentControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/purchase-proposal-attachments/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getPurchaseProposalAttachmentControllerDeleteByIdMutationOptions = <TError = ErrorType<PurchaseProposalAttachmentControllerDeleteById401 | PurchaseProposalAttachmentControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['purchaseProposalAttachmentControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  purchaseProposalAttachmentControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PurchaseProposalAttachmentControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerDeleteById>>>
+    
+    export type PurchaseProposalAttachmentControllerDeleteByIdMutationError = ErrorType<PurchaseProposalAttachmentControllerDeleteById401 | PurchaseProposalAttachmentControllerDeleteById404>
+
+    /**
+ * @summary Delete a Purchase Proposal Attachment by id
+ */
+export const usePurchaseProposalAttachmentControllerDeleteById = <TError = ErrorType<PurchaseProposalAttachmentControllerDeleteById401 | PurchaseProposalAttachmentControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof purchaseProposalAttachmentControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getPurchaseProposalAttachmentControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Create a new Purchase Proposal Attachment
+ */
+export const purchaseProposalAttachmentControllerCreate = (
+    newPurchaseProposalAttachment: BodyType<NewPurchaseProposalAttachment>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PurchaseProposalAttachment>(
+      {url: `/purchase-proposal-attachments`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newPurchaseProposalAttachment, signal
+    },
+      options);
+    }
+  
+
+
+export const getPurchaseProposalAttachmentControllerCreateMutationOptions = <TError = ErrorType<PurchaseProposalAttachmentControllerCreate401 | PurchaseProposalAttachmentControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCreate>>, TError,{data: BodyType<NewPurchaseProposalAttachment>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCreate>>, TError,{data: BodyType<NewPurchaseProposalAttachment>}, TContext> => {
+
+const mutationKey = ['purchaseProposalAttachmentControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCreate>>, {data: BodyType<NewPurchaseProposalAttachment>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  purchaseProposalAttachmentControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PurchaseProposalAttachmentControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCreate>>>
+    export type PurchaseProposalAttachmentControllerCreateMutationBody = BodyType<NewPurchaseProposalAttachment>
+    export type PurchaseProposalAttachmentControllerCreateMutationError = ErrorType<PurchaseProposalAttachmentControllerCreate401 | PurchaseProposalAttachmentControllerCreate422>
+
+    /**
+ * @summary Create a new Purchase Proposal Attachment
+ */
+export const usePurchaseProposalAttachmentControllerCreate = <TError = ErrorType<PurchaseProposalAttachmentControllerCreate401 | PurchaseProposalAttachmentControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCreate>>, TError,{data: BodyType<NewPurchaseProposalAttachment>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof purchaseProposalAttachmentControllerCreate>>,
+        TError,
+        {data: BodyType<NewPurchaseProposalAttachment>},
+        TContext
+      > => {
+
+      const mutationOptions = getPurchaseProposalAttachmentControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary List Purchase Proposal Attachments
+ */
+export const purchaseProposalAttachmentControllerFind = (
+    params?: PurchaseProposalAttachmentControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PurchaseProposalAttachmentWithRelations[]>(
+      {url: `/purchase-proposal-attachments`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPurchaseProposalAttachmentControllerFindQueryKey = (params?: PurchaseProposalAttachmentControllerFindParams,) => {
+    return [
+    `/purchase-proposal-attachments`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPurchaseProposalAttachmentControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError = ErrorType<PurchaseProposalAttachmentControllerFind401>>(params?: PurchaseProposalAttachmentControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPurchaseProposalAttachmentControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>> = ({ signal }) => purchaseProposalAttachmentControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PurchaseProposalAttachmentControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>>
+export type PurchaseProposalAttachmentControllerFindQueryError = ErrorType<PurchaseProposalAttachmentControllerFind401>
+
+
+export function usePurchaseProposalAttachmentControllerFind<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError = ErrorType<PurchaseProposalAttachmentControllerFind401>>(
+ params: undefined |  PurchaseProposalAttachmentControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePurchaseProposalAttachmentControllerFind<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError = ErrorType<PurchaseProposalAttachmentControllerFind401>>(
+ params?: PurchaseProposalAttachmentControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePurchaseProposalAttachmentControllerFind<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError = ErrorType<PurchaseProposalAttachmentControllerFind401>>(
+ params?: PurchaseProposalAttachmentControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List Purchase Proposal Attachments
+ */
+
+export function usePurchaseProposalAttachmentControllerFind<TData = Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError = ErrorType<PurchaseProposalAttachmentControllerFind401>>(
+ params?: PurchaseProposalAttachmentControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalAttachmentControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPurchaseProposalAttachmentControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Count Purchase Proposal Buyers
  */
 export const purchaseProposalBuyerControllerCount = (
@@ -20701,6 +21297,158 @@ export function usePurchaseProposalControllerCount<TData = Awaited<ReturnType<ty
 
 
 
+export const purchaseProposalControllerExport = (
+    params?: PurchaseProposalControllerExportParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/purchase-proposals/export`, method: 'GET',
+        params,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPurchaseProposalControllerExportQueryKey = (params?: PurchaseProposalControllerExportParams,) => {
+    return [
+    `/purchase-proposals/export`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPurchaseProposalControllerExportQueryOptions = <TData = Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError = ErrorType<unknown>>(params?: PurchaseProposalControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPurchaseProposalControllerExportQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof purchaseProposalControllerExport>>> = ({ signal }) => purchaseProposalControllerExport(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PurchaseProposalControllerExportQueryResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalControllerExport>>>
+export type PurchaseProposalControllerExportQueryError = ErrorType<unknown>
+
+
+export function usePurchaseProposalControllerExport<TData = Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError = ErrorType<unknown>>(
+ params: undefined |  PurchaseProposalControllerExportParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof purchaseProposalControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof purchaseProposalControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePurchaseProposalControllerExport<TData = Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PurchaseProposalControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof purchaseProposalControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof purchaseProposalControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePurchaseProposalControllerExport<TData = Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PurchaseProposalControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function usePurchaseProposalControllerExport<TData = Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PurchaseProposalControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof purchaseProposalControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPurchaseProposalControllerExportQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Converte uma proposta accettata em vendita
+ */
+export const purchaseProposalControllerConvertToSale = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Sale>(
+      {url: `/purchase-proposals/${id}/convert-to-sale`, method: 'POST', signal
+    },
+      options);
+    }
+  
+
+
+export const getPurchaseProposalControllerConvertToSaleMutationOptions = <TError = ErrorType<PurchaseProposalControllerConvertToSale401 | PurchaseProposalControllerConvertToSale404 | PurchaseProposalControllerConvertToSale422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerConvertToSale>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerConvertToSale>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['purchaseProposalControllerConvertToSale'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof purchaseProposalControllerConvertToSale>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  purchaseProposalControllerConvertToSale(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PurchaseProposalControllerConvertToSaleMutationResult = NonNullable<Awaited<ReturnType<typeof purchaseProposalControllerConvertToSale>>>
+    
+    export type PurchaseProposalControllerConvertToSaleMutationError = ErrorType<PurchaseProposalControllerConvertToSale401 | PurchaseProposalControllerConvertToSale404 | PurchaseProposalControllerConvertToSale422>
+
+    /**
+ * @summary Converte uma proposta accettata em vendita
+ */
+export const usePurchaseProposalControllerConvertToSale = <TError = ErrorType<PurchaseProposalControllerConvertToSale401 | PurchaseProposalControllerConvertToSale404 | PurchaseProposalControllerConvertToSale422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof purchaseProposalControllerConvertToSale>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof purchaseProposalControllerConvertToSale>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getPurchaseProposalControllerConvertToSaleMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
 /**
  * @summary Update a Purchase Proposal by id
  */
@@ -21170,6 +21918,95 @@ export function useRentalAdjustmentControllerCount<TData = Awaited<ReturnType<ty
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getRentalAdjustmentControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+export const rentalAdjustmentControllerExport = (
+    params?: RentalAdjustmentControllerExportParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/rental-adjustments/export`, method: 'GET',
+        params,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getRentalAdjustmentControllerExportQueryKey = (params?: RentalAdjustmentControllerExportParams,) => {
+    return [
+    `/rental-adjustments/export`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getRentalAdjustmentControllerExportQueryOptions = <TData = Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError = ErrorType<unknown>>(params?: RentalAdjustmentControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getRentalAdjustmentControllerExportQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>> = ({ signal }) => rentalAdjustmentControllerExport(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type RentalAdjustmentControllerExportQueryResult = NonNullable<Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>>
+export type RentalAdjustmentControllerExportQueryError = ErrorType<unknown>
+
+
+export function useRentalAdjustmentControllerExport<TData = Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError = ErrorType<unknown>>(
+ params: undefined |  RentalAdjustmentControllerExportParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useRentalAdjustmentControllerExport<TData = Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError = ErrorType<unknown>>(
+ params?: RentalAdjustmentControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useRentalAdjustmentControllerExport<TData = Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError = ErrorType<unknown>>(
+ params?: RentalAdjustmentControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useRentalAdjustmentControllerExport<TData = Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError = ErrorType<unknown>>(
+ params?: RentalAdjustmentControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getRentalAdjustmentControllerExportQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -22678,6 +23515,95 @@ export function useRentalContractControllerCount<TData = Awaited<ReturnType<type
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getRentalContractControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+export const rentalContractControllerExport = (
+    params?: RentalContractControllerExportParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/rental-contracts/export`, method: 'GET',
+        params,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getRentalContractControllerExportQueryKey = (params?: RentalContractControllerExportParams,) => {
+    return [
+    `/rental-contracts/export`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getRentalContractControllerExportQueryOptions = <TData = Awaited<ReturnType<typeof rentalContractControllerExport>>, TError = ErrorType<unknown>>(params?: RentalContractControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalContractControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getRentalContractControllerExportQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof rentalContractControllerExport>>> = ({ signal }) => rentalContractControllerExport(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof rentalContractControllerExport>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type RentalContractControllerExportQueryResult = NonNullable<Awaited<ReturnType<typeof rentalContractControllerExport>>>
+export type RentalContractControllerExportQueryError = ErrorType<unknown>
+
+
+export function useRentalContractControllerExport<TData = Awaited<ReturnType<typeof rentalContractControllerExport>>, TError = ErrorType<unknown>>(
+ params: undefined |  RentalContractControllerExportParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalContractControllerExport>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof rentalContractControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof rentalContractControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useRentalContractControllerExport<TData = Awaited<ReturnType<typeof rentalContractControllerExport>>, TError = ErrorType<unknown>>(
+ params?: RentalContractControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalContractControllerExport>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof rentalContractControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof rentalContractControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useRentalContractControllerExport<TData = Awaited<ReturnType<typeof rentalContractControllerExport>>, TError = ErrorType<unknown>>(
+ params?: RentalContractControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalContractControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useRentalContractControllerExport<TData = Awaited<ReturnType<typeof rentalContractControllerExport>>, TError = ErrorType<unknown>>(
+ params?: RentalContractControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof rentalContractControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getRentalContractControllerExportQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -25989,6 +26915,95 @@ export function useSaleControllerCount<TData = Awaited<ReturnType<typeof saleCon
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getSaleControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+export const saleControllerExport = (
+    params?: SaleControllerExportParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/sales/export`, method: 'GET',
+        params,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getSaleControllerExportQueryKey = (params?: SaleControllerExportParams,) => {
+    return [
+    `/sales/export`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getSaleControllerExportQueryOptions = <TData = Awaited<ReturnType<typeof saleControllerExport>>, TError = ErrorType<unknown>>(params?: SaleControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof saleControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getSaleControllerExportQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof saleControllerExport>>> = ({ signal }) => saleControllerExport(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof saleControllerExport>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type SaleControllerExportQueryResult = NonNullable<Awaited<ReturnType<typeof saleControllerExport>>>
+export type SaleControllerExportQueryError = ErrorType<unknown>
+
+
+export function useSaleControllerExport<TData = Awaited<ReturnType<typeof saleControllerExport>>, TError = ErrorType<unknown>>(
+ params: undefined |  SaleControllerExportParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof saleControllerExport>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof saleControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof saleControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useSaleControllerExport<TData = Awaited<ReturnType<typeof saleControllerExport>>, TError = ErrorType<unknown>>(
+ params?: SaleControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof saleControllerExport>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof saleControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof saleControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useSaleControllerExport<TData = Awaited<ReturnType<typeof saleControllerExport>>, TError = ErrorType<unknown>>(
+ params?: SaleControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof saleControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useSaleControllerExport<TData = Awaited<ReturnType<typeof saleControllerExport>>, TError = ErrorType<unknown>>(
+ params?: SaleControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof saleControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getSaleControllerExportQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

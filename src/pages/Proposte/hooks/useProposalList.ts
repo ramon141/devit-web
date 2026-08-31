@@ -24,6 +24,7 @@ export function useProposalList() {
 
   return {
     proposals: proposals ?? [],
+    where,
     isLoading,
     totalItems: countResult?.count ?? 0,
     pageSize,

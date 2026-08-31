@@ -31,6 +31,7 @@ export function createRentalContractSchema(t: TFunction) {
     }),
     noticeDays: z.string().optional(),
     notes: z.string().optional(),
+    stipulaDate: z.string().optional(),
     registeredAt: z.string().optional(),
     renewalDueDate: z.string().optional(),
     ownerAgentId: z.string().optional(),

@@ -130,6 +130,10 @@ export function buildRentalTableColumns(
       cell: (contract) => formatAmount(contract.rentAmount),
     },
     {
+      header: t('operazioni:locazioni.tableColumns.dataStipula'),
+      cell: (contract) => formatDate(contract.stipulaDate),
+    },
+    {
       header: t('operazioni:locazioni.tableColumns.inizio'),
       cell: (contract) => formatDate(contract.startDate),
     },

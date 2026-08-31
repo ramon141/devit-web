@@ -1,4 +1,4 @@
-import { PencilIcon, Trash2Icon } from 'lucide-react'
+import { ArrowRightLeftIcon, PencilIcon, Trash2Icon } from 'lucide-react'
 import type { TFunction } from 'i18next'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -17,13 +17,32 @@ type ProposalTableActionsProps = {
   proposal: PurchaseProposalWithRelations
   onEdit: (proposal: PurchaseProposalWithRelations) => void
   onDelete: (proposal: PurchaseProposalWithRelations) => void
+  onConvert: (proposal: PurchaseProposalWithRelations) => void
+  convertLabel: string
 }
 
-function ProposalTableActions({ proposal, onEdit, onDelete }: ProposalTableActionsProps) {
+function ProposalTableActions({
+  proposal,
+  onEdit,
+  onDelete,
+  onConvert,
+  convertLabel,
+}: ProposalTableActionsProps) {
   const locked = isLocked(proposal.status)
+  const canConvert = proposal.status === 'accepted' && !proposal.sale
 
   return (
     <>
+      {canConvert && (
+        <Button
+          variant="ghost"
+          size="icon-sm"
+          title={convertLabel}
+          onClick={() => onConvert(proposal)}
+        >
+          <ArrowRightLeftIcon className="size-4" />
+        </Button>
+      )}
       <Button variant="ghost" size="icon-sm" disabled={locked} onClick={() => onEdit(proposal)}>
         <PencilIcon className="size-4" />
       </Button>
@@ -38,12 +57,14 @@ type BuildProposalTableColumnsProps = {
   t: TFunction<'proposte'>
   onEdit: (proposal: PurchaseProposalWithRelations) => void
   onDelete: (proposal: PurchaseProposalWithRelations) => void
+  onConvert: (proposal: PurchaseProposalWithRelations) => void
 }
 
 export function buildProposalTableColumns({
   t,
   onEdit,
   onDelete,
+  onConvert,
 }: BuildProposalTableColumnsProps): DataTableColumn<PurchaseProposalWithRelations>[] {
   const statusOptions = getProposalStatusOptions(t)
 
@@ -68,7 +89,13 @@ export function buildProposalTableColumns({
       cellClassName: 'text-right',
       isActions: true,
       cell: (proposal) => (
-        <ProposalTableActions proposal={proposal} onEdit={onEdit} onDelete={onDelete} />
+        <ProposalTableActions
+          proposal={proposal}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          onConvert={onConvert}
+          convertLabel={t('convert.action')}
+        />
       ),
     },
   ]

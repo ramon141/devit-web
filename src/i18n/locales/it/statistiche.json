@@ -16,5 +16,9 @@
   "communicationsByChannel": {
     "title": "Comunicazioni per canale e stato",
     "description": "E-mail e WhatsApp inviati, raggruppati per stato"
+  },
+  "communicationsSummary": {
+    "title": "Riepilogo comunicazioni",
+    "description": "Totali per canale negli ultimi 30 giorni: consegnati, cliccati, letti, falliti"
   }
 }

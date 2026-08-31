@@ -12,6 +12,8 @@ import PropertyIndustrialeTab from '@/pages/Imoveis/Scheda/components/PropertyIn
 import PropertyTerrenoTab from '@/pages/Imoveis/Scheda/components/PropertyTerrenoTab'
 import PropertyStoricoTab from '@/pages/Imoveis/Scheda/components/PropertyStoricoTab'
 import PropertyTasseTab from '@/pages/Imoveis/Scheda/components/PropertyTasseTab'
+import PropertyFotoTab from '@/pages/Imoveis/Scheda/components/PropertyFotoTab'
+import PropertyDocumentiTab from '@/pages/Imoveis/Scheda/components/PropertyDocumentiTab'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyFormFieldsProps = {
@@ -30,11 +32,13 @@ function PropertyFormFields({ form, onSubmit, isSubmitting, propertyId }: Proper
     { value: 'localizzazione', label: t('formFields.steps.location'), step: 3, requiresId: false },
     { value: 'descrizione', label: t('formFields.steps.description'), step: 4, requiresId: false },
     { value: 'dettagli', label: t('formFields.steps.details'), step: 5, requiresId: true },
-    { value: 'commerciale', label: t('formFields.steps.commercial'), step: 6, requiresId: true },
-    { value: 'industriale', label: t('formFields.steps.industrial'), step: 7, requiresId: true },
-    { value: 'terreno', label: t('formFields.steps.land'), step: 8, requiresId: true },
-    { value: 'tasse', label: t('formFields.steps.taxes'), step: 9, requiresId: true },
-    { value: 'storico', label: t('formFields.steps.history'), step: 10, requiresId: true },
+    { value: 'foto', label: t('formFields.steps.photos'), step: 6, requiresId: true },
+    { value: 'documenti', label: t('formFields.steps.documents'), step: 7, requiresId: true },
+    { value: 'commerciale', label: t('formFields.steps.commercial'), step: 8, requiresId: true },
+    { value: 'industriale', label: t('formFields.steps.industrial'), step: 9, requiresId: true },
+    { value: 'terreno', label: t('formFields.steps.land'), step: 10, requiresId: true },
+    { value: 'tasse', label: t('formFields.steps.taxes'), step: 11, requiresId: true },
+    { value: 'storico', label: t('formFields.steps.history'), step: 12, requiresId: true },
   ]
 
   const stepperSteps = steps.map((step) => ({
@@ -51,6 +55,12 @@ function PropertyFormFields({ form, onSubmit, isSubmitting, propertyId }: Proper
       </TabsContent>
       <TabsContent value="dettagli">
         {propertyId && <PropertyDettagliTab propertyId={propertyId} />}
+      </TabsContent>
+      <TabsContent value="foto">
+        {propertyId && <PropertyFotoTab propertyId={propertyId} />}
+      </TabsContent>
+      <TabsContent value="documenti">
+        {propertyId && <PropertyDocumentiTab propertyId={propertyId} />}
       </TabsContent>
       <TabsContent value="prezzo">
         <PropertyPriceTab form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} propertyId={propertyId} />

@@ -48,6 +48,13 @@ function RentalFormFields({ form }: RentalFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        label={t('locazioni.formFields.stipulaDateLabel')}
+        error={errors.stipulaDate?.message}
+      >
+        <Input {...register('stipulaDate')} type="date" />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper
         label={t('locazioni.formFields.registeredAtLabel')}
         error={errors.registeredAt?.message}
       >

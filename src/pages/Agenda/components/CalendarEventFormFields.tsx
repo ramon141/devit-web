@@ -5,6 +5,9 @@ import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
+import SearchableSelect from '@/components/SearchableSelect'
+import { useLeadControllerFind, usePersonControllerFind } from '@/api/generated/api'
+import { PersonRole } from '@/api/generated/models'
 import {
   getEventTypeOptions,
   getConfirmationStatusOptions,
@@ -21,7 +24,7 @@ type CalendarEventFormFieldsProps = {
 
 function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
   const { t } = useTranslation('agenda')
-  const { register, control } = form
+  const { register, control, watch } = form
   const { errors } = useFormState({ control })
 
   const eventTypeOptions = getEventTypeOptions(t)
@@ -29,6 +32,15 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
   const reminderOptions = getReminderOptions(t)
   const recurrenceOptions = getRecurrenceOptions(t)
   const backgroundColorOptions = getBackgroundColorOptions(t)
+
+  const isAllDay = watch('allDay')
+
+  const { data: leads } = useLeadControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
+  const { data: owners } = usePersonControllerFind({
+    filter: { where: { role: PersonRole.owner }, order: ['name ASC'], limit: 200 },
+  })
+  const leadOptions = (leads ?? []).map((lead) => ({ value: lead.id ?? '', label: lead.name }))
+  const ownerOptions = (owners ?? []).map((owner) => ({ value: owner.id ?? '', label: owner.name }))
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -66,22 +78,69 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         <Input {...register('startDate')} type="date" />
       </FormFieldWrapper>
 
-      <div className="grid grid-cols-2 gap-4">
-        <FormFieldWrapper
-          label={t('agenda:formFields.startTime')}
-          required
-          error={errors.startTime?.message}
-        >
-          <Input {...register('startTime')} type="time" />
-        </FormFieldWrapper>
-        <FormFieldWrapper
-          label={t('agenda:formFields.endTime')}
-          required
-          error={errors.endTime?.message}
-        >
-          <Input {...register('endTime')} type="time" />
-        </FormFieldWrapper>
-      </div>
+      <Controller
+        control={control}
+        name="allDay"
+        render={({ field }) => (
+          <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+            <Switch checked={field.value} onCheckedChange={field.onChange} />
+            {t('agenda:formFields.allDay')}
+          </label>
+        )}
+      />
+
+      {isAllDay ? (
+        <div className="hidden sm:block" />
+      ) : (
+        <div className="grid grid-cols-2 gap-4">
+          <FormFieldWrapper
+            label={t('agenda:formFields.startTime')}
+            required
+            error={errors.startTime?.message}
+          >
+            <Input {...register('startTime')} type="time" />
+          </FormFieldWrapper>
+          <FormFieldWrapper
+            label={t('agenda:formFields.endTime')}
+            required
+            error={errors.endTime?.message}
+          >
+            <Input {...register('endTime')} type="time" />
+          </FormFieldWrapper>
+        </div>
+      )}
+
+      <FormFieldWrapper label={t('agenda:formFields.client')} error={errors.leadId?.message}>
+        <Controller
+          control={control}
+          name="leadId"
+          render={({ field }) => (
+            <SearchableSelect
+              value={field.value}
+              onValueChange={field.onChange}
+              options={leadOptions}
+              placeholder={t('agenda:formFields.clientPlaceholder')}
+              searchPlaceholder={t('agenda:formFields.clientSearchPlaceholder')}
+            />
+          )}
+        />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label={t('agenda:formFields.owner')} error={errors.ownerId?.message}>
+        <Controller
+          control={control}
+          name="ownerId"
+          render={({ field }) => (
+            <SearchableSelect
+              value={field.value}
+              onValueChange={field.onChange}
+              options={ownerOptions}
+              placeholder={t('agenda:formFields.ownerPlaceholder')}
+              searchPlaceholder={t('agenda:formFields.ownerSearchPlaceholder')}
+            />
+          )}
+        />
+      </FormFieldWrapper>
 
       <FormFieldWrapper
         label={t('agenda:formFields.confirmationStatus')}

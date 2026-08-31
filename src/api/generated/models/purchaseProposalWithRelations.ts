@@ -12,6 +12,7 @@ import type { Person } from './person';
 import type { Lead } from './lead';
 import type { User } from './user';
 import type { Sale } from './sale';
+import type { PurchaseProposalAttachment } from './purchaseProposalAttachment';
 
 /**
  * (tsType: PurchaseProposalWithRelations, schemaOptions: { includeRelations: true })
@@ -54,4 +55,5 @@ export interface PurchaseProposalWithRelations {
   sellerAgent?: User;
   createdBy?: User;
   sale?: Sale;
+  attachments?: PurchaseProposalAttachment[];
 }

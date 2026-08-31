@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PersonFilterOrder } from './personFilterOrder';
+import type { PersonFilterWhere } from './personFilterWhere';
 import type { PersonFilterFields } from './personFilterFields';
 import type { PersonFilterIncludeItem } from './personFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PersonFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PersonFilterOrder;
+  where?: PersonFilterWhere;
   fields?: PersonFilterFields;
   include?: PersonFilterIncludeItem[];
 }

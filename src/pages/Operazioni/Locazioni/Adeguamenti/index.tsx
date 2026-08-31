@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
+import ExportMenu from '@/components/ExportMenu'
 import { useRentalAdjustments } from '@/pages/Operazioni/Locazioni/Adeguamenti/hooks/useRentalAdjustments'
 import EligibleContractsTable from '@/pages/Operazioni/Locazioni/Adeguamenti/components/EligibleContractsTable'
 import GeneratedAdjustmentsTable from '@/pages/Operazioni/Locazioni/Adeguamenti/components/GeneratedAdjustmentsTable'
@@ -39,6 +40,8 @@ function AdeguamentiCanone() {
         <Button onClick={generateAdjustments} disabled={!indexPercent || isGenerating}>
           {t('locazioni.adeguamenti.index.generateButton')}
         </Button>
+
+        <ExportMenu path="/rental-adjustments/export" />
       </div>
 
       <EligibleContractsTable

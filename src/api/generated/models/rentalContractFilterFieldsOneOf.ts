@@ -19,6 +19,7 @@ export type RentalContractFilterFieldsOneOf = {
   situation?: boolean;
   noticeDays?: boolean;
   notes?: boolean;
+  stipulaDate?: boolean;
   registeredAt?: boolean;
   renewalDueDate?: boolean;
   createdAt?: boolean;

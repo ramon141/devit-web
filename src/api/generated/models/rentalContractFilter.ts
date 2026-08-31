@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { RentalContractFilterOrder } from './rentalContractFilterOrder';
+import type { RentalContractFilterWhere } from './rentalContractFilterWhere';
 import type { RentalContractFilterFields } from './rentalContractFilterFields';
 import type { RentalContractFilterIncludeItem } from './rentalContractFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface RentalContractFilter {
   /** @minimum 0 */
   skip?: number;
   order?: RentalContractFilterOrder;
+  where?: RentalContractFilterWhere;
   fields?: RentalContractFilterFields;
   include?: RentalContractFilterIncludeItem[];
 }

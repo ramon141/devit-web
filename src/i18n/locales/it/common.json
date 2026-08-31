@@ -108,5 +108,10 @@
     "contract_expired": "Contratto scaduto",
     "proposal_received": "Proposta ricevuta",
     "sale_completed": "Vendita completata"
+  },
+  "exportMenu": {
+    "label": "Esporta",
+    "excel": "Excel",
+    "pdf": "PDF"
   }
 }

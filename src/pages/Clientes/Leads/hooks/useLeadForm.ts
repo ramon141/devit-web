@@ -23,6 +23,10 @@ const emptyValues: LeadFormValues = {
   firstContactAt: '',
   status: 'new',
   source: undefined,
+  requestType: undefined,
+  desiredCity: '',
+  maxBudget: '',
+  subject: '',
   lossReason: '',
   notes: '',
   assignedToId: '',
@@ -55,6 +59,10 @@ export function useLeadForm({ lead, onSaved }: UseLeadFormProps) {
             firstContactAt: lead.firstContactAt?.slice(0, 10) ?? '',
             status: lead.status ?? 'new',
             source: lead.source ?? undefined,
+            requestType: lead.requestType ?? undefined,
+            desiredCity: lead.desiredCity ?? '',
+            maxBudget: lead.maxBudget != null ? String(lead.maxBudget) : '',
+            subject: lead.subject ?? '',
             lossReason: lead.lossReason ?? '',
             notes: lead.notes ?? '',
             assignedToId: lead.assignedToId ?? '',
@@ -69,7 +77,11 @@ export function useLeadForm({ lead, onSaved }: UseLeadFormProps) {
 
   function onSubmit(values: LeadFormValues) {
     const cleaned = emptyStringsToNull(values)
-    const data = { ...cleaned, firstContactAt: toISODateOrNull(values.firstContactAt) }
+    const data = {
+      ...cleaned,
+      firstContactAt: toISODateOrNull(values.firstContactAt),
+      maxBudget: values.maxBudget ? Number(values.maxBudget) : null,
+    }
 
     const promise = lead?.id ? update({ id: lead.id, data }) : create({ data })
 

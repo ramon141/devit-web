@@ -30,6 +30,8 @@ export interface RentalContractPartialExcludingCreatedAtUpdatedAt {
   /** @nullable */
   notes?: string | null;
   /** @nullable */
+  stipulaDate?: string | null;
+  /** @nullable */
   registeredAt?: string | null;
   /** @nullable */
   renewalDueDate?: string | null;

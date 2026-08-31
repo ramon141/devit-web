@@ -16,4 +16,5 @@ export const PersonWithRelationsRole = {
   buyer: 'buyer',
   guarantor: 'guarantor',
   contact: 'contact',
+  supplier: 'supplier',
 } as const;

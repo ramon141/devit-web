@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import ListToolbar from '@/components/ListToolbar'
+import ExportMenu from '@/components/ExportMenu'
 import TablePagination from '@/components/TablePagination'
 import type { SaleWithRelations } from '@/api/generated/models'
 import { useSaleList } from '@/pages/Operazioni/Vendite/hooks/useSaleList'
@@ -9,7 +10,7 @@ import SaleFormModal from '@/pages/Operazioni/Vendite/components/SaleFormModal'
 
 function Vendite() {
   const { t } = useTranslation('operazioni')
-  const { sales, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
+  const { sales, where, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useSaleList()
   const { open, setOpen, editing, openNew, openEdit } = useEditModalState<SaleWithRelations>()
 
@@ -21,6 +22,7 @@ function Vendite() {
         searchPlaceholder={t('vendite.index.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('vendite.index.newLabel')}
+        actions={<ExportMenu path="/sales/export" params={{ filter: { where } }} />}
       />
 
       <SaleTable sales={sales} isLoading={isLoading} onEdit={openEdit} />

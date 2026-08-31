@@ -25,7 +25,8 @@ export function getProposalStatusOptions(t: TFunction<'proposte'>) {
 }
 
 export function createProposalSchema(t: TFunction<'proposte'>) {
-  return z.object({
+  return z
+    .object({
     number: z.string().min(1, t('schema.numberRequired')),
     propertyId: z.string().min(1, t('schema.propertyRequired')),
     buyerId: z.string().min(1, t('schema.buyerRequired')),
@@ -43,7 +44,19 @@ export function createProposalSchema(t: TFunction<'proposte'>) {
     leadId: z.string().optional(),
     assignedToId: z.string().optional(),
     sellerAgentId: z.string().optional(),
-  })
+    })
+    .superRefine((values, ctx) => {
+      const rejected = values.status === PurchaseProposalStatus.rejected
+      const hasReason = (values.rejectionReason ?? '').trim().length > 0
+
+      if (rejected && !hasReason) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['rejectionReason'],
+          message: t('schema.rejectionReasonRequired'),
+        })
+      }
+    })
 }
 
 export type ProposalFormValues = z.infer<ReturnType<typeof createProposalSchema>>

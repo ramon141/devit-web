@@ -24,5 +24,12 @@
   "todayAppointmentsCard": {
     "title": "Impegni di oggi",
     "empty": "Nessun risultato."
+  },
+  "leadsBySourceCard": {
+    "title": "Provenienza richieste",
+    "total": "Totale: {{count}}"
+  },
+  "dashboardWindow": {
+    "option": "Ultimi {{days}} giorni"
   }
 }

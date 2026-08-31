@@ -12,7 +12,7 @@ import type { EventClickArg, EventDropArg, DatesSetArg } from '@fullcalendar/cor
 import type { EventResizeDoneArg } from '@fullcalendar/interaction'
 import AppLayout from '@/components/layout/AppLayout'
 import ConfirmPopup from '@/components/ConfirmPopup'
-import type { CalendarEvent } from '@/api/generated/models'
+import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { useCalendarEventList } from '@/pages/Agenda/hooks/useCalendarEventList'
 import { useDeleteCalendarEvent } from '@/pages/Agenda/hooks/useDeleteCalendarEvent'
 import { useRescheduleCalendarEvent } from '@/pages/Agenda/hooks/useRescheduleCalendarEvent'
@@ -31,9 +31,9 @@ function Agenda() {
   const { handleDelete } = useDeleteCalendarEvent()
   const { reschedule } = useRescheduleCalendarEvent()
   const [formOpen, setFormOpen] = useState(false)
-  const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null)
-  const [previewEvent, setPreviewEvent] = useState<CalendarEvent | null>(null)
-  const [deleteTarget, setDeleteTarget] = useState<CalendarEvent | null>(null)
+  const [editingEvent, setEditingEvent] = useState<CalendarEventWithRelations | null>(null)
+  const [previewEvent, setPreviewEvent] = useState<CalendarEventWithRelations | null>(null)
+  const [deleteTarget, setDeleteTarget] = useState<CalendarEventWithRelations | null>(null)
   const [defaultDate, setDefaultDate] = useState<string | undefined>(undefined)
 
   const calendarEvents = events.map((event) => ({
@@ -53,7 +53,7 @@ function Agenda() {
   }
 
   function handleEventClick(arg: EventClickArg) {
-    setPreviewEvent(arg.event.extendedProps.event as CalendarEvent)
+    setPreviewEvent(arg.event.extendedProps.event as CalendarEventWithRelations)
   }
 
   function handleDateClick(dateStr: string) {

@@ -21,6 +21,7 @@ export function useSaleList() {
 
   return {
     sales: sales ?? [],
+    where,
     isLoading,
     totalItems: countResult?.count ?? 0,
     pageSize,

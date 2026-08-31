@@ -72,7 +72,8 @@
     "amountRequired": "Inserisci il valore della proposta",
     "paymentMethodRequired": "Seleziona una modalità",
     "statusRequired": "Seleziona uno stato",
-    "dateRequired": "Inserisci la data"
+    "dateRequired": "Inserisci la data",
+    "rejectionReasonRequired": "Motivo del rifiuto obbligatorio"
   },
   "deleteProposal": {
     "pending": "Eliminazione proposta...",
@@ -92,5 +93,25 @@
     "breadcrumb": "Proposte",
     "searchPlaceholder": "Cerca per numero...",
     "newLabel": "Nuova proposta"
+  },
+  "convert": {
+    "action": "Converti in vendita",
+    "pending": "Conversione in corso...",
+    "success": "Proposta convertita in vendita",
+    "error": "Impossibile convertire la proposta",
+    "confirmTitle": "Converti in vendita",
+    "confirmDescription": "Creare una vendita dalla proposta {{number}}?",
+    "confirmLabel": "Converti"
+  },
+  "attachments": {
+    "title": "Allegati",
+    "uploadLabel": "Carica allegati",
+    "emptyMessage": "Nessun allegato",
+    "uploading": "Caricamento in corso...",
+    "uploadSuccess": "Allegato caricato",
+    "uploadError": "Impossibile caricare l'allegato",
+    "deleting": "Rimozione in corso...",
+    "deleteSuccess": "Allegato rimosso",
+    "deleteError": "Impossibile rimuovere l'allegato"
   }
 }

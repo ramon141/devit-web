@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next'
+import { CheckIcon } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { RentalContractWithRelations } from '@/api/generated/models'
 import { formatDate } from '@/utils/formatDate'
@@ -7,9 +9,11 @@ import { formatDate } from '@/utils/formatDate'
 type RegistrazioniTableProps = {
   contracts: RentalContractWithRelations[]
   isLoading: boolean
+  onMarkRegistered: (id: string) => void
+  isMarking: boolean
 }
 
-function RegistrazioniTable({ contracts, isLoading }: RegistrazioniTableProps) {
+function RegistrazioniTable({ contracts, isLoading, onMarkRegistered, isMarking }: RegistrazioniTableProps) {
   const { t } = useTranslation('operazioni')
 
   const columns: DataTableColumn<RentalContractWithRelations>[] = [
@@ -46,6 +50,24 @@ function RegistrazioniTable({ contracts, isLoading }: RegistrazioniTableProps) {
     {
       header: t('locazioni.registrazioni.table.inquilino'),
       cell: (contract) => contract.tenant?.name ?? '—',
+    },
+    {
+      header: t('locazioni.registrazioni.table.azioni'),
+      headerClassName: 'w-24 text-right',
+      cellClassName: 'text-right',
+      isActions: true,
+      cell: (contract) =>
+        contract.registeredAt ? null : (
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            disabled={isMarking}
+            onClick={() => contract.id && onMarkRegistered(contract.id)}
+            title={t('locazioni.registrazioni.table.markRegistered')}
+          >
+            <CheckIcon className="size-4" />
+          </Button>
+        ),
     },
   ]
 

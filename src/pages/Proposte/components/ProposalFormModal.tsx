@@ -4,6 +4,7 @@ import FormModalFooter from '@/components/FormModalFooter'
 import type { PurchaseProposalWithRelations } from '@/api/generated/models'
 import { useProposalForm } from '@/pages/Proposte/hooks/useProposalForm'
 import ProposalFormFields from '@/pages/Proposte/components/ProposalFormFields'
+import ProposalAttachmentsManager from '@/pages/Proposte/components/ProposalAttachmentsManager'
 
 type ProposalFormModalProps = {
   open: boolean
@@ -29,6 +30,12 @@ function ProposalFormModal({ open, onOpenChange, proposal }: ProposalFormModalPr
 
         <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
       </form>
+
+      {proposal?.id && (
+        <div className="mt-4 border-t pt-4">
+          <ProposalAttachmentsManager proposalId={proposal.id} />
+        </div>
+      )}
     </ModalRegister>
   )
 }

@@ -23,6 +23,7 @@ export const RentalContractFilter1FieldsOneOfTwoItem = {
   situation: 'situation',
   noticeDays: 'noticeDays',
   notes: 'notes',
+  stipulaDate: 'stipulaDate',
   registeredAt: 'registeredAt',
   renewalDueDate: 'renewalDueDate',
   createdAt: 'createdAt',

@@ -16,4 +16,5 @@ export const PersonPartialExcludingPhotoIdCreatedAtUpdatedAtRole = {
   buyer: 'buyer',
   guarantor: 'guarantor',
   contact: 'contact',
+  supplier: 'supplier',
 } as const;

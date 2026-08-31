@@ -6,14 +6,17 @@
   },
   "anagrafica": {
     "searchPlaceholder": "Buscar um cliente por nome...",
-    "newLabel": "Novo cliente"
+    "newLabel": "Novo cliente",
+    "roleFilterLabel": "Papel",
+    "roleFilterAll": "Todos os papéis"
   },
   "personRoleOptions": {
     "owner": "Proprietário",
     "tenant": "Inquilino",
     "buyer": "Comprador",
     "guarantor": "Fiador",
-    "contact": "Contato"
+    "contact": "Contato",
+    "supplier": "Fornecedor"
   },
   "personSchema": {
     "nameMin": "Digite pelo menos 2 caracteres",
@@ -128,7 +131,12 @@
     "assignedTo": "Responsável",
     "assignedToPlaceholder": "Nenhum",
     "lossReason": "Motivo da perda",
-    "notes": "Observações"
+    "notes": "Observações",
+    "requestType": "Tipo de solicitação",
+    "requestTypePlaceholder": "Nenhum",
+    "desiredCity": "Cidade desejada",
+    "maxBudget": "Orçamento máximo",
+    "subject": "Assunto"
   },
   "leadFormModal": {
     "editTitle": "Editar solicitação",
@@ -190,5 +198,10 @@
     "pendingDelete": "Excluindo anexo...",
     "successDelete": "Anexo excluído com sucesso!",
     "errorDelete": "Erro ao excluir o anexo"
+  },
+  "leadRequestTypeOptions": {
+    "search": "Busca",
+    "valuation": "Avaliação",
+    "contact": "Contato"
   }
 }

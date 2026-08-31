@@ -1,11 +1,24 @@
+import { useState } from 'react'
 import { usePersonControllerCount, usePersonControllerFind } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
 
 export function usePersonList() {
   const { search, debouncedSearch, page, setPage, pageSize, skip, onSearchChange } =
     useListPagination()
+  const [roleFilter, setRoleFilter] = useState('')
 
-  const where = debouncedSearch ? { name: { ilike: `%${debouncedSearch}%` } } : undefined
+  const conditions: Record<string, unknown>[] = []
+
+  if (debouncedSearch) {
+    conditions.push({ name: { ilike: `%${debouncedSearch}%` } })
+  }
+
+  if (roleFilter) {
+    conditions.push({ role: roleFilter })
+  }
+
+  const where =
+    conditions.length === 0 ? undefined : conditions.length === 1 ? conditions[0] : { and: conditions }
 
   const { data: people, isLoading } = usePersonControllerFind({
     filter: {
@@ -21,6 +34,7 @@ export function usePersonList() {
 
   return {
     people: people ?? [],
+    where,
     isLoading,
     totalItems: countResult?.count ?? 0,
     pageSize,
@@ -28,5 +42,7 @@ export function usePersonList() {
     setPage,
     search,
     onSearchChange,
+    roleFilter,
+    setRoleFilter,
   }
 }

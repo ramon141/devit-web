@@ -1,10 +1,15 @@
 import type { TFunction } from 'i18next'
 import { RefreshCwIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { SalesRentalsReportControllerUpcomingRenewals200Item } from '@/api/generated/models'
 import { formatAmount } from '@/utils/formatAmount'
 import { formatDate } from '@/utils/formatDate'
+
+function isOverdue(dueDate?: string) {
+  return !!dueDate && new Date(dueDate) < new Date(new Date().toDateString())
+}
 
 type BuildScadenziarioTableColumnsProps = {
   onRenew: (contract: SalesRentalsReportControllerUpcomingRenewals200Item) => void
@@ -21,7 +26,16 @@ export function buildScadenziarioTableColumns(
     },
     {
       header: t('operazioni:locazioni.scadenziario.tableColumns.scadenza'),
-      cell: (contract) => formatDate(contract.renewalDueDate),
+      cell: (contract) => (
+        <span className="flex items-center gap-2">
+          {formatDate(contract.renewalDueDate)}
+          {isOverdue(contract.renewalDueDate) && (
+            <Badge variant="destructive">
+              {t('operazioni:locazioni.scadenziario.tableColumns.scaduto')}
+            </Badge>
+          )}
+        </span>
+      ),
     },
     {
       header: t('operazioni:locazioni.scadenziario.tableColumns.affitto'),

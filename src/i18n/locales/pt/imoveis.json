@@ -132,7 +132,9 @@
       "industrial": "Industrial",
       "land": "Terreno",
       "taxes": "Taxas",
-      "history": "Histórico"
+      "history": "Histórico",
+      "photos": "Fotos",
+      "documents": "Documentos"
     }
   },
   "scheda": {
@@ -343,6 +345,31 @@
     "terrenoTab": {
       "save": "Salvar dados do terreno",
       "otherDataTitle": "Outros dados"
+    },
+    "fotoTab": {
+      "uploadLabel": "Enviar fotos",
+      "empty": "Nenhuma foto enviada",
+      "setCover": "Definir como capa",
+      "remove": "Remover",
+      "pendingUpload": "Enviando fotos...",
+      "successUpload": "Fotos enviadas",
+      "errorUpload": "Erro ao enviar as fotos",
+      "pendingDelete": "Removendo foto...",
+      "successDelete": "Foto removida",
+      "errorDelete": "Erro ao remover a foto",
+      "pendingCover": "Atualizando capa...",
+      "successCover": "Capa atualizada",
+      "errorCover": "Erro ao atualizar a capa"
+    },
+    "documentiTab": {
+      "uploadLabel": "Enviar documentos",
+      "empty": "Nenhum documento enviado",
+      "pendingUpload": "Enviando documentos...",
+      "successUpload": "Documentos enviados",
+      "errorUpload": "Erro ao enviar os documentos",
+      "pendingDelete": "Removendo documento...",
+      "successDelete": "Documento removido",
+      "errorDelete": "Erro ao remover o documento"
     }
   },
   "toasts": {

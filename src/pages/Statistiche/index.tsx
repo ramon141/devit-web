@@ -18,7 +18,8 @@ function Statistiche() {
   const { t: tCommon } = useTranslation('common')
   const channelLabels = getCommunicationChannelLabels(tCommon)
   const COMMUNICATION_STATUS_LABELS = getCommunicationStatusLabels(tCommon)
-  const { leadsByStatus, salesByStatus, communicationsByChannel } = useStatisticsReports()
+  const { leadsByStatus, salesByStatus, communicationsByChannel, communicationsSummary } =
+    useStatisticsReports()
 
   const leadStatusLabels: Record<string, string> = Object.fromEntries(
     getLeadStatusOptions(tClientes).map((option) => [option.value, option.label])
@@ -27,6 +28,15 @@ function Statistiche() {
   const saleStatusLabels: Record<string, string> = Object.fromEntries(
     getSaleStatusOptions(tOperazioni).map((option) => [option.value, option.label])
   )
+
+  const summaryMetrics = ['delivered', 'clicked', 'read', 'failed'] as const
+  const communicationsSummaryCategories = communicationsSummary.map(
+    (row) => channelLabels[row.channel ?? ''] ?? row.channel ?? ''
+  )
+  const communicationsSummarySeries = summaryMetrics.map((metric) => ({
+    name: COMMUNICATION_STATUS_LABELS[metric] ?? metric,
+    data: communicationsSummary.map((row) => row[metric] ?? 0),
+  }))
 
   const channels = [...new Set(communicationsByChannel.map((row) => row.channel ?? ''))]
   const statuses = [...new Set(communicationsByChannel.map((row) => row.status ?? ''))]
@@ -82,6 +92,19 @@ function Statistiche() {
               categories={statuses.map((status) => COMMUNICATION_STATUS_LABELS[status] ?? status)}
               series={communicationsSeries}
               stacked
+            />
+          </CardContent>
+        </Card>
+
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle>{t('communicationsSummary.title')}</CardTitle>
+            <CardDescription>{t('communicationsSummary.description')}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <BarChart
+              categories={communicationsSummaryCategories}
+              series={communicationsSummarySeries}
             />
           </CardContent>
         </Card>

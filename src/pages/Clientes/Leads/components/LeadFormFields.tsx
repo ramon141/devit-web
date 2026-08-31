@@ -6,6 +6,7 @@ import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import { useUserControllerFind } from '@/api/generated/api'
 import {
+  getLeadRequestTypeOptions,
   getLeadSourceOptions,
   getLeadStatusOptions,
   type LeadFormValues,
@@ -23,6 +24,7 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
   const userOptions = (users ?? []).map((user) => ({ value: user.id ?? '', label: user.fullName }))
   const leadStatusOptions = getLeadStatusOptions(t)
   const leadSourceOptions = getLeadSourceOptions(t)
+  const leadRequestTypeOptions = getLeadRequestTypeOptions(t)
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -74,6 +76,36 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
             />
           )}
         />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper
+        label={t('leadFormFields.requestType')}
+        error={errors.requestType?.message}
+      >
+        <Controller
+          control={control}
+          name="requestType"
+          render={({ field }) => (
+            <SelectField
+              value={field.value ?? undefined}
+              onValueChange={field.onChange}
+              options={leadRequestTypeOptions}
+              placeholder={t('leadFormFields.requestTypePlaceholder')}
+            />
+          )}
+        />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label={t('leadFormFields.desiredCity')} error={errors.desiredCity?.message}>
+        <Input {...register('desiredCity')} />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label={t('leadFormFields.maxBudget')} error={errors.maxBudget?.message}>
+        <Input {...register('maxBudget')} type="number" min={0} />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper label={t('leadFormFields.subject')} error={errors.subject?.message}>
+        <Input {...register('subject')} />
       </FormFieldWrapper>
 
       <FormFieldWrapper

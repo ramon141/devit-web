@@ -10,7 +10,7 @@ import {
   useCalendarEventControllerCreate,
   useCalendarEventControllerUpdateById,
 } from '@/api/generated/api'
-import type { CalendarEvent } from '@/api/generated/models'
+import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
@@ -26,6 +26,9 @@ function emptyValues(defaultDate?: string): CalendarEventFormValues {
     startDate: defaultDate ?? dayjs().format('YYYY-MM-DD'),
     startTime: '09:00',
     endTime: '10:00',
+    allDay: false,
+    leadId: '',
+    ownerId: '',
     place: '',
     confirmationStatus: 'pending',
     reminder: 'none',
@@ -37,13 +40,16 @@ function emptyValues(defaultDate?: string): CalendarEventFormValues {
   }
 }
 
-function eventToFormValues(event: CalendarEvent): CalendarEventFormValues {
+function eventToFormValues(event: CalendarEventWithRelations): CalendarEventFormValues {
   return {
     title: event.title,
     type: event.type,
     startDate: dayjs(event.startAt).format('YYYY-MM-DD'),
     startTime: dayjs(event.startAt).format('HH:mm'),
     endTime: dayjs(event.endAt).format('HH:mm'),
+    allDay: event.allDay ?? false,
+    leadId: event.leadId ?? '',
+    ownerId: event.ownerId ?? '',
     place: event.place ?? '',
     confirmationStatus: event.confirmationStatus ?? 'pending',
     reminder: event.reminder ?? 'none',
@@ -56,7 +62,7 @@ function eventToFormValues(event: CalendarEvent): CalendarEventFormValues {
 }
 
 type UseCalendarEventFormProps = {
-  event?: CalendarEvent | null
+  event?: CalendarEventWithRelations | null
   defaultDate?: string
   onSaved: () => void
 }
@@ -79,6 +85,15 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
 
   function onSubmit(values: CalendarEventFormValues) {
     const cleaned = emptyStringsToNull(values)
+
+    // allDay: ignora os horários e usa os limites do dia
+    const start = values.allDay
+      ? dayjs(values.startDate).startOf('day')
+      : dayjs(`${values.startDate}T${values.startTime}`)
+    const end = values.allDay
+      ? dayjs(values.startDate).endOf('day')
+      : dayjs(`${values.startDate}T${values.endTime}`)
+
     const data = {
       title: values.title,
       type: values.type,
@@ -86,12 +101,15 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
       reminder: values.reminder,
       recurrence: values.recurrence,
       private: values.private,
+      allDay: values.allDay,
+      leadId: cleaned.leadId,
+      ownerId: cleaned.ownerId,
       place: cleaned.place,
       description: cleaned.description,
       keysLocation: cleaned.keysLocation,
       backgroundColor: cleaned.backgroundColor,
-      startAt: dayjs(`${values.startDate}T${values.startTime}`).toISOString(),
-      endAt: dayjs(`${values.startDate}T${values.endTime}`).toISOString(),
+      startAt: start.toISOString(),
+      endAt: end.toISOString(),
     }
 
     const promise = event?.id ? update({ id: event.id, data }) : create({ data })

@@ -72,7 +72,14 @@
     "recurrence": "Ricorrenza",
     "eventColor": "Colore evento",
     "privateEvent": "Impegno privato",
-    "description": "Descrizione"
+    "description": "Descrizione",
+    "allDay": "Giornata intera",
+    "client": "Cliente",
+    "clientPlaceholder": "Seleziona un cliente",
+    "clientSearchPlaceholder": "Cerca un cliente...",
+    "owner": "Proprietario",
+    "ownerPlaceholder": "Seleziona un proprietario",
+    "ownerSearchPlaceholder": "Cerca un proprietario..."
   },
   "formModal": {
     "editTitle": "Modifica impegno",
@@ -106,7 +113,11 @@
     "typeLabel": "Tipo:",
     "placeLabel": "Luogo:",
     "close": "Chiudi",
-    "edit": "Modifica"
+    "edit": "Modifica",
+    "clientLabel": "Cliente:",
+    "ownerLabel": "Proprietario:",
+    "createdByLabel": "Creato da:",
+    "propertiesLabel": "Immobili collegati:"
   },
   "toasts": {
     "attachments": {

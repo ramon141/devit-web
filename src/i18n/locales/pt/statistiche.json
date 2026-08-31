@@ -16,5 +16,9 @@
   "communicationsByChannel": {
     "title": "Comunicações por canal e status",
     "description": "E-mails e WhatsApp enviados, agrupados por status"
+  },
+  "communicationsSummary": {
+    "title": "Resumo de comunicações",
+    "description": "Totais por canal nos últimos 30 dias: entregues, clicados, lidos, falhados"
   }
 }

@@ -86,6 +86,9 @@ export function createCalendarEventSchema(t: TFunction) {
     startDate: z.string().min(1, t('agenda:schema.startDateRequired')),
     startTime: z.string().min(1, t('agenda:schema.startTimeRequired')),
     endTime: z.string().min(1, t('agenda:schema.endTimeRequired')),
+    allDay: z.boolean(),
+    leadId: z.string().optional(),
+    ownerId: z.string().optional(),
     place: z.string().optional(),
     confirmationStatus: z.enum(CalendarEventConfirmationStatus, {
       error: t('agenda:schema.confirmationStatusRequired'),
