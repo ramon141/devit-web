@@ -22,7 +22,10 @@ export interface CommunicationLog {
   updatedAt: string;
   /** @nullable */
   sentById?: string | null;
-  personId: string;
+  /** @nullable */
+  personId?: string | null;
   /** @nullable */
   propertyId?: string | null;
+  /** @nullable */
+  leadId?: string | null;
 }

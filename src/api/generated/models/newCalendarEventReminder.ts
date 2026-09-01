@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type NewCalendarEventReminder = typeof NewCalendarEventReminder[keyof typeof NewCalendarEventReminder];
+/**
+ * @nullable
+ */
+export type NewCalendarEventReminder = typeof NewCalendarEventReminder[keyof typeof NewCalendarEventReminder] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

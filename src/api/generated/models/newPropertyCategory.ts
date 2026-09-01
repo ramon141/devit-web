@@ -19,5 +19,6 @@ export interface NewPropertyCategory {
   kind?: NewPropertyCategoryKind;
   /** @nullable */
   displayOrder?: number | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
 }

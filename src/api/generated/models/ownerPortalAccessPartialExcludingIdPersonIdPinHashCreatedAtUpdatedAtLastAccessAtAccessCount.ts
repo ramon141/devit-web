@@ -11,5 +11,6 @@
  */
 export interface OwnerPortalAccessPartialExcludingIdPersonIdPinHashCreatedAtUpdatedAtLastAccessAtAccessCount {
   email?: string;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
 }

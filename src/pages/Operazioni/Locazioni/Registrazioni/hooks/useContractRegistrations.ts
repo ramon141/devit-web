@@ -9,6 +9,7 @@ import {
 } from '@/api/generated/api'
 import { useToast } from '@/contexts/ToastContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
+import { toISODateOrNull } from '@/utils/toISODateOrNull'
 
 export function useContractRegistrations() {
   const today = dayjs().toISOString()
@@ -28,7 +29,7 @@ export function useContractRegistrations() {
   })
 
   function markRegistered(id: string) {
-    const promise = update({ id, data: { registeredAt: new Date().toISOString().slice(0, 10) } })
+    const promise = update({ id, data: { registeredAt: toISODateOrNull(new Date().toISOString()) } })
 
     toastPromise(promise, {
       pending: t('locazioni.registrazioni.table.marking'),

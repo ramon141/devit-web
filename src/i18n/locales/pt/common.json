@@ -108,7 +108,8 @@
     "contract_expiring_soon": "Contrato a vencer",
     "contract_expired": "Contrato vencido",
     "proposal_received": "Proposta recebida",
-    "sale_completed": "Venda concluída"
+    "sale_completed": "Venda concluída",
+    "event_reminder": "Lembrete de evento"
   },
   "exportMenu": {
     "label": "Exportar",

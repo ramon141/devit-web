@@ -19,17 +19,23 @@ export interface NewCalendarEvent {
   description?: string | null;
   startAt: string;
   endAt: string;
-  allDay?: boolean;
-  occurred?: boolean;
+  /** @nullable */
+  allDay?: boolean | null;
+  /** @nullable */
+  occurred?: boolean | null;
   /** @nullable */
   place?: string | null;
   /** @nullable */
   backgroundColor?: string | null;
+  /** @nullable */
   confirmationStatus?: NewCalendarEventConfirmationStatus;
-  private?: boolean;
+  /** @nullable */
+  private?: boolean | null;
   /** @nullable */
   keysLocation?: string | null;
+  /** @nullable */
   recurrence?: NewCalendarEventRecurrence;
+  /** @nullable */
   reminder?: NewCalendarEventReminder;
   /** @nullable */
   createdById?: string | null;

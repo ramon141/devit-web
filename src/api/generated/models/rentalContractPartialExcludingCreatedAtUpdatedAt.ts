@@ -24,6 +24,7 @@ export interface RentalContractPartialExcludingCreatedAtUpdatedAt {
   depositAmount?: number | null;
   /** @nullable */
   adjustmentIndex?: string | null;
+  /** @nullable */
   situation?: RentalContractPartialExcludingCreatedAtUpdatedAtSituation;
   /** @nullable */
   noticeDays?: number | null;

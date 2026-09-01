@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder = typeof CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder[keyof typeof CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder];
+/**
+ * @nullable
+ */
+export type CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder = typeof CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder[keyof typeof CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

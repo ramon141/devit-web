@@ -13,6 +13,13 @@
     "comingSoonTitle": "Prossimamente",
     "comingSoonDescription": "Area del proprietario, Customer Satisfaction, Gestim Analytics, Rivista dell'agenzia, Watermark e Gestione pubblicità."
   },
+  "whatsappConnection": {
+    "title": "Connessione WhatsApp",
+    "connected": "Tutto connesso",
+    "scanHint": "Scansiona il QR code con WhatsApp per collegare il numero",
+    "qrCodeAlt": "QR code per connettere WhatsApp",
+    "error": "Impossibile verificare lo stato della connessione WhatsApp"
+  },
   "channelStatusDashboard": {
     "total": "Totale",
     "distributionByStatus": "Distribuzione per stato"
@@ -114,6 +121,9 @@
     "whatsappDisabled": "Provider non configurato",
     "searchPeoplePlaceholder": "Cerca persona...",
     "noPeople": "Nessuna persona trovata",
+    "leadsTitle": "Lead",
+    "searchLeadsPlaceholder": "Cerca lead...",
+    "noLeads": "Nessun lead trovato",
     "selectedCount": "{{count}} selezionati",
     "searchPropertiesPlaceholder": "Cerca immobile...",
     "noProperties": "Nessun immobile trovato",

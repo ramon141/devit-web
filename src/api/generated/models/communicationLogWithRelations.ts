@@ -10,6 +10,7 @@ import type { CommunicationLogWithRelationsStatus } from './communicationLogWith
 import type { User } from './user';
 import type { Person } from './person';
 import type { Property } from './property';
+import type { Lead } from './lead';
 
 /**
  * (tsType: CommunicationLogWithRelations, schemaOptions: { includeRelations: true })
@@ -28,11 +29,15 @@ export interface CommunicationLogWithRelations {
   updatedAt: string;
   /** @nullable */
   sentById?: string | null;
-  personId: string;
+  /** @nullable */
+  personId?: string | null;
   /** @nullable */
   propertyId?: string | null;
+  /** @nullable */
+  leadId?: string | null;
   sentBy?: User;
   foreignKey?: unknown;
   person?: Person;
   property?: Property;
+  lead?: Lead;
 }

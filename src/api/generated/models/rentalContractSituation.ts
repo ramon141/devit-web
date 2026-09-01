@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type RentalContractSituation = typeof RentalContractSituation[keyof typeof RentalContractSituation];
+/**
+ * @nullable
+ */
+export type RentalContractSituation = typeof RentalContractSituation[keyof typeof RentalContractSituation] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

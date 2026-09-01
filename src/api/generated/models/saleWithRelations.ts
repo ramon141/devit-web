@@ -35,6 +35,7 @@ export interface SaleWithRelations {
   installmentsCount?: number | null;
   /** @nullable */
   commissionAmount?: number | null;
+  /** @nullable */
   status?: SaleWithRelationsStatus;
   /** @nullable */
   cancellationReason?: string | null;

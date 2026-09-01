@@ -10,10 +10,12 @@ export interface OwnerPortalAccess {
   id?: string;
   email: string;
   pinHash: string;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   /** @nullable */
   lastAccessAt?: string | null;
-  accessCount?: number;
+  /** @nullable */
+  accessCount?: number | null;
   createdAt: string;
   updatedAt: string;
   personId: string;

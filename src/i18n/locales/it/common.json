@@ -108,7 +108,8 @@
     "contract_expiring_soon": "Contratto in scadenza",
     "contract_expired": "Contratto scaduto",
     "proposal_received": "Proposta ricevuta",
-    "sale_completed": "Vendita completata"
+    "sale_completed": "Vendita completata",
+    "event_reminder": "Promemoria evento"
   },
   "exportMenu": {
     "label": "Esporta",

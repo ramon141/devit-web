@@ -3,6 +3,7 @@ import AppLayout from '@/components/layout/AppLayout'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardHeader, CardDescription } from '@/components/ui/card'
 import ChannelStatusDashboard from '@/pages/Marketing/components/ChannelStatusDashboard'
+import WhatsappConnectionCard from '@/pages/Marketing/components/WhatsappConnectionCard'
 import SendCampagnaTab from '@/pages/Marketing/components/SendCampagnaTab'
 import ModelliTab from '@/pages/Marketing/components/ModelliTab'
 import RimozioniTab from '@/pages/Marketing/components/RimozioniTab'
@@ -41,6 +42,7 @@ function Marketing() {
                   <CardDescription>{t('index.whatsappHint')}</CardDescription>
                 </CardHeader>
               </Card>
+              <WhatsappConnectionCard />
               <ChannelStatusDashboard channel="whatsapp" />
             </TabsContent>
           </Tabs>

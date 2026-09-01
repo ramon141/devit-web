@@ -18,7 +18,8 @@ export interface NewCommunicationTemplate {
   /** @nullable */
   subject?: string | null;
   body: string;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   /** @nullable */
   createdById?: string | null;
 }

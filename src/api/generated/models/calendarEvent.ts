@@ -18,17 +18,23 @@ export interface CalendarEvent {
   description?: string | null;
   startAt: string;
   endAt: string;
-  allDay?: boolean;
-  occurred?: boolean;
+  /** @nullable */
+  allDay?: boolean | null;
+  /** @nullable */
+  occurred?: boolean | null;
   /** @nullable */
   place?: string | null;
   /** @nullable */
   backgroundColor?: string | null;
+  /** @nullable */
   confirmationStatus?: CalendarEventConfirmationStatus;
-  private?: boolean;
+  /** @nullable */
+  private?: boolean | null;
   /** @nullable */
   keysLocation?: string | null;
+  /** @nullable */
   recurrence?: CalendarEventRecurrence;
+  /** @nullable */
   reminder?: CalendarEventReminder;
   createdAt: string;
   updatedAt: string;

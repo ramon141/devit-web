@@ -10,7 +10,7 @@ import { formatAmount } from '@/utils/formatAmount'
 import { formatDate } from '@/utils/formatDate'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 
-function isLocked(status?: string) {
+function isLocked(status?: string | null) {
   return status === 'sold' || status === 'canceled'
 }
 

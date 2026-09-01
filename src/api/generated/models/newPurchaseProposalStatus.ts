@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type NewPurchaseProposalStatus = typeof NewPurchaseProposalStatus[keyof typeof NewPurchaseProposalStatus];
+/**
+ * @nullable
+ */
+export type NewPurchaseProposalStatus = typeof NewPurchaseProposalStatus[keyof typeof NewPurchaseProposalStatus] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

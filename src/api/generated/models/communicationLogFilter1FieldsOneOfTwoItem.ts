@@ -23,4 +23,5 @@ export const CommunicationLogFilter1FieldsOneOfTwoItem = {
   sentById: 'sentById',
   personId: 'personId',
   propertyId: 'propertyId',
+  leadId: 'leadId',
 } as const;

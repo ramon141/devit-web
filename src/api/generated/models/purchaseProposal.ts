@@ -15,6 +15,7 @@ export interface PurchaseProposal {
   paymentMethod: PurchaseProposalPaymentMethod;
   /** @nullable */
   paymentTerms?: string | null;
+  /** @nullable */
   status?: PurchaseProposalStatus;
   /** @nullable */
   funnelPosition?: number | null;

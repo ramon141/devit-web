@@ -33,6 +33,7 @@ export interface RentalContractWithRelations {
   depositAmount?: number | null;
   /** @nullable */
   adjustmentIndex?: string | null;
+  /** @nullable */
   situation?: RentalContractWithRelationsSituation;
   /** @nullable */
   noticeDays?: number | null;

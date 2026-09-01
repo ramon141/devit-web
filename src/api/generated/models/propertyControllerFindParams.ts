@@ -9,4 +9,16 @@ import type { PropertyFilter1 } from './propertyFilter1';
 
 export type PropertyControllerFindParams = {
 filter?: PropertyFilter1;
+/**
+ * Filtra imóveis com prestígio
+ */
+prestige?: boolean;
+/**
+ * Filtra imóveis em leilão
+ */
+auction?: boolean;
+/**
+ * Filtra imóveis pela cidade do endereço
+ */
+city?: string;
 };

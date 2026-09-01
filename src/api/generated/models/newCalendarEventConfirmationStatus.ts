@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type NewCalendarEventConfirmationStatus = typeof NewCalendarEventConfirmationStatus[keyof typeof NewCalendarEventConfirmationStatus];
+/**
+ * @nullable
+ */
+export type NewCalendarEventConfirmationStatus = typeof NewCalendarEventConfirmationStatus[keyof typeof NewCalendarEventConfirmationStatus] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

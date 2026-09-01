@@ -24,6 +24,7 @@ export interface Sale {
   installmentsCount?: number | null;
   /** @nullable */
   commissionAmount?: number | null;
+  /** @nullable */
   status?: SaleStatus;
   /** @nullable */
   cancellationReason?: string | null;

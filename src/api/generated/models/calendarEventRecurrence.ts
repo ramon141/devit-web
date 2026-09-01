@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type CalendarEventRecurrence = typeof CalendarEventRecurrence[keyof typeof CalendarEventRecurrence];
+/**
+ * @nullable
+ */
+export type CalendarEventRecurrence = typeof CalendarEventRecurrence[keyof typeof CalendarEventRecurrence] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

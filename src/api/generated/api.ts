@@ -243,8 +243,10 @@ import type {
   CommunicationTemplateWithRelations,
   CommunicationsReportControllerByChannelStatus200Item,
   CommunicationsReportControllerByChannelStatus401,
+  CommunicationsReportControllerByChannelStatusParams,
   CommunicationsReportControllerSummary200Item,
   CommunicationsReportControllerSummary401,
+  CommunicationsReportControllerSummaryParams,
   ContractAttachment,
   ContractAttachmentControllerCount401,
   ContractAttachmentControllerCountParams,
@@ -349,6 +351,7 @@ import type {
   LeadWithRelations,
   LeadsReportControllerBySource200Item,
   LeadsReportControllerBySource401,
+  LeadsReportControllerBySourceParams,
   LeadsReportControllerByStatus200Item,
   LeadsReportControllerByStatus401,
   LeadsReportControllerTodayAppointments200Item,
@@ -358,6 +361,10 @@ import type {
   MarketingCampaignControllerSend401,
   MarketingCampaignControllerSend422,
   MarketingCampaignControllerSendBody,
+  MarketingWhatsappControllerQrCode200,
+  MarketingWhatsappControllerQrCode401,
+  MarketingWhatsappControllerStatus200,
+  MarketingWhatsappControllerStatus401,
   NewAddress,
   NewAuditLog,
   NewBranch,
@@ -427,6 +434,7 @@ import type {
   NotificationWithRelations,
   OwnerPortalAccess,
   OwnerPortalAccessControllerCreate401,
+  OwnerPortalAccessControllerCreate422,
   OwnerPortalAccessControllerCreateBody,
   OwnerPortalAccessControllerFind401,
   OwnerPortalAccessControllerFindParams,
@@ -10021,6 +10029,192 @@ export const useMarketingCampaignControllerSend = <TError = ErrorType<MarketingC
     }
     
 /**
+ * @summary Obter QR code para conectar o WhatsApp
+ */
+export const marketingWhatsappControllerQrCode = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<MarketingWhatsappControllerQrCode200>(
+      {url: `/marketing/whatsapp/qrcode`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getMarketingWhatsappControllerQrCodeQueryKey = () => {
+    return [
+    `/marketing/whatsapp/qrcode`
+    ] as const;
+    }
+
+    
+export const getMarketingWhatsappControllerQrCodeQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode401 | unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerQrCodeQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>> = ({ signal }) => marketingWhatsappControllerQrCode(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type MarketingWhatsappControllerQrCodeQueryResult = NonNullable<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>>
+export type MarketingWhatsappControllerQrCodeQueryError = ErrorType<MarketingWhatsappControllerQrCode401 | unknown>
+
+
+export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode401 | unknown>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>,
+          TError,
+          Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>,
+          TError,
+          Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Obter QR code para conectar o WhatsApp
+ */
+
+export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getMarketingWhatsappControllerQrCodeQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Verificar status de conexão do WhatsApp
+ */
+export const marketingWhatsappControllerStatus = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<MarketingWhatsappControllerStatus200>(
+      {url: `/marketing/whatsapp/status`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getMarketingWhatsappControllerStatusQueryKey = () => {
+    return [
+    `/marketing/whatsapp/status`
+    ] as const;
+    }
+
+    
+export const getMarketingWhatsappControllerStatusQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus401 | unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerStatusQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>> = ({ signal }) => marketingWhatsappControllerStatus(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type MarketingWhatsappControllerStatusQueryResult = NonNullable<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>>
+export type MarketingWhatsappControllerStatusQueryError = ErrorType<MarketingWhatsappControllerStatus401 | unknown>
+
+
+export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus401 | unknown>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>,
+          TError,
+          Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>,
+          TError,
+          Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Verificar status de conexão do WhatsApp
+ */
+
+export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getMarketingWhatsappControllerStatusQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Count Notifications
  */
 export const notificationControllerCount = (
@@ -10806,7 +11000,7 @@ export const ownerPortalAccessControllerCreate = (
   
 
 
-export const getOwnerPortalAccessControllerCreateMutationOptions = <TError = ErrorType<OwnerPortalAccessControllerCreate401>,
+export const getOwnerPortalAccessControllerCreateMutationOptions = <TError = ErrorType<OwnerPortalAccessControllerCreate401 | OwnerPortalAccessControllerCreate422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof ownerPortalAccessControllerCreate>>, TError,{data: BodyType<OwnerPortalAccessControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
 ): UseMutationOptions<Awaited<ReturnType<typeof ownerPortalAccessControllerCreate>>, TError,{data: BodyType<OwnerPortalAccessControllerCreateBody>}, TContext> => {
 
@@ -10833,12 +11027,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type OwnerPortalAccessControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof ownerPortalAccessControllerCreate>>>
     export type OwnerPortalAccessControllerCreateMutationBody = BodyType<OwnerPortalAccessControllerCreateBody>
-    export type OwnerPortalAccessControllerCreateMutationError = ErrorType<OwnerPortalAccessControllerCreate401>
+    export type OwnerPortalAccessControllerCreateMutationError = ErrorType<OwnerPortalAccessControllerCreate401 | OwnerPortalAccessControllerCreate422>
 
     /**
  * @summary Cria acesso ao portal para um proprietário
  */
-export const useOwnerPortalAccessControllerCreate = <TError = ErrorType<OwnerPortalAccessControllerCreate401>,
+export const useOwnerPortalAccessControllerCreate = <TError = ErrorType<OwnerPortalAccessControllerCreate401 | OwnerPortalAccessControllerCreate422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof ownerPortalAccessControllerCreate>>, TError,{data: BodyType<OwnerPortalAccessControllerCreateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof ownerPortalAccessControllerCreate>>,
@@ -25557,13 +25751,14 @@ export function useRentalContractControllerFind<TData = Awaited<ReturnType<typeo
  * @summary Relatório de comunicações por canal e status
  */
 export const communicationsReportControllerByChannelStatus = (
-    
+    params?: CommunicationsReportControllerByChannelStatusParams,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
       return mutator<CommunicationsReportControllerByChannelStatus200Item[]>(
-      {url: `/reports/communications/by-channel-status`, method: 'GET', signal
+      {url: `/reports/communications/by-channel-status`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -25571,23 +25766,23 @@ export const communicationsReportControllerByChannelStatus = (
 
 
 
-export const getCommunicationsReportControllerByChannelStatusQueryKey = () => {
+export const getCommunicationsReportControllerByChannelStatusQueryKey = (params?: CommunicationsReportControllerByChannelStatusParams,) => {
     return [
-    `/reports/communications/by-channel-status`
+    `/reports/communications/by-channel-status`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getCommunicationsReportControllerByChannelStatusQueryOptions = <TData = Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError = ErrorType<CommunicationsReportControllerByChannelStatus401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export const getCommunicationsReportControllerByChannelStatusQueryOptions = <TData = Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError = ErrorType<CommunicationsReportControllerByChannelStatus401>>(params?: CommunicationsReportControllerByChannelStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getCommunicationsReportControllerByChannelStatusQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getCommunicationsReportControllerByChannelStatusQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>> = ({ signal }) => communicationsReportControllerByChannelStatus(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>> = ({ signal }) => communicationsReportControllerByChannelStatus(params, requestOptions, signal);
 
       
 
@@ -25601,7 +25796,7 @@ export type CommunicationsReportControllerByChannelStatusQueryError = ErrorType<
 
 
 export function useCommunicationsReportControllerByChannelStatus<TData = Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError = ErrorType<CommunicationsReportControllerByChannelStatus401>>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>> & Pick<
+ params: undefined |  CommunicationsReportControllerByChannelStatusParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>,
           TError,
@@ -25611,7 +25806,7 @@ export function useCommunicationsReportControllerByChannelStatus<TData = Awaited
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useCommunicationsReportControllerByChannelStatus<TData = Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError = ErrorType<CommunicationsReportControllerByChannelStatus401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>> & Pick<
+ params?: CommunicationsReportControllerByChannelStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>,
           TError,
@@ -25621,7 +25816,7 @@ export function useCommunicationsReportControllerByChannelStatus<TData = Awaited
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useCommunicationsReportControllerByChannelStatus<TData = Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError = ErrorType<CommunicationsReportControllerByChannelStatus401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: CommunicationsReportControllerByChannelStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -25629,11 +25824,11 @@ export function useCommunicationsReportControllerByChannelStatus<TData = Awaited
  */
 
 export function useCommunicationsReportControllerByChannelStatus<TData = Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError = ErrorType<CommunicationsReportControllerByChannelStatus401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: CommunicationsReportControllerByChannelStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerByChannelStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getCommunicationsReportControllerByChannelStatusQueryOptions(options)
+  const queryOptions = getCommunicationsReportControllerByChannelStatusQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -25650,13 +25845,14 @@ export function useCommunicationsReportControllerByChannelStatus<TData = Awaited
  * @summary Totais de envios por canal nos últimos 30 dias
  */
 export const communicationsReportControllerSummary = (
-    
+    params?: CommunicationsReportControllerSummaryParams,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
       return mutator<CommunicationsReportControllerSummary200Item[]>(
-      {url: `/reports/communications/summary`, method: 'GET', signal
+      {url: `/reports/communications/summary`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -25664,23 +25860,23 @@ export const communicationsReportControllerSummary = (
 
 
 
-export const getCommunicationsReportControllerSummaryQueryKey = () => {
+export const getCommunicationsReportControllerSummaryQueryKey = (params?: CommunicationsReportControllerSummaryParams,) => {
     return [
-    `/reports/communications/summary`
+    `/reports/communications/summary`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getCommunicationsReportControllerSummaryQueryOptions = <TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export const getCommunicationsReportControllerSummaryQueryOptions = <TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(params?: CommunicationsReportControllerSummaryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getCommunicationsReportControllerSummaryQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getCommunicationsReportControllerSummaryQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof communicationsReportControllerSummary>>> = ({ signal }) => communicationsReportControllerSummary(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof communicationsReportControllerSummary>>> = ({ signal }) => communicationsReportControllerSummary(params, requestOptions, signal);
 
       
 
@@ -25694,7 +25890,7 @@ export type CommunicationsReportControllerSummaryQueryError = ErrorType<Communic
 
 
 export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>> & Pick<
+ params: undefined |  CommunicationsReportControllerSummaryParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof communicationsReportControllerSummary>>,
           TError,
@@ -25704,7 +25900,7 @@ export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnT
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>> & Pick<
+ params?: CommunicationsReportControllerSummaryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof communicationsReportControllerSummary>>,
           TError,
@@ -25714,7 +25910,7 @@ export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnT
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: CommunicationsReportControllerSummaryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -25722,11 +25918,11 @@ export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnT
  */
 
 export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError = ErrorType<CommunicationsReportControllerSummary401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: CommunicationsReportControllerSummaryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationsReportControllerSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getCommunicationsReportControllerSummaryQueryOptions(options)
+  const queryOptions = getCommunicationsReportControllerSummaryQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -25743,13 +25939,14 @@ export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnT
  * @summary Relatório de leads por origem
  */
 export const leadsReportControllerBySource = (
-    
+    params?: LeadsReportControllerBySourceParams,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
       return mutator<LeadsReportControllerBySource200Item[]>(
-      {url: `/reports/leads/by-source`, method: 'GET', signal
+      {url: `/reports/leads/by-source`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -25757,23 +25954,23 @@ export const leadsReportControllerBySource = (
 
 
 
-export const getLeadsReportControllerBySourceQueryKey = () => {
+export const getLeadsReportControllerBySourceQueryKey = (params?: LeadsReportControllerBySourceParams,) => {
     return [
-    `/reports/leads/by-source`
+    `/reports/leads/by-source`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getLeadsReportControllerBySourceQueryOptions = <TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export const getLeadsReportControllerBySourceQueryOptions = <TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(params?: LeadsReportControllerBySourceParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getLeadsReportControllerBySourceQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getLeadsReportControllerBySourceQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadsReportControllerBySource>>> = ({ signal }) => leadsReportControllerBySource(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadsReportControllerBySource>>> = ({ signal }) => leadsReportControllerBySource(params, requestOptions, signal);
 
       
 
@@ -25787,7 +25984,7 @@ export type LeadsReportControllerBySourceQueryError = ErrorType<LeadsReportContr
 
 
 export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>> & Pick<
+ params: undefined |  LeadsReportControllerBySourceParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof leadsReportControllerBySource>>,
           TError,
@@ -25797,7 +25994,7 @@ export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<type
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>> & Pick<
+ params?: LeadsReportControllerBySourceParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof leadsReportControllerBySource>>,
           TError,
@@ -25807,7 +26004,7 @@ export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<type
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: LeadsReportControllerBySourceParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -25815,11 +26012,11 @@ export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<type
  */
 
 export function useLeadsReportControllerBySource<TData = Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError = ErrorType<LeadsReportControllerBySource401>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: LeadsReportControllerBySourceParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerBySource>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getLeadsReportControllerBySourceQueryOptions(options)
+  const queryOptions = getLeadsReportControllerBySourceQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

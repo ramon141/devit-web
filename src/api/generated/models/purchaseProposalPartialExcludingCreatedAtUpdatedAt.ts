@@ -16,6 +16,7 @@ export interface PurchaseProposalPartialExcludingCreatedAtUpdatedAt {
   paymentMethod?: PurchaseProposalPartialExcludingCreatedAtUpdatedAtPaymentMethod;
   /** @nullable */
   paymentTerms?: string | null;
+  /** @nullable */
   status?: PurchaseProposalPartialExcludingCreatedAtUpdatedAtStatus;
   /** @nullable */
   funnelPosition?: number | null;

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -6,10 +7,13 @@ import BarChart from '@/components/charts/BarChart'
 import { useStatisticsReports } from '@/pages/Statistiche/hooks/useStatisticsReports'
 import { getLeadStatusOptions } from '@/pages/Clientes/Leads/schemas/leadSchema'
 import { getSaleStatusOptions } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
+import DashboardWindowSelect from '@/pages/Home/components/DashboardWindowSelect'
 import {
   getCommunicationChannelLabels,
   getCommunicationStatusLabels,
 } from '@/constants/communications'
+
+const DEFAULT_COMMUNICATIONS_DAYS = 30
 
 function Statistiche() {
   const { t } = useTranslation('statistiche')
@@ -18,8 +22,9 @@ function Statistiche() {
   const { t: tCommon } = useTranslation('common')
   const channelLabels = getCommunicationChannelLabels(tCommon)
   const COMMUNICATION_STATUS_LABELS = getCommunicationStatusLabels(tCommon)
+  const [communicationsDays, setCommunicationsDays] = useState(DEFAULT_COMMUNICATIONS_DAYS)
   const { leadsByStatus, salesByStatus, communicationsByChannel, communicationsSummary } =
-    useStatisticsReports()
+    useStatisticsReports(communicationsDays)
 
   const leadStatusLabels: Record<string, string> = Object.fromEntries(
     getLeadStatusOptions(tClientes).map((option) => [option.value, option.label])
@@ -86,6 +91,7 @@ function Statistiche() {
           <CardHeader>
             <CardTitle>{t('communicationsByChannel.title')}</CardTitle>
             <CardDescription>{t('communicationsByChannel.description')}</CardDescription>
+            <DashboardWindowSelect value={communicationsDays} onChange={setCommunicationsDays} />
           </CardHeader>
           <CardContent>
             <BarChart

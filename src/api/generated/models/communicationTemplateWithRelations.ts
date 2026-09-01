@@ -20,7 +20,8 @@ export interface CommunicationTemplateWithRelations {
   /** @nullable */
   subject?: string | null;
   body: string;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   createdAt: string;
   updatedAt: string;
   /** @nullable */

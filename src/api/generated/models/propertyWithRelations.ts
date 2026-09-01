@@ -45,14 +45,18 @@ export interface PropertyWithRelations {
   areaSqm?: number | null;
   /** @nullable */
   description?: string | null;
+  /** @nullable */
   status?: PropertyWithRelationsStatus;
-  featured?: boolean;
+  /** @nullable */
+  featured?: boolean | null;
   /** @nullable */
   featuredOrder?: number | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   /** @nullable */
   deactivatedAt?: string | null;
-  publishedOnSite?: boolean;
+  /** @nullable */
+  publishedOnSite?: boolean | null;
   createdAt: string;
   updatedAt: string;
   categoryId: string;

@@ -26,6 +26,7 @@ export interface SalePartialExcludingCreatedAtUpdatedAt {
   installmentsCount?: number | null;
   /** @nullable */
   commissionAmount?: number | null;
+  /** @nullable */
   status?: SalePartialExcludingCreatedAtUpdatedAtStatus;
   /** @nullable */
   cancellationReason?: string | null;

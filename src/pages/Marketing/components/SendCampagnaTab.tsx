@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import CheckboxListPicker from '@/pages/Marketing/components/CheckboxListPicker'
@@ -32,14 +31,13 @@ function SendCampagnaTab() {
               {t('templateChannelOptions.email')}
             </Button>
 
-            <Tooltip>
-              <TooltipTrigger render={<span />}>
-                <Button type="button" variant="outline" disabled>
-                  {t('templateChannelOptions.whatsapp')}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{t('sendCampaign.whatsappDisabled')}</TooltipContent>
-            </Tooltip>
+            <Button
+              type="button"
+              variant={campaign.channel === MarketingCampaignControllerSendBodyChannel.whatsapp ? 'default' : 'outline'}
+              onClick={() => campaign.setChannel(MarketingCampaignControllerSendBodyChannel.whatsapp)}
+            >
+              {t('templateChannelOptions.whatsapp')}
+            </Button>
           </div>
 
           <CheckboxListPicker
@@ -53,6 +51,20 @@ function SendCampagnaTab() {
           />
           <p className="text-xs text-muted-foreground">
             {t('sendCampaign.selectedCount', { count: campaign.personIds.length })}
+          </p>
+
+          <p className="text-sm font-medium">{t('sendCampaign.leadsTitle')}</p>
+          <CheckboxListPicker
+            items={campaign.leadOptions}
+            selectedIds={campaign.leadIds}
+            onToggle={campaign.toggleLead}
+            search={campaign.leadSearch}
+            onSearchChange={campaign.setLeadSearch}
+            searchPlaceholder={t('sendCampaign.searchLeadsPlaceholder')}
+            emptyMessage={t('sendCampaign.noLeads')}
+          />
+          <p className="text-xs text-muted-foreground">
+            {t('sendCampaign.selectedCount', { count: campaign.leadIds.length })}
           </p>
         </CardContent>
       </Card>

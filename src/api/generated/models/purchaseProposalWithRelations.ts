@@ -25,6 +25,7 @@ export interface PurchaseProposalWithRelations {
   paymentMethod: PurchaseProposalWithRelationsPaymentMethod;
   /** @nullable */
   paymentTerms?: string | null;
+  /** @nullable */
   status?: PurchaseProposalWithRelationsStatus;
   /** @nullable */
   funnelPosition?: number | null;

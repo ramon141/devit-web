@@ -29,17 +29,23 @@ export interface CalendarEventWithRelations {
   description?: string | null;
   startAt: string;
   endAt: string;
-  allDay?: boolean;
-  occurred?: boolean;
+  /** @nullable */
+  allDay?: boolean | null;
+  /** @nullable */
+  occurred?: boolean | null;
   /** @nullable */
   place?: string | null;
   /** @nullable */
   backgroundColor?: string | null;
+  /** @nullable */
   confirmationStatus?: CalendarEventWithRelationsConfirmationStatus;
-  private?: boolean;
+  /** @nullable */
+  private?: boolean | null;
   /** @nullable */
   keysLocation?: string | null;
+  /** @nullable */
   recurrence?: CalendarEventWithRelationsRecurrence;
+  /** @nullable */
   reminder?: CalendarEventWithRelationsReminder;
   createdAt: string;
   updatedAt: string;

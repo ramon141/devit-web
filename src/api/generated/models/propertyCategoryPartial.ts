@@ -20,5 +20,6 @@ export interface PropertyCategoryPartial {
   kind?: PropertyCategoryPartialKind;
   /** @nullable */
   displayOrder?: number | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
 }

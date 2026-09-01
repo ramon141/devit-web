@@ -8,4 +8,16 @@
 
 export type PropertyControllerCountParams = {
 where?: { [key: string]: unknown };
+/**
+ * Filtra imóveis com prestígio
+ */
+prestige?: boolean;
+/**
+ * Filtra imóveis em leilão
+ */
+auction?: boolean;
+/**
+ * Filtra imóveis pela cidade do endereço
+ */
+city?: string;
 };

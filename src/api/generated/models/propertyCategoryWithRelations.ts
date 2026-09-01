@@ -20,5 +20,6 @@ export interface PropertyCategoryWithRelations {
   kind?: PropertyCategoryWithRelationsKind;
   /** @nullable */
   displayOrder?: number | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
 }

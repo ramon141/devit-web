@@ -11,6 +11,8 @@ export type MarketingCampaignControllerSendBody = {
   channel: MarketingCampaignControllerSendBodyChannel;
   personIds: string[];
   /** @nullable */
+  leadIds?: string[] | null;
+  /** @nullable */
   subject?: string | null;
   content: string;
   /** @nullable */

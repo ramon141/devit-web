@@ -1,4 +1,4 @@
-import Chart from 'react-apexcharts'
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
 import { useTranslation } from 'react-i18next'
 import { useChartColors } from '@/components/charts/useChartColors'
 
@@ -18,19 +18,30 @@ function DonutChart({ labels, values, height = 260 }: DonutChartProps) {
     return <p className="py-8 text-center text-sm text-muted-foreground">{t('chart.noData')}</p>
   }
 
+  const data = labels.map((label, index) => ({
+    name: label,
+    value: values[index],
+  }))
+
   return (
-    <Chart
-      type="donut"
-      height={height}
-      series={values}
-      options={{
-        labels,
-        colors,
-        legend: { position: 'bottom' },
-        dataLabels: { enabled: true },
-        stroke: { width: 0 },
-      }}
-    />
+    <ResponsiveContainer width="100%" height={height}>
+      <PieChart>
+        <Pie
+          data={data}
+          dataKey="value"
+          nameKey="name"
+          innerRadius="55%"
+          outerRadius="80%"
+          label
+        >
+          {data.map((entry, index) => (
+            <Cell key={entry.name} fill={colors[index % colors.length]} />
+          ))}
+        </Pie>
+        <Legend verticalAlign="bottom" />
+        <Tooltip />
+      </PieChart>
+    </ResponsiveContainer>
   )
 }
 

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   useCommunicationTemplateControllerFind,
+  useLeadControllerFind,
   useMarketingCampaignControllerSend,
   usePersonControllerFind,
   usePropertyControllerFind,
@@ -25,19 +26,30 @@ export function useSendCampaign() {
     MarketingCampaignControllerSendBodyChannel.email,
   )
   const [personIds, setPersonIds] = useState<string[]>([])
+  const [leadIds, setLeadIds] = useState<string[]>([])
   const [propertyIds, setPropertyIds] = useState<string[]>([])
   const [templateId, setTemplateId] = useState('')
   const [subject, setSubject] = useState('')
   const [content, setContent] = useState('')
   const [personSearch, setPersonSearch] = useState('')
+  const [leadSearch, setLeadSearch] = useState('')
   const [propertySearch, setPropertySearch] = useState('')
 
   const debouncedPersonSearch = useDebouncedValue(personSearch)
+  const debouncedLeadSearch = useDebouncedValue(leadSearch)
   const debouncedPropertySearch = useDebouncedValue(propertySearch)
 
   const { data: people, isLoading: loadingPeople } = usePersonControllerFind({
     filter: {
       where: debouncedPersonSearch ? { name: { ilike: `%${debouncedPersonSearch}%` } } : undefined,
+      order: ['name ASC'],
+      limit: 50,
+    },
+  })
+
+  const { data: leads, isLoading: loadingLeads } = useLeadControllerFind({
+    filter: {
+      where: debouncedLeadSearch ? { name: { ilike: `%${debouncedLeadSearch}%` } } : undefined,
       order: ['name ASC'],
       limit: 50,
     },
@@ -58,6 +70,7 @@ export function useSendCampaign() {
   const { mutateAsync: send, isPending: sending } = useMarketingCampaignControllerSend()
 
   const personOptions = (people ?? []).map((person) => ({ id: person.id ?? '', label: person.name }))
+  const leadOptions = (leads ?? []).map((lead) => ({ id: lead.id ?? '', label: lead.name, sublabel: lead.email ?? undefined }))
   const propertyOptions = (properties ?? []).map((property) => ({
     id: property.id ?? '',
     label: `${property.code} · ${property.title}`,
@@ -79,6 +92,7 @@ export function useSendCampaign() {
       data: {
         channel,
         personIds,
+        leadIds: leadIds.length ? leadIds : undefined,
         subject: subject || undefined,
         content,
         propertyIds: propertyIds.length ? propertyIds : undefined,
@@ -101,6 +115,8 @@ export function useSendCampaign() {
     setChannel,
     personIds,
     togglePerson: (id: string) => setPersonIds((current) => toggleId(current, id)),
+    leadIds,
+    toggleLead: (id: string) => setLeadIds((current) => toggleId(current, id)),
     propertyIds,
     toggleProperty: (id: string) => setPropertyIds((current) => toggleId(current, id)),
     templateId,
@@ -112,14 +128,18 @@ export function useSendCampaign() {
     setContent,
     personSearch,
     setPersonSearch,
+    leadSearch,
+    setLeadSearch,
     propertySearch,
     setPropertySearch,
     personOptions,
+    leadOptions,
     propertyOptions,
     loadingPeople,
+    loadingLeads,
     loadingProperties,
     onSend,
     isSending: sending,
-    canSend: personIds.length > 0 && content.trim().length > 0,
+    canSend: (personIds.length > 0 || leadIds.length > 0) && content.trim().length > 0,
   }
 }

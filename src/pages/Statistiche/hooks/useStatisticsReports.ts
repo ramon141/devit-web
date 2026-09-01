@@ -5,11 +5,15 @@ import {
   useSalesRentalsReportControllerSalesByStatus,
 } from '@/api/generated/api'
 
-export function useStatisticsReports() {
+export function useStatisticsReports(communicationsDays: number) {
   const { data: leadsByStatus } = useLeadsReportControllerByStatus()
   const { data: salesByStatus } = useSalesRentalsReportControllerSalesByStatus()
-  const { data: communicationsByChannel } = useCommunicationsReportControllerByChannelStatus()
-  const { data: communicationsSummary } = useCommunicationsReportControllerSummary()
+  const { data: communicationsByChannel } = useCommunicationsReportControllerByChannelStatus({
+    days: communicationsDays,
+  })
+  const { data: communicationsSummary } = useCommunicationsReportControllerSummary({
+    days: communicationsDays,
+  })
 
   return {
     leadsByStatus: leadsByStatus ?? [],

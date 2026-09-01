@@ -14,4 +14,5 @@ export const CommunicationLogIncludeFilterItemsRelation = {
   sentBy: 'sentBy',
   person: 'person',
   property: 'property',
+  lead: 'lead',
 } as const;

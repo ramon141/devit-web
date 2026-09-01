@@ -19,4 +19,5 @@ export type CommunicationLogFilterFieldsOneOf = {
   sentById?: boolean;
   personId?: boolean;
   propertyId?: boolean;
+  leadId?: boolean;
 };

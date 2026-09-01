@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type PropertyPartialExcludingCreatedAtUpdatedAtStatus = typeof PropertyPartialExcludingCreatedAtUpdatedAtStatus[keyof typeof PropertyPartialExcludingCreatedAtUpdatedAtStatus];
+/**
+ * @nullable
+ */
+export type PropertyPartialExcludingCreatedAtUpdatedAtStatus = typeof PropertyPartialExcludingCreatedAtUpdatedAtStatus[keyof typeof PropertyPartialExcludingCreatedAtUpdatedAtStatus] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

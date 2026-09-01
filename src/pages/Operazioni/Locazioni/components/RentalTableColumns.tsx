@@ -19,7 +19,7 @@ import { formatAmount } from '@/utils/formatAmount'
 import { formatDate } from '@/utils/formatDate'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 
-function isLocked(situation?: string) {
+function isLocked(situation?: string | null) {
   return situation === 'terminated' || situation === 'closed'
 }
 

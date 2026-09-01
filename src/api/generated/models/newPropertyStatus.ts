@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type NewPropertyStatus = typeof NewPropertyStatus[keyof typeof NewPropertyStatus];
+/**
+ * @nullable
+ */
+export type NewPropertyStatus = typeof NewPropertyStatus[keyof typeof NewPropertyStatus] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
