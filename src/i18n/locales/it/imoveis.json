@@ -43,7 +43,12 @@
       "codeDesc": "Codice decrescente",
       "salePriceAsc": "Prezzo crescente",
       "salePriceDesc": "Prezzo decrescente"
-    }
+    },
+    "onlyMine": "Solo i miei",
+    "cityLabel": "Comune",
+    "cityPlaceholder": "Tutti i comuni",
+    "onlyPrestige": "Solo prestigio",
+    "onlyAuction": "Solo all'asta"
   },
   "card": {
     "new": "Nuovo",
@@ -64,7 +69,10 @@
       "owner": "Proprietario",
       "price": "Prezzo",
       "status": "Stato",
-      "actions": "Azioni"
+      "actions": "Azioni",
+      "category": "Tipologia",
+      "size": "Superficie",
+      "updatedAt": "Modificato il"
     }
   },
   "categoryOwnerFields": {
@@ -615,5 +623,20 @@
         "gas": "Gas"
       }
     }
+  },
+  "categoryKind": {
+    "residential": "Residenziale",
+    "commercial": "Commerciale",
+    "industrial": "Industriale",
+    "land": "Terreno",
+    "attachment": "Pertinenza",
+    "constructionSite": "Cantiere"
+  },
+  "kindPicker": {
+    "title": "Che tipo di immobile vuoi aggiungere?",
+    "noCategory": "Nessuna categoria cadastrata"
+  },
+  "kindTabs": {
+    "all": "Tutti"
   }
 }

@@ -3,6 +3,10 @@
     "title": "Marketing",
     "description": "Monitora le comunicazioni inviate ai clienti",
     "breadcrumb": "Marketing",
+    "dashboardTab": "Bacheca",
+    "inviaTab": "Invia campagna",
+    "modelliTab": "Modelli",
+    "rimozioniTab": "Rimozioni",
     "emailTab": "E-mail Marketing",
     "whatsappTab": "WhatsApp Marketing",
     "whatsappHint": "Per inviare un messaggio, vai alla scheda dell'immobile o del cliente.",
@@ -12,5 +16,115 @@
   "channelStatusDashboard": {
     "total": "Totale",
     "distributionByStatus": "Distribuzione per stato"
+  },
+  "templateChannelOptions": {
+    "email": "E-mail",
+    "whatsapp": "WhatsApp"
+  },
+  "templateCategoryOptions": {
+    "promozione": "Promozione",
+    "aggiornamento": "Aggiornamento",
+    "generico": "Generico"
+  },
+  "templateSchema": {
+    "nameRequired": "Nome obbligatorio",
+    "channelRequired": "Canale obbligatorio",
+    "categoryRequired": "Categoria obbligatoria",
+    "bodyRequired": "Corpo obbligatorio"
+  },
+  "templateForm": {
+    "pendingCreate": "Creazione modello...",
+    "pendingUpdate": "Aggiornamento modello...",
+    "successCreate": "Modello creato",
+    "successUpdate": "Modello aggiornato",
+    "error": "Errore nel salvataggio del modello"
+  },
+  "deleteTemplate": {
+    "pending": "Eliminazione modello...",
+    "success": "Modello eliminato",
+    "error": "Errore nell'eliminazione del modello"
+  },
+  "templateFormModal": {
+    "newTitle": "Nuovo modello",
+    "editTitle": "Modifica modello",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Es. Promozione estiva",
+    "channelLabel": "Canale",
+    "categoryLabel": "Categoria",
+    "subjectLabel": "Oggetto",
+    "subjectPlaceholder": "Oggetto dell'e-mail",
+    "bodyLabel": "Corpo",
+    "bodyPlaceholder": "Testo del messaggio...",
+    "activeLabel": "Attivo"
+  },
+  "templateTableColumns": {
+    "name": "Nome",
+    "channel": "Canale",
+    "category": "Categoria",
+    "status": "Stato",
+    "active": "Attivo",
+    "inactive": "Inattivo",
+    "actions": "Azioni"
+  },
+  "templateTable": {
+    "empty": "Nessun modello trovato",
+    "deleteTitle": "Elimina modello",
+    "deleteDescription": "Vuoi eliminare il modello \"{{name}}\"?",
+    "deleteConfirm": "Elimina"
+  },
+  "modelliTab": {
+    "searchPlaceholder": "Cerca modello...",
+    "newLabel": "Nuovo modello"
+  },
+  "optOutForm": {
+    "pending": "Registrazione rimozione...",
+    "success": "Rimozione registrata",
+    "error": "Errore nella registrazione della rimozione"
+  },
+  "deleteOptOut": {
+    "pending": "Rimozione della rimozione...",
+    "success": "Rimozione eliminata",
+    "error": "Errore nell'eliminazione"
+  },
+  "optOutFormModal": {
+    "title": "Nuova rimozione",
+    "personLabel": "Persona",
+    "channelLabel": "Canale",
+    "reasonLabel": "Motivo",
+    "reasonPlaceholder": "Motivo (opzionale)"
+  },
+  "optOutTable": {
+    "person": "Persona",
+    "channel": "Canale",
+    "reason": "Motivo",
+    "date": "Data",
+    "actions": "Azioni",
+    "empty": "Nessuna rimozione registrata",
+    "deleteTitle": "Elimina rimozione",
+    "deleteDescription": "Vuoi eliminare la rimozione di \"{{name}}\"?",
+    "deleteConfirm": "Elimina"
+  },
+  "rimozioniTab": {
+    "newLabel": "Nuova rimozione"
+  },
+  "sendCampaign": {
+    "recipientsTitle": "Destinatari",
+    "propertiesTitle": "Immobili da allegare",
+    "contentTitle": "Contenuto",
+    "whatsappDisabled": "Provider non configurato",
+    "searchPeoplePlaceholder": "Cerca persona...",
+    "noPeople": "Nessuna persona trovata",
+    "selectedCount": "{{count}} selezionati",
+    "searchPropertiesPlaceholder": "Cerca immobile...",
+    "noProperties": "Nessun immobile trovato",
+    "templateLabel": "Modello",
+    "templatePlaceholder": "Seleziona un modello",
+    "subjectLabel": "Oggetto",
+    "contentLabel": "Messaggio",
+    "sendLabel": "Invia",
+    "pending": "Invio in corso...",
+    "success": "Inviate {{sent}}, fallite {{failed}}, saltate {{skipped}}",
+    "error": "Errore nell'invio della campagna",
+    "lastResult": "Ultimo invio: {{sent}} inviate, {{failed}} fallite, {{skipped}} saltate"
   }
 }

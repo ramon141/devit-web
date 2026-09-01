@@ -11,6 +11,7 @@ import type { PropertyCategory } from './propertyCategory';
 import type { Address } from './address';
 import type { Person } from './person';
 import type { User } from './user';
+import type { PropertyDetail } from './propertyDetail';
 import type { PropertyFee } from './propertyFee';
 import type { PropertyPhoto } from './propertyPhoto';
 import type { PropertyDocument } from './propertyDocument';
@@ -67,6 +68,7 @@ export interface PropertyWithRelations {
   owner?: Person;
   deactivatedBy?: User;
   createdBy?: User;
+  propertyDetail?: PropertyDetail;
   propertyFees?: PropertyFee[];
   propertyPhotos?: PropertyPhoto[];
   propertyDocuments?: PropertyDocument[];

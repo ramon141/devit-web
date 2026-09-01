@@ -43,7 +43,12 @@
       "codeDesc": "Código decrescente",
       "salePriceAsc": "Preço crescente",
       "salePriceDesc": "Preço decrescente"
-    }
+    },
+    "onlyMine": "Somente os meus",
+    "cityLabel": "Cidade",
+    "cityPlaceholder": "Todas as cidades",
+    "onlyPrestige": "Só prestígio",
+    "onlyAuction": "Só leilão"
   },
   "card": {
     "new": "Novo",
@@ -64,7 +69,10 @@
       "owner": "Proprietário",
       "price": "Preço",
       "status": "Status",
-      "actions": "Ações"
+      "actions": "Ações",
+      "category": "Tipologia",
+      "size": "Metragem",
+      "updatedAt": "Modificado em"
     }
   },
   "categoryOwnerFields": {
@@ -615,5 +623,20 @@
         "gas": "Gás"
       }
     }
+  },
+  "categoryKind": {
+    "residential": "Residencial",
+    "commercial": "Comercial",
+    "industrial": "Industrial",
+    "land": "Terreno",
+    "attachment": "Pertinência",
+    "constructionSite": "Canteiro de obras"
+  },
+  "kindPicker": {
+    "title": "Que tipo de imóvel você quer adicionar?",
+    "noCategory": "Nenhuma categoria cadastrada"
+  },
+  "kindTabs": {
+    "all": "Todos"
   }
 }

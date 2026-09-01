@@ -1,6 +1,18 @@
 import { z } from 'zod'
 import type { TFunction } from 'i18next'
 import { PropertyPurpose, PropertyStatus } from '@/api/generated/models'
+import type { PropertyCategoryKind } from '@/pages/Imoveis/hooks/useCategoryKinds'
+
+export function getCategoryKindOptions(t: TFunction<'imoveis'>): { value: PropertyCategoryKind; label: string }[] {
+  return [
+    { value: 'residential', label: t('categoryKind.residential') },
+    { value: 'commercial', label: t('categoryKind.commercial') },
+    { value: 'industrial', label: t('categoryKind.industrial') },
+    { value: 'land', label: t('categoryKind.land') },
+    { value: 'attachment', label: t('categoryKind.attachment') },
+    { value: 'construction_site', label: t('categoryKind.constructionSite') },
+  ]
+}
 
 export function getPurposeOptions(t: TFunction<'imoveis'>) {
   return [

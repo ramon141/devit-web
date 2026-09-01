@@ -134,7 +134,9 @@
       "ownerAgentLabel": "Agente do proprietário",
       "tenantAgentLabel": "Agente do inquilino",
       "agentSearchPlaceholder": "Buscar um agente...",
-      "noneOption": "Nenhum"
+      "noneOption": "Nenhum",
+      "addOwner": "Adicionar proprietário",
+      "addTenant": "Adicionar inquilino"
     },
     "formFields": {
       "numberLabel": "Número",
@@ -185,7 +187,15 @@
       "terminateTooltip": "Rescindir",
       "deleteTooltip": "Excluir",
       "lockedTooltip": "Contrato rescindido/encerrado: não editável",
-      "dataStipula": "Data de assinatura"
+      "dataStipula": "Data de assinatura",
+      "agenteProprietario": "Agente P",
+      "agenteInquilino": "Agente I",
+      "al": "Até",
+      "inCorso": "Em andamento",
+      "inCorsoYes": "Sim",
+      "reg": "Reg.",
+      "regYes": "Sim",
+      "note": "Notas"
     },
     "hooks": {
       "attachments": {
@@ -218,6 +228,19 @@
         "success": "Contrato excluído com sucesso!",
         "error": "Erro ao excluir o contrato"
       }
+    },
+    "filters": {
+      "situationLabel": "Status",
+      "all": "Todos",
+      "ownerLabel": "Proprietário",
+      "tenantLabel": "Inquilino",
+      "ownerAgentLabel": "Agente do proprietário",
+      "tenantAgentLabel": "Agente do inquilino",
+      "stipulaDateFromLabel": "Data de assinatura de",
+      "stipulaDateToLabel": "Data de assinatura até",
+      "startDateFromLabel": "Data de início de",
+      "startDateToLabel": "Data de início até",
+      "onlyMine": "Somente meus"
     }
   },
   "vendite": {
@@ -281,7 +304,9 @@
       "proposalSearchPlaceholder": "Buscar por número...",
       "sellerAgentLabel": "Agente do vendedor",
       "buyerAgentLabel": "Agente do comprador",
-      "noneOption": "Nenhum"
+      "noneOption": "Nenhum",
+      "extraSellersLabel": "Outros vendedores",
+      "extraBuyersLabel": "Outros compradores"
     },
     "formModal": {
       "editTitle": "Editar venda",
@@ -309,7 +334,12 @@
       "data": "Data",
       "stato": "Status",
       "azioni": "Ações",
-      "lockedTooltip": "Venda concluída: não editável"
+      "lockedTooltip": "Venda concluída: não editável",
+      "rogito": "Escritura",
+      "agenteV": "Agente V",
+      "agenteA": "Agente A",
+      "note": "Notas",
+      "plusOthers": "+{{count}} outros"
     },
     "documentsManager": {
       "typePlaceholder": "Tipo de documento (opcional)",
@@ -337,6 +367,17 @@
         "deleteSuccess": "Documento excluído com sucesso!",
         "deleteError": "Erro ao excluir o documento"
       }
+    },
+    "filters": {
+      "statusLabel": "Status",
+      "sellerLabel": "Vendedor",
+      "buyerLabel": "Comprador",
+      "sellerAgentLabel": "Agente vendedor",
+      "buyerAgentLabel": "Agente comprador",
+      "saleDateFromLabel": "Data de assinatura de",
+      "saleDateToLabel": "Data de assinatura até",
+      "onlyMine": "Somente as minhas",
+      "all": "Todos"
     }
   }
 }

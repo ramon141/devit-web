@@ -16,4 +16,5 @@ export const NotificationType = {
   contract_expired: 'contract_expired',
   proposal_received: 'proposal_received',
   sale_completed: 'sale_completed',
+  event_reminder: 'event_reminder',
 } as const;

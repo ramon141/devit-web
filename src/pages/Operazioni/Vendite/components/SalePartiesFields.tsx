@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
+import MultiSelectField from '@/components/MultiSelectField'
 import {
   usePropertyControllerFind,
   usePersonControllerFind,
@@ -102,6 +103,32 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
             placeholder={t('vendite.partiesFields.proposalPlaceholder')}
             searchPlaceholder={t('vendite.partiesFields.proposalSearchPlaceholder')}
             error={errors.proposalId?.message}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="extraSellerIds"
+        render={({ field }) => (
+          <MultiSelectField
+            label={t('vendite.partiesFields.extraSellersLabel')}
+            values={field.value ?? []}
+            onChange={field.onChange}
+            options={personOptions}
+          />
+        )}
+      />
+
+      <Controller
+        control={control}
+        name="extraBuyerIds"
+        render={({ field }) => (
+          <MultiSelectField
+            label={t('vendite.partiesFields.extraBuyersLabel')}
+            values={field.value ?? []}
+            onChange={field.onChange}
+            options={personOptions}
           />
         )}
       />

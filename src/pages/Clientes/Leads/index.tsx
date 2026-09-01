@@ -11,10 +11,11 @@ import { useKanbanDragDrop } from '@/pages/Clientes/Leads/hooks/useKanbanDragDro
 import LeadColumn from '@/pages/Clientes/Leads/components/LeadColumn'
 import LeadCard from '@/pages/Clientes/Leads/components/LeadCard'
 import LeadFormModal from '@/pages/Clientes/Leads/components/LeadFormModal'
+import LeadFilters from '@/pages/Clientes/Leads/components/LeadFilters'
 
 function Leads() {
   const { t } = useTranslation('clientes')
-  const { columns, leads } = useLeadBoard()
+  const { columns, leads, filters, setFilters } = useLeadBoard()
   const { handleDelete } = useDeleteLead()
   const { sensors, activeLead, handleDragStart, handleDragEnd } = useKanbanDragDrop({ leads })
   const [formOpen, setFormOpen] = useState(false)
@@ -44,6 +45,8 @@ function Leads() {
           {t('leads.newButton')}
         </Button>
       </div>
+
+      <LeadFilters filters={filters} onChange={setFilters} />
 
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <div className="flex gap-3 overflow-x-auto pb-2">

@@ -95,7 +95,14 @@
     "newButton": "Nuova richiesta",
     "deleteTitle": "Eliminare la richiesta?",
     "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
-    "deleteConfirm": "Elimina"
+    "deleteConfirm": "Elimina",
+    "filters": {
+      "searchPlaceholder": "Cerca per nome o oggetto",
+      "sourcePlaceholder": "Provenienza",
+      "requestTypePlaceholder": "Tipo richiesta",
+      "assignedToPlaceholder": "Assegnatario",
+      "onlyMine": "Solo le mie"
+    }
   },
   "leadStatusOptions": {
     "new": "Nuovo",

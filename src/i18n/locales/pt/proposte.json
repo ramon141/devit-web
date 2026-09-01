@@ -50,7 +50,14 @@
     "amount": "Valor",
     "date": "Data",
     "status": "Status",
-    "actions": "Ações"
+    "actions": "Ações",
+    "financed": "Financiamento",
+    "financedYes": "Sim",
+    "financedNo": "Não",
+    "sellerAgent": "Agente V",
+    "assignedTo": "Agente C",
+    "createdBy": "Criada por",
+    "notes": "Notas"
   },
   "paymentMethodOptions": {
     "cash": "Dinheiro",
@@ -113,5 +120,30 @@
     "deleting": "Removendo...",
     "deleteSuccess": "Anexo removido",
     "deleteError": "Não foi possível remover o anexo"
+  },
+  "filters": {
+    "statusLabel": "Situação",
+    "financedLabel": "Vinculada a financiamento",
+    "financedYes": "Sim",
+    "financedNo": "Não",
+    "propertyLabel": "Imóvel",
+    "buyerLabel": "Comprador",
+    "sellerAgentLabel": "Agente vendedor",
+    "assignedToLabel": "Agente comprador",
+    "proposalDateFromLabel": "Período de",
+    "proposalDateToLabel": "Período até",
+    "onlyMine": "Somente as minhas",
+    "all": "Todos"
+  },
+  "buyersManager": {
+    "title": "Compradores adicionais",
+    "buyerPlaceholder": "Selecione um comprador",
+    "add": "Adicionar",
+    "adding": "Adicionando...",
+    "addSuccess": "Comprador adicionado com sucesso!",
+    "addError": "Erro ao adicionar comprador.",
+    "removing": "Removendo...",
+    "removeSuccess": "Comprador removido com sucesso!",
+    "removeError": "Erro ao remover comprador."
   }
 }

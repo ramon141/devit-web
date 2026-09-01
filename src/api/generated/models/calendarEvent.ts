@@ -40,4 +40,8 @@ export interface CalendarEvent {
   addressId?: string | null;
   /** @nullable */
   ownerId?: string | null;
+  /** @nullable */
+  parentEventId?: string | null;
+  /** @nullable */
+  reminderSentAt?: string | null;
 }

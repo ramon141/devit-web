@@ -13,6 +13,8 @@ import type { ContractAttachment } from './contractAttachment';
 import type { ContractRenewal } from './contractRenewal';
 import type { ContractTermination } from './contractTermination';
 import type { RentalAdjustment } from './rentalAdjustment';
+import type { RentalContractOwner } from './rentalContractOwner';
+import type { RentalContractTenant } from './rentalContractTenant';
 
 /**
  * (tsType: RentalContractWithRelations, schemaOptions: { includeRelations: true })
@@ -64,4 +66,6 @@ export interface RentalContractWithRelations {
   contractRenewals?: ContractRenewal[];
   contractTermination?: ContractTermination;
   rentalAdjustments?: RentalAdjustment[];
+  rentalContractOwners?: RentalContractOwner[];
+  rentalContractTenants?: RentalContractTenant[];
 }

@@ -28,4 +28,6 @@ export type CalendarEventFilter1FieldsOneOf = {
   leadId?: boolean;
   addressId?: boolean;
   ownerId?: boolean;
+  parentEventId?: boolean;
+  reminderSentAt?: boolean;
 };

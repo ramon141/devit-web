@@ -5,6 +5,7 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { PropertyCategoryPartialKind } from './propertyCategoryPartialKind';
 
 /**
  * (tsType: Partial<PropertyCategory>, schemaOptions: { partial: true })
@@ -15,6 +16,8 @@ export interface PropertyCategoryPartial {
   slug?: string;
   /** @nullable */
   icon?: string | null;
+  /** @nullable */
+  kind?: PropertyCategoryPartialKind;
   /** @nullable */
   displayOrder?: number | null;
   active?: boolean;

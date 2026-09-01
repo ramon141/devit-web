@@ -232,5 +232,46 @@
     "passwordMin": "A senha deve ter pelo menos 6 caracteres",
     "accessLevelAdmin": "Administrador",
     "accessLevelBroker": "Corretor"
+  },
+  "proprietariPage": {
+    "title": "Portal Proprietários",
+    "description": "Gerencie os acessos dos proprietários à área reservada"
+  },
+  "proprietari": {
+    "newLabel": "Adicionar proprietário",
+    "empty": "Nenhum acesso configurado",
+    "tableColumns": {
+      "owner": "Proprietário",
+      "email": "Email",
+      "lastAccess": "Último acesso",
+      "accessCount": "Total de acessos",
+      "status": "Status",
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "actions": "Ações"
+    },
+    "formModal": {
+      "title": "Adicionar proprietário",
+      "ownerLabel": "Proprietário",
+      "ownerPlaceholder": "Selecione um proprietário",
+      "emailLabel": "Email",
+      "submit": "Criar acesso"
+    },
+    "pinDialog": {
+      "title": "PIN gerado",
+      "warning": "Anote o PIN agora: não será mais exibido.",
+      "close": "Anotei, fechar"
+    },
+    "actions": {
+      "creating": "Criando acesso...",
+      "createSuccess": "Acesso criado",
+      "createError": "Erro ao criar o acesso",
+      "resettingPin": "Gerando novo PIN...",
+      "resetPinSuccess": "PIN redefinido",
+      "resetPinError": "Erro ao redefinir o PIN",
+      "updating": "Atualizando...",
+      "updateSuccess": "Atualizado com sucesso",
+      "updateError": "Erro ao atualizar"
+    }
   }
 }

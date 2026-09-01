@@ -37,6 +37,8 @@ const emptyValues: SaleFormValues = {
   proposalId: '',
   sellerAgentId: '',
   buyerAgentId: '',
+  extraBuyerIds: [],
+  extraSellerIds: [],
 }
 
 function saleToFormValues(sale: SaleWithRelations): SaleFormValues {
@@ -59,7 +61,17 @@ function saleToFormValues(sale: SaleWithRelations): SaleFormValues {
     proposalId: sale.proposalId ?? '',
     sellerAgentId: sale.sellerAgentId ?? '',
     buyerAgentId: sale.buyerAgentId ?? '',
+    extraBuyerIds: (sale.saleBuyers ?? [])
+      .map((entry) => entry.personId)
+      .filter((personId) => personId !== sale.buyerId),
+    extraSellerIds: (sale.saleSellers ?? [])
+      .map((entry) => entry.personId)
+      .filter((personId) => personId !== sale.sellerId),
   }
+}
+
+function toPersonList(primaryId: string, extraIds: string[] = []) {
+  return [...new Set([primaryId, ...extraIds].filter(Boolean))].map((personId) => ({ personId }))
 }
 
 type UseSaleFormProps = {
@@ -89,7 +101,8 @@ export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
   }
 
   function onSubmit(values: SaleFormValues) {
-    const cleaned = emptyStringsToNull(values)
+    const {extraBuyerIds, extraSellerIds, ...rest} = values
+    const cleaned = emptyStringsToNull(rest)
     const data = {
       ...cleaned,
       finalAmount: toNumberOrNull(values.finalAmount) ?? 0,
@@ -98,6 +111,8 @@ export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
       commissionAmount: toNumberOrNull(values.commissionAmount),
       saleDate: toISODateOrNull(values.saleDate)!,
       deedDate: toISODateOrNull(values.deedDate),
+      buyers: toPersonList(values.buyerId, extraBuyerIds),
+      sellers: toPersonList(values.sellerId, extraSellerIds),
     }
 
     const promise = sale?.id ? update({ id: sale.id, data }) : create({ data })

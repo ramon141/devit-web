@@ -5,6 +5,7 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { PropertyCategoryKind } from './propertyCategoryKind';
 
 export interface PropertyCategory {
   id?: string;
@@ -12,6 +13,8 @@ export interface PropertyCategory {
   slug: string;
   /** @nullable */
   icon?: string | null;
+  /** @nullable */
+  kind?: PropertyCategoryKind;
   /** @nullable */
   displayOrder?: number | null;
   active?: boolean;

@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { SlidersHorizontalIcon } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import SelectField from '@/components/SelectField'
 import SearchableSelect from '@/components/SearchableSelect'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { usePropertyCategoryControllerFind, usePersonControllerFind } from '@/api/generated/api'
 import { getPurposeOptions, getStatusOptions } from '@/pages/Imoveis/schemas/propertySchema'
 import type { PropertyFiltersValues } from '@/pages/Imoveis/hooks/usePropertyList'
+import { usePropertyFacets } from '@/pages/Imoveis/hooks/usePropertyFacets'
 
 type PropertyFiltersProps = {
   filters: PropertyFiltersValues
@@ -20,6 +22,7 @@ function PropertyFilters({ filters, onChange }: PropertyFiltersProps) {
   const [showAdvanced, setShowAdvanced] = useState(false)
   const { data: categories } = usePropertyCategoryControllerFind({ filter: { order: ['name ASC'] } })
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
+  const { cities } = usePropertyFacets()
 
   const orderByOptions = [
     { value: 'createdAt_desc', label: t('filters.orderBy.createdAtDesc') },
@@ -170,6 +173,39 @@ function PropertyFilters({ filters, onChange }: PropertyFiltersProps) {
               placeholder={t('filters.areaToPlaceholder')}
             />
           </FormFieldWrapper>
+
+          <FormFieldWrapper label={t('filters.cityLabel')}>
+            <SelectField
+              value={filters.city}
+              onValueChange={(value) => update({ city: value })}
+              options={cities.map((city) => ({ value: city, label: city }))}
+              placeholder={t('filters.cityPlaceholder')}
+            />
+          </FormFieldWrapper>
+
+          <label className="flex items-center gap-2 self-end pb-2 text-sm">
+            <Checkbox
+              checked={filters.onlyMine}
+              onCheckedChange={(checked) => update({ onlyMine: checked === true })}
+            />
+            {t('filters.onlyMine')}
+          </label>
+
+          <label className="flex items-center gap-2 self-end pb-2 text-sm">
+            <Checkbox
+              checked={filters.onlyPrestige}
+              onCheckedChange={(checked) => update({ onlyPrestige: checked === true })}
+            />
+            {t('filters.onlyPrestige')}
+          </label>
+
+          <label className="flex items-center gap-2 self-end pb-2 text-sm">
+            <Checkbox
+              checked={filters.onlyAuction}
+              onCheckedChange={(checked) => update({ onlyAuction: checked === true })}
+            />
+            {t('filters.onlyAuction')}
+          </label>
         </div>
       )}
     </div>

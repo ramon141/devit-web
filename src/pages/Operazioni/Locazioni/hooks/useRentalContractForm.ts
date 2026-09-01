@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -67,6 +67,11 @@ function contractToFormValues(contract: RentalContractWithRelations): RentalCont
   }
 }
 
+function partyIds(parties?: {personId: string}[] | null, fallbackId?: string): string[] {
+  if (parties?.length) return parties.map((party) => party.personId)
+  return fallbackId ? [fallbackId] : []
+}
+
 type UseRentalContractFormProps = {
   contract?: RentalContractWithRelations | null
   onSaved: () => void
@@ -78,6 +83,8 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
   const { toastPromise } = useToast()
   const { mutateAsync: create, isPending: creating } = useRentalContractControllerCreate()
   const { mutateAsync: update, isPending: updating } = useRentalContractControllerUpdateById()
+  const [ownerIds, setOwnerIds] = useState<string[]>([])
+  const [tenantIds, setTenantIds] = useState<string[]>([])
 
   const form = useForm<RentalContractFormValues>({
     resolver: zodResolver(createRentalContractSchema(t)),
@@ -86,6 +93,8 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
 
   useEffect(() => {
     form.reset(contract ? contractToFormValues(contract) : emptyValues)
+    setOwnerIds(partyIds(contract?.rentalContractOwners, contract?.ownerId))
+    setTenantIds(partyIds(contract?.rentalContractTenants, contract?.tenantId))
   }, [contract, form])
 
   function invalidateList() {
@@ -95,6 +104,8 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
 
   function onSubmit(values: RentalContractFormValues) {
     const cleaned = emptyStringsToNull(values)
+    const validOwnerIds = ownerIds.filter(Boolean)
+    const validTenantIds = tenantIds.filter(Boolean)
     const data = {
       ...cleaned,
       dueDay: toNumberOrNull(values.dueDay) ?? 1,
@@ -107,6 +118,10 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
       stipulaDate: toISODateOrNull(values.stipulaDate),
       registeredAt: toISODateOrNull(values.registeredAt),
       renewalDueDate: toISODateOrNull(values.renewalDueDate),
+      ownerId: validOwnerIds[0] ?? values.ownerId,
+      tenantId: validTenantIds[0] ?? values.tenantId,
+      owners: validOwnerIds.map((personId) => ({ personId })),
+      tenants: validTenantIds.map((personId) => ({ personId })),
     }
 
     const promise = contract?.id ? update({ id: contract.id, data }) : create({ data })
@@ -129,5 +144,9 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
     form,
     isSubmitting: creating || updating,
     onSubmit: form.handleSubmit(onSubmit),
+    ownerIds,
+    setOwnerIds,
+    tenantIds,
+    setTenantIds,
   }
 }

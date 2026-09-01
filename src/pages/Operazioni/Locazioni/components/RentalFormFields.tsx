@@ -13,11 +13,15 @@ import {
 
 type RentalFormFieldsProps = {
   form: UseFormReturn<RentalContractFormValues>
+  ownerIds: string[]
+  setOwnerIds: (ids: string[]) => void
+  tenantIds: string[]
+  setTenantIds: (ids: string[]) => void
 }
 
-function RentalFormFields({ form }: RentalFormFieldsProps) {
+function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds }: RentalFormFieldsProps) {
   const { t } = useTranslation('operazioni')
-  const { register, control } = form
+  const { register, control, setValue } = form
   const { errors } = useFormState({ control })
   const situationOptions = getRentalSituationOptions(t)
 
@@ -37,7 +41,15 @@ function RentalFormFields({ form }: RentalFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <RentalPartiesFields control={control} errors={errors} />
+      <RentalPartiesFields
+        control={control}
+        errors={errors}
+        setValue={setValue}
+        ownerIds={ownerIds}
+        setOwnerIds={setOwnerIds}
+        tenantIds={tenantIds}
+        setTenantIds={setTenantIds}
+      />
 
       <FormFieldWrapper label={t('locazioni.formFields.startDateLabel')} required error={errors.startDate?.message}>
         <Input {...register('startDate')} type="date" />

@@ -232,5 +232,46 @@
     "passwordMin": "La password deve contenere almeno 6 caratteri",
     "accessLevelAdmin": "Amministratore",
     "accessLevelBroker": "Agente"
+  },
+  "proprietariPage": {
+    "title": "Portale Proprietari",
+    "description": "Gestisci gli accessi dei proprietari all'area riservata"
+  },
+  "proprietari": {
+    "newLabel": "Aggiungi proprietario",
+    "empty": "Nessun accesso configurato",
+    "tableColumns": {
+      "owner": "Proprietario",
+      "email": "Email",
+      "lastAccess": "Ultimo accesso",
+      "accessCount": "Totale accessi",
+      "status": "Stato",
+      "active": "Attivo",
+      "inactive": "Disattivo",
+      "actions": "Azioni"
+    },
+    "formModal": {
+      "title": "Aggiungi proprietario",
+      "ownerLabel": "Proprietario",
+      "ownerPlaceholder": "Seleziona un proprietario",
+      "emailLabel": "Email",
+      "submit": "Crea accesso"
+    },
+    "pinDialog": {
+      "title": "PIN generato",
+      "warning": "Annota il PIN adesso: non sarà più mostrato.",
+      "close": "Ho annotato, chiudi"
+    },
+    "actions": {
+      "creating": "Creazione accesso...",
+      "createSuccess": "Accesso creato",
+      "createError": "Errore durante la creazione dell'accesso",
+      "resettingPin": "Generazione nuovo PIN...",
+      "resetPinSuccess": "PIN reimpostato",
+      "resetPinError": "Errore durante la reimpostazione del PIN",
+      "updating": "Aggiornamento...",
+      "updateSuccess": "Aggiornato con successo",
+      "updateError": "Errore durante l'aggiornamento"
+    }
   }
 }

@@ -166,5 +166,12 @@
       "success": "Impegno spostato con successo!",
       "error": "Errore durante lo spostamento dell’impegno"
     }
+  },
+  "filters": {
+    "searchPlaceholder": "Cerca per titolo",
+    "typePlaceholder": "Tipo evento",
+    "onlyCalls": "Mostra solo telefonate",
+    "visibleUsers": "Calendari da visionare",
+    "visibleUsersPlaceholder": "Aggiungi collega"
   }
 }

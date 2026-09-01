@@ -32,4 +32,6 @@ export const CalendarEventFilterFieldsOneOfTwoItem = {
   leadId: 'leadId',
   addressId: 'addressId',
   ownerId: 'ownerId',
+  parentEventId: 'parentEventId',
+  reminderSentAt: 'reminderSentAt',
 } as const;

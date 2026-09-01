@@ -84,6 +84,23 @@ export function buildProposalTableColumns({
       ),
     },
     {
+      header: t('tableColumns.financed'),
+      cell: (proposal) => (
+        <Badge variant={proposal.financed ? 'default' : 'outline'}>
+          {proposal.financed ? t('tableColumns.financedYes') : t('tableColumns.financedNo')}
+        </Badge>
+      ),
+    },
+    { header: t('tableColumns.sellerAgent'), cell: (proposal) => proposal.sellerAgent?.fullName ?? '—' },
+    { header: t('tableColumns.assignedTo'), cell: (proposal) => proposal.assignedTo?.fullName ?? '—' },
+    { header: t('tableColumns.createdBy'), cell: (proposal) => proposal.createdBy?.fullName ?? '—' },
+    {
+      header: t('tableColumns.notes'),
+      cell: (proposal) => (
+        <span className="line-clamp-1 max-w-40 text-muted-foreground">{proposal.notes ?? '—'}</span>
+      ),
+    },
+    {
       header: t('tableColumns.actions'),
       headerClassName: 'w-24 text-right',
       cellClassName: 'text-right',

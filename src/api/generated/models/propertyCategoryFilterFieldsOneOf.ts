@@ -11,6 +11,7 @@ export type PropertyCategoryFilterFieldsOneOf = {
   name?: boolean;
   slug?: boolean;
   icon?: boolean;
+  kind?: boolean;
   displayOrder?: boolean;
   active?: boolean;
 };

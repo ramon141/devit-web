@@ -166,5 +166,12 @@
       "success": "Compromisso movido com sucesso!",
       "error": "Erro ao mover o compromisso"
     }
+  },
+  "filters": {
+    "searchPlaceholder": "Buscar por título",
+    "typePlaceholder": "Tipo de evento",
+    "onlyCalls": "Mostrar só ligações",
+    "visibleUsers": "Calendários a visualizar",
+    "visibleUsersPlaceholder": "Adicionar colega"
   }
 }

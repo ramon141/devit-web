@@ -5,6 +5,7 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { PropertyCategoryWithRelationsKind } from './propertyCategoryWithRelationsKind';
 
 /**
  * (tsType: PropertyCategoryWithRelations, schemaOptions: { includeRelations: true })
@@ -15,6 +16,8 @@ export interface PropertyCategoryWithRelations {
   slug: string;
   /** @nullable */
   icon?: string | null;
+  /** @nullable */
+  kind?: PropertyCategoryWithRelationsKind;
   /** @nullable */
   displayOrder?: number | null;
   active?: boolean;

@@ -18,6 +18,7 @@ import { useDeleteCalendarEvent } from '@/pages/Agenda/hooks/useDeleteCalendarEv
 import { useRescheduleCalendarEvent } from '@/pages/Agenda/hooks/useRescheduleCalendarEvent'
 import CalendarEventFormModal from '@/pages/Agenda/components/CalendarEventFormModal'
 import CalendarEventPreviewModal from '@/pages/Agenda/components/CalendarEventPreviewModal'
+import AgendaFilters from '@/pages/Agenda/components/AgendaFilters'
 
 const confirmationColors: Record<string, string> = {
   pending: 'var(--muted-foreground)',
@@ -27,7 +28,7 @@ const confirmationColors: Record<string, string> = {
 
 function Agenda() {
   const { t, i18n } = useTranslation('agenda')
-  const { events, setRange } = useCalendarEventList()
+  const { events, setRange, filters, setFilters } = useCalendarEventList()
   const { handleDelete } = useDeleteCalendarEvent()
   const { reschedule } = useRescheduleCalendarEvent()
   const [formOpen, setFormOpen] = useState(false)
@@ -89,6 +90,8 @@ function Agenda() {
       description={t('agenda:page.description')}
       breadcrumbItems={[{ label: t('agenda:page.breadcrumb') }]}
     >
+      <AgendaFilters filters={filters} onChange={setFilters} />
+
       <div className="devit-calendar rounded-xl bg-card p-3">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}

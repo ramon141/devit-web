@@ -95,7 +95,14 @@
     "newButton": "Nova solicitação",
     "deleteTitle": "Excluir a solicitação?",
     "deleteDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
-    "deleteConfirm": "Excluir"
+    "deleteConfirm": "Excluir",
+    "filters": {
+      "searchPlaceholder": "Buscar por nome ou assunto",
+      "sourcePlaceholder": "Origem",
+      "requestTypePlaceholder": "Tipo de solicitação",
+      "assignedToPlaceholder": "Responsável",
+      "onlyMine": "Somente as minhas"
+    }
   },
   "leadStatusOptions": {
     "new": "Novo",

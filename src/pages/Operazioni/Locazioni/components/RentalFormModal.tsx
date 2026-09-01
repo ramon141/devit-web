@@ -16,10 +16,11 @@ type RentalFormModalProps = {
 
 function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps) {
   const { t } = useTranslation('operazioni')
-  const { form, isSubmitting, onSubmit } = useRentalContractForm({
-    contract,
-    onSaved: () => onOpenChange(false),
-  })
+  const { form, isSubmitting, onSubmit, ownerIds, setOwnerIds, tenantIds, setTenantIds } =
+    useRentalContractForm({
+      contract,
+      onSaved: () => onOpenChange(false),
+    })
 
   return (
     <ModalRegister
@@ -40,7 +41,13 @@ function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps)
 
         <TabsContent value="dati">
           <form onSubmit={onSubmit} className="grid gap-4">
-            <RentalFormFields form={form} />
+            <RentalFormFields
+              form={form}
+              ownerIds={ownerIds}
+              setOwnerIds={setOwnerIds}
+              tenantIds={tenantIds}
+              setTenantIds={setTenantIds}
+            />
 
             <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
           </form>

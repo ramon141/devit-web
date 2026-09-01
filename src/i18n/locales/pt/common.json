@@ -83,7 +83,8 @@
       "categorie": "Categorias",
       "banner": "Banner",
       "auditLog": "Log de auditoria",
-      "componenti": "Componentes"
+      "componenti": "Componentes",
+      "proprietari": "Proprietários"
     }
   },
   "notificationsPopover": {
@@ -113,5 +114,8 @@
     "label": "Exportar",
     "excel": "Excel",
     "pdf": "PDF"
+  },
+  "headerActions": {
+    "newContact": "Novo contato"
   }
 }

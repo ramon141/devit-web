@@ -275,5 +275,21 @@
       "exclusive": "Exclusiva",
       "open": "Aberta"
     }
+  },
+  "areaProprietari": {
+    "login": {
+      "title": "Área Proprietários",
+      "intro": "Acesse com o email e o PIN fornecidos pela sua imobiliária.",
+      "emailLabel": "Email",
+      "pinLabel": "PIN",
+      "submit": "Entrar",
+      "invalidCredentials": "Email ou PIN inválidos"
+    },
+    "dashboard": {
+      "title": "Seus imóveis",
+      "logout": "Sair",
+      "loading": "Carregando...",
+      "empty": "Nenhum imóvel associado à sua conta"
+    }
   }
 }

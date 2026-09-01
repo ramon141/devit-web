@@ -5,6 +5,7 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { NewPropertyCategoryKind } from './newPropertyCategoryKind';
 
 /**
  * (tsType: Omit<PropertyCategory, 'id'>, schemaOptions: { title: 'NewPropertyCategory', exclude: [ 'id' ] })
@@ -14,6 +15,8 @@ export interface NewPropertyCategory {
   slug: string;
   /** @nullable */
   icon?: string | null;
+  /** @nullable */
+  kind?: NewPropertyCategoryKind;
   /** @nullable */
   displayOrder?: number | null;
   active?: boolean;

@@ -1,7 +1,16 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { usePropertyControllerCount, usePropertyControllerFind } from '@/api/generated/api'
+import type { PropertyWithRelations } from '@/api/generated/models'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import { PAGE_SIZE } from '@/constants/pagination'
+import { UserInfo } from '@/auth'
+import { useCategoryKinds, type PropertyCategoryKind } from '@/pages/Imoveis/hooks/useCategoryKinds'
+
+// `propertyDetail` (hasOne) e o campo `kind` da categoria ainda não estão no
+// client gerado (orval não regenerado desde a migration) — tipo local só pro necessário.
+export type PropertyRow = PropertyWithRelations & {
+  propertyDetail?: { prestige?: boolean | null; auction?: boolean | null }
+}
 
 export type PropertyOrderBy =
   | 'createdAt_desc'
@@ -25,6 +34,11 @@ export type PropertyFiltersValues = {
   areaMin: string
   areaMax: string
   orderBy: PropertyOrderBy
+  onlyMine: boolean
+  kind: PropertyCategoryKind | ''
+  city: string
+  onlyPrestige: boolean
+  onlyAuction: boolean
 }
 
 export const emptyPropertyFilters: PropertyFiltersValues = {
@@ -41,6 +55,11 @@ export const emptyPropertyFilters: PropertyFiltersValues = {
   areaMin: '',
   areaMax: '',
   orderBy: 'createdAt_desc',
+  onlyMine: false,
+  kind: '',
+  city: '',
+  onlyPrestige: false,
+  onlyAuction: false,
 }
 
 const orderByMap: Record<PropertyOrderBy, string[]> = {
@@ -52,7 +71,7 @@ const orderByMap: Record<PropertyOrderBy, string[]> = {
   salePrice_desc: ['salePrice DESC'],
 }
 
-function buildWhere(search: string, filters: PropertyFiltersValues) {
+function buildWhere(search: string, filters: PropertyFiltersValues, kindCategoryIds: string[] | undefined) {
   const conditions: Record<string, unknown>[] = []
 
   if (search) {
@@ -65,6 +84,7 @@ function buildWhere(search: string, filters: PropertyFiltersValues) {
     })
   }
   if (filters.categoryId) conditions.push({ categoryId: filters.categoryId })
+  if (kindCategoryIds) conditions.push({ categoryId: { inq: kindCategoryIds } })
   if (filters.purpose) conditions.push({ purpose: filters.purpose })
   if (filters.status) conditions.push({ status: filters.status })
   if (filters.ownerId) conditions.push({ ownerId: filters.ownerId })
@@ -76,8 +96,25 @@ function buildWhere(search: string, filters: PropertyFiltersValues) {
   if (filters.bathroomsMax) conditions.push({ bathrooms: { lte: Number(filters.bathroomsMax) } })
   if (filters.areaMin) conditions.push({ areaSqm: { gte: Number(filters.areaMin) } })
   if (filters.areaMax) conditions.push({ areaSqm: { lte: Number(filters.areaMax) } })
+  if (filters.onlyMine) {
+    const userId = UserInfo.getUserId()
+    if (userId) conditions.push({ createdById: userId })
+  }
 
   return conditions.length > 0 ? { and: conditions } : undefined
+}
+
+// Prestigio/asta/comune não dão pra filtrar no `where` (relation aninhada / campo
+// fora do model Property) sem SQL customizado no backend — filtra a página atual.
+// ponytail: filtro client-side pós-fetch; `totalItems`/paginação ficam imprecisos
+// com esses 3 ativos. Mover pro backend se a base de imóveis crescer muito.
+function applyClientSideFilters(properties: PropertyRow[], filters: PropertyFiltersValues): PropertyRow[] {
+  return properties.filter((property) => {
+    if (filters.onlyPrestige && !property.propertyDetail?.prestige) return false
+    if (filters.onlyAuction && !property.propertyDetail?.auction) return false
+    if (filters.city && property.address?.city !== filters.city) return false
+    return true
+  })
 }
 
 export function usePropertyList() {
@@ -85,8 +122,10 @@ export function usePropertyList() {
   const [page, setPage] = useState(1)
   const [filters, setFiltersState] = useState<PropertyFiltersValues>(emptyPropertyFilters)
   const debouncedSearch = useDebouncedValue(search)
+  const { categoryIdsByKind } = useCategoryKinds()
 
-  const where = buildWhere(debouncedSearch, filters)
+  const kindCategoryIds = filters.kind ? categoryIdsByKind[filters.kind] : undefined
+  const where = buildWhere(debouncedSearch, filters, kindCategoryIds)
 
   const { data: allProperties, isLoading } = usePropertyControllerFind({
     filter: {
@@ -96,6 +135,7 @@ export function usePropertyList() {
         { relation: 'address' },
         { relation: 'owner' },
         { relation: 'propertyPhotos', scope: { include: [{ relation: 'attachment' }] } },
+        { relation: 'propertyDetail' },
       ],
       order: orderByMap[filters.orderBy],
       limit: PAGE_SIZE,
@@ -104,6 +144,11 @@ export function usePropertyList() {
   })
 
   const { data: countResult } = usePropertyControllerCount({ where })
+
+  const properties = useMemo(
+    () => applyClientSideFilters((allProperties ?? []) as PropertyRow[], filters),
+    [allProperties, filters],
+  )
 
   function handleSearchChange(value: string) {
     setSearch(value)
@@ -116,7 +161,7 @@ export function usePropertyList() {
   }
 
   return {
-    properties: allProperties ?? [],
+    properties,
     isLoading,
     totalItems: countResult?.count ?? 0,
     pageSize: PAGE_SIZE,

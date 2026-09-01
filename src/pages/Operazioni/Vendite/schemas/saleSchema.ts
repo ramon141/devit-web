@@ -45,6 +45,8 @@ export function createSaleSchema(t: TFunction) {
     proposalId: z.string().optional(),
     sellerAgentId: z.string().optional(),
     buyerAgentId: z.string().optional(),
+    extraBuyerIds: z.array(z.string()).optional(),
+    extraSellerIds: z.array(z.string()).optional(),
   })
 }
 

@@ -19,4 +19,5 @@ export const PurchaseProposalIncludeFilterItemsRelation = {
   createdBy: 'createdBy',
   sale: 'sale',
   attachments: 'attachments',
+  proposalBuyers: 'proposalBuyers',
 } as const;

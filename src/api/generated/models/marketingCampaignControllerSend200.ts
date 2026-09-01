@@ -9,4 +9,5 @@
 export type MarketingCampaignControllerSend200 = {
   sent?: number;
   failed?: number;
+  skipped?: number;
 };

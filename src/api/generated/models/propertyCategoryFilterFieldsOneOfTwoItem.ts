@@ -15,6 +15,7 @@ export const PropertyCategoryFilterFieldsOneOfTwoItem = {
   name: 'name',
   slug: 'slug',
   icon: 'icon',
+  kind: 'kind',
   displayOrder: 'displayOrder',
   active: 'active',
 } as const;

@@ -134,7 +134,9 @@
       "ownerAgentLabel": "Agente del proprietario",
       "tenantAgentLabel": "Agente dell'inquilino",
       "agentSearchPlaceholder": "Cerca un agente...",
-      "noneOption": "Nessuno"
+      "noneOption": "Nessuno",
+      "addOwner": "Aggiungi proprietario",
+      "addTenant": "Aggiungi inquilino"
     },
     "formFields": {
       "numberLabel": "Numero",
@@ -185,7 +187,15 @@
       "terminateTooltip": "Rescindi",
       "deleteTooltip": "Elimina",
       "lockedTooltip": "Contratto rescisso/chiuso: non modificabile",
-      "dataStipula": "Data stipula"
+      "dataStipula": "Data stipula",
+      "agenteProprietario": "Agente P",
+      "agenteInquilino": "Agente I",
+      "al": "Al",
+      "inCorso": "In corso",
+      "inCorsoYes": "Sì",
+      "reg": "Reg.",
+      "regYes": "Sì",
+      "note": "Note"
     },
     "hooks": {
       "attachments": {
@@ -218,6 +228,19 @@
         "success": "Contratto eliminato con successo!",
         "error": "Errore durante l’eliminazione del contratto"
       }
+    },
+    "filters": {
+      "situationLabel": "Stato",
+      "all": "Tutti",
+      "ownerLabel": "Proprietario",
+      "tenantLabel": "Inquilino",
+      "ownerAgentLabel": "Agente del proprietario",
+      "tenantAgentLabel": "Agente dell'inquilino",
+      "stipulaDateFromLabel": "Data stipula dal",
+      "stipulaDateToLabel": "Data stipula al",
+      "startDateFromLabel": "Data inizio dal",
+      "startDateToLabel": "Data inizio al",
+      "onlyMine": "Solo i miei"
     }
   },
   "vendite": {
@@ -281,7 +304,9 @@
       "proposalSearchPlaceholder": "Cerca per numero...",
       "sellerAgentLabel": "Agente del venditore",
       "buyerAgentLabel": "Agente dell'acquirente",
-      "noneOption": "Nessuno"
+      "noneOption": "Nessuno",
+      "extraSellersLabel": "Altri venditori",
+      "extraBuyersLabel": "Altri acquirenti"
     },
     "formModal": {
       "editTitle": "Modifica vendita",
@@ -309,7 +334,12 @@
       "data": "Data",
       "stato": "Stato",
       "azioni": "Azioni",
-      "lockedTooltip": "Vendita conclusa: non modificabile"
+      "lockedTooltip": "Vendita conclusa: non modificabile",
+      "rogito": "Rogito",
+      "agenteV": "Agente V",
+      "agenteA": "Agente A",
+      "note": "Note",
+      "plusOthers": "+{{count}} altri"
     },
     "documentsManager": {
       "typePlaceholder": "Tipo di documento (facoltativo)",
@@ -337,6 +367,17 @@
         "deleteSuccess": "Documento eliminato con successo!",
         "deleteError": "Errore durante l’eliminazione del documento"
       }
+    },
+    "filters": {
+      "statusLabel": "Stato",
+      "sellerLabel": "Venditore",
+      "buyerLabel": "Acquirente",
+      "sellerAgentLabel": "Agente venditore",
+      "buyerAgentLabel": "Agente acquirente",
+      "saleDateFromLabel": "Data stipula dal",
+      "saleDateToLabel": "Data stipula al",
+      "onlyMine": "Solo le mie",
+      "all": "Tutti"
     }
   }
 }

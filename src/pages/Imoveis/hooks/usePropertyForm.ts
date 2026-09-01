@@ -50,6 +50,7 @@ const emptyValues: PropertyFormValues = {
 
 type UsePropertyFormProps = {
   property?: PropertyWithRelations | null
+  initialCategoryId?: string
   onSaved: (id: string) => void
 }
 
@@ -84,7 +85,7 @@ function propertyToFormValues(property: PropertyWithRelations): PropertyFormValu
   }
 }
 
-export function usePropertyForm({ property, onSaved }: UsePropertyFormProps) {
+export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePropertyFormProps) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { toastPromise } = useToast()
@@ -95,7 +96,7 @@ export function usePropertyForm({ property, onSaved }: UsePropertyFormProps) {
 
   const form = useForm<PropertyFormValues>({
     resolver: zodResolver(createPropertySchema(t)),
-    defaultValues: emptyValues,
+    defaultValues: { ...emptyValues, categoryId: initialCategoryId ?? emptyValues.categoryId },
   })
 
   useEffect(() => {

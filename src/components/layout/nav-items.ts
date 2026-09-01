@@ -96,6 +96,7 @@ const allNavItems: NavItem[] = [
       { label: 'sidebar.nav.categorie', path: crmPath('/amministrazione/categorie') },
       { label: 'sidebar.nav.banner', path: crmPath('/amministrazione/banner') },
       { label: 'sidebar.nav.auditLog', path: crmPath('/amministrazione/audit') },
+      { label: 'sidebar.nav.proprietari', path: crmPath('/amministrazione/proprietari') },
     ],
   },
   {

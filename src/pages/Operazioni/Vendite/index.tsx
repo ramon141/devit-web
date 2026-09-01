@@ -7,11 +7,23 @@ import { useSaleList } from '@/pages/Operazioni/Vendite/hooks/useSaleList'
 import { useEditModalState } from '@/hooks/useEditModalState'
 import SaleTable from '@/pages/Operazioni/Vendite/components/SaleTable'
 import SaleFormModal from '@/pages/Operazioni/Vendite/components/SaleFormModal'
+import SaleFilters from '@/pages/Operazioni/Vendite/components/SaleFilters'
 
 function Vendite() {
   const { t } = useTranslation('operazioni')
-  const { sales, where, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
-    useSaleList()
+  const {
+    sales,
+    where,
+    isLoading,
+    totalItems,
+    pageSize,
+    page,
+    setPage,
+    search,
+    onSearchChange,
+    filters,
+    setFilters,
+  } = useSaleList()
   const { open, setOpen, editing, openNew, openEdit } = useEditModalState<SaleWithRelations>()
 
   return (
@@ -22,6 +34,7 @@ function Vendite() {
         searchPlaceholder={t('vendite.index.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('vendite.index.newLabel')}
+        filters={<SaleFilters filters={filters} onChange={setFilters} />}
         actions={<ExportMenu path="/sales/export" params={{ filter: { where } }} />}
       />
 

@@ -50,7 +50,14 @@
     "amount": "Valore",
     "date": "Data",
     "status": "Stato",
-    "actions": "Azioni"
+    "actions": "Azioni",
+    "financed": "Mutuo",
+    "financedYes": "Sì",
+    "financedNo": "No",
+    "sellerAgent": "Agente V",
+    "assignedTo": "Agente A",
+    "createdBy": "Creata da",
+    "notes": "Note"
   },
   "paymentMethodOptions": {
     "cash": "Contanti",
@@ -113,5 +120,30 @@
     "deleting": "Rimozione in corso...",
     "deleteSuccess": "Allegato rimosso",
     "deleteError": "Impossibile rimuovere l'allegato"
+  },
+  "filters": {
+    "statusLabel": "Stato",
+    "financedLabel": "Vincolata a mutuo",
+    "financedYes": "Sì",
+    "financedNo": "No",
+    "propertyLabel": "Immobile",
+    "buyerLabel": "Acquirente",
+    "sellerAgentLabel": "Agente venditore",
+    "assignedToLabel": "Agente acquirente",
+    "proposalDateFromLabel": "Periodo dal",
+    "proposalDateToLabel": "Periodo al",
+    "onlyMine": "Solo le mie",
+    "all": "Tutti"
+  },
+  "buyersManager": {
+    "title": "Acquirenti aggiuntivi",
+    "buyerPlaceholder": "Seleziona un acquirente",
+    "add": "Aggiungi",
+    "adding": "Aggiunta in corso...",
+    "addSuccess": "Acquirente aggiunto con successo!",
+    "addError": "Errore durante l'aggiunta dell'acquirente.",
+    "removing": "Rimozione in corso...",
+    "removeSuccess": "Acquirente rimosso con successo!",
+    "removeError": "Errore durante la rimozione dell'acquirente."
   }
 }

@@ -3,6 +3,10 @@
     "title": "Marketing",
     "description": "Monitore as comunicações enviadas aos clientes",
     "breadcrumb": "Marketing",
+    "dashboardTab": "Painel",
+    "inviaTab": "Enviar campanha",
+    "modelliTab": "Modelos",
+    "rimozioniTab": "Descadastros",
     "emailTab": "E-mail Marketing",
     "whatsappTab": "WhatsApp Marketing",
     "whatsappHint": "Para enviar uma mensagem, vá até a ficha do imóvel ou do cliente.",
@@ -12,5 +16,115 @@
   "channelStatusDashboard": {
     "total": "Total",
     "distributionByStatus": "Distribuição por status"
+  },
+  "templateChannelOptions": {
+    "email": "E-mail",
+    "whatsapp": "WhatsApp"
+  },
+  "templateCategoryOptions": {
+    "promozione": "Promoção",
+    "aggiornamento": "Atualização",
+    "generico": "Genérico"
+  },
+  "templateSchema": {
+    "nameRequired": "Nome obrigatório",
+    "channelRequired": "Canal obrigatório",
+    "categoryRequired": "Categoria obrigatória",
+    "bodyRequired": "Corpo obrigatório"
+  },
+  "templateForm": {
+    "pendingCreate": "Criando modelo...",
+    "pendingUpdate": "Atualizando modelo...",
+    "successCreate": "Modelo criado",
+    "successUpdate": "Modelo atualizado",
+    "error": "Erro ao salvar o modelo"
+  },
+  "deleteTemplate": {
+    "pending": "Excluindo modelo...",
+    "success": "Modelo excluído",
+    "error": "Erro ao excluir o modelo"
+  },
+  "templateFormModal": {
+    "newTitle": "Novo modelo",
+    "editTitle": "Editar modelo",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Ex. Promoção de verão",
+    "channelLabel": "Canal",
+    "categoryLabel": "Categoria",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "Assunto do e-mail",
+    "bodyLabel": "Corpo",
+    "bodyPlaceholder": "Texto da mensagem...",
+    "activeLabel": "Ativo"
+  },
+  "templateTableColumns": {
+    "name": "Nome",
+    "channel": "Canal",
+    "category": "Categoria",
+    "status": "Status",
+    "active": "Ativo",
+    "inactive": "Inativo",
+    "actions": "Ações"
+  },
+  "templateTable": {
+    "empty": "Nenhum modelo encontrado",
+    "deleteTitle": "Excluir modelo",
+    "deleteDescription": "Deseja excluir o modelo \"{{name}}\"?",
+    "deleteConfirm": "Excluir"
+  },
+  "modelliTab": {
+    "searchPlaceholder": "Buscar modelo...",
+    "newLabel": "Novo modelo"
+  },
+  "optOutForm": {
+    "pending": "Registrando descadastro...",
+    "success": "Descadastro registrado",
+    "error": "Erro ao registrar o descadastro"
+  },
+  "deleteOptOut": {
+    "pending": "Removendo descadastro...",
+    "success": "Descadastro removido",
+    "error": "Erro ao remover"
+  },
+  "optOutFormModal": {
+    "title": "Novo descadastro",
+    "personLabel": "Pessoa",
+    "channelLabel": "Canal",
+    "reasonLabel": "Motivo",
+    "reasonPlaceholder": "Motivo (opcional)"
+  },
+  "optOutTable": {
+    "person": "Pessoa",
+    "channel": "Canal",
+    "reason": "Motivo",
+    "date": "Data",
+    "actions": "Ações",
+    "empty": "Nenhum descadastro registrado",
+    "deleteTitle": "Excluir descadastro",
+    "deleteDescription": "Deseja excluir o descadastro de \"{{name}}\"?",
+    "deleteConfirm": "Excluir"
+  },
+  "rimozioniTab": {
+    "newLabel": "Novo descadastro"
+  },
+  "sendCampaign": {
+    "recipientsTitle": "Destinatários",
+    "propertiesTitle": "Imóveis a anexar",
+    "contentTitle": "Conteúdo",
+    "whatsappDisabled": "Provedor não configurado",
+    "searchPeoplePlaceholder": "Buscar pessoa...",
+    "noPeople": "Nenhuma pessoa encontrada",
+    "selectedCount": "{{count}} selecionados",
+    "searchPropertiesPlaceholder": "Buscar imóvel...",
+    "noProperties": "Nenhum imóvel encontrado",
+    "templateLabel": "Modelo",
+    "templatePlaceholder": "Selecione um modelo",
+    "subjectLabel": "Assunto",
+    "contentLabel": "Mensagem",
+    "sendLabel": "Enviar",
+    "pending": "Enviando...",
+    "success": "Enviadas {{sent}}, falharam {{failed}}, ignoradas {{skipped}}",
+    "error": "Erro ao enviar a campanha",
+    "lastResult": "Último envio: {{sent}} enviadas, {{failed}} falharam, {{skipped}} ignoradas"
   }
 }

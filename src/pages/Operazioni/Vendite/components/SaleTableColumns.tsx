@@ -58,6 +58,13 @@ export function buildSaleTableColumns(
 ): DataTableColumn<SaleWithRelations>[] {
   const statusOptions = getSaleStatusOptions(t)
 
+  function formatParties(primaryName: string | undefined, totalCount: number | undefined) {
+    if (!primaryName) return '—'
+
+    const extra = (totalCount ?? 1) - 1
+    return extra > 0 ? `${primaryName} ${t('operazioni:vendite.tableColumns.plusOthers', { count: extra })}` : primaryName
+  }
+
   return [
     {
       header: t('operazioni:vendite.tableColumns.numero'),
@@ -69,11 +76,11 @@ export function buildSaleTableColumns(
     },
     {
       header: t('operazioni:vendite.tableColumns.venditore'),
-      cell: (sale) => sale.seller?.name ?? '—',
+      cell: (sale) => formatParties(sale.seller?.name, sale.saleSellers?.length),
     },
     {
       header: t('operazioni:vendite.tableColumns.acquirente'),
-      cell: (sale) => sale.buyer?.name ?? '—',
+      cell: (sale) => formatParties(sale.buyer?.name, sale.saleBuyers?.length),
     },
     {
       header: t('operazioni:vendite.tableColumns.valore'),
@@ -84,8 +91,25 @@ export function buildSaleTableColumns(
       cell: (sale) => formatDate(sale.saleDate),
     },
     {
+      header: t('operazioni:vendite.tableColumns.rogito'),
+      cell: (sale) => (sale.deedDate ? formatDate(sale.deedDate) : '—'),
+    },
+    {
+      header: t('operazioni:vendite.tableColumns.agenteV'),
+      cell: (sale) => sale.sellerAgent?.fullName ?? '—',
+    },
+    {
+      header: t('operazioni:vendite.tableColumns.agenteA'),
+      cell: (sale) => sale.buyerAgent?.fullName ?? '—',
+    },
+    {
       header: t('operazioni:vendite.tableColumns.stato'),
       cell: (sale) => <Badge variant="secondary">{getOptionLabel(statusOptions, sale.status)}</Badge>,
+    },
+    {
+      header: t('operazioni:vendite.tableColumns.note'),
+      cellClassName: 'max-w-40 truncate',
+      cell: (sale) => sale.notes ?? '—',
     },
     {
       header: t('operazioni:vendite.tableColumns.azioni'),

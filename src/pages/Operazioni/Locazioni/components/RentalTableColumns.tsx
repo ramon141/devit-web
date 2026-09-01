@@ -9,7 +9,11 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import type { DataTableColumn } from '@/components/DataTable'
-import type { RentalContractWithRelations } from '@/api/generated/models'
+import type {
+  RentalContractOwnerWithRelations,
+  RentalContractTenantWithRelations,
+  RentalContractWithRelations,
+} from '@/api/generated/models'
 import { getRentalSituationOptions } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 import { formatAmount } from '@/utils/formatAmount'
 import { formatDate } from '@/utils/formatDate'
@@ -17,6 +21,14 @@ import { getOptionLabel } from '@/utils/getOptionLabel'
 
 function isLocked(situation?: string) {
   return situation === 'terminated' || situation === 'closed'
+}
+
+function partyNames(
+  parties: {person?: {name?: string}}[] | undefined,
+  fallback?: {name?: string},
+): string {
+  if (parties?.length) return parties.map((party) => party.person?.name ?? '—').join(', ')
+  return fallback?.name ?? '—'
 }
 
 type BuildRentalTableColumnsProps = {
@@ -119,11 +131,27 @@ export function buildRentalTableColumns(
     },
     {
       header: t('operazioni:locazioni.tableColumns.proprietario'),
-      cell: (contract) => contract.owner?.name ?? '—',
+      cell: (contract) =>
+        partyNames(
+          contract.rentalContractOwners as RentalContractOwnerWithRelations[] | undefined,
+          contract.owner,
+        ),
     },
     {
       header: t('operazioni:locazioni.tableColumns.inquilino'),
-      cell: (contract) => contract.tenant?.name ?? '—',
+      cell: (contract) =>
+        partyNames(
+          contract.rentalContractTenants as RentalContractTenantWithRelations[] | undefined,
+          contract.tenant,
+        ),
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.agenteProprietario'),
+      cell: (contract) => contract.ownerAgent?.fullName ?? '—',
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.agenteInquilino'),
+      cell: (contract) => contract.tenantAgent?.fullName ?? '—',
     },
     {
       header: t('operazioni:locazioni.tableColumns.affitto'),
@@ -138,9 +166,39 @@ export function buildRentalTableColumns(
       cell: (contract) => formatDate(contract.startDate),
     },
     {
+      header: t('operazioni:locazioni.tableColumns.al'),
+      cell: (contract) => formatDate(contract.endDate),
+    },
+    {
       header: t('operazioni:locazioni.tableColumns.situazione'),
       cell: (contract) => (
         <Badge variant="secondary">{getOptionLabel(situationOptions, contract.situation)}</Badge>
+      ),
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.inCorso'),
+      cell: (contract) =>
+        contract.situation === 'active' ? (
+          <Badge>{t('operazioni:locazioni.tableColumns.inCorsoYes')}</Badge>
+        ) : (
+          '—'
+        ),
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.reg'),
+      cell: (contract) =>
+        contract.registeredAt ? (
+          <Badge variant="secondary">{t('operazioni:locazioni.tableColumns.regYes')}</Badge>
+        ) : (
+          '—'
+        ),
+    },
+    {
+      header: t('operazioni:locazioni.tableColumns.note'),
+      cell: (contract) => (
+        <span className="block max-w-40 truncate" title={contract.notes ?? undefined}>
+          {contract.notes ?? '—'}
+        </span>
       ),
     },
     {

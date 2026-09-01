@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router'
+import { useNavigate, useParams, useSearchParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
 import {
@@ -18,6 +18,7 @@ function PropertyScheda() {
   const { t } = useTranslation('imoveis')
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
   const isNew = !id
 
   const { data: property } = usePropertyControllerFindById(
@@ -28,6 +29,7 @@ function PropertyScheda() {
 
   const { form, isSubmitting, onSubmit } = usePropertyForm({
     property,
+    initialCategoryId: isNew ? (searchParams.get('categoryId') ?? undefined) : undefined,
     onSaved: (savedId) => {
       if (isNew) navigate(`/gestionale/proprieta/${savedId}`, { replace: true })
     },

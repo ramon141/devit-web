@@ -25,6 +25,9 @@ import FilialiPage from '@/pages/Amministrazione/Filiali/page'
 import CategoriePage from '@/pages/Amministrazione/Categorie/page'
 import BannerPage from '@/pages/Amministrazione/Banner/page'
 import AuditPage from '@/pages/Amministrazione/Audit/page'
+import ProprietariPage from '@/pages/Amministrazione/Proprietari/page'
+import AreaProprietariLogin from '@/pages/Site/AreaProprietari/Login'
+import AreaProprietariDashboard from '@/pages/Site/AreaProprietari/Dashboard'
 import Profilo from '@/pages/Profilo'
 import NotFound from '@/pages/NotFound'
 import Shell from '@/components/layout/Shell'
@@ -60,6 +63,8 @@ const siteRoutes: RouteConfig[] = [
   { path: '/contatti', element: <SiteContatti /> },
   { path: '/news', element: <SiteNews /> },
   { path: '/privacy-cookies', element: <SitePrivacyCookies /> },
+  { path: '/area-proprietari/login', element: <AreaProprietariLogin /> },
+  { path: '/area-proprietari', element: <AreaProprietariDashboard /> },
 ]
 
 // Rotte del gestionale, relative a CRM_BASE_PATH (prefissate in AppRoutes)
@@ -89,6 +94,7 @@ const routes: RouteConfig[] = [
   { path: '/amministrazione/categorie', element: <CategoriePage /> },
   { path: '/amministrazione/banner', element: <BannerPage /> },
   { path: '/amministrazione/audit', element: <AuditPage /> },
+  { path: '/amministrazione/proprietari', element: <ProprietariPage /> },
   { path: '/componenti', element: <Componentes /> },
 ]
 

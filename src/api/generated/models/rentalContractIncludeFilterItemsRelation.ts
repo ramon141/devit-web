@@ -21,4 +21,6 @@ export const RentalContractIncludeFilterItemsRelation = {
   contractRenewals: 'contractRenewals',
   contractTermination: 'contractTermination',
   rentalAdjustments: 'rentalAdjustments',
+  rentalContractOwners: 'rentalContractOwners',
+  rentalContractTenants: 'rentalContractTenants',
 } as const;

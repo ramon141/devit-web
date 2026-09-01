@@ -10,11 +10,14 @@ import { usePropertyList } from '@/pages/Imoveis/hooks/usePropertyList'
 import PropertyTable from '@/pages/Imoveis/components/PropertyTable'
 import PropertyCard from '@/pages/Imoveis/components/PropertyCard'
 import PropertyFilters from '@/pages/Imoveis/components/PropertyFilters'
+import PropertyKindTabs from '@/pages/Imoveis/components/PropertyKindTabs'
+import PropertyKindPickerModal from '@/pages/Imoveis/components/PropertyKindPickerModal'
 
 function Imoveis() {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table')
+  const [kindPickerOpen, setKindPickerOpen] = useState(false)
   const {
     properties,
     isLoading,
@@ -38,8 +41,25 @@ function Imoveis() {
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder={t('list.searchPlaceholder')}
-        onNewClick={() => navigate('/gestionale/proprieta/nuovo')}
+        onNewClick={() => setKindPickerOpen(true)}
         newLabel={t('list.newLabel')}
+      />
+
+      <PropertyKindPickerModal
+        open={kindPickerOpen}
+        onOpenChange={setKindPickerOpen}
+        onSelect={(categoryId) =>
+          navigate(
+            categoryId
+              ? `/gestionale/proprieta/nuovo?categoryId=${categoryId}`
+              : '/gestionale/proprieta/nuovo',
+          )
+        }
+      />
+
+      <PropertyKindTabs
+        activeKind={filters.kind}
+        onChange={(kind) => setFilters({ ...filters, kind })}
       />
 
       <PropertyFilters filters={filters} onChange={setFilters} />

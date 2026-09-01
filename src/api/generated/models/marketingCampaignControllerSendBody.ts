@@ -15,4 +15,6 @@ export type MarketingCampaignControllerSendBody = {
   content: string;
   /** @nullable */
   propertyId?: string | null;
+  /** @nullable */
+  propertyIds?: string[] | null;
 };

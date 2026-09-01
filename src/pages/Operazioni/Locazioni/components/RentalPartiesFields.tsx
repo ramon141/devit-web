@@ -1,6 +1,7 @@
-import { Controller, type Control, type FieldErrors } from 'react-hook-form'
+import { Controller, type Control, type FieldErrors, type UseFormSetValue } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
+import PartyListManager from '@/components/PartyListManager'
 import {
   usePropertyControllerFind,
   usePersonControllerFind,
@@ -11,13 +12,36 @@ import type { RentalContractFormValues } from '@/pages/Operazioni/Locazioni/sche
 type RentalPartiesFieldsProps = {
   control: Control<RentalContractFormValues>
   errors: FieldErrors<RentalContractFormValues>
+  setValue: UseFormSetValue<RentalContractFormValues>
+  ownerIds: string[]
+  setOwnerIds: (ids: string[]) => void
+  tenantIds: string[]
+  setTenantIds: (ids: string[]) => void
 }
 
-function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
+function RentalPartiesFields({
+  control,
+  errors,
+  setValue,
+  ownerIds,
+  setOwnerIds,
+  tenantIds,
+  setTenantIds,
+}: RentalPartiesFieldsProps) {
   const { t } = useTranslation('operazioni')
   const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
+
+  function updateOwnerIds(ids: string[]) {
+    setOwnerIds(ids)
+    setValue('ownerId', ids.filter(Boolean)[0] ?? '', { shouldValidate: true })
+  }
+
+  function updateTenantIds(ids: string[]) {
+    setTenantIds(ids)
+    setValue('tenantId', ids.filter(Boolean)[0] ?? '', { shouldValidate: true })
+  }
 
   const propertyOptions = (properties ?? []).map((property) => ({
     value: property.id ?? '',
@@ -50,37 +74,29 @@ function RentalPartiesFields({ control, errors }: RentalPartiesFieldsProps) {
         )}
       />
 
-      <Controller
-        control={control}
-        name="ownerId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('locazioni.partiesFields.ownerLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={personOptions}
-            placeholder={t('locazioni.partiesFields.ownerPlaceholder')}
-            searchPlaceholder={t('locazioni.partiesFields.personSearchPlaceholder')}
-            error={errors.ownerId?.message}
-          />
-        )}
+      <PartyListManager
+        label={t('locazioni.partiesFields.ownerLabel')}
+        options={personOptions}
+        personIds={ownerIds}
+        onChange={updateOwnerIds}
+        placeholder={t('locazioni.partiesFields.ownerPlaceholder')}
+        addLabel={t('locazioni.partiesFields.addOwner')}
       />
+      {errors.ownerId?.message && (
+        <p className="text-sm text-destructive sm:col-span-2">{errors.ownerId.message}</p>
+      )}
 
-      <Controller
-        control={control}
-        name="tenantId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('locazioni.partiesFields.tenantLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={personOptions}
-            placeholder={t('locazioni.partiesFields.tenantPlaceholder')}
-            searchPlaceholder={t('locazioni.partiesFields.personSearchPlaceholder')}
-            error={errors.tenantId?.message}
-          />
-        )}
+      <PartyListManager
+        label={t('locazioni.partiesFields.tenantLabel')}
+        options={personOptions}
+        personIds={tenantIds}
+        onChange={updateTenantIds}
+        placeholder={t('locazioni.partiesFields.tenantPlaceholder')}
+        addLabel={t('locazioni.partiesFields.addTenant')}
       />
+      {errors.tenantId?.message && (
+        <p className="text-sm text-destructive sm:col-span-2">{errors.tenantId.message}</p>
+      )}
 
       <Controller
         control={control}

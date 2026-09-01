@@ -7,11 +7,23 @@ import { useRentalContractList } from '@/pages/Operazioni/Locazioni/hooks/useRen
 import { useEditModalState } from '@/hooks/useEditModalState'
 import RentalTable from '@/pages/Operazioni/Locazioni/components/RentalTable'
 import RentalFormModal from '@/pages/Operazioni/Locazioni/components/RentalFormModal'
+import RentalFilters from '@/pages/Operazioni/Locazioni/components/RentalFilters'
 
 function Locazioni() {
   const { t } = useTranslation('operazioni')
-  const { contracts, where, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
-    useRentalContractList()
+  const {
+    contracts,
+    where,
+    isLoading,
+    totalItems,
+    pageSize,
+    page,
+    setPage,
+    search,
+    onSearchChange,
+    filters,
+    setFilters,
+  } = useRentalContractList()
   const { open, setOpen, editing, openNew, openEdit } =
     useEditModalState<RentalContractWithRelations>()
 
@@ -23,6 +35,7 @@ function Locazioni() {
         searchPlaceholder={t('locazioni.index.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('locazioni.index.newLabel')}
+        filters={<RentalFilters filters={filters} onChange={setFilters} />}
         actions={<ExportMenu path="/rental-contracts/export" params={{ filter: { where } }} />}
       />
 
