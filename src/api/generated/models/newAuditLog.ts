@@ -23,7 +23,8 @@ export interface NewAuditLog {
   newData?: NewAuditLogNewData;
   /** @nullable */
   ip?: string | null;
-  createdAt?: string;
+  /** @nullable */
+  createdAt?: string | null;
   /** @nullable */
   userId?: string | null;
 }

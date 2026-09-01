@@ -23,6 +23,7 @@ export interface LeadPartialExcludingCreatedAtUpdatedAt {
   email?: string | null;
   /** @nullable */
   firstContactAt?: string | null;
+  /** @nullable */
   status?: LeadPartialExcludingCreatedAtUpdatedAtStatus;
   /** @nullable */
   source?: LeadPartialExcludingCreatedAtUpdatedAtSource;

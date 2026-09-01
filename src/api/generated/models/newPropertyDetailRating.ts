@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type NewPropertyDetailRating = typeof NewPropertyDetailRating[keyof typeof NewPropertyDetailRating];
+/**
+ * @nullable
+ */
+export type NewPropertyDetailRating = typeof NewPropertyDetailRating[keyof typeof NewPropertyDetailRating] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

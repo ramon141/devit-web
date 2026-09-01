@@ -357,6 +357,8 @@ import type {
   LeadsReportControllerTodayAppointments200Item,
   LeadsReportControllerTodayAppointments401,
   LoopbackCount,
+  MarketingCampaignControllerList200Item,
+  MarketingCampaignControllerList401,
   MarketingCampaignControllerSend200,
   MarketingCampaignControllerSend401,
   MarketingCampaignControllerSend422,
@@ -386,6 +388,7 @@ import type {
   NewPerson,
   NewPersonAttachment,
   NewProperty,
+  NewPropertyAcousticCertification,
   NewPropertyAdditionalDetail,
   NewPropertyCadastralInfo,
   NewPropertyCategory,
@@ -399,10 +402,12 @@ import type {
   NewPropertyIndustrialDetail,
   NewPropertyLandDetail,
   NewPropertyLocationDetail,
+  NewPropertyMortgageStatus,
   NewPropertyPhoto,
   NewPropertyPriceHistory,
   NewPropertyRoom,
   NewPropertyStatusHistory,
+  NewPropertyUrbanRegularity,
   NewPurchaseProposal,
   NewPurchaseProposalAttachment,
   NewPurchaseProposalBuyer,
@@ -436,6 +441,7 @@ import type {
   OwnerPortalAccessControllerCreate401,
   OwnerPortalAccessControllerCreate422,
   OwnerPortalAccessControllerCreateBody,
+  OwnerPortalAccessControllerFind200Item,
   OwnerPortalAccessControllerFind401,
   OwnerPortalAccessControllerFindParams,
   OwnerPortalAccessControllerResetPin200,
@@ -444,10 +450,10 @@ import type {
   OwnerPortalAccessControllerUpdateById401,
   OwnerPortalAccessControllerUpdateById404,
   OwnerPortalAccessPartialExcludingIdPersonIdPinHashCreatedAtUpdatedAtLastAccessAtAccessCount,
-  OwnerPortalAccessWithRelations,
   OwnerPortalControllerLogin200,
   OwnerPortalControllerLoginBody,
   OwnerPortalControllerMyProperties200Item,
+  OwnerPortalControllerPropertyActivity200,
   Person,
   PersonAttachment,
   PersonAttachmentControllerCount401,
@@ -491,6 +497,23 @@ import type {
   PropertiesReportControllerRecent401,
   PropertiesReportControllerRecentParams,
   Property,
+  PropertyAcousticCertification,
+  PropertyAcousticCertificationControllerCount401,
+  PropertyAcousticCertificationControllerCountParams,
+  PropertyAcousticCertificationControllerCreate401,
+  PropertyAcousticCertificationControllerCreate422,
+  PropertyAcousticCertificationControllerDeleteById401,
+  PropertyAcousticCertificationControllerDeleteById404,
+  PropertyAcousticCertificationControllerFind401,
+  PropertyAcousticCertificationControllerFindById401,
+  PropertyAcousticCertificationControllerFindById404,
+  PropertyAcousticCertificationControllerFindByIdParams,
+  PropertyAcousticCertificationControllerFindParams,
+  PropertyAcousticCertificationControllerUpdateById401,
+  PropertyAcousticCertificationControllerUpdateById404,
+  PropertyAcousticCertificationControllerUpdateById422,
+  PropertyAcousticCertificationPartial,
+  PropertyAcousticCertificationWithRelations,
   PropertyAdditionalDetail,
   PropertyAdditionalDetailControllerCount401,
   PropertyAdditionalDetailControllerCountParams,
@@ -728,6 +751,23 @@ import type {
   PropertyLocationDetailControllerUpdateById422,
   PropertyLocationDetailPartial,
   PropertyLocationDetailWithRelations,
+  PropertyMortgageStatus,
+  PropertyMortgageStatusControllerCount401,
+  PropertyMortgageStatusControllerCountParams,
+  PropertyMortgageStatusControllerCreate401,
+  PropertyMortgageStatusControllerCreate422,
+  PropertyMortgageStatusControllerDeleteById401,
+  PropertyMortgageStatusControllerDeleteById404,
+  PropertyMortgageStatusControllerFind401,
+  PropertyMortgageStatusControllerFindById401,
+  PropertyMortgageStatusControllerFindById404,
+  PropertyMortgageStatusControllerFindByIdParams,
+  PropertyMortgageStatusControllerFindParams,
+  PropertyMortgageStatusControllerUpdateById401,
+  PropertyMortgageStatusControllerUpdateById404,
+  PropertyMortgageStatusControllerUpdateById422,
+  PropertyMortgageStatusPartial,
+  PropertyMortgageStatusWithRelations,
   PropertyOwnerControllerCount401,
   PropertyOwnerControllerCountParams,
   PropertyOwnerControllerDeleteById401,
@@ -807,6 +847,23 @@ import type {
   PropertyStatusHistoryControllerUpdateById422,
   PropertyStatusHistoryPartial,
   PropertyStatusHistoryWithRelations,
+  PropertyUrbanRegularity,
+  PropertyUrbanRegularityControllerCount401,
+  PropertyUrbanRegularityControllerCountParams,
+  PropertyUrbanRegularityControllerCreate401,
+  PropertyUrbanRegularityControllerCreate422,
+  PropertyUrbanRegularityControllerDeleteById401,
+  PropertyUrbanRegularityControllerDeleteById404,
+  PropertyUrbanRegularityControllerFind401,
+  PropertyUrbanRegularityControllerFindById401,
+  PropertyUrbanRegularityControllerFindById404,
+  PropertyUrbanRegularityControllerFindByIdParams,
+  PropertyUrbanRegularityControllerFindParams,
+  PropertyUrbanRegularityControllerUpdateById401,
+  PropertyUrbanRegularityControllerUpdateById404,
+  PropertyUrbanRegularityControllerUpdateById422,
+  PropertyUrbanRegularityPartial,
+  PropertyUrbanRegularityWithRelations,
   PropertyWithRelations,
   PublicLeadControllerCreate200,
   PublicLeadControllerCreate400,
@@ -5794,6 +5851,100 @@ export function useCommunicationLogControllerCount<TData = Awaited<ReturnType<ty
 
 
 /**
+ * @summary Marca abertura de e-mail (pixel de rastreamento, endpoint público)
+ */
+export const communicationLogControllerTrackOpen = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/communication-logs/${id}/track-open`, method: 'GET',
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCommunicationLogControllerTrackOpenQueryKey = (id?: string,) => {
+    return [
+    `/communication-logs/${id}/track-open`
+    ] as const;
+    }
+
+    
+export const getCommunicationLogControllerTrackOpenQueryOptions = <TData = Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError = ErrorType<unknown>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCommunicationLogControllerTrackOpenQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>> = ({ signal }) => communicationLogControllerTrackOpen(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CommunicationLogControllerTrackOpenQueryResult = NonNullable<Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>>
+export type CommunicationLogControllerTrackOpenQueryError = ErrorType<unknown>
+
+
+export function useCommunicationLogControllerTrackOpen<TData = Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError = ErrorType<unknown>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>,
+          TError,
+          Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCommunicationLogControllerTrackOpen<TData = Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError = ErrorType<unknown>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>,
+          TError,
+          Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCommunicationLogControllerTrackOpen<TData = Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError = ErrorType<unknown>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Marca abertura de e-mail (pixel de rastreamento, endpoint público)
+ */
+
+export function useCommunicationLogControllerTrackOpen<TData = Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError = ErrorType<unknown>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackOpen>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCommunicationLogControllerTrackOpenQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Update a Communication Log by id
  */
 export const communicationLogControllerUpdateById = (
@@ -10215,6 +10366,99 @@ export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<
 
 
 /**
+ * @summary Listar campanhas enviadas com estatísticas agregadas
+ */
+export const marketingCampaignControllerList = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<MarketingCampaignControllerList200Item[]>(
+      {url: `/marketing-campaigns`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getMarketingCampaignControllerListQueryKey = () => {
+    return [
+    `/marketing-campaigns`
+    ] as const;
+    }
+
+    
+export const getMarketingCampaignControllerListQueryOptions = <TData = Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError = ErrorType<MarketingCampaignControllerList401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getMarketingCampaignControllerListQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingCampaignControllerList>>> = ({ signal }) => marketingCampaignControllerList(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type MarketingCampaignControllerListQueryResult = NonNullable<Awaited<ReturnType<typeof marketingCampaignControllerList>>>
+export type MarketingCampaignControllerListQueryError = ErrorType<MarketingCampaignControllerList401>
+
+
+export function useMarketingCampaignControllerList<TData = Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError = ErrorType<MarketingCampaignControllerList401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof marketingCampaignControllerList>>,
+          TError,
+          Awaited<ReturnType<typeof marketingCampaignControllerList>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useMarketingCampaignControllerList<TData = Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError = ErrorType<MarketingCampaignControllerList401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof marketingCampaignControllerList>>,
+          TError,
+          Awaited<ReturnType<typeof marketingCampaignControllerList>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useMarketingCampaignControllerList<TData = Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError = ErrorType<MarketingCampaignControllerList401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listar campanhas enviadas com estatísticas agregadas
+ */
+
+export function useMarketingCampaignControllerList<TData = Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError = ErrorType<MarketingCampaignControllerList401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingCampaignControllerList>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getMarketingCampaignControllerListQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Count Notifications
  */
 export const notificationControllerCount = (
@@ -10761,6 +11005,99 @@ export const useOwnerPortalControllerLogin = <TError = ErrorType<unknown>,
     }
     
 /**
+ * @summary Atividade recente do imóvel (visitas agendadas e propostas recebidas)
+ */
+export const ownerPortalControllerPropertyActivity = (
+    propertyId: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<OwnerPortalControllerPropertyActivity200>(
+      {url: `/owner-portal/me/properties/${propertyId}/activity`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getOwnerPortalControllerPropertyActivityQueryKey = (propertyId?: string,) => {
+    return [
+    `/owner-portal/me/properties/${propertyId}/activity`
+    ] as const;
+    }
+
+    
+export const getOwnerPortalControllerPropertyActivityQueryOptions = <TData = Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError = ErrorType<unknown>>(propertyId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getOwnerPortalControllerPropertyActivityQueryKey(propertyId);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>> = ({ signal }) => ownerPortalControllerPropertyActivity(propertyId, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(propertyId), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type OwnerPortalControllerPropertyActivityQueryResult = NonNullable<Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>>
+export type OwnerPortalControllerPropertyActivityQueryError = ErrorType<unknown>
+
+
+export function useOwnerPortalControllerPropertyActivity<TData = Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError = ErrorType<unknown>>(
+ propertyId: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>,
+          TError,
+          Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useOwnerPortalControllerPropertyActivity<TData = Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError = ErrorType<unknown>>(
+ propertyId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>,
+          TError,
+          Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useOwnerPortalControllerPropertyActivity<TData = Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError = ErrorType<unknown>>(
+ propertyId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Atividade recente do imóvel (visitas agendadas e propostas recebidas)
+ */
+
+export function useOwnerPortalControllerPropertyActivity<TData = Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError = ErrorType<unknown>>(
+ propertyId: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof ownerPortalControllerPropertyActivity>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getOwnerPortalControllerPropertyActivityQueryOptions(propertyId,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Imóveis do proprietário autenticado (read-only)
  */
 export const ownerPortalControllerMyProperties = (
@@ -11055,7 +11392,7 @@ export const ownerPortalAccessControllerFind = (
 ) => {
       
       
-      return mutator<OwnerPortalAccessWithRelations[]>(
+      return mutator<OwnerPortalAccessControllerFind200Item[]>(
       {url: `/owner-portal-accesses`, method: 'GET',
         params, signal
     },
@@ -12846,6 +13183,487 @@ export function usePropertyControllerFind<TData = Awaited<ReturnType<typeof prop
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPropertyControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Count Property Acoustic Certifications
+ */
+export const propertyAcousticCertificationControllerCount = (
+    params?: PropertyAcousticCertificationControllerCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LoopbackCount>(
+      {url: `/property-acoustic-certifications/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyAcousticCertificationControllerCountQueryKey = (params?: PropertyAcousticCertificationControllerCountParams,) => {
+    return [
+    `/property-acoustic-certifications/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyAcousticCertificationControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError = ErrorType<PropertyAcousticCertificationControllerCount401>>(params?: PropertyAcousticCertificationControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyAcousticCertificationControllerCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>> = ({ signal }) => propertyAcousticCertificationControllerCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyAcousticCertificationControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>>
+export type PropertyAcousticCertificationControllerCountQueryError = ErrorType<PropertyAcousticCertificationControllerCount401>
+
+
+export function usePropertyAcousticCertificationControllerCount<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError = ErrorType<PropertyAcousticCertificationControllerCount401>>(
+ params: undefined |  PropertyAcousticCertificationControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyAcousticCertificationControllerCount<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError = ErrorType<PropertyAcousticCertificationControllerCount401>>(
+ params?: PropertyAcousticCertificationControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyAcousticCertificationControllerCount<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError = ErrorType<PropertyAcousticCertificationControllerCount401>>(
+ params?: PropertyAcousticCertificationControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Count Property Acoustic Certifications
+ */
+
+export function usePropertyAcousticCertificationControllerCount<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError = ErrorType<PropertyAcousticCertificationControllerCount401>>(
+ params?: PropertyAcousticCertificationControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyAcousticCertificationControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Property Acoustic Certification by id
+ */
+export const propertyAcousticCertificationControllerUpdateById = (
+    id: string,
+    propertyAcousticCertificationPartial: BodyType<PropertyAcousticCertificationPartial>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/property-acoustic-certifications/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: propertyAcousticCertificationPartial
+    },
+      options);
+    }
+  
+
+
+export const getPropertyAcousticCertificationControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyAcousticCertificationControllerUpdateById401 | PropertyAcousticCertificationControllerUpdateById404 | PropertyAcousticCertificationControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyAcousticCertificationPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyAcousticCertificationPartial>}, TContext> => {
+
+const mutationKey = ['propertyAcousticCertificationControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyAcousticCertificationControllerUpdateById>>, {id: string;data: BodyType<PropertyAcousticCertificationPartial>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  propertyAcousticCertificationControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyAcousticCertificationControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyAcousticCertificationControllerUpdateById>>>
+    export type PropertyAcousticCertificationControllerUpdateByIdMutationBody = BodyType<PropertyAcousticCertificationPartial>
+    export type PropertyAcousticCertificationControllerUpdateByIdMutationError = ErrorType<PropertyAcousticCertificationControllerUpdateById401 | PropertyAcousticCertificationControllerUpdateById404 | PropertyAcousticCertificationControllerUpdateById422>
+
+    /**
+ * @summary Update a Property Acoustic Certification by id
+ */
+export const usePropertyAcousticCertificationControllerUpdateById = <TError = ErrorType<PropertyAcousticCertificationControllerUpdateById401 | PropertyAcousticCertificationControllerUpdateById404 | PropertyAcousticCertificationControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyAcousticCertificationPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyAcousticCertificationControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<PropertyAcousticCertificationPartial>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyAcousticCertificationControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Get a Property Acoustic Certification by id
+ */
+export const propertyAcousticCertificationControllerFindById = (
+    id: string,
+    params?: PropertyAcousticCertificationControllerFindByIdParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyAcousticCertificationWithRelations>(
+      {url: `/property-acoustic-certifications/${id}`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyAcousticCertificationControllerFindByIdQueryKey = (id?: string,
+    params?: PropertyAcousticCertificationControllerFindByIdParams,) => {
+    return [
+    `/property-acoustic-certifications/${id}`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyAcousticCertificationControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError = ErrorType<PropertyAcousticCertificationControllerFindById401 | PropertyAcousticCertificationControllerFindById404>>(id: string,
+    params?: PropertyAcousticCertificationControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyAcousticCertificationControllerFindByIdQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>> = ({ signal }) => propertyAcousticCertificationControllerFindById(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyAcousticCertificationControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>>
+export type PropertyAcousticCertificationControllerFindByIdQueryError = ErrorType<PropertyAcousticCertificationControllerFindById401 | PropertyAcousticCertificationControllerFindById404>
+
+
+export function usePropertyAcousticCertificationControllerFindById<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError = ErrorType<PropertyAcousticCertificationControllerFindById401 | PropertyAcousticCertificationControllerFindById404>>(
+ id: string,
+    params: undefined |  PropertyAcousticCertificationControllerFindByIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyAcousticCertificationControllerFindById<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError = ErrorType<PropertyAcousticCertificationControllerFindById401 | PropertyAcousticCertificationControllerFindById404>>(
+ id: string,
+    params?: PropertyAcousticCertificationControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyAcousticCertificationControllerFindById<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError = ErrorType<PropertyAcousticCertificationControllerFindById401 | PropertyAcousticCertificationControllerFindById404>>(
+ id: string,
+    params?: PropertyAcousticCertificationControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a Property Acoustic Certification by id
+ */
+
+export function usePropertyAcousticCertificationControllerFindById<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError = ErrorType<PropertyAcousticCertificationControllerFindById401 | PropertyAcousticCertificationControllerFindById404>>(
+ id: string,
+    params?: PropertyAcousticCertificationControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyAcousticCertificationControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Delete a Property Acoustic Certification by id
+ */
+export const propertyAcousticCertificationControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/property-acoustic-certifications/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getPropertyAcousticCertificationControllerDeleteByIdMutationOptions = <TError = ErrorType<PropertyAcousticCertificationControllerDeleteById401 | PropertyAcousticCertificationControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['propertyAcousticCertificationControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyAcousticCertificationControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  propertyAcousticCertificationControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyAcousticCertificationControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyAcousticCertificationControllerDeleteById>>>
+    
+    export type PropertyAcousticCertificationControllerDeleteByIdMutationError = ErrorType<PropertyAcousticCertificationControllerDeleteById401 | PropertyAcousticCertificationControllerDeleteById404>
+
+    /**
+ * @summary Delete a Property Acoustic Certification by id
+ */
+export const usePropertyAcousticCertificationControllerDeleteById = <TError = ErrorType<PropertyAcousticCertificationControllerDeleteById401 | PropertyAcousticCertificationControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyAcousticCertificationControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyAcousticCertificationControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Create a new Property Acoustic Certification
+ */
+export const propertyAcousticCertificationControllerCreate = (
+    newPropertyAcousticCertification: BodyType<NewPropertyAcousticCertification>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyAcousticCertification>(
+      {url: `/property-acoustic-certifications`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newPropertyAcousticCertification, signal
+    },
+      options);
+    }
+  
+
+
+export const getPropertyAcousticCertificationControllerCreateMutationOptions = <TError = ErrorType<PropertyAcousticCertificationControllerCreate401 | PropertyAcousticCertificationControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCreate>>, TError,{data: BodyType<NewPropertyAcousticCertification>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCreate>>, TError,{data: BodyType<NewPropertyAcousticCertification>}, TContext> => {
+
+const mutationKey = ['propertyAcousticCertificationControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCreate>>, {data: BodyType<NewPropertyAcousticCertification>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  propertyAcousticCertificationControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyAcousticCertificationControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCreate>>>
+    export type PropertyAcousticCertificationControllerCreateMutationBody = BodyType<NewPropertyAcousticCertification>
+    export type PropertyAcousticCertificationControllerCreateMutationError = ErrorType<PropertyAcousticCertificationControllerCreate401 | PropertyAcousticCertificationControllerCreate422>
+
+    /**
+ * @summary Create a new Property Acoustic Certification
+ */
+export const usePropertyAcousticCertificationControllerCreate = <TError = ErrorType<PropertyAcousticCertificationControllerCreate401 | PropertyAcousticCertificationControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerCreate>>, TError,{data: BodyType<NewPropertyAcousticCertification>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyAcousticCertificationControllerCreate>>,
+        TError,
+        {data: BodyType<NewPropertyAcousticCertification>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyAcousticCertificationControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary List Property Acoustic Certifications
+ */
+export const propertyAcousticCertificationControllerFind = (
+    params?: PropertyAcousticCertificationControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyAcousticCertificationWithRelations[]>(
+      {url: `/property-acoustic-certifications`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyAcousticCertificationControllerFindQueryKey = (params?: PropertyAcousticCertificationControllerFindParams,) => {
+    return [
+    `/property-acoustic-certifications`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyAcousticCertificationControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError = ErrorType<PropertyAcousticCertificationControllerFind401>>(params?: PropertyAcousticCertificationControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyAcousticCertificationControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>> = ({ signal }) => propertyAcousticCertificationControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyAcousticCertificationControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>>
+export type PropertyAcousticCertificationControllerFindQueryError = ErrorType<PropertyAcousticCertificationControllerFind401>
+
+
+export function usePropertyAcousticCertificationControllerFind<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError = ErrorType<PropertyAcousticCertificationControllerFind401>>(
+ params: undefined |  PropertyAcousticCertificationControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyAcousticCertificationControllerFind<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError = ErrorType<PropertyAcousticCertificationControllerFind401>>(
+ params?: PropertyAcousticCertificationControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyAcousticCertificationControllerFind<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError = ErrorType<PropertyAcousticCertificationControllerFind401>>(
+ params?: PropertyAcousticCertificationControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List Property Acoustic Certifications
+ */
+
+export function usePropertyAcousticCertificationControllerFind<TData = Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError = ErrorType<PropertyAcousticCertificationControllerFind401>>(
+ params?: PropertyAcousticCertificationControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyAcousticCertificationControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyAcousticCertificationControllerFindQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -19112,6 +19930,487 @@ export function usePropertyLocationDetailControllerFind<TData = Awaited<ReturnTy
 
 
 /**
+ * @summary Count Property Mortgage Statuss
+ */
+export const propertyMortgageStatusControllerCount = (
+    params?: PropertyMortgageStatusControllerCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LoopbackCount>(
+      {url: `/property-mortgage-statuses/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyMortgageStatusControllerCountQueryKey = (params?: PropertyMortgageStatusControllerCountParams,) => {
+    return [
+    `/property-mortgage-statuses/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyMortgageStatusControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError = ErrorType<PropertyMortgageStatusControllerCount401>>(params?: PropertyMortgageStatusControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyMortgageStatusControllerCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>> = ({ signal }) => propertyMortgageStatusControllerCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyMortgageStatusControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>>
+export type PropertyMortgageStatusControllerCountQueryError = ErrorType<PropertyMortgageStatusControllerCount401>
+
+
+export function usePropertyMortgageStatusControllerCount<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError = ErrorType<PropertyMortgageStatusControllerCount401>>(
+ params: undefined |  PropertyMortgageStatusControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyMortgageStatusControllerCount<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError = ErrorType<PropertyMortgageStatusControllerCount401>>(
+ params?: PropertyMortgageStatusControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyMortgageStatusControllerCount<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError = ErrorType<PropertyMortgageStatusControllerCount401>>(
+ params?: PropertyMortgageStatusControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Count Property Mortgage Statuss
+ */
+
+export function usePropertyMortgageStatusControllerCount<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError = ErrorType<PropertyMortgageStatusControllerCount401>>(
+ params?: PropertyMortgageStatusControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyMortgageStatusControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Property Mortgage Status by id
+ */
+export const propertyMortgageStatusControllerUpdateById = (
+    id: string,
+    propertyMortgageStatusPartial: BodyType<PropertyMortgageStatusPartial>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/property-mortgage-statuses/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: propertyMortgageStatusPartial
+    },
+      options);
+    }
+  
+
+
+export const getPropertyMortgageStatusControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyMortgageStatusControllerUpdateById401 | PropertyMortgageStatusControllerUpdateById404 | PropertyMortgageStatusControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyMortgageStatusPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyMortgageStatusPartial>}, TContext> => {
+
+const mutationKey = ['propertyMortgageStatusControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyMortgageStatusControllerUpdateById>>, {id: string;data: BodyType<PropertyMortgageStatusPartial>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  propertyMortgageStatusControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyMortgageStatusControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyMortgageStatusControllerUpdateById>>>
+    export type PropertyMortgageStatusControllerUpdateByIdMutationBody = BodyType<PropertyMortgageStatusPartial>
+    export type PropertyMortgageStatusControllerUpdateByIdMutationError = ErrorType<PropertyMortgageStatusControllerUpdateById401 | PropertyMortgageStatusControllerUpdateById404 | PropertyMortgageStatusControllerUpdateById422>
+
+    /**
+ * @summary Update a Property Mortgage Status by id
+ */
+export const usePropertyMortgageStatusControllerUpdateById = <TError = ErrorType<PropertyMortgageStatusControllerUpdateById401 | PropertyMortgageStatusControllerUpdateById404 | PropertyMortgageStatusControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyMortgageStatusPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyMortgageStatusControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<PropertyMortgageStatusPartial>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyMortgageStatusControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Get a Property Mortgage Status by id
+ */
+export const propertyMortgageStatusControllerFindById = (
+    id: string,
+    params?: PropertyMortgageStatusControllerFindByIdParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyMortgageStatusWithRelations>(
+      {url: `/property-mortgage-statuses/${id}`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyMortgageStatusControllerFindByIdQueryKey = (id?: string,
+    params?: PropertyMortgageStatusControllerFindByIdParams,) => {
+    return [
+    `/property-mortgage-statuses/${id}`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyMortgageStatusControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError = ErrorType<PropertyMortgageStatusControllerFindById401 | PropertyMortgageStatusControllerFindById404>>(id: string,
+    params?: PropertyMortgageStatusControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyMortgageStatusControllerFindByIdQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>> = ({ signal }) => propertyMortgageStatusControllerFindById(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyMortgageStatusControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>>
+export type PropertyMortgageStatusControllerFindByIdQueryError = ErrorType<PropertyMortgageStatusControllerFindById401 | PropertyMortgageStatusControllerFindById404>
+
+
+export function usePropertyMortgageStatusControllerFindById<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError = ErrorType<PropertyMortgageStatusControllerFindById401 | PropertyMortgageStatusControllerFindById404>>(
+ id: string,
+    params: undefined |  PropertyMortgageStatusControllerFindByIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyMortgageStatusControllerFindById<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError = ErrorType<PropertyMortgageStatusControllerFindById401 | PropertyMortgageStatusControllerFindById404>>(
+ id: string,
+    params?: PropertyMortgageStatusControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyMortgageStatusControllerFindById<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError = ErrorType<PropertyMortgageStatusControllerFindById401 | PropertyMortgageStatusControllerFindById404>>(
+ id: string,
+    params?: PropertyMortgageStatusControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a Property Mortgage Status by id
+ */
+
+export function usePropertyMortgageStatusControllerFindById<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError = ErrorType<PropertyMortgageStatusControllerFindById401 | PropertyMortgageStatusControllerFindById404>>(
+ id: string,
+    params?: PropertyMortgageStatusControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyMortgageStatusControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Delete a Property Mortgage Status by id
+ */
+export const propertyMortgageStatusControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/property-mortgage-statuses/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getPropertyMortgageStatusControllerDeleteByIdMutationOptions = <TError = ErrorType<PropertyMortgageStatusControllerDeleteById401 | PropertyMortgageStatusControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['propertyMortgageStatusControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyMortgageStatusControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  propertyMortgageStatusControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyMortgageStatusControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyMortgageStatusControllerDeleteById>>>
+    
+    export type PropertyMortgageStatusControllerDeleteByIdMutationError = ErrorType<PropertyMortgageStatusControllerDeleteById401 | PropertyMortgageStatusControllerDeleteById404>
+
+    /**
+ * @summary Delete a Property Mortgage Status by id
+ */
+export const usePropertyMortgageStatusControllerDeleteById = <TError = ErrorType<PropertyMortgageStatusControllerDeleteById401 | PropertyMortgageStatusControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyMortgageStatusControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyMortgageStatusControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Create a new Property Mortgage Status
+ */
+export const propertyMortgageStatusControllerCreate = (
+    newPropertyMortgageStatus: BodyType<NewPropertyMortgageStatus>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyMortgageStatus>(
+      {url: `/property-mortgage-statuses`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newPropertyMortgageStatus, signal
+    },
+      options);
+    }
+  
+
+
+export const getPropertyMortgageStatusControllerCreateMutationOptions = <TError = ErrorType<PropertyMortgageStatusControllerCreate401 | PropertyMortgageStatusControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCreate>>, TError,{data: BodyType<NewPropertyMortgageStatus>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCreate>>, TError,{data: BodyType<NewPropertyMortgageStatus>}, TContext> => {
+
+const mutationKey = ['propertyMortgageStatusControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyMortgageStatusControllerCreate>>, {data: BodyType<NewPropertyMortgageStatus>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  propertyMortgageStatusControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyMortgageStatusControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof propertyMortgageStatusControllerCreate>>>
+    export type PropertyMortgageStatusControllerCreateMutationBody = BodyType<NewPropertyMortgageStatus>
+    export type PropertyMortgageStatusControllerCreateMutationError = ErrorType<PropertyMortgageStatusControllerCreate401 | PropertyMortgageStatusControllerCreate422>
+
+    /**
+ * @summary Create a new Property Mortgage Status
+ */
+export const usePropertyMortgageStatusControllerCreate = <TError = ErrorType<PropertyMortgageStatusControllerCreate401 | PropertyMortgageStatusControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerCreate>>, TError,{data: BodyType<NewPropertyMortgageStatus>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyMortgageStatusControllerCreate>>,
+        TError,
+        {data: BodyType<NewPropertyMortgageStatus>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyMortgageStatusControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary List Property Mortgage Statuss
+ */
+export const propertyMortgageStatusControllerFind = (
+    params?: PropertyMortgageStatusControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyMortgageStatusWithRelations[]>(
+      {url: `/property-mortgage-statuses`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyMortgageStatusControllerFindQueryKey = (params?: PropertyMortgageStatusControllerFindParams,) => {
+    return [
+    `/property-mortgage-statuses`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyMortgageStatusControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError = ErrorType<PropertyMortgageStatusControllerFind401>>(params?: PropertyMortgageStatusControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyMortgageStatusControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>> = ({ signal }) => propertyMortgageStatusControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyMortgageStatusControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>>
+export type PropertyMortgageStatusControllerFindQueryError = ErrorType<PropertyMortgageStatusControllerFind401>
+
+
+export function usePropertyMortgageStatusControllerFind<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError = ErrorType<PropertyMortgageStatusControllerFind401>>(
+ params: undefined |  PropertyMortgageStatusControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyMortgageStatusControllerFind<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError = ErrorType<PropertyMortgageStatusControllerFind401>>(
+ params?: PropertyMortgageStatusControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyMortgageStatusControllerFind<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError = ErrorType<PropertyMortgageStatusControllerFind401>>(
+ params?: PropertyMortgageStatusControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List Property Mortgage Statuss
+ */
+
+export function usePropertyMortgageStatusControllerFind<TData = Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError = ErrorType<PropertyMortgageStatusControllerFind401>>(
+ params?: PropertyMortgageStatusControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyMortgageStatusControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyMortgageStatusControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Count Property Owners
  */
 export const propertyOwnerControllerCount = (
@@ -21374,6 +22673,487 @@ export function usePropertyStatusHistoryControllerFind<TData = Awaited<ReturnTyp
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPropertyStatusHistoryControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Count Property Urban Regularitys
+ */
+export const propertyUrbanRegularityControllerCount = (
+    params?: PropertyUrbanRegularityControllerCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LoopbackCount>(
+      {url: `/property-urban-regularities/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyUrbanRegularityControllerCountQueryKey = (params?: PropertyUrbanRegularityControllerCountParams,) => {
+    return [
+    `/property-urban-regularities/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyUrbanRegularityControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError = ErrorType<PropertyUrbanRegularityControllerCount401>>(params?: PropertyUrbanRegularityControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyUrbanRegularityControllerCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>> = ({ signal }) => propertyUrbanRegularityControllerCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyUrbanRegularityControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>>
+export type PropertyUrbanRegularityControllerCountQueryError = ErrorType<PropertyUrbanRegularityControllerCount401>
+
+
+export function usePropertyUrbanRegularityControllerCount<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError = ErrorType<PropertyUrbanRegularityControllerCount401>>(
+ params: undefined |  PropertyUrbanRegularityControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyUrbanRegularityControllerCount<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError = ErrorType<PropertyUrbanRegularityControllerCount401>>(
+ params?: PropertyUrbanRegularityControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyUrbanRegularityControllerCount<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError = ErrorType<PropertyUrbanRegularityControllerCount401>>(
+ params?: PropertyUrbanRegularityControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Count Property Urban Regularitys
+ */
+
+export function usePropertyUrbanRegularityControllerCount<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError = ErrorType<PropertyUrbanRegularityControllerCount401>>(
+ params?: PropertyUrbanRegularityControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyUrbanRegularityControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Property Urban Regularity by id
+ */
+export const propertyUrbanRegularityControllerUpdateById = (
+    id: string,
+    propertyUrbanRegularityPartial: BodyType<PropertyUrbanRegularityPartial>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/property-urban-regularities/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: propertyUrbanRegularityPartial
+    },
+      options);
+    }
+  
+
+
+export const getPropertyUrbanRegularityControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyUrbanRegularityControllerUpdateById401 | PropertyUrbanRegularityControllerUpdateById404 | PropertyUrbanRegularityControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyUrbanRegularityPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyUrbanRegularityPartial>}, TContext> => {
+
+const mutationKey = ['propertyUrbanRegularityControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyUrbanRegularityControllerUpdateById>>, {id: string;data: BodyType<PropertyUrbanRegularityPartial>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  propertyUrbanRegularityControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyUrbanRegularityControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyUrbanRegularityControllerUpdateById>>>
+    export type PropertyUrbanRegularityControllerUpdateByIdMutationBody = BodyType<PropertyUrbanRegularityPartial>
+    export type PropertyUrbanRegularityControllerUpdateByIdMutationError = ErrorType<PropertyUrbanRegularityControllerUpdateById401 | PropertyUrbanRegularityControllerUpdateById404 | PropertyUrbanRegularityControllerUpdateById422>
+
+    /**
+ * @summary Update a Property Urban Regularity by id
+ */
+export const usePropertyUrbanRegularityControllerUpdateById = <TError = ErrorType<PropertyUrbanRegularityControllerUpdateById401 | PropertyUrbanRegularityControllerUpdateById404 | PropertyUrbanRegularityControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyUrbanRegularityPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyUrbanRegularityControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<PropertyUrbanRegularityPartial>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyUrbanRegularityControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Get a Property Urban Regularity by id
+ */
+export const propertyUrbanRegularityControllerFindById = (
+    id: string,
+    params?: PropertyUrbanRegularityControllerFindByIdParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyUrbanRegularityWithRelations>(
+      {url: `/property-urban-regularities/${id}`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyUrbanRegularityControllerFindByIdQueryKey = (id?: string,
+    params?: PropertyUrbanRegularityControllerFindByIdParams,) => {
+    return [
+    `/property-urban-regularities/${id}`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyUrbanRegularityControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError = ErrorType<PropertyUrbanRegularityControllerFindById401 | PropertyUrbanRegularityControllerFindById404>>(id: string,
+    params?: PropertyUrbanRegularityControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyUrbanRegularityControllerFindByIdQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>> = ({ signal }) => propertyUrbanRegularityControllerFindById(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyUrbanRegularityControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>>
+export type PropertyUrbanRegularityControllerFindByIdQueryError = ErrorType<PropertyUrbanRegularityControllerFindById401 | PropertyUrbanRegularityControllerFindById404>
+
+
+export function usePropertyUrbanRegularityControllerFindById<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError = ErrorType<PropertyUrbanRegularityControllerFindById401 | PropertyUrbanRegularityControllerFindById404>>(
+ id: string,
+    params: undefined |  PropertyUrbanRegularityControllerFindByIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyUrbanRegularityControllerFindById<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError = ErrorType<PropertyUrbanRegularityControllerFindById401 | PropertyUrbanRegularityControllerFindById404>>(
+ id: string,
+    params?: PropertyUrbanRegularityControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyUrbanRegularityControllerFindById<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError = ErrorType<PropertyUrbanRegularityControllerFindById401 | PropertyUrbanRegularityControllerFindById404>>(
+ id: string,
+    params?: PropertyUrbanRegularityControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a Property Urban Regularity by id
+ */
+
+export function usePropertyUrbanRegularityControllerFindById<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError = ErrorType<PropertyUrbanRegularityControllerFindById401 | PropertyUrbanRegularityControllerFindById404>>(
+ id: string,
+    params?: PropertyUrbanRegularityControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyUrbanRegularityControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Delete a Property Urban Regularity by id
+ */
+export const propertyUrbanRegularityControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/property-urban-regularities/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getPropertyUrbanRegularityControllerDeleteByIdMutationOptions = <TError = ErrorType<PropertyUrbanRegularityControllerDeleteById401 | PropertyUrbanRegularityControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['propertyUrbanRegularityControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyUrbanRegularityControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  propertyUrbanRegularityControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyUrbanRegularityControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyUrbanRegularityControllerDeleteById>>>
+    
+    export type PropertyUrbanRegularityControllerDeleteByIdMutationError = ErrorType<PropertyUrbanRegularityControllerDeleteById401 | PropertyUrbanRegularityControllerDeleteById404>
+
+    /**
+ * @summary Delete a Property Urban Regularity by id
+ */
+export const usePropertyUrbanRegularityControllerDeleteById = <TError = ErrorType<PropertyUrbanRegularityControllerDeleteById401 | PropertyUrbanRegularityControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyUrbanRegularityControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyUrbanRegularityControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Create a new Property Urban Regularity
+ */
+export const propertyUrbanRegularityControllerCreate = (
+    newPropertyUrbanRegularity: BodyType<NewPropertyUrbanRegularity>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyUrbanRegularity>(
+      {url: `/property-urban-regularities`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newPropertyUrbanRegularity, signal
+    },
+      options);
+    }
+  
+
+
+export const getPropertyUrbanRegularityControllerCreateMutationOptions = <TError = ErrorType<PropertyUrbanRegularityControllerCreate401 | PropertyUrbanRegularityControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCreate>>, TError,{data: BodyType<NewPropertyUrbanRegularity>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCreate>>, TError,{data: BodyType<NewPropertyUrbanRegularity>}, TContext> => {
+
+const mutationKey = ['propertyUrbanRegularityControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCreate>>, {data: BodyType<NewPropertyUrbanRegularity>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  propertyUrbanRegularityControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyUrbanRegularityControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCreate>>>
+    export type PropertyUrbanRegularityControllerCreateMutationBody = BodyType<NewPropertyUrbanRegularity>
+    export type PropertyUrbanRegularityControllerCreateMutationError = ErrorType<PropertyUrbanRegularityControllerCreate401 | PropertyUrbanRegularityControllerCreate422>
+
+    /**
+ * @summary Create a new Property Urban Regularity
+ */
+export const usePropertyUrbanRegularityControllerCreate = <TError = ErrorType<PropertyUrbanRegularityControllerCreate401 | PropertyUrbanRegularityControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerCreate>>, TError,{data: BodyType<NewPropertyUrbanRegularity>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyUrbanRegularityControllerCreate>>,
+        TError,
+        {data: BodyType<NewPropertyUrbanRegularity>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyUrbanRegularityControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary List Property Urban Regularitys
+ */
+export const propertyUrbanRegularityControllerFind = (
+    params?: PropertyUrbanRegularityControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyUrbanRegularityWithRelations[]>(
+      {url: `/property-urban-regularities`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyUrbanRegularityControllerFindQueryKey = (params?: PropertyUrbanRegularityControllerFindParams,) => {
+    return [
+    `/property-urban-regularities`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyUrbanRegularityControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError = ErrorType<PropertyUrbanRegularityControllerFind401>>(params?: PropertyUrbanRegularityControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyUrbanRegularityControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>> = ({ signal }) => propertyUrbanRegularityControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyUrbanRegularityControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>>
+export type PropertyUrbanRegularityControllerFindQueryError = ErrorType<PropertyUrbanRegularityControllerFind401>
+
+
+export function usePropertyUrbanRegularityControllerFind<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError = ErrorType<PropertyUrbanRegularityControllerFind401>>(
+ params: undefined |  PropertyUrbanRegularityControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyUrbanRegularityControllerFind<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError = ErrorType<PropertyUrbanRegularityControllerFind401>>(
+ params?: PropertyUrbanRegularityControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyUrbanRegularityControllerFind<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError = ErrorType<PropertyUrbanRegularityControllerFind401>>(
+ params?: PropertyUrbanRegularityControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List Property Urban Regularitys
+ */
+
+export function usePropertyUrbanRegularityControllerFind<TData = Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError = ErrorType<PropertyUrbanRegularityControllerFind401>>(
+ params?: PropertyUrbanRegularityControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyUrbanRegularityControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyUrbanRegularityControllerFindQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

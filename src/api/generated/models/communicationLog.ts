@@ -11,10 +11,14 @@ import type { CommunicationLogStatus } from './communicationLogStatus';
 export interface CommunicationLog {
   id?: string;
   channel: CommunicationLogChannel;
+  /** @nullable */
   status?: CommunicationLogStatus;
   content: string;
   createdAt: string;
-  sentAt?: string;
+  /** @nullable */
+  sentAt?: string | null;
+  /** @nullable */
+  campaignId?: string | null;
   /** @nullable */
   readAt?: string | null;
   /** @nullable */

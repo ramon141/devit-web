@@ -18,10 +18,14 @@ import type { Lead } from './lead';
 export interface CommunicationLogWithRelations {
   id?: string;
   channel: CommunicationLogWithRelationsChannel;
+  /** @nullable */
   status?: CommunicationLogWithRelationsStatus;
   content: string;
   createdAt: string;
-  sentAt?: string;
+  /** @nullable */
+  sentAt?: string | null;
+  /** @nullable */
+  campaignId?: string | null;
   /** @nullable */
   readAt?: string | null;
   /** @nullable */

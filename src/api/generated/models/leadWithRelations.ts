@@ -26,6 +26,7 @@ export interface LeadWithRelations {
   email?: string | null;
   /** @nullable */
   firstContactAt?: string | null;
+  /** @nullable */
   status?: LeadWithRelationsStatus;
   /** @nullable */
   source?: LeadWithRelationsSource;

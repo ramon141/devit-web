@@ -10,6 +10,12 @@ export type SalesRentalsReportControllerUpcomingRenewals200Item = {
   id?: string;
   number?: string;
   propertyId?: string;
+  /** @nullable */
+  propertyTitle?: string | null;
+  /** @nullable */
+  tenantNames?: string | null;
+  /** @nullable */
+  ownerNames?: string | null;
   renewalDueDate?: string;
   rentAmount?: number;
 };

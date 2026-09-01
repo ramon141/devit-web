@@ -12,7 +12,8 @@ export interface PropertyPhoto {
   caption?: string | null;
   /** @nullable */
   displayOrder?: number | null;
-  cover?: boolean;
+  /** @nullable */
+  cover?: boolean | null;
   propertyId: string;
   attachmentId: string;
 }

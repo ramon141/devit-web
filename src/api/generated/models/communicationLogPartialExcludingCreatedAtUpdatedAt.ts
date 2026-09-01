@@ -14,9 +14,13 @@ import type { CommunicationLogPartialExcludingCreatedAtUpdatedAtStatus } from '.
 export interface CommunicationLogPartialExcludingCreatedAtUpdatedAt {
   id?: string;
   channel?: CommunicationLogPartialExcludingCreatedAtUpdatedAtChannel;
+  /** @nullable */
   status?: CommunicationLogPartialExcludingCreatedAtUpdatedAtStatus;
   content?: string;
-  sentAt?: string;
+  /** @nullable */
+  sentAt?: string | null;
+  /** @nullable */
+  campaignId?: string | null;
   /** @nullable */
   readAt?: string | null;
   /** @nullable */

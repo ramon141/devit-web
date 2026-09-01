@@ -20,8 +20,10 @@ export interface PropertyLandDetailPartial {
   buildableAreaSqm?: number | null;
   /** @nullable */
   agriculturalAreaSqm?: number | null;
-  hasExistingConstruction?: boolean;
-  projectApproved?: boolean;
+  /** @nullable */
+  hasExistingConstruction?: boolean | null;
+  /** @nullable */
+  projectApproved?: boolean | null;
   /** @nullable */
   possibleConstruction?: string | null;
   /** @nullable */

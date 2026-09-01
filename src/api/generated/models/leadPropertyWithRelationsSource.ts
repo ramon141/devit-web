@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type LeadPropertyWithRelationsSource = typeof LeadPropertyWithRelationsSource[keyof typeof LeadPropertyWithRelationsSource];
+/**
+ * @nullable
+ */
+export type LeadPropertyWithRelationsSource = typeof LeadPropertyWithRelationsSource[keyof typeof LeadPropertyWithRelationsSource] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

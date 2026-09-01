@@ -22,6 +22,7 @@ export interface PropertyDetailWithRelations {
   acquisitionDate?: string | null;
   /** @nullable */
   listingStage?: string | null;
+  /** @nullable */
   rating?: PropertyDetailWithRelationsRating;
   /** @nullable */
   mediationType?: PropertyDetailWithRelationsMediationType;
@@ -31,24 +32,34 @@ export interface PropertyDetailWithRelations {
   mediationFeeOwnerPct?: number | null;
   /** @nullable */
   subtype?: string | null;
-  bareOwnership?: boolean;
-  prestige?: boolean;
-  newConstruction?: boolean;
+  /** @nullable */
+  bareOwnership?: boolean | null;
+  /** @nullable */
+  prestige?: boolean | null;
+  /** @nullable */
+  newConstruction?: boolean | null;
   /** @nullable */
   availability?: PropertyDetailWithRelationsAvailability;
-  availableImmediately?: boolean;
+  /** @nullable */
+  availableImmediately?: boolean | null;
   /** @nullable */
   internalNote?: string | null;
   /** @nullable */
   sharedNote?: string | null;
   /** @nullable */
   estimatedValue?: number | null;
-  negotiable?: boolean;
-  priceFrom?: boolean;
-  hiddenOnPrint?: boolean;
-  hiddenOnInternet?: boolean;
-  boxIncludedInPrice?: boolean;
-  auction?: boolean;
+  /** @nullable */
+  negotiable?: boolean | null;
+  /** @nullable */
+  priceFrom?: boolean | null;
+  /** @nullable */
+  hiddenOnPrint?: boolean | null;
+  /** @nullable */
+  hiddenOnInternet?: boolean | null;
+  /** @nullable */
+  boxIncludedInPrice?: boolean | null;
+  /** @nullable */
+  auction?: boolean | null;
   /** @nullable */
   condition?: PropertyDetailWithRelationsCondition;
   /** @nullable */

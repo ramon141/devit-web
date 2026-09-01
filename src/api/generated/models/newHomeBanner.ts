@@ -17,7 +17,8 @@ export interface NewHomeBanner {
   targetLink?: string | null;
   /** @nullable */
   displayOrder?: number | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   /** @nullable */
   startDate?: string | null;
   /** @nullable */

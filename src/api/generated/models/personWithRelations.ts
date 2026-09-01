@@ -34,7 +34,8 @@ export interface PersonWithRelations {
   birthDate?: string | null;
   /** @nullable */
   notes?: string | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   createdAt: string;
   updatedAt: string;
   /** @nullable */

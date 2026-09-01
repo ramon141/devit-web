@@ -45,9 +45,9 @@ export interface RentalContractPartialExcludingCreatedAtUpdatedAt {
   tenantAgentId?: string | null;
   /** @nullable */
   createdById?: string | null;
-  /** Pessoas a vincular (inquilinos ou proprietários) */
+  /** Persone da collegare (inquilini o proprietari) */
   tenants?: RentalContractPartialExcludingCreatedAtUpdatedAtTenantsItem[];
-  /** Pessoas a vincular (inquilinos ou proprietários) */
+  /** Persone da collegare (inquilini o proprietari) */
   owners?: RentalContractPartialExcludingCreatedAtUpdatedAtOwnersItem[];
   /** Anexos do contrato a enviar para o MinIO e vincular */
   attachments?: RentalContractPartialExcludingCreatedAtUpdatedAtAttachmentsItem[];

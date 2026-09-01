@@ -23,7 +23,8 @@ export interface UserExcludingPasswordHashWithRelations {
   passwordChangedAt?: string | null;
   /** @nullable */
   lastLoginAt?: string | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   createdAt: string;
   updatedAt: string;
   /** @nullable */

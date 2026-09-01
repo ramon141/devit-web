@@ -27,7 +27,8 @@ export interface PropertyCommercialDetailWithRelations {
   averageRevenueTo?: number | null;
   /** @nullable */
   monthlyRent?: number | null;
-  manageable?: boolean;
+  /** @nullable */
+  manageable?: boolean | null;
   /** @nullable */
   weeklyRestDay?: string | null;
   /** @nullable */

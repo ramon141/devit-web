@@ -13,9 +13,13 @@ import type { NewCommunicationLogStatus } from './newCommunicationLogStatus';
  */
 export interface NewCommunicationLog {
   channel: NewCommunicationLogChannel;
+  /** @nullable */
   status?: NewCommunicationLogStatus;
   content: string;
-  sentAt?: string;
+  /** @nullable */
+  sentAt?: string | null;
+  /** @nullable */
+  campaignId?: string | null;
   /** @nullable */
   readAt?: string | null;
   /** @nullable */

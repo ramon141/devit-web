@@ -28,6 +28,10 @@ export function buildOwnerAccessTableColumns({
       cell: (access) => access.email,
     },
     {
+      header: t('proprietari.tableColumns.properties'),
+      cell: (access) => access.propertiesCount ?? 0,
+    },
+    {
       header: t('proprietari.tableColumns.lastAccess'),
       cell: (access) => (access.lastAccessAt ? formatDateTime(access.lastAccessAt) : '—'),
     },

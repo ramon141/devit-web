@@ -11,8 +11,10 @@ import type { NewLeadPropertySource } from './newLeadPropertySource';
  * (tsType: Omit<LeadProperty, 'id'>, schemaOptions: { title: 'NewLeadProperty', exclude: [ 'id' ] })
  */
 export interface NewLeadProperty {
+  /** @nullable */
   source?: NewLeadPropertySource;
-  primary?: boolean;
+  /** @nullable */
+  primary?: boolean | null;
   leadId: string;
   propertyId: string;
 }

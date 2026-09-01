@@ -24,7 +24,8 @@ export interface AuditLogPartial {
   newData?: AuditLogPartialNewData;
   /** @nullable */
   ip?: string | null;
-  createdAt?: string;
+  /** @nullable */
+  createdAt?: string | null;
   /** @nullable */
   userId?: string | null;
 }

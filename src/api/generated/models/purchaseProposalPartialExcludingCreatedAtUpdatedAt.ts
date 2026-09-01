@@ -20,7 +20,8 @@ export interface PurchaseProposalPartialExcludingCreatedAtUpdatedAt {
   status?: PurchaseProposalPartialExcludingCreatedAtUpdatedAtStatus;
   /** @nullable */
   funnelPosition?: number | null;
-  financed?: boolean;
+  /** @nullable */
+  financed?: boolean | null;
   proposalDate?: string;
   /** @nullable */
   validUntil?: string | null;

@@ -20,7 +20,8 @@ export interface BranchPartialExcludingCreatedAtUpdatedAt {
   latitude?: number | null;
   /** @nullable */
   longitude?: number | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   /** @nullable */
   addressId?: string | null;
 }

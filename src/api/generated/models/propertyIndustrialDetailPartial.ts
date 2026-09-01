@@ -15,10 +15,12 @@ export interface PropertyIndustrialDetailPartial {
   heightM?: number | null;
   /** @nullable */
   heightUnderBeamM?: number | null;
-  hasOverheadCrane?: boolean;
+  /** @nullable */
+  hasOverheadCrane?: boolean | null;
   /** @nullable */
   floorsCount?: number | null;
-  hasAlarm?: boolean;
+  /** @nullable */
+  hasAlarm?: boolean | null;
   /** @nullable */
   entrancesCount?: number | null;
   /** @nullable */

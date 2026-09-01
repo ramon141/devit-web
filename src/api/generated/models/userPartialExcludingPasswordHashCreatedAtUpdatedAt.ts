@@ -21,7 +21,8 @@ export interface UserPartialExcludingPasswordHashCreatedAtUpdatedAt {
   passwordChangedAt?: string | null;
   /** @nullable */
   lastLoginAt?: string | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   /** @nullable */
   avatarId?: string | null;
   /** @nullable */

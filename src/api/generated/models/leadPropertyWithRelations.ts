@@ -14,8 +14,10 @@ import type { Property } from './property';
  */
 export interface LeadPropertyWithRelations {
   id?: string;
+  /** @nullable */
   source?: LeadPropertyWithRelationsSource;
-  primary?: boolean;
+  /** @nullable */
+  primary?: boolean | null;
   leadId: string;
   propertyId: string;
   lead?: Lead;

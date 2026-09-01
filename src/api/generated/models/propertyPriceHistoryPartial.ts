@@ -14,6 +14,7 @@ export interface PropertyPriceHistoryPartial {
   /** @nullable */
   previousPrice?: number | null;
   newPrice?: number;
-  changedAt?: string;
+  /** @nullable */
+  changedAt?: string | null;
   propertyId?: string;
 }

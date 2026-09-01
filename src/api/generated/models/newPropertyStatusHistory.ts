@@ -19,7 +19,8 @@ export interface NewPropertyStatusHistory {
   reason?: string | null;
   /** @nullable */
   source?: string | null;
-  occurredAt?: string;
+  /** @nullable */
+  occurredAt?: string | null;
   propertyId: string;
   /** @nullable */
   userId?: string | null;

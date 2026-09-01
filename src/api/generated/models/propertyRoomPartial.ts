@@ -13,7 +13,8 @@ import type { PropertyRoomPartialRoomType } from './propertyRoomPartialRoomType'
 export interface PropertyRoomPartial {
   id?: string;
   roomType?: PropertyRoomPartialRoomType;
-  quantity?: number;
+  /** @nullable */
+  quantity?: number | null;
   /** @nullable */
   widthM?: number | null;
   /** @nullable */

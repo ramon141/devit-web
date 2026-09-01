@@ -25,6 +25,18 @@ export function buildScadenziarioTableColumns(
       cell: (contract) => <span className="font-medium">{contract.number}</span>,
     },
     {
+      header: t('operazioni:locazioni.scadenziario.tableColumns.immobile'),
+      cell: (contract) => contract.propertyTitle ?? '—',
+    },
+    {
+      header: t('operazioni:locazioni.scadenziario.tableColumns.inquilino'),
+      cell: (contract) => contract.tenantNames ?? '—',
+    },
+    {
+      header: t('operazioni:locazioni.scadenziario.tableColumns.proprietario'),
+      cell: (contract) => contract.ownerNames ?? '—',
+    },
+    {
       header: t('operazioni:locazioni.scadenziario.tableColumns.scadenza'),
       cell: (contract) => (
         <span className="flex items-center gap-2">

@@ -12,7 +12,8 @@ import type { NewPropertyRoomRoomType } from './newPropertyRoomRoomType';
  */
 export interface NewPropertyRoom {
   roomType: NewPropertyRoomRoomType;
-  quantity?: number;
+  /** @nullable */
+  quantity?: number | null;
   /** @nullable */
   widthM?: number | null;
   /** @nullable */

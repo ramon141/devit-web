@@ -24,8 +24,10 @@ export interface PropertyLocationDetail {
   floorNumber?: number | null;
   /** @nullable */
   totalFloors?: number | null;
-  hasElevator?: boolean;
-  hasArchitecturalBarriers?: boolean;
+  /** @nullable */
+  hasElevator?: boolean | null;
+  /** @nullable */
+  hasArchitecturalBarriers?: boolean | null;
   /** @nullable */
   builtYear?: number | null;
   /** @nullable */

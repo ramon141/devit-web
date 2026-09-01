@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type LeadPartialExcludingCreatedAtUpdatedAtStatus = typeof LeadPartialExcludingCreatedAtUpdatedAtStatus[keyof typeof LeadPartialExcludingCreatedAtUpdatedAtStatus];
+/**
+ * @nullable
+ */
+export type LeadPartialExcludingCreatedAtUpdatedAtStatus = typeof LeadPartialExcludingCreatedAtUpdatedAtStatus[keyof typeof LeadPartialExcludingCreatedAtUpdatedAtStatus] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

@@ -29,7 +29,8 @@ export interface PersonPartialExcludingPhotoIdCreatedAtUpdatedAt {
   birthDate?: string | null;
   /** @nullable */
   notes?: string | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   /** @nullable */
   addressId?: string | null;
   /** @nullable */

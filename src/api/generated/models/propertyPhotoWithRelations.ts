@@ -17,7 +17,8 @@ export interface PropertyPhotoWithRelations {
   caption?: string | null;
   /** @nullable */
   displayOrder?: number | null;
-  cover?: boolean;
+  /** @nullable */
+  cover?: boolean | null;
   propertyId: string;
   attachmentId: string;
   property?: Property;

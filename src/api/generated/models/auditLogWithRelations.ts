@@ -25,7 +25,8 @@ export interface AuditLogWithRelations {
   newData?: AuditLogWithRelationsNewData;
   /** @nullable */
   ip?: string | null;
-  createdAt?: string;
+  /** @nullable */
+  createdAt?: string | null;
   /** @nullable */
   userId?: string | null;
   user?: User;

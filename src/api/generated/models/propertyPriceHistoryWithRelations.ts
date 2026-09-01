@@ -15,7 +15,8 @@ export interface PropertyPriceHistoryWithRelations {
   /** @nullable */
   previousPrice?: number | null;
   newPrice: number;
-  changedAt?: string;
+  /** @nullable */
+  changedAt?: string | null;
   propertyId: string;
   property?: Property;
   foreignKey?: unknown;

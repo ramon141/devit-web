@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type CommunicationLogPartialExcludingCreatedAtUpdatedAtStatus = typeof CommunicationLogPartialExcludingCreatedAtUpdatedAtStatus[keyof typeof CommunicationLogPartialExcludingCreatedAtUpdatedAtStatus];
+/**
+ * @nullable
+ */
+export type CommunicationLogPartialExcludingCreatedAtUpdatedAtStatus = typeof CommunicationLogPartialExcludingCreatedAtUpdatedAtStatus[keyof typeof CommunicationLogPartialExcludingCreatedAtUpdatedAtStatus] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

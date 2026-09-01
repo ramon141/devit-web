@@ -9,8 +9,10 @@ import type { LeadPropertySource } from './leadPropertySource';
 
 export interface LeadProperty {
   id?: string;
+  /** @nullable */
   source?: LeadPropertySource;
-  primary?: boolean;
+  /** @nullable */
+  primary?: boolean | null;
   leadId: string;
   propertyId: string;
 }

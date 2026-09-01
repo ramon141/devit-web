@@ -18,7 +18,8 @@ export interface SaleStatusHistoryPartial {
   newStatus?: SaleStatusHistoryPartialNewStatus;
   /** @nullable */
   note?: string | null;
-  occurredAt?: string;
+  /** @nullable */
+  occurredAt?: string | null;
   saleId?: string;
   /** @nullable */
   userId?: string | null;

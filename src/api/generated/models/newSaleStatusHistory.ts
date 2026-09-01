@@ -17,7 +17,8 @@ export interface NewSaleStatusHistory {
   newStatus: NewSaleStatusHistoryNewStatus;
   /** @nullable */
   note?: string | null;
-  occurredAt?: string;
+  /** @nullable */
+  occurredAt?: string | null;
   saleId: string;
   /** @nullable */
   userId?: string | null;

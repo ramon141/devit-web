@@ -6,7 +6,10 @@
  * OpenAPI spec version: 0.0.1
  */
 
-export type CommunicationLogWithRelationsStatus = typeof CommunicationLogWithRelationsStatus[keyof typeof CommunicationLogWithRelationsStatus];
+/**
+ * @nullable
+ */
+export type CommunicationLogWithRelationsStatus = typeof CommunicationLogWithRelationsStatus[keyof typeof CommunicationLogWithRelationsStatus] | null;
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare

@@ -19,7 +19,8 @@ export interface NewPurchaseProposal {
   status?: NewPurchaseProposalStatus;
   /** @nullable */
   funnelPosition?: number | null;
-  financed?: boolean;
+  /** @nullable */
+  financed?: boolean | null;
   proposalDate: string;
   /** @nullable */
   validUntil?: string | null;

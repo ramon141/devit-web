@@ -12,8 +12,10 @@ import type { LeadPropertyPartialSource } from './leadPropertyPartialSource';
  */
 export interface LeadPropertyPartial {
   id?: string;
+  /** @nullable */
   source?: LeadPropertyPartialSource;
-  primary?: boolean;
+  /** @nullable */
+  primary?: boolean | null;
   leadId?: string;
   propertyId?: string;
 }

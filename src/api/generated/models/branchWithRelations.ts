@@ -21,7 +21,8 @@ export interface BranchWithRelations {
   latitude?: number | null;
   /** @nullable */
   longitude?: number | null;
-  active?: boolean;
+  /** @nullable */
+  active?: boolean | null;
   createdAt: string;
   updatedAt: string;
   /** @nullable */

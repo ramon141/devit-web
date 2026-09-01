@@ -14,7 +14,8 @@ import type { Property } from './property';
 export interface PropertyRoomWithRelations {
   id?: string;
   roomType: PropertyRoomWithRelationsRoomType;
-  quantity?: number;
+  /** @nullable */
+  quantity?: number | null;
   /** @nullable */
   widthM?: number | null;
   /** @nullable */

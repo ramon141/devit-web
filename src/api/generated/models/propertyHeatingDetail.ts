@@ -15,7 +15,8 @@ export interface PropertyHeatingDetail {
   fuel?: string | null;
   /** @nullable */
   system?: string | null;
-  hasRadiators?: boolean;
+  /** @nullable */
+  hasRadiators?: boolean | null;
   /** @nullable */
   monthlyCost?: number | null;
   propertyId: string;

@@ -22,6 +22,7 @@ export interface NewLead {
   email?: string | null;
   /** @nullable */
   firstContactAt?: string | null;
+  /** @nullable */
   status?: NewLeadStatus;
   /** @nullable */
   source?: NewLeadSource;

@@ -46,6 +46,9 @@
       },
       "tableColumns": {
         "numero": "Numero",
+        "immobile": "Immobile",
+        "inquilino": "Inquilino",
+        "proprietario": "Proprietario",
         "scadenza": "Scadenza",
         "affitto": "Affitto",
         "azioni": "Azioni",

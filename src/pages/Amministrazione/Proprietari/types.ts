@@ -9,6 +9,7 @@ export type OwnerPortalAccess = {
   createdAt: string
   updatedAt: string
   person?: { id: string; name: string }
+  propertiesCount?: number
 }
 
 export type OwnerPortalAccessCreated = OwnerPortalAccess & { pin: string }

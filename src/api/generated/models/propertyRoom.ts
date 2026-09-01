@@ -10,7 +10,8 @@ import type { PropertyRoomRoomType } from './propertyRoomRoomType';
 export interface PropertyRoom {
   id?: string;
   roomType: PropertyRoomRoomType;
-  quantity?: number;
+  /** @nullable */
+  quantity?: number | null;
   /** @nullable */
   widthM?: number | null;
   /** @nullable */
