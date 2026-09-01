@@ -1,0 +1,14 @@
+{
+  "error_message_invalid_buyers": "Uno o più acquirenti indicati non esistono.",
+  "error_message_property_not_found": "L'immobile indicato non esiste.",
+  "error_message_buyer_not_found": "L'acquirente indicato non esiste.",
+  "error_message_rejection_reason_required": "Motivo del rifiuto obbligatorio.",
+  "error_message_proposal_not_final": "Proposta definitiva (stato accettato/rifiutato) non può più essere modificata o eliminata.",
+  "error_message_proposal_not_accepted": "Solo una proposta accettata può essere convertita in vendita.",
+  "error_message_proposal_already_converted": "Proposta già convertita in vendita.",
+  "error_message_rental_already_finalized": "Locazione definitiva (stato terminata/chiusa) non può più essere modificata o eliminata.",
+  "error_message_invalid_credentials": "Email o PIN non validi.",
+  "error_message_entity_not_found": "Elemento non trovato.",
+  "error_message_validation_failed": "Dati della richiesta non validi.",
+  "error_message_unauthorized": "Accesso non autorizzato."
+}

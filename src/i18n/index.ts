@@ -2,6 +2,7 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
 import itCommon from './locales/it/common.json'
+import itErrors from './locales/it/errors.json'
 import itAgenda from './locales/it/agenda.json'
 import itAmministrazione from './locales/it/amministrazione.json'
 import itClientes from './locales/it/clientes.json'
@@ -18,6 +19,7 @@ import itSite from './locales/it/site.json'
 import itStatistiche from './locales/it/statistiche.json'
 
 import ptCommon from './locales/pt/common.json'
+import ptErrors from './locales/pt/errors.json'
 import ptAgenda from './locales/pt/agenda.json'
 import ptAmministrazione from './locales/pt/amministrazione.json'
 import ptClientes from './locales/pt/clientes.json'
@@ -41,6 +43,7 @@ i18n.use(initReactI18next).init({
   resources: {
     it: {
       common: itCommon,
+      errors: itErrors,
       agenda: itAgenda,
       amministrazione: itAmministrazione,
       clientes: itClientes,
@@ -58,6 +61,7 @@ i18n.use(initReactI18next).init({
     },
     pt: {
       common: ptCommon,
+      errors: ptErrors,
       agenda: ptAgenda,
       amministrazione: ptAmministrazione,
       clientes: ptClientes,
@@ -79,6 +83,7 @@ i18n.use(initReactI18next).init({
   defaultNS: 'common',
   ns: [
     'common',
+    'errors',
     'agenda',
     'amministrazione',
     'clientes',
