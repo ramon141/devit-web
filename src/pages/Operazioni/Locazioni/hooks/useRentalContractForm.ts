@@ -11,7 +11,7 @@ import {
   useRentalContractControllerUpdateById,
 } from '@/api/generated/api'
 import type { RentalContractWithRelations } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -80,7 +80,7 @@ type UseRentalContractFormProps = {
 export function useRentalContractForm({ contract, onSaved }: UseRentalContractFormProps) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useRentalContractControllerCreate()
   const { mutateAsync: update, isPending: updating } = useRentalContractControllerUpdateById()
   const [ownerIds, setOwnerIds] = useState<string[]>([])
@@ -126,7 +126,7 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
 
     const promise = contract?.id ? update({ id: contract.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: contract ? t('locazioni.hooks.form.saving') : t('locazioni.hooks.form.creating'),
       success: () => {
         invalidateList()

@@ -7,7 +7,7 @@ import {
   useRentalContractControllerFind,
   useRentalContractControllerUpdateById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
 
@@ -15,7 +15,7 @@ export function useContractRegistrations() {
   const today = dayjs().toISOString()
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: update, isPending: isMarking } = useRentalContractControllerUpdateById()
 
   const { data, isLoading } = useRentalContractControllerFind({
@@ -31,7 +31,7 @@ export function useContractRegistrations() {
   function markRegistered(id: string) {
     const promise = update({ id, data: { registeredAt: toISODateOrNull(new Date().toISOString()) } })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('locazioni.registrazioni.table.marking'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })

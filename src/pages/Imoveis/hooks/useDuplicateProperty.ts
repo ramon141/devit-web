@@ -8,7 +8,7 @@ import {
   usePropertyControllerCreate,
 } from '@/api/generated/api'
 import type { PropertyWithRelations } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
@@ -17,7 +17,7 @@ export function useDuplicateProperty() {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create } = usePropertyControllerCreate()
 
   function handleDuplicate(property: PropertyWithRelations) {
@@ -41,7 +41,7 @@ export function useDuplicateProperty() {
       },
     })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.duplicateProperty.pending'),
       success: (created) => {
         queryClient.invalidateQueries({ queryKey: getPropertyControllerFindQueryKey() })

@@ -10,7 +10,7 @@ import {
   getRentalContractControllerFindQueryKey,
   useRentalContractRenewControllerRenew,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
@@ -39,7 +39,7 @@ type UseRenewRentalContractProps = {
 export function useRenewRentalContract({ contractId, onRenewed }: UseRenewRentalContractProps) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: renew, isPending } = useRentalContractRenewControllerRenew()
 
   const form = useForm<RenewRentalContractFormValues>({
@@ -62,7 +62,7 @@ export function useRenewRentalContract({ contractId, onRenewed }: UseRenewRental
 
     const promise = renew({ id: contractId, data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('locazioni.hooks.renew.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })

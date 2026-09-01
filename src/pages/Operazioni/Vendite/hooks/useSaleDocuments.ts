@@ -8,13 +8,13 @@ import {
   useSaleDocumentControllerFind,
 } from '@/api/generated/api'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useSaleDocuments(saleId: string) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { uploadFile } = useAttachmentUpload()
   const { mutateAsync: createLink } = useSaleDocumentControllerCreate()
   const { mutateAsync: deleteLink } = useSaleDocumentControllerDeleteById()
@@ -40,7 +40,7 @@ export function useSaleDocuments(saleId: string) {
   }
 
   function uploadFiles(files: File[], type: string) {
-    toastPromise(Promise.all(files.map((file) => addFile(file, type))), {
+    promisePopup(Promise.all(files.map((file) => addFile(file, type))), {
       pending: t('vendite.hooks.documents.uploading'),
       success: () => {
         invalidate()
@@ -52,7 +52,7 @@ export function useSaleDocuments(saleId: string) {
   }
 
   function removeDocument(id: string) {
-    toastPromise(deleteLink({ id }), {
+    promisePopup(deleteLink({ id }), {
       pending: t('vendite.hooks.documents.deleting'),
       success: () => {
         invalidate()

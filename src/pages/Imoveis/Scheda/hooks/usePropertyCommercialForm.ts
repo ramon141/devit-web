@@ -7,7 +7,7 @@ import {
   usePropertyCommercialDetailControllerCreate,
   usePropertyCommercialDetailControllerUpdateById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import type { PropertyCommercialDetailPartialScope } from '@/api/generated/models'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
@@ -53,7 +53,7 @@ const emptyValues: CommercialFormValues = {
 
 export function usePropertyCommercialForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { data: rows, isLoading } = usePropertyCommercialDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
   })
@@ -105,7 +105,7 @@ export function usePropertyCommercialForm(propertyId: string) {
 
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.commercialForm.pending'),
       success: t('toasts.commercialForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>

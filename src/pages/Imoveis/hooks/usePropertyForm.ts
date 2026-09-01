@@ -13,7 +13,7 @@ import {
   usePropertyControllerUpdateById,
 } from '@/api/generated/api'
 import type { PropertyWithRelations } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -88,7 +88,7 @@ function propertyToFormValues(property: PropertyWithRelations): PropertyFormValu
 export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePropertyFormProps) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: createAddress } = useAddressControllerCreate()
   const { mutateAsync: updateAddress } = useAddressControllerUpdateById()
   const { mutateAsync: createProperty, isPending: creating } = usePropertyControllerCreate()
@@ -154,7 +154,7 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
   }
 
   function onSubmit(values: PropertyFormValues) {
-    toastPromise(saveProperty(values), {
+    promisePopup(saveProperty(values), {
       pending: property ? t('toasts.saveProperty.pendingUpdate') : t('toasts.saveProperty.pendingCreate'),
       success: (savedId) => {
         invalidateList()

@@ -11,7 +11,7 @@ import {
   usePurchaseProposalControllerUpdateById,
 } from '@/api/generated/api'
 import type { PurchaseProposalWithRelations } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -64,7 +64,7 @@ type UseProposalFormProps = {
 export function useProposalForm({ proposal, onSaved }: UseProposalFormProps) {
   const { t } = useTranslation('proposte')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = usePurchaseProposalControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePurchaseProposalControllerUpdateById()
 
@@ -95,7 +95,7 @@ export function useProposalForm({ proposal, onSaved }: UseProposalFormProps) {
       ? update({ id: proposal.id, data })
       : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: proposal ? t('form.pendingUpdate') : t('form.pendingCreate'),
       success: () => {
         invalidateList()

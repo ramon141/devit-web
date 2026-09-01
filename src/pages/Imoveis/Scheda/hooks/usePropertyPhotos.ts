@@ -9,7 +9,7 @@ import {
   usePropertyPhotoControllerUpdateById,
 } from '@/api/generated/api'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 type ApiError = AxiosError<ApiErrorResponse>
@@ -17,7 +17,7 @@ type ApiError = AxiosError<ApiErrorResponse>
 export function usePropertyPhotos(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { uploadFile } = useAttachmentUpload()
   const { mutateAsync: createLink } = usePropertyPhotoControllerCreate()
   const { mutateAsync: deleteLink } = usePropertyPhotoControllerDeleteById()
@@ -37,7 +37,7 @@ export function usePropertyPhotos(propertyId: string) {
   }
 
   function uploadFiles(files: File[]) {
-    toastPromise(Promise.all(files.map(addFile)), {
+    promisePopup(Promise.all(files.map(addFile)), {
       pending: t('scheda.fotoTab.pendingUpload'),
       success: () => {
         invalidate()
@@ -48,7 +48,7 @@ export function usePropertyPhotos(propertyId: string) {
   }
 
   function removePhoto(id: string) {
-    toastPromise(deleteLink({ id }), {
+    promisePopup(deleteLink({ id }), {
       pending: t('scheda.fotoTab.pendingDelete'),
       success: () => {
         invalidate()
@@ -63,7 +63,7 @@ export function usePropertyPhotos(propertyId: string) {
       updateLink({ id: photo.id ?? '', data: { cover: photo.id === id } }),
     )
 
-    toastPromise(Promise.all(updates), {
+    promisePopup(Promise.all(updates), {
       pending: t('scheda.fotoTab.pendingCover'),
       success: () => {
         invalidate()

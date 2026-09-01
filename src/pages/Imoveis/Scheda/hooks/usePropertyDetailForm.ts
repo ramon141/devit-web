@@ -7,7 +7,7 @@ import {
   usePropertyDetailControllerCreate,
   usePropertyDetailControllerUpdateById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -64,7 +64,7 @@ const emptyValues: DettagliFormValues = {
 
 export function usePropertyDetailForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { data: rows, isLoading } = usePropertyDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
   })
@@ -116,7 +116,7 @@ export function usePropertyDetailForm(propertyId: string) {
 
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.detailForm.pending'),
       success: t('toasts.detailForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>

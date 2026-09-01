@@ -9,14 +9,14 @@ import {
   usePropertyRoomControllerFind,
 } from '@/api/generated/api'
 import type { PropertyRoomRoomType } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
 export function usePropertyRooms(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const [roomType, setRoomType] = useState<PropertyRoomRoomType | ''>('')
   const [quantity, setQuantity] = useState('')
   const [widthM, setWidthM] = useState('')
@@ -51,7 +51,7 @@ export function usePropertyRooms(propertyId: string) {
       },
     })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.rooms.addPending'),
       success: () => {
         invalidate()
@@ -68,7 +68,7 @@ export function usePropertyRooms(propertyId: string) {
   }
 
   function removeRoom(id: string) {
-    toastPromise(remove({ id }), {
+    promisePopup(remove({ id }), {
       pending: t('toasts.rooms.removePending'),
       success: () => {
         invalidate()

@@ -3,7 +3,7 @@ import type { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
 import { api } from '@/api/mutator'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 const ENDPOINT = '/purchase-proposal-attachments'
@@ -24,7 +24,7 @@ function queryKey(proposalId: string) {
 export function useProposalAttachments(proposalId: string) {
   const { t } = useTranslation('proposte')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { uploadFile } = useAttachmentUpload()
 
   const { data: attachments } = useQuery({
@@ -49,7 +49,7 @@ export function useProposalAttachments(proposalId: string) {
   }
 
   function uploadFiles(files: File[]) {
-    toastPromise(Promise.all(files.map(addFile)), {
+    promisePopup(Promise.all(files.map(addFile)), {
       pending: t('attachments.uploading'),
       success: () => {
         invalidate()
@@ -61,7 +61,7 @@ export function useProposalAttachments(proposalId: string) {
   }
 
   function removeAttachment(id: string) {
-    toastPromise(api.delete(`${ENDPOINT}/${id}`), {
+    promisePopup(api.delete(`${ENDPOINT}/${id}`), {
       pending: t('attachments.deleting'),
       success: () => {
         invalidate()

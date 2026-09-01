@@ -5,19 +5,19 @@ import {
   getCalendarEventControllerFindQueryKey,
   useCalendarEventControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteCalendarEvent() {
   const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteEvent } = useCalendarEventControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteEvent({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('agenda:toasts.delete.deleting'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getCalendarEventControllerFindQueryKey() })

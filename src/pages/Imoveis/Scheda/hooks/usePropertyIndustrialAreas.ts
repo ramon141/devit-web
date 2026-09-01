@@ -9,14 +9,14 @@ import {
   usePropertyIndustrialAreaControllerFind,
 } from '@/api/generated/api'
 import type { PropertyIndustrialAreaAreaType } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
 export function usePropertyIndustrialAreas(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const [areaType, setAreaType] = useState<PropertyIndustrialAreaAreaType | ''>('')
   const [areaSqm, setAreaSqm] = useState('')
   const [heightM, setHeightM] = useState('')
@@ -36,7 +36,7 @@ export function usePropertyIndustrialAreas(propertyId: string) {
       data: { propertyId, areaType, areaSqm: toNumberOrNull(areaSqm), heightM: toNumberOrNull(heightM) },
     })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.industrialAreas.addPending'),
       success: () => {
         invalidate()
@@ -51,7 +51,7 @@ export function usePropertyIndustrialAreas(propertyId: string) {
   }
 
   function removeArea(id: string) {
-    toastPromise(remove({ id }), {
+    promisePopup(remove({ id }), {
       pending: t('toasts.industrialAreas.removePending'),
       success: () => {
         invalidate()

@@ -10,7 +10,7 @@ import {
   useLeadControllerUpdateById,
 } from '@/api/generated/api'
 import type { Lead } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
@@ -40,7 +40,7 @@ type UseLeadFormProps = {
 export function useLeadForm({ lead, onSaved }: UseLeadFormProps) {
   const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useLeadControllerCreate()
   const { mutateAsync: update, isPending: updating } = useLeadControllerUpdateById()
 
@@ -85,7 +85,7 @@ export function useLeadForm({ lead, onSaved }: UseLeadFormProps) {
 
     const promise = lead?.id ? update({ id: lead.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: lead ? t('useLeadForm.pendingUpdate') : t('useLeadForm.pendingCreate'),
       success: () => {
         invalidateList()

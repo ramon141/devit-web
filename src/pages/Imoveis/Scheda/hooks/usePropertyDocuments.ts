@@ -8,7 +8,7 @@ import {
   usePropertyDocumentControllerFind,
 } from '@/api/generated/api'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 type ApiError = AxiosError<ApiErrorResponse>
@@ -16,7 +16,7 @@ type ApiError = AxiosError<ApiErrorResponse>
 export function usePropertyDocuments(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { uploadFile } = useAttachmentUpload()
   const { mutateAsync: createLink } = usePropertyDocumentControllerCreate()
   const { mutateAsync: deleteLink } = usePropertyDocumentControllerDeleteById()
@@ -37,7 +37,7 @@ export function usePropertyDocuments(propertyId: string) {
   }
 
   function uploadFiles(files: File[]) {
-    toastPromise(Promise.all(files.map(addFile)), {
+    promisePopup(Promise.all(files.map(addFile)), {
       pending: t('scheda.documentiTab.pendingUpload'),
       success: () => {
         invalidate()
@@ -49,7 +49,7 @@ export function usePropertyDocuments(propertyId: string) {
   }
 
   function removeDocument(id: string) {
-    toastPromise(deleteLink({ id }), {
+    promisePopup(deleteLink({ id }), {
       pending: t('scheda.documentiTab.pendingDelete'),
       success: () => {
         invalidate()

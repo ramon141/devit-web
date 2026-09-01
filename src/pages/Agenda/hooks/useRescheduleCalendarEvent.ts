@@ -5,19 +5,19 @@ import {
   getCalendarEventControllerFindQueryKey,
   useCalendarEventControllerUpdateById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useRescheduleCalendarEvent() {
   const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: update } = useCalendarEventControllerUpdateById()
 
   function reschedule(id: string, startAt: string, endAt: string) {
     const promise = update({ id, data: { startAt, endAt } })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('agenda:toasts.reschedule.moving'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getCalendarEventControllerFindQueryKey() })

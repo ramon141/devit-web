@@ -7,7 +7,7 @@ import {
   usePropertyCadastralInfoControllerCreate,
   usePropertyCadastralInfoControllerUpdateById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -36,7 +36,7 @@ const emptyValues: CadastralFormValues = {
 
 export function usePropertyCadastralForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { data: rows, isLoading } = usePropertyCadastralInfoControllerFind({
     filter: { where: { propertyId }, limit: 1 },
   })
@@ -67,7 +67,7 @@ export function usePropertyCadastralForm(propertyId: string) {
 
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.cadastralForm.pending'),
       success: t('toasts.cadastralForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>

@@ -7,13 +7,13 @@ import {
   useCalendarEventOutcomeControllerCreate,
   useCalendarEventOutcomeControllerFind,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useCalendarEventOutcome(calendarEventId: string) {
   const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const [outcome, setOutcome] = useState('')
 
   const { data: outcomes } = useCalendarEventOutcomeControllerFind({
@@ -26,7 +26,7 @@ export function useCalendarEventOutcome(calendarEventId: string) {
 
     const promise = create({ data: { calendarEventId, outcome } })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('agenda:toasts.outcome.saving'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getCalendarEventOutcomeControllerFindQueryKey() })

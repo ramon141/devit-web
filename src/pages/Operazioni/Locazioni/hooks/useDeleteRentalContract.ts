@@ -6,19 +6,19 @@ import {
   getRentalContractControllerFindQueryKey,
   useRentalContractControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteRentalContract() {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteContract } = useRentalContractControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteContract({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('locazioni.hooks.delete.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })

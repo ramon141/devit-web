@@ -8,13 +8,13 @@ import {
   useCalendarEventParticipantControllerFind,
 } from '@/api/generated/api'
 import { useQueryClient } from '@tanstack/react-query'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useCalendarEventParticipants(calendarEventId: string) {
   const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const [personId, setPersonId] = useState('')
 
   const { data: participants } = useCalendarEventParticipantControllerFind({
@@ -32,7 +32,7 @@ export function useCalendarEventParticipants(calendarEventId: string) {
 
     const promise = create({ data: { calendarEventId, personId } })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('agenda:toasts.participants.adding'),
       success: () => {
         invalidate()
@@ -45,7 +45,7 @@ export function useCalendarEventParticipants(calendarEventId: string) {
   }
 
   function removeParticipant(id: string) {
-    toastPromise(remove({ id }), {
+    promisePopup(remove({ id }), {
       pending: t('agenda:toasts.participants.removing'),
       success: () => {
         invalidate()

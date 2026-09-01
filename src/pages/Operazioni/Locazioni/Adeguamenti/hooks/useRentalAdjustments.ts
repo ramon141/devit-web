@@ -9,13 +9,13 @@ import {
   useRentalContractControllerFind,
 } from '@/api/generated/api'
 import { useQueryClient } from '@tanstack/react-query'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useRentalAdjustments() {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const [selectedIds, setSelectedIds] = useState<string[]>([])
   const [indexPercent, setIndexPercent] = useState('')
 
@@ -48,7 +48,7 @@ export function useRentalAdjustments() {
       },
     })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('locazioni.adeguamenti.toasts.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalAdjustmentControllerFindQueryKey() })

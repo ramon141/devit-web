@@ -5,6 +5,7 @@
     "breadcrumb": "Marketing",
     "dashboardTab": "Painel",
     "inviaTab": "Enviar campanha",
+    "storicoTab": "Histórico",
     "modelliTab": "Modelos",
     "rimozioniTab": "Descadastros",
     "emailTab": "E-mail Marketing",
@@ -113,6 +114,16 @@
   },
   "rimozioniTab": {
     "newLabel": "Novo descadastro"
+  },
+  "storicoTab": {
+    "campaign": "Campanha",
+    "channel": "Canal",
+    "sentAt": "Data de envio",
+    "total": "Total",
+    "sent": "Enviadas",
+    "failed": "Falhas",
+    "read": "Lidas",
+    "empty": "Nenhuma campanha enviada"
   },
   "sendCampaign": {
     "recipientsTitle": "Destinatários",

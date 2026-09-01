@@ -8,13 +8,13 @@ import {
   useCalendarEventAttachmentControllerFind,
 } from '@/api/generated/api'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useCalendarEventAttachments(calendarEventId: string) {
   const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { uploadFile } = useAttachmentUpload()
   const { mutateAsync: createLink } = useCalendarEventAttachmentControllerCreate()
   const { mutateAsync: deleteLink } = useCalendarEventAttachmentControllerDeleteById()
@@ -33,7 +33,7 @@ export function useCalendarEventAttachments(calendarEventId: string) {
   }
 
   function uploadFiles(files: File[]) {
-    toastPromise(Promise.all(files.map(addFile)), {
+    promisePopup(Promise.all(files.map(addFile)), {
       pending: t('agenda:toasts.attachments.uploading'),
       success: () => {
         invalidate()
@@ -45,7 +45,7 @@ export function useCalendarEventAttachments(calendarEventId: string) {
   }
 
   function removeAttachment(id: string) {
-    toastPromise(deleteLink({ id }), {
+    promisePopup(deleteLink({ id }), {
       pending: t('agenda:toasts.attachments.deleting'),
       success: () => {
         invalidate()

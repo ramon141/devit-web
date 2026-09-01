@@ -11,7 +11,7 @@ import {
   useBranchControllerUpdateById,
 } from '@/api/generated/api'
 import type { Branch } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { branchSchema, type BranchFormValues } from '@/pages/Amministrazione/Filiali/schemas/branchSchema'
 
@@ -25,7 +25,7 @@ type UseBranchFormProps = {
 export function useBranchForm({ branch, onSaved }: UseBranchFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useBranchControllerCreate()
   const { mutateAsync: update, isPending: updating } = useBranchControllerUpdateById()
 
@@ -48,7 +48,7 @@ export function useBranchForm({ branch, onSaved }: UseBranchFormProps) {
       ? update({ id: branch.id, data: values })
       : create({ data: values })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: branch ? t('branchForm.pendingUpdate') : t('branchForm.pendingCreate'),
       success: () => {
         invalidateList()

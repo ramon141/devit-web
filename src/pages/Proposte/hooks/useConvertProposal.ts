@@ -8,19 +8,19 @@ import {
   getPurchaseProposalControllerCountQueryKey,
 } from '@/api/generated/api'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useConvertProposal() {
   const { t } = useTranslation('proposte')
   const queryClient = useQueryClient()
   const navigate = useNavigate()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
 
   function convert(id: string) {
     const promise = api.post(`/purchase-proposals/${id}/convert-to-sale`)
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('convert.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPurchaseProposalControllerFindQueryKey() })

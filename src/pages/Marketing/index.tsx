@@ -7,6 +7,7 @@ import WhatsappConnectionCard from '@/pages/Marketing/components/WhatsappConnect
 import SendCampagnaTab from '@/pages/Marketing/components/SendCampagnaTab'
 import ModelliTab from '@/pages/Marketing/components/ModelliTab'
 import RimozioniTab from '@/pages/Marketing/components/RimozioniTab'
+import StoricoTab from '@/pages/Marketing/components/StoricoTab'
 
 function Marketing() {
   const { t } = useTranslation('marketing')
@@ -21,6 +22,7 @@ function Marketing() {
         <TabsList>
           <TabsTrigger value="dashboard">{t('index.dashboardTab')}</TabsTrigger>
           <TabsTrigger value="invia">{t('index.inviaTab')}</TabsTrigger>
+          <TabsTrigger value="storico">{t('index.storicoTab')}</TabsTrigger>
           <TabsTrigger value="modelli">{t('index.modelliTab')}</TabsTrigger>
           <TabsTrigger value="rimozioni">{t('index.rimozioniTab')}</TabsTrigger>
         </TabsList>
@@ -50,6 +52,10 @@ function Marketing() {
 
         <TabsContent value="invia">
           <SendCampagnaTab />
+        </TabsContent>
+
+        <TabsContent value="storico">
+          <StoricoTab />
         </TabsContent>
 
         <TabsContent value="modelli">

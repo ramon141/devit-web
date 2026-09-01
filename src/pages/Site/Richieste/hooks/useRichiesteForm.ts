@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import { usePublicLeadControllerCreate } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import {
   getErrorMessageFromRequest,
   type ApiErrorResponse,
@@ -27,7 +27,7 @@ const emptyValues: RichiesteFormValues = {
 
 export function useRichiesteForm() {
   const { t } = useTranslation('site')
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync, isPending } = usePublicLeadControllerCreate()
 
   const richiesteSchema = useMemo(() => createRichiesteSchema(t), [t])
@@ -50,7 +50,7 @@ export function useRichiesteForm() {
       },
     })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('richieste.toastPending'),
       success: () => {
         form.reset(emptyValues)

@@ -11,7 +11,7 @@ import {
   usePropertyCategoryControllerUpdateById,
 } from '@/api/generated/api'
 import type { PropertyCategory } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -27,7 +27,7 @@ type UseCategoryFormProps = {
 export function useCategoryForm({ category, onSaved }: UseCategoryFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = usePropertyCategoryControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePropertyCategoryControllerUpdateById()
 
@@ -61,7 +61,7 @@ export function useCategoryForm({ category, onSaved }: UseCategoryFormProps) {
 
     const promise = category?.id ? update({ id: category.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: category ? t('categoryForm.pendingUpdate') : t('categoryForm.pendingCreate'),
       success: () => {
         invalidateList()

@@ -11,7 +11,7 @@ import {
   useCommunicationTemplateControllerUpdateById,
 } from '@/api/generated/api'
 import type { CommunicationTemplate } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import {
@@ -36,7 +36,7 @@ type UseTemplateFormProps = {
 export function useTemplateForm({ template, onSaved }: UseTemplateFormProps) {
   const { t } = useTranslation('marketing')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useCommunicationTemplateControllerCreate()
   const { mutateAsync: update, isPending: updating } = useCommunicationTemplateControllerUpdateById()
 
@@ -71,7 +71,7 @@ export function useTemplateForm({ template, onSaved }: UseTemplateFormProps) {
       ? update({ id: template.id, data: cleaned as Parameters<typeof update>[0]['data'] })
       : create({ data: cleaned as Parameters<typeof create>[0]['data'] })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: template ? t('templateForm.pendingUpdate') : t('templateForm.pendingCreate'),
       success: () => {
         invalidateList()

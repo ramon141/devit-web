@@ -6,19 +6,19 @@ import {
   getUserControllerFindQueryKey,
   useUserControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteUser() {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteUser } = useUserControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteUser({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('deleteUser.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getUserControllerFindQueryKey() })

@@ -6,19 +6,19 @@ import {
   useLeadControllerUpdateById,
 } from '@/api/generated/api'
 import type { LeadStatus } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useMoveLead() {
   const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: updateLead } = useLeadControllerUpdateById()
 
   function moveLead(id: string, status: LeadStatus, kanbanPosition: number) {
     const promise = updateLead({ id, data: { status, kanbanPosition } })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('useMoveLead.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getLeadControllerFindQueryKey() })

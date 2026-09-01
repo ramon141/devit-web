@@ -5,6 +5,7 @@
     "breadcrumb": "Marketing",
     "dashboardTab": "Bacheca",
     "inviaTab": "Invia campagna",
+    "storicoTab": "Storico",
     "modelliTab": "Modelli",
     "rimozioniTab": "Rimozioni",
     "emailTab": "E-mail Marketing",
@@ -113,6 +114,16 @@
   },
   "rimozioniTab": {
     "newLabel": "Nuova rimozione"
+  },
+  "storicoTab": {
+    "campaign": "Campagna",
+    "channel": "Canale",
+    "sentAt": "Data invio",
+    "total": "Totale",
+    "sent": "Inviate",
+    "failed": "Fallite",
+    "read": "Lette",
+    "empty": "Nessuna campagna inviata"
   },
   "sendCampaign": {
     "recipientsTitle": "Destinatari",

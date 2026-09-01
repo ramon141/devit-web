@@ -6,19 +6,19 @@ import {
   getBranchControllerFindQueryKey,
   useBranchControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteBranch() {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteBranch } = useBranchControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteBranch({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('deleteBranch.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getBranchControllerFindQueryKey() })

@@ -11,7 +11,7 @@ import {
   useCalendarEventControllerUpdateById,
 } from '@/api/generated/api'
 import type { CalendarEventWithRelations } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import {
@@ -70,7 +70,7 @@ type UseCalendarEventFormProps = {
 export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalendarEventFormProps) {
   const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useCalendarEventControllerCreate()
   const { mutateAsync: update, isPending: updating } = useCalendarEventControllerUpdateById()
 
@@ -114,7 +114,7 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
 
     const promise = event?.id ? update({ id: event.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: event ? t('agenda:toasts.form.saving') : t('agenda:toasts.form.creating'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getCalendarEventControllerFindQueryKey() })

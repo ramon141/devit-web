@@ -6,19 +6,19 @@ import {
   getHomeBannerControllerFindQueryKey,
   useHomeBannerControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteBanner() {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteBanner } = useHomeBannerControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteBanner({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('deleteBanner.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getHomeBannerControllerFindQueryKey() })

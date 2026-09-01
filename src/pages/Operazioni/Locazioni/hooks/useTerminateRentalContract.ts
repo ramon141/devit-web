@@ -11,7 +11,7 @@ import {
   useContractTerminationControllerCreate,
   useRentalContractControllerUpdateById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
@@ -44,7 +44,7 @@ type UseTerminateRentalContractProps = {
 export function useTerminateRentalContract({ contractId, onTerminated }: UseTerminateRentalContractProps) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: createTermination, isPending: creating } = useContractTerminationControllerCreate()
   const { mutateAsync: updateContract, isPending: updating } = useRentalContractControllerUpdateById()
 
@@ -70,7 +70,7 @@ export function useTerminateRentalContract({ contractId, onTerminated }: UseTerm
       },
     }).then(() => updateContract({ id: contractId, data: { situation: 'terminated' } }))
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('locazioni.hooks.terminate.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })

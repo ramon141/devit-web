@@ -7,13 +7,13 @@ import {
   useCommunicationOptOutControllerDeleteById,
 } from '@/api/generated/api'
 import type { NewCommunicationOptOut } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useOptOutActions() {
   const { t } = useTranslation('marketing')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useCommunicationOptOutControllerCreate()
   const { mutateAsync: deleteOptOut } = useCommunicationOptOutControllerDeleteById()
 
@@ -22,7 +22,7 @@ export function useOptOutActions() {
   }
 
   function handleCreate(data: NewCommunicationOptOut, onSaved: () => void) {
-    toastPromise(create({ data }), {
+    promisePopup(create({ data }), {
       pending: t('optOutForm.pending'),
       success: () => {
         invalidateList()
@@ -34,7 +34,7 @@ export function useOptOutActions() {
   }
 
   function handleDelete(id: string) {
-    toastPromise(deleteOptOut({ id }), {
+    promisePopup(deleteOptOut({ id }), {
       pending: t('deleteOptOut.pending'),
       success: () => {
         invalidateList()

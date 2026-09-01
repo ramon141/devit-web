@@ -9,13 +9,13 @@ import {
   usePropertyFeeControllerFind,
 } from '@/api/generated/api'
 import type { NewPropertyFeeFrequency } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function usePropertyFees(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const [name, setName] = useState('')
   const [amount, setAmount] = useState<string | undefined>(undefined)
   const [frequency, setFrequency] = useState<NewPropertyFeeFrequency | ''>('')
@@ -42,7 +42,7 @@ export function usePropertyFees(propertyId: string) {
       },
     })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.fees.addPending'),
       success: () => {
         invalidate()
@@ -58,7 +58,7 @@ export function usePropertyFees(propertyId: string) {
   }
 
   function removeFee(id: string) {
-    toastPromise(remove({ id }), {
+    promisePopup(remove({ id }), {
       pending: t('toasts.fees.removePending'),
       success: () => {
         invalidate()

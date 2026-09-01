@@ -10,7 +10,7 @@ import {
 } from '@/api/generated/api'
 import { MarketingCampaignControllerSendBodyChannel } from '@/api/generated/models/marketingCampaignControllerSendBodyChannel'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { formatAmount } from '@/utils/formatAmount'
 
@@ -20,7 +20,7 @@ function toggleId(ids: string[], id: string): string[] {
 
 export function useSendCampaign() {
   const { t } = useTranslation('marketing')
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
 
   const [channel, setChannel] = useState<MarketingCampaignControllerSendBodyChannel>(
     MarketingCampaignControllerSendBodyChannel.email,
@@ -99,7 +99,7 @@ export function useSendCampaign() {
       },
     })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('sendCampaign.pending'),
       success: (result) => {
         const summary = { sent: result.sent ?? 0, failed: result.failed ?? 0, skipped: result.skipped ?? 0 }

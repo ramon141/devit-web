@@ -6,7 +6,7 @@ import { Heart, Share2, Printer } from 'lucide-react'
 import DropCapHeading from '@/pages/Site/components/DropCapHeading'
 import { formatCurrency } from '@/pages/Site/PropertyDetail/utils/formatters'
 import { useFavorite } from '@/pages/Site/hooks/useFavorite'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { cn } from '@/lib/utils'
 import type { PublicPropertyControllerFindById200 } from '@/api/generated/models'
 
@@ -49,7 +49,7 @@ function ActionIcon({ label, icon, active, onClick }: ActionIconProps) {
 function shareProperty(
   t: TFunction<'site'>,
   title: string,
-  toastPromise: ReturnType<typeof useToast>['toastPromise'],
+  promisePopup: ReturnType<typeof usePromisePopup>['promisePopup'],
 ) {
   const shareUrl = window.location.href
 
@@ -58,7 +58,7 @@ function shareProperty(
     return
   }
 
-  toastPromise(navigator.clipboard.writeText(shareUrl), {
+  promisePopup(navigator.clipboard.writeText(shareUrl), {
     pending: t('propertyHeader.sharePending'),
     success: t('propertyHeader.shareSuccess'),
     error: t('propertyHeader.shareError'),
@@ -70,7 +70,7 @@ function PropertyHeader({ property }: PropertyHeaderProps) {
   const isRent = property.purpose === 'rent'
   const price = formatCurrency(property.price)
   const { isFavorite, toggle } = useFavorite(property.id ?? '')
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
 
   return (
     <div className="flex flex-col gap-3">
@@ -99,7 +99,7 @@ function PropertyHeader({ property }: PropertyHeaderProps) {
           <ActionIcon
             label={t('propertyHeader.share')}
             icon={<Share2 className="size-4" />}
-            onClick={() => shareProperty(t, property.title ?? t('propertyHeader.defaultTitle'), toastPromise)}
+            onClick={() => shareProperty(t, property.title ?? t('propertyHeader.defaultTitle'), promisePopup)}
           />
           <ActionIcon
             label={t('propertyHeader.print')}

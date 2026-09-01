@@ -7,7 +7,7 @@ import {
   usePropertyLocationDetailControllerCreate,
   usePropertyLocationDetailControllerUpdateById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -42,7 +42,7 @@ const emptyValues: LocationDetailFormValues = {
 
 export function usePropertyLocationDetailForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { data: rows, isLoading } = usePropertyLocationDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
   })
@@ -89,7 +89,7 @@ export function usePropertyLocationDetailForm(propertyId: string) {
 
     const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.locationDetailForm.pending'),
       success: t('toasts.locationDetailForm.success'),
       error: (error: AxiosError<ApiErrorResponse>) =>

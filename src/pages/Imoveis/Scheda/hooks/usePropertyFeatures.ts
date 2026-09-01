@@ -8,13 +8,13 @@ import {
   usePropertyFeatureControllerFind,
 } from '@/api/generated/api'
 import type { PropertyFeatureCategory } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function usePropertyFeatures(propertyId: string, category: PropertyFeatureCategory) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
 
   const { data: features } = usePropertyFeatureControllerFind({
     filter: { where: { propertyId, category } },
@@ -34,7 +34,7 @@ export function usePropertyFeatures(propertyId: string, category: PropertyFeatur
       ? remove({ id: existing.id })
       : create({ data: { propertyId, category, featureKey } })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.features.pending'),
       success: () => {
         invalidate()

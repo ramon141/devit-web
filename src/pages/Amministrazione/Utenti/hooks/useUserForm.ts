@@ -13,7 +13,7 @@ import {
   useUserControllerUpdateById,
 } from '@/api/generated/api'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
@@ -36,7 +36,7 @@ type UseUserFormProps = {
 export function useUserForm({ user, onSaved }: UseUserFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useUserControllerCreate()
   const { mutateAsync: update, isPending: updating } = useUserControllerUpdateById()
   const { uploadFile } = useAttachmentUpload()
@@ -92,7 +92,7 @@ export function useUserForm({ user, onSaved }: UseUserFormProps) {
       return
     }
 
-    toastPromise(saveUser(values), {
+    promisePopup(saveUser(values), {
       pending: user ? t('userForm.pendingUpdate') : t('userForm.pendingCreate'),
       success: () => {
         invalidateList()

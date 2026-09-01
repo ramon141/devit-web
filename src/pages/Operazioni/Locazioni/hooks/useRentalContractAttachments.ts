@@ -8,13 +8,13 @@ import {
   useContractAttachmentControllerFind,
 } from '@/api/generated/api'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useRentalContractAttachments(contractId: string) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { uploadFile } = useAttachmentUpload()
   const { mutateAsync: createLink } = useContractAttachmentControllerCreate()
   const { mutateAsync: deleteLink } = useContractAttachmentControllerDeleteById()
@@ -33,7 +33,7 @@ export function useRentalContractAttachments(contractId: string) {
   }
 
   function uploadFiles(files: File[]) {
-    toastPromise(Promise.all(files.map((file) => addFile(file))), {
+    promisePopup(Promise.all(files.map((file) => addFile(file))), {
       pending: t('locazioni.hooks.attachments.uploading'),
       success: () => {
         invalidate()
@@ -45,7 +45,7 @@ export function useRentalContractAttachments(contractId: string) {
   }
 
   function removeAttachment(id: string) {
-    toastPromise(deleteLink({ id }), {
+    promisePopup(deleteLink({ id }), {
       pending: t('locazioni.hooks.attachments.deleting'),
       success: () => {
         invalidate()

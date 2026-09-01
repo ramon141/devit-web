@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import type { AxiosError } from 'axios'
 import { useTranslation } from 'react-i18next'
 import { api } from '@/api/mutator'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 const ENDPOINT = '/purchase-proposal-buyers'
@@ -22,7 +22,7 @@ function queryKey(proposalId: string) {
 export function useProposalBuyers(proposalId: string) {
   const { t } = useTranslation('proposte')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
 
   const { data: buyers } = useQuery({
     queryKey: queryKey(proposalId),
@@ -39,7 +39,7 @@ export function useProposalBuyers(proposalId: string) {
   }
 
   function addBuyer(personId: string) {
-    toastPromise(api.post(ENDPOINT, { proposalId, personId }), {
+    promisePopup(api.post(ENDPOINT, { proposalId, personId }), {
       pending: t('buyersManager.adding'),
       success: () => {
         invalidate()
@@ -51,7 +51,7 @@ export function useProposalBuyers(proposalId: string) {
   }
 
   function removeBuyer(id: string) {
-    toastPromise(api.delete(`${ENDPOINT}/${id}`), {
+    promisePopup(api.delete(`${ENDPOINT}/${id}`), {
       pending: t('buyersManager.removing'),
       success: () => {
         invalidate()

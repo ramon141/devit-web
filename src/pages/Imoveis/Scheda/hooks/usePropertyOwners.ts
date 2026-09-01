@@ -8,14 +8,14 @@ import {
   usePropertyOwnerControllerFind,
 } from '@/api/generated/api'
 import { useQueryClient } from '@tanstack/react-query'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
 export function usePropertyOwners(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const [personId, setPersonId] = useState('')
   const [percent, setPercent] = useState('')
 
@@ -37,7 +37,7 @@ export function usePropertyOwners(propertyId: string) {
       data: { owners: [{ personId, ownershipPercent: toNumberOrNull(percent) }] },
     })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('toasts.owners.addPending'),
       success: () => {
         invalidate()
@@ -51,7 +51,7 @@ export function usePropertyOwners(propertyId: string) {
   }
 
   function removeOwner(id: string) {
-    toastPromise(remove({ id }), {
+    promisePopup(remove({ id }), {
       pending: t('toasts.owners.removePending'),
       success: () => {
         invalidate()

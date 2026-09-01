@@ -11,7 +11,7 @@ import {
   useHomeBannerControllerUpdateById,
 } from '@/api/generated/api'
 import type { HomeBanner } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
@@ -37,7 +37,7 @@ type UseBannerFormProps = {
 export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { uploadFile } = useAttachmentUpload()
   const { mutateAsync: create, isPending: creating } = useHomeBannerControllerCreate()
   const { mutateAsync: update, isPending: updating } = useHomeBannerControllerUpdateById()
@@ -99,7 +99,7 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
     }
     setImageError(undefined)
 
-    toastPromise(saveBanner(values), {
+    promisePopup(saveBanner(values), {
       pending: banner ? t('bannerForm.pendingUpdate') : t('bannerForm.pendingCreate'),
       success: () => {
         invalidateList()

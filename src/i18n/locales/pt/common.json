@@ -31,6 +31,9 @@
     "confirm": "Confirmar",
     "cancel": "Cancelar"
   },
+  "promisePopup": {
+    "ok": "Ok"
+  },
   "fileUpload": {
     "clickToUpload": "Clique para enviar",
     "dragHint": "ou arraste o arquivo aqui",

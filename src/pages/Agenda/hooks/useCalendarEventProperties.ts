@@ -8,13 +8,13 @@ import {
   useCalendarEventPropertyControllerFind,
 } from '@/api/generated/api'
 import { useQueryClient } from '@tanstack/react-query'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useCalendarEventProperties(calendarEventId: string) {
   const { t } = useTranslation('agenda')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const [propertyId, setPropertyId] = useState('')
 
   const { data: links } = useCalendarEventPropertyControllerFind({
@@ -32,7 +32,7 @@ export function useCalendarEventProperties(calendarEventId: string) {
 
     const promise = create({ data: { calendarEventId, propertyId } })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('agenda:toasts.properties.adding'),
       success: () => {
         invalidate()
@@ -45,7 +45,7 @@ export function useCalendarEventProperties(calendarEventId: string) {
   }
 
   function removeProperty(id: string) {
-    toastPromise(remove({ id }), {
+    promisePopup(remove({ id }), {
       pending: t('agenda:toasts.properties.removing'),
       success: () => {
         invalidate()

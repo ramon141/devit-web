@@ -8,13 +8,13 @@ import {
   usePersonAttachmentControllerFind,
 } from '@/api/generated/api'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function usePersonAttachments(personId: string) {
   const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { uploadFile } = useAttachmentUpload()
   const { mutateAsync: createLink } = usePersonAttachmentControllerCreate()
   const { mutateAsync: deleteLink } = usePersonAttachmentControllerDeleteById()
@@ -33,7 +33,7 @@ export function usePersonAttachments(personId: string) {
   }
 
   function uploadFiles(files: File[]) {
-    toastPromise(Promise.all(files.map(addFile)), {
+    promisePopup(Promise.all(files.map(addFile)), {
       pending: t('usePersonAttachments.pendingUpload'),
       success: () => {
         invalidate()
@@ -45,7 +45,7 @@ export function usePersonAttachments(personId: string) {
   }
 
   function removeAttachment(id: string) {
-    toastPromise(deleteLink({ id }), {
+    promisePopup(deleteLink({ id }), {
       pending: t('usePersonAttachments.pendingDelete'),
       success: () => {
         invalidate()

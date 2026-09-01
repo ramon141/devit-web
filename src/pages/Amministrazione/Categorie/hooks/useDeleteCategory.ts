@@ -6,19 +6,19 @@ import {
   getPropertyCategoryControllerFindQueryKey,
   usePropertyCategoryControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteCategory() {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteCategory } = usePropertyCategoryControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteCategory({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('deleteCategory.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPropertyCategoryControllerFindQueryKey() })

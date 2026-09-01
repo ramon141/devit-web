@@ -13,7 +13,7 @@ import {
   usePersonControllerUpdateById,
 } from '@/api/generated/api'
 import type { PersonWithRelations } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { createPersonSchema, type PersonFormValues } from '@/pages/Clientes/schemas/personSchema'
@@ -83,7 +83,7 @@ function hasAddressData(values: PersonFormValues) {
 export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
   const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: createAddress } = useAddressControllerCreate()
   const { mutateAsync: updateAddress } = useAddressControllerUpdateById()
   const { mutateAsync: create, isPending: creating } = usePersonControllerCreate()
@@ -148,7 +148,7 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
   }
 
   function onSubmit(values: PersonFormValues) {
-    toastPromise(savePerson(values), {
+    promisePopup(savePerson(values), {
       pending: person ? t('usePersonForm.pendingUpdate') : t('usePersonForm.pendingCreate'),
       success: () => {
         invalidateList()

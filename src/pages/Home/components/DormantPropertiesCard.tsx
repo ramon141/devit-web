@@ -11,7 +11,7 @@ import {
   usePropertyControllerDeleteById,
 } from '@/api/generated/api'
 import type { PropertiesReportControllerDormant200Item } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 type DormantPropertiesCardProps = {
@@ -24,14 +24,14 @@ function DormantPropertiesCard({ properties }: DormantPropertiesCardProps) {
     null
   )
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteProperty } = usePropertyControllerDeleteById()
 
   function confirmDelete() {
     if (!deleteTarget?.id) return
 
     const promise = deleteProperty({ id: deleteTarget.id })
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('dormantPropertiesCard.deleting'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPropertiesReportControllerDormantQueryKey() })

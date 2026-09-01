@@ -6,19 +6,19 @@ import {
   getCommunicationTemplateControllerFindQueryKey,
   useCommunicationTemplateControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteTemplate() {
   const { t } = useTranslation('marketing')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteTemplate } = useCommunicationTemplateControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteTemplate({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('deleteTemplate.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getCommunicationTemplateControllerFindQueryKey() })

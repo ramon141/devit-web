@@ -6,19 +6,19 @@ import {
   getPurchaseProposalControllerFindQueryKey,
   usePurchaseProposalControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteProposal() {
   const { t } = useTranslation('proposte')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteProposal } = usePurchaseProposalControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteProposal({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('deleteProposal.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPurchaseProposalControllerFindQueryKey() })

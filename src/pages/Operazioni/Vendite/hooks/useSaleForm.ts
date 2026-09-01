@@ -11,7 +11,7 @@ import {
   useSaleControllerUpdateById,
 } from '@/api/generated/api'
 import type { SaleWithRelations } from '@/api/generated/models'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -82,7 +82,7 @@ type UseSaleFormProps = {
 export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useSaleControllerCreate()
   const { mutateAsync: update, isPending: updating } = useSaleControllerUpdateById()
 
@@ -117,7 +117,7 @@ export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
 
     const promise = sale?.id ? update({ id: sale.id, data }) : create({ data })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: sale ? t('vendite.hooks.form.saving') : t('vendite.hooks.form.creating'),
       success: () => {
         invalidateList()

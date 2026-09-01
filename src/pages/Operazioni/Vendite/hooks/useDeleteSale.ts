@@ -6,19 +6,19 @@ import {
   getSaleControllerFindQueryKey,
   useSaleControllerDeleteById,
 } from '@/api/generated/api'
-import { useToast } from '@/contexts/ToastContext'
+import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function useDeleteSale() {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
-  const { toastPromise } = useToast()
+  const { promisePopup } = usePromisePopup()
   const { mutateAsync: deleteSale } = useSaleControllerDeleteById()
 
   function handleDelete(id: string) {
     const promise = deleteSale({ id })
 
-    toastPromise(promise, {
+    promisePopup(promise, {
       pending: t('vendite.hooks.delete.pending'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getSaleControllerFindQueryKey() })
