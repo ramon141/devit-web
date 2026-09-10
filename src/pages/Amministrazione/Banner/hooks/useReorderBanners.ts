@@ -20,11 +20,10 @@ export function useReorderBanners({ banners }: UseReorderBannersProps) {
   const { promisePopup } = usePromisePopup()
   const { mutateAsync: update } = useHomeBannerControllerUpdateById()
 
-  function buildOrderedList(fromId: string, toId: string) {
-    const fromIndex = banners.findIndex((banner) => banner.id === fromId)
-    const toIndex = banners.findIndex((banner) => banner.id === toId)
-
+  function buildOrderedList(fromIndex: number, toIndex: number) {
     if (fromIndex < 0 || toIndex < 0 || fromIndex === toIndex) return null
+
+    if (fromIndex >= banners.length || toIndex >= banners.length) return null
 
     const ordered = [...banners]
     const moved = ordered[fromIndex]
@@ -37,8 +36,8 @@ export function useReorderBanners({ banners }: UseReorderBannersProps) {
     return ordered
   }
 
-  function reorder(fromId: string, toId: string) {
-    const ordered = buildOrderedList(fromId, toId)
+  function reorder(fromIndex: number, toIndex: number) {
+    const ordered = buildOrderedList(fromIndex, toIndex)
 
     if (!ordered) return
 

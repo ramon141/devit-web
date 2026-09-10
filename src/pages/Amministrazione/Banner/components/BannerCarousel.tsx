@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import type { DragEndEvent } from '@dnd-kit/core'
+import { MODE_CONFIG } from '@/pages/Amministrazione/Banner/components/bannerCarouselStyles'
 import { useTranslation } from 'react-i18next'
 import { ChevronLeftIcon, ChevronRightIcon, MonitorIcon, SmartphoneIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -29,12 +30,17 @@ function BannerCarousel({ banners, isLoading, onEdit, onCreate }: BannerCarousel
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }))
 
+  // O carrossel é horizontal: a distância arrastada decide quantas posições o banner anda
   function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event
+    const fromIndex = banners.findIndex((banner) => banner.id === String(event.active.id))
+    const steps = Math.round(event.delta.x / MODE_CONFIG[mode].offsetX)
 
-    if (!over || active.id === over.id) return
+    if (fromIndex < 0 || !steps) return
 
-    reorder(String(active.id), String(over.id))
+    const toIndex = Math.min(Math.max(fromIndex + steps, 0), banners.length - 1)
+
+    // A posição central não muda: quem passa a ocupá-la é o banner que entrou no lugar
+    reorder(fromIndex, toIndex)
   }
 
   const current = Math.min(active, Math.max(banners.length - 1, 0))

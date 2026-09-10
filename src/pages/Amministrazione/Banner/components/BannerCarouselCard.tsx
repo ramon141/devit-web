@@ -1,5 +1,5 @@
 import { ImageIcon, PencilIcon, Trash2Icon } from 'lucide-react'
-import { useDraggable, useDroppable } from '@dnd-kit/core'
+import { useDraggable } from '@dnd-kit/core'
 import { CSS } from '@dnd-kit/utilities'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -40,13 +40,6 @@ function BannerCarouselCard({
     transform: dragTransform,
     isDragging,
   } = useDraggable({ id: bannerId })
-  const { setNodeRef: setDropRef, isOver } = useDroppable({ id: bannerId })
-
-  function setNodeRef(node: HTMLDivElement | null) {
-    setDragRef(node)
-    setDropRef(node)
-  }
-
   const baseStyle = getCardStyle(distance, mode)
   const dragOffset = CSS.Translate.toString(dragTransform)
 
@@ -60,7 +53,7 @@ function BannerCarouselCard({
 
   return (
     <div
-      ref={setNodeRef}
+      ref={setDragRef}
       style={style}
       onClick={isCurrent ? undefined : onSelect}
       {...listeners}
@@ -69,7 +62,7 @@ function BannerCarouselCard({
         isDragging
           ? 'cursor-grabbing shadow-2xl transition-none'
           : 'cursor-grab transition-all duration-500 ease-out hover:shadow-2xl'
-      } ${isOver && !isDragging ? 'ring-2 ring-primary ring-offset-2' : ''}`}
+      }`}
     >
       {attachment?.url ? (
         <img

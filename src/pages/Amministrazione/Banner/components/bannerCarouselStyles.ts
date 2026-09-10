@@ -16,7 +16,7 @@ export function getCardStyle(distance: number, mode: BannerPreviewMode) {
   return {
     transform: `translateX(calc(-50% + ${distance * MODE_CONFIG[mode].offsetX}px)) scale(${1 - abs * SCALE_STEP})`,
     zIndex: VISIBLE_SIDES - abs,
-    opacity: abs > VISIBLE_SIDES ? 0 : 1 - abs * 0.2,
+    opacity: abs > VISIBLE_SIDES ? 0 : 1,
     pointerEvents: abs > VISIBLE_SIDES ? ('none' as const) : ('auto' as const),
   }
 }
