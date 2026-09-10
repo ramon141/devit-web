@@ -26,6 +26,9 @@ export interface HomeBannerWithRelations {
   /** @nullable */
   endDate?: string | null;
   attachmentId: string;
+  /** @nullable */
+  mobileAttachmentId?: string | null;
   attachment?: Attachment;
   foreignKey?: unknown;
+  mobileAttachment?: Attachment;
 }

@@ -42,6 +42,7 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
   const { mutateAsync: create, isPending: creating } = useHomeBannerControllerCreate()
   const { mutateAsync: update, isPending: updating } = useHomeBannerControllerUpdateById()
   const [imageFiles, setImageFiles] = useState<File[]>([])
+  const [mobileImageFiles, setMobileImageFiles] = useState<File[]>([])
   const [imageError, setImageError] = useState<string | undefined>(undefined)
 
   const form = useForm<BannerFormValues>({
@@ -51,6 +52,9 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
 
   useEffect(() => {
     setImageFiles([])
+    setMobileImageFiles([])
+    // keepFieldsRef: sem isso o reset limpa os campos registrados e, se não houver
+    // novo render, o form para de receber o que o usuário digita
     form.reset(
       banner
         ? {
@@ -62,7 +66,8 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
             startDate: banner.startDate?.slice(0, 10) ?? '',
             endDate: banner.endDate?.slice(0, 10) ?? '',
           }
-        : emptyValues
+        : emptyValues,
+      { keepFieldsRef: true }
     )
   }, [banner, form])
 
@@ -83,13 +88,22 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
       endDate: toISODateOrNull(values.endDate),
     }
 
-    if (imageFiles[0]) {
-      const attachment = await uploadFile(imageFiles[0], 'banners')
-      const fullData = { ...data, attachmentId: attachment.id ?? '' }
+    const attachmentId = imageFiles[0]
+      ? (await uploadFile(imageFiles[0], 'banners')).id ?? ''
+      : undefined
+
+    const mobileAttachmentId = mobileImageFiles[0]
+      ? (await uploadFile(mobileImageFiles[0], 'banners')).id ?? ''
+      : undefined
+
+    if (attachmentId) {
+      const fullData = { ...data, attachmentId, ...(mobileAttachmentId ? { mobileAttachmentId } : {}) }
       return banner?.id ? update({ id: banner.id, data: fullData }) : create({ data: fullData })
     }
 
-    return update({ id: banner?.id ?? '', data })
+    const partialData = { ...data, ...(mobileAttachmentId ? { mobileAttachmentId } : {}) }
+
+    return update({ id: banner?.id ?? '', data: partialData })
   }
 
   function onSubmit(values: BannerFormValues) {
@@ -115,6 +129,8 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
     form,
     imageFiles,
     setImageFiles,
+    mobileImageFiles,
+    setMobileImageFiles,
     imageError,
     isSubmitting: creating || updating,
     onSubmit: form.handleSubmit(onSubmit),

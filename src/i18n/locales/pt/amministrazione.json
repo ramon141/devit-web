@@ -27,7 +27,7 @@
   "bannerFormModal": {
     "editTitle": "Editar banner",
     "newTitle": "Novo banner",
-    "imageLabel": "Imagem",
+    "imageLabel": "Imagem desktop",
     "imageHint": "Deixe em branco para manter a imagem atual",
     "titleLabel": "Título",
     "subtitleLabel": "Subtítulo",
@@ -35,7 +35,8 @@
     "orderLabel": "Ordem",
     "startDateLabel": "Data de início",
     "endDateLabel": "Data de término",
-    "activeLabel": "Banner ativo"
+    "activeLabel": "Banner ativo",
+    "mobileImageLabel": "Imagem mobile"
   },
   "bannerTable": {
     "empty": "Nenhum banner encontrado.",
@@ -274,5 +275,15 @@
       "updateSuccess": "Atualizado com sucesso",
       "updateError": "Erro ao atualizar"
     }
+  },
+  "bannerCarousel": {
+    "loading": "Carregando banners...",
+    "desktop": "Desktop",
+    "mobile": "Mobile"
+  },
+  "reorderBanners": {
+    "pending": "Reordenando banners...",
+    "success": "Ordem atualizada!",
+    "error": "Erro ao reordenar os banners"
   }
 }

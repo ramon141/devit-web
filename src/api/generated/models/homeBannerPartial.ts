@@ -25,4 +25,6 @@ export interface HomeBannerPartial {
   /** @nullable */
   endDate?: string | null;
   attachmentId?: string;
+  /** @nullable */
+  mobileAttachmentId?: string | null;
 }

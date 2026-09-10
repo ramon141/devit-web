@@ -16,4 +16,5 @@ export type HomeBannerFilterFieldsOneOf = {
   startDate?: boolean;
   endDate?: boolean;
   attachmentId?: boolean;
+  mobileAttachmentId?: boolean;
 };

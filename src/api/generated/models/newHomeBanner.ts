@@ -24,4 +24,6 @@ export interface NewHomeBanner {
   /** @nullable */
   endDate?: string | null;
   attachmentId: string;
+  /** @nullable */
+  mobileAttachmentId?: string | null;
 }

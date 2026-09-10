@@ -1,17 +1,17 @@
+import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
-import type { HomeBanner } from '@/api/generated/models'
 import { useBannerList } from '@/pages/Amministrazione/Banner/hooks/useBannerList'
-import { useEditModalState } from '@/hooks/useEditModalState'
-import BannerTable from '@/pages/Amministrazione/Banner/components/BannerTable'
-import BannerFormModal from '@/pages/Amministrazione/Banner/components/BannerFormModal'
+import BannerCarousel from '@/pages/Amministrazione/Banner/components/BannerCarousel'
+
+const LIST_PATH = '/gestionale/amministrazione/banner'
 
 function Banner() {
   const { t } = useTranslation('amministrazione')
+  const navigate = useNavigate()
   const { banners, isLoading, totalItems, pageSize, page, setPage, search, onSearchChange } =
     useBannerList()
-  const { open, setOpen, editing, openNew, openEdit } = useEditModalState<HomeBanner>()
 
   return (
     <div>
@@ -19,11 +19,16 @@ function Banner() {
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder={t('banner.searchPlaceholder')}
-        onNewClick={openNew}
+        onNewClick={() => navigate(`${LIST_PATH}/nuovo`)}
         newLabel={t('banner.newLabel')}
       />
 
-      <BannerTable banners={banners} isLoading={isLoading} onEdit={openEdit} />
+      <BannerCarousel
+        banners={banners}
+        isLoading={isLoading}
+        onEdit={(banner) => navigate(`${LIST_PATH}/${banner.id}`)}
+        onCreate={() => navigate(`${LIST_PATH}/nuovo`)}
+      />
 
       <TablePagination
         page={page}
@@ -31,8 +36,6 @@ function Banner() {
         totalItems={totalItems}
         onPageChange={setPage}
       />
-
-      <BannerFormModal open={open} onOpenChange={setOpen} banner={editing} />
     </div>
   )
 }

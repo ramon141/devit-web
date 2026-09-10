@@ -12,4 +12,5 @@ export type HomeBannerIncludeFilterItemsRelation = typeof HomeBannerIncludeFilte
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const HomeBannerIncludeFilterItemsRelation = {
   attachment: 'attachment',
+  mobileAttachment: 'mobileAttachment',
 } as const;

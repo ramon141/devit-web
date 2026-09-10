@@ -24,6 +24,7 @@ import UtentiPage from '@/pages/Amministrazione/Utenti/page'
 import FilialiPage from '@/pages/Amministrazione/Filiali/page'
 import CategoriePage from '@/pages/Amministrazione/Categorie/page'
 import BannerPage from '@/pages/Amministrazione/Banner/page'
+import BannerScheda from '@/pages/Amministrazione/Banner/Scheda'
 import AuditPage from '@/pages/Amministrazione/Audit/page'
 import ProprietariPage from '@/pages/Amministrazione/Proprietari/page'
 import AreaProprietariLogin from '@/pages/Site/AreaProprietari/Login'
@@ -93,6 +94,8 @@ const routes: RouteConfig[] = [
   { path: '/amministrazione/filiali', element: <FilialiPage /> },
   { path: '/amministrazione/categorie', element: <CategoriePage /> },
   { path: '/amministrazione/banner', element: <BannerPage /> },
+  { path: '/amministrazione/banner/nuovo', element: <BannerScheda /> },
+  { path: '/amministrazione/banner/:id', element: <BannerScheda /> },
   { path: '/amministrazione/audit', element: <AuditPage /> },
   { path: '/amministrazione/proprietari', element: <ProprietariPage /> },
   { path: '/componenti', element: <Componentes /> },
