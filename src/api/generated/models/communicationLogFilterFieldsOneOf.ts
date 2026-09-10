@@ -15,6 +15,8 @@ export type CommunicationLogFilterFieldsOneOf = {
   sentAt?: boolean;
   campaignId?: boolean;
   readAt?: boolean;
+  clickedAt?: boolean;
+  providerMessageId?: boolean;
   propertyViewedAt?: boolean;
   updatedAt?: boolean;
   sentById?: boolean;

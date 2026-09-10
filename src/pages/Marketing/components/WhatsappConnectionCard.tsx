@@ -4,6 +4,8 @@ import {
   useMarketingWhatsappControllerStatus,
 } from '@/api/generated/api'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { useWhatsappWebhook } from '@/pages/Marketing/hooks/useWhatsappWebhook'
 
 const POLL_INTERVAL_MS = 4000
 
@@ -14,6 +16,8 @@ function WhatsappConnectionCard() {
     query: { refetchInterval: POLL_INTERVAL_MS },
   })
   const connected = status.data?.connected ?? false
+
+  const webhook = useWhatsappWebhook()
 
   const qrCode = useMarketingWhatsappControllerQrCode({
     query: { enabled: !connected, refetchInterval: connected ? false : POLL_INTERVAL_MS },
@@ -29,6 +33,33 @@ function WhatsappConnectionCard() {
 
         {!status.isError && connected && (
           <p className="text-sm font-medium text-emerald-600">{t('whatsappConnection.connected')}</p>
+        )}
+
+        {!webhook.isLoading && !webhook.isError && (
+          <div className="grid gap-2 border-t pt-4">
+            <p className="text-sm font-medium">{t('whatsappConnection.webhookTitle')}</p>
+
+            {webhook.configured ? (
+              <p className="text-sm text-emerald-600">{t('whatsappConnection.webhookConfigured')}</p>
+            ) : (
+              <div className="grid gap-2">
+                <p className="text-sm text-muted-foreground">{t('whatsappConnection.webhookMissing')}</p>
+
+                {webhook.expectedUrl && (
+                  <p className="break-all text-xs text-muted-foreground">{webhook.expectedUrl}</p>
+                )}
+
+                <Button
+                  type="button"
+                  className="justify-self-start"
+                  disabled={webhook.isRegistering}
+                  onClick={webhook.onRegister}
+                >
+                  {t('whatsappConnection.webhookRegister')}
+                </Button>
+              </div>
+            )}
+          </div>
         )}
 
         {!status.isError && !connected && (

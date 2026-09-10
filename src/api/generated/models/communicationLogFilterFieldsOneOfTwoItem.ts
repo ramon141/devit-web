@@ -19,6 +19,8 @@ export const CommunicationLogFilterFieldsOneOfTwoItem = {
   sentAt: 'sentAt',
   campaignId: 'campaignId',
   readAt: 'readAt',
+  clickedAt: 'clickedAt',
+  providerMessageId: 'providerMessageId',
   propertyViewedAt: 'propertyViewedAt',
   updatedAt: 'updatedAt',
   sentById: 'sentById',

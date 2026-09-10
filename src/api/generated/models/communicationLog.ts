@@ -22,6 +22,10 @@ export interface CommunicationLog {
   /** @nullable */
   readAt?: string | null;
   /** @nullable */
+  clickedAt?: string | null;
+  /** @nullable */
+  providerMessageId?: string | null;
+  /** @nullable */
   propertyViewedAt?: string | null;
   updatedAt: string;
   /** @nullable */

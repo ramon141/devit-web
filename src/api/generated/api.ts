@@ -206,6 +206,8 @@ import type {
   CommunicationLogControllerFindById404,
   CommunicationLogControllerFindByIdParams,
   CommunicationLogControllerFindParams,
+  CommunicationLogControllerTrackClick404,
+  CommunicationLogControllerTrackClickParams,
   CommunicationLogControllerUpdateById401,
   CommunicationLogControllerUpdateById404,
   CommunicationLogControllerUpdateById422,
@@ -298,6 +300,8 @@ import type {
   ContractTerminationControllerUpdateById422,
   ContractTerminationPartial,
   ContractTerminationWithRelations,
+  EvolutionWebhookControllerReceiveBody,
+  EvolutionWebhookControllerReceiveParams,
   HomeBanner,
   HomeBannerControllerCount401,
   HomeBannerControllerCountParams,
@@ -365,8 +369,12 @@ import type {
   MarketingCampaignControllerSendBody,
   MarketingWhatsappControllerQrCode200,
   MarketingWhatsappControllerQrCode401,
+  MarketingWhatsappControllerRegisterWebhook200,
+  MarketingWhatsappControllerRegisterWebhook401,
   MarketingWhatsappControllerStatus200,
   MarketingWhatsappControllerStatus401,
+  MarketingWhatsappControllerWebhookStatus200,
+  MarketingWhatsappControllerWebhookStatus401,
   NewAddress,
   NewAuditLog,
   NewBranch,
@@ -865,6 +873,7 @@ import type {
   PropertyUrbanRegularityPartial,
   PropertyUrbanRegularityWithRelations,
   PropertyWithRelations,
+  PublicAttachmentControllerRedirectToFile404,
   PublicLeadControllerCreate200,
   PublicLeadControllerCreate400,
   PublicLeadControllerCreateBody,
@@ -5851,6 +5860,107 @@ export function useCommunicationLogControllerCount<TData = Awaited<ReturnType<ty
 
 
 /**
+ * @summary Registra clique em link de e-mail e redireciona ao destino (endpoint público)
+ */
+export const communicationLogControllerTrackClick = (
+    id: string,
+    params?: CommunicationLogControllerTrackClickParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/communication-logs/${id}/track-click`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCommunicationLogControllerTrackClickQueryKey = (id?: string,
+    params?: CommunicationLogControllerTrackClickParams,) => {
+    return [
+    `/communication-logs/${id}/track-click`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getCommunicationLogControllerTrackClickQueryOptions = <TData = Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError = ErrorType<unknown | CommunicationLogControllerTrackClick404>>(id: string,
+    params?: CommunicationLogControllerTrackClickParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCommunicationLogControllerTrackClickQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof communicationLogControllerTrackClick>>> = ({ signal }) => communicationLogControllerTrackClick(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CommunicationLogControllerTrackClickQueryResult = NonNullable<Awaited<ReturnType<typeof communicationLogControllerTrackClick>>>
+export type CommunicationLogControllerTrackClickQueryError = ErrorType<unknown | CommunicationLogControllerTrackClick404>
+
+
+export function useCommunicationLogControllerTrackClick<TData = Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError = ErrorType<unknown | CommunicationLogControllerTrackClick404>>(
+ id: string,
+    params: undefined |  CommunicationLogControllerTrackClickParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof communicationLogControllerTrackClick>>,
+          TError,
+          Awaited<ReturnType<typeof communicationLogControllerTrackClick>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCommunicationLogControllerTrackClick<TData = Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError = ErrorType<unknown | CommunicationLogControllerTrackClick404>>(
+ id: string,
+    params?: CommunicationLogControllerTrackClickParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof communicationLogControllerTrackClick>>,
+          TError,
+          Awaited<ReturnType<typeof communicationLogControllerTrackClick>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCommunicationLogControllerTrackClick<TData = Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError = ErrorType<unknown | CommunicationLogControllerTrackClick404>>(
+ id: string,
+    params?: CommunicationLogControllerTrackClickParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Registra clique em link de e-mail e redireciona ao destino (endpoint público)
+ */
+
+export function useCommunicationLogControllerTrackClick<TData = Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError = ErrorType<unknown | CommunicationLogControllerTrackClick404>>(
+ id: string,
+    params?: CommunicationLogControllerTrackClickParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof communicationLogControllerTrackClick>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCommunicationLogControllerTrackClickQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Marca abertura de e-mail (pixel de rastreamento, endpoint público)
  */
 export const communicationLogControllerTrackOpen = (
@@ -10353,6 +10463,162 @@ export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getMarketingWhatsappControllerStatusQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Registrar webhook de status na Evolution
+ */
+export const marketingWhatsappControllerRegisterWebhook = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<MarketingWhatsappControllerRegisterWebhook200>(
+      {url: `/marketing/whatsapp/webhook`, method: 'POST', signal
+    },
+      options);
+    }
+  
+
+
+export const getMarketingWhatsappControllerRegisterWebhookMutationOptions = <TError = ErrorType<MarketingWhatsappControllerRegisterWebhook401 | unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,void, TContext> => {
+
+const mutationKey = ['marketingWhatsappControllerRegisterWebhook'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, void> = () => {
+          
+
+          return  marketingWhatsappControllerRegisterWebhook(requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type MarketingWhatsappControllerRegisterWebhookMutationResult = NonNullable<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>>
+    
+    export type MarketingWhatsappControllerRegisterWebhookMutationError = ErrorType<MarketingWhatsappControllerRegisterWebhook401 | unknown>
+
+    /**
+ * @summary Registrar webhook de status na Evolution
+ */
+export const useMarketingWhatsappControllerRegisterWebhook = <TError = ErrorType<MarketingWhatsappControllerRegisterWebhook401 | unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>,
+        TError,
+        void,
+        TContext
+      > => {
+
+      const mutationOptions = getMarketingWhatsappControllerRegisterWebhookMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Verificar webhook de status do WhatsApp
+ */
+export const marketingWhatsappControllerWebhookStatus = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<MarketingWhatsappControllerWebhookStatus200>(
+      {url: `/marketing/whatsapp/webhook`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getMarketingWhatsappControllerWebhookStatusQueryKey = () => {
+    return [
+    `/marketing/whatsapp/webhook`
+    ] as const;
+    }
+
+    
+export const getMarketingWhatsappControllerWebhookStatusQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus401 | unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerWebhookStatusQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>> = ({ signal }) => marketingWhatsappControllerWebhookStatus(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type MarketingWhatsappControllerWebhookStatusQueryResult = NonNullable<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>>
+export type MarketingWhatsappControllerWebhookStatusQueryError = ErrorType<MarketingWhatsappControllerWebhookStatus401 | unknown>
+
+
+export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus401 | unknown>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>,
+          TError,
+          Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>,
+          TError,
+          Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Verificar webhook de status do WhatsApp
+ */
+
+export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus401 | unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getMarketingWhatsappControllerWebhookStatusQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -23167,6 +23433,99 @@ export function usePropertyUrbanRegularityControllerFind<TData = Awaited<ReturnT
 
 
 /**
+ * @summary Redirecionar para a foto de imóvel (link público estável)
+ */
+export const publicAttachmentControllerRedirectToFile = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/public/attachments/${id}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPublicAttachmentControllerRedirectToFileQueryKey = (id?: string,) => {
+    return [
+    `/public/attachments/${id}`
+    ] as const;
+    }
+
+    
+export const getPublicAttachmentControllerRedirectToFileQueryOptions = <TData = Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError = ErrorType<unknown | PublicAttachmentControllerRedirectToFile404>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPublicAttachmentControllerRedirectToFileQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>> = ({ signal }) => publicAttachmentControllerRedirectToFile(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PublicAttachmentControllerRedirectToFileQueryResult = NonNullable<Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>>
+export type PublicAttachmentControllerRedirectToFileQueryError = ErrorType<unknown | PublicAttachmentControllerRedirectToFile404>
+
+
+export function usePublicAttachmentControllerRedirectToFile<TData = Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError = ErrorType<unknown | PublicAttachmentControllerRedirectToFile404>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>,
+          TError,
+          Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePublicAttachmentControllerRedirectToFile<TData = Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError = ErrorType<unknown | PublicAttachmentControllerRedirectToFile404>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>,
+          TError,
+          Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePublicAttachmentControllerRedirectToFile<TData = Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError = ErrorType<unknown | PublicAttachmentControllerRedirectToFile404>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Redirecionar para a foto de imóvel (link público estável)
+ */
+
+export function usePublicAttachmentControllerRedirectToFile<TData = Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError = ErrorType<unknown | PublicAttachmentControllerRedirectToFile404>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicAttachmentControllerRedirectToFile>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPublicAttachmentControllerRedirectToFileQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Listar agências ativas (Contatti/Chi Siamo)
  */
 export const publicBranchControllerFind = (
@@ -31439,3 +31798,70 @@ export function useUserControllerFind<TData = Awaited<ReturnType<typeof userCont
 
 
 
+/**
+ * @summary Receber eventos de status do WhatsApp (endpoint público, protegido por token)
+ */
+export const evolutionWebhookControllerReceive = (
+    evolutionWebhookControllerReceiveBody: BodyType<EvolutionWebhookControllerReceiveBody>,
+    params?: EvolutionWebhookControllerReceiveParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/webhooks/evolution`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: evolutionWebhookControllerReceiveBody,
+        params, signal
+    },
+      options);
+    }
+  
+
+
+export const getEvolutionWebhookControllerReceiveMutationOptions = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams}, TContext> => {
+
+const mutationKey = ['evolutionWebhookControllerReceive'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, {data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams}> = (props) => {
+          const {data,params} = props ?? {};
+
+          return  evolutionWebhookControllerReceive(data,params,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type EvolutionWebhookControllerReceiveMutationResult = NonNullable<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>>
+    export type EvolutionWebhookControllerReceiveMutationBody = BodyType<EvolutionWebhookControllerReceiveBody>
+    export type EvolutionWebhookControllerReceiveMutationError = ErrorType<unknown>
+
+    /**
+ * @summary Receber eventos de status do WhatsApp (endpoint público, protegido por token)
+ */
+export const useEvolutionWebhookControllerReceive = <TError = ErrorType<unknown>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>,
+        TError,
+        {data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams},
+        TContext
+      > => {
+
+      const mutationOptions = getEvolutionWebhookControllerReceiveMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    

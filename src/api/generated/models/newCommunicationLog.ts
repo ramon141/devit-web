@@ -23,6 +23,10 @@ export interface NewCommunicationLog {
   /** @nullable */
   readAt?: string | null;
   /** @nullable */
+  clickedAt?: string | null;
+  /** @nullable */
+  providerMessageId?: string | null;
+  /** @nullable */
   propertyViewedAt?: string | null;
   /** @nullable */
   sentById?: string | null;

@@ -19,7 +19,14 @@
     "connected": "Tutto connesso",
     "scanHint": "Scansiona il QR code con WhatsApp per collegare il numero",
     "qrCodeAlt": "QR code per connettere WhatsApp",
-    "error": "Impossibile verificare lo stato della connessione WhatsApp"
+    "error": "Impossibile verificare lo stato della connessione WhatsApp",
+    "webhookTitle": "Webhook di stato",
+    "webhookConfigured": "Webhook attivo: consegne e letture vengono registrate",
+    "webhookMissing": "Webhook non configurato: le letture dei messaggi non vengono registrate",
+    "webhookRegister": "Crea configurazione Webhook",
+    "webhookPending": "Registrazione del webhook...",
+    "webhookSuccess": "Webhook registrato",
+    "webhookError": "Impossibile registrare il webhook"
   },
   "channelStatusDashboard": {
     "total": "Totale",
