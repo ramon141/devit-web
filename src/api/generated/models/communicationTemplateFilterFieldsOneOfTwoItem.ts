@@ -17,6 +17,7 @@ export const CommunicationTemplateFilterFieldsOneOfTwoItem = {
   category: 'category',
   subject: 'subject',
   body: 'body',
+  design: 'design',
   active: 'active',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',

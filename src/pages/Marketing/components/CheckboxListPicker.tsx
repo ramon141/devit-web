@@ -6,6 +6,7 @@ export type CheckboxListItem = {
   id: string
   label: string
   sublabel?: string
+  disabled?: boolean
 }
 
 type CheckboxListPickerProps = {
@@ -38,8 +39,19 @@ function CheckboxListPicker({
         {items.length === 0 && <p className="py-4 text-center text-sm text-muted-foreground">{emptyMessage}</p>}
 
         {items.map((item) => (
-          <Label key={item.id} className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-accent">
-            <Checkbox checked={selectedIds.includes(item.id)} onCheckedChange={() => onToggle(item.id)} />
+          <Label
+            key={item.id}
+            className={
+              item.disabled
+                ? 'flex items-center gap-2 rounded-md px-2 py-1.5 text-sm opacity-50'
+                : 'flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-accent'
+            }
+          >
+            <Checkbox
+              checked={selectedIds.includes(item.id)}
+              disabled={item.disabled}
+              onCheckedChange={() => onToggle(item.id)}
+            />
             <span className="min-w-0 flex-1 truncate">{item.label}</span>
             {item.sublabel && <span className="shrink-0 text-xs text-muted-foreground">{item.sublabel}</span>}
           </Label>

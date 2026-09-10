@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
+import EmailDesignEditor from '@/components/EmailDesignEditor'
 import CheckboxListPicker from '@/pages/Marketing/components/CheckboxListPicker'
 import { useSendCampaign } from '@/pages/Marketing/hooks/useSendCampaign'
 
@@ -105,11 +106,15 @@ function SendCampagnaTab() {
           </FormFieldWrapper>
 
           <FormFieldWrapper label={t('sendCampaign.contentLabel')} required>
-            <Textarea
-              value={campaign.content}
-              onChange={(event) => campaign.setContent(event.target.value)}
-              rows={6}
-            />
+            {campaign.isEmail ? (
+              <EmailDesignEditor editorRef={campaign.editorRef} />
+            ) : (
+              <Textarea
+                value={campaign.content}
+                onChange={(event) => campaign.setContent(event.target.value)}
+                rows={6}
+              />
+            )}
           </FormFieldWrapper>
 
           <div className="flex items-center justify-between">

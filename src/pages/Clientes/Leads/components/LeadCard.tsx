@@ -4,6 +4,7 @@ import { CSS } from '@dnd-kit/utilities'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { Lead } from '@/api/generated/models'
+import { leadStatusColors } from '@/pages/Clientes/Leads/schemas/leadSchema'
 
 type LeadCardProps = {
   lead: Lead
@@ -30,12 +31,13 @@ function LeadCard({ lead, onEdit, onDelete, isOverlay = false }: LeadCardProps) 
       {...listeners}
       {...attributes}
       className={cn(
-        'grid touch-none gap-2 rounded-lg bg-card p-3 ring-1 ring-border transition-shadow',
+        'grid touch-none gap-2 rounded-lg border-l-4 bg-card p-3 ring-1 ring-border transition-shadow',
+        lead.status && leadStatusColors[lead.status].border,
         isOverlay ? 'cursor-grabbing shadow-lg' : 'cursor-grab hover:shadow-md'
       )}
     >
       <div className="flex items-start justify-between gap-2">
-        <p className="truncate text-sm font-medium">{lead.name}</p>
+        <p className="line-clamp-2 min-w-0 break-words text-sm font-medium">{lead.name}</p>
         <div className="flex shrink-0">
           <Button variant="ghost" size="icon-xs" onClick={() => onEdit(lead)}>
             <PencilIcon className="size-3.5" />

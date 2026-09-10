@@ -20,6 +20,7 @@ type SelectFieldProps = {
   placeholder?: string
   disabled?: boolean
   error?: string
+  clearable?: boolean
 }
 
 // Select de enum com label italiano resolvido, usado em todo formulário do sistema
@@ -30,10 +31,11 @@ function SelectField({
   placeholder,
   disabled,
   error,
+  clearable = true,
 }: SelectFieldProps) {
   const { t } = useTranslation('common')
   const resolvedPlaceholder = placeholder ?? t('selectField.placeholder')
-  const showClear = !!value && !disabled
+  const showClear = clearable && !!value && !disabled
 
   return (
     <div className="grid gap-1.5">

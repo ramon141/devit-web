@@ -8,7 +8,12 @@ import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
 import itLocale from '@fullcalendar/core/locales/it'
 import ptLocale from '@fullcalendar/core/locales/pt-br'
-import type { EventClickArg, EventDropArg, DatesSetArg } from '@fullcalendar/core'
+import type {
+  EventClickArg,
+  EventContentArg,
+  EventDropArg,
+  DatesSetArg,
+} from '@fullcalendar/core'
 import type { EventResizeDoneArg } from '@fullcalendar/interaction'
 import AppLayout from '@/components/layout/AppLayout'
 import ConfirmPopup from '@/components/ConfirmPopup'
@@ -20,10 +25,58 @@ import CalendarEventFormModal from '@/pages/Agenda/components/CalendarEventFormM
 import CalendarEventPreviewModal from '@/pages/Agenda/components/CalendarEventPreviewModal'
 import AgendaFilters from '@/pages/Agenda/components/AgendaFilters'
 
+const userColors = [
+  '#2563eb',
+  '#16a34a',
+  '#dc2626',
+  '#d97706',
+  '#7c3aed',
+  '#0891b2',
+  '#db2777',
+  '#65a30d',
+  '#4f46e5',
+  '#0d9488',
+]
+
+// ponytail: hash do id → cor fixa por usuário; colisões possíveis com >10 usuários
+function getUserColor(userId: string | null | undefined) {
+  if (!userId) return 'var(--muted-foreground)'
+
+  let hash = 0
+  for (const char of userId) hash = (hash * 31 + char.charCodeAt(0)) >>> 0
+
+  return userColors[hash % userColors.length]
+}
+
 const confirmationColors: Record<string, string> = {
-  pending: 'var(--muted-foreground)',
-  confirmed: 'var(--primary)',
-  cancelled: 'var(--destructive)',
+  pending: '#9ca3af',
+  confirmed: '#22c55e',
+  cancelled: '#ef4444',
+}
+
+function getEventColor(event: CalendarEventWithRelations) {
+  return event.backgroundColor || confirmationColors[event.confirmationStatus ?? 'pending']
+}
+
+function renderEventContent(arg: EventContentArg) {
+  const event = arg.event.extendedProps.event as CalendarEventWithRelations
+  const userColor = getUserColor(event.ownerId ?? event.createdById)
+
+  // na visão lista o horário já tem coluna própria
+  const showTime = !arg.view.type.startsWith('list') && arg.timeText
+
+  return (
+    <div className="flex items-center gap-1 overflow-hidden">
+      {showTime && <span>{arg.timeText}</span>}
+
+      <span
+        className="size-2 shrink-0 rounded-full ring-1 ring-white"
+        style={{ backgroundColor: userColor }}
+      />
+
+      <span className="truncate">{arg.event.title}</span>
+    </div>
+  )
 }
 
 function Agenda() {
@@ -43,9 +96,9 @@ function Agenda() {
     start: event.startAt,
     end: event.endAt,
     allDay: event.allDay ?? false,
-    backgroundColor: event.backgroundColor ?? confirmationColors[event.confirmationStatus ?? 'pending'],
-    borderColor: 'transparent',
-    textColor: event.confirmationStatus === 'confirmed' ? 'var(--primary-foreground)' : '#fff',
+    backgroundColor: getEventColor(event),
+    borderColor: getEventColor(event),
+    textColor: '#fff',
     extendedProps: { event },
   }))
 
@@ -109,6 +162,8 @@ function Agenda() {
           editable
           selectable
           dayMaxEvents
+          eventDisplay="block"
+          eventContent={renderEventContent}
           events={calendarEvents}
           datesSet={handleDatesSet}
           eventClick={handleEventClick}

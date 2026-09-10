@@ -10,6 +10,7 @@ export function communicationTemplateSchema(t: TFunction<'marketing'>) {
     category: z.string().min(1, t('templateSchema.categoryRequired')),
     subject: z.string().optional(),
     body: z.string().min(1, t('templateSchema.bodyRequired')),
+    design: z.string().nullable(),
     active: z.boolean(),
   })
 }

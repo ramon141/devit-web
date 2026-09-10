@@ -13,6 +13,7 @@ export type CommunicationTemplateFilter1FieldsOneOf = {
   category?: boolean;
   subject?: boolean;
   body?: boolean;
+  design?: boolean;
   active?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;

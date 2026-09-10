@@ -33,6 +33,18 @@ export function getStatusOptions(t: TFunction<'imoveis'>) {
   ]
 }
 
+// Rótulos abreviados, para espaços apertados (ex: cards do painel)
+export function getShortStatusOptions(t: TFunction<'imoveis'>) {
+  return [
+    { value: PropertyStatus.available, label: t('options.statusShort.available') },
+    { value: PropertyStatus.reserved, label: t('options.statusShort.reserved') },
+    { value: PropertyStatus.rented, label: t('options.statusShort.rented') },
+    { value: PropertyStatus.sold, label: t('options.statusShort.sold') },
+    { value: PropertyStatus.under_maintenance, label: t('options.statusShort.underMaintenance') },
+    { value: PropertyStatus.unavailable, label: t('options.statusShort.unavailable') },
+  ]
+}
+
 export function createPropertySchema(t: TFunction<'imoveis'>) {
   return z.object({
     code: z.string().min(1, t('options.validation.code')),

@@ -1,18 +1,13 @@
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 import i18n from '@/i18n'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import FormFieldWrapper from '@/components/FormFieldWrapper'
+import SelectField from '@/components/SelectField'
 import {
   Form,
   FormControl,
@@ -43,6 +38,12 @@ function FormSection() {
     defaultValues: { title: '', type: '', price: undefined },
   })
 
+  const propertyTypes = [
+    { value: 'villa', label: t('propertyTypes.villa') },
+    { value: 'appartamento', label: t('propertyTypes.appartamento') },
+    { value: 'attico', label: t('propertyTypes.attico') },
+  ]
+
   function onSubmit(values: PropertyFormValues) {
     setSubmitted(values)
   }
@@ -72,26 +73,19 @@ function FormSection() {
             )}
           />
 
-          <FormField
+          <Controller
             control={form.control}
             name="type"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t('form.typeField')}</FormLabel>
-                <FormControl>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder={t('form.typePlaceholder')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="villa">{t('propertyTypes.villa')}</SelectItem>
-                      <SelectItem value="appartamento">{t('propertyTypes.appartamento')}</SelectItem>
-                      <SelectItem value="attico">{t('propertyTypes.attico')}</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+            render={({ field, fieldState }) => (
+              <FormFieldWrapper label={t('form.typeField')}>
+                <SelectField
+                  value={field.value}
+                  onValueChange={field.onChange}
+                  options={propertyTypes}
+                  placeholder={t('form.typePlaceholder')}
+                  error={fieldState.error?.message}
+                />
+              </FormFieldWrapper>
             )}
           />
 

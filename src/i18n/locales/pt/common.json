@@ -32,7 +32,7 @@
     "cancel": "Cancelar"
   },
   "promisePopup": {
-    "ok": "Ok"
+    "close": "Fechar"
   },
   "fileUpload": {
     "clickToUpload": "Clique para enviar",

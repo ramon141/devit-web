@@ -12,6 +12,20 @@ export function getLeadStatusOptions(t: TFunction<'clientes'>) {
   ]
 }
 
+type LeadStatusColor = {
+  dot: string
+  border: string
+}
+
+// classes completas para o Tailwind detectar
+export const leadStatusColors: Record<NonNullable<LeadStatus>, LeadStatusColor> = {
+  new: { dot: 'bg-sky-500', border: 'border-l-sky-500' },
+  contacted: { dot: 'bg-amber-500', border: 'border-l-amber-500' },
+  negotiating: { dot: 'bg-violet-500', border: 'border-l-violet-500' },
+  converted: { dot: 'bg-emerald-500', border: 'border-l-emerald-500' },
+  lost: { dot: 'bg-red-500', border: 'border-l-red-500' },
+}
+
 export function getLeadSourceOptions(t: TFunction<'clientes'>) {
   return [
     { value: LeadSource.portal, label: t('leadSourceOptions.portal') },

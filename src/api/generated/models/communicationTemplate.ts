@@ -17,6 +17,8 @@ export interface CommunicationTemplate {
   subject?: string | null;
   body: string;
   /** @nullable */
+  design?: string | null;
+  /** @nullable */
   active?: boolean | null;
   createdAt: string;
   updatedAt: string;

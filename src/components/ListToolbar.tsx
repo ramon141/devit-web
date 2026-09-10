@@ -30,8 +30,8 @@ function ListToolbar({
   const resolvedNewLabel = newLabel ?? t('listToolbar.newLabel')
 
   return (
-    <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
-      <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-end">
+    <div className="mb-4 flex flex-col gap-3">
+      <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
         <div className="w-full sm:max-w-xs">
           <FormFieldWrapper label={t('listToolbar.searchLabel')}>
             <div className="relative">
@@ -49,7 +49,7 @@ function ListToolbar({
         {filters}
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 sm:justify-end">
         {actions}
 
         {onNewClick && (

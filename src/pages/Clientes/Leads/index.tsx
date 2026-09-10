@@ -49,17 +49,21 @@ function Leads() {
       <LeadFilters filters={filters} onChange={setFilters} />
 
       <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-        <div className="flex gap-3 overflow-x-auto pb-2">
-          {columns.map((column) => (
-            <LeadColumn
-              key={column.status}
-              status={column.status}
-              label={column.label}
-              leads={column.leads}
-              onEdit={handleEdit}
-              onDelete={setDeleteTarget}
-            />
-          ))}
+        {/* ponytail: altura fixa para o header sticky funcionar; ajustar 16rem se o topo da página mudar */}
+        <div className="h-[calc(100dvh-16rem)] overflow-auto pb-2">
+          {/* wrapper com altura do conteúdo: colunas esticam até a mais alta */}
+          <div className="flex min-h-full w-max gap-3">
+            {columns.map((column) => (
+              <LeadColumn
+                key={column.status}
+                status={column.status}
+                label={column.label}
+                leads={column.leads}
+                onEdit={handleEdit}
+                onDelete={setDeleteTarget}
+              />
+            ))}
+          </div>
         </div>
 
         <DragOverlay>

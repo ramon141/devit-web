@@ -8,6 +8,8 @@ import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import type { CommunicationTemplate } from '@/api/generated/models'
+import { CommunicationTemplateChannel } from '@/api/generated/models/communicationTemplateChannel'
+import EmailDesignEditor from '@/components/EmailDesignEditor'
 import { useTemplateForm } from '@/pages/Marketing/hooks/useTemplateForm'
 import {
   getTemplateChannelOptions,
@@ -22,7 +24,7 @@ type TemplateFormModalProps = {
 
 function TemplateFormModal({ open, onOpenChange, template }: TemplateFormModalProps) {
   const { t } = useTranslation('marketing')
-  const { form, isSubmitting, onSubmit } = useTemplateForm({
+  const { form, editorRef, isSubmitting, onSubmit } = useTemplateForm({
     template,
     onSaved: () => onOpenChange(false),
   })
@@ -32,10 +34,13 @@ function TemplateFormModal({ open, onOpenChange, template }: TemplateFormModalPr
     formState: { errors },
   } = form
 
+  const isEmail = form.watch('channel') === CommunicationTemplateChannel.email
+
   return (
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
+      wide={isEmail}
       title={template ? t('templateFormModal.editTitle') : t('templateFormModal.newTitle')}
     >
       <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
@@ -69,7 +74,11 @@ function TemplateFormModal({ open, onOpenChange, template }: TemplateFormModalPr
 
         <div className="sm:col-span-2">
           <FormFieldWrapper label={t('templateFormModal.bodyLabel')} required error={errors.body?.message}>
-            <Textarea {...register('body')} rows={6} placeholder={t('templateFormModal.bodyPlaceholder')} />
+            {isEmail ? (
+              <EmailDesignEditor editorRef={editorRef} design={template?.design} />
+            ) : (
+              <Textarea {...register('body')} rows={6} placeholder={t('templateFormModal.bodyPlaceholder')} />
+            )}
           </FormFieldWrapper>
         </div>
 

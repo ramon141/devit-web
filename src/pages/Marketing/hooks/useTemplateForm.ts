@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, type BaseSyntheticEvent } from 'react'
+import type { EditorRef } from 'react-email-editor'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +12,8 @@ import {
   useCommunicationTemplateControllerUpdateById,
 } from '@/api/generated/api'
 import type { CommunicationTemplate } from '@/api/generated/models'
+import { CommunicationTemplateChannel } from '@/api/generated/models/communicationTemplateChannel'
+import { exportEmail } from '@/components/EmailDesignEditor'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
@@ -25,6 +28,7 @@ const emptyValues: TemplateFormValues = {
   category: 'generico',
   subject: '',
   body: '',
+  design: null,
   active: true,
 }
 
@@ -40,6 +44,8 @@ export function useTemplateForm({ template, onSaved }: UseTemplateFormProps) {
   const { mutateAsync: create, isPending: creating } = useCommunicationTemplateControllerCreate()
   const { mutateAsync: update, isPending: updating } = useCommunicationTemplateControllerUpdateById()
 
+  const editorRef = useRef<EditorRef>(null)
+
   const form = useForm<TemplateFormValues>({
     resolver: zodResolver(communicationTemplateSchema(t)),
     defaultValues: emptyValues,
@@ -54,6 +60,7 @@ export function useTemplateForm({ template, onSaved }: UseTemplateFormProps) {
             category: template.category,
             subject: template.subject ?? '',
             body: template.body,
+            design: template.design ?? null,
             active: template.active ?? true,
           }
         : emptyValues,
@@ -66,7 +73,11 @@ export function useTemplateForm({ template, onSaved }: UseTemplateFormProps) {
   }
 
   function onSubmit(values: TemplateFormValues) {
-    const cleaned = emptyStringsToNull(values)
+    const isEmail = values.channel === CommunicationTemplateChannel.email
+    const cleaned = emptyStringsToNull({
+      ...values,
+      design: isEmail ? values.design : null,
+    })
     const promise = template?.id
       ? update({ id: template.id, data: cleaned as Parameters<typeof update>[0]['data'] })
       : create({ data: cleaned as Parameters<typeof create>[0]['data'] })
@@ -83,9 +94,26 @@ export function useTemplateForm({ template, onSaved }: UseTemplateFormProps) {
     })
   }
 
+  // No canal email o corpo vem do editor Unlayer: exporta HTML + design antes de validar
+  async function submitWithEditor(event?: BaseSyntheticEvent) {
+    event?.preventDefault()
+
+    if (form.getValues('channel') === CommunicationTemplateChannel.email) {
+      const exported = await exportEmail(editorRef)
+
+      if (exported) {
+        form.setValue('body', exported.html)
+        form.setValue('design', exported.design)
+      }
+    }
+
+    return form.handleSubmit(onSubmit)(event)
+  }
+
   return {
     form,
+    editorRef,
     isSubmitting: creating || updating,
-    onSubmit: form.handleSubmit(onSubmit),
+    onSubmit: submitWithEditor,
   }
 }

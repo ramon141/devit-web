@@ -132,6 +132,12 @@ body {
 }
 
 @layer base {
+  /* Tailwind v4 removeu cursor pointer padrão dos botões */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
   .vite-shell h1,
   .vite-shell h2 {
     font-family: var(--heading);
@@ -322,10 +328,6 @@ body {
   padding: 1px 4px;
   font-size: 0.75rem;
   cursor: grab;
-}
-
-.devit-calendar .fc .fc-list-event-dot {
-  border-color: var(--primary);
 }
 
 /* Scrollbar sottile per tutto il sistema */

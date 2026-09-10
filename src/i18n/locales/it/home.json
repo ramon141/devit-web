@@ -30,6 +30,7 @@
     "total": "Totale: {{count}}"
   },
   "dashboardWindow": {
+    "label": "Periodo",
     "option": "Ultimi {{days}} giorni",
     "all": "Tutta l'agenzia"
   }

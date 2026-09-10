@@ -494,6 +494,14 @@
       "underMaintenance": "Em manutenção",
       "unavailable": "Indisponível"
     },
+    "statusShort": {
+      "available": "Disp.",
+      "reserved": "Res.",
+      "rented": "Alug.",
+      "sold": "Vend.",
+      "underMaintenance": "Manut.",
+      "unavailable": "Indisp."
+    },
     "validation": {
       "code": "Informe o código",
       "title": "Informe pelo menos 3 caracteres",

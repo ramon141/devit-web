@@ -1,14 +1,7 @@
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { Label } from '@/components/ui/label'
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
+import FormFieldWrapper from '@/components/FormFieldWrapper'
+import SelectField from '@/components/SelectField'
 import ComponentSection from '@/pages/Componentes/components/ComponentSection'
 
 type SelectFormValues = {
@@ -17,7 +10,7 @@ type SelectFormValues = {
 
 function SelectSection() {
   const { t } = useTranslation('componentes')
-  const form = useForm<SelectFormValues>({
+  const { control } = useForm<SelectFormValues>({
     defaultValues: { propertyType: 'villa' },
   })
 
@@ -34,33 +27,21 @@ function SelectSection() {
       title={t('select.title')}
       description={t('select.description')}
     >
-      <div className="grid max-w-xs gap-2">
-        <Label>{t('select.propertyTypeLabel')}</Label>
-
-        <Form {...form}>
-          <FormField
-            control={form.control}
+      <div className="max-w-xs">
+        <FormFieldWrapper label={t('select.propertyTypeLabel')}>
+          <Controller
+            control={control}
             name="propertyType"
             render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder={t('select.placeholder')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {propertyTypes.map((type) => (
-                        <SelectItem key={type.value} value={type.value}>
-                          {type.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-              </FormItem>
+              <SelectField
+                value={field.value}
+                onValueChange={field.onChange}
+                options={propertyTypes}
+                placeholder={t('select.placeholder')}
+              />
             )}
           />
-        </Form>
+        </FormFieldWrapper>
       </div>
     </ComponentSection>
   )

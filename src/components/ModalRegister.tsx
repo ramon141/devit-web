@@ -13,19 +13,25 @@ type ModalRegisterProps = {
   title: string
   description?: string
   children: ReactNode
+  wide?: boolean
 }
 
-// Modal padrão pra telas de cadastro, sempre com essa largura fixa
+const DEFAULT_WIDTH_CLASS = 'w-full sm:max-w-full md:max-w-[700px]'
+// Usado por conteúdos grandes (ex.: editor de e-mail)
+const WIDE_WIDTH_CLASS = 'w-full sm:max-w-[95vw] max-h-[95vh] overflow-y-auto'
+
+// Modal padrão pra telas de cadastro, com largura fixa (ou larga via `wide`)
 function ModalRegister({
   open,
   onOpenChange,
   title,
   description,
   children,
+  wide = false,
 }: ModalRegisterProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-full sm:max-w-full md:max-w-[700px]">
+      <DialogContent className={wide ? WIDE_WIDTH_CLASS : DEFAULT_WIDTH_CLASS}>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           {description && <DialogDescription>{description}</DialogDescription>}

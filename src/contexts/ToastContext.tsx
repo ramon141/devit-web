@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useState } from 'react'
 import type { ReactNode } from 'react'
 import type { AxiosError } from 'axios'
 import type { ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
+import { getErrorMessageFromRequest } from '@/utils/getErrorMessageFromRequest'
 import { TOAST_AUTO_DISMISS_MS } from '@/constants/ui'
 
 export type ToastVariant = 'loading' | 'success' | 'error'
@@ -67,7 +68,7 @@ function ToastProvider({ children }: { children: ReactNode }) {
         .catch((error: AxiosError<ApiErrorResponse>) => {
           const message =
             typeof messages.error === 'string' ? messages.error : messages.error(error)
-          settleToast(id, 'error', message)
+          settleToast(id, 'error', message ?? getErrorMessageFromRequest(error))
         })
     },
     [settleToast]

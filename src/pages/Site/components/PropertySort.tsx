@@ -1,12 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import type { TFunction } from 'i18next'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import SelectField from '@/components/SelectField'
 
 function getSortOptions(t: TFunction<'site'>) {
   return [
@@ -27,27 +21,17 @@ type PropertySortProps = {
 
 function PropertySort({ value, onChange }: PropertySortProps) {
   const { t } = useTranslation('site')
-  const sortOptions = getSortOptions(t)
 
   return (
-    <Select
-      value={value}
-      onValueChange={(next) => onChange(next ?? 'featured')}
-    >
-      <SelectTrigger className="w-full sm:w-64">
-        <SelectValue placeholder={t('propertySort.featured')}>
-          {(current: string) => sortOptions.find((option) => option.value === current)?.label ?? current}
-        </SelectValue>
-      </SelectTrigger>
-
-      <SelectContent>
-        {sortOptions.map((option) => (
-          <SelectItem key={option.value} value={option.value}>
-            {option.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <div className="w-full sm:w-64">
+      <SelectField
+        value={value}
+        onValueChange={(next) => onChange(next || 'featured')}
+        options={getSortOptions(t)}
+        placeholder={t('propertySort.featured')}
+        clearable={false}
+      />
+    </div>
   )
 }
 

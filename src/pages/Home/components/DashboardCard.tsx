@@ -1,5 +1,12 @@
 import type { ReactNode } from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 
 type DashboardCardProps = {
   title: string
@@ -11,15 +18,20 @@ type DashboardCardProps = {
 function DashboardCard({ title, count, children }: DashboardCardProps) {
   return (
     <Card className="h-full">
-      <CardHeader className="flex-row items-center justify-between">
+      <CardHeader>
         <CardTitle>{title}</CardTitle>
+
         {count !== undefined && (
-          <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-medium text-accent-foreground">
-            {count}
-          </span>
+          <CardAction>
+            <Badge className="h-7 min-w-7 rounded-full bg-accent px-1.5 text-accent-foreground">
+              {count}
+            </Badge>
+          </CardAction>
         )}
       </CardHeader>
-      <CardContent className="grid gap-2">{children}</CardContent>
+
+      {/* grid-cols-1 = minmax(0,1fr): impede texto longo de esticar o card */}
+      <CardContent className="grid grid-cols-1 gap-1">{children}</CardContent>
     </Card>
   )
 }

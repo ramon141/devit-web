@@ -146,6 +146,8 @@
     "pending": "Enviando...",
     "success": "Enviadas {{sent}}, falharam {{failed}}, ignoradas {{skipped}}",
     "error": "Erro ao enviar a campanha",
-    "lastResult": "Último envio: {{sent}} enviadas, {{failed}} falharam, {{skipped}} ignoradas"
+    "lastResult": "Último envio: {{sent}} enviadas, {{failed}} falharam, {{skipped}} ignoradas",
+    "missingEmail": "Sem e-mail",
+    "missingPhone": "Sem telefone"
   }
 }

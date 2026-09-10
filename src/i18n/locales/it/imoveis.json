@@ -494,6 +494,14 @@
       "underMaintenance": "In manutenzione",
       "unavailable": "Non disponibile"
     },
+    "statusShort": {
+      "available": "Disp.",
+      "reserved": "Ris.",
+      "rented": "Aff.",
+      "sold": "Vend.",
+      "underMaintenance": "Manut.",
+      "unavailable": "Non disp."
+    },
     "validation": {
       "code": "Inserisci il codice",
       "title": "Inserisci almeno 3 caratteri",

@@ -1,11 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import FormFieldWrapper from '@/components/FormFieldWrapper'
+import SelectField from '@/components/SelectField'
 
 const WINDOW_DAYS = [30, 90, 180, 365] as const
 
@@ -21,28 +16,29 @@ type DashboardWindowSelectProps = {
 function DashboardWindowSelect({ value, onChange, allowAll }: DashboardWindowSelectProps) {
   const { t } = useTranslation('home')
 
-  return (
-    <Select
-      value={String(value)}
-      onValueChange={(next) => onChange(Number(next))}
-    >
-      <SelectTrigger className="w-full sm:w-56">
-        <SelectValue />
-      </SelectTrigger>
+  const windowOptions = WINDOW_DAYS.map((days) => ({
+    value: String(days),
+    label: t('dashboardWindow.option', { days }),
+  }))
 
-      <SelectContent>
-        {allowAll && (
-          <SelectItem value={String(ALL_AGENCY_VALUE)}>
-            {t('dashboardWindow.all')}
-          </SelectItem>
-        )}
-        {WINDOW_DAYS.map((days) => (
-          <SelectItem key={days} value={String(days)}>
-            {t('dashboardWindow.option', { days })}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+  const allOption = {
+    value: String(ALL_AGENCY_VALUE),
+    label: t('dashboardWindow.all'),
+  }
+
+  const options = allowAll ? [allOption, ...windowOptions] : windowOptions
+
+  return (
+    <div className="w-full sm:w-56">
+      <FormFieldWrapper label={t('dashboardWindow.label')}>
+        <SelectField
+          value={String(value)}
+          onValueChange={(next) => onChange(Number(next))}
+          options={options}
+          clearable={false}
+        />
+      </FormFieldWrapper>
+    </div>
   )
 }
 
