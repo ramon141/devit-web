@@ -5,6 +5,7 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { NewLeadPurpose } from './newLeadPurpose';
 import type { NewLeadStatus } from './newLeadStatus';
 import type { NewLeadSource } from './newLeadSource';
 import type { NewLeadRequestType } from './newLeadRequestType';
@@ -13,6 +14,28 @@ import type { NewLeadRequestType } from './newLeadRequestType';
  * (tsType: Omit<Lead, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewLead', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewLead {
+  /** @nullable */
+  purpose?: NewLeadPurpose;
+  /** @nullable */
+  expiresAt?: string | null;
+  /** @nullable */
+  minBudget?: number | null;
+  /** @nullable */
+  minAreaSqm?: number | null;
+  /** @nullable */
+  maxAreaSqm?: number | null;
+  /** @nullable */
+  minRooms?: number | null;
+  /** @nullable */
+  maxRooms?: number | null;
+  /** @nullable */
+  minBedrooms?: number | null;
+  /** @nullable */
+  maxBedrooms?: number | null;
+  /** @nullable */
+  minBathrooms?: number | null;
+  /** @nullable */
+  maxBathrooms?: number | null;
   /** @nullable */
   externalId?: string | null;
   name: string;
@@ -44,6 +67,8 @@ export interface NewLead {
   subject?: string | null;
   /** @nullable */
   syncedAt?: string | null;
+  /** @nullable */
+  categoryId?: string | null;
   /** @nullable */
   assignedToId?: string | null;
 }

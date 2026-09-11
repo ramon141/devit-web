@@ -173,5 +173,19 @@
     "onlyCalls": "Mostrar só ligações",
     "visibleUsers": "Calendários a visualizar",
     "visibleUsersPlaceholder": "Adicionar colega"
+  },
+  "hoverCard": {
+    "timeRange": "{{date}} das {{start}} às {{end}}",
+    "clientLabel": "Cliente:",
+    "propertiesLabel": "Imóveis:",
+    "refLabel": "Ref.",
+    "createdByLabel": "Criado por:",
+    "createdAtConnector": "em",
+    "noDescription": "Sem observações",
+    "edit": "Editar",
+    "duplicate": "Duplicar",
+    "print": "Imprimir",
+    "delete": "Excluir",
+    "attachments": "Anexos"
   }
 }

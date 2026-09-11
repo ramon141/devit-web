@@ -11,6 +11,17 @@ export type LeadFilter1FieldsOneOfTwoItem = typeof LeadFilter1FieldsOneOfTwoItem
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const LeadFilter1FieldsOneOfTwoItem = {
+  purpose: 'purpose',
+  expiresAt: 'expiresAt',
+  minBudget: 'minBudget',
+  minAreaSqm: 'minAreaSqm',
+  maxAreaSqm: 'maxAreaSqm',
+  minRooms: 'minRooms',
+  maxRooms: 'maxRooms',
+  minBedrooms: 'minBedrooms',
+  maxBedrooms: 'maxBedrooms',
+  minBathrooms: 'minBathrooms',
+  maxBathrooms: 'maxBathrooms',
   id: 'id',
   externalId: 'externalId',
   name: 'name',
@@ -30,5 +41,6 @@ export const LeadFilter1FieldsOneOfTwoItem = {
   syncedAt: 'syncedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  categoryId: 'categoryId',
   assignedToId: 'assignedToId',
 } as const;

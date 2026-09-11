@@ -285,5 +285,87 @@
     "pending": "Riordino banner...",
     "success": "Ordine aggiornato!",
     "error": "Errore durante il riordino dei banner"
+  },
+  "zonePage": {
+    "title": "Zone",
+    "description": "Gestisci le zone e i quartieri"
+  },
+  "zone": {
+    "searchPlaceholder": "Cerca una zona per nome...",
+    "newLabel": "Nuova zona"
+  },
+  "zoneSchema": {
+    "nameMin": "Inserisci almeno 2 caratteri",
+    "cityMin": "Inserisci almeno 2 caratteri"
+  },
+  "neighborhoodSchema": {
+    "nameMin": "Inserisci almeno 2 caratteri",
+    "zoneRequired": "Seleziona una zona"
+  },
+  "zoneFormModal": {
+    "newTitle": "Nuova zona",
+    "editTitle": "Modifica zona",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Centro",
+    "cityLabel": "Città",
+    "cityPlaceholder": "Napoli",
+    "regionLabel": "Provincia",
+    "regionPlaceholder": "NA",
+    "activeLabel": "Attiva"
+  },
+  "zoneForm": {
+    "pendingCreate": "Creazione della zona...",
+    "pendingUpdate": "Aggiornamento della zona...",
+    "successCreate": "Zona creata con successo!",
+    "successUpdate": "Zona aggiornata con successo!",
+    "error": "Errore durante il salvataggio della zona"
+  },
+  "deleteZone": {
+    "pending": "Eliminazione della zona...",
+    "success": "Zona eliminata con successo!",
+    "error": "Errore durante l'eliminazione della zona"
+  },
+  "zoneTable": {
+    "empty": "Nessuna zona trovata",
+    "deleteTitle": "Eliminare la zona?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\" e i suoi quartieri.",
+    "deleteConfirm": "Elimina"
+  },
+  "zoneTableColumns": {
+    "name": "Nome",
+    "city": "Città",
+    "region": "Provincia",
+    "status": "Stato",
+    "active": "Attiva",
+    "inactive": "Inattiva",
+    "actions": "Azioni"
+  },
+  "neighborhoodPanel": {
+    "title": "Quartieri di {{zone}}",
+    "newLabel": "Nuovo quartiere",
+    "empty": "Nessun quartiere in questa zona",
+    "inactive": "Inattivo",
+    "deleteTitle": "Eliminare il quartiere?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
+    "deleteConfirm": "Elimina"
+  },
+  "neighborhoodFormModal": {
+    "newTitle": "Nuovo quartiere",
+    "editTitle": "Modifica quartiere",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Chiaia",
+    "activeLabel": "Attivo"
+  },
+  "neighborhoodForm": {
+    "pendingCreate": "Creazione del quartiere...",
+    "pendingUpdate": "Aggiornamento del quartiere...",
+    "successCreate": "Quartiere creato con successo!",
+    "successUpdate": "Quartiere aggiornato con successo!",
+    "error": "Errore durante il salvataggio del quartiere"
+  },
+  "deleteNeighborhood": {
+    "pending": "Eliminazione del quartiere...",
+    "success": "Quartiere eliminato con successo!",
+    "error": "Errore durante l'eliminazione del quartiere"
   }
 }

@@ -143,11 +143,27 @@
     "requestTypePlaceholder": "Nenhum",
     "desiredCity": "Cidade desejada",
     "maxBudget": "Orçamento máximo",
-    "subject": "Assunto"
+    "subject": "Assunto",
+    "purpose": "Motivo",
+    "purposePlaceholder": "Selecione o motivo",
+    "category": "Tipologia",
+    "categoryPlaceholder": "Selecione a tipologia",
+    "expiresAt": "Validade",
+    "zones": "Zonas de interesse",
+    "zonesPlaceholder": "Adicione uma zona",
+    "zonesSearchPlaceholder": "Busque uma zona...",
+    "priceRange": "Preço desejado (€)",
+    "areaRange": "Área (m²)",
+    "roomsRange": "Cômodos",
+    "bedroomsRange": "Quartos",
+    "bathroomsRange": "Banheiros",
+    "rangeFrom": "de",
+    "rangeTo": "até"
   },
   "leadFormModal": {
     "editTitle": "Editar solicitação",
-    "newTitle": "Nova solicitação"
+    "newTitle": "Nova solicitação",
+    "criteriaTitle": "Critérios de busca"
   },
   "useLeadForm": {
     "pendingUpdate": "Salvando solicitação...",
@@ -210,5 +226,10 @@
     "search": "Busca",
     "valuation": "Avaliação",
     "contact": "Contato"
+  },
+  "leadPurposeOptions": {
+    "rent": "Aluguel",
+    "sale": "Compra",
+    "rentOrSale": "Aluguel ou compra"
   }
 }

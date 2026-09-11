@@ -18,4 +18,5 @@ export type AddressFilterFieldsOneOf = {
   postalCode?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
+  neighborhoodId?: boolean;
 };

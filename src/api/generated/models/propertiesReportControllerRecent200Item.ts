@@ -11,5 +11,13 @@ export type PropertiesReportControllerRecent200Item = {
   code?: string;
   title?: string;
   status?: string;
+  purpose?: string;
+  /** @nullable */
+  categoryName?: string | null;
+  /** @nullable */
+  city?: string | null;
+  /** @nullable */
+  areaSqm?: number | null;
+  createdAt?: string;
   updatedAt?: string;
 };

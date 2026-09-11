@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { LayoutGridIcon, TableIcon } from 'lucide-react'
+import { LayoutGridIcon, MapIcon, TableIcon } from 'lucide-react'
 import AppLayout from '@/components/layout/AppLayout'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { usePropertyList } from '@/pages/Imoveis/hooks/usePropertyList'
 import PropertyTable from '@/pages/Imoveis/components/PropertyTable'
 import PropertyCard from '@/pages/Imoveis/components/PropertyCard'
+import PropertyMapView from '@/pages/Imoveis/components/PropertyMapView'
 import PropertyFilters from '@/pages/Imoveis/components/PropertyFilters'
 import PropertyKindTabs from '@/pages/Imoveis/components/PropertyKindTabs'
 import PropertyKindPickerModal from '@/pages/Imoveis/components/PropertyKindPickerModal'
@@ -16,7 +17,7 @@ import PropertyKindPickerModal from '@/pages/Imoveis/components/PropertyKindPick
 function Imoveis() {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
-  const [viewMode, setViewMode] = useState<'table' | 'cards'>('table')
+  const [viewMode, setViewMode] = useState<'table' | 'cards' | 'map'>('table')
   const [kindPickerOpen, setKindPickerOpen] = useState(false)
   const {
     properties,
@@ -79,12 +80,21 @@ function Imoveis() {
         >
           <LayoutGridIcon className="size-4" />
         </Button>
+        <Button
+          variant={viewMode === 'map' ? 'secondary' : 'ghost'}
+          size="icon-sm"
+          onClick={() => setViewMode('map')}
+        >
+          <MapIcon className="size-4" />
+        </Button>
       </div>
 
-      {viewMode === 'table' ? (
-        <PropertyTable properties={properties} isLoading={isLoading} />
-      ) : (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {viewMode === 'map' && <PropertyMapView properties={properties} isLoading={isLoading} />}
+
+      {viewMode === 'table' && <PropertyTable properties={properties} isLoading={isLoading} />}
+
+      {viewMode === 'cards' && (
+        <div className="grid gap-3">
           {!isLoading && properties.length === 0 && (
             <p className="col-span-full py-8 text-center text-muted-foreground">{t('list.emptyCards')}</p>
           )}

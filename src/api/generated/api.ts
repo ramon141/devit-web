@@ -300,6 +300,8 @@ import type {
   ContractTerminationControllerUpdateById422,
   ContractTerminationPartial,
   ContractTerminationWithRelations,
+  DashboardIndicatorsControllerIndicators200,
+  DashboardIndicatorsControllerIndicators401,
   EvolutionWebhookControllerReceiveBody,
   EvolutionWebhookControllerReceiveParams,
   HomeBanner,
@@ -334,6 +336,23 @@ import type {
   LeadControllerUpdateById401,
   LeadControllerUpdateById404,
   LeadControllerUpdateById422,
+  LeadNeighborhood,
+  LeadNeighborhoodControllerCount401,
+  LeadNeighborhoodControllerCountParams,
+  LeadNeighborhoodControllerCreate401,
+  LeadNeighborhoodControllerCreate422,
+  LeadNeighborhoodControllerDeleteById401,
+  LeadNeighborhoodControllerDeleteById404,
+  LeadNeighborhoodControllerFind401,
+  LeadNeighborhoodControllerFindById401,
+  LeadNeighborhoodControllerFindById404,
+  LeadNeighborhoodControllerFindByIdParams,
+  LeadNeighborhoodControllerFindParams,
+  LeadNeighborhoodControllerUpdateById401,
+  LeadNeighborhoodControllerUpdateById404,
+  LeadNeighborhoodControllerUpdateById422,
+  LeadNeighborhoodPartial,
+  LeadNeighborhoodWithRelations,
   LeadPartialExcludingCreatedAtUpdatedAt,
   LeadProperty,
   LeadPropertyControllerCount401,
@@ -375,6 +394,23 @@ import type {
   MarketingWhatsappControllerStatus401,
   MarketingWhatsappControllerWebhookStatus200,
   MarketingWhatsappControllerWebhookStatus401,
+  Neighborhood,
+  NeighborhoodControllerCount401,
+  NeighborhoodControllerCountParams,
+  NeighborhoodControllerCreate401,
+  NeighborhoodControllerCreate422,
+  NeighborhoodControllerDeleteById401,
+  NeighborhoodControllerDeleteById404,
+  NeighborhoodControllerFind401,
+  NeighborhoodControllerFindById401,
+  NeighborhoodControllerFindById404,
+  NeighborhoodControllerFindByIdParams,
+  NeighborhoodControllerFindParams,
+  NeighborhoodControllerUpdateById401,
+  NeighborhoodControllerUpdateById404,
+  NeighborhoodControllerUpdateById422,
+  NeighborhoodPartialExcludingCreatedAtUpdatedAt,
+  NeighborhoodWithRelations,
   NewAddress,
   NewAuditLog,
   NewBranch,
@@ -391,7 +427,9 @@ import type {
   NewContractTermination,
   NewHomeBanner,
   NewLead,
+  NewLeadNeighborhood,
   NewLeadProperty,
+  NewNeighborhood,
   NewNotification,
   NewPerson,
   NewPersonAttachment,
@@ -428,6 +466,7 @@ import type {
   NewSaleDocument,
   NewSaleSeller,
   NewSaleStatusHistory,
+  NewZone,
   Notification,
   NotificationControllerCount401,
   NotificationControllerCountParams,
@@ -1137,7 +1176,24 @@ import type {
   UserControllerUpdateById422,
   UserExcludingPasswordHash,
   UserExcludingPasswordHashWithRelations,
-  UserPartialExcludingPasswordHashCreatedAtUpdatedAt
+  UserPartialExcludingPasswordHashCreatedAtUpdatedAt,
+  Zone,
+  ZoneControllerCount401,
+  ZoneControllerCountParams,
+  ZoneControllerCreate401,
+  ZoneControllerCreate422,
+  ZoneControllerDeleteById401,
+  ZoneControllerDeleteById404,
+  ZoneControllerFind401,
+  ZoneControllerFindById401,
+  ZoneControllerFindById404,
+  ZoneControllerFindByIdParams,
+  ZoneControllerFindParams,
+  ZoneControllerUpdateById401,
+  ZoneControllerUpdateById404,
+  ZoneControllerUpdateById422,
+  ZonePartialExcludingCreatedAtUpdatedAt,
+  ZoneWithRelations
 } from './models';
 
 import { mutator } from '../mutator';
@@ -9263,6 +9319,487 @@ export function useHomeBannerControllerFind<TData = Awaited<ReturnType<typeof ho
 
 
 /**
+ * @summary Count Lead Neighborhoods
+ */
+export const leadNeighborhoodControllerCount = (
+    params?: LeadNeighborhoodControllerCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LoopbackCount>(
+      {url: `/lead-neighborhoods/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getLeadNeighborhoodControllerCountQueryKey = (params?: LeadNeighborhoodControllerCountParams,) => {
+    return [
+    `/lead-neighborhoods/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getLeadNeighborhoodControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError = ErrorType<LeadNeighborhoodControllerCount401>>(params?: LeadNeighborhoodControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getLeadNeighborhoodControllerCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>> = ({ signal }) => leadNeighborhoodControllerCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type LeadNeighborhoodControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>>
+export type LeadNeighborhoodControllerCountQueryError = ErrorType<LeadNeighborhoodControllerCount401>
+
+
+export function useLeadNeighborhoodControllerCount<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError = ErrorType<LeadNeighborhoodControllerCount401>>(
+ params: undefined |  LeadNeighborhoodControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadNeighborhoodControllerCount<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError = ErrorType<LeadNeighborhoodControllerCount401>>(
+ params?: LeadNeighborhoodControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadNeighborhoodControllerCount<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError = ErrorType<LeadNeighborhoodControllerCount401>>(
+ params?: LeadNeighborhoodControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Count Lead Neighborhoods
+ */
+
+export function useLeadNeighborhoodControllerCount<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError = ErrorType<LeadNeighborhoodControllerCount401>>(
+ params?: LeadNeighborhoodControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getLeadNeighborhoodControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Lead Neighborhood by id
+ */
+export const leadNeighborhoodControllerUpdateById = (
+    id: string,
+    leadNeighborhoodPartial: BodyType<LeadNeighborhoodPartial>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/lead-neighborhoods/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: leadNeighborhoodPartial
+    },
+      options);
+    }
+  
+
+
+export const getLeadNeighborhoodControllerUpdateByIdMutationOptions = <TError = ErrorType<LeadNeighborhoodControllerUpdateById401 | LeadNeighborhoodControllerUpdateById404 | LeadNeighborhoodControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerUpdateById>>, TError,{id: string;data: BodyType<LeadNeighborhoodPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerUpdateById>>, TError,{id: string;data: BodyType<LeadNeighborhoodPartial>}, TContext> => {
+
+const mutationKey = ['leadNeighborhoodControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof leadNeighborhoodControllerUpdateById>>, {id: string;data: BodyType<LeadNeighborhoodPartial>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  leadNeighborhoodControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type LeadNeighborhoodControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof leadNeighborhoodControllerUpdateById>>>
+    export type LeadNeighborhoodControllerUpdateByIdMutationBody = BodyType<LeadNeighborhoodPartial>
+    export type LeadNeighborhoodControllerUpdateByIdMutationError = ErrorType<LeadNeighborhoodControllerUpdateById401 | LeadNeighborhoodControllerUpdateById404 | LeadNeighborhoodControllerUpdateById422>
+
+    /**
+ * @summary Update a Lead Neighborhood by id
+ */
+export const useLeadNeighborhoodControllerUpdateById = <TError = ErrorType<LeadNeighborhoodControllerUpdateById401 | LeadNeighborhoodControllerUpdateById404 | LeadNeighborhoodControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerUpdateById>>, TError,{id: string;data: BodyType<LeadNeighborhoodPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof leadNeighborhoodControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<LeadNeighborhoodPartial>},
+        TContext
+      > => {
+
+      const mutationOptions = getLeadNeighborhoodControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Get a Lead Neighborhood by id
+ */
+export const leadNeighborhoodControllerFindById = (
+    id: string,
+    params?: LeadNeighborhoodControllerFindByIdParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadNeighborhoodWithRelations>(
+      {url: `/lead-neighborhoods/${id}`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getLeadNeighborhoodControllerFindByIdQueryKey = (id?: string,
+    params?: LeadNeighborhoodControllerFindByIdParams,) => {
+    return [
+    `/lead-neighborhoods/${id}`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getLeadNeighborhoodControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError = ErrorType<LeadNeighborhoodControllerFindById401 | LeadNeighborhoodControllerFindById404>>(id: string,
+    params?: LeadNeighborhoodControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getLeadNeighborhoodControllerFindByIdQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>> = ({ signal }) => leadNeighborhoodControllerFindById(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type LeadNeighborhoodControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>>
+export type LeadNeighborhoodControllerFindByIdQueryError = ErrorType<LeadNeighborhoodControllerFindById401 | LeadNeighborhoodControllerFindById404>
+
+
+export function useLeadNeighborhoodControllerFindById<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError = ErrorType<LeadNeighborhoodControllerFindById401 | LeadNeighborhoodControllerFindById404>>(
+ id: string,
+    params: undefined |  LeadNeighborhoodControllerFindByIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadNeighborhoodControllerFindById<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError = ErrorType<LeadNeighborhoodControllerFindById401 | LeadNeighborhoodControllerFindById404>>(
+ id: string,
+    params?: LeadNeighborhoodControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadNeighborhoodControllerFindById<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError = ErrorType<LeadNeighborhoodControllerFindById401 | LeadNeighborhoodControllerFindById404>>(
+ id: string,
+    params?: LeadNeighborhoodControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a Lead Neighborhood by id
+ */
+
+export function useLeadNeighborhoodControllerFindById<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError = ErrorType<LeadNeighborhoodControllerFindById401 | LeadNeighborhoodControllerFindById404>>(
+ id: string,
+    params?: LeadNeighborhoodControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getLeadNeighborhoodControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Delete a Lead Neighborhood by id
+ */
+export const leadNeighborhoodControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/lead-neighborhoods/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getLeadNeighborhoodControllerDeleteByIdMutationOptions = <TError = ErrorType<LeadNeighborhoodControllerDeleteById401 | LeadNeighborhoodControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['leadNeighborhoodControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof leadNeighborhoodControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  leadNeighborhoodControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type LeadNeighborhoodControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof leadNeighborhoodControllerDeleteById>>>
+    
+    export type LeadNeighborhoodControllerDeleteByIdMutationError = ErrorType<LeadNeighborhoodControllerDeleteById401 | LeadNeighborhoodControllerDeleteById404>
+
+    /**
+ * @summary Delete a Lead Neighborhood by id
+ */
+export const useLeadNeighborhoodControllerDeleteById = <TError = ErrorType<LeadNeighborhoodControllerDeleteById401 | LeadNeighborhoodControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof leadNeighborhoodControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getLeadNeighborhoodControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Create a new Lead Neighborhood
+ */
+export const leadNeighborhoodControllerCreate = (
+    newLeadNeighborhood: BodyType<NewLeadNeighborhood>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadNeighborhood>(
+      {url: `/lead-neighborhoods`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newLeadNeighborhood, signal
+    },
+      options);
+    }
+  
+
+
+export const getLeadNeighborhoodControllerCreateMutationOptions = <TError = ErrorType<LeadNeighborhoodControllerCreate401 | LeadNeighborhoodControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCreate>>, TError,{data: BodyType<NewLeadNeighborhood>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCreate>>, TError,{data: BodyType<NewLeadNeighborhood>}, TContext> => {
+
+const mutationKey = ['leadNeighborhoodControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof leadNeighborhoodControllerCreate>>, {data: BodyType<NewLeadNeighborhood>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  leadNeighborhoodControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type LeadNeighborhoodControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof leadNeighborhoodControllerCreate>>>
+    export type LeadNeighborhoodControllerCreateMutationBody = BodyType<NewLeadNeighborhood>
+    export type LeadNeighborhoodControllerCreateMutationError = ErrorType<LeadNeighborhoodControllerCreate401 | LeadNeighborhoodControllerCreate422>
+
+    /**
+ * @summary Create a new Lead Neighborhood
+ */
+export const useLeadNeighborhoodControllerCreate = <TError = ErrorType<LeadNeighborhoodControllerCreate401 | LeadNeighborhoodControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerCreate>>, TError,{data: BodyType<NewLeadNeighborhood>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof leadNeighborhoodControllerCreate>>,
+        TError,
+        {data: BodyType<NewLeadNeighborhood>},
+        TContext
+      > => {
+
+      const mutationOptions = getLeadNeighborhoodControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary List Lead Neighborhoods
+ */
+export const leadNeighborhoodControllerFind = (
+    params?: LeadNeighborhoodControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadNeighborhoodWithRelations[]>(
+      {url: `/lead-neighborhoods`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getLeadNeighborhoodControllerFindQueryKey = (params?: LeadNeighborhoodControllerFindParams,) => {
+    return [
+    `/lead-neighborhoods`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getLeadNeighborhoodControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError = ErrorType<LeadNeighborhoodControllerFind401>>(params?: LeadNeighborhoodControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getLeadNeighborhoodControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>> = ({ signal }) => leadNeighborhoodControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type LeadNeighborhoodControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>>
+export type LeadNeighborhoodControllerFindQueryError = ErrorType<LeadNeighborhoodControllerFind401>
+
+
+export function useLeadNeighborhoodControllerFind<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError = ErrorType<LeadNeighborhoodControllerFind401>>(
+ params: undefined |  LeadNeighborhoodControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadNeighborhoodControllerFind<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError = ErrorType<LeadNeighborhoodControllerFind401>>(
+ params?: LeadNeighborhoodControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadNeighborhoodControllerFind<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError = ErrorType<LeadNeighborhoodControllerFind401>>(
+ params?: LeadNeighborhoodControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List Lead Neighborhoods
+ */
+
+export function useLeadNeighborhoodControllerFind<TData = Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError = ErrorType<LeadNeighborhoodControllerFind401>>(
+ params?: LeadNeighborhoodControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadNeighborhoodControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getLeadNeighborhoodControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Count Lead Properties
  */
 export const leadPropertyControllerCount = (
@@ -10712,6 +11249,487 @@ export function useMarketingCampaignControllerList<TData = Awaited<ReturnType<ty
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getMarketingCampaignControllerListQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Count Neighborhoods
+ */
+export const neighborhoodControllerCount = (
+    params?: NeighborhoodControllerCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LoopbackCount>(
+      {url: `/neighborhoods/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getNeighborhoodControllerCountQueryKey = (params?: NeighborhoodControllerCountParams,) => {
+    return [
+    `/neighborhoods/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getNeighborhoodControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError = ErrorType<NeighborhoodControllerCount401>>(params?: NeighborhoodControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getNeighborhoodControllerCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof neighborhoodControllerCount>>> = ({ signal }) => neighborhoodControllerCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type NeighborhoodControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof neighborhoodControllerCount>>>
+export type NeighborhoodControllerCountQueryError = ErrorType<NeighborhoodControllerCount401>
+
+
+export function useNeighborhoodControllerCount<TData = Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError = ErrorType<NeighborhoodControllerCount401>>(
+ params: undefined |  NeighborhoodControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof neighborhoodControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof neighborhoodControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useNeighborhoodControllerCount<TData = Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError = ErrorType<NeighborhoodControllerCount401>>(
+ params?: NeighborhoodControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof neighborhoodControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof neighborhoodControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useNeighborhoodControllerCount<TData = Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError = ErrorType<NeighborhoodControllerCount401>>(
+ params?: NeighborhoodControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Count Neighborhoods
+ */
+
+export function useNeighborhoodControllerCount<TData = Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError = ErrorType<NeighborhoodControllerCount401>>(
+ params?: NeighborhoodControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getNeighborhoodControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Neighborhood by id
+ */
+export const neighborhoodControllerUpdateById = (
+    id: string,
+    neighborhoodPartialExcludingCreatedAtUpdatedAt: BodyType<NeighborhoodPartialExcludingCreatedAtUpdatedAt>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/neighborhoods/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: neighborhoodPartialExcludingCreatedAtUpdatedAt
+    },
+      options);
+    }
+  
+
+
+export const getNeighborhoodControllerUpdateByIdMutationOptions = <TError = ErrorType<NeighborhoodControllerUpdateById401 | NeighborhoodControllerUpdateById404 | NeighborhoodControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerUpdateById>>, TError,{id: string;data: BodyType<NeighborhoodPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerUpdateById>>, TError,{id: string;data: BodyType<NeighborhoodPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
+
+const mutationKey = ['neighborhoodControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof neighborhoodControllerUpdateById>>, {id: string;data: BodyType<NeighborhoodPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  neighborhoodControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type NeighborhoodControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof neighborhoodControllerUpdateById>>>
+    export type NeighborhoodControllerUpdateByIdMutationBody = BodyType<NeighborhoodPartialExcludingCreatedAtUpdatedAt>
+    export type NeighborhoodControllerUpdateByIdMutationError = ErrorType<NeighborhoodControllerUpdateById401 | NeighborhoodControllerUpdateById404 | NeighborhoodControllerUpdateById422>
+
+    /**
+ * @summary Update a Neighborhood by id
+ */
+export const useNeighborhoodControllerUpdateById = <TError = ErrorType<NeighborhoodControllerUpdateById401 | NeighborhoodControllerUpdateById404 | NeighborhoodControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerUpdateById>>, TError,{id: string;data: BodyType<NeighborhoodPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof neighborhoodControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<NeighborhoodPartialExcludingCreatedAtUpdatedAt>},
+        TContext
+      > => {
+
+      const mutationOptions = getNeighborhoodControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Get a Neighborhood by id
+ */
+export const neighborhoodControllerFindById = (
+    id: string,
+    params?: NeighborhoodControllerFindByIdParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<NeighborhoodWithRelations>(
+      {url: `/neighborhoods/${id}`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getNeighborhoodControllerFindByIdQueryKey = (id?: string,
+    params?: NeighborhoodControllerFindByIdParams,) => {
+    return [
+    `/neighborhoods/${id}`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getNeighborhoodControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError = ErrorType<NeighborhoodControllerFindById401 | NeighborhoodControllerFindById404>>(id: string,
+    params?: NeighborhoodControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getNeighborhoodControllerFindByIdQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof neighborhoodControllerFindById>>> = ({ signal }) => neighborhoodControllerFindById(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type NeighborhoodControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof neighborhoodControllerFindById>>>
+export type NeighborhoodControllerFindByIdQueryError = ErrorType<NeighborhoodControllerFindById401 | NeighborhoodControllerFindById404>
+
+
+export function useNeighborhoodControllerFindById<TData = Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError = ErrorType<NeighborhoodControllerFindById401 | NeighborhoodControllerFindById404>>(
+ id: string,
+    params: undefined |  NeighborhoodControllerFindByIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof neighborhoodControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof neighborhoodControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useNeighborhoodControllerFindById<TData = Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError = ErrorType<NeighborhoodControllerFindById401 | NeighborhoodControllerFindById404>>(
+ id: string,
+    params?: NeighborhoodControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof neighborhoodControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof neighborhoodControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useNeighborhoodControllerFindById<TData = Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError = ErrorType<NeighborhoodControllerFindById401 | NeighborhoodControllerFindById404>>(
+ id: string,
+    params?: NeighborhoodControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a Neighborhood by id
+ */
+
+export function useNeighborhoodControllerFindById<TData = Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError = ErrorType<NeighborhoodControllerFindById401 | NeighborhoodControllerFindById404>>(
+ id: string,
+    params?: NeighborhoodControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getNeighborhoodControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Delete a Neighborhood by id
+ */
+export const neighborhoodControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/neighborhoods/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getNeighborhoodControllerDeleteByIdMutationOptions = <TError = ErrorType<NeighborhoodControllerDeleteById401 | NeighborhoodControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['neighborhoodControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof neighborhoodControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  neighborhoodControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type NeighborhoodControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof neighborhoodControllerDeleteById>>>
+    
+    export type NeighborhoodControllerDeleteByIdMutationError = ErrorType<NeighborhoodControllerDeleteById401 | NeighborhoodControllerDeleteById404>
+
+    /**
+ * @summary Delete a Neighborhood by id
+ */
+export const useNeighborhoodControllerDeleteById = <TError = ErrorType<NeighborhoodControllerDeleteById401 | NeighborhoodControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof neighborhoodControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getNeighborhoodControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Create a new Neighborhood
+ */
+export const neighborhoodControllerCreate = (
+    newNeighborhood: BodyType<NewNeighborhood>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Neighborhood>(
+      {url: `/neighborhoods`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newNeighborhood, signal
+    },
+      options);
+    }
+  
+
+
+export const getNeighborhoodControllerCreateMutationOptions = <TError = ErrorType<NeighborhoodControllerCreate401 | NeighborhoodControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerCreate>>, TError,{data: BodyType<NewNeighborhood>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerCreate>>, TError,{data: BodyType<NewNeighborhood>}, TContext> => {
+
+const mutationKey = ['neighborhoodControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof neighborhoodControllerCreate>>, {data: BodyType<NewNeighborhood>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  neighborhoodControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type NeighborhoodControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof neighborhoodControllerCreate>>>
+    export type NeighborhoodControllerCreateMutationBody = BodyType<NewNeighborhood>
+    export type NeighborhoodControllerCreateMutationError = ErrorType<NeighborhoodControllerCreate401 | NeighborhoodControllerCreate422>
+
+    /**
+ * @summary Create a new Neighborhood
+ */
+export const useNeighborhoodControllerCreate = <TError = ErrorType<NeighborhoodControllerCreate401 | NeighborhoodControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof neighborhoodControllerCreate>>, TError,{data: BodyType<NewNeighborhood>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof neighborhoodControllerCreate>>,
+        TError,
+        {data: BodyType<NewNeighborhood>},
+        TContext
+      > => {
+
+      const mutationOptions = getNeighborhoodControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary List Neighborhoods
+ */
+export const neighborhoodControllerFind = (
+    params?: NeighborhoodControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<NeighborhoodWithRelations[]>(
+      {url: `/neighborhoods`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getNeighborhoodControllerFindQueryKey = (params?: NeighborhoodControllerFindParams,) => {
+    return [
+    `/neighborhoods`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getNeighborhoodControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError = ErrorType<NeighborhoodControllerFind401>>(params?: NeighborhoodControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getNeighborhoodControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof neighborhoodControllerFind>>> = ({ signal }) => neighborhoodControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type NeighborhoodControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof neighborhoodControllerFind>>>
+export type NeighborhoodControllerFindQueryError = ErrorType<NeighborhoodControllerFind401>
+
+
+export function useNeighborhoodControllerFind<TData = Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError = ErrorType<NeighborhoodControllerFind401>>(
+ params: undefined |  NeighborhoodControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof neighborhoodControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof neighborhoodControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useNeighborhoodControllerFind<TData = Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError = ErrorType<NeighborhoodControllerFind401>>(
+ params?: NeighborhoodControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof neighborhoodControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof neighborhoodControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useNeighborhoodControllerFind<TData = Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError = ErrorType<NeighborhoodControllerFind401>>(
+ params?: NeighborhoodControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List Neighborhoods
+ */
+
+export function useNeighborhoodControllerFind<TData = Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError = ErrorType<NeighborhoodControllerFind401>>(
+ params?: NeighborhoodControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof neighborhoodControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getNeighborhoodControllerFindQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -28075,6 +29093,99 @@ export function useCommunicationsReportControllerSummary<TData = Awaited<ReturnT
 
 
 /**
+ * @summary Indicadores de uso do sistema (últimos 3 meses)
+ */
+export const dashboardIndicatorsControllerIndicators = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<DashboardIndicatorsControllerIndicators200>(
+      {url: `/reports/dashboard/indicators`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getDashboardIndicatorsControllerIndicatorsQueryKey = () => {
+    return [
+    `/reports/dashboard/indicators`
+    ] as const;
+    }
+
+    
+export const getDashboardIndicatorsControllerIndicatorsQueryOptions = <TData = Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError = ErrorType<DashboardIndicatorsControllerIndicators401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getDashboardIndicatorsControllerIndicatorsQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>> = ({ signal }) => dashboardIndicatorsControllerIndicators(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type DashboardIndicatorsControllerIndicatorsQueryResult = NonNullable<Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>>
+export type DashboardIndicatorsControllerIndicatorsQueryError = ErrorType<DashboardIndicatorsControllerIndicators401>
+
+
+export function useDashboardIndicatorsControllerIndicators<TData = Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError = ErrorType<DashboardIndicatorsControllerIndicators401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>,
+          TError,
+          Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useDashboardIndicatorsControllerIndicators<TData = Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError = ErrorType<DashboardIndicatorsControllerIndicators401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>,
+          TError,
+          Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useDashboardIndicatorsControllerIndicators<TData = Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError = ErrorType<DashboardIndicatorsControllerIndicators401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Indicadores de uso do sistema (últimos 3 meses)
+ */
+
+export function useDashboardIndicatorsControllerIndicators<TData = Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError = ErrorType<DashboardIndicatorsControllerIndicators401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof dashboardIndicatorsControllerIndicators>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getDashboardIndicatorsControllerIndicatorsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Relatório de leads por origem
  */
 export const leadsReportControllerBySource = (
@@ -31865,3 +32976,484 @@ export const useEvolutionWebhookControllerReceive = <TError = ErrorType<unknown>
       return useMutation(mutationOptions, queryClient);
     }
     
+/**
+ * @summary Count Zones
+ */
+export const zoneControllerCount = (
+    params?: ZoneControllerCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LoopbackCount>(
+      {url: `/zones/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getZoneControllerCountQueryKey = (params?: ZoneControllerCountParams,) => {
+    return [
+    `/zones/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getZoneControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof zoneControllerCount>>, TError = ErrorType<ZoneControllerCount401>>(params?: ZoneControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getZoneControllerCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof zoneControllerCount>>> = ({ signal }) => zoneControllerCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof zoneControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ZoneControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof zoneControllerCount>>>
+export type ZoneControllerCountQueryError = ErrorType<ZoneControllerCount401>
+
+
+export function useZoneControllerCount<TData = Awaited<ReturnType<typeof zoneControllerCount>>, TError = ErrorType<ZoneControllerCount401>>(
+ params: undefined |  ZoneControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof zoneControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof zoneControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useZoneControllerCount<TData = Awaited<ReturnType<typeof zoneControllerCount>>, TError = ErrorType<ZoneControllerCount401>>(
+ params?: ZoneControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof zoneControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof zoneControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useZoneControllerCount<TData = Awaited<ReturnType<typeof zoneControllerCount>>, TError = ErrorType<ZoneControllerCount401>>(
+ params?: ZoneControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Count Zones
+ */
+
+export function useZoneControllerCount<TData = Awaited<ReturnType<typeof zoneControllerCount>>, TError = ErrorType<ZoneControllerCount401>>(
+ params?: ZoneControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getZoneControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Zone by id
+ */
+export const zoneControllerUpdateById = (
+    id: string,
+    zonePartialExcludingCreatedAtUpdatedAt: BodyType<ZonePartialExcludingCreatedAtUpdatedAt>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/zones/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: zonePartialExcludingCreatedAtUpdatedAt
+    },
+      options);
+    }
+  
+
+
+export const getZoneControllerUpdateByIdMutationOptions = <TError = ErrorType<ZoneControllerUpdateById401 | ZoneControllerUpdateById404 | ZoneControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof zoneControllerUpdateById>>, TError,{id: string;data: BodyType<ZonePartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof zoneControllerUpdateById>>, TError,{id: string;data: BodyType<ZonePartialExcludingCreatedAtUpdatedAt>}, TContext> => {
+
+const mutationKey = ['zoneControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof zoneControllerUpdateById>>, {id: string;data: BodyType<ZonePartialExcludingCreatedAtUpdatedAt>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  zoneControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ZoneControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof zoneControllerUpdateById>>>
+    export type ZoneControllerUpdateByIdMutationBody = BodyType<ZonePartialExcludingCreatedAtUpdatedAt>
+    export type ZoneControllerUpdateByIdMutationError = ErrorType<ZoneControllerUpdateById401 | ZoneControllerUpdateById404 | ZoneControllerUpdateById422>
+
+    /**
+ * @summary Update a Zone by id
+ */
+export const useZoneControllerUpdateById = <TError = ErrorType<ZoneControllerUpdateById401 | ZoneControllerUpdateById404 | ZoneControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof zoneControllerUpdateById>>, TError,{id: string;data: BodyType<ZonePartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof zoneControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<ZonePartialExcludingCreatedAtUpdatedAt>},
+        TContext
+      > => {
+
+      const mutationOptions = getZoneControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Get a Zone by id
+ */
+export const zoneControllerFindById = (
+    id: string,
+    params?: ZoneControllerFindByIdParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ZoneWithRelations>(
+      {url: `/zones/${id}`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getZoneControllerFindByIdQueryKey = (id?: string,
+    params?: ZoneControllerFindByIdParams,) => {
+    return [
+    `/zones/${id}`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getZoneControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof zoneControllerFindById>>, TError = ErrorType<ZoneControllerFindById401 | ZoneControllerFindById404>>(id: string,
+    params?: ZoneControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getZoneControllerFindByIdQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof zoneControllerFindById>>> = ({ signal }) => zoneControllerFindById(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ZoneControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof zoneControllerFindById>>>
+export type ZoneControllerFindByIdQueryError = ErrorType<ZoneControllerFindById401 | ZoneControllerFindById404>
+
+
+export function useZoneControllerFindById<TData = Awaited<ReturnType<typeof zoneControllerFindById>>, TError = ErrorType<ZoneControllerFindById401 | ZoneControllerFindById404>>(
+ id: string,
+    params: undefined |  ZoneControllerFindByIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof zoneControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof zoneControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useZoneControllerFindById<TData = Awaited<ReturnType<typeof zoneControllerFindById>>, TError = ErrorType<ZoneControllerFindById401 | ZoneControllerFindById404>>(
+ id: string,
+    params?: ZoneControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof zoneControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof zoneControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useZoneControllerFindById<TData = Awaited<ReturnType<typeof zoneControllerFindById>>, TError = ErrorType<ZoneControllerFindById401 | ZoneControllerFindById404>>(
+ id: string,
+    params?: ZoneControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a Zone by id
+ */
+
+export function useZoneControllerFindById<TData = Awaited<ReturnType<typeof zoneControllerFindById>>, TError = ErrorType<ZoneControllerFindById401 | ZoneControllerFindById404>>(
+ id: string,
+    params?: ZoneControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getZoneControllerFindByIdQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Delete a Zone by id
+ */
+export const zoneControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/zones/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getZoneControllerDeleteByIdMutationOptions = <TError = ErrorType<ZoneControllerDeleteById401 | ZoneControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof zoneControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof zoneControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['zoneControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof zoneControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  zoneControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ZoneControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof zoneControllerDeleteById>>>
+    
+    export type ZoneControllerDeleteByIdMutationError = ErrorType<ZoneControllerDeleteById401 | ZoneControllerDeleteById404>
+
+    /**
+ * @summary Delete a Zone by id
+ */
+export const useZoneControllerDeleteById = <TError = ErrorType<ZoneControllerDeleteById401 | ZoneControllerDeleteById404>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof zoneControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof zoneControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getZoneControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Create a new Zone
+ */
+export const zoneControllerCreate = (
+    newZone: BodyType<NewZone>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Zone>(
+      {url: `/zones`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newZone, signal
+    },
+      options);
+    }
+  
+
+
+export const getZoneControllerCreateMutationOptions = <TError = ErrorType<ZoneControllerCreate401 | ZoneControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof zoneControllerCreate>>, TError,{data: BodyType<NewZone>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof zoneControllerCreate>>, TError,{data: BodyType<NewZone>}, TContext> => {
+
+const mutationKey = ['zoneControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof zoneControllerCreate>>, {data: BodyType<NewZone>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  zoneControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ZoneControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof zoneControllerCreate>>>
+    export type ZoneControllerCreateMutationBody = BodyType<NewZone>
+    export type ZoneControllerCreateMutationError = ErrorType<ZoneControllerCreate401 | ZoneControllerCreate422>
+
+    /**
+ * @summary Create a new Zone
+ */
+export const useZoneControllerCreate = <TError = ErrorType<ZoneControllerCreate401 | ZoneControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof zoneControllerCreate>>, TError,{data: BodyType<NewZone>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof zoneControllerCreate>>,
+        TError,
+        {data: BodyType<NewZone>},
+        TContext
+      > => {
+
+      const mutationOptions = getZoneControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary List Zones
+ */
+export const zoneControllerFind = (
+    params?: ZoneControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ZoneWithRelations[]>(
+      {url: `/zones`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getZoneControllerFindQueryKey = (params?: ZoneControllerFindParams,) => {
+    return [
+    `/zones`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getZoneControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof zoneControllerFind>>, TError = ErrorType<ZoneControllerFind401>>(params?: ZoneControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getZoneControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof zoneControllerFind>>> = ({ signal }) => zoneControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ZoneControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof zoneControllerFind>>>
+export type ZoneControllerFindQueryError = ErrorType<ZoneControllerFind401>
+
+
+export function useZoneControllerFind<TData = Awaited<ReturnType<typeof zoneControllerFind>>, TError = ErrorType<ZoneControllerFind401>>(
+ params: undefined |  ZoneControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof zoneControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof zoneControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useZoneControllerFind<TData = Awaited<ReturnType<typeof zoneControllerFind>>, TError = ErrorType<ZoneControllerFind401>>(
+ params?: ZoneControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof zoneControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof zoneControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useZoneControllerFind<TData = Awaited<ReturnType<typeof zoneControllerFind>>, TError = ErrorType<ZoneControllerFind401>>(
+ params?: ZoneControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List Zones
+ */
+
+export function useZoneControllerFind<TData = Awaited<ReturnType<typeof zoneControllerFind>>, TError = ErrorType<ZoneControllerFind401>>(
+ params?: ZoneControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof zoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getZoneControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { usePropertyLocationDetailForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyLocationDetailForm'
+import PropertyLocationMapField from '@/pages/Imoveis/Scheda/components/PropertyLocationMapField'
 
 type PropertyLocationDetailSectionProps = {
   propertyId: string
@@ -14,7 +15,12 @@ type PropertyLocationDetailSectionProps = {
 function PropertyLocationDetailSection({ propertyId }: PropertyLocationDetailSectionProps) {
   const { t } = useTranslation('imoveis')
   const { form, isLoading, isSubmitting, onSubmit } = usePropertyLocationDetailForm(propertyId)
-  const { register, control } = form
+  const { register, control, watch, setValue } = form
+
+  function handleMapSelect(coords: { latitude: number; longitude: number }) {
+    setValue('latitude', coords.latitude.toFixed(6), { shouldDirty: true })
+    setValue('longitude', coords.longitude.toFixed(6), { shouldDirty: true })
+  }
 
   if (isLoading) return null
 
@@ -29,6 +35,12 @@ function PropertyLocationDetailSection({ propertyId }: PropertyLocationDetailSec
       <FormFieldWrapper label={t('scheda.locationDetailSection.longitudeLabel')}>
         <Input {...register('longitude')} type="number" step="0.000001" />
       </FormFieldWrapper>
+      <PropertyLocationMapField
+        latitude={watch('latitude')}
+        longitude={watch('longitude')}
+        onSelect={handleMapSelect}
+      />
+
       <FormFieldWrapper label={t('scheda.locationDetailSection.positionLabel')}>
         <Input {...register('position')} placeholder={t('scheda.locationDetailSection.positionPlaceholder')} />
       </FormFieldWrapper>

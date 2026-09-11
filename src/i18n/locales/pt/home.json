@@ -12,7 +12,8 @@
     "deleteError": "Erro ao excluir o imóvel",
     "confirmTitle": "Excluir o imóvel?",
     "confirmDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
-    "confirmLabel": "Excluir"
+    "confirmLabel": "Excluir",
+    "insertedAt": "Inserido em"
   },
   "leadsByStatusCard": {
     "title": "Leads por status"
@@ -23,7 +24,9 @@
   },
   "todayAppointmentsCard": {
     "title": "Compromissos de hoje",
-    "empty": "Nenhum resultado."
+    "empty": "Nenhum resultado.",
+    "type": "Tipo de compromisso: {{type}}",
+    "propertyCodes": "Códigos dos imóveis: {{codes}}"
   },
   "leadsBySourceCard": {
     "title": "Origem dos pedidos",
@@ -33,5 +36,12 @@
     "label": "Período",
     "option": "Últimos {{days}} dias",
     "all": "Toda a agência"
+  },
+  "indicatorsCard": {
+    "title": "Indicadores",
+    "description": "Estes indicadores ajudam a entender se você está usando o sistema de forma completa e eficaz. As porcentagens referem-se aos dados inseridos nos últimos 3 meses.",
+    "agency": "Agência",
+    "user": "Usuário",
+    "workflow": "Workflow"
   }
 }

@@ -2,12 +2,20 @@ export type BannerPreviewMode = 'desktop' | 'mobile'
 
 // Deslocamento horizontal e redução de escala aplicados a cada card lateral
 const SCALE_STEP = 0.12
-const VISIBLE_SIDES = 2
+export const VISIBLE_SIDES = 2
 const ADD_CARD_SCALE = 0.74
 
 export const MODE_CONFIG = {
-  desktop: { offsetX: 300, sizeClassName: 'aspect-[16/6] w-[28rem]' },
-  mobile: { offsetX: 160, sizeClassName: 'aspect-[9/16] w-40' },
+  desktop: {
+    offsetX: 190,
+    sizeClassName: 'aspect-[16/6] w-[22rem]',
+    containerClassName: 'h-72',
+  },
+  mobile: {
+    offsetX: 130,
+    sizeClassName: 'aspect-[9/16] w-40',
+    containerClassName: 'h-[22rem]',
+  },
 } as const
 
 export function getCardStyle(distance: number, mode: BannerPreviewMode) {
@@ -21,10 +29,10 @@ export function getCardStyle(distance: number, mode: BannerPreviewMode) {
   }
 }
 
-// Cards "+" ancorados nas bordas do carrossel, atrás dos banners
-export function getAddCardStyle() {
+// Cards "+" logo depois do último banner visível de cada lado
+export function getAddCardStyle(distance: number, mode: BannerPreviewMode) {
   return {
-    transform: `translateY(-50%) scale(${ADD_CARD_SCALE})`,
+    transform: `translateX(calc(-50% + ${distance * MODE_CONFIG[mode].offsetX}px)) scale(${ADD_CARD_SCALE})`,
     zIndex: 0,
   }
 }

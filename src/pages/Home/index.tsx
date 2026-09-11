@@ -8,6 +8,7 @@ import TodayAppointmentsCard from '@/pages/Home/components/TodayAppointmentsCard
 import LeadsByStatusCard from '@/pages/Home/components/LeadsByStatusCard'
 import LeadsBySourceCard from '@/pages/Home/components/LeadsBySourceCard'
 import DashboardWindowSelect from '@/pages/Home/components/DashboardWindowSelect'
+import IndicatorsCard from '@/pages/Home/components/IndicatorsCard'
 
 const DORMANT_DAYS_KEY = 'dashboard.dormantDays'
 const DEFAULT_DORMANT_DAYS = 180
@@ -46,6 +47,7 @@ function Home() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <IndicatorsCard />
         <TodayAppointmentsCard appointments={todayAppointments} />
         <RecentPropertiesCard properties={recentProperties} />
         <DormantPropertiesCard properties={dormantProperties} />

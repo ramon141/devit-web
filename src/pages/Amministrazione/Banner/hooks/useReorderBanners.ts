@@ -13,7 +13,7 @@ type UseReorderBannersProps = {
   banners: HomeBannerWithRelations[]
 }
 
-// Move o banner arrastado para a posição do banner alvo e regrava displayOrder
+// Troca o banner arrastado com o banner da posição de destino e regrava displayOrder
 export function useReorderBanners({ banners }: UseReorderBannersProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
@@ -27,11 +27,13 @@ export function useReorderBanners({ banners }: UseReorderBannersProps) {
 
     const ordered = [...banners]
     const moved = ordered[fromIndex]
+    const target = ordered[toIndex]
 
-    if (!moved) return null
+    if (!moved || !target) return null
 
-    ordered.splice(fromIndex, 1)
-    ordered.splice(toIndex, 0, moved)
+    // Troca simples: só os dois cards envolvidos mudam de lugar
+    ordered[toIndex] = moved
+    ordered[fromIndex] = target
 
     return ordered
   }

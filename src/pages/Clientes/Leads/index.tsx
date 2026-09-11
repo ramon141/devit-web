@@ -4,7 +4,7 @@ import { PlusIcon } from 'lucide-react'
 import { DndContext, DragOverlay } from '@dnd-kit/core'
 import { Button } from '@/components/ui/button'
 import ConfirmPopup from '@/components/ConfirmPopup'
-import type { Lead } from '@/api/generated/models'
+import type { LeadWithRelations } from '@/api/generated/models'
 import { useLeadBoard } from '@/pages/Clientes/Leads/hooks/useLeadBoard'
 import { useDeleteLead } from '@/pages/Clientes/Leads/hooks/useDeleteLead'
 import { useKanbanDragDrop } from '@/pages/Clientes/Leads/hooks/useKanbanDragDrop'
@@ -19,15 +19,15 @@ function Leads() {
   const { handleDelete } = useDeleteLead()
   const { sensors, activeLead, handleDragStart, handleDragEnd } = useKanbanDragDrop({ leads })
   const [formOpen, setFormOpen] = useState(false)
-  const [editingLead, setEditingLead] = useState<Lead | null>(null)
-  const [deleteTarget, setDeleteTarget] = useState<Lead | null>(null)
+  const [editingLead, setEditingLead] = useState<LeadWithRelations | null>(null)
+  const [deleteTarget, setDeleteTarget] = useState<LeadWithRelations | null>(null)
 
   function handleNew() {
     setEditingLead(null)
     setFormOpen(true)
   }
 
-  function handleEdit(lead: Lead) {
+  function handleEdit(lead: LeadWithRelations) {
     setEditingLead(lead)
     setFormOpen(true)
   }

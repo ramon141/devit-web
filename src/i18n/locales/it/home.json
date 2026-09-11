@@ -12,7 +12,8 @@
     "deleteError": "Errore durante l’eliminazione dell’immobile",
     "confirmTitle": "Eliminare l'immobile?",
     "confirmDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
-    "confirmLabel": "Elimina"
+    "confirmLabel": "Elimina",
+    "insertedAt": "Inserito il"
   },
   "leadsByStatusCard": {
     "title": "Lead per stato"
@@ -23,7 +24,9 @@
   },
   "todayAppointmentsCard": {
     "title": "Impegni di oggi",
-    "empty": "Nessun risultato."
+    "empty": "Nessun risultato.",
+    "type": "Tipo appuntamento: {{type}}",
+    "propertyCodes": "Codici immobili: {{codes}}"
   },
   "leadsBySourceCard": {
     "title": "Provenienza richieste",
@@ -33,5 +36,12 @@
     "label": "Periodo",
     "option": "Ultimi {{days}} giorni",
     "all": "Tutta l'agenzia"
+  },
+  "indicatorsCard": {
+    "title": "Indicatori",
+    "description": "Questi indicatori ti aiutano a capire se stai usando il gestionale in modo completo ed efficace. Le percentuali fanno riferimento ai dati inseriti negli ultimi 3 mesi.",
+    "agency": "Agenzia",
+    "user": "Utente",
+    "workflow": "Workflow"
   }
 }

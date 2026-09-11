@@ -28,4 +28,7 @@ export interface AddressWithRelations {
   postalCode?: string | null;
   createdAt: string;
   updatedAt: string;
+  /** @nullable */
+  neighborhoodId?: string | null;
+  foreignKey?: unknown;
 }

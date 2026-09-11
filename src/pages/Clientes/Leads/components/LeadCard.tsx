@@ -3,13 +3,14 @@ import { useDraggable } from '@dnd-kit/core'
 import { CSS } from '@dnd-kit/utilities'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import type { Lead } from '@/api/generated/models'
+import type { LeadWithRelations } from '@/api/generated/models'
 import { leadStatusColors } from '@/pages/Clientes/Leads/schemas/leadSchema'
+import LeadCriteriaSummary from '@/pages/Clientes/Leads/components/LeadCriteriaSummary'
 
 type LeadCardProps = {
-  lead: Lead
-  onEdit: (lead: Lead) => void
-  onDelete: (lead: Lead) => void
+  lead: LeadWithRelations
+  onEdit: (lead: LeadWithRelations) => void
+  onDelete: (lead: LeadWithRelations) => void
   isOverlay?: boolean
 }
 
@@ -50,6 +51,8 @@ function LeadCard({ lead, onEdit, onDelete, isOverlay = false }: LeadCardProps) 
 
       {lead.phone && <p className="text-xs text-muted-foreground">{lead.phone}</p>}
       {lead.email && <p className="text-xs text-muted-foreground">{lead.email}</p>}
+
+      <LeadCriteriaSummary lead={lead} />
     </div>
   )
 }

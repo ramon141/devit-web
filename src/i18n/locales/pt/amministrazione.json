@@ -285,5 +285,87 @@
     "pending": "Reordenando banners...",
     "success": "Ordem atualizada!",
     "error": "Erro ao reordenar os banners"
+  },
+  "zonePage": {
+    "title": "Zonas",
+    "description": "Gerencie as zonas e os bairros"
+  },
+  "zone": {
+    "searchPlaceholder": "Busque uma zona pelo nome...",
+    "newLabel": "Nova zona"
+  },
+  "zoneSchema": {
+    "nameMin": "Informe ao menos 2 caracteres",
+    "cityMin": "Informe ao menos 2 caracteres"
+  },
+  "neighborhoodSchema": {
+    "nameMin": "Informe ao menos 2 caracteres",
+    "zoneRequired": "Selecione uma zona"
+  },
+  "zoneFormModal": {
+    "newTitle": "Nova zona",
+    "editTitle": "Editar zona",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Centro",
+    "cityLabel": "Cidade",
+    "cityPlaceholder": "Nápoles",
+    "regionLabel": "Província",
+    "regionPlaceholder": "NA",
+    "activeLabel": "Ativa"
+  },
+  "zoneForm": {
+    "pendingCreate": "Criando a zona...",
+    "pendingUpdate": "Atualizando a zona...",
+    "successCreate": "Zona criada com sucesso!",
+    "successUpdate": "Zona atualizada com sucesso!",
+    "error": "Erro ao salvar a zona"
+  },
+  "deleteZone": {
+    "pending": "Excluindo a zona...",
+    "success": "Zona excluída com sucesso!",
+    "error": "Erro ao excluir a zona"
+  },
+  "zoneTable": {
+    "empty": "Nenhuma zona encontrada",
+    "deleteTitle": "Excluir a zona?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{name}}\" e seus bairros.",
+    "deleteConfirm": "Excluir"
+  },
+  "zoneTableColumns": {
+    "name": "Nome",
+    "city": "Cidade",
+    "region": "Província",
+    "status": "Status",
+    "active": "Ativa",
+    "inactive": "Inativa",
+    "actions": "Ações"
+  },
+  "neighborhoodPanel": {
+    "title": "Bairros de {{zone}}",
+    "newLabel": "Novo bairro",
+    "empty": "Nenhum bairro nesta zona",
+    "inactive": "Inativo",
+    "deleteTitle": "Excluir o bairro?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
+    "deleteConfirm": "Excluir"
+  },
+  "neighborhoodFormModal": {
+    "newTitle": "Novo bairro",
+    "editTitle": "Editar bairro",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Chiaia",
+    "activeLabel": "Ativo"
+  },
+  "neighborhoodForm": {
+    "pendingCreate": "Criando o bairro...",
+    "pendingUpdate": "Atualizando o bairro...",
+    "successCreate": "Bairro criado com sucesso!",
+    "successUpdate": "Bairro atualizado com sucesso!",
+    "error": "Erro ao salvar o bairro"
+  },
+  "deleteNeighborhood": {
+    "pending": "Excluindo o bairro...",
+    "success": "Bairro excluído com sucesso!",
+    "error": "Erro ao excluir o bairro"
   }
 }

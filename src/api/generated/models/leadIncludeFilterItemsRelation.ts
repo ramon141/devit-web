@@ -11,7 +11,9 @@ export type LeadIncludeFilterItemsRelation = typeof LeadIncludeFilterItemsRelati
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const LeadIncludeFilterItemsRelation = {
+  category: 'category',
   assignedTo: 'assignedTo',
   leadProperties: 'leadProperties',
   purchaseProposals: 'purchaseProposals',
+  leadNeighborhoods: 'leadNeighborhoods',
 } as const;

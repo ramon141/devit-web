@@ -26,4 +26,6 @@ export interface AddressPartialExcludingCreatedAtUpdatedAt {
   region?: string | null;
   /** @nullable */
   postalCode?: string | null;
+  /** @nullable */
+  neighborhoodId?: string | null;
 }

@@ -12,4 +12,13 @@ export type LeadsReportControllerTodayAppointments200Item = {
   type?: string;
   startAt?: string;
   endAt?: string;
+  /** @nullable */
+  confirmationStatus?: string | null;
+  /** @nullable */
+  place?: string | null;
+  /** @nullable */
+  personName?: string | null;
+  /** @nullable */
+  personPhone?: string | null;
+  propertyCodes?: string[];
 };

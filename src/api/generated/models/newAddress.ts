@@ -25,4 +25,6 @@ export interface NewAddress {
   region?: string | null;
   /** @nullable */
   postalCode?: string | null;
+  /** @nullable */
+  neighborhoodId?: string | null;
 }

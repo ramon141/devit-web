@@ -1,15 +1,15 @@
 import { useDroppable } from '@dnd-kit/core'
 import { cn } from '@/lib/utils'
-import type { Lead, LeadStatus } from '@/api/generated/models'
+import type { LeadWithRelations, LeadStatus } from '@/api/generated/models'
 import { leadStatusColors } from '@/pages/Clientes/Leads/schemas/leadSchema'
 import LeadCard from '@/pages/Clientes/Leads/components/LeadCard'
 
 type LeadColumnProps = {
   status: NonNullable<LeadStatus>
   label: string
-  leads: Lead[]
-  onEdit: (lead: Lead) => void
-  onDelete: (lead: Lead) => void
+  leads: LeadWithRelations[]
+  onEdit: (lead: LeadWithRelations) => void
+  onDelete: (lead: LeadWithRelations) => void
 }
 
 function LeadColumn({ status, label, leads, onEdit, onDelete }: LeadColumnProps) {

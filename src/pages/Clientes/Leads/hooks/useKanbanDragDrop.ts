@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
 import type { DragEndEvent, DragStartEvent } from '@dnd-kit/core'
-import type { Lead, LeadStatus } from '@/api/generated/models'
+import type { LeadWithRelations, LeadStatus } from '@/api/generated/models'
 import { useMoveLead } from '@/pages/Clientes/Leads/hooks/useMoveLead'
 
 type UseKanbanDragDropProps = {
-  leads: Lead[]
+  leads: LeadWithRelations[]
 }
 
 export function useKanbanDragDrop({ leads }: UseKanbanDragDropProps) {

@@ -5,17 +5,42 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { LeadWithRelationsPurpose } from './leadWithRelationsPurpose';
 import type { LeadWithRelationsStatus } from './leadWithRelationsStatus';
 import type { LeadWithRelationsSource } from './leadWithRelationsSource';
 import type { LeadWithRelationsRequestType } from './leadWithRelationsRequestType';
+import type { PropertyCategory } from './propertyCategory';
 import type { User } from './user';
 import type { LeadProperty } from './leadProperty';
 import type { PurchaseProposal } from './purchaseProposal';
+import type { LeadNeighborhood } from './leadNeighborhood';
 
 /**
  * (tsType: LeadWithRelations, schemaOptions: { includeRelations: true })
  */
 export interface LeadWithRelations {
+  /** @nullable */
+  purpose?: LeadWithRelationsPurpose;
+  /** @nullable */
+  expiresAt?: string | null;
+  /** @nullable */
+  minBudget?: number | null;
+  /** @nullable */
+  minAreaSqm?: number | null;
+  /** @nullable */
+  maxAreaSqm?: number | null;
+  /** @nullable */
+  minRooms?: number | null;
+  /** @nullable */
+  maxRooms?: number | null;
+  /** @nullable */
+  minBedrooms?: number | null;
+  /** @nullable */
+  maxBedrooms?: number | null;
+  /** @nullable */
+  minBathrooms?: number | null;
+  /** @nullable */
+  maxBathrooms?: number | null;
   id?: string;
   /** @nullable */
   externalId?: string | null;
@@ -51,9 +76,13 @@ export interface LeadWithRelations {
   createdAt: string;
   updatedAt: string;
   /** @nullable */
+  categoryId?: string | null;
+  /** @nullable */
   assignedToId?: string | null;
-  assignedTo?: User;
+  category?: PropertyCategory;
   foreignKey?: unknown;
+  assignedTo?: User;
   leadProperties?: LeadProperty[];
   purchaseProposals?: PurchaseProposal[];
+  leadNeighborhoods?: LeadNeighborhood[];
 }

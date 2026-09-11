@@ -5,11 +5,34 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { LeadPurpose } from './leadPurpose';
 import type { LeadStatus } from './leadStatus';
 import type { LeadSource } from './leadSource';
 import type { LeadRequestType } from './leadRequestType';
 
 export interface Lead {
+  /** @nullable */
+  purpose?: LeadPurpose;
+  /** @nullable */
+  expiresAt?: string | null;
+  /** @nullable */
+  minBudget?: number | null;
+  /** @nullable */
+  minAreaSqm?: number | null;
+  /** @nullable */
+  maxAreaSqm?: number | null;
+  /** @nullable */
+  minRooms?: number | null;
+  /** @nullable */
+  maxRooms?: number | null;
+  /** @nullable */
+  minBedrooms?: number | null;
+  /** @nullable */
+  maxBedrooms?: number | null;
+  /** @nullable */
+  minBathrooms?: number | null;
+  /** @nullable */
+  maxBathrooms?: number | null;
   id?: string;
   /** @nullable */
   externalId?: string | null;
@@ -44,6 +67,8 @@ export interface Lead {
   syncedAt?: string | null;
   createdAt: string;
   updatedAt: string;
+  /** @nullable */
+  categoryId?: string | null;
   /** @nullable */
   assignedToId?: string | null;
 }

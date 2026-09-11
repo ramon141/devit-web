@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import type { TFunction } from 'i18next'
-import { LeadRequestType, LeadSource, LeadStatus } from '@/api/generated/models'
+import { LeadPurpose, LeadRequestType, LeadSource, LeadStatus } from '@/api/generated/models'
 
 export function getLeadStatusOptions(t: TFunction<'clientes'>) {
   return [
@@ -46,6 +46,14 @@ export function getLeadRequestTypeOptions(t: TFunction<'clientes'>) {
   ]
 }
 
+export function getLeadPurposeOptions(t: TFunction<'clientes'>) {
+  return [
+    { value: LeadPurpose.rent, label: t('leadPurposeOptions.rent') },
+    { value: LeadPurpose.sale, label: t('leadPurposeOptions.sale') },
+    { value: LeadPurpose.rent_or_sale, label: t('leadPurposeOptions.rentOrSale') },
+  ]
+}
+
 export function createLeadSchema(t: TFunction<'clientes'>) {
   return z.object({
     name: z.string().min(2, t('leadSchema.nameMin')),
@@ -61,6 +69,19 @@ export function createLeadSchema(t: TFunction<'clientes'>) {
     lossReason: z.string().optional(),
     notes: z.string().optional(),
     assignedToId: z.string().optional(),
+    purpose: z.enum(LeadPurpose).optional(),
+    categoryId: z.string().optional(),
+    expiresAt: z.string().optional(),
+    minBudget: z.string().optional(),
+    minAreaSqm: z.string().optional(),
+    maxAreaSqm: z.string().optional(),
+    minRooms: z.string().optional(),
+    maxRooms: z.string().optional(),
+    minBedrooms: z.string().optional(),
+    maxBedrooms: z.string().optional(),
+    minBathrooms: z.string().optional(),
+    maxBathrooms: z.string().optional(),
+    neighborhoodIds: z.array(z.string()),
   })
 }
 

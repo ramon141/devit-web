@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import type { DragEndEvent } from '@dnd-kit/core'
-import { MODE_CONFIG } from '@/pages/Amministrazione/Banner/components/bannerCarouselStyles'
+import { MODE_CONFIG, VISIBLE_SIDES } from '@/pages/Amministrazione/Banner/components/bannerCarouselStyles'
 import { useTranslation } from 'react-i18next'
 import { ChevronLeftIcon, ChevronRightIcon, MonitorIcon, SmartphoneIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -30,20 +30,41 @@ function BannerCarousel({ banners, isLoading, onEdit, onCreate }: BannerCarousel
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 8 } }))
 
-  // O carrossel é horizontal: a distância arrastada decide quantas posições o banner anda
+  // O carrossel é horizontal: a distância arrastada decide quantas posições o banner anda.
+  // A conta é feita sobre a posição visual (distância até o centro), que difere do índice
+  // do array quando os cards dão a volta pelo outro lado
   function handleDragEnd(event: DragEndEvent) {
     const fromIndex = banners.findIndex((banner) => banner.id === String(event.active.id))
-    const steps = Math.round(event.delta.x / MODE_CONFIG[mode].offsetX)
+    // Basta arrastar ~35% da distância entre cards para trocar de posição
+    const travelled = event.delta.x / MODE_CONFIG[mode].offsetX
+    const steps = Math.sign(travelled) * Math.round(Math.abs(travelled) + 0.15)
 
     if (fromIndex < 0 || !steps) return
 
-    const toIndex = Math.min(Math.max(fromIndex + steps, 0), banners.length - 1)
+    const total = banners.length
+    const toDistance = getDistance(fromIndex) + steps
+    const toIndex = (((current + toDistance) % total) + total) % total
 
     // A posição central não muda: quem passa a ocupá-la é o banner que entrou no lugar
     reorder(fromIndex, toIndex)
   }
 
   const current = Math.min(active, Math.max(banners.length - 1, 0))
+
+  // Distância circular: com poucos banners os cards se distribuem dos dois lados
+  // do centro em vez de empilhar só de um lado
+  function getDistance(index: number) {
+    const total = banners.length
+    const raw = index - current
+
+    if (raw > total / 2) return raw - total
+
+    if (raw < -total / 2) return raw + total
+
+    return raw
+  }
+
+  const addCardDistance = Math.min(VISIBLE_SIDES, Math.floor(banners.length / 2)) + 1
 
   function move(step: number) {
     setActive((previous) => (previous + step + banners.length) % banners.length)
@@ -56,7 +77,7 @@ function BannerCarousel({ banners, isLoading, onEdit, onCreate }: BannerCarousel
 
   if (isLoading || !banners.length) {
     return (
-      <div className="flex h-80 items-center justify-center text-sm text-muted-foreground">
+      <div className="flex h-72 items-center justify-center text-sm text-muted-foreground">
         {isLoading ? t('bannerCarousel.loading') : t('bannerTable.empty')}
       </div>
     )
@@ -85,16 +106,18 @@ function BannerCarousel({ banners, isLoading, onEdit, onCreate }: BannerCarousel
       </div>
 
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-        <div className="relative flex h-80 items-center justify-center overflow-hidden">
+        <div
+          className={`relative flex items-center justify-center overflow-hidden transition-all duration-500 ${MODE_CONFIG[mode].containerClassName}`}
+        >
           <BannerCarouselAddCard
-            side={-1}
+            distance={-addCardDistance}
             mode={mode}
             label={t('banner.newLabel')}
             onClick={onCreate}
           />
 
           <BannerCarouselAddCard
-            side={1}
+            distance={addCardDistance}
             mode={mode}
             label={t('banner.newLabel')}
             onClick={onCreate}
@@ -104,7 +127,7 @@ function BannerCarousel({ banners, isLoading, onEdit, onCreate }: BannerCarousel
             <BannerCarouselCard
               key={banner.id}
               banner={banner}
-              distance={index - current}
+              distance={getDistance(index)}
               mode={mode}
               inactiveLabel={t('bannerTableColumns.inactive')}
               onSelect={() => setActive(index)}

@@ -8,6 +8,7 @@
 import type { AddressFilter1Order } from './addressFilter1Order';
 import type { AddressFilter1Where } from './addressFilter1Where';
 import type { AddressFilter1Fields } from './addressFilter1Fields';
+import type { AddressFilter1IncludeItem } from './addressFilter1IncludeItem';
 
 export interface AddressFilter1 {
   /** @minimum 0 */
@@ -19,4 +20,5 @@ export interface AddressFilter1 {
   order?: AddressFilter1Order;
   where?: AddressFilter1Where;
   fields?: AddressFilter1Fields;
+  include?: AddressFilter1IncludeItem[];
 }

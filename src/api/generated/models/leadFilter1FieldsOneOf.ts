@@ -7,6 +7,17 @@
  */
 
 export type LeadFilter1FieldsOneOf = {
+  purpose?: boolean;
+  expiresAt?: boolean;
+  minBudget?: boolean;
+  minAreaSqm?: boolean;
+  maxAreaSqm?: boolean;
+  minRooms?: boolean;
+  maxRooms?: boolean;
+  minBedrooms?: boolean;
+  maxBedrooms?: boolean;
+  minBathrooms?: boolean;
+  maxBathrooms?: boolean;
   id?: boolean;
   externalId?: boolean;
   name?: boolean;
@@ -26,5 +37,6 @@ export type LeadFilter1FieldsOneOf = {
   syncedAt?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
+  categoryId?: boolean;
   assignedToId?: boolean;
 };

@@ -22,4 +22,5 @@ export const AddressFilterFieldsOneOfTwoItem = {
   postalCode: 'postalCode',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
+  neighborhoodId: 'neighborhoodId',
 } as const;

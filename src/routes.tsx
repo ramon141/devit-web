@@ -23,6 +23,7 @@ import Notifiche from '@/pages/Notifiche'
 import UtentiPage from '@/pages/Amministrazione/Utenti/page'
 import FilialiPage from '@/pages/Amministrazione/Filiali/page'
 import CategoriePage from '@/pages/Amministrazione/Categorie/page'
+import ZonePage from '@/pages/Amministrazione/Zone/page'
 import BannerPage from '@/pages/Amministrazione/Banner/page'
 import BannerScheda from '@/pages/Amministrazione/Banner/Scheda'
 import AuditPage from '@/pages/Amministrazione/Audit/page'
@@ -93,6 +94,7 @@ const routes: RouteConfig[] = [
   { path: '/amministrazione/utenti', element: <UtentiPage /> },
   { path: '/amministrazione/filiali', element: <FilialiPage /> },
   { path: '/amministrazione/categorie', element: <CategoriePage /> },
+  { path: '/amministrazione/zone', element: <ZonePage /> },
   { path: '/amministrazione/banner', element: <BannerPage /> },
   { path: '/amministrazione/banner/nuovo', element: <BannerScheda /> },
   { path: '/amministrazione/banner/:id', element: <BannerScheda /> },

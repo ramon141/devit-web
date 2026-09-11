@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useLeadControllerFind } from '@/api/generated/api'
 import { getLeadStatusOptions } from '@/pages/Clientes/Leads/schemas/leadSchema'
 import { UserInfo } from '@/auth'
-import type { Lead } from '@/api/generated/models'
+import type { LeadWithRelations } from '@/api/generated/models'
 
 export type LeadBoardFilters = {
   source: string
@@ -21,7 +21,7 @@ export const emptyLeadBoardFilters: LeadBoardFilters = {
   search: '',
 }
 
-function matchesFilters(lead: Lead, filters: LeadBoardFilters): boolean {
+function matchesFilters(lead: LeadWithRelations, filters: LeadBoardFilters): boolean {
   if (filters.source && lead.source !== filters.source) return false
   if (filters.requestType && lead.requestType !== filters.requestType) return false
 
@@ -44,15 +44,21 @@ export function useLeadBoard() {
   const { t } = useTranslation('clientes')
   const [filters, setFilters] = useState<LeadBoardFilters>(emptyLeadBoardFilters)
   const { data: leads, isLoading } = useLeadControllerFind({
-    filter: { order: ['createdAt DESC'] },
+    filter: {
+      order: ['createdAt DESC'],
+      include: [
+        { relation: 'category' },
+        { relation: 'leadNeighborhoods', scope: { include: [{ relation: 'neighborhood' }] } },
+      ],
+    },
   })
 
-  const filteredLeads = (leads ?? []).filter((lead: Lead) => matchesFilters(lead, filters))
+  const filteredLeads = (leads ?? []).filter((lead: LeadWithRelations) => matchesFilters(lead, filters))
 
   const columns = getLeadStatusOptions(t).map((status) => ({
     status: status.value,
     label: status.label,
-    leads: filteredLeads.filter((lead: Lead) => lead.status === status.value),
+    leads: filteredLeads.filter((lead: LeadWithRelations) => lead.status === status.value),
   }))
 
   return { columns, leads: filteredLeads, isLoading, filters, setFilters }

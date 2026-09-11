@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import FullCalendar from '@fullcalendar/react'
@@ -10,6 +10,7 @@ import itLocale from '@fullcalendar/core/locales/it'
 import ptLocale from '@fullcalendar/core/locales/pt-br'
 import type {
   EventClickArg,
+  EventHoveringArg,
   EventContentArg,
   EventDropArg,
   DatesSetArg,
@@ -24,60 +25,10 @@ import { useRescheduleCalendarEvent } from '@/pages/Agenda/hooks/useRescheduleCa
 import CalendarEventFormModal from '@/pages/Agenda/components/CalendarEventFormModal'
 import CalendarEventPreviewModal from '@/pages/Agenda/components/CalendarEventPreviewModal'
 import AgendaFilters from '@/pages/Agenda/components/AgendaFilters'
-
-const userColors = [
-  '#2563eb',
-  '#16a34a',
-  '#dc2626',
-  '#d97706',
-  '#7c3aed',
-  '#0891b2',
-  '#db2777',
-  '#65a30d',
-  '#4f46e5',
-  '#0d9488',
-]
-
-// ponytail: hash do id → cor fixa por usuário; colisões possíveis com >10 usuários
-function getUserColor(userId: string | null | undefined) {
-  if (!userId) return 'var(--muted-foreground)'
-
-  let hash = 0
-  for (const char of userId) hash = (hash * 31 + char.charCodeAt(0)) >>> 0
-
-  return userColors[hash % userColors.length]
-}
-
-const confirmationColors: Record<string, string> = {
-  pending: '#9ca3af',
-  confirmed: '#22c55e',
-  cancelled: '#ef4444',
-}
-
-function getEventColor(event: CalendarEventWithRelations) {
-  return event.backgroundColor || confirmationColors[event.confirmationStatus ?? 'pending']
-}
-
-function renderEventContent(arg: EventContentArg) {
-  const event = arg.event.extendedProps.event as CalendarEventWithRelations
-  const userColor = getUserColor(event.ownerId ?? event.createdById)
-
-  // na visão lista o horário já tem coluna própria
-  const showTime = !arg.view.type.startsWith('list') && arg.timeText
-
-  return (
-    <div className="flex items-center gap-1 overflow-hidden">
-      {showTime && <span>{arg.timeText}</span>}
-
-      <span
-        className="size-2 shrink-0 rounded-full ring-1 ring-white"
-        style={{ backgroundColor: userColor }}
-      />
-
-      <span className="truncate">{arg.event.title}</span>
-    </div>
-  )
-}
+import CalendarEventChip from '@/pages/Agenda/components/CalendarEventChip'
+import CalendarEventHoverCard from '@/pages/Agenda/components/CalendarEventHoverCard'
+import type { HoverCardState } from '@/pages/Agenda/components/CalendarEventHoverCard'
+import { getEventColor } from '@/pages/Agenda/utils/eventColors'
 
 function Agenda() {
   const { t, i18n } = useTranslation('agenda')
@@ -89,6 +40,10 @@ function Agenda() {
   const [previewEvent, setPreviewEvent] = useState<CalendarEventWithRelations | null>(null)
   const [deleteTarget, setDeleteTarget] = useState<CalendarEventWithRelations | null>(null)
   const [defaultDate, setDefaultDate] = useState<string | undefined>(undefined)
+  const [hoverCard, setHoverCard] = useState<HoverCardState | null>(null)
+  const hoverCloseTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const hoverOpenTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const overCard = useRef(false)
 
   const calendarEvents = events.map((event) => ({
     id: event.id,
@@ -102,7 +57,50 @@ function Agenda() {
     extendedProps: { event },
   }))
 
+  // pequeno atraso pra dar tempo de levar o mouse do evento até o card
+  function scheduleHoverClose() {
+    clearTimeout(hoverOpenTimer.current)
+    clearTimeout(hoverCloseTimer.current)
+    hoverCloseTimer.current = setTimeout(() => setHoverCard(null), 200)
+  }
+
+  function handleCardMouseEnter() {
+    overCard.current = true
+    clearTimeout(hoverOpenTimer.current)
+    clearTimeout(hoverCloseTimer.current)
+  }
+
+  function handleCardMouseLeave() {
+    overCard.current = false
+    scheduleHoverClose()
+  }
+
+  function handleEventMouseEnter(arg: EventHoveringArg) {
+    // com o mouse dentro do card, eventos por baixo não roubam o hover
+    if (overCard.current) return
+
+    const event = arg.event.extendedProps.event as CalendarEventWithRelations
+    const rect = arg.el.getBoundingClientRect()
+
+    clearTimeout(hoverCloseTimer.current)
+    clearTimeout(hoverOpenTimer.current)
+
+    // atraso na abertura: passar rápido por cima de um evento não troca o card
+    hoverOpenTimer.current = setTimeout(() => setHoverCard({ event, rect }), 250)
+  }
+
+  function openEventForm(event: CalendarEventWithRelations) {
+    setHoverCard(null)
+    setEditingEvent(event)
+    setFormOpen(true)
+  }
+
+  function handleDuplicate(event: CalendarEventWithRelations) {
+    openEventForm({ ...event, id: undefined, title: event.title })
+  }
+
   function handleDatesSet(arg: DatesSetArg) {
+    setHoverCard(null)
     setRange({ start: arg.start.toISOString(), end: arg.end.toISOString() })
   }
 
@@ -163,15 +161,31 @@ function Agenda() {
           selectable
           dayMaxEvents
           eventDisplay="block"
-          eventContent={renderEventContent}
+          eventContent={(arg: EventContentArg) => <CalendarEventChip arg={arg} />}
           events={calendarEvents}
           datesSet={handleDatesSet}
           eventClick={handleEventClick}
           dateClick={(arg) => handleDateClick(arg.dateStr)}
+          eventMouseEnter={handleEventMouseEnter}
+          eventMouseLeave={scheduleHoverClose}
           eventDrop={handleEventDrop}
           eventResize={handleEventResize}
         />
       </div>
+
+      <CalendarEventHoverCard
+        state={hoverCard}
+        onMouseEnter={handleCardMouseEnter}
+        onMouseLeave={handleCardMouseLeave}
+        onEdit={openEventForm}
+        onDuplicate={handleDuplicate}
+        // ponytail: os anexos vivem dentro do modal de edição
+        onAttachments={openEventForm}
+        onDelete={(event) => {
+          setHoverCard(null)
+          setDeleteTarget(event)
+        }}
+      />
 
       <CalendarEventPreviewModal
         event={previewEvent}

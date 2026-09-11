@@ -36,7 +36,7 @@ function CalendarEventFormModal({
     <ModalRegister
       open={open}
       onOpenChange={onOpenChange}
-      title={event ? t('agenda:formModal.editTitle') : t('agenda:formModal.createTitle')}
+      title={event?.id ? t('agenda:formModal.editTitle') : t('agenda:formModal.createTitle')}
     >
       <form onSubmit={onSubmit} className="grid gap-4">
         <CalendarEventFormFields form={form} />

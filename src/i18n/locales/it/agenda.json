@@ -173,5 +173,19 @@
     "onlyCalls": "Mostra solo telefonate",
     "visibleUsers": "Calendari da visionare",
     "visibleUsersPlaceholder": "Aggiungi collega"
+  },
+  "hoverCard": {
+    "timeRange": "{{date}} dalle {{start}} alle {{end}}",
+    "clientLabel": "Cliente:",
+    "propertiesLabel": "Immobili:",
+    "refLabel": "Rif.",
+    "createdByLabel": "Creato da:",
+    "createdAtConnector": "il",
+    "noDescription": "Nessuna nota",
+    "edit": "Modifica",
+    "duplicate": "Duplica",
+    "print": "Stampa",
+    "delete": "Elimina",
+    "attachments": "Allegati"
   }
 }
