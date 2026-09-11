@@ -34,6 +34,7 @@ const emptyValues: PropertyFormValues = {
   featuredOrder: '',
   active: true,
   publishedOnSite: false,
+  useInChatbot: false,
   salePrice: undefined,
   rentPrice: undefined,
   condoFee: undefined,
@@ -71,6 +72,7 @@ function propertyToFormValues(property: PropertyWithRelations): PropertyFormValu
     featuredOrder: property.featuredOrder != null ? String(property.featuredOrder) : '',
     active: property.active ?? true,
     publishedOnSite: property.publishedOnSite ?? false,
+    useInChatbot: property.useInChatbot ?? false,
     salePrice: property.salePrice != null ? String(property.salePrice) : undefined,
     rentPrice: property.rentPrice != null ? String(property.rentPrice) : undefined,
     condoFee: property.condoFee != null ? String(property.condoFee) : undefined,
@@ -108,7 +110,7 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
   })
 
   useEffect(() => {
-    form.reset(property ? propertyToFormValues(property) : emptyValues)
+    if (property) form.reset(propertyToFormValues(property))
   }, [property, form])
 
   function invalidateList() {
@@ -141,6 +143,7 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
       featuredOrder: toNumberOrNull(values.featuredOrder),
       active: values.active,
       publishedOnSite: values.publishedOnSite,
+      useInChatbot: values.useInChatbot,
       salePrice: toNumberOrNull(values.salePrice),
       rentPrice: toNumberOrNull(values.rentPrice),
       condoFee: toNumberOrNull(values.condoFee),

@@ -194,6 +194,13 @@ import type {
   CalendarEventPropertyPartial,
   CalendarEventPropertyWithRelations,
   CalendarEventWithRelations,
+  ChatbotLeadControllerUpsert200,
+  ChatbotLeadControllerUpsert400,
+  ChatbotLeadControllerUpsertBody,
+  ChatbotPropertyControllerFind200,
+  ChatbotPropertyControllerFindById200,
+  ChatbotPropertyControllerFindById404,
+  ChatbotPropertyControllerFindParams,
   CommunicationLog,
   CommunicationLogControllerCount401,
   CommunicationLogControllerCountParams,
@@ -24624,6 +24631,258 @@ export function usePublicBranchControllerFind<TData = Awaited<ReturnType<typeof 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPublicBranchControllerFindQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Sincronizar lead identificado pelo ChatBot WhatsApp
+ */
+export const chatbotLeadControllerUpsert = (
+    chatbotLeadControllerUpsertBody: BodyType<ChatbotLeadControllerUpsertBody>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ChatbotLeadControllerUpsert200>(
+      {url: `/public/chatbot/leads`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: chatbotLeadControllerUpsertBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getChatbotLeadControllerUpsertMutationOptions = <TError = ErrorType<ChatbotLeadControllerUpsert400>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof chatbotLeadControllerUpsert>>, TError,{data: BodyType<ChatbotLeadControllerUpsertBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof chatbotLeadControllerUpsert>>, TError,{data: BodyType<ChatbotLeadControllerUpsertBody>}, TContext> => {
+
+const mutationKey = ['chatbotLeadControllerUpsert'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof chatbotLeadControllerUpsert>>, {data: BodyType<ChatbotLeadControllerUpsertBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  chatbotLeadControllerUpsert(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ChatbotLeadControllerUpsertMutationResult = NonNullable<Awaited<ReturnType<typeof chatbotLeadControllerUpsert>>>
+    export type ChatbotLeadControllerUpsertMutationBody = BodyType<ChatbotLeadControllerUpsertBody>
+    export type ChatbotLeadControllerUpsertMutationError = ErrorType<ChatbotLeadControllerUpsert400>
+
+    /**
+ * @summary Sincronizar lead identificado pelo ChatBot WhatsApp
+ */
+export const useChatbotLeadControllerUpsert = <TError = ErrorType<ChatbotLeadControllerUpsert400>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof chatbotLeadControllerUpsert>>, TError,{data: BodyType<ChatbotLeadControllerUpsertBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof chatbotLeadControllerUpsert>>,
+        TError,
+        {data: BodyType<ChatbotLeadControllerUpsertBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getChatbotLeadControllerUpsertMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Detalhe de um imóvel habilitado para o ChatBot WhatsApp
+ */
+export const chatbotPropertyControllerFindById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ChatbotPropertyControllerFindById200>(
+      {url: `/public/chatbot/properties/${id}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getChatbotPropertyControllerFindByIdQueryKey = (id?: string,) => {
+    return [
+    `/public/chatbot/properties/${id}`
+    ] as const;
+    }
+
+    
+export const getChatbotPropertyControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError = ErrorType<ChatbotPropertyControllerFindById404>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getChatbotPropertyControllerFindByIdQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>> = ({ signal }) => chatbotPropertyControllerFindById(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ChatbotPropertyControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>>
+export type ChatbotPropertyControllerFindByIdQueryError = ErrorType<ChatbotPropertyControllerFindById404>
+
+
+export function useChatbotPropertyControllerFindById<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError = ErrorType<ChatbotPropertyControllerFindById404>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useChatbotPropertyControllerFindById<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError = ErrorType<ChatbotPropertyControllerFindById404>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useChatbotPropertyControllerFindById<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError = ErrorType<ChatbotPropertyControllerFindById404>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Detalhe de um imóvel habilitado para o ChatBot WhatsApp
+ */
+
+export function useChatbotPropertyControllerFindById<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError = ErrorType<ChatbotPropertyControllerFindById404>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getChatbotPropertyControllerFindByIdQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Buscar imóveis habilitados para o ChatBot WhatsApp
+ */
+export const chatbotPropertyControllerFind = (
+    params?: ChatbotPropertyControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ChatbotPropertyControllerFind200>(
+      {url: `/public/chatbot/properties`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getChatbotPropertyControllerFindQueryKey = (params?: ChatbotPropertyControllerFindParams,) => {
+    return [
+    `/public/chatbot/properties`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getChatbotPropertyControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError = ErrorType<unknown>>(params?: ChatbotPropertyControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getChatbotPropertyControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof chatbotPropertyControllerFind>>> = ({ signal }) => chatbotPropertyControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ChatbotPropertyControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof chatbotPropertyControllerFind>>>
+export type ChatbotPropertyControllerFindQueryError = ErrorType<unknown>
+
+
+export function useChatbotPropertyControllerFind<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError = ErrorType<unknown>>(
+ params: undefined |  ChatbotPropertyControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof chatbotPropertyControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof chatbotPropertyControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useChatbotPropertyControllerFind<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError = ErrorType<unknown>>(
+ params?: ChatbotPropertyControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof chatbotPropertyControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof chatbotPropertyControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useChatbotPropertyControllerFind<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError = ErrorType<unknown>>(
+ params?: ChatbotPropertyControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Buscar imóveis habilitados para o ChatBot WhatsApp
+ */
+
+export function useChatbotPropertyControllerFind<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError = ErrorType<unknown>>(
+ params?: ChatbotPropertyControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getChatbotPropertyControllerFindQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

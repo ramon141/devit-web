@@ -103,7 +103,8 @@
     "featured": "Em destaque",
     "featuredOrderPlaceholder": "Ordem de destaque",
     "publishedOnSite": "Publicado no site",
-    "active": "Ativo"
+    "active": "Ativo",
+    "useInChatbot": "Usar no ChatBot WhatsApp"
   },
   "generalTab": {
     "codeLabel": "Código",

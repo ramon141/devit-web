@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
+import { Separator } from '@/components/ui/separator'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
 import {
   getConfirmationStatusOptions,
@@ -31,55 +32,56 @@ function TodayAppointmentsCard({ appointments, isLoading }: TodayAppointmentsCar
         <p className="text-sm text-muted-foreground">{t('todayAppointmentsCard.empty')}</p>
       )}
 
-      {appointments.map((appointment) => (
-        <div
-          key={appointment.id}
-          className="rounded-lg px-2 py-2 hover:bg-accent hover:text-accent-foreground"
-        >
-          <div className="flex items-center gap-2">
-            <span className="text-base font-semibold text-primary">
-              {appointment.startAt && dayjs(appointment.startAt).format('HH:mm')}
-            </span>
+      {appointments.map((appointment, index) => (
+        <div key={appointment.id}>
+          {index > 0 && <Separator className="my-1" />}
 
-            <p className="truncate text-sm font-medium">
-              {appointment.place ?? appointment.title}
-            </p>
-          </div>
+          <div className="rounded-lg px-2 py-2 hover:bg-accent hover:text-accent-foreground">
+            <div className="flex items-center gap-2">
+              <span className="text-base font-semibold text-primary">
+                {appointment.startAt && dayjs(appointment.startAt).format('HH:mm')}
+              </span>
 
-          <div className="mt-1 flex flex-wrap items-center gap-2">
-            {appointment.confirmationStatus && (
-              <Badge
-                variant={
-                  appointment.confirmationStatus === CalendarEventConfirmationStatus.confirmed
-                    ? 'default'
-                    : 'secondary'
-                }
-              >
-                {getOptionLabel(confirmationOptions, appointment.confirmationStatus)}
-              </Badge>
+              <p className="truncate text-sm font-medium">
+                {appointment.place ?? appointment.title}
+              </p>
+            </div>
+
+            <div className="mt-1 flex flex-wrap items-center gap-2">
+              {appointment.confirmationStatus && (
+                <Badge
+                  variant={
+                    appointment.confirmationStatus === CalendarEventConfirmationStatus.confirmed
+                      ? 'default'
+                      : 'secondary'
+                  }
+                >
+                  {getOptionLabel(confirmationOptions, appointment.confirmationStatus)}
+                </Badge>
+              )}
+
+              <span className="text-xs text-muted-foreground">
+                {appointment.endAt && `${dayjs(appointment.endAt).format('HH:mm')} · `}
+                {t('todayAppointmentsCard.type', {
+                  type: getOptionLabel(typeOptions, appointment.type),
+                })}
+              </span>
+            </div>
+
+            {appointment.personName && (
+              <p className="truncate text-xs text-muted-foreground">
+                {[appointment.personName, appointment.personPhone].filter(Boolean).join(' ')}
+              </p>
             )}
 
-            <span className="text-xs text-muted-foreground">
-              {appointment.endAt && `${dayjs(appointment.endAt).format('HH:mm')} · `}
-              {t('todayAppointmentsCard.type', {
-                type: getOptionLabel(typeOptions, appointment.type),
-              })}
-            </span>
+            {appointment.propertyCodes && appointment.propertyCodes.length > 0 && (
+              <p className="truncate text-xs text-muted-foreground">
+                {t('todayAppointmentsCard.propertyCodes', {
+                  codes: appointment.propertyCodes.join(', '),
+                })}
+              </p>
+            )}
           </div>
-
-          {appointment.personName && (
-            <p className="truncate text-xs text-muted-foreground">
-              {[appointment.personName, appointment.personPhone].filter(Boolean).join(' ')}
-            </p>
-          )}
-
-          {appointment.propertyCodes && appointment.propertyCodes.length > 0 && (
-            <p className="truncate text-xs text-muted-foreground">
-              {t('todayAppointmentsCard.propertyCodes', {
-                codes: appointment.propertyCodes.join(', '),
-              })}
-            </p>
-          )}
         </div>
       ))}
     </DashboardCard>

@@ -5,10 +5,10 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PublicPropertyControllerFindFeatured200ItemCategory } from './publicPropertyControllerFindFeatured200ItemCategory';
-import type { PublicPropertyControllerFindFeatured200ItemAddress } from './publicPropertyControllerFindFeatured200ItemAddress';
+import type { ChatbotPropertyControllerFind200ItemsItemCategory } from './chatbotPropertyControllerFind200ItemsItemCategory';
+import type { ChatbotPropertyControllerFind200ItemsItemAddress } from './chatbotPropertyControllerFind200ItemsItemAddress';
 
-export type PublicPropertyControllerFindFeatured200Item = {
+export type ChatbotPropertyControllerFind200ItemsItem = {
   id?: string;
   code?: string;
   title?: string;
@@ -28,6 +28,6 @@ export type PublicPropertyControllerFindFeatured200Item = {
   featured?: boolean;
   /** @nullable */
   coverPhotoUrl?: string | null;
-  category?: PublicPropertyControllerFindFeatured200ItemCategory;
-  address?: PublicPropertyControllerFindFeatured200ItemAddress;
+  category?: ChatbotPropertyControllerFind200ItemsItemCategory;
+  address?: ChatbotPropertyControllerFind200ItemsItemAddress;
 };

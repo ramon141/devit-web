@@ -29,6 +29,7 @@ export const PropertyFilterFieldsOneOfTwoItem = {
   active: 'active',
   deactivatedAt: 'deactivatedAt',
   publishedOnSite: 'publishedOnSite',
+  useInChatbot: 'useInChatbot',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   categoryId: 'categoryId',

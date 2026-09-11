@@ -21,6 +21,10 @@ export type PublicPropertyControllerFind200ItemsItem = {
   bedrooms?: number | null;
   /** @nullable */
   bathrooms?: number | null;
+  /** @nullable */
+  parkingSpots?: number | null;
+  /** @nullable */
+  condoFee?: number | null;
   featured?: boolean;
   /** @nullable */
   coverPhotoUrl?: string | null;

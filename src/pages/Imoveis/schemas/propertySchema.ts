@@ -57,6 +57,7 @@ export function createPropertySchema(t: TFunction<'imoveis'>) {
     featuredOrder: z.string().optional(),
     active: z.boolean(),
     publishedOnSite: z.boolean(),
+    useInChatbot: z.boolean(),
 
     salePrice: z.string().optional(),
     rentPrice: z.string().optional(),

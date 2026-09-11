@@ -25,6 +25,7 @@ export type PropertyFilter1FieldsOneOf = {
   active?: boolean;
   deactivatedAt?: boolean;
   publishedOnSite?: boolean;
+  useInChatbot?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
   categoryId?: boolean;

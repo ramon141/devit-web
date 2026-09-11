@@ -57,6 +57,8 @@ export interface PropertyWithRelations {
   deactivatedAt?: string | null;
   /** @nullable */
   publishedOnSite?: boolean | null;
+  /** @nullable */
+  useInChatbot?: boolean | null;
   createdAt: string;
   updatedAt: string;
   categoryId: string;

@@ -57,6 +57,8 @@ export interface NewProperty {
   deactivatedAt?: string | null;
   /** @nullable */
   publishedOnSite?: boolean | null;
+  /** @nullable */
+  useInChatbot?: boolean | null;
   categoryId: string;
   addressId: string;
   ownerId: string;
