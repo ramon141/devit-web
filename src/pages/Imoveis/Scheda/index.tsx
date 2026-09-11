@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
@@ -13,6 +14,7 @@ import { Link } from 'react-router'
 import { usePropertyControllerFindById } from '@/api/generated/api'
 import { usePropertyForm } from '@/pages/Imoveis/hooks/usePropertyForm'
 import PropertyFormFields from '@/pages/Imoveis/components/PropertyFormFields'
+import { getNextStepValue } from '@/pages/Imoveis/schemas/propertySteps'
 
 function PropertyScheda() {
   const { t } = useTranslation('imoveis')
@@ -27,11 +29,14 @@ function PropertyScheda() {
     { query: { enabled: !isNew } }
   )
 
+  const [activeTab, setActiveTab] = useState('generale')
+
   const { form, isSubmitting, onSubmit } = usePropertyForm({
     property,
     initialCategoryId: isNew ? (searchParams.get('categoryId') ?? undefined) : undefined,
     onSaved: (savedId) => {
       if (isNew) navigate(`/gestionale/proprieta/${savedId}`, { replace: true })
+      setActiveTab((current) => getNextStepValue(t, current))
     },
   })
 
@@ -57,6 +62,8 @@ function PropertyScheda() {
         onSubmit={onSubmit}
         isSubmitting={isSubmitting}
         propertyId={property?.id}
+        activeTab={activeTab}
+        onActiveTabChange={setActiveTab}
       />
     </AppLayout>
   )

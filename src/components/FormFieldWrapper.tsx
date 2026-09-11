@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils'
 
 type FormFieldWrapperProps = {
   label: string
@@ -8,6 +9,20 @@ type FormFieldWrapperProps = {
   error?: string
   children: ReactNode
 }
+
+// Espelha o visual de aria-invalid nos campos filhos quando há erro,
+// sem precisar repassar o erro para cada input/textarea/select do formulário
+const invalidFieldClasses = [
+  '[&_[data-slot=input]]:border-destructive',
+  '[&_[data-slot=input]]:ring-3',
+  '[&_[data-slot=input]]:ring-destructive/20',
+  '[&_[data-slot=textarea]]:border-destructive',
+  '[&_[data-slot=textarea]]:ring-3',
+  '[&_[data-slot=textarea]]:ring-destructive/20',
+  '[&_[data-slot=select-trigger]]:border-destructive',
+  '[&_[data-slot=select-trigger]]:ring-3',
+  '[&_[data-slot=select-trigger]]:ring-destructive/20',
+].join(' ')
 
 // Wrapper padrão label + campo + erro, usado em todo formulário do sistema
 function FormFieldWrapper({
@@ -18,7 +33,7 @@ function FormFieldWrapper({
   children,
 }: FormFieldWrapperProps) {
   return (
-    <div className="grid min-w-0 gap-1.5">
+    <div className={cn('grid min-w-0 content-start gap-1.5', error && invalidFieldClasses)}>
       <Label htmlFor={htmlFor}>
         {label}
         {required && <span className="text-destructive"> *</span>}
@@ -26,7 +41,7 @@ function FormFieldWrapper({
 
       {children}
 
-      {error && <span className="text-xs text-destructive">{error}</span>}
+      {error && <p className="text-sm text-destructive">{error}</p>}
     </div>
   )
 }

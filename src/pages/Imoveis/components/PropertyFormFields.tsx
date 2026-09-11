@@ -14,44 +14,58 @@ import PropertyStoricoTab from '@/pages/Imoveis/Scheda/components/PropertyStoric
 import PropertyTasseTab from '@/pages/Imoveis/Scheda/components/PropertyTasseTab'
 import PropertyFotoTab from '@/pages/Imoveis/Scheda/components/PropertyFotoTab'
 import PropertyDocumentiTab from '@/pages/Imoveis/Scheda/components/PropertyDocumentiTab'
-import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
+import type { FormEvent } from 'react'
+import { createPropertySchema, type PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
+import { getNextStepValue, getPropertySteps, stepFields } from '@/pages/Imoveis/schemas/propertySteps'
 
 type PropertyFormFieldsProps = {
   form: UseFormReturn<PropertyFormValues>
-  onSubmit: () => void
+  onSubmit: (event: FormEvent) => void
   isSubmitting: boolean
   propertyId?: string
+  activeTab: string
+  onActiveTabChange: (value: string) => void
 }
 
-function PropertyFormFields({ form, onSubmit, isSubmitting, propertyId }: PropertyFormFieldsProps) {
+function PropertyFormFields({
+  form,
+  onSubmit,
+  isSubmitting,
+  propertyId,
+  activeTab,
+  onActiveTabChange,
+}: PropertyFormFieldsProps) {
   const { t } = useTranslation('imoveis')
 
-  const steps = [
-    { value: 'generale', label: t('formFields.steps.general'), step: 1, requiresId: false },
-    { value: 'prezzo', label: t('formFields.steps.price'), step: 2, requiresId: false },
-    { value: 'localizzazione', label: t('formFields.steps.location'), step: 3, requiresId: false },
-    { value: 'descrizione', label: t('formFields.steps.description'), step: 4, requiresId: false },
-    { value: 'dettagli', label: t('formFields.steps.details'), step: 5, requiresId: true },
-    { value: 'foto', label: t('formFields.steps.photos'), step: 6, requiresId: true },
-    { value: 'documenti', label: t('formFields.steps.documents'), step: 7, requiresId: true },
-    { value: 'commerciale', label: t('formFields.steps.commercial'), step: 8, requiresId: true },
-    { value: 'industriale', label: t('formFields.steps.industrial'), step: 9, requiresId: true },
-    { value: 'terreno', label: t('formFields.steps.land'), step: 10, requiresId: true },
-    { value: 'tasse', label: t('formFields.steps.taxes'), step: 11, requiresId: true },
-    { value: 'storico', label: t('formFields.steps.history'), step: 12, requiresId: true },
-  ]
+  // Só valida os campos da etapa atual; o save completo só acontece quando o
+  // formulário inteiro está válido (campos obrigatórios vivem em etapas diferentes)
+  async function handleNext(event: FormEvent) {
+    event.preventDefault()
 
-  const stepperSteps = steps.map((step) => ({
+    const isStepValid = await form.trigger(stepFields[activeTab])
+    if (!isStepValid) return
+
+    const isFormComplete = createPropertySchema(t).safeParse(form.getValues()).success
+
+    if (isFormComplete) {
+      onSubmit(event)
+      return
+    }
+
+    onActiveTabChange(getNextStepValue(t, activeTab))
+  }
+
+  const stepperSteps = getPropertySteps(t).map((step) => ({
     ...step,
     locked: step.requiresId && !propertyId,
   }))
 
   return (
-    <Tabs defaultValue="generale">
+    <Tabs value={activeTab} onValueChange={(value) => onActiveTabChange(String(value))}>
       <Stepper steps={stepperSteps} />
 
       <TabsContent value="generale">
-        <PropertyGeneralTab form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} propertyId={propertyId} />
+        <PropertyGeneralTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
       </TabsContent>
       <TabsContent value="dettagli">
         {propertyId && <PropertyDettagliTab propertyId={propertyId} />}
@@ -63,13 +77,13 @@ function PropertyFormFields({ form, onSubmit, isSubmitting, propertyId }: Proper
         {propertyId && <PropertyDocumentiTab propertyId={propertyId} />}
       </TabsContent>
       <TabsContent value="prezzo">
-        <PropertyPriceTab form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} propertyId={propertyId} />
+        <PropertyPriceTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
       </TabsContent>
       <TabsContent value="localizzazione">
-        <PropertyLocationTab form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} propertyId={propertyId} />
+        <PropertyLocationTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
       </TabsContent>
       <TabsContent value="descrizione">
-        <PropertyDescriptionTab form={form} onSubmit={onSubmit} isSubmitting={isSubmitting} propertyId={propertyId} />
+        <PropertyDescriptionTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
       </TabsContent>
       <TabsContent value="commerciale">
         {propertyId && <PropertyCommercialeTab propertyId={propertyId} />}

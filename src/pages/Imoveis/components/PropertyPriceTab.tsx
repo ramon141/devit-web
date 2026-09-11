@@ -1,13 +1,14 @@
 import { useWatch, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
+import type { FormEvent } from 'react'
+import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import InputMoney from '@/components/InputMoney'
 import PropertyPriceDetailSection from '@/pages/Imoveis/Scheda/components/PropertyPriceDetailSection'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyPriceTabProps = {
   form: UseFormReturn<PropertyFormValues>
-  onSubmit: () => void
+  onSubmit: (event: FormEvent) => void
   isSubmitting: boolean
   propertyId?: string
 }
@@ -43,11 +44,7 @@ function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId }: Property
           setValue={(value) => setValue('condoFee', value)}
         />
 
-        <div className="flex justify-end sm:col-span-2">
-          <Button type="submit" disabled={isSubmitting}>
-            {t('priceTab.save')}
-          </Button>
-        </div>
+      <PropertyFormFooter isSubmitting={isSubmitting} />
       </form>
 
       {propertyId && <PropertyPriceDetailSection propertyId={propertyId} />}

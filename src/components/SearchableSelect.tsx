@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import { ChevronsUpDown, XIcon } from 'lucide-react'
+import { ChevronsUpDown, PlusIcon, XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -30,6 +30,8 @@ type SearchableSelectProps = {
   emptyText?: string
   disabled?: boolean
   error?: string
+  creatable?: boolean
+  onCreate?: (name: string) => void
 }
 
 function SearchableSelect({
@@ -43,10 +45,13 @@ function SearchableSelect({
   emptyText,
   disabled = false,
   error,
+  creatable = false,
+  onCreate,
 }: SearchableSelectProps) {
   const { t } = useTranslation('common')
   const triggerId = useId()
   const [open, setOpen] = useState(false)
+  const [search, setSearch] = useState('')
   const resolvedPlaceholder = placeholder ?? t('searchableSelect.placeholder')
   const resolvedSearchPlaceholder = searchPlaceholder ?? t('searchableSelect.searchPlaceholder')
   const resolvedEmptyText = emptyText ?? t('searchableSelect.emptyText')
@@ -54,8 +59,19 @@ function SearchableSelect({
   const selected = options.find((option) => option.value === value)
   const showClear = !!value && !disabled
 
+  const trimmedSearch = search.trim()
+  const hasExactMatch = options.some(
+    (option) => option.label.toLowerCase() === trimmedSearch.toLowerCase()
+  )
+  const showCreate = creatable && !!onCreate && !!trimmedSearch && !hasExactMatch
+
   function handleSelect(nextValue: string) {
     onValueChange(nextValue)
+    setOpen(false)
+  }
+
+  function handleCreate() {
+    onCreate?.(trimmedSearch)
     setOpen(false)
   }
 
@@ -64,7 +80,7 @@ function SearchableSelect({
   }
 
   return (
-    <div className="grid min-w-0 gap-2">
+    <div className="grid min-w-0 content-start gap-2">
       {label && (
         <Label htmlFor={triggerId}>
           {label}
@@ -72,7 +88,13 @@ function SearchableSelect({
         </Label>
       )}
 
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover
+        open={open}
+        onOpenChange={(nextOpen) => {
+          setOpen(nextOpen)
+          if (!nextOpen) setSearch('')
+        }}
+      >
         <div className="relative min-w-0">
           <PopoverTrigger
             render={
@@ -108,9 +130,13 @@ function SearchableSelect({
 
         <PopoverContent className="w-(--anchor-width) p-0" align="start">
           <Command>
-            <CommandInput placeholder={resolvedSearchPlaceholder} />
+            <CommandInput
+              value={search}
+              onValueChange={setSearch}
+              placeholder={resolvedSearchPlaceholder}
+            />
             <CommandList>
-              <CommandEmpty>{resolvedEmptyText}</CommandEmpty>
+              {!showCreate && <CommandEmpty>{resolvedEmptyText}</CommandEmpty>}
               <CommandGroup>
                 {options.map((option) => (
                   <CommandItem
@@ -123,6 +149,15 @@ function SearchableSelect({
                   </CommandItem>
                 ))}
               </CommandGroup>
+
+              {showCreate && (
+                <CommandGroup forceMount>
+                  <CommandItem forceMount value={trimmedSearch} onSelect={handleCreate}>
+                    <PlusIcon className="size-4" />
+                    {t('searchableSelect.createOption', { name: trimmedSearch })}
+                  </CommandItem>
+                </CommandGroup>
+              )}
             </CommandList>
           </Command>
         </PopoverContent>

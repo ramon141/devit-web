@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import GaugeChart from '@/components/charts/GaugeChart'
+import ChartSkeleton from '@/pages/Home/components/ChartSkeleton'
 import { useDashboardIndicatorsControllerIndicators } from '@/api/generated/api'
 
 function IndicatorsCard() {
   const { t } = useTranslation('home')
-  const { data } = useDashboardIndicatorsControllerIndicators()
+  const { data, isLoading } = useDashboardIndicatorsControllerIndicators()
 
   const gauges = [
     { key: 'agency', value: data?.agency ?? 0 },
@@ -21,7 +22,9 @@ function IndicatorsCard() {
       </CardHeader>
 
       <CardContent className="flex flex-wrap items-center justify-around gap-4">
-        {gauges.map((gauge, index) => (
+        {isLoading && <ChartSkeleton size={120} count={gauges.length} />}
+
+        {!isLoading && gauges.map((gauge, index) => (
           <GaugeChart
             key={gauge.key}
             value={gauge.value}

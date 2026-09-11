@@ -1,17 +1,19 @@
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
+import type { FormEvent } from 'react'
+import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import ControlledInput from '@/components/ControlledInput'
 import PropertyCategoryOwnerFields from '@/pages/Imoveis/components/PropertyCategoryOwnerFields'
+import PropertyCodeField from '@/pages/Imoveis/components/PropertyCodeField'
 import PropertyFlagsRow from '@/pages/Imoveis/components/PropertyFlagsRow'
 import PropertyOwnersManager from '@/pages/Imoveis/Scheda/components/PropertyOwnersManager'
 import { getPurposeOptions, getStatusOptions, type PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyGeneralTabProps = {
   form: UseFormReturn<PropertyFormValues>
-  onSubmit: () => void
+  onSubmit: (event: FormEvent) => void
   isSubmitting: boolean
   propertyId?: string
 }
@@ -24,7 +26,7 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId }: Proper
   return (
     <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
       <FormFieldWrapper label={t('generalTab.codeLabel')} required error={errors.code?.message}>
-        <ControlledInput control={control} name="code" placeholder={t('generalTab.codePlaceholder')} />
+        <PropertyCodeField form={form} />
       </FormFieldWrapper>
 
       <FormFieldWrapper label={t('generalTab.titleLabel')} required error={errors.title?.message}>
@@ -57,11 +59,7 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId }: Proper
 
       {propertyId && <PropertyOwnersManager propertyId={propertyId} />}
 
-      <div className="flex justify-end sm:col-span-2">
-        <Button type="submit" disabled={isSubmitting}>
-          {t('generalTab.save')}
-        </Button>
-      </div>
+      <PropertyFormFooter isSubmitting={isSubmitting} />
     </form>
   )
 }

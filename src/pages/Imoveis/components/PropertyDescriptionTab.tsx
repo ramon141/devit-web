@@ -1,6 +1,7 @@
 import { useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
+import type { FormEvent } from 'react'
+import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import { Separator } from '@/components/ui/separator'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import ControlledInput from '@/components/ControlledInput'
@@ -10,7 +11,7 @@ import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyDescriptionTabProps = {
   form: UseFormReturn<PropertyFormValues>
-  onSubmit: () => void
+  onSubmit: (event: FormEvent) => void
   isSubmitting: boolean
   propertyId?: string
 }
@@ -45,11 +46,7 @@ function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId }: Pr
           </FormFieldWrapper>
         </div>
 
-        <div className="flex justify-end sm:col-span-2">
-          <Button type="submit" disabled={isSubmitting}>
-            {t('descriptionTab.save')}
-          </Button>
-        </div>
+      <PropertyFormFooter isSubmitting={isSubmitting} />
       </form>
 
       {propertyId && (

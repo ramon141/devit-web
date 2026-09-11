@@ -6,7 +6,7 @@ import SelectField from '@/components/SelectField'
 import MultiSelectField from '@/components/MultiSelectField'
 import { usePropertyCategoryControllerFind } from '@/api/generated/api'
 import { getLeadPurposeOptions, type LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
-import { useNeighborhoodOptions } from '@/pages/Clientes/Leads/hooks/useNeighborhoodOptions'
+import { useNeighborhoodOptions } from '@/hooks/useNeighborhoodOptions'
 import LeadRangeFields from '@/pages/Clientes/Leads/components/LeadRangeFields'
 
 type LeadCriteriaFieldsProps = {

@@ -35,12 +35,12 @@ function PropertyKindPickerModal({ open, onOpenChange, onSelect }: PropertyKindP
                 key={option.value}
                 type="button"
                 variant="outline"
-                className="h-16 flex-col gap-1"
+                className="h-auto min-h-16 flex-col gap-1 px-2 py-2 text-center whitespace-normal"
                 onClick={() => handleSelect(option.value)}
               >
                 {option.label}
                 {!hasCategory && (
-                  <span className="text-xs font-normal text-muted-foreground">
+                  <span className="text-xs leading-tight font-normal text-muted-foreground">
                     {t('kindPicker.noCategory')}
                   </span>
                 )}

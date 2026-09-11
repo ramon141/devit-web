@@ -53,7 +53,8 @@
   "searchableSelect": {
     "placeholder": "Selecione uma opção",
     "searchPlaceholder": "Buscar...",
-    "emptyText": "Nenhum resultado."
+    "emptyText": "Nenhum resultado.",
+    "createOption": "Criar \"{{name}}\""
   },
   "selectField": {
     "placeholder": "Selecione"
@@ -118,7 +119,9 @@
   "exportMenu": {
     "label": "Exportar",
     "excel": "Excel",
-    "pdf": "PDF"
+    "pdf": "PDF",
+    "pending": "Exportando arquivo...",
+    "success": "Arquivo exportado com sucesso"
   },
   "headerActions": {
     "newContact": "Novo contato"

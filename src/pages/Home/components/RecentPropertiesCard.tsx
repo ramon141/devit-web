@@ -8,15 +8,20 @@ import type { PropertiesReportControllerRecent200Item } from '@/api/generated/mo
 
 type RecentPropertiesCardProps = {
   properties: PropertiesReportControllerRecent200Item[]
+  isLoading?: boolean
 }
 
-function RecentPropertiesCard({ properties }: RecentPropertiesCardProps) {
+function RecentPropertiesCard({ properties, isLoading }: RecentPropertiesCardProps) {
   const { t } = useTranslation('home')
   const { t: tImoveis } = useTranslation('imoveis')
   const statusOptions = getShortStatusOptions(tImoveis)
 
   return (
-    <DashboardCard title={t('recentPropertiesCard.title')} count={properties.length}>
+    <DashboardCard
+      title={t('recentPropertiesCard.title')}
+      count={properties.length}
+      isLoading={isLoading}
+    >
       {properties.length === 0 && (
         <p className="text-sm text-muted-foreground">{t('recentPropertiesCard.empty')}</p>
       )}

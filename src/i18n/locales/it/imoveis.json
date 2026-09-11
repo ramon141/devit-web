@@ -108,6 +108,7 @@
   "generalTab": {
     "codeLabel": "Codice",
     "codePlaceholder": "AP001",
+    "generateCode": "Genera codice",
     "titleLabel": "Titolo",
     "titlePlaceholder": "Appartamento in centro",
     "purposeLabel": "Finalità",
@@ -118,7 +119,7 @@
     "countryLabel": "Paese",
     "countryPlaceholder": "Italia",
     "cityLabel": "Città",
-    "cityPlaceholder": "Milano",
+    "cityPlaceholder": "Seleziona un comune",
     "regionLabel": "Regione",
     "regionPlaceholder": "Lombardia",
     "postalCodeLabel": "CAP",
@@ -128,10 +129,11 @@
     "numberLabel": "Numero civico",
     "numberPlaceholder": "12",
     "neighborhoodLabel": "Quartiere",
-    "neighborhoodPlaceholder": "Centro",
+    "neighborhoodPlaceholder": "Seleziona un quartiere",
     "complementLabel": "Complemento",
     "complementPlaceholder": "Piano 3, interno 2",
-    "save": "Salva localizzazione"
+    "save": "Salva localizzazione",
+    "neighborhoodSearchPlaceholder": "Cerca quartiere"
   },
   "priceTab": {
     "salePriceLabel": "Prezzo di vendita",
@@ -140,6 +142,8 @@
     "save": "Salva prezzo"
   },
   "formFields": {
+    "cancel": "Annulla",
+    "next": "Avanti",
     "steps": {
       "general": "Generale",
       "price": "Prezzo",
@@ -657,5 +661,14 @@
   },
   "kindTabs": {
     "all": "Tutti"
+  },
+  "neighborhoodCreateModal": {
+    "title": "Nuovo quartiere",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Chiaia",
+    "zoneLabel": "Zona",
+    "zonePlaceholder": "Seleziona una zona",
+    "pending": "Creazione quartiere...",
+    "success": "Quartiere creato"
   }
 }

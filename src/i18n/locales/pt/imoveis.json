@@ -108,6 +108,7 @@
   "generalTab": {
     "codeLabel": "Código",
     "codePlaceholder": "AP001",
+    "generateCode": "Gerar código",
     "titleLabel": "Título",
     "titlePlaceholder": "Apartamento no centro",
     "purposeLabel": "Finalidade",
@@ -118,7 +119,7 @@
     "countryLabel": "País",
     "countryPlaceholder": "Itália",
     "cityLabel": "Cidade",
-    "cityPlaceholder": "Milão",
+    "cityPlaceholder": "Selecione uma cidade",
     "regionLabel": "Região",
     "regionPlaceholder": "Lombardia",
     "postalCodeLabel": "CEP",
@@ -128,10 +129,11 @@
     "numberLabel": "Número",
     "numberPlaceholder": "12",
     "neighborhoodLabel": "Bairro",
-    "neighborhoodPlaceholder": "Centro",
+    "neighborhoodPlaceholder": "Selecione um bairro",
     "complementLabel": "Complemento",
     "complementPlaceholder": "Andar 3, apto 2",
-    "save": "Salvar localização"
+    "save": "Salvar localização",
+    "neighborhoodSearchPlaceholder": "Buscar bairro"
   },
   "priceTab": {
     "salePriceLabel": "Preço de venda",
@@ -140,6 +142,8 @@
     "save": "Salvar preço"
   },
   "formFields": {
+    "cancel": "Cancelar",
+    "next": "Próximo",
     "steps": {
       "general": "Geral",
       "price": "Preço",
@@ -657,5 +661,14 @@
   },
   "kindTabs": {
     "all": "Todos"
+  },
+  "neighborhoodCreateModal": {
+    "title": "Novo bairro",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Chiaia",
+    "zoneLabel": "Zona",
+    "zonePlaceholder": "Selecione uma zona",
+    "pending": "Criando bairro...",
+    "success": "Bairro criado"
   }
 }

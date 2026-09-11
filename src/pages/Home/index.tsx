@@ -24,8 +24,14 @@ function readDormantDays(): number {
 function Home() {
   const { t } = useTranslation('home')
   const [dormantDays, setDormantDays] = useState(readDormantDays)
-  const { dormantProperties, recentProperties, todayAppointments } =
-    useDashboardReports(dormantDays)
+  const {
+    dormantProperties,
+    loadingDormant,
+    recentProperties,
+    loadingRecent,
+    todayAppointments,
+    loadingAppointments,
+  } = useDashboardReports(dormantDays)
 
   function handleWindowChange(days: number) {
     setDormantDays(days)
@@ -48,9 +54,20 @@ function Home() {
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <IndicatorsCard />
-        <TodayAppointmentsCard appointments={todayAppointments} />
-        <RecentPropertiesCard properties={recentProperties} />
-        <DormantPropertiesCard properties={dormantProperties} />
+        <TodayAppointmentsCard
+          appointments={todayAppointments}
+          isLoading={loadingAppointments}
+        />
+
+        <RecentPropertiesCard
+          properties={recentProperties}
+          isLoading={loadingRecent}
+        />
+
+        <DormantPropertiesCard
+          properties={dormantProperties}
+          isLoading={loadingDormant}
+        />
         <LeadsByStatusCard />
         <LeadsBySourceCard />
       </div>

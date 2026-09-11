@@ -17,9 +17,10 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 
 type DormantPropertiesCardProps = {
   properties: PropertiesReportControllerDormant200Item[]
+  isLoading?: boolean
 }
 
-function DormantPropertiesCard({ properties }: DormantPropertiesCardProps) {
+function DormantPropertiesCard({ properties, isLoading }: DormantPropertiesCardProps) {
   const { t } = useTranslation('home')
   const [deleteTarget, setDeleteTarget] = useState<PropertiesReportControllerDormant200Item | null>(
     null
@@ -45,7 +46,11 @@ function DormantPropertiesCard({ properties }: DormantPropertiesCardProps) {
   }
 
   return (
-    <DashboardCard title={t('dormantPropertiesCard.title')} count={properties.length}>
+    <DashboardCard
+      title={t('dormantPropertiesCard.title')}
+      count={properties.length}
+      isLoading={isLoading}
+    >
       {properties.length === 0 && (
         <p className="text-sm text-muted-foreground">{t('dormantPropertiesCard.empty')}</p>
       )}

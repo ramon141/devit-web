@@ -6,8 +6,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
 import type { DataTableColumn } from '@/components/DataTable/types'
+
+const SKELETON_ROWS = 5
 
 type DataTableGridProps<TRow> = {
   columns: DataTableColumn<TRow>[]
@@ -44,6 +47,23 @@ function DataTableGridRow<TRow>({
   )
 }
 
+// Linhas de carregamento com a mesma quantidade de colunas da tabela
+function DataTableGridSkeletonRows({ columnCount }: { columnCount: number }) {
+  return (
+    <>
+      {Array.from({ length: SKELETON_ROWS }).map((_, rowIndex) => (
+        <TableRow key={rowIndex}>
+          {Array.from({ length: columnCount }).map((_, cellIndex) => (
+            <TableCell key={cellIndex}>
+              <Skeleton className="h-4 w-full" />
+            </TableCell>
+          ))}
+        </TableRow>
+      ))}
+    </>
+  )
+}
+
 function DataTableGrid<TRow>({
   columns,
   data,
@@ -66,6 +86,10 @@ function DataTableGrid<TRow>({
         </TableHeader>
 
         <TableBody>
+          {isLoading && data.length === 0 && (
+            <DataTableGridSkeletonRows columnCount={columns.length} />
+          )}
+
           {!isLoading && data.length === 0 && (
             <TableRow>
               <TableCell colSpan={columns.length} className="py-8 text-center text-muted-foreground">

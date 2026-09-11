@@ -9,6 +9,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { downloadExport, type ExportFormat } from '@/utils/downloadExport'
+import { useToast } from '@/contexts/ToastContext'
+import { getErrorMessageFromRequest } from '@/utils/getErrorMessageFromRequest'
 
 type ExportMenuProps = {
   path: string
@@ -18,16 +20,21 @@ type ExportMenuProps = {
 // Botão "Esporta" com menu Excel / PDF, usado nas telas de listagem.
 function ExportMenu({ path, params = {} }: ExportMenuProps) {
   const { t } = useTranslation('common')
+  const { toastPromise } = useToast()
   const [isExporting, setIsExporting] = useState(false)
 
-  async function handleExport(format: ExportFormat) {
+  function handleExport(format: ExportFormat) {
     setIsExporting(true)
 
-    try {
-      await downloadExport(path, format, params)
-    } finally {
+    const promise = downloadExport(path, format, params).finally(() => {
       setIsExporting(false)
-    }
+    })
+
+    toastPromise(promise, {
+      pending: t('exportMenu.pending'),
+      success: t('exportMenu.success'),
+      error: (error) => getErrorMessageFromRequest(error),
+    })
   }
 
   return (

@@ -1,14 +1,18 @@
 import { useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
+import type { FormEvent } from 'react'
+import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import ControlledInput from '@/components/ControlledInput'
+import ControlledSelectField from '@/components/ControlledSelectField'
+import { COUNTRY_OPTIONS, PROPERTY_CITY_OPTIONS } from '@/constants/cities'
+import PropertyNeighborhoodField from '@/pages/Imoveis/components/PropertyNeighborhoodField'
 import PropertyLocationDetailSection from '@/pages/Imoveis/Scheda/components/PropertyLocationDetailSection'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyLocationTabProps = {
   form: UseFormReturn<PropertyFormValues>
-  onSubmit: () => void
+  onSubmit: (event: FormEvent) => void
   isSubmitting: boolean
   propertyId?: string
 }
@@ -21,13 +25,24 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: Prope
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
-        <FormFieldWrapper label={t('locationTab.countryLabel')} error={errors.country?.message}>
-          <ControlledInput control={control} name="country" placeholder={t('locationTab.countryPlaceholder')} />
-        </FormFieldWrapper>
+        <ControlledSelectField
+          control={control}
+          name="country"
+          label={t('locationTab.countryLabel')}
+          options={COUNTRY_OPTIONS}
+          placeholder={t('locationTab.countryPlaceholder')}
+          error={errors.country?.message}
+        />
 
-        <FormFieldWrapper label={t('locationTab.cityLabel')} required error={errors.city?.message}>
-          <ControlledInput control={control} name="city" placeholder={t('locationTab.cityPlaceholder')} />
-        </FormFieldWrapper>
+        <ControlledSelectField
+          control={control}
+          name="city"
+          label={t('locationTab.cityLabel')}
+          options={PROPERTY_CITY_OPTIONS}
+          placeholder={t('locationTab.cityPlaceholder')}
+          required
+          error={errors.city?.message}
+        />
 
         <FormFieldWrapper label={t('locationTab.regionLabel')} error={errors.region?.message}>
           <ControlledInput control={control} name="region" placeholder={t('locationTab.regionPlaceholder')} />
@@ -45,19 +60,13 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: Prope
           <ControlledInput control={control} name="number" placeholder={t('locationTab.numberPlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('locationTab.neighborhoodLabel')} error={errors.neighborhood?.message}>
-          <ControlledInput control={control} name="neighborhood" placeholder={t('locationTab.neighborhoodPlaceholder')} />
-        </FormFieldWrapper>
+        <PropertyNeighborhoodField form={form} error={errors.neighborhoodId?.message} />
 
         <FormFieldWrapper label={t('locationTab.complementLabel')} error={errors.complement?.message}>
           <ControlledInput control={control} name="complement" placeholder={t('locationTab.complementPlaceholder')} />
         </FormFieldWrapper>
 
-        <div className="flex justify-end sm:col-span-2">
-          <Button type="submit" disabled={isSubmitting}>
-            {t('locationTab.save')}
-          </Button>
-        </div>
+      <PropertyFormFooter isSubmitting={isSubmitting} />
       </form>
 
       {propertyId && <PropertyLocationDetailSection propertyId={propertyId} />}

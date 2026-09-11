@@ -12,16 +12,21 @@ import type { LeadsReportControllerTodayAppointments200Item } from '@/api/genera
 
 type TodayAppointmentsCardProps = {
   appointments: LeadsReportControllerTodayAppointments200Item[]
+  isLoading?: boolean
 }
 
-function TodayAppointmentsCard({ appointments }: TodayAppointmentsCardProps) {
+function TodayAppointmentsCard({ appointments, isLoading }: TodayAppointmentsCardProps) {
   const { t } = useTranslation('home')
   const { t: tAgenda } = useTranslation('agenda')
   const typeOptions = getEventTypeOptions(tAgenda)
   const confirmationOptions = getConfirmationStatusOptions(tAgenda)
 
   return (
-    <DashboardCard title={t('todayAppointmentsCard.title')} count={appointments.length}>
+    <DashboardCard
+      title={t('todayAppointmentsCard.title')}
+      count={appointments.length}
+      isLoading={isLoading}
+    >
       {appointments.length === 0 && (
         <p className="text-sm text-muted-foreground">{t('todayAppointmentsCard.empty')}</p>
       )}

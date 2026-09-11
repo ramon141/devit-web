@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
+import { DEFAULT_COUNTRY } from '@/constants/cities'
 import type { AxiosError } from 'axios'
 import {
   getPropertyControllerCountQueryKey,
@@ -38,11 +39,12 @@ const emptyValues: PropertyFormValues = {
   parkingSpots: '',
   areaSqm: '',
   description: '',
-  country: '',
+  country: DEFAULT_COUNTRY,
   street: '',
   number: '',
   complement: '',
   neighborhood: '',
+  neighborhoodId: '',
   city: '',
   region: '',
   postalCode: '',
@@ -74,11 +76,12 @@ function propertyToFormValues(property: PropertyWithRelations): PropertyFormValu
     parkingSpots: property.parkingSpots != null ? String(property.parkingSpots) : '',
     areaSqm: property.areaSqm != null ? String(property.areaSqm) : '',
     description: property.description ?? '',
-    country: property.address?.country ?? '',
+    country: property.address?.country ?? DEFAULT_COUNTRY,
     street: property.address?.street ?? '',
     number: property.address?.number ?? '',
     complement: property.address?.complement ?? '',
     neighborhood: property.address?.neighborhood ?? '',
+    neighborhoodId: property.address?.neighborhoodId ?? '',
     city: property.address?.city ?? '',
     region: property.address?.region ?? '',
     postalCode: property.address?.postalCode ?? '',
@@ -116,6 +119,7 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
       number: cleaned.number,
       complement: cleaned.complement,
       neighborhood: cleaned.neighborhood,
+      neighborhoodId: cleaned.neighborhoodId,
       city: values.city,
       region: cleaned.region,
       postalCode: cleaned.postalCode,

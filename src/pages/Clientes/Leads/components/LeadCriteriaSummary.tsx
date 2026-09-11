@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
 import type { LeadWithRelations } from '@/api/generated/models'
 import { getLeadPurposeOptions } from '@/pages/Clientes/Leads/schemas/leadSchema'
-import { useNeighborhoodOptions } from '@/pages/Clientes/Leads/hooks/useNeighborhoodOptions'
+import { useNeighborhoodOptions } from '@/hooks/useNeighborhoodOptions'
 import { formatRange } from '@/pages/Clientes/Leads/utils/formatRange'
 
 type LeadCriteriaSummaryProps = {

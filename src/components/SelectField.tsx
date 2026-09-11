@@ -38,7 +38,7 @@ function SelectField({
   const showClear = clearable && !!value && !disabled
 
   return (
-    <div className="grid gap-1.5">
+    <div className="grid content-start gap-1.5">
       <div className="relative">
         <Select
           value={value}
@@ -75,7 +75,7 @@ function SelectField({
         )}
       </div>
 
-      {error && <span className="text-xs text-destructive">{error}</span>}
+      {error && <p className="text-sm text-destructive">{error}</p>}
     </div>
   )
 }
