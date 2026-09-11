@@ -47,7 +47,6 @@ function PropertyNeighborhoodField({ form, error }: PropertyNeighborhoodFieldPro
             options={options}
             placeholder={t('locationTab.neighborhoodPlaceholder')}
             searchPlaceholder={t('locationTab.neighborhoodSearchPlaceholder')}
-            disabled={!city}
             error={error}
             creatable
             onCreate={setCreatingName}

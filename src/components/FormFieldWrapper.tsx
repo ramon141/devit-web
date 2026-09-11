@@ -4,6 +4,8 @@ import { cn } from '@/lib/utils'
 
 type FormFieldWrapperProps = {
   label: string
+  // Só para input/textarea de verdade: apontar para um trigger (botão do
+  // SearchableSelect/Select) faz o hover do label virar hover do campo
   htmlFor?: string
   required?: boolean
   error?: string

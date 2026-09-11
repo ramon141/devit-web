@@ -12,7 +12,7 @@ function RemovableRow({ onRemove, icon, children }: RemovableRowProps) {
   return (
     <div className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border">
       {children}
-      <Button variant="ghost" size="icon-sm" onClick={onRemove}>
+      <Button type="button" variant="ghost" size="icon-sm" onClick={onRemove}>
         {icon ?? <XIcon className="size-4" />}
       </Button>
     </div>

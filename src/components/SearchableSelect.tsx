@@ -49,7 +49,7 @@ function SearchableSelect({
   onCreate,
 }: SearchableSelectProps) {
   const { t } = useTranslation('common')
-  const triggerId = useId()
+  const labelId = useId()
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
   const resolvedPlaceholder = placeholder ?? t('searchableSelect.placeholder')
@@ -60,19 +60,28 @@ function SearchableSelect({
   const showClear = !!value && !disabled
 
   const trimmedSearch = search.trim()
-  const hasExactMatch = options.some(
-    (option) => option.label.toLowerCase() === trimmedSearch.toLowerCase()
+  const normalizedSearch = trimmedSearch.toLowerCase()
+
+  // Filtro próprio por trecho do texto — o fuzzy do cmdk aceita matches soltos demais
+  const filteredOptions = options.filter((option) =>
+    option.label.toLowerCase().includes(normalizedSearch)
   )
+  const hasExactMatch = options.some((option) => option.label.toLowerCase() === normalizedSearch)
   const showCreate = creatable && !!onCreate && !!trimmedSearch && !hasExactMatch
+
+  function closePopover() {
+    setOpen(false)
+    setSearch('')
+  }
 
   function handleSelect(nextValue: string) {
     onValueChange(nextValue)
-    setOpen(false)
+    closePopover()
   }
 
   function handleCreate() {
     onCreate?.(trimmedSearch)
-    setOpen(false)
+    closePopover()
   }
 
   function handleClear() {
@@ -82,7 +91,7 @@ function SearchableSelect({
   return (
     <div className="grid min-w-0 content-start gap-2">
       {label && (
-        <Label htmlFor={triggerId}>
+        <Label id={labelId}>
           {label}
           {required && <span className="text-destructive"> *</span>}
         </Label>
@@ -90,22 +99,19 @@ function SearchableSelect({
 
       <Popover
         open={open}
-        onOpenChange={(nextOpen) => {
-          setOpen(nextOpen)
-          if (!nextOpen) setSearch('')
-        }}
+        onOpenChange={(nextOpen) => (nextOpen ? setOpen(true) : closePopover())}
       >
         <div className="relative min-w-0">
           <PopoverTrigger
             render={
               <Button
-                id={triggerId}
                 type="button"
+                aria-labelledby={label ? labelId : undefined}
                 variant="outline"
                 disabled={disabled}
                 aria-invalid={!!error}
                 className={cn(
-                  'w-full justify-between font-normal hover:bg-primary/25 aria-expanded:bg-primary/25',
+                  'w-full justify-between font-normal',
                   showClear && 'pr-8',
                   !selected && 'text-muted-foreground'
                 )}
@@ -129,16 +135,19 @@ function SearchableSelect({
         </div>
 
         <PopoverContent className="w-(--anchor-width) p-0" align="start">
-          <Command>
+          <Command shouldFilter={false}>
             <CommandInput
               value={search}
               onValueChange={setSearch}
               placeholder={resolvedSearchPlaceholder}
             />
             <CommandList>
-              {!showCreate && <CommandEmpty>{resolvedEmptyText}</CommandEmpty>}
+              {!showCreate && filteredOptions.length === 0 && (
+                <CommandEmpty>{resolvedEmptyText}</CommandEmpty>
+              )}
+
               <CommandGroup>
-                {options.map((option) => (
+                {filteredOptions.map((option) => (
                   <CommandItem
                     key={option.value}
                     value={option.label}
@@ -151,8 +160,8 @@ function SearchableSelect({
               </CommandGroup>
 
               {showCreate && (
-                <CommandGroup forceMount>
-                  <CommandItem forceMount value={trimmedSearch} onSelect={handleCreate}>
+                <CommandGroup>
+                  <CommandItem value={trimmedSearch} onSelect={handleCreate}>
                     <PlusIcon className="size-4" />
                     {t('searchableSelect.createOption', { name: trimmedSearch })}
                   </CommandItem>

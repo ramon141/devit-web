@@ -45,7 +45,7 @@ function PropertyNeighborhoodCreateModal({
   const { mutateAsync: create, isPending } = useNeighborhoodControllerCreate()
 
   const { data: zones } = useZoneControllerFind({
-    filter: { where: { city, active: true }, order: ['name ASC'] },
+    filter: { where: city ? { city, active: true } : { active: true }, order: ['name ASC'] },
   })
 
   const form = useForm<NeighborhoodFormValues>({
@@ -78,7 +78,7 @@ function PropertyNeighborhoodCreateModal({
 
   const zoneOptions = (zones ?? []).map((zone) => ({
     value: zone.id ?? '',
-    label: zone.name,
+    label: city ? zone.name : `${zone.city} - ${zone.name}`,
   }))
 
   return (
@@ -88,7 +88,12 @@ function PropertyNeighborhoodCreateModal({
       title={t('neighborhoodCreateModal.title')}
     >
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={(event) => {
+          // O modal vive dentro do <form> do imóvel; sem isso o submit sobe pela
+          // árvore do React (portal não isola evento) e salva o imóvel junto
+          event.stopPropagation()
+          form.handleSubmit(onSubmit)(event)
+        }}
         className="grid w-full gap-4 sm:grid-cols-2"
       >
         <FormFieldWrapper
