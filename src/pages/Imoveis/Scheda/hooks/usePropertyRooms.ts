@@ -10,6 +10,7 @@ import {
 } from '@/api/generated/api'
 import type { PropertyRoomRoomType } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
@@ -17,13 +18,19 @@ export function usePropertyRooms(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const [roomType, setRoomType] = useState<PropertyRoomRoomType | ''>('')
   const [quantity, setQuantity] = useState('')
   const [widthM, setWidthM] = useState('')
   const [lengthM, setLengthM] = useState('')
   const [equipment, setEquipment] = useState('')
 
-  const { data: rooms } = usePropertyRoomControllerFind({ filter: { where: { propertyId } } })
+  const { data: rooms } = usePropertyRoomControllerFind(
+    { filter: { where: { propertyId } } },
+    { query: { enabled: !!propertyId } }
+  )
+
+  const draftRooms = draft.rooms.map((room, index) => ({ ...room, id: String(index) }))
   const { mutateAsync: create } = usePropertyRoomControllerCreate()
   const { mutateAsync: remove } = usePropertyRoomControllerDeleteById()
 
@@ -39,17 +46,18 @@ export function usePropertyRooms(propertyId: string) {
     const areaSqm = width && length ? width * length : null
     const quantityValue = toNumberOrNull(quantity)
 
-    const promise = create({
-      data: {
-        propertyId,
-        roomType,
-        quantity: quantityValue ?? undefined,
-        widthM: width,
-        lengthM: length,
-        areaSqm,
-        equipment: equipment || null,
-      },
-    })
+    const room = {
+      roomType,
+      quantity: quantityValue ?? undefined,
+      widthM: width,
+      lengthM: length,
+      areaSqm,
+      equipment: equipment || null,
+    }
+
+    const promise = propertyId
+      ? create({ data: { ...room, propertyId } }).then(() => undefined)
+      : Promise.resolve(setDraftBlock('rooms', [...draft.rooms, room]))
 
     promisePopup(promise, {
       pending: t('toasts.rooms.addPending'),
@@ -68,7 +76,11 @@ export function usePropertyRooms(propertyId: string) {
   }
 
   function removeRoom(id: string) {
-    promisePopup(remove({ id }), {
+    const promise = propertyId
+      ? remove({ id })
+      : Promise.resolve(setDraftBlock('rooms', draft.rooms.filter((_, index) => String(index) !== id)))
+
+    promisePopup(promise, {
       pending: t('toasts.rooms.removePending'),
       success: () => {
         invalidate()
@@ -80,7 +92,7 @@ export function usePropertyRooms(propertyId: string) {
   }
 
   return {
-    rooms: rooms ?? [],
+    rooms: propertyId ? (rooms ?? []) : draftRooms,
     roomType,
     setRoomType,
     quantity,

@@ -47,7 +47,7 @@ function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId }: Property
       <PropertyFormFooter isSubmitting={isSubmitting} />
       </form>
 
-      {propertyId && <PropertyPriceDetailSection propertyId={propertyId} />}
+      <PropertyPriceDetailSection propertyId={propertyId ?? ''} />
     </div>
   )
 }

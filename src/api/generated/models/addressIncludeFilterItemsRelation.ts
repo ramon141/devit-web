@@ -11,5 +11,5 @@ export type AddressIncludeFilterItemsRelation = typeof AddressIncludeFilterItems
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const AddressIncludeFilterItemsRelation = {
-  neighborhood: 'neighborhood',
+  neighborhoodRef: 'neighborhoodRef',
 } as const;

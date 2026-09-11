@@ -68,13 +68,13 @@ function PropertyFormFields({
         <PropertyGeneralTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
       </TabsContent>
       <TabsContent value="dettagli">
-        {propertyId && <PropertyDettagliTab propertyId={propertyId} />}
+        <PropertyDettagliTab propertyId={propertyId ?? ''} />
       </TabsContent>
       <TabsContent value="foto">
-        {propertyId && <PropertyFotoTab propertyId={propertyId} />}
+        <PropertyFotoTab propertyId={propertyId ?? ''} />
       </TabsContent>
       <TabsContent value="documenti">
-        {propertyId && <PropertyDocumentiTab propertyId={propertyId} />}
+        <PropertyDocumentiTab propertyId={propertyId ?? ''} />
       </TabsContent>
       <TabsContent value="prezzo">
         <PropertyPriceTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
@@ -86,16 +86,16 @@ function PropertyFormFields({
         <PropertyDescriptionTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
       </TabsContent>
       <TabsContent value="commerciale">
-        {propertyId && <PropertyCommercialeTab propertyId={propertyId} />}
+        <PropertyCommercialeTab propertyId={propertyId ?? ''} />
       </TabsContent>
       <TabsContent value="industriale">
-        {propertyId && <PropertyIndustrialeTab propertyId={propertyId} />}
+        <PropertyIndustrialeTab propertyId={propertyId ?? ''} />
       </TabsContent>
       <TabsContent value="terreno">
-        {propertyId && <PropertyTerrenoTab propertyId={propertyId} />}
+        <PropertyTerrenoTab propertyId={propertyId ?? ''} />
       </TabsContent>
       <TabsContent value="tasse">
-        {propertyId && <PropertyTasseTab propertyId={propertyId} />}
+        <PropertyTasseTab propertyId={propertyId ?? ''} />
       </TabsContent>
       <TabsContent value="storico">
         {propertyId && <PropertyStoricoTab propertyId={propertyId} />}

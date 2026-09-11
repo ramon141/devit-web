@@ -5,6 +5,7 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { Neighborhood } from './neighborhood';
 
 /**
  * (tsType: AddressWithRelations, schemaOptions: { includeRelations: true })
@@ -30,5 +31,6 @@ export interface AddressWithRelations {
   updatedAt: string;
   /** @nullable */
   neighborhoodId?: string | null;
+  neighborhoodRef?: Neighborhood;
   foreignKey?: unknown;
 }

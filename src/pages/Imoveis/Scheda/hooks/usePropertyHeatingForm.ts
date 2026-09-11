@@ -8,6 +8,7 @@ import {
   usePropertyHeatingDetailControllerUpdateById,
 } from '@/api/generated/api'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -32,10 +33,12 @@ const emptyValues: HeatingFormValues = {
 export function usePropertyHeatingForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const { data: rows, isLoading } = usePropertyHeatingDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
-  })
-  const existing = rows?.[0]
+  }, { query: { enabled: !!propertyId } })
+  const existingRow = rows?.[0]
+  const existing = propertyId ? existingRow : draft.heatingDetail
   const { mutateAsync: create, isPending: creating } = usePropertyHeatingDetailControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePropertyHeatingDetailControllerUpdateById()
 
@@ -58,11 +61,15 @@ export function usePropertyHeatingForm(propertyId: string) {
     const data = {
       ...cleaned,
       heatingType: cleaned.heatingType as PropertyHeatingDetailPartialHeatingType,
-      monthlyCost: toNumberOrNull(values.monthlyCost),
-      propertyId,
+      monthlyCost: toNumberOrNull(values.monthlyCost)
     }
 
-    const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
+    // Sem imóvel ainda: guarda no rascunho para ir junto no POST /properties
+    const promise = !propertyId
+      ? Promise.resolve(setDraftBlock('heatingDetail', { ...draft.heatingDetail, ...data }))
+      : existingRow?.id
+        ? update({ id: existingRow.id, data: { ...data, propertyId } })
+        : create({ data: { ...data, propertyId } })
 
     promisePopup(promise, {
       pending: t('toasts.heatingForm.pending'),

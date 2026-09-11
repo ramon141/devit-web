@@ -49,14 +49,10 @@ function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId }: Pr
       <PropertyFormFooter isSubmitting={isSubmitting} />
       </form>
 
-      {propertyId && (
-        <>
-          <Separator className="sm:col-span-2" />
-          <div className="sm:col-span-2">
-            <PropertyDescrizioneTab propertyId={propertyId} />
-          </div>
-        </>
-      )}
+      <Separator className="sm:col-span-2" />
+      <div className="sm:col-span-2">
+        <PropertyDescrizioneTab propertyId={propertyId ?? ''} />
+      </div>
     </div>
   )
 }

@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { StarIcon, Trash2Icon } from 'lucide-react'
-import type { PropertyPhotoWithRelations } from '@/api/generated/models'
 import { Button } from '@/components/ui/button'
 import FileUpload from '@/components/FileUpload'
 import { usePropertyPhotos } from '@/pages/Imoveis/Scheda/hooks/usePropertyPhotos'
 
+type PhotoCardItem = {
+  id?: string
+  caption?: string | null
+  cover?: boolean | null
+  attachment?: { url?: string | null; originalName?: string | null } | null
+}
+
 type PhotoCardProps = {
-  photo: PropertyPhotoWithRelations
+  photo: PhotoCardItem
   onSetCover: (id: string) => void
   onRemove: (id: string) => void
 }
@@ -25,7 +31,7 @@ function PhotoCard({ photo, onSetCover, onRemove }: PhotoCardProps) {
 
       <div className="flex items-center justify-between gap-2 p-2">
         <span className="truncate text-xs text-muted-foreground">
-          {photo.attachment?.originalName ?? photo.attachmentId}
+          {photo.attachment?.originalName}
         </span>
 
         <div className="flex shrink-0 gap-1">

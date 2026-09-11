@@ -10,18 +10,26 @@ import {
 } from '@/api/generated/api'
 import type { NewPropertyFeeFrequency } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
 export function usePropertyFees(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const [name, setName] = useState('')
   const [amount, setAmount] = useState<string | undefined>(undefined)
   const [frequency, setFrequency] = useState<NewPropertyFeeFrequency | ''>('')
   const [note, setNote] = useState('')
 
-  const { data: fees } = usePropertyFeeControllerFind({ filter: { where: { propertyId } } })
+  const { data: fees } = usePropertyFeeControllerFind(
+    { filter: { where: { propertyId } } },
+    { query: { enabled: !!propertyId } }
+  )
+
+  // No rascunho o índice faz as vezes de id para a lista poder remover itens
+  const draftFees = draft.fees.map((fee, index) => ({ ...fee, id: String(index) }))
   const { mutateAsync: create } = usePropertyFeeControllerCreate()
   const { mutateAsync: remove } = usePropertyFeeControllerDeleteById()
 
@@ -32,15 +40,11 @@ export function usePropertyFees(propertyId: string) {
   function addFee() {
     if (!name || !amount || !frequency) return
 
-    const promise = create({
-      data: {
-        propertyId,
-        name,
-        amount: Number(amount),
-        frequency,
-        note: note || null,
-      },
-    })
+    const fee = { name, amount: Number(amount), frequency, note: note || null }
+
+    const promise = propertyId
+      ? create({ data: { ...fee, propertyId } }).then(() => undefined)
+      : Promise.resolve(setDraftBlock('fees', [...draft.fees, fee]))
 
     promisePopup(promise, {
       pending: t('toasts.fees.addPending'),
@@ -58,7 +62,11 @@ export function usePropertyFees(propertyId: string) {
   }
 
   function removeFee(id: string) {
-    promisePopup(remove({ id }), {
+    const promise = propertyId
+      ? remove({ id })
+      : Promise.resolve(setDraftBlock('fees', draft.fees.filter((_, index) => String(index) !== id)))
+
+    promisePopup(promise, {
       pending: t('toasts.fees.removePending'),
       success: () => {
         invalidate()
@@ -70,7 +78,7 @@ export function usePropertyFees(propertyId: string) {
   }
 
   return {
-    fees: fees ?? [],
+    fees: propertyId ? (fees ?? []) : draftFees,
     name,
     setName,
     amount,

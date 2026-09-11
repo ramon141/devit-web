@@ -8,6 +8,7 @@ import {
   usePropertyLandDetailControllerUpdateById,
 } from '@/api/generated/api'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -42,10 +43,12 @@ const emptyValues: LandFormValues = {
 export function usePropertyLandForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const { data: rows, isLoading } = usePropertyLandDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
-  })
-  const existing = rows?.[0]
+  }, { query: { enabled: !!propertyId } })
+  const existingRow = rows?.[0]
+  const existing = propertyId ? existingRow : draft.landDetail
   const { mutateAsync: create, isPending: creating } = usePropertyLandDetailControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePropertyLandDetailControllerUpdateById()
 
@@ -77,11 +80,15 @@ export function usePropertyLandForm(propertyId: string) {
       buildableAreaSqm: toNumberOrNull(values.buildableAreaSqm),
       agriculturalAreaSqm: toNumberOrNull(values.agriculturalAreaSqm),
       hasExistingConstruction: values.hasExistingConstruction,
-      projectApproved: values.projectApproved,
-      propertyId,
+      projectApproved: values.projectApproved
     }
 
-    const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
+    // Sem imóvel ainda: guarda no rascunho para ir junto no POST /properties
+    const promise = !propertyId
+      ? Promise.resolve(setDraftBlock('landDetail', { ...draft.landDetail, ...data }))
+      : existingRow?.id
+        ? update({ id: existingRow.id, data: { ...data, propertyId } })
+        : create({ data: { ...data, propertyId } })
 
     promisePopup(promise, {
       pending: t('toasts.landForm.pending'),

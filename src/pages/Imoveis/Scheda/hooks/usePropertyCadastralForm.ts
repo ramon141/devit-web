@@ -8,6 +8,7 @@ import {
   usePropertyCadastralInfoControllerUpdateById,
 } from '@/api/generated/api'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -37,10 +38,12 @@ const emptyValues: CadastralFormValues = {
 export function usePropertyCadastralForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const { data: rows, isLoading } = usePropertyCadastralInfoControllerFind({
     filter: { where: { propertyId }, limit: 1 },
-  })
-  const existing = rows?.[0]
+  }, { query: { enabled: !!propertyId } })
+  const existingRow = rows?.[0]
+  const existing = propertyId ? existingRow : draft.cadastralInfo
   const { mutateAsync: create, isPending: creating } = usePropertyCadastralInfoControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePropertyCadastralInfoControllerUpdateById()
 
@@ -63,9 +66,14 @@ export function usePropertyCadastralForm(propertyId: string) {
 
   function onSubmit(values: CadastralFormValues) {
     const cleaned = emptyStringsToNull(values)
-    const data = { ...cleaned, rendita: toNumberOrNull(values.rendita), propertyId }
+    const data = { ...cleaned, rendita: toNumberOrNull(values.rendita) }
 
-    const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
+    // Sem imóvel ainda: guarda no rascunho para ir junto no POST /properties
+    const promise = !propertyId
+      ? Promise.resolve(setDraftBlock('cadastralInfo', { ...draft.cadastralInfo, ...data }))
+      : existingRow?.id
+        ? update({ id: existingRow.id, data: { ...data, propertyId } })
+        : create({ data: { ...data, propertyId } })
 
     promisePopup(promise, {
       pending: t('toasts.cadastralForm.pending'),

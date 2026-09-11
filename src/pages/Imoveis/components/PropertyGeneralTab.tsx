@@ -57,7 +57,7 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId }: Proper
 
       <PropertyFlagsRow control={control} />
 
-      {propertyId && <PropertyOwnersManager propertyId={propertyId} />}
+      <PropertyOwnersManager propertyId={propertyId ?? ''} />
 
       <PropertyFormFooter isSubmitting={isSubmitting} />
     </form>

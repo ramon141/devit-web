@@ -14,6 +14,7 @@ import { Link } from 'react-router'
 import { usePropertyControllerFindById } from '@/api/generated/api'
 import { usePropertyForm } from '@/pages/Imoveis/hooks/usePropertyForm'
 import PropertyFormFields from '@/pages/Imoveis/components/PropertyFormFields'
+import { PropertyDraftProvider } from '@/pages/Imoveis/contexts/PropertyDraftProvider'
 import { getNextStepValue } from '@/pages/Imoveis/schemas/propertySteps'
 
 function PropertyScheda() {
@@ -69,4 +70,12 @@ function PropertyScheda() {
   )
 }
 
-export default PropertyScheda
+function PropertySchedaPage() {
+  return (
+    <PropertyDraftProvider>
+      <PropertyScheda />
+    </PropertyDraftProvider>
+  )
+}
+
+export default PropertySchedaPage

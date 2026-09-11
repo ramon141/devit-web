@@ -40,8 +40,10 @@ function PropertyDocumentiTab({ propertyId }: PropertyDocumentiTabProps) {
         {documents.map((doc) => (
           <div key={doc.id} className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 ring-1 ring-border">
             <div className="min-w-0">
-              <p className="truncate text-sm">{doc.label ?? doc.attachment?.originalName ?? doc.attachmentId}</p>
-              <p className="text-xs text-muted-foreground">{formatDate(doc.createdAt)}</p>
+              <p className="truncate text-sm">{doc.label ?? doc.attachment?.originalName}</p>
+              {doc.createdAt && (
+                <p className="text-xs text-muted-foreground">{formatDate(doc.createdAt)}</p>
+              )}
             </div>
 
             <div className="flex shrink-0 gap-1">

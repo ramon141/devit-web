@@ -8,6 +8,7 @@ import {
   usePropertyCommercialDetailControllerUpdateById,
 } from '@/api/generated/api'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import type { PropertyCommercialDetailPartialScope } from '@/api/generated/models'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
@@ -54,10 +55,12 @@ const emptyValues: CommercialFormValues = {
 export function usePropertyCommercialForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const { data: rows, isLoading } = usePropertyCommercialDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
-  })
-  const existing = rows?.[0]
+  }, { query: { enabled: !!propertyId } })
+  const existingRow = rows?.[0]
+  const existing = propertyId ? existingRow : draft.commercialDetail
   const { mutateAsync: create, isPending: creating } = usePropertyCommercialDetailControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePropertyCommercialDetailControllerUpdateById()
 
@@ -99,11 +102,15 @@ export function usePropertyCommercialForm(propertyId: string) {
       coveredAreaSqm: toNumberOrNull(values.coveredAreaSqm),
       uncoveredAreaSqm: toNumberOrNull(values.uncoveredAreaSqm),
       coverableAreaSqm: toNumberOrNull(values.coverableAreaSqm),
-      manageable: values.manageable,
-      propertyId,
+      manageable: values.manageable
     }
 
-    const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
+    // Sem imóvel ainda: guarda no rascunho para ir junto no POST /properties
+    const promise = !propertyId
+      ? Promise.resolve(setDraftBlock('commercialDetail', { ...draft.commercialDetail, ...data }))
+      : existingRow?.id
+        ? update({ id: existingRow.id, data: { ...data, propertyId } })
+        : create({ data: { ...data, propertyId } })
 
     promisePopup(promise, {
       pending: t('toasts.commercialForm.pending'),

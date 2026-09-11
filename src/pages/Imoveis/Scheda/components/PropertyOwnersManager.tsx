@@ -5,6 +5,7 @@ import SearchableSelect from '@/components/SearchableSelect'
 import RemovableRow from '@/components/RemovableRow'
 import { usePersonControllerFind } from '@/api/generated/api'
 import { usePropertyOwners } from '@/pages/Imoveis/Scheda/hooks/usePropertyOwners'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type PropertyOwnersManagerProps = {
   propertyId: string
@@ -24,7 +25,8 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
       {owners.map((owner) => (
         <RemovableRow key={owner.id} onRemove={() => owner.id && removeOwner(owner.id)}>
           <span className="text-sm">
-            {owner.person?.name} {owner.ownershipPercent != null && `· ${owner.ownershipPercent}%`}
+            {owner.person?.name ?? getOptionLabel(personOptions, owner.personId)}
+            {owner.ownershipPercent != null && ` · ${owner.ownershipPercent}%`}
           </span>
         </RemovableRow>
       ))}

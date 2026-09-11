@@ -69,7 +69,7 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: Prope
       <PropertyFormFooter isSubmitting={isSubmitting} />
       </form>
 
-      {propertyId && <PropertyLocationDetailSection propertyId={propertyId} />}
+      <PropertyLocationDetailSection propertyId={propertyId ?? ''} />
     </div>
   )
 }

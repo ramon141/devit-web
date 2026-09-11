@@ -8,6 +8,7 @@ import {
   usePropertyIndustrialDetailControllerUpdateById,
 } from '@/api/generated/api'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -37,10 +38,12 @@ const emptyValues: IndustrialFormValues = {
 export function usePropertyIndustrialForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const { data: rows, isLoading } = usePropertyIndustrialDetailControllerFind({
     filter: { where: { propertyId }, limit: 1 },
-  })
-  const existing = rows?.[0]
+  }, { query: { enabled: !!propertyId } })
+  const existingRow = rows?.[0]
+  const existing = propertyId ? existingRow : draft.industrialDetail
   const { mutateAsync: create, isPending: creating } = usePropertyIndustrialDetailControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePropertyIndustrialDetailControllerUpdateById()
 
@@ -71,11 +74,15 @@ export function usePropertyIndustrialForm(propertyId: string) {
       entrancesCount: toNumberOrNull(values.entrancesCount),
       loadingBaysCount: toNumberOrNull(values.loadingBaysCount),
       hasOverheadCrane: values.hasOverheadCrane,
-      hasAlarm: values.hasAlarm,
-      propertyId,
+      hasAlarm: values.hasAlarm
     }
 
-    const promise = existing?.id ? update({ id: existing.id, data }) : create({ data })
+    // Sem imóvel ainda: guarda no rascunho para ir junto no POST /properties
+    const promise = !propertyId
+      ? Promise.resolve(setDraftBlock('industrialDetail', { ...draft.industrialDetail, ...data }))
+      : existingRow?.id
+        ? update({ id: existingRow.id, data: { ...data, propertyId } })
+        : create({ data: { ...data, propertyId } })
 
     promisePopup(promise, {
       pending: t('toasts.industrialForm.pending'),

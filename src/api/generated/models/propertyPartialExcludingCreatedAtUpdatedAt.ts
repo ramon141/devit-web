@@ -10,6 +10,20 @@ import type { PropertyPartialExcludingCreatedAtUpdatedAtStatus } from './propert
 import type { PropertyPartialExcludingCreatedAtUpdatedAtPhotosItem } from './propertyPartialExcludingCreatedAtUpdatedAtPhotosItem';
 import type { PropertyPartialExcludingCreatedAtUpdatedAtDocumentsItem } from './propertyPartialExcludingCreatedAtUpdatedAtDocumentsItem';
 import type { PropertyPartialExcludingCreatedAtUpdatedAtOwnersItem } from './propertyPartialExcludingCreatedAtUpdatedAtOwnersItem';
+import type { PropertyNestedDetail } from './propertyNestedDetail';
+import type { PropertyNestedAdditionalDetail } from './propertyNestedAdditionalDetail';
+import type { PropertyNestedHeatingDetail } from './propertyNestedHeatingDetail';
+import type { PropertyNestedCommercialDetail } from './propertyNestedCommercialDetail';
+import type { PropertyNestedIndustrialDetail } from './propertyNestedIndustrialDetail';
+import type { PropertyNestedLandDetail } from './propertyNestedLandDetail';
+import type { PropertyNestedCadastralInfo } from './propertyNestedCadastralInfo';
+import type { PropertyNestedLocationDetail } from './propertyNestedLocationDetail';
+import type { PropertyNestedAcousticCertification } from './propertyNestedAcousticCertification';
+import type { PropertyNestedMortgageStatus } from './propertyNestedMortgageStatus';
+import type { PropertyNestedUrbanRegularity } from './propertyNestedUrbanRegularity';
+import type { PropertyNestedFee } from './propertyNestedFee';
+import type { PropertyNestedRoom } from './propertyNestedRoom';
+import type { PropertyNestedIndustrialArea } from './propertyNestedIndustrialArea';
 
 export interface PropertyPartialExcludingCreatedAtUpdatedAt {
   id?: string;
@@ -57,4 +71,21 @@ export interface PropertyPartialExcludingCreatedAtUpdatedAt {
   documents?: PropertyPartialExcludingCreatedAtUpdatedAtDocumentsItem[];
   /** Proprietários (pessoas) a vincular ao imóvel */
   owners?: PropertyPartialExcludingCreatedAtUpdatedAtOwnersItem[];
+  detail?: PropertyNestedDetail;
+  additionalDetail?: PropertyNestedAdditionalDetail;
+  heatingDetail?: PropertyNestedHeatingDetail;
+  commercialDetail?: PropertyNestedCommercialDetail;
+  industrialDetail?: PropertyNestedIndustrialDetail;
+  landDetail?: PropertyNestedLandDetail;
+  cadastralInfo?: PropertyNestedCadastralInfo;
+  locationDetail?: PropertyNestedLocationDetail;
+  acousticCertification?: PropertyNestedAcousticCertification;
+  mortgageStatus?: PropertyNestedMortgageStatus;
+  urbanRegularity?: PropertyNestedUrbanRegularity;
+  /** Taxas e despesas do imóvel */
+  fees?: PropertyNestedFee[];
+  /** Cômodos do imóvel */
+  rooms?: PropertyNestedRoom[];
+  /** Áreas industriais do imóvel */
+  industrialAreas?: PropertyNestedIndustrialArea[];
 }

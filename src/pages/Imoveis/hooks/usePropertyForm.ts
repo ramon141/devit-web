@@ -15,6 +15,9 @@ import {
 } from '@/api/generated/api'
 import type { PropertyWithRelations } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
+import { usePropertyFeatureControllerCreate } from '@/api/generated/api'
+import type { PropertyFeatureCategory } from '@/api/generated/models'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
@@ -92,6 +95,8 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
+  const { draft, resetDraft } = usePropertyDraft()
+  const { mutateAsync: createFeature } = usePropertyFeatureControllerCreate()
   const { mutateAsync: createAddress } = useAddressControllerCreate()
   const { mutateAsync: updateAddress } = useAddressControllerUpdateById()
   const { mutateAsync: createProperty, isPending: creating } = usePropertyControllerCreate()
@@ -153,8 +158,44 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
     }
 
     const address = await createAddress({ data: addressData })
-    const created = await createProperty({ data: { ...propertyData, addressId: address.id ?? '' } })
-    return created.id ?? ''
+    const created = await createProperty({
+      data: {
+        ...propertyData,
+        addressId: address.id ?? '',
+        detail: draft.detail,
+        additionalDetail: draft.additionalDetail,
+        heatingDetail: draft.heatingDetail,
+        commercialDetail: draft.commercialDetail,
+        industrialDetail: draft.industrialDetail,
+        landDetail: draft.landDetail,
+        cadastralInfo: draft.cadastralInfo,
+        locationDetail: draft.locationDetail,
+        fees: draft.fees,
+        rooms: draft.rooms,
+        industrialAreas: draft.industrialAreas,
+        photos: draft.photos,
+        documents: draft.documents,
+        owners: draft.owners,
+      },
+    })
+
+    const createdId = created.id ?? ''
+
+    // Características não entram no POST aninhado; vão logo depois, com o id em mãos
+    await Promise.all(
+      draft.features.map((feature) =>
+        createFeature({
+          data: {
+            propertyId: createdId,
+            category: feature.category as PropertyFeatureCategory,
+            featureKey: feature.featureKey,
+          },
+        })
+      )
+    )
+
+    resetDraft()
+    return createdId
   }
 
   function onSubmit(values: PropertyFormValues) {

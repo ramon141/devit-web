@@ -9,6 +9,7 @@ import {
 } from '@/api/generated/api'
 import { useQueryClient } from '@tanstack/react-query'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
@@ -16,12 +17,20 @@ export function usePropertyOwners(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const [personId, setPersonId] = useState('')
   const [percent, setPercent] = useState('')
 
-  const { data: owners } = usePropertyOwnerControllerFind({
-    filter: { where: { propertyId }, include: [{ relation: 'person' }] },
-  })
+  const { data: owners } = usePropertyOwnerControllerFind(
+    { filter: { where: { propertyId }, include: [{ relation: 'person' }] } },
+    { query: { enabled: !!propertyId } }
+  )
+
+  const draftOwners = draft.owners.map((owner, index) => ({
+    ...owner,
+    id: String(index),
+    person: undefined,
+  }))
   const { mutateAsync: updateProperty } = usePropertyControllerUpdateById()
   const { mutateAsync: remove } = usePropertyOwnerControllerDeleteById()
 
@@ -32,10 +41,11 @@ export function usePropertyOwners(propertyId: string) {
   function addOwner() {
     if (!personId) return
 
-    const promise = updateProperty({
-      id: propertyId,
-      data: { owners: [{ personId, ownershipPercent: toNumberOrNull(percent) }] },
-    })
+    const owner = { personId, ownershipPercent: toNumberOrNull(percent) }
+
+    const promise = propertyId
+      ? updateProperty({ id: propertyId, data: { owners: [owner] } })
+      : Promise.resolve(setDraftBlock('owners', [...draft.owners, owner]))
 
     promisePopup(promise, {
       pending: t('toasts.owners.addPending'),
@@ -51,7 +61,11 @@ export function usePropertyOwners(propertyId: string) {
   }
 
   function removeOwner(id: string) {
-    promisePopup(remove({ id }), {
+    const promise = propertyId
+      ? remove({ id })
+      : Promise.resolve(setDraftBlock('owners', draft.owners.filter((_, index) => String(index) !== id)))
+
+    promisePopup(promise, {
       pending: t('toasts.owners.removePending'),
       success: () => {
         invalidate()
@@ -63,7 +77,7 @@ export function usePropertyOwners(propertyId: string) {
   }
 
   return {
-    owners: owners ?? [],
+    owners: propertyId ? (owners ?? []) : draftOwners,
     personId,
     setPersonId,
     percent,

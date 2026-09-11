@@ -10,6 +10,7 @@ import {
 } from '@/api/generated/api'
 import type { PropertyIndustrialAreaAreaType } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
+import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 
@@ -17,11 +18,17 @@ export function usePropertyIndustrialAreas(propertyId: string) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
+  const { draft, setDraftBlock } = usePropertyDraft()
   const [areaType, setAreaType] = useState<PropertyIndustrialAreaAreaType | ''>('')
   const [areaSqm, setAreaSqm] = useState('')
   const [heightM, setHeightM] = useState('')
 
-  const { data: areas } = usePropertyIndustrialAreaControllerFind({ filter: { where: { propertyId } } })
+  const { data: areas } = usePropertyIndustrialAreaControllerFind(
+    { filter: { where: { propertyId } } },
+    { query: { enabled: !!propertyId } }
+  )
+
+  const draftAreas = draft.industrialAreas.map((area, index) => ({ ...area, id: String(index) }))
   const { mutateAsync: create } = usePropertyIndustrialAreaControllerCreate()
   const { mutateAsync: remove } = usePropertyIndustrialAreaControllerDeleteById()
 
@@ -32,9 +39,11 @@ export function usePropertyIndustrialAreas(propertyId: string) {
   function addArea() {
     if (!areaType) return
 
-    const promise = create({
-      data: { propertyId, areaType, areaSqm: toNumberOrNull(areaSqm), heightM: toNumberOrNull(heightM) },
-    })
+    const area = { areaType, areaSqm: toNumberOrNull(areaSqm), heightM: toNumberOrNull(heightM) }
+
+    const promise = propertyId
+      ? create({ data: { ...area, propertyId } }).then(() => undefined)
+      : Promise.resolve(setDraftBlock('industrialAreas', [...draft.industrialAreas, area]))
 
     promisePopup(promise, {
       pending: t('toasts.industrialAreas.addPending'),
@@ -51,7 +60,13 @@ export function usePropertyIndustrialAreas(propertyId: string) {
   }
 
   function removeArea(id: string) {
-    promisePopup(remove({ id }), {
+    const promise = propertyId
+      ? remove({ id })
+      : Promise.resolve(
+          setDraftBlock('industrialAreas', draft.industrialAreas.filter((_, index) => String(index) !== id))
+        )
+
+    promisePopup(promise, {
       pending: t('toasts.industrialAreas.removePending'),
       success: () => {
         invalidate()
@@ -62,5 +77,5 @@ export function usePropertyIndustrialAreas(propertyId: string) {
     })
   }
 
-  return { areas: areas ?? [], areaType, setAreaType, areaSqm, setAreaSqm, heightM, setHeightM, addArea, removeArea }
+  return { areas: propertyId ? (areas ?? []) : draftAreas, areaType, setAreaType, areaSqm, setAreaSqm, heightM, setHeightM, addArea, removeArea }
 }
