@@ -70,7 +70,9 @@ function MapPicker({ latitude, longitude, onChange, className }: MapPickerProps)
     map.panTo(position)
   }, [map, latitude, longitude])
 
-  return <div ref={containerRef} className={className ?? 'h-96 w-full rounded-md ring-1 ring-border'} />
+  // z-0 força um stacking context: sem isso, os panes internos do
+  // Leaflet (z-index 200-700) vazam por cima de dropdowns/popovers da página
+  return <div ref={containerRef} className={className ?? 'relative z-0 h-96 w-full rounded-md ring-1 ring-border'} />
 }
 
 export default MapPicker
