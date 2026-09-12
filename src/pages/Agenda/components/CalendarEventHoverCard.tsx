@@ -107,7 +107,9 @@ function CalendarEventHoverCard({
         <CalendarEventDetails event={event} />
       </div>
     </div>,
-    document.body
+    // o portal precisa ficar dentro do root do React, senão os eventos de mouse
+    // não chegam aos handlers (o React delega no container do root, não no body)
+    document.getElementById('root') ?? document.body
   )
 }
 

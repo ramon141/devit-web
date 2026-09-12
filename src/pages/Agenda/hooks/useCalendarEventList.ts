@@ -2,6 +2,7 @@ import { useState } from 'react'
 import dayjs from 'dayjs'
 import { useCalendarEventControllerFind } from '@/api/generated/api'
 import { CalendarEventType } from '@/api/generated/models'
+import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { UserInfo } from '@/auth'
 
 const VISIBLE_USER_IDS_KEY = 'agenda.visibleUserIds'
@@ -44,6 +45,9 @@ export const emptyCalendarEventFilters: CalendarEventFilters = {
   search: '',
   visibleUserIds: [],
 }
+
+// referência fixa: um [] novo a cada render faria o FullCalendar recriar os eventos
+const EMPTY_EVENTS: CalendarEventWithRelations[] = []
 
 const CALL_TYPES = [CalendarEventType.call_scheduled, CalendarEventType.call_completed]
 
@@ -97,7 +101,7 @@ export function useCalendarEventList() {
   })
 
   return {
-    events: events ?? [],
+    events: events ?? EMPTY_EVENTS,
     isLoading,
     setRange,
     filters,

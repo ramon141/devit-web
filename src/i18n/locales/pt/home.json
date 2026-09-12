@@ -37,11 +37,52 @@
     "option": "Últimos {{days}} dias",
     "all": "Toda a agência"
   },
-  "indicatorsCard": {
-    "title": "Indicadores",
-    "description": "Estes indicadores ajudam a entender se você está usando o sistema de forma completa e eficaz. As porcentagens referem-se aos dados inseridos nos últimos 3 meses.",
-    "agency": "Agência",
-    "user": "Usuário",
-    "workflow": "Workflow"
+  "conversionFunnelCard": {
+    "title": "Funil de conversão",
+    "seriesName": "Leads",
+    "stage": {
+      "lead": "Lead",
+      "visit": "Visita",
+      "proposal": "Proposta",
+      "sale": "Venda"
+    }
+  },
+  "agentConversionCard": {
+    "title": "Conversão por corretor",
+    "empty": "Nenhum corretor com leads atribuídos.",
+    "detail": "{{converted}} de {{total}} leads convertidos"
+  },
+  "propertiesByStatusPurposeCard": {
+    "title": "Imóveis por tipo e status",
+    "byStatus": "Por status",
+    "byPurpose": "Por finalidade"
+  },
+  "avgTimeOnMarketCard": {
+    "title": "Tempo médio no mercado (dias)",
+    "toSale": "até a venda ({{count}} vendas)",
+    "toRent": "até a locação ({{count}} locações)"
+  },
+  "incompletePropertiesCard": {
+    "title": "Imóveis com cadastro incompleto",
+    "empty": "Nenhum imóvel com cadastro incompleto.",
+    "missingDescription": "Sem descrição",
+    "missingPhotos": "Sem fotos"
+  },
+  "agentRankingCard": {
+    "title": "Ranking de corretores",
+    "empty": "Nenhuma venda ou lead convertido ainda.",
+    "detail": "{{sales}} vendas · {{converted}} leads convertidos"
+  },
+  "appointmentsStatusCard": {
+    "title": "Agendamentos por situação",
+    "status": {
+      "scheduled": "Agendado",
+      "completed": "Concluído",
+      "cancelled": "Cancelado"
+    }
+  },
+  "upcomingRenewalsCard": {
+    "title": "Vencimentos de aluguel",
+    "empty": "Nenhum contrato vencendo nos próximos 30 dias."
   }
 }

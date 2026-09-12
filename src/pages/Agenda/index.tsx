@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import FullCalendar from '@fullcalendar/react'
@@ -30,6 +30,11 @@ import CalendarEventHoverCard from '@/pages/Agenda/components/CalendarEventHover
 import type { HoverCardState } from '@/pages/Agenda/components/CalendarEventHoverCard'
 import { getEventColor } from '@/pages/Agenda/utils/eventColors'
 
+// fora do componente: identidade estável, senão o FullCalendar recria os eventos a cada render
+function renderEventContent(arg: EventContentArg) {
+  return <CalendarEventChip arg={arg} />
+}
+
 function Agenda() {
   const { t, i18n } = useTranslation('agenda')
   const { events, setRange, filters, setFilters } = useCalendarEventList()
@@ -45,37 +50,52 @@ function Agenda() {
   const hoverOpenTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const overCard = useRef(false)
 
-  const calendarEvents = events.map((event) => ({
-    id: event.id,
-    title: event.title,
-    start: event.startAt,
-    end: event.endAt,
-    allDay: event.allDay ?? false,
-    backgroundColor: getEventColor(event),
-    borderColor: getEventColor(event),
-    textColor: '#fff',
-    extendedProps: { event },
-  }))
+  const calendarEvents = useMemo(
+    () =>
+      events.map((event) => ({
+        id: event.id,
+        title: event.title,
+        start: event.startAt,
+        end: event.endAt,
+        allDay: event.allDay ?? false,
+        backgroundColor: getEventColor(event),
+        borderColor: getEventColor(event),
+        textColor: '#fff',
+        extendedProps: { event },
+      })),
+    [events]
+  )
 
   // pequeno atraso pra dar tempo de levar o mouse do evento até o card
-  function scheduleHoverClose() {
+  const scheduleHoverClose = useCallback(() => {
+    // o mouseleave do evento chega depois do mouseenter do card; nesse caso não fecha
+    if (overCard.current) return
+
     clearTimeout(hoverOpenTimer.current)
     clearTimeout(hoverCloseTimer.current)
     hoverCloseTimer.current = setTimeout(() => setHoverCard(null), 200)
-  }
+  }, [])
 
-  function handleCardMouseEnter() {
+  // fechar pelo código não dispara mouseleave, então a flag precisa ser limpa aqui
+  const closeHoverCard = useCallback(() => {
+    overCard.current = false
+    clearTimeout(hoverOpenTimer.current)
+    clearTimeout(hoverCloseTimer.current)
+    setHoverCard(null)
+  }, [])
+
+  const handleCardMouseEnter = useCallback(() => {
     overCard.current = true
     clearTimeout(hoverOpenTimer.current)
     clearTimeout(hoverCloseTimer.current)
-  }
+  }, [])
 
-  function handleCardMouseLeave() {
+  const handleCardMouseLeave = useCallback(() => {
     overCard.current = false
     scheduleHoverClose()
-  }
+  }, [scheduleHoverClose])
 
-  function handleEventMouseEnter(arg: EventHoveringArg) {
+  const handleEventMouseEnter = useCallback((arg: EventHoveringArg) => {
     // com o mouse dentro do card, eventos por baixo não roubam o hover
     if (overCard.current) return
 
@@ -87,10 +107,10 @@ function Agenda() {
 
     // atraso na abertura: passar rápido por cima de um evento não troca o card
     hoverOpenTimer.current = setTimeout(() => setHoverCard({ event, rect }), 250)
-  }
+  }, [])
 
   function openEventForm(event: CalendarEventWithRelations) {
-    setHoverCard(null)
+    closeHoverCard()
     setEditingEvent(event)
     setFormOpen(true)
   }
@@ -100,11 +120,12 @@ function Agenda() {
   }
 
   function handleDatesSet(arg: DatesSetArg) {
-    setHoverCard(null)
+    closeHoverCard()
     setRange({ start: arg.start.toISOString(), end: arg.end.toISOString() })
   }
 
   function handleEventClick(arg: EventClickArg) {
+    closeHoverCard()
     setPreviewEvent(arg.event.extendedProps.event as CalendarEventWithRelations)
   }
 
@@ -161,7 +182,7 @@ function Agenda() {
           selectable
           dayMaxEvents
           eventDisplay="block"
-          eventContent={(arg: EventContentArg) => <CalendarEventChip arg={arg} />}
+          eventContent={renderEventContent}
           events={calendarEvents}
           datesSet={handleDatesSet}
           eventClick={handleEventClick}
@@ -182,7 +203,7 @@ function Agenda() {
         // ponytail: os anexos vivem dentro do modal de edição
         onAttachments={openEventForm}
         onDelete={(event) => {
-          setHoverCard(null)
+          closeHoverCard()
           setDeleteTarget(event)
         }}
       />

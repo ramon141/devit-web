@@ -23,22 +23,19 @@ function DonutChart({ labels, values, height = 260 }: DonutChartProps) {
     value: values[index],
   }))
 
+  function renderLegendLabel(value: string, entry: { payload?: { value?: number } }) {
+    return `${value} (${entry.payload?.value ?? 0})`
+  }
+
   return (
     <ResponsiveContainer width="100%" height={height}>
       <PieChart>
-        <Pie
-          data={data}
-          dataKey="value"
-          nameKey="name"
-          innerRadius="55%"
-          outerRadius="80%"
-          label
-        >
+        <Pie data={data} dataKey="value" nameKey="name" innerRadius="55%" outerRadius="80%">
           {data.map((entry, index) => (
             <Cell key={entry.name} fill={colors[index % colors.length]} />
           ))}
         </Pie>
-        <Legend verticalAlign="bottom" />
+        <Legend verticalAlign="bottom" formatter={renderLegendLabel} />
         <Tooltip />
       </PieChart>
     </ResponsiveContainer>

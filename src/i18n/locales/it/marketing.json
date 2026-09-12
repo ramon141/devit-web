@@ -132,6 +132,18 @@
     "read": "Lette",
     "empty": "Nessuna campagna inviata"
   },
+  "campaignDetailDialog": {
+    "title": "Dettaglio campagna",
+    "recipient": "Destinatario",
+    "status": "Stato",
+    "sentAt": "Data invio",
+    "readAt": "Letto",
+    "clickedAt": "Cliccato",
+    "content": "Contenuto",
+    "contentTitle": "Contenuto inviato",
+    "viewContent": "Visualizza",
+    "empty": "Nessun invio trovato per questa campagna"
+  },
   "sendCampaign": {
     "recipientsTitle": "Destinatari",
     "propertiesTitle": "Immobili da allegare",

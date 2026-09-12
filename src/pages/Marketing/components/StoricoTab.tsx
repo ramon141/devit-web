@@ -1,12 +1,15 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { MarketingCampaignControllerList200Item } from '@/api/generated/models'
 import { formatDate } from '@/utils/formatDate'
 import { useCampaignHistory } from '@/pages/Marketing/hooks/useCampaignHistory'
+import CampaignDetailDialog from '@/pages/Marketing/components/CampaignDetailDialog'
 
 function StoricoTab() {
   const { t } = useTranslation('marketing')
   const { campaigns, isLoading } = useCampaignHistory()
+  const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null)
 
   const columns: DataTableColumn<MarketingCampaignControllerList200Item>[] = [
     { header: t('storicoTab.campaign'), cell: (row) => row.campaignId ?? '—' },
@@ -19,13 +22,18 @@ function StoricoTab() {
   ]
 
   return (
-    <DataTable
-      columns={columns}
-      data={campaigns}
-      keyExtractor={(row) => row.campaignId ?? ''}
-      isLoading={isLoading}
-      emptyMessage={t('storicoTab.empty')}
-    />
+    <>
+      <DataTable
+        columns={columns}
+        data={campaigns}
+        keyExtractor={(row) => row.campaignId ?? ''}
+        isLoading={isLoading}
+        emptyMessage={t('storicoTab.empty')}
+        onRowClick={(row) => row.campaignId && setSelectedCampaignId(row.campaignId)}
+      />
+
+      <CampaignDetailDialog campaignId={selectedCampaignId} onClose={() => setSelectedCampaignId(null)} />
+    </>
   )
 }
 

@@ -7,7 +7,8 @@
  */
 import type { PropertyFilter } from './propertyFilter';
 
-export type PropertyControllerFindParams = {
+export type PropertyControllerExportParams = {
+format?: string;
 filter?: PropertyFilter;
 /**
  * Filtra imóveis com prestígio

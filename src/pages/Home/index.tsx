@@ -8,7 +8,14 @@ import TodayAppointmentsCard from '@/pages/Home/components/TodayAppointmentsCard
 import LeadsByStatusCard from '@/pages/Home/components/LeadsByStatusCard'
 import LeadsBySourceCard from '@/pages/Home/components/LeadsBySourceCard'
 import DashboardWindowSelect from '@/pages/Home/components/DashboardWindowSelect'
-import IndicatorsCard from '@/pages/Home/components/IndicatorsCard'
+import ConversionFunnelCard from '@/pages/Home/components/ConversionFunnelCard'
+import AgentConversionCard from '@/pages/Home/components/AgentConversionCard'
+import PropertiesByStatusPurposeCard from '@/pages/Home/components/PropertiesByStatusPurposeCard'
+import AvgTimeOnMarketCard from '@/pages/Home/components/AvgTimeOnMarketCard'
+import IncompletePropertiesCard from '@/pages/Home/components/IncompletePropertiesCard'
+import AgentRankingCard from '@/pages/Home/components/AgentRankingCard'
+import AppointmentsStatusCard from '@/pages/Home/components/AppointmentsStatusCard'
+import UpcomingRenewalsCard from '@/pages/Home/components/UpcomingRenewalsCard'
 
 const DORMANT_DAYS_KEY = 'dashboard.dormantDays'
 const DEFAULT_DORMANT_DAYS = 180
@@ -53,7 +60,6 @@ function Home() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        <IndicatorsCard />
         <TodayAppointmentsCard
           appointments={todayAppointments}
           isLoading={loadingAppointments}
@@ -70,6 +76,15 @@ function Home() {
         />
         <LeadsByStatusCard />
         <LeadsBySourceCard />
+
+        <ConversionFunnelCard />
+        <AgentConversionCard />
+        <PropertiesByStatusPurposeCard />
+        <AvgTimeOnMarketCard />
+        <IncompletePropertiesCard />
+        <AgentRankingCard />
+        <AppointmentsStatusCard />
+        <UpcomingRenewalsCard />
       </div>
     </AppLayout>
   )

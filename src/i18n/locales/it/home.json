@@ -37,11 +37,52 @@
     "option": "Ultimi {{days}} giorni",
     "all": "Tutta l'agenzia"
   },
-  "indicatorsCard": {
-    "title": "Indicatori",
-    "description": "Questi indicatori ti aiutano a capire se stai usando il gestionale in modo completo ed efficace. Le percentuali fanno riferimento ai dati inseriti negli ultimi 3 mesi.",
-    "agency": "Agenzia",
-    "user": "Utente",
-    "workflow": "Workflow"
+  "conversionFunnelCard": {
+    "title": "Imbuto di conversione",
+    "seriesName": "Lead",
+    "stage": {
+      "lead": "Lead",
+      "visit": "Visita",
+      "proposal": "Proposta",
+      "sale": "Vendita"
+    }
+  },
+  "agentConversionCard": {
+    "title": "Conversione per agente",
+    "empty": "Nessun agente con lead assegnati.",
+    "detail": "{{converted}} di {{total}} lead convertiti"
+  },
+  "propertiesByStatusPurposeCard": {
+    "title": "Immobili per tipologia e stato",
+    "byStatus": "Per stato",
+    "byPurpose": "Per finalità"
+  },
+  "avgTimeOnMarketCard": {
+    "title": "Tempo medio sul mercato (giorni)",
+    "toSale": "fino alla vendita ({{count}} vendite)",
+    "toRent": "fino alla locazione ({{count}} locazioni)"
+  },
+  "incompletePropertiesCard": {
+    "title": "Immobili con scheda incompleta",
+    "empty": "Nessun immobile con scheda incompleta.",
+    "missingDescription": "Senza descrizione",
+    "missingPhotos": "Senza foto"
+  },
+  "agentRankingCard": {
+    "title": "Classifica agenti",
+    "empty": "Nessuna vendita o lead convertito ancora.",
+    "detail": "{{sales}} vendite · {{converted}} lead convertiti"
+  },
+  "appointmentsStatusCard": {
+    "title": "Appuntamenti per stato",
+    "status": {
+      "scheduled": "Programmato",
+      "completed": "Concluso",
+      "cancelled": "Annullato"
+    }
+  },
+  "upcomingRenewalsCard": {
+    "title": "Scadenze locazioni",
+    "empty": "Nessun contratto in scadenza nei prossimi 30 giorni."
   }
 }

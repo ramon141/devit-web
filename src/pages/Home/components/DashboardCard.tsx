@@ -48,8 +48,8 @@ function DashboardCard({ title, count, isLoading = false, children }: DashboardC
         )}
       </CardHeader>
 
-      {/* grid-cols-1 = minmax(0,1fr): impede texto longo de esticar o card */}
-      <CardContent className="grid grid-cols-1 gap-1">
+      {/* grid-cols-1 = minmax(0,1fr): impede texto longo de esticar o card; max-h + overflow limita listas grandes */}
+      <CardContent className="grid max-h-[420px] grid-cols-1 gap-1 overflow-y-auto">
         {isLoading ? <DashboardCardSkeleton /> : children}
       </CardContent>
     </Card>

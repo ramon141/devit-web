@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { LayoutGridIcon, MapIcon, TableIcon } from 'lucide-react'
 import AppLayout from '@/components/layout/AppLayout'
 import ListToolbar from '@/components/ListToolbar'
+import ExportMenu from '@/components/ExportMenu'
 import TablePagination from '@/components/TablePagination'
 import { Button } from '@/components/ui/button'
 import { usePropertyList } from '@/pages/Imoveis/hooks/usePropertyList'
@@ -21,6 +22,7 @@ function Imoveis() {
   const [kindPickerOpen, setKindPickerOpen] = useState(false)
   const {
     properties,
+    where,
     isLoading,
     totalItems,
     pageSize,
@@ -44,6 +46,7 @@ function Imoveis() {
         searchPlaceholder={t('list.searchPlaceholder')}
         onNewClick={() => setKindPickerOpen(true)}
         newLabel={t('list.newLabel')}
+        actions={<ExportMenu path="/properties/export" params={{ filter: { where } }} />}
       />
 
       <PropertyKindPickerModal

@@ -132,6 +132,18 @@
     "read": "Lidas",
     "empty": "Nenhuma campanha enviada"
   },
+  "campaignDetailDialog": {
+    "title": "Detalhe da campanha",
+    "recipient": "Destinatário",
+    "status": "Status",
+    "sentAt": "Data de envio",
+    "readAt": "Lido em",
+    "clickedAt": "Clicado em",
+    "content": "Conteúdo",
+    "contentTitle": "Conteúdo enviado",
+    "viewContent": "Visualizar",
+    "empty": "Nenhum envio encontrado para esta campanha"
+  },
   "sendCampaign": {
     "recipientsTitle": "Destinatários",
     "propertiesTitle": "Imóveis a anexar",

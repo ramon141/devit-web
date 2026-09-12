@@ -148,6 +148,7 @@ export function usePropertyList() {
 
   return {
     properties,
+    where,
     isLoading,
     totalItems: countResult?.count ?? 0,
     pageSize: PAGE_SIZE,

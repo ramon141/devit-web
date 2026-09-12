@@ -42,6 +42,9 @@ import type {
   AddressControllerUpdateById422,
   AddressPartialExcludingCreatedAtUpdatedAt,
   AddressWithRelations,
+  AgendaReportControllerStatusSummary200Item,
+  AgendaReportControllerStatusSummary401,
+  AgendaReportControllerStatusSummaryParams,
   Attachment,
   AttachmentControllerCount401,
   AttachmentControllerCountParams,
@@ -379,11 +382,16 @@ import type {
   LeadPropertyPartial,
   LeadPropertyWithRelations,
   LeadWithRelations,
+  LeadsReportControllerByAgent200Item,
+  LeadsReportControllerByAgent401,
   LeadsReportControllerBySource200Item,
   LeadsReportControllerBySource401,
   LeadsReportControllerBySourceParams,
   LeadsReportControllerByStatus200Item,
   LeadsReportControllerByStatus401,
+  LeadsReportControllerFunnel200Item,
+  LeadsReportControllerFunnel401,
+  LeadsReportControllerFunnelParams,
   LeadsReportControllerTodayAppointments200Item,
   LeadsReportControllerTodayAppointments401,
   LoopbackCount,
@@ -544,9 +552,15 @@ import type {
   PersonPartialExcludingPhotoIdCreatedAtUpdatedAt,
   PersonWithRelations,
   PingResponse,
+  PropertiesReportControllerAvgTimeOnMarket200,
+  PropertiesReportControllerAvgTimeOnMarket401,
+  PropertiesReportControllerByStatusPurpose200,
+  PropertiesReportControllerByStatusPurpose401,
   PropertiesReportControllerDormant200Item,
   PropertiesReportControllerDormant401,
   PropertiesReportControllerDormantParams,
+  PropertiesReportControllerIncomplete200Item,
+  PropertiesReportControllerIncomplete401,
   PropertiesReportControllerRecent200Item,
   PropertiesReportControllerRecent401,
   PropertiesReportControllerRecentParams,
@@ -642,6 +656,7 @@ import type {
   PropertyControllerCreate422,
   PropertyControllerDeleteById401,
   PropertyControllerDeleteById404,
+  PropertyControllerExportParams,
   PropertyControllerFind401,
   PropertyControllerFindById401,
   PropertyControllerFindById404,
@@ -1152,6 +1167,8 @@ import type {
   SaleStatusHistoryPartial,
   SaleStatusHistoryWithRelations,
   SaleWithRelations,
+  SalesRentalsReportControllerByAgent200Item,
+  SalesRentalsReportControllerByAgent401,
   SalesRentalsReportControllerSalesByStatus200Item,
   SalesRentalsReportControllerSalesByStatus401,
   SalesRentalsReportControllerUpcomingRenewals200Item,
@@ -13994,6 +14011,95 @@ export function usePropertyControllerCount<TData = Awaited<ReturnType<typeof pro
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPropertyControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+export const propertyControllerExport = (
+    params?: PropertyControllerExportParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/properties/export`, method: 'GET',
+        params,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyControllerExportQueryKey = (params?: PropertyControllerExportParams,) => {
+    return [
+    `/properties/export`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyControllerExportQueryOptions = <TData = Awaited<ReturnType<typeof propertyControllerExport>>, TError = ErrorType<unknown>>(params?: PropertyControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyControllerExportQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyControllerExport>>> = ({ signal }) => propertyControllerExport(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyControllerExport>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyControllerExportQueryResult = NonNullable<Awaited<ReturnType<typeof propertyControllerExport>>>
+export type PropertyControllerExportQueryError = ErrorType<unknown>
+
+
+export function usePropertyControllerExport<TData = Awaited<ReturnType<typeof propertyControllerExport>>, TError = ErrorType<unknown>>(
+ params: undefined |  PropertyControllerExportParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerExport>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof propertyControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyControllerExport<TData = Awaited<ReturnType<typeof propertyControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PropertyControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerExport>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyControllerExport>>,
+          TError,
+          Awaited<ReturnType<typeof propertyControllerExport>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyControllerExport<TData = Awaited<ReturnType<typeof propertyControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PropertyControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function usePropertyControllerExport<TData = Awaited<ReturnType<typeof propertyControllerExport>>, TError = ErrorType<unknown>>(
+ params?: PropertyControllerExportParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerExport>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyControllerExportQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -29164,6 +29270,100 @@ export function useRentalContractControllerFind<TData = Awaited<ReturnType<typeo
 
 
 /**
+ * @summary Compromissos concluídos, cancelados e agendados
+ */
+export const agendaReportControllerStatusSummary = (
+    params?: AgendaReportControllerStatusSummaryParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<AgendaReportControllerStatusSummary200Item[]>(
+      {url: `/reports/agenda/status-summary`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getAgendaReportControllerStatusSummaryQueryKey = (params?: AgendaReportControllerStatusSummaryParams,) => {
+    return [
+    `/reports/agenda/status-summary`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getAgendaReportControllerStatusSummaryQueryOptions = <TData = Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError = ErrorType<AgendaReportControllerStatusSummary401>>(params?: AgendaReportControllerStatusSummaryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getAgendaReportControllerStatusSummaryQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>> = ({ signal }) => agendaReportControllerStatusSummary(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type AgendaReportControllerStatusSummaryQueryResult = NonNullable<Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>>
+export type AgendaReportControllerStatusSummaryQueryError = ErrorType<AgendaReportControllerStatusSummary401>
+
+
+export function useAgendaReportControllerStatusSummary<TData = Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError = ErrorType<AgendaReportControllerStatusSummary401>>(
+ params: undefined |  AgendaReportControllerStatusSummaryParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>,
+          TError,
+          Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAgendaReportControllerStatusSummary<TData = Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError = ErrorType<AgendaReportControllerStatusSummary401>>(
+ params?: AgendaReportControllerStatusSummaryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>,
+          TError,
+          Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useAgendaReportControllerStatusSummary<TData = Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError = ErrorType<AgendaReportControllerStatusSummary401>>(
+ params?: AgendaReportControllerStatusSummaryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Compromissos concluídos, cancelados e agendados
+ */
+
+export function useAgendaReportControllerStatusSummary<TData = Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError = ErrorType<AgendaReportControllerStatusSummary401>>(
+ params?: AgendaReportControllerStatusSummaryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof agendaReportControllerStatusSummary>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getAgendaReportControllerStatusSummaryQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Relatório de comunicações por canal e status
  */
 export const communicationsReportControllerByChannelStatus = (
@@ -29445,6 +29645,99 @@ export function useDashboardIndicatorsControllerIndicators<TData = Awaited<Retur
 
 
 /**
+ * @summary Taxa de conversão de leads por corretor
+ */
+export const leadsReportControllerByAgent = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadsReportControllerByAgent200Item[]>(
+      {url: `/reports/leads/by-agent`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getLeadsReportControllerByAgentQueryKey = () => {
+    return [
+    `/reports/leads/by-agent`
+    ] as const;
+    }
+
+    
+export const getLeadsReportControllerByAgentQueryOptions = <TData = Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError = ErrorType<LeadsReportControllerByAgent401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getLeadsReportControllerByAgentQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadsReportControllerByAgent>>> = ({ signal }) => leadsReportControllerByAgent(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type LeadsReportControllerByAgentQueryResult = NonNullable<Awaited<ReturnType<typeof leadsReportControllerByAgent>>>
+export type LeadsReportControllerByAgentQueryError = ErrorType<LeadsReportControllerByAgent401>
+
+
+export function useLeadsReportControllerByAgent<TData = Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError = ErrorType<LeadsReportControllerByAgent401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadsReportControllerByAgent>>,
+          TError,
+          Awaited<ReturnType<typeof leadsReportControllerByAgent>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadsReportControllerByAgent<TData = Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError = ErrorType<LeadsReportControllerByAgent401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadsReportControllerByAgent>>,
+          TError,
+          Awaited<ReturnType<typeof leadsReportControllerByAgent>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadsReportControllerByAgent<TData = Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError = ErrorType<LeadsReportControllerByAgent401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Taxa de conversão de leads por corretor
+ */
+
+export function useLeadsReportControllerByAgent<TData = Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError = ErrorType<LeadsReportControllerByAgent401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerByAgent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getLeadsReportControllerByAgentQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Relatório de leads por origem
  */
 export const leadsReportControllerBySource = (
@@ -29632,6 +29925,100 @@ export function useLeadsReportControllerByStatus<TData = Awaited<ReturnType<type
 
 
 /**
+ * @summary Funil de conversão: lead → visita → proposta → venda
+ */
+export const leadsReportControllerFunnel = (
+    params?: LeadsReportControllerFunnelParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadsReportControllerFunnel200Item[]>(
+      {url: `/reports/leads/funnel`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getLeadsReportControllerFunnelQueryKey = (params?: LeadsReportControllerFunnelParams,) => {
+    return [
+    `/reports/leads/funnel`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getLeadsReportControllerFunnelQueryOptions = <TData = Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError = ErrorType<LeadsReportControllerFunnel401>>(params?: LeadsReportControllerFunnelParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getLeadsReportControllerFunnelQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadsReportControllerFunnel>>> = ({ signal }) => leadsReportControllerFunnel(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type LeadsReportControllerFunnelQueryResult = NonNullable<Awaited<ReturnType<typeof leadsReportControllerFunnel>>>
+export type LeadsReportControllerFunnelQueryError = ErrorType<LeadsReportControllerFunnel401>
+
+
+export function useLeadsReportControllerFunnel<TData = Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError = ErrorType<LeadsReportControllerFunnel401>>(
+ params: undefined |  LeadsReportControllerFunnelParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadsReportControllerFunnel>>,
+          TError,
+          Awaited<ReturnType<typeof leadsReportControllerFunnel>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadsReportControllerFunnel<TData = Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError = ErrorType<LeadsReportControllerFunnel401>>(
+ params?: LeadsReportControllerFunnelParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadsReportControllerFunnel>>,
+          TError,
+          Awaited<ReturnType<typeof leadsReportControllerFunnel>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadsReportControllerFunnel<TData = Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError = ErrorType<LeadsReportControllerFunnel401>>(
+ params?: LeadsReportControllerFunnelParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Funil de conversão: lead → visita → proposta → venda
+ */
+
+export function useLeadsReportControllerFunnel<TData = Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError = ErrorType<LeadsReportControllerFunnel401>>(
+ params?: LeadsReportControllerFunnelParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadsReportControllerFunnel>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getLeadsReportControllerFunnelQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Compromissos da agenda de hoje
  */
 export const leadsReportControllerTodayAppointments = (
@@ -29712,6 +30099,192 @@ export function useLeadsReportControllerTodayAppointments<TData = Awaited<Return
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getLeadsReportControllerTodayAppointmentsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Tempo médio no mercado até vender ou alugar
+ */
+export const propertiesReportControllerAvgTimeOnMarket = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertiesReportControllerAvgTimeOnMarket200>(
+      {url: `/reports/properties/avg-time-on-market`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertiesReportControllerAvgTimeOnMarketQueryKey = () => {
+    return [
+    `/reports/properties/avg-time-on-market`
+    ] as const;
+    }
+
+    
+export const getPropertiesReportControllerAvgTimeOnMarketQueryOptions = <TData = Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError = ErrorType<PropertiesReportControllerAvgTimeOnMarket401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertiesReportControllerAvgTimeOnMarketQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>> = ({ signal }) => propertiesReportControllerAvgTimeOnMarket(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertiesReportControllerAvgTimeOnMarketQueryResult = NonNullable<Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>>
+export type PropertiesReportControllerAvgTimeOnMarketQueryError = ErrorType<PropertiesReportControllerAvgTimeOnMarket401>
+
+
+export function usePropertiesReportControllerAvgTimeOnMarket<TData = Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError = ErrorType<PropertiesReportControllerAvgTimeOnMarket401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerAvgTimeOnMarket<TData = Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError = ErrorType<PropertiesReportControllerAvgTimeOnMarket401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerAvgTimeOnMarket<TData = Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError = ErrorType<PropertiesReportControllerAvgTimeOnMarket401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Tempo médio no mercado até vender ou alugar
+ */
+
+export function usePropertiesReportControllerAvgTimeOnMarket<TData = Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError = ErrorType<PropertiesReportControllerAvgTimeOnMarket401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerAvgTimeOnMarket>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertiesReportControllerAvgTimeOnMarketQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Imóveis agrupados por status e por finalidade
+ */
+export const propertiesReportControllerByStatusPurpose = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertiesReportControllerByStatusPurpose200>(
+      {url: `/reports/properties/by-status-purpose`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertiesReportControllerByStatusPurposeQueryKey = () => {
+    return [
+    `/reports/properties/by-status-purpose`
+    ] as const;
+    }
+
+    
+export const getPropertiesReportControllerByStatusPurposeQueryOptions = <TData = Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError = ErrorType<PropertiesReportControllerByStatusPurpose401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertiesReportControllerByStatusPurposeQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>> = ({ signal }) => propertiesReportControllerByStatusPurpose(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertiesReportControllerByStatusPurposeQueryResult = NonNullable<Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>>
+export type PropertiesReportControllerByStatusPurposeQueryError = ErrorType<PropertiesReportControllerByStatusPurpose401>
+
+
+export function usePropertiesReportControllerByStatusPurpose<TData = Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError = ErrorType<PropertiesReportControllerByStatusPurpose401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerByStatusPurpose<TData = Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError = ErrorType<PropertiesReportControllerByStatusPurpose401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerByStatusPurpose<TData = Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError = ErrorType<PropertiesReportControllerByStatusPurpose401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Imóveis agrupados por status e por finalidade
+ */
+
+export function usePropertiesReportControllerByStatusPurpose<TData = Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError = ErrorType<PropertiesReportControllerByStatusPurpose401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerByStatusPurpose>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertiesReportControllerByStatusPurposeQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -29806,6 +30379,99 @@ export function usePropertiesReportControllerDormant<TData = Awaited<ReturnType<
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPropertiesReportControllerDormantQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Imóveis com cadastro incompleto (sem descrição ou sem fotos)
+ */
+export const propertiesReportControllerIncomplete = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertiesReportControllerIncomplete200Item[]>(
+      {url: `/reports/properties/incomplete`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertiesReportControllerIncompleteQueryKey = () => {
+    return [
+    `/reports/properties/incomplete`
+    ] as const;
+    }
+
+    
+export const getPropertiesReportControllerIncompleteQueryOptions = <TData = Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError = ErrorType<PropertiesReportControllerIncomplete401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertiesReportControllerIncompleteQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>> = ({ signal }) => propertiesReportControllerIncomplete(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertiesReportControllerIncompleteQueryResult = NonNullable<Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>>
+export type PropertiesReportControllerIncompleteQueryError = ErrorType<PropertiesReportControllerIncomplete401>
+
+
+export function usePropertiesReportControllerIncomplete<TData = Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError = ErrorType<PropertiesReportControllerIncomplete401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerIncomplete<TData = Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError = ErrorType<PropertiesReportControllerIncomplete401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerIncomplete<TData = Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError = ErrorType<PropertiesReportControllerIncomplete401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Imóveis com cadastro incompleto (sem descrição ou sem fotos)
+ */
+
+export function usePropertiesReportControllerIncomplete<TData = Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError = ErrorType<PropertiesReportControllerIncomplete401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncomplete>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertiesReportControllerIncompleteQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -29994,6 +30660,99 @@ export function useSalesRentalsReportControllerUpcomingRenewals<TData = Awaited<
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getSalesRentalsReportControllerUpcomingRenewalsQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Ranking de corretores por vendas fechadas e leads convertidos
+ */
+export const salesRentalsReportControllerByAgent = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<SalesRentalsReportControllerByAgent200Item[]>(
+      {url: `/reports/sales/by-agent`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getSalesRentalsReportControllerByAgentQueryKey = () => {
+    return [
+    `/reports/sales/by-agent`
+    ] as const;
+    }
+
+    
+export const getSalesRentalsReportControllerByAgentQueryOptions = <TData = Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError = ErrorType<SalesRentalsReportControllerByAgent401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getSalesRentalsReportControllerByAgentQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>> = ({ signal }) => salesRentalsReportControllerByAgent(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type SalesRentalsReportControllerByAgentQueryResult = NonNullable<Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>>
+export type SalesRentalsReportControllerByAgentQueryError = ErrorType<SalesRentalsReportControllerByAgent401>
+
+
+export function useSalesRentalsReportControllerByAgent<TData = Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError = ErrorType<SalesRentalsReportControllerByAgent401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>,
+          TError,
+          Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useSalesRentalsReportControllerByAgent<TData = Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError = ErrorType<SalesRentalsReportControllerByAgent401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>,
+          TError,
+          Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useSalesRentalsReportControllerByAgent<TData = Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError = ErrorType<SalesRentalsReportControllerByAgent401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Ranking de corretores por vendas fechadas e leads convertidos
+ */
+
+export function useSalesRentalsReportControllerByAgent<TData = Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError = ErrorType<SalesRentalsReportControllerByAgent401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof salesRentalsReportControllerByAgent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getSalesRentalsReportControllerByAgentQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
