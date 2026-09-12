@@ -1,4 +1,4 @@
-import { Controller } from 'react-hook-form'
+import { Controller, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
@@ -15,7 +15,9 @@ type PropertyLocationDetailSectionProps = {
 function PropertyLocationDetailSection({ propertyId }: PropertyLocationDetailSectionProps) {
   const { t } = useTranslation('imoveis')
   const { form, isLoading, isSubmitting, onSubmit } = usePropertyLocationDetailForm(propertyId)
-  const { register, control, watch, setValue } = form
+  const { register, control, setValue } = form
+  const latitude = useWatch({ control, name: 'latitude' })
+  const longitude = useWatch({ control, name: 'longitude' })
 
   function handleMapSelect(coords: { latitude: number; longitude: number }) {
     setValue('latitude', coords.latitude.toFixed(6), { shouldDirty: true })
@@ -29,17 +31,18 @@ function PropertyLocationDetailSection({ propertyId }: PropertyLocationDetailSec
       <Separator className="sm:col-span-2" />
       <p className="text-sm font-medium sm:col-span-2">{t('scheda.locationDetailSection.title')}</p>
 
+      <PropertyLocationMapField
+        latitude={latitude}
+        longitude={longitude}
+        onSelect={handleMapSelect}
+      />
+
       <FormFieldWrapper label={t('scheda.locationDetailSection.latitudeLabel')}>
         <Input {...register('latitude')} type="number" step="0.000001" />
       </FormFieldWrapper>
       <FormFieldWrapper label={t('scheda.locationDetailSection.longitudeLabel')}>
         <Input {...register('longitude')} type="number" step="0.000001" />
       </FormFieldWrapper>
-      <PropertyLocationMapField
-        latitude={watch('latitude')}
-        longitude={watch('longitude')}
-        onSelect={handleMapSelect}
-      />
 
       <FormFieldWrapper label={t('scheda.locationDetailSection.positionLabel')}>
         <Input {...register('position')} placeholder={t('scheda.locationDetailSection.positionPlaceholder')} />

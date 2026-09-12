@@ -70,7 +70,7 @@ function MapPicker({ latitude, longitude, onChange, className }: MapPickerProps)
     map.panTo(position)
   }, [map, latitude, longitude])
 
-  return <div ref={containerRef} className={className ?? 'h-72 w-full rounded-md ring-1 ring-border'} />
+  return <div ref={containerRef} className={className ?? 'h-96 w-full rounded-md ring-1 ring-border'} />
 }
 
 export default MapPicker

@@ -28,7 +28,16 @@ export function useLeafletMap({ center, zoom }: UseLeafletMapOptions = {}) {
 
     setMap(instance)
 
+    // Se o container nascer escondido (aba, step de wizard, modal
+    // animando), o Leaflet mede 0x0 e só baixa 1 tile. ResizeObserver
+    // corrige assim que o container ganhar tamanho real.
+    const resizeObserver = new ResizeObserver(() => {
+      instance.invalidateSize()
+    })
+    resizeObserver.observe(container)
+
     return () => {
+      resizeObserver.disconnect()
       instance.remove()
       setMap(null)
     }
