@@ -12,7 +12,7 @@ import BranchList from '@/pages/Site/Contatti/components/BranchList'
 
 function Contatti() {
   const { t } = useTranslation('site')
-  const { form, isSubmitting, onSubmit } = useContattiForm()
+  const { form, formKey, isSubmitting, onSubmit } = useContattiForm()
   const { register, control, formState } = form
   const { errors } = formState
 
@@ -31,7 +31,11 @@ function Contatti() {
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.3fr_1fr]">
-          <form onSubmit={onSubmit} className="flex flex-col gap-5 rounded-xl bg-card p-6 shadow-sm sm:p-8">
+          <form
+            key={formKey}
+            onSubmit={onSubmit}
+            className="flex flex-col gap-5 rounded-xl bg-card p-6 shadow-sm sm:p-8"
+          >
             <div>
               <Label htmlFor="name">{t('contatti.nameLabel')}</Label>
               <Input id="name" className="mt-1.5" {...register('name')} />

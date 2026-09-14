@@ -1,4 +1,5 @@
 import type { TFunction } from 'i18next'
+import dayjs from 'dayjs'
 import { RefreshCwIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -8,7 +9,7 @@ import { formatAmount } from '@/utils/formatAmount'
 import { formatDate } from '@/utils/formatDate'
 
 function isOverdue(dueDate?: string) {
-  return !!dueDate && new Date(dueDate) < new Date(new Date().toDateString())
+  return !!dueDate && dayjs(dueDate).isBefore(dayjs(), 'day')
 }
 
 type BuildScadenziarioTableColumnsProps = {

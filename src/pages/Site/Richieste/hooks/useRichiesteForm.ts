@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -29,6 +29,9 @@ export function useRichiesteForm() {
   const { t } = useTranslation('site')
   const { promisePopup } = usePromisePopup()
   const { mutateAsync, isPending } = usePublicLeadControllerCreate()
+  // Key do <form>: forçar remontagem no sucesso, pois o reset do RHF não
+  // limpa visualmente os inputs (ref interna do Field do base-ui prevalece)
+  const [formKey, setFormKey] = useState(0)
 
   const richiesteSchema = useMemo(() => createRichiesteSchema(t), [t])
 
@@ -54,6 +57,7 @@ export function useRichiesteForm() {
       pending: t('richieste.toastPending'),
       success: () => {
         form.reset(emptyValues)
+        setFormKey((key) => key + 1)
         return t('richieste.toastSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
@@ -63,6 +67,7 @@ export function useRichiesteForm() {
 
   return {
     form,
+    formKey,
     isSubmitting: isPending,
     onSubmit: form.handleSubmit(onSubmit),
   }

@@ -93,7 +93,8 @@ export function usePropertyCommercialForm(propertyId: string) {
     const cleaned = emptyStringsToNull(values)
     const data = {
       ...cleaned,
-      scope: cleaned.scope as PropertyCommercialDetailPartialScope,
+      // scope é enum: a API rejeita null, então campo vazio precisa ser omitido (undefined)
+      scope: values.scope ? (values.scope as PropertyCommercialDetailPartialScope) : undefined,
       activityValue: toNumberOrNull(values.activityValue),
       averageRevenueFrom: toNumberOrNull(values.averageRevenueFrom),
       averageRevenueTo: toNumberOrNull(values.averageRevenueTo),

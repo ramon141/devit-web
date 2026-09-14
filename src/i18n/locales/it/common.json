@@ -59,6 +59,10 @@
   "selectField": {
     "placeholder": "Seleziona"
   },
+  "multiSelectField": {
+    "placeholder": "Seleziona",
+    "remove": "Rimuovi"
+  },
   "tablePagination": {
     "summary": "Pagina {{page}} di {{totalPages}} · {{totalItems}} risultati"
   },

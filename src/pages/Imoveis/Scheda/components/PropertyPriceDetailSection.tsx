@@ -1,19 +1,19 @@
-import { Controller } from 'react-hook-form'
+import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
-import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
-import { usePropertyPriceDetailForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyPriceDetailForm'
+import type { PriceDetailFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyPriceDetailForm'
 
 type PropertyPriceDetailSectionProps = {
-  propertyId: string
+  form: UseFormReturn<PriceDetailFormValues>
 }
 
-function PropertyPriceDetailSection({ propertyId }: PropertyPriceDetailSectionProps) {
+// Campos de "opções de preço": sem <form>/botão próprio, o submit é
+// disparado junto com o botão "Próximo" do wizard (ver PropertyPriceTab)
+function PropertyPriceDetailSection({ form }: PropertyPriceDetailSectionProps) {
   const { t } = useTranslation('imoveis')
-  const { form, isLoading, isSubmitting, onSubmit } = usePropertyPriceDetailForm(propertyId)
   const { register, control } = form
 
   const flagFields = [
@@ -25,10 +25,8 @@ function PropertyPriceDetailSection({ propertyId }: PropertyPriceDetailSectionPr
     { name: 'auction', label: t('scheda.priceDetailSection.flags.auction') },
   ] as const
 
-  if (isLoading) return null
-
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
+    <div className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
       <Separator className="sm:col-span-2" />
       <p className="text-sm font-medium sm:col-span-2">{t('scheda.priceDetailSection.title')}</p>
 
@@ -51,11 +49,7 @@ function PropertyPriceDetailSection({ propertyId }: PropertyPriceDetailSectionPr
           />
         ))}
       </div>
-
-      <div className="flex justify-end sm:col-span-2">
-        <Button type="submit" disabled={isSubmitting}>{t('scheda.priceDetailSection.save')}</Button>
-      </div>
-    </form>
+    </div>
   )
 }
 

@@ -10,7 +10,7 @@ import { useRichiesteForm } from '@/pages/Site/Richieste/hooks/useRichiesteForm'
 
 function Richieste() {
   const { t } = useTranslation('site')
-  const { form, isSubmitting, onSubmit } = useRichiesteForm()
+  const { form, formKey, isSubmitting, onSubmit } = useRichiesteForm()
   const { register, control, watch, formState } = form
   const { errors } = formState
   const requestType = watch('requestType')
@@ -23,7 +23,7 @@ function Richieste() {
         {t('richieste.intro')}
       </p>
 
-      <form onSubmit={onSubmit} className="mt-8 space-y-5">
+      <form key={formKey} onSubmit={onSubmit} className="mt-8 space-y-5">
         <div className="flex gap-2">
           <Controller
             control={control}

@@ -4,6 +4,7 @@ import type { FormEvent } from 'react'
 import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import InputMoney from '@/components/InputMoney'
 import PropertyPriceDetailSection from '@/pages/Imoveis/Scheda/components/PropertyPriceDetailSection'
+import { usePropertyPriceDetailForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyPriceDetailForm'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyPriceTabProps = {
@@ -20,35 +21,41 @@ function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId }: Property
   const rentPrice = useWatch({ control, name: 'rentPrice' })
   const condoFee = useWatch({ control, name: 'condoFee' })
 
+  const priceDetail = usePropertyPriceDetailForm(propertyId ?? '')
+
+  // Um único "Próximo" salva o form principal e as opções de preço juntos
+  function handleSubmit(event: FormEvent) {
+    priceDetail.onSubmit(event)
+    onSubmit(event)
+  }
+
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
-        <InputMoney
-          name="salePrice"
-          label={t('priceTab.salePriceLabel')}
-          value={salePrice}
-          setValue={(value) => setValue('salePrice', value)}
-        />
+    <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
+      <InputMoney
+        name="salePrice"
+        label={t('priceTab.salePriceLabel')}
+        value={salePrice}
+        setValue={(value) => setValue('salePrice', value)}
+      />
 
-        <InputMoney
-          name="rentPrice"
-          label={t('priceTab.rentPriceLabel')}
-          value={rentPrice}
-          setValue={(value) => setValue('rentPrice', value)}
-        />
+      <InputMoney
+        name="rentPrice"
+        label={t('priceTab.rentPriceLabel')}
+        value={rentPrice}
+        setValue={(value) => setValue('rentPrice', value)}
+      />
 
-        <InputMoney
-          name="condoFee"
-          label={t('priceTab.condoFeeLabel')}
-          value={condoFee}
-          setValue={(value) => setValue('condoFee', value)}
-        />
+      <InputMoney
+        name="condoFee"
+        label={t('priceTab.condoFeeLabel')}
+        value={condoFee}
+        setValue={(value) => setValue('condoFee', value)}
+      />
 
-      <PropertyFormFooter isSubmitting={isSubmitting} />
-      </form>
+      {!priceDetail.isLoading && <PropertyPriceDetailSection form={priceDetail.form} />}
 
-      <PropertyPriceDetailSection propertyId={propertyId ?? ''} />
-    </div>
+      <PropertyFormFooter isSubmitting={isSubmitting || priceDetail.isSubmitting} />
+    </form>
   )
 }
 

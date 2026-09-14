@@ -51,7 +51,8 @@ function SelectField({
             icon={showClear ? <span className="size-4" /> : undefined}
           >
             <SelectValue placeholder={resolvedPlaceholder}>
-              {(selected: string) => options.find((option) => option.value === selected)?.label}
+              {(selected: string) =>
+                options.find((option) => option.value === selected)?.label ?? resolvedPlaceholder}
             </SelectValue>
           </SelectTrigger>
           <SelectContent alignItemWithTrigger={false}>

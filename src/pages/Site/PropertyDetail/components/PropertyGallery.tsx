@@ -18,7 +18,10 @@ function sortPhotos(
 function PropertyGallery({ photos }: PropertyGalleryProps) {
   const { t } = useTranslation('site')
 
-  if (!photos || photos.length === 0) {
+  // Foto sem url (attachment quebrado/sem upload) não pode virar <img src="">
+  const validPhotos = (photos ?? []).filter((photo) => !!photo.url)
+
+  if (validPhotos.length === 0) {
     return (
       <div className="flex h-64 items-center justify-center rounded-xl bg-muted text-sm text-muted-foreground">
         {t('propertyGallery.noPhoto')}
@@ -26,7 +29,7 @@ function PropertyGallery({ photos }: PropertyGalleryProps) {
     )
   }
 
-  const sorted = sortPhotos(photos)
+  const sorted = sortPhotos(validPhotos)
   const cover = sorted[0]
   const rest = sorted.slice(1)
 
