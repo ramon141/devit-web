@@ -25,37 +25,41 @@ function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerF
 
   return (
     <>
-      <Controller
-        control={control}
-        name="propertyId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('propertyBuyerFields.propertyLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={propertyOptions}
-            placeholder={t('propertyBuyerFields.propertyPlaceholder')}
-            searchPlaceholder={t('propertyBuyerFields.propertySearchPlaceholder')}
-            error={errors.propertyId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-propertyId">
+        <Controller
+          control={control}
+          name="propertyId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('propertyBuyerFields.propertyLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={propertyOptions}
+              placeholder={t('propertyBuyerFields.propertyPlaceholder')}
+              searchPlaceholder={t('propertyBuyerFields.propertySearchPlaceholder')}
+              error={errors.propertyId?.message}
+            />
+          )}
+        />
+      </div>
 
-      <Controller
-        control={control}
-        name="buyerId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('propertyBuyerFields.buyerLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={buyerOptions}
-            placeholder={t('propertyBuyerFields.buyerPlaceholder')}
-            searchPlaceholder={t('propertyBuyerFields.buyerSearchPlaceholder')}
-            error={errors.buyerId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-buyerId">
+        <Controller
+          control={control}
+          name="buyerId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('propertyBuyerFields.buyerLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={buyerOptions}
+              placeholder={t('propertyBuyerFields.buyerPlaceholder')}
+              searchPlaceholder={t('propertyBuyerFields.buyerSearchPlaceholder')}
+              error={errors.buyerId?.message}
+            />
+          )}
+        />
+      </div>
     </>
   )
 }

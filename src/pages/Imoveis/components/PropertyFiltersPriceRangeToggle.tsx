@@ -20,7 +20,7 @@ function PropertyFiltersPriceRangeToggle({
 
   return (
     <>
-      <FormFieldWrapper label={t('filters.priceFromLabel')}>
+      <FormFieldWrapper id="proprieta-priceMin-filter" label={t('filters.priceFromLabel')}>
         <Input
           value={filters.priceMin}
           onChange={(event) => update({ priceMin: event.target.value })}
@@ -29,7 +29,7 @@ function PropertyFiltersPriceRangeToggle({
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.priceToLabel')}>
+      <FormFieldWrapper id="proprieta-priceMax-filter" label={t('filters.priceToLabel')}>
         <Input
           value={filters.priceMax}
           onChange={(event) => update({ priceMax: event.target.value })}
@@ -38,7 +38,13 @@ function PropertyFiltersPriceRangeToggle({
         />
       </FormFieldWrapper>
 
-      <Button type="button" variant="outline" className="gap-1.5" onClick={onToggleAdvanced}>
+      <Button
+        id="proprieta-advanced-filters-btn"
+        type="button"
+        variant="outline"
+        className="gap-1.5"
+        onClick={onToggleAdvanced}
+      >
         <SlidersHorizontalIcon className="size-4" />
         {t('filters.advancedFilters')}
       </Button>

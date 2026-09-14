@@ -8,6 +8,7 @@ type FormModalFooterProps = {
   submitLabel?: string
   submitVariant?: 'default' | 'destructive'
   className?: string
+  id?: string
 }
 
 function FormModalFooter({
@@ -16,12 +17,13 @@ function FormModalFooter({
   submitLabel,
   submitVariant = 'default',
   className,
+  id,
 }: FormModalFooterProps) {
   const { t } = useTranslation('common')
   const resolvedSubmitLabel = submitLabel ?? t('formModalFooter.save')
 
   return (
-    <div className={cn('flex justify-end gap-2', className)}>
+    <div id={id} className={cn('flex justify-end gap-2', className)}>
       <Button type="button" variant="outline" onClick={onCancel}>
         {t('formModalFooter.cancel')}
       </Button>

@@ -5,5 +5,10 @@
     "breadcrumb": "Notifiche",
     "emptyState": "Nessuna notifica.",
     "markAsRead": "Segna come letta"
+  },
+  "tour": {
+    "title": { "title": "Notifiche", "content": "Qui vedi tutti gli avvisi relativi alla tua attività." },
+    "list": { "title": "Elenco notifiche", "content": "Ogni notifica mostra il tipo, il titolo, il messaggio e la data di creazione." },
+    "markRead": { "title": "Segna come letta", "content": "Clicca qui per segnare una notifica non letta come letta." }
   }
 }

@@ -11,7 +11,7 @@ function SchedaAgenda({ personId }: SchedaAgendaProps) {
   const { participants } = usePersonEvents(personId)
 
   return (
-    <div className="grid gap-2">
+    <div id="cliente-scheda-agenda" className="grid gap-2">
       {participants.length === 0 && (
         <p className="text-sm text-muted-foreground">{t('schedaAgenda.empty')}</p>
       )}

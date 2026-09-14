@@ -168,5 +168,13 @@
     "lastResult": "Último envio: {{sent}} enviadas, {{failed}} falharam, {{skipped}} ignoradas",
     "missingEmail": "Sem e-mail",
     "missingPhone": "Sem telefone"
+  },
+  "tour": {
+    "title": { "title": "Marketing", "content": "Aqui você acompanha as comunicações enviadas aos clientes por e-mail e WhatsApp." },
+    "dashboardTab": { "title": "Painel", "content": "Mostra o status dos canais de e-mail e WhatsApp." },
+    "inviaTab": { "title": "Enviar campanha", "content": "Envie uma nova campanha de e-mail ou WhatsApp para seus contatos." },
+    "storicoTab": { "title": "Histórico", "content": "Consulte o histórico de campanhas já enviadas." },
+    "modelliTab": { "title": "Modelos", "content": "Gerencie os modelos de mensagem reutilizáveis." },
+    "rimozioniTab": { "title": "Descadastros", "content": "Veja quem solicitou não receber mais comunicações." }
   }
 }

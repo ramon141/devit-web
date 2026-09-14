@@ -24,29 +24,29 @@ function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId }: Pr
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
-        <FormFieldWrapper label={t('descriptionTab.areaLabel')} error={errors.areaSqm?.message}>
+        <FormFieldWrapper id="property-field-areaSqm" label={t('descriptionTab.areaLabel')} error={errors.areaSqm?.message}>
           <ControlledInput control={control} name="areaSqm" type="number" placeholder="90" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('descriptionTab.bedroomsLabel')} error={errors.bedrooms?.message}>
+        <FormFieldWrapper id="property-field-bedrooms" label={t('descriptionTab.bedroomsLabel')} error={errors.bedrooms?.message}>
           <ControlledInput control={control} name="bedrooms" type="number" placeholder="2" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('descriptionTab.bathroomsLabel')} error={errors.bathrooms?.message}>
+        <FormFieldWrapper id="property-field-bathrooms" label={t('descriptionTab.bathroomsLabel')} error={errors.bathrooms?.message}>
           <ControlledInput control={control} name="bathrooms" type="number" placeholder="1" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('descriptionTab.parkingLabel')} error={errors.parkingSpots?.message}>
+        <FormFieldWrapper id="property-field-parkingSpots" label={t('descriptionTab.parkingLabel')} error={errors.parkingSpots?.message}>
           <ControlledInput control={control} name="parkingSpots" type="number" placeholder="1" />
         </FormFieldWrapper>
 
         <div className="sm:col-span-2">
-          <FormFieldWrapper label={t('descriptionTab.descriptionLabel')} error={errors.description?.message}>
+          <FormFieldWrapper id="property-field-description" label={t('descriptionTab.descriptionLabel')} error={errors.description?.message}>
             <ControlledTextarea control={control} name="description" rows={4} />
           </FormFieldWrapper>
         </div>
 
-      <PropertyFormFooter isSubmitting={isSubmitting} />
+      <PropertyFormFooter id="property-tab-descrizione-actions" isSubmitting={isSubmitting} />
       </form>
 
       <Separator className="sm:col-span-2" />

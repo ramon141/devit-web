@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
+import JoyrideWrapper from '@/components/JoyrideWrapper'
+import TourFab from '@/components/TourFab'
+import { useHomeTour } from '@/pages/Home/hooks/useHomeTour'
 import { useDashboardReports } from '@/pages/Home/hooks/useDashboardReports'
 import DormantPropertiesCard from '@/pages/Home/components/DormantPropertiesCard'
 import RecentPropertiesCard from '@/pages/Home/components/RecentPropertiesCard'
@@ -39,6 +42,7 @@ function Home() {
     todayAppointments,
     loadingAppointments,
   } = useDashboardReports(dormantDays)
+  const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour } = useHomeTour()
 
   function handleWindowChange(days: number) {
     setDormantDays(days)
@@ -55,36 +59,71 @@ function Home() {
       description={t('page.description')}
       breadcrumbItems={[{ label: t('page.breadcrumb') }]}
     >
-      <div className="mb-4 flex justify-end">
+      <JoyrideWrapper
+        steps={steps}
+        run={run}
+        stepIndex={stepIndex}
+        tourKey={tourKey}
+        onEvent={handleJoyrideCallback}
+      />
+      <TourFab onClick={startTour} />
+
+      <div id="home-window-select" className="mb-4 flex justify-end">
         <DashboardWindowSelect value={dormantDays} onChange={handleWindowChange} />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        <TodayAppointmentsCard
-          appointments={todayAppointments}
-          isLoading={loadingAppointments}
-        />
+        <div id="home-card-todayAppointments">
+          <TodayAppointmentsCard
+            appointments={todayAppointments}
+            isLoading={loadingAppointments}
+          />
+        </div>
 
-        <RecentPropertiesCard
-          properties={recentProperties}
-          isLoading={loadingRecent}
-        />
+        <div id="home-card-recentProperties">
+          <RecentPropertiesCard
+            properties={recentProperties}
+            isLoading={loadingRecent}
+          />
+        </div>
 
-        <DormantPropertiesCard
-          properties={dormantProperties}
-          isLoading={loadingDormant}
-        />
-        <LeadsByStatusCard />
-        <LeadsBySourceCard />
+        <div id="home-card-dormantProperties">
+          <DormantPropertiesCard
+            properties={dormantProperties}
+            isLoading={loadingDormant}
+          />
+        </div>
 
-        <ConversionFunnelCard />
-        <AgentConversionCard />
-        <PropertiesByStatusPurposeCard />
-        <AvgTimeOnMarketCard />
-        <IncompletePropertiesCard />
-        <AgentRankingCard />
-        <AppointmentsStatusCard />
-        <UpcomingRenewalsCard />
+        <div id="home-card-leadsByStatus">
+          <LeadsByStatusCard />
+        </div>
+        <div id="home-card-leadsBySource">
+          <LeadsBySourceCard />
+        </div>
+        <div id="home-card-conversionFunnel">
+          <ConversionFunnelCard />
+        </div>
+        <div id="home-card-agentConversion">
+          <AgentConversionCard />
+        </div>
+        <div id="home-card-propertiesByStatusPurpose">
+          <PropertiesByStatusPurposeCard />
+        </div>
+        <div id="home-card-avgTimeOnMarket">
+          <AvgTimeOnMarketCard />
+        </div>
+        <div id="home-card-incompleteProperties">
+          <IncompletePropertiesCard />
+        </div>
+        <div id="home-card-agentRanking">
+          <AgentRankingCard />
+        </div>
+        <div id="home-card-appointmentsStatus">
+          <AppointmentsStatusCard />
+        </div>
+        <div id="home-card-upcomingRenewals">
+          <UpcomingRenewalsCard />
+        </div>
       </div>
     </AppLayout>
   )

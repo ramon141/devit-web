@@ -19,6 +19,7 @@ function LeadColumn({ status, label, leads, onEdit, onDelete }: LeadColumnProps)
   return (
     <div
       ref={setNodeRef}
+      id={`leads-column-${status}`}
       className={cn(
         'grid min-w-64 grid-cols-1 content-start gap-3 rounded-xl bg-white p-3 transition-colors',
         isOver && 'bg-primary/5 outline-2 -outline-offset-2 outline-dashed outline-primary'

@@ -28,32 +28,33 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper label={t('leadFormFields.name')} required error={errors.name?.message}>
+      <FormFieldWrapper id="modal-field-name" label={t('leadFormFields.name')} required error={errors.name?.message}>
         <Input
           {...register('name')}
           placeholder={t('leadFormFields.namePlaceholder')}
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.phone')} error={errors.phone?.message}>
+      <FormFieldWrapper id="modal-field-phone" label={t('leadFormFields.phone')} error={errors.phone?.message}>
         <Input
           {...register('phone')}
           placeholder={t('leadFormFields.phonePlaceholder')}
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.email')} error={errors.email?.message}>
+      <FormFieldWrapper id="modal-field-email" label={t('leadFormFields.email')} error={errors.email?.message}>
         <Input {...register('email')} type="email" />
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-firstContactAt"
         label={t('leadFormFields.firstContactAt')}
         error={errors.firstContactAt?.message}
       >
         <Input {...register('firstContactAt')} type="date" />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.status')} required error={errors.status?.message}>
+      <FormFieldWrapper id="modal-field-status" label={t('leadFormFields.status')} required error={errors.status?.message}>
         <Controller
           control={control}
           name="status"
@@ -63,7 +64,7 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.source')} error={errors.source?.message}>
+      <FormFieldWrapper id="modal-field-source" label={t('leadFormFields.source')} error={errors.source?.message}>
         <Controller
           control={control}
           name="source"
@@ -79,6 +80,7 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-requestType"
         label={t('leadFormFields.requestType')}
         error={errors.requestType?.message}
       >
@@ -96,19 +98,20 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.desiredCity')} error={errors.desiredCity?.message}>
+      <FormFieldWrapper id="modal-field-desiredCity" label={t('leadFormFields.desiredCity')} error={errors.desiredCity?.message}>
         <Input {...register('desiredCity')} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.maxBudget')} error={errors.maxBudget?.message}>
+      <FormFieldWrapper id="modal-field-maxBudget" label={t('leadFormFields.maxBudget')} error={errors.maxBudget?.message}>
         <Input {...register('maxBudget')} type="number" min={0} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.subject')} error={errors.subject?.message}>
+      <FormFieldWrapper id="modal-field-subject" label={t('leadFormFields.subject')} error={errors.subject?.message}>
         <Input {...register('subject')} />
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-assignedTo"
         label={t('leadFormFields.assignedTo')}
         error={errors.assignedToId?.message}
       >
@@ -127,13 +130,13 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
       </FormFieldWrapper>
 
       <div className="sm:col-span-2">
-        <FormFieldWrapper label={t('leadFormFields.lossReason')} error={errors.lossReason?.message}>
+        <FormFieldWrapper id="modal-field-lossReason" label={t('leadFormFields.lossReason')} error={errors.lossReason?.message}>
           <Input {...register('lossReason')} />
         </FormFieldWrapper>
       </div>
 
       <div className="sm:col-span-2">
-        <FormFieldWrapper label={t('leadFormFields.notes')} error={errors.notes?.message}>
+        <FormFieldWrapper id="modal-field-notes" label={t('leadFormFields.notes')} error={errors.notes?.message}>
           <Textarea {...register('notes')} rows={3} />
         </FormFieldWrapper>
       </div>

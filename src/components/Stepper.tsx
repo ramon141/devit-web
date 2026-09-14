@@ -21,6 +21,7 @@ function Stepper({ steps }: StepperProps) {
       {steps.map((step) => (
         <TabsTrigger
           key={step.value}
+          id={`stepper-tab-${step.value}`}
           value={step.value}
           disabled={step.locked}
           className="group relative z-10 h-auto flex-1 flex-col gap-1.5 border-0 bg-transparent p-0 after:hidden data-active:bg-transparent data-active:ring-0"

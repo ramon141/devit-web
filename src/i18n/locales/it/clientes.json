@@ -231,5 +231,193 @@
     "rent": "Affitto",
     "sale": "Acquisto",
     "rentOrSale": "Affitto o acquisto"
+  },
+  "tour": {
+    "scheda": {
+      "title": { "title": "Scheda cliente", "content": "Qui vedi e modifichi tutti i dati di questo cliente, organizzati in schede." },
+      "tabDati": { "title": "Scheda Dati", "content": "Dati anagrafici del cliente, identici al modulo di registrazione." },
+      "dati": {
+        "name": { "title": "Nome", "content": "Nome completo del cliente." },
+        "role": { "title": "Ruolo", "content": "Ruolo del cliente: proprietario, inquilino, acquirente, garante, contatto o fornitore." },
+        "email": { "title": "E-mail", "content": "E-mail di contatto." },
+        "birthDate": { "title": "Data di nascita", "content": "Data di nascita del cliente." },
+        "phone": { "title": "Telefono", "content": "Telefono principale." },
+        "secondaryPhone": { "title": "Telefono secondario", "content": "Un secondo telefono, se presente." },
+        "documentType": { "title": "Tipo documento", "content": "Tipo di documento d'identità." },
+        "documentNumber": { "title": "Numero documento", "content": "Numero del documento indicato." },
+        "notes": { "title": "Note", "content": "Annotazioni libere sul cliente." },
+        "active": { "title": "Cliente attivo", "content": "Disattiva per archiviare il cliente." },
+        "country": { "title": "Paese", "content": "Paese dell'indirizzo." },
+        "city": { "title": "Città", "content": "Città dell'indirizzo." },
+        "region": { "title": "Regione", "content": "Regione o provincia dell'indirizzo." },
+        "postalCode": { "title": "CAP", "content": "Codice postale dell'indirizzo." },
+        "street": { "title": "Via", "content": "Nome della via." },
+        "number": { "title": "Numero civico", "content": "Numero civico dell'indirizzo." },
+        "neighborhood": { "title": "Quartiere", "content": "Quartiere dell'indirizzo." },
+        "complement": { "title": "Complemento", "content": "Complemento dell'indirizzo." }
+      },
+      "tabAllegati": { "title": "Scheda Allegati", "content": "Documenti e file allegati a questo cliente." },
+      "allegati": { "title": "Allegati", "content": "Carica nuovi file o rimuovi allegati esistenti del cliente." },
+      "tabImmobili": { "title": "Scheda Immobili", "content": "Immobili collegati a questo cliente, come proprietà, locazione o acquisto." },
+      "immobili": { "title": "Immobili collegati", "content": "Elenco degli immobili dove questo cliente è proprietario, inquilino, acquirente o ha fatto una proposta." },
+      "tabAgenda": { "title": "Scheda Agenda", "content": "Eventi in agenda a cui partecipa questo cliente." },
+      "agenda": { "title": "Eventi", "content": "Appuntamenti e visite programmate con questo cliente." },
+      "tabComunicazioni": { "title": "Scheda Comunicazioni", "content": "Storico di e-mail, messaggi e chiamate con questo cliente." },
+      "comunicazioni": { "title": "Storico comunicazioni", "content": "Registro di tutte le comunicazioni inviate a questo cliente." }
+    },
+    "leads": {
+      "page": {
+        "title": { "title": "Imbuto contatti", "content": "Qui gestisci le richieste (lead) ricevute e segui l'imbuto di vendita." },
+        "search": { "title": "Cerca contatto", "content": "Digita il nome per filtrare le schede dell'imbuto." },
+        "source": { "title": "Origine", "content": "Filtra per origine del contatto: sito, passaparola, social, ecc." },
+        "requestType": { "title": "Tipo di richiesta", "content": "Filtra per ricerca, valutazione o contatto." },
+        "assignedTo": { "title": "Responsabile", "content": "Filtra i contatti assegnati a un agente specifico." },
+        "onlyMine": { "title": "Solo i miei", "content": "Seleziona per vedere solo i contatti assegnati a te." },
+        "board": { "title": "Imbuto kanban", "content": "Trascina le schede tra le colonne per aggiornare lo stato del contatto." },
+        "columnNew": { "title": "Nuovo", "content": "Contatti appena ricevuti, non ancora lavorati." },
+        "columnContacted": { "title": "Contattato", "content": "Contatti che hanno già ricevuto il primo riscontro." },
+        "columnNegotiating": { "title": "In trattativa", "content": "Contatti in corso, in negoziazione." },
+        "columnConverted": { "title": "Convertito", "content": "Contatti diventati una vendita o un affitto." },
+        "columnLost": { "title": "Perso", "content": "Contatti che non sono andati avanti e sono stati chiusi." },
+        "newBtn": { "title": "Nuovo contatto", "content": "Clicca per registrare manualmente un nuovo contatto nell'imbuto." }
+      },
+      "modal": {
+        "intro": { "title": "Registrazione contatto", "content": "Compila i dati del contatto e i criteri di ricerca." },
+        "fields": {
+          "name": { "title": "Nome", "content": "Nome del contatto. Campo obbligatorio." },
+          "phone": { "title": "Telefono", "content": "Telefono di contatto." },
+          "email": { "title": "E-mail", "content": "E-mail di contatto." },
+          "firstContactAt": { "title": "Primo contatto", "content": "Data del primo contatto con questo lead." },
+          "status": { "title": "Stato", "content": "Fase attuale dell'imbuto. Campo obbligatorio." },
+          "source": { "title": "Origine", "content": "Da dove proviene questo contatto." },
+          "requestType": { "title": "Tipo di richiesta", "content": "Ricerca, valutazione o contatto generico." },
+          "desiredCity": { "title": "Città desiderata", "content": "Città di interesse del contatto." },
+          "maxBudget": { "title": "Budget massimo", "content": "Valore massimo che il contatto intende investire." },
+          "subject": { "title": "Oggetto", "content": "Riassunto di cosa cerca il contatto." },
+          "assignedTo": { "title": "Responsabile", "content": "Agente responsabile di questo contatto." },
+          "lossReason": { "title": "Motivo della perdita", "content": "Compila quando il contatto viene segnato come perso." },
+          "notes": { "title": "Note", "content": "Annotazioni libere sul contatto." }
+        },
+        "criteriaIntro": { "title": "Criteri di ricerca", "content": "Definisci cosa cerca questo contatto, per facilitare l'incrocio con gli immobili." },
+        "criteria": {
+          "purpose": { "title": "Finalità", "content": "Affitto, acquisto o entrambi." },
+          "category": { "title": "Categoria", "content": "Tipo di immobile desiderato." },
+          "expiresAt": { "title": "Scadenza", "content": "Data limite della richiesta." },
+          "zones": { "title": "Zone", "content": "Quartieri di interesse del contatto." },
+          "priceRange": { "title": "Fascia di prezzo", "content": "Valore minimo e massimo che il contatto è disposto a pagare." },
+          "areaRange": { "title": "Fascia di superficie", "content": "Metratura minima e massima desiderata." },
+          "roomsRange": { "title": "Fascia di locali", "content": "Numero minimo e massimo di locali." },
+          "bedroomsRange": { "title": "Fascia di camere", "content": "Numero minimo e massimo di camere da letto." },
+          "bathroomsRange": { "title": "Fascia di bagni", "content": "Numero minimo e massimo di bagni." }
+        },
+        "actions": { "title": "Salva o annulla", "content": "Clicca su Salva per registrare il contatto o su Annulla per chiudere senza salvare." }
+      }
+    },
+    "page": {
+      "title": {
+        "title": "Clienti",
+        "content": "Qui gestisci l'anagrafica di clienti e contatti del sistema."
+      },
+      "search": {
+        "title": "Cerca cliente",
+        "content": "Digita il nome per filtrare l'elenco clienti in tempo reale."
+      },
+      "roleFilter": {
+        "title": "Filtro per ruolo",
+        "content": "Filtra l'elenco per ruolo del cliente: proprietario, inquilino, acquirente, garante, contatto o fornitore."
+      },
+      "table": {
+        "title": "Elenco clienti",
+        "content": "Ogni riga mostra un cliente registrato. Clicca su un record per modificarlo o usa il menu azioni per eliminarlo."
+      },
+      "newBtn": {
+        "title": "Nuovo cliente",
+        "content": "Clicca qui per aprire il modulo di registrazione di un nuovo cliente."
+      }
+    },
+    "modal": {
+      "intro": {
+        "title": "Registrazione cliente",
+        "content": "Compila i dati del cliente. Vedremo insieme ogni campo del modulo."
+      },
+      "fields": {
+        "name": {
+          "title": "Nome",
+          "content": "Nome completo del cliente. Campo obbligatorio."
+        },
+        "role": {
+          "title": "Ruolo",
+          "content": "Definisce il ruolo del cliente nell'agenzia: proprietario, inquilino, acquirente, garante, contatto o fornitore. Campo obbligatorio."
+        },
+        "email": {
+          "title": "E-mail",
+          "content": "E-mail di contatto del cliente."
+        },
+        "birthDate": {
+          "title": "Data di nascita",
+          "content": "Data di nascita del cliente."
+        },
+        "phone": {
+          "title": "Telefono",
+          "content": "Telefono principale di contatto."
+        },
+        "secondaryPhone": {
+          "title": "Telefono secondario",
+          "content": "Un secondo telefono di contatto, se presente."
+        },
+        "documentType": {
+          "title": "Tipo documento",
+          "content": "Tipo di documento d'identità, ad esempio carta d'identità o passaporto."
+        },
+        "documentNumber": {
+          "title": "Numero documento",
+          "content": "Numero del documento indicato nel campo precedente."
+        },
+        "notes": {
+          "title": "Note",
+          "content": "Annotazioni libere sul cliente, visibili solo al team."
+        },
+        "active": {
+          "title": "Cliente attivo",
+          "content": "Disattiva per archiviare il cliente senza eliminarlo dal sistema."
+        },
+        "country": {
+          "title": "Paese",
+          "content": "Paese dell'indirizzo del cliente."
+        },
+        "city": {
+          "title": "Città",
+          "content": "Città dell'indirizzo. Obbligatoria per salvare l'indirizzo completo."
+        },
+        "region": {
+          "title": "Regione",
+          "content": "Regione o provincia dell'indirizzo."
+        },
+        "postalCode": {
+          "title": "CAP",
+          "content": "Codice postale dell'indirizzo."
+        },
+        "street": {
+          "title": "Via",
+          "content": "Nome della via dell'indirizzo."
+        },
+        "number": {
+          "title": "Numero civico",
+          "content": "Numero civico dell'indirizzo."
+        },
+        "neighborhood": {
+          "title": "Quartiere",
+          "content": "Quartiere dell'indirizzo."
+        },
+        "complement": {
+          "title": "Complemento",
+          "content": "Complemento dell'indirizzo, ad esempio interno o scala."
+        }
+      },
+      "actions": {
+        "title": "Salva o annulla",
+        "content": "Clicca su Salva per registrare il cliente o su Annulla per chiudere senza salvare."
+      }
+    }
   }
 }

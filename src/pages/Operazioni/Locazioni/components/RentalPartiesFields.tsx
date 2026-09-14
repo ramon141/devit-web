@@ -58,77 +58,87 @@ function RentalPartiesFields({
 
   return (
     <>
-      <Controller
-        control={control}
-        name="propertyId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('locazioni.partiesFields.propertyLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={propertyOptions}
-            placeholder={t('locazioni.partiesFields.propertyPlaceholder')}
-            searchPlaceholder={t('locazioni.partiesFields.propertySearchPlaceholder')}
-            error={errors.propertyId?.message}
-          />
+      <div id="modal-field-propertyId">
+        <Controller
+          control={control}
+          name="propertyId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('locazioni.partiesFields.propertyLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={propertyOptions}
+              placeholder={t('locazioni.partiesFields.propertyPlaceholder')}
+              searchPlaceholder={t('locazioni.partiesFields.propertySearchPlaceholder')}
+              error={errors.propertyId?.message}
+            />
+          )}
+        />
+      </div>
+
+      <div id="modal-field-ownerIds">
+        <PartyListManager
+          label={t('locazioni.partiesFields.ownerLabel')}
+          options={personOptions}
+          personIds={ownerIds}
+          onChange={updateOwnerIds}
+          placeholder={t('locazioni.partiesFields.ownerPlaceholder')}
+          addLabel={t('locazioni.partiesFields.addOwner')}
+        />
+        {errors.ownerId?.message && (
+          <p className="text-sm text-destructive sm:col-span-2">{errors.ownerId.message}</p>
         )}
-      />
+      </div>
 
-      <PartyListManager
-        label={t('locazioni.partiesFields.ownerLabel')}
-        options={personOptions}
-        personIds={ownerIds}
-        onChange={updateOwnerIds}
-        placeholder={t('locazioni.partiesFields.ownerPlaceholder')}
-        addLabel={t('locazioni.partiesFields.addOwner')}
-      />
-      {errors.ownerId?.message && (
-        <p className="text-sm text-destructive sm:col-span-2">{errors.ownerId.message}</p>
-      )}
-
-      <PartyListManager
-        label={t('locazioni.partiesFields.tenantLabel')}
-        options={personOptions}
-        personIds={tenantIds}
-        onChange={updateTenantIds}
-        placeholder={t('locazioni.partiesFields.tenantPlaceholder')}
-        addLabel={t('locazioni.partiesFields.addTenant')}
-      />
-      {errors.tenantId?.message && (
-        <p className="text-sm text-destructive sm:col-span-2">{errors.tenantId.message}</p>
-      )}
-
-      <Controller
-        control={control}
-        name="ownerAgentId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('locazioni.partiesFields.ownerAgentLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={userOptions}
-            placeholder={t('locazioni.partiesFields.noneOption')}
-            searchPlaceholder={t('locazioni.partiesFields.agentSearchPlaceholder')}
-            error={errors.ownerAgentId?.message}
-          />
+      <div id="modal-field-tenantIds">
+        <PartyListManager
+          label={t('locazioni.partiesFields.tenantLabel')}
+          options={personOptions}
+          personIds={tenantIds}
+          onChange={updateTenantIds}
+          placeholder={t('locazioni.partiesFields.tenantPlaceholder')}
+          addLabel={t('locazioni.partiesFields.addTenant')}
+        />
+        {errors.tenantId?.message && (
+          <p className="text-sm text-destructive sm:col-span-2">{errors.tenantId.message}</p>
         )}
-      />
+      </div>
 
-      <Controller
-        control={control}
-        name="tenantAgentId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('locazioni.partiesFields.tenantAgentLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={userOptions}
-            placeholder={t('locazioni.partiesFields.noneOption')}
-            searchPlaceholder={t('locazioni.partiesFields.agentSearchPlaceholder')}
-            error={errors.tenantAgentId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-ownerAgentId">
+        <Controller
+          control={control}
+          name="ownerAgentId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('locazioni.partiesFields.ownerAgentLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder={t('locazioni.partiesFields.noneOption')}
+              searchPlaceholder={t('locazioni.partiesFields.agentSearchPlaceholder')}
+              error={errors.ownerAgentId?.message}
+            />
+          )}
+        />
+      </div>
+
+      <div id="modal-field-tenantAgentId">
+        <Controller
+          control={control}
+          name="tenantAgentId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('locazioni.partiesFields.tenantAgentLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder={t('locazioni.partiesFields.noneOption')}
+              searchPlaceholder={t('locazioni.partiesFields.agentSearchPlaceholder')}
+              error={errors.tenantAgentId?.message}
+            />
+          )}
+        />
+      </div>
     </>
   )
 }

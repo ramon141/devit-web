@@ -19,34 +19,46 @@ function RentalFinancialFields({ form }: RentalFinancialFieldsProps) {
 
   return (
     <>
-      <InputMoney
-        name="rentAmount"
-        label={t('locazioni.financialFields.rentAmountLabel')}
+      <div id="modal-field-rentAmount">
+        <InputMoney
+          name="rentAmount"
+          label={t('locazioni.financialFields.rentAmountLabel')}
+          required
+          value={rentAmount}
+          setValue={(value) => setValue('rentAmount', value ?? '')}
+          error={errors.rentAmount?.message}
+        />
+      </div>
+
+      <div id="modal-field-condoFee">
+        <InputMoney
+          name="condoFee"
+          label={t('locazioni.financialFields.condoFeeLabel')}
+          value={condoFee}
+          setValue={(value) => setValue('condoFee', value)}
+        />
+      </div>
+
+      <div id="modal-field-depositAmount">
+        <InputMoney
+          name="depositAmount"
+          label={t('locazioni.financialFields.depositAmountLabel')}
+          value={depositAmount}
+          setValue={(value) => setValue('depositAmount', value)}
+        />
+      </div>
+
+      <FormFieldWrapper
+        id="modal-field-dueDay"
+        label={t('locazioni.financialFields.dueDayLabel')}
         required
-        value={rentAmount}
-        setValue={(value) => setValue('rentAmount', value ?? '')}
-        error={errors.rentAmount?.message}
-      />
-
-      <InputMoney
-        name="condoFee"
-        label={t('locazioni.financialFields.condoFeeLabel')}
-        value={condoFee}
-        setValue={(value) => setValue('condoFee', value)}
-      />
-
-      <InputMoney
-        name="depositAmount"
-        label={t('locazioni.financialFields.depositAmountLabel')}
-        value={depositAmount}
-        setValue={(value) => setValue('depositAmount', value)}
-      />
-
-      <FormFieldWrapper label={t('locazioni.financialFields.dueDayLabel')} required error={errors.dueDay?.message}>
+        error={errors.dueDay?.message}
+      >
         <Input {...register('dueDay')} type="number" placeholder={t('locazioni.financialFields.dueDayPlaceholder')} />
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-adjustmentIndex"
         label={t('locazioni.financialFields.adjustmentIndexLabel')}
         error={errors.adjustmentIndex?.message}
       >
@@ -57,6 +69,7 @@ function RentalFinancialFields({ form }: RentalFinancialFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-noticeDays"
         label={t('locazioni.financialFields.noticeDaysLabel')}
         error={errors.noticeDays?.message}
       >

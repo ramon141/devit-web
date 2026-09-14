@@ -45,12 +45,12 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <div className="sm:col-span-2">
-        <FormFieldWrapper label={t('agenda:formFields.title')} required error={errors.title?.message}>
+        <FormFieldWrapper id="modal-field-title" label={t('agenda:formFields.title')} required error={errors.title?.message}>
           <Input {...register('title')} placeholder={t('agenda:formFields.titlePlaceholder')} />
         </FormFieldWrapper>
       </div>
 
-      <FormFieldWrapper label={t('agenda:formFields.type')} required error={errors.type?.message}>
+      <FormFieldWrapper id="modal-field-type" label={t('agenda:formFields.type')} required error={errors.type?.message}>
         <Controller
           control={control}
           name="type"
@@ -60,11 +60,12 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('agenda:formFields.place')} error={errors.place?.message}>
+      <FormFieldWrapper id="modal-field-place" label={t('agenda:formFields.place')} error={errors.place?.message}>
         <Input {...register('place')} placeholder={t('agenda:formFields.placePlaceholder')} />
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-keysLocation"
         label={t('agenda:formFields.keysLocation')}
         error={errors.keysLocation?.message}
       >
@@ -74,7 +75,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('agenda:formFields.date')} required error={errors.startDate?.message}>
+      <FormFieldWrapper id="modal-field-date" label={t('agenda:formFields.date')} required error={errors.startDate?.message}>
         <Input {...register('startDate')} type="date" />
       </FormFieldWrapper>
 
@@ -82,7 +83,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         control={control}
         name="allDay"
         render={({ field }) => (
-          <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+          <label id="modal-field-allDay" className="flex items-center gap-2 self-end pb-1.5 text-sm">
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('agenda:formFields.allDay')}
           </label>
@@ -94,6 +95,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
       ) : (
         <div className="grid grid-cols-2 gap-4">
           <FormFieldWrapper
+            id="modal-field-startTime"
             label={t('agenda:formFields.startTime')}
             required
             error={errors.startTime?.message}
@@ -101,6 +103,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
             <Input {...register('startTime')} type="time" />
           </FormFieldWrapper>
           <FormFieldWrapper
+            id="modal-field-endTime"
             label={t('agenda:formFields.endTime')}
             required
             error={errors.endTime?.message}
@@ -110,7 +113,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         </div>
       )}
 
-      <FormFieldWrapper label={t('agenda:formFields.client')} error={errors.leadId?.message}>
+      <FormFieldWrapper id="modal-field-client" label={t('agenda:formFields.client')} error={errors.leadId?.message}>
         <Controller
           control={control}
           name="leadId"
@@ -126,7 +129,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('agenda:formFields.owner')} error={errors.ownerId?.message}>
+      <FormFieldWrapper id="modal-field-owner" label={t('agenda:formFields.owner')} error={errors.ownerId?.message}>
         <Controller
           control={control}
           name="ownerId"
@@ -143,6 +146,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-confirmationStatus"
         label={t('agenda:formFields.confirmationStatus')}
         required
         error={errors.confirmationStatus?.message}
@@ -160,7 +164,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('agenda:formFields.reminder')} required error={errors.reminder?.message}>
+      <FormFieldWrapper id="modal-field-reminder" label={t('agenda:formFields.reminder')} required error={errors.reminder?.message}>
         <Controller
           control={control}
           name="reminder"
@@ -171,6 +175,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-recurrence"
         label={t('agenda:formFields.recurrence')}
         required
         error={errors.recurrence?.message}
@@ -188,7 +193,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         control={control}
         name="backgroundColor"
         render={({ field }) => (
-          <div className="grid gap-1.5">
+          <div id="modal-field-eventColor" className="grid gap-1.5">
             <span className="text-sm font-medium">{t('agenda:formFields.eventColor')}</span>
             <div className="flex flex-wrap items-center gap-2">
               {backgroundColorOptions.map((option) => (
@@ -213,7 +218,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         control={control}
         name="private"
         render={({ field }) => (
-          <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+          <label id="modal-field-privateEvent" className="flex items-center gap-2 self-end pb-1.5 text-sm">
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('agenda:formFields.privateEvent')}
           </label>
@@ -221,7 +226,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
       />
 
       <div className="sm:col-span-2">
-        <FormFieldWrapper label={t('agenda:formFields.description')} error={errors.description?.message}>
+        <FormFieldWrapper id="modal-field-description" label={t('agenda:formFields.description')} error={errors.description?.message}>
           <Textarea {...register('description')} rows={3} />
         </FormFieldWrapper>
       </div>

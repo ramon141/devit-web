@@ -32,8 +32,9 @@ function ZoneFormModal({ open, onOpenChange, zone }: ZoneFormModalProps) {
       onOpenChange={onOpenChange}
       title={zone ? t('zoneFormModal.editTitle') : t('zoneFormModal.newTitle')}
     >
-      <form onSubmit={onSubmit} className="grid w-full gap-4 sm:grid-cols-2">
+      <form id="modal-zone-form" onSubmit={onSubmit} className="grid w-full gap-4 sm:grid-cols-2">
         <FormFieldWrapper
+          id="modal-field-name"
           label={t('zoneFormModal.nameLabel')}
           required
           error={errors.name?.message}
@@ -42,6 +43,7 @@ function ZoneFormModal({ open, onOpenChange, zone }: ZoneFormModalProps) {
         </FormFieldWrapper>
 
         <FormFieldWrapper
+          id="modal-field-city"
           label={t('zoneFormModal.cityLabel')}
           required
           error={errors.city?.message}
@@ -49,7 +51,7 @@ function ZoneFormModal({ open, onOpenChange, zone }: ZoneFormModalProps) {
           <Input {...register('city')} placeholder={t('zoneFormModal.cityPlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('zoneFormModal.regionLabel')} error={errors.region?.message}>
+        <FormFieldWrapper id="modal-field-region" label={t('zoneFormModal.regionLabel')} error={errors.region?.message}>
           <Input {...register('region')} placeholder={t('zoneFormModal.regionPlaceholder')} />
         </FormFieldWrapper>
 
@@ -57,7 +59,7 @@ function ZoneFormModal({ open, onOpenChange, zone }: ZoneFormModalProps) {
           control={control}
           name="active"
           render={({ field }) => (
-            <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+            <label id="modal-field-active" className="flex items-center gap-2 self-end pb-1.5 text-sm">
               <Switch checked={field.value} onCheckedChange={field.onChange} />
               {t('zoneFormModal.activeLabel')}
             </label>
@@ -65,6 +67,7 @@ function ZoneFormModal({ open, onOpenChange, zone }: ZoneFormModalProps) {
         />
 
         <FormModalFooter
+          id="modal-btn-actions"
           onCancel={() => onOpenChange(false)}
           isSubmitting={isSubmitting}
           className="sm:col-span-2"

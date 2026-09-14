@@ -20,5 +20,13 @@
   "communicationsSummary": {
     "title": "Resumo de comunicações",
     "description": "Totais por canal nos últimos 30 dias: entregues, clicados, lidos, falhados"
+  },
+  "tour": {
+    "title": { "title": "Estatísticas", "content": "Aqui você acompanha os principais indicadores da agência." },
+    "leadsByStatus": { "title": "Leads por status", "content": "Distribuição dos leads pelo status atual do funil." },
+    "salesByStatus": { "title": "Vendas por status", "content": "Distribuição das vendas pelo status atual." },
+    "communicationsByChannel": { "title": "Comunicações por canal", "content": "Quantidade de comunicações enviadas por canal e por status." },
+    "communicationsWindow": { "title": "Período das comunicações", "content": "Escolha o período usado no gráfico de comunicações por canal." },
+    "communicationsSummary": { "title": "Resumo de comunicações", "content": "Totais de comunicações entregues, clicadas, lidas e falhadas nos últimos 30 dias." }
   }
 }

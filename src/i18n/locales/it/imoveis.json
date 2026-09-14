@@ -671,5 +671,209 @@
     "zonePlaceholder": "Seleziona una zona",
     "pending": "Creazione quartiere...",
     "success": "Quartiere creato"
+  },
+  "tour": {
+    "list": {
+      "title": {
+        "title": "Immobili",
+        "content": "Qui gestisci l'anagrafica degli immobili: ricerca, filtri e registrazione di un nuovo immobile."
+      },
+      "search": {
+        "title": "Cerca immobile",
+        "content": "Digita codice, titolo o indirizzo per filtrare l'elenco."
+      },
+      "newBtn": {
+        "title": "Nuovo immobile",
+        "content": "Clicca qui per scegliere il tipo di immobile e iniziare la registrazione."
+      },
+      "kindTabs": {
+        "title": "Tipo di immobile",
+        "content": "Filtra l'elenco per tipo di immobile (residenziale, commerciale, industriale, terreno ecc.), in base alle categorie registrate."
+      },
+      "category": {
+        "title": "Categoria",
+        "content": "Filtra per categoria specifica dell'immobile."
+      },
+      "purpose": {
+        "title": "Finalità",
+        "content": "Filtra per finalità: vendita, affitto o entrambe."
+      },
+      "status": {
+        "title": "Stato",
+        "content": "Filtra per stato attuale dell'immobile (disponibile, prenotato, venduto ecc.)."
+      },
+      "priceMin": {
+        "title": "Prezzo minimo",
+        "content": "Imposta il valore minimo dell'intervallo di prezzo."
+      },
+      "priceMax": {
+        "title": "Prezzo massimo",
+        "content": "Imposta il valore massimo dell'intervallo di prezzo."
+      },
+      "advancedFilters": {
+        "title": "Filtri avanzati",
+        "content": "Clicca per mostrare filtri aggiuntivi: proprietario, ordinamento, locali, superficie, città e altre opzioni."
+      },
+      "viewToggle": {
+        "title": "Modalità di visualizzazione",
+        "content": "Passa tra visualizzazione a tabella, schede o mappa."
+      },
+      "table": {
+        "title": "Elenco immobili",
+        "content": "Ogni riga mostra un immobile registrato. Clicca su un record per aprire la scheda completa."
+      }
+    },
+    "scheda": {
+      "tabGenerale": {
+        "title": "Scheda Generale",
+        "content": "Dati principali dell'immobile: codice, titolo, categoria, proprietario, finalità e stato."
+      },
+      "tabPrezzo": {
+        "title": "Scheda Prezzo",
+        "content": "Valori di vendita, affitto e condominio dell'immobile."
+      },
+      "tabLocalizzazione": {
+        "title": "Scheda Localizzazione",
+        "content": "Indirizzo completo dell'immobile."
+      },
+      "tabDescrizione": {
+        "title": "Scheda Descrizione",
+        "content": "Superficie, camere, bagni, posti auto e descrizione testuale dell'immobile."
+      },
+      "tabDettagli": {
+        "title": "Scheda Dettagli",
+        "content": "Caratteristiche aggiuntive dell'immobile."
+      },
+      "tabFoto": {
+        "title": "Scheda Foto",
+        "content": "Carica e organizza le foto dell'immobile."
+      },
+      "tabDocumenti": {
+        "title": "Scheda Documenti",
+        "content": "Allega i documenti dell'immobile."
+      },
+      "tabCommerciale": {
+        "title": "Scheda Commerciale",
+        "content": "Informazioni commerciali specifiche dell'immobile."
+      },
+      "tabIndustriale": {
+        "title": "Scheda Industriale",
+        "content": "Informazioni specifiche per immobili industriali."
+      },
+      "tabTerreno": {
+        "title": "Scheda Terreno",
+        "content": "Informazioni specifiche per i terreni."
+      },
+      "tabTasse": {
+        "title": "Scheda Tasse",
+        "content": "Dati fiscali e tributari dell'immobile."
+      },
+      "tabStorico": {
+        "title": "Scheda Storico",
+        "content": "Storico delle modifiche dell'immobile. Disponibile dopo aver salvato la registrazione."
+      },
+      "field": {
+        "code": {
+          "title": "Codice",
+          "content": "Codice univoco di identificazione dell'immobile. Può essere generato automaticamente con il pulsante accanto."
+        },
+        "title": {
+          "title": "Titolo",
+          "content": "Titolo descrittivo dell'immobile, usato negli elenchi."
+        },
+        "categoryId": {
+          "title": "Categoria",
+          "content": "Categoria dell'immobile all'interno del tipo scelto. Campo obbligatorio."
+        },
+        "ownerId": {
+          "title": "Proprietario",
+          "content": "Cliente proprietario dell'immobile. Campo obbligatorio."
+        },
+        "purpose": {
+          "title": "Finalità",
+          "content": "Definisce se l'immobile è per vendita, affitto o entrambe. Campo obbligatorio."
+        },
+        "status": {
+          "title": "Stato",
+          "content": "Situazione attuale dell'immobile nel processo commerciale. Campo obbligatorio."
+        },
+        "flags": {
+          "title": "Opzioni",
+          "content": "In evidenza in home, pubblicazione sul sito, immobile attivo e uso nel chatbot."
+        },
+        "salePrice": {
+          "title": "Prezzo di vendita",
+          "content": "Valore di vendita dell'immobile."
+        },
+        "rentPrice": {
+          "title": "Prezzo di affitto",
+          "content": "Valore di affitto dell'immobile."
+        },
+        "condoFee": {
+          "title": "Condominio",
+          "content": "Valore del condominio mensile."
+        },
+        "country": {
+          "title": "Paese",
+          "content": "Paese dell'indirizzo dell'immobile."
+        },
+        "city": {
+          "title": "Città",
+          "content": "Città dell'indirizzo. Campo obbligatorio."
+        },
+        "region": {
+          "title": "Regione",
+          "content": "Regione o provincia dell'indirizzo."
+        },
+        "postalCode": {
+          "title": "CAP",
+          "content": "Codice postale dell'indirizzo."
+        },
+        "street": {
+          "title": "Via",
+          "content": "Nome della via dell'indirizzo."
+        },
+        "number": {
+          "title": "Numero civico",
+          "content": "Numero civico dell'indirizzo."
+        },
+        "neighborhoodId": {
+          "title": "Quartiere",
+          "content": "Quartiere dell'immobile, filtrato in base alla città scelta. Puoi crearne uno nuovo se necessario."
+        },
+        "complement": {
+          "title": "Complemento",
+          "content": "Complemento dell'indirizzo."
+        },
+        "areaSqm": {
+          "title": "Superficie (mq)",
+          "content": "Superficie dell'immobile in metri quadrati."
+        },
+        "bedrooms": {
+          "title": "Camere",
+          "content": "Numero di camere da letto."
+        },
+        "bathrooms": {
+          "title": "Bagni",
+          "content": "Numero di bagni."
+        },
+        "parkingSpots": {
+          "title": "Posti auto",
+          "content": "Numero di posti auto."
+        },
+        "description": {
+          "title": "Descrizione",
+          "content": "Testo libero che descrive l'immobile."
+        }
+      },
+      "actions": {
+        "title": "Salva e avanti",
+        "content": "Salva i dati della scheda corrente e passa alla fase successiva, oppure annulla e torna all'elenco."
+      },
+      "intro": {
+        "title": "Scheda immobile",
+        "content": "Qui registri e modifichi tutti i dati dell'immobile, organizzati in schede."
+      }
+    }
   }
 }

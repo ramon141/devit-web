@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
@@ -10,7 +11,11 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import JoyrideWrapper from '@/components/JoyrideWrapper'
+import TourFab from '@/components/TourFab'
 import { usePersonControllerFindById } from '@/api/generated/api'
+import { useSchedaTour, SCHEDA_TAB_BY_STEP } from '@/pages/Clientes/Scheda/hooks/useSchedaTour'
+import { useSchedaTourTabSync } from '@/pages/Clientes/Scheda/hooks/useSchedaTourTabSync'
 import SchedaDati from '@/pages/Clientes/Scheda/components/SchedaDati'
 import SchedaAllegati from '@/pages/Clientes/Scheda/components/SchedaAllegati'
 import SchedaImmobili from '@/pages/Clientes/Scheda/components/SchedaImmobili'
@@ -24,12 +29,25 @@ function Scheda() {
   const { data: person } = usePersonControllerFindById(personId, undefined, {
     query: { enabled: !!personId },
   })
+  const [activeTab, setActiveTab] = useState('dati')
+  const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour } = useSchedaTour()
+
+  useSchedaTourTabSync({ run, stepIndex, activeTab, setActiveTab, tabByStep: SCHEDA_TAB_BY_STEP })
 
   return (
     <AppLayout
       title={person?.name ?? t('scheda.defaultTitle')}
       description={t('scheda.description')}
     >
+      <JoyrideWrapper
+        steps={steps}
+        run={run}
+        stepIndex={stepIndex}
+        tourKey={tourKey}
+        onEvent={handleJoyrideCallback}
+      />
+      <TourFab onClick={startTour} />
+
       <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -45,13 +63,23 @@ function Scheda() {
       </Breadcrumb>
 
       {person && (
-        <Tabs defaultValue="dati">
+        <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as string)}>
           <TabsList>
-            <TabsTrigger value="dati">{t('scheda.tabDati')}</TabsTrigger>
-            <TabsTrigger value="allegati">{t('scheda.tabAllegati')}</TabsTrigger>
-            <TabsTrigger value="immobili">{t('scheda.tabImmobili')}</TabsTrigger>
-            <TabsTrigger value="agenda">{t('scheda.tabAgenda')}</TabsTrigger>
-            <TabsTrigger value="comunicazioni">{t('scheda.tabComunicazioni')}</TabsTrigger>
+            <TabsTrigger id="cliente-scheda-tab-dati" value="dati">
+              {t('scheda.tabDati')}
+            </TabsTrigger>
+            <TabsTrigger id="cliente-scheda-tab-allegati" value="allegati">
+              {t('scheda.tabAllegati')}
+            </TabsTrigger>
+            <TabsTrigger id="cliente-scheda-tab-immobili" value="immobili">
+              {t('scheda.tabImmobili')}
+            </TabsTrigger>
+            <TabsTrigger id="cliente-scheda-tab-agenda" value="agenda">
+              {t('scheda.tabAgenda')}
+            </TabsTrigger>
+            <TabsTrigger id="cliente-scheda-tab-comunicazioni" value="comunicazioni">
+              {t('scheda.tabComunicazioni')}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="dati">

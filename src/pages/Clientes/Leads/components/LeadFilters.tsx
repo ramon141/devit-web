@@ -28,7 +28,7 @@ function LeadFilters({ filters, onChange }: LeadFiltersProps) {
 
   return (
     <div className="mb-4 grid w-full grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      <FormFieldWrapper label={t('common:listToolbar.searchLabel')}>
+      <FormFieldWrapper id="leads-search-filter" label={t('common:listToolbar.searchLabel')}>
         <div className="relative">
           <SearchIcon className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -40,7 +40,7 @@ function LeadFilters({ filters, onChange }: LeadFiltersProps) {
         </div>
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leads.filters.sourcePlaceholder')}>
+      <FormFieldWrapper id="leads-source-filter" label={t('leads.filters.sourcePlaceholder')}>
         <SelectField
           value={filters.source}
           onValueChange={(value) => update({ source: value })}
@@ -49,7 +49,7 @@ function LeadFilters({ filters, onChange }: LeadFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leads.filters.requestTypePlaceholder')}>
+      <FormFieldWrapper id="leads-requestType-filter" label={t('leads.filters.requestTypePlaceholder')}>
         <SelectField
           value={filters.requestType}
           onValueChange={(value) => update({ requestType: value })}
@@ -58,7 +58,7 @@ function LeadFilters({ filters, onChange }: LeadFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leads.filters.assignedToPlaceholder')}>
+      <FormFieldWrapper id="leads-assignedTo-filter" label={t('leads.filters.assignedToPlaceholder')}>
         <SearchableSelect
           value={filters.assignedToId}
           onValueChange={(value) => update({ assignedToId: value, onlyMine: false })}
@@ -68,7 +68,7 @@ function LeadFilters({ filters, onChange }: LeadFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <label className="flex h-9 items-center gap-2 text-sm">
+      <label id="leads-onlyMine-filter" className="flex h-9 items-center gap-2 text-sm">
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true, assignedToId: '' })}

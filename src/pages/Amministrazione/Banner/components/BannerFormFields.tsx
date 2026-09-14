@@ -33,28 +33,33 @@ function BannerFormFields({ banner, bannerForm, onCancel }: BannerFormFieldsProp
   const { errors } = useFormState({ control })
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-6">
+    <form id="banner-form" onSubmit={onSubmit} className="grid gap-6">
       <div className="grid items-start gap-4">
-        <FileUpload
-          label={t('bannerFormModal.imageLabel')}
-          value={imageFiles}
-          onChange={setImageFiles}
-          accept="image/*"
-          error={imageError}
-          hint={banner ? t('bannerFormModal.imageHint') : undefined}
-        />
+        <div id="banner-field-image">
+          <FileUpload
+            label={t('bannerFormModal.imageLabel')}
+            value={imageFiles}
+            onChange={setImageFiles}
+            accept="image/*"
+            error={imageError}
+            hint={banner ? t('bannerFormModal.imageHint') : undefined}
+          />
+        </div>
 
-        <FileUpload
-          label={t('bannerFormModal.mobileImageLabel')}
-          value={mobileImageFiles}
-          onChange={setMobileImageFiles}
-          accept="image/*"
-          hint={banner ? t('bannerFormModal.imageHint') : undefined}
-        />
+        <div id="banner-field-mobileImage">
+          <FileUpload
+            label={t('bannerFormModal.mobileImageLabel')}
+            value={mobileImageFiles}
+            onChange={setMobileImageFiles}
+            accept="image/*"
+            hint={banner ? t('bannerFormModal.imageHint') : undefined}
+          />
+        </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <FormFieldWrapper
+          id="banner-field-title"
           label={t('bannerFormModal.titleLabel')}
           required
           error={errors.title?.message}
@@ -63,17 +68,23 @@ function BannerFormFields({ banner, bannerForm, onCancel }: BannerFormFieldsProp
         </FormFieldWrapper>
 
         <FormFieldWrapper
+          id="banner-field-subtitle"
           label={t('bannerFormModal.subtitleLabel')}
           error={errors.subtitle?.message}
         >
           <Input {...register('subtitle')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('bannerFormModal.linkLabel')} error={errors.targetLink?.message}>
+        <FormFieldWrapper
+          id="banner-field-targetLink"
+          label={t('bannerFormModal.linkLabel')}
+          error={errors.targetLink?.message}
+        >
           <Input {...register('targetLink')} placeholder="https://" />
         </FormFieldWrapper>
 
         <FormFieldWrapper
+          id="banner-field-displayOrder"
           label={t('bannerFormModal.orderLabel')}
           error={errors.displayOrder?.message}
         >
@@ -81,29 +92,36 @@ function BannerFormFields({ banner, bannerForm, onCancel }: BannerFormFieldsProp
         </FormFieldWrapper>
 
         <FormFieldWrapper
+          id="banner-field-startDate"
           label={t('bannerFormModal.startDateLabel')}
           error={errors.startDate?.message}
         >
           <Input {...register('startDate')} type="date" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('bannerFormModal.endDateLabel')} error={errors.endDate?.message}>
+        <FormFieldWrapper
+          id="banner-field-endDate"
+          label={t('bannerFormModal.endDateLabel')}
+          error={errors.endDate?.message}
+        >
           <Input {...register('endDate')} type="date" />
         </FormFieldWrapper>
 
-        <Controller
-          control={control}
-          name="active"
-          render={({ field }) => (
-            <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
-              <Switch checked={field.value} onCheckedChange={field.onChange} />
-              {t('bannerFormModal.activeLabel')}
-            </label>
-          )}
-        />
+        <div id="banner-field-active">
+          <Controller
+            control={control}
+            name="active"
+            render={({ field }) => (
+              <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+                <Switch checked={field.value} onCheckedChange={field.onChange} />
+                {t('bannerFormModal.activeLabel')}
+              </label>
+            )}
+          />
+        </div>
       </div>
 
-      <FormModalFooter onCancel={onCancel} isSubmitting={isSubmitting} />
+      <FormModalFooter id="banner-form-actions" onCancel={onCancel} isSubmitting={isSubmitting} />
     </form>
   )
 }

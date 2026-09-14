@@ -5,5 +5,11 @@
     "breadcrumb": "Meu perfil",
     "save": "Salvar",
     "languageLabel": "Idioma"
+  },
+  "tour": {
+    "title": { "title": "Meu perfil", "content": "Aqui você gerencia seus dados pessoais." },
+    "formFields": { "title": "Seus dados", "content": "Revise e atualize seus dados cadastrais, como nome, e-mail, telefone e foto." },
+    "language": { "title": "Idioma", "content": "Escolha o idioma usado em todo o sistema: português ou italiano." },
+    "save": { "title": "Salvar", "content": "Clique aqui para salvar as alterações do seu perfil." }
   }
 }

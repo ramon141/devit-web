@@ -4,6 +4,9 @@ import AppLayout from '@/components/layout/AppLayout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import DonutChart from '@/components/charts/DonutChart'
 import BarChart from '@/components/charts/BarChart'
+import JoyrideWrapper from '@/components/JoyrideWrapper'
+import TourFab from '@/components/TourFab'
+import { useStatisticheTour } from '@/pages/Statistiche/hooks/useStatisticheTour'
 import { useStatisticsReports } from '@/pages/Statistiche/hooks/useStatisticsReports'
 import { getLeadStatusOptions } from '@/pages/Clientes/Leads/schemas/leadSchema'
 import { getSaleStatusOptions } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
@@ -25,6 +28,7 @@ function Statistiche() {
   const [communicationsDays, setCommunicationsDays] = useState(DEFAULT_COMMUNICATIONS_DAYS)
   const { leadsByStatus, salesByStatus, communicationsByChannel, communicationsSummary } =
     useStatisticsReports(communicationsDays)
+  const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour } = useStatisticheTour()
 
   const leadStatusLabels: Record<string, string> = Object.fromEntries(
     getLeadStatusOptions(tClientes).map((option) => [option.value, option.label])
@@ -60,8 +64,17 @@ function Statistiche() {
       description={t('page.description')}
       breadcrumbItems={[{ label: t('page.breadcrumb') }]}
     >
+      <JoyrideWrapper
+        steps={steps}
+        run={run}
+        stepIndex={stepIndex}
+        tourKey={tourKey}
+        onEvent={handleJoyrideCallback}
+      />
+      <TourFab onClick={startTour} />
+
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card>
+        <Card id="statistiche-card-leadsByStatus">
           <CardHeader>
             <CardTitle>{t('leadsByStatus.title')}</CardTitle>
             <CardDescription>{t('leadsByStatus.description')}</CardDescription>
@@ -74,7 +87,7 @@ function Statistiche() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card id="statistiche-card-salesByStatus">
           <CardHeader>
             <CardTitle>{t('salesByStatus.title')}</CardTitle>
             <CardDescription>{t('salesByStatus.description')}</CardDescription>
@@ -87,11 +100,13 @@ function Statistiche() {
           </CardContent>
         </Card>
 
-        <Card className="lg:col-span-2">
+        <Card id="statistiche-card-communicationsByChannel" className="lg:col-span-2">
           <CardHeader>
             <CardTitle>{t('communicationsByChannel.title')}</CardTitle>
             <CardDescription>{t('communicationsByChannel.description')}</CardDescription>
-            <DashboardWindowSelect value={communicationsDays} onChange={setCommunicationsDays} />
+            <div id="statistiche-communicationsWindow-filter">
+              <DashboardWindowSelect value={communicationsDays} onChange={setCommunicationsDays} />
+            </div>
           </CardHeader>
           <CardContent>
             <BarChart
@@ -102,7 +117,7 @@ function Statistiche() {
           </CardContent>
         </Card>
 
-        <Card className="lg:col-span-2">
+        <Card id="statistiche-card-communicationsSummary" className="lg:col-span-2">
           <CardHeader>
             <CardTitle>{t('communicationsSummary.title')}</CardTitle>
             <CardDescription>{t('communicationsSummary.description')}</CardDescription>

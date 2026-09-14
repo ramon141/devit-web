@@ -19,30 +19,37 @@ function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
 
   return (
     <>
-      <InputMoney
-        name="finalAmount"
-        label={t('vendite.financialFields.finalAmountLabel')}
-        required
-        value={finalAmount}
-        setValue={(value) => setValue('finalAmount', value ?? '')}
-        error={errors.finalAmount?.message}
-      />
+      <div id="modal-field-finalAmount">
+        <InputMoney
+          name="finalAmount"
+          label={t('vendite.financialFields.finalAmountLabel')}
+          required
+          value={finalAmount}
+          setValue={(value) => setValue('finalAmount', value ?? '')}
+          error={errors.finalAmount?.message}
+        />
+      </div>
 
-      <InputMoney
-        name="downPayment"
-        label={t('vendite.financialFields.downPaymentLabel')}
-        value={downPayment}
-        setValue={(value) => setValue('downPayment', value)}
-      />
+      <div id="modal-field-downPayment">
+        <InputMoney
+          name="downPayment"
+          label={t('vendite.financialFields.downPaymentLabel')}
+          value={downPayment}
+          setValue={(value) => setValue('downPayment', value)}
+        />
+      </div>
 
-      <InputMoney
-        name="commissionAmount"
-        label={t('vendite.financialFields.commissionAmountLabel')}
-        value={commissionAmount}
-        setValue={(value) => setValue('commissionAmount', value)}
-      />
+      <div id="modal-field-commissionAmount">
+        <InputMoney
+          name="commissionAmount"
+          label={t('vendite.financialFields.commissionAmountLabel')}
+          value={commissionAmount}
+          setValue={(value) => setValue('commissionAmount', value)}
+        />
+      </div>
 
       <FormFieldWrapper
+        id="modal-field-installmentsCount"
         label={t('vendite.financialFields.installmentsCountLabel')}
         error={errors.installmentsCount?.message}
       >
@@ -54,6 +61,7 @@ function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-financialInstitution"
         label={t('vendite.financialFields.financialInstitutionLabel')}
         error={errors.financialInstitution?.message}
       >

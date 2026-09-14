@@ -43,97 +43,110 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
 
   return (
     <>
-      <Controller
-        control={control}
-        name="propertyId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('vendite.partiesFields.propertyLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={propertyOptions}
-            placeholder={t('vendite.partiesFields.propertyPlaceholder')}
-            searchPlaceholder={t('vendite.partiesFields.propertySearchPlaceholder')}
-            error={errors.propertyId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-propertyId">
+        <Controller
+          control={control}
+          name="propertyId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('vendite.partiesFields.propertyLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={propertyOptions}
+              placeholder={t('vendite.partiesFields.propertyPlaceholder')}
+              searchPlaceholder={t('vendite.partiesFields.propertySearchPlaceholder')}
+              error={errors.propertyId?.message}
+            />
+          )}
+        />
+      </div>
 
-      <Controller
-        control={control}
-        name="sellerId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('vendite.partiesFields.sellerLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={personOptions}
-            placeholder={t('vendite.partiesFields.sellerPlaceholder')}
-            searchPlaceholder={t('vendite.partiesFields.personSearchPlaceholder')}
-            error={errors.sellerId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-sellerId">
+        <Controller
+          control={control}
+          name="sellerId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('vendite.partiesFields.sellerLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={personOptions}
+              placeholder={t('vendite.partiesFields.sellerPlaceholder')}
+              searchPlaceholder={t('vendite.partiesFields.personSearchPlaceholder')}
+              error={errors.sellerId?.message}
+            />
+          )}
+        />
+      </div>
 
-      <Controller
-        control={control}
-        name="buyerId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('vendite.partiesFields.buyerLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={personOptions}
-            placeholder={t('vendite.partiesFields.buyerPlaceholder')}
-            searchPlaceholder={t('vendite.partiesFields.personSearchPlaceholder')}
-            error={errors.buyerId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-buyerId">
+        <Controller
+          control={control}
+          name="buyerId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('vendite.partiesFields.buyerLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={personOptions}
+              placeholder={t('vendite.partiesFields.buyerPlaceholder')}
+              searchPlaceholder={t('vendite.partiesFields.personSearchPlaceholder')}
+              error={errors.buyerId?.message}
+            />
+          )}
+        />
+      </div>
 
-      <Controller
-        control={control}
-        name="proposalId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('vendite.partiesFields.proposalLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={proposalOptions}
-            placeholder={t('vendite.partiesFields.proposalPlaceholder')}
-            searchPlaceholder={t('vendite.partiesFields.proposalSearchPlaceholder')}
-            error={errors.proposalId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-proposalId">
+        <Controller
+          control={control}
+          name="proposalId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('vendite.partiesFields.proposalLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={proposalOptions}
+              placeholder={t('vendite.partiesFields.proposalPlaceholder')}
+              searchPlaceholder={t('vendite.partiesFields.proposalSearchPlaceholder')}
+              error={errors.proposalId?.message}
+            />
+          )}
+        />
+      </div>
 
-      <Controller
-        control={control}
-        name="extraSellerIds"
-        render={({ field }) => (
-          <MultiSelectField
-            label={t('vendite.partiesFields.extraSellersLabel')}
-            values={field.value ?? []}
-            onChange={field.onChange}
-            options={personOptions}
-          />
-        )}
-      />
+      <div id="modal-field-extraSellerIds">
+        <Controller
+          control={control}
+          name="extraSellerIds"
+          render={({ field }) => (
+            <MultiSelectField
+              label={t('vendite.partiesFields.extraSellersLabel')}
+              values={field.value ?? []}
+              onChange={field.onChange}
+              options={personOptions}
+            />
+          )}
+        />
+      </div>
 
-      <Controller
-        control={control}
-        name="extraBuyerIds"
-        render={({ field }) => (
-          <MultiSelectField
-            label={t('vendite.partiesFields.extraBuyersLabel')}
-            values={field.value ?? []}
-            onChange={field.onChange}
-            options={personOptions}
-          />
-        )}
-      />
+      <div id="modal-field-extraBuyerIds">
+        <Controller
+          control={control}
+          name="extraBuyerIds"
+          render={({ field }) => (
+            <MultiSelectField
+              label={t('vendite.partiesFields.extraBuyersLabel')}
+              values={field.value ?? []}
+              onChange={field.onChange}
+              options={personOptions}
+            />
+          )}
+        />
+      </div>
 
       <FormFieldWrapper
+        id="modal-field-sellerAgentId"
         label={t('vendite.partiesFields.sellerAgentLabel')}
         error={errors.sellerAgentId?.message}
       >
@@ -152,6 +165,7 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-buyerAgentId"
         label={t('vendite.partiesFields.buyerAgentLabel')}
         error={errors.buyerAgentId?.message}
       >

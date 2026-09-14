@@ -32,20 +32,31 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
       onOpenChange={onOpenChange}
       title={category ? t('categoryFormModal.editTitle') : t('categoryFormModal.newTitle')}
     >
-      <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
-        <FormFieldWrapper label={t('categoryFormModal.nameLabel')} required error={errors.name?.message}>
+      <form id="modal-categorie-form" onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
+        <FormFieldWrapper
+          id="modal-field-name"
+          label={t('categoryFormModal.nameLabel')}
+          required
+          error={errors.name?.message}
+        >
           <Input {...register('name')} placeholder={t('categoryFormModal.namePlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('categoryFormModal.slugLabel')} required error={errors.slug?.message}>
+        <FormFieldWrapper
+          id="modal-field-slug"
+          label={t('categoryFormModal.slugLabel')}
+          required
+          error={errors.slug?.message}
+        >
           <Input {...register('slug')} placeholder={t('categoryFormModal.slugPlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('categoryFormModal.iconLabel')} error={errors.icon?.message}>
+        <FormFieldWrapper id="modal-field-icon" label={t('categoryFormModal.iconLabel')} error={errors.icon?.message}>
           <Input {...register('icon')} placeholder={t('categoryFormModal.iconPlaceholder')} />
         </FormFieldWrapper>
 
         <FormFieldWrapper
+          id="modal-field-displayOrder"
           label={t('categoryFormModal.orderLabel')}
           error={errors.displayOrder?.message}
         >
@@ -56,7 +67,7 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
           control={control}
           name="active"
           render={({ field }) => (
-            <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+            <label id="modal-field-active" className="flex items-center gap-2 self-end pb-1.5 text-sm">
               <Switch checked={field.value} onCheckedChange={field.onChange} />
               {t('categoryFormModal.activeLabel')}
             </label>
@@ -64,6 +75,7 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
         />
 
         <FormModalFooter
+          id="modal-btn-actions"
           onCancel={() => onOpenChange(false)}
           isSubmitting={isSubmitting}
           className="sm:col-span-2"

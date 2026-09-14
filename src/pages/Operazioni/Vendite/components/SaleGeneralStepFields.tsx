@@ -16,11 +16,17 @@ function SaleGeneralStepFields({ form }: SaleGeneralStepFieldsProps) {
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper label={t('vendite.generalStepFields.numberLabel')} required error={errors.number?.message}>
+      <FormFieldWrapper
+        id="modal-field-number"
+        label={t('vendite.generalStepFields.numberLabel')}
+        required
+        error={errors.number?.message}
+      >
         <Input {...register('number')} placeholder={t('vendite.generalStepFields.numberPlaceholder')} />
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-saleDate"
         label={t('vendite.generalStepFields.saleDateLabel')}
         required
         error={errors.saleDate?.message}

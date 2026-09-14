@@ -36,13 +36,15 @@ function RentalTable({ contracts, isLoading, onEdit }: RentalTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={contracts}
-        keyExtractor={(contract) => contract.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('locazioni.table.emptyMessage')}
-      />
+      <div id="locazioni-table">
+        <DataTable
+          columns={columns}
+          data={contracts}
+          keyExtractor={(contract) => contract.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('locazioni.table.emptyMessage')}
+        />
+      </div>
 
       <RentalTableModals
         deleteTarget={deleteTarget}

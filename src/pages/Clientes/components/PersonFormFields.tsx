@@ -20,6 +20,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <FormFieldWrapper
+        id="modal-field-name"
         label={t('personFormFields.name')}
         required
         error={errors.name?.message}
@@ -31,6 +32,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-role"
         label={t('personFormFields.role')}
         required
         error={errors.role?.message}
@@ -48,7 +50,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('personFormFields.email')} error={errors.email?.message}>
+      <FormFieldWrapper id="modal-field-email" label={t('personFormFields.email')} error={errors.email?.message}>
         <Input
           {...register('email')}
           type="email"
@@ -57,13 +59,14 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-birthDate"
         label={t('personFormFields.birthDate')}
         error={errors.birthDate?.message}
       >
         <Input {...register('birthDate')} type="date" />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('personFormFields.phone')} error={errors.phone?.message}>
+      <FormFieldWrapper id="modal-field-phone" label={t('personFormFields.phone')} error={errors.phone?.message}>
         <Input
           {...register('phone')}
           placeholder={t('personFormFields.phonePlaceholder')}
@@ -71,6 +74,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-secondaryPhone"
         label={t('personFormFields.secondaryPhone')}
         error={errors.secondaryPhone?.message}
       >
@@ -81,6 +85,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-documentType"
         label={t('personFormFields.documentType')}
         error={errors.documentType?.message}
       >
@@ -91,6 +96,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-documentNumber"
         label={t('personFormFields.documentNumber')}
         error={errors.documentNumber?.message}
       >
@@ -98,12 +104,12 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
       </FormFieldWrapper>
 
       <div className="sm:col-span-2">
-        <FormFieldWrapper label={t('personFormFields.notes')} error={errors.notes?.message}>
+        <FormFieldWrapper id="modal-field-notes" label={t('personFormFields.notes')} error={errors.notes?.message}>
           <Textarea {...register('notes')} rows={3} />
         </FormFieldWrapper>
       </div>
 
-      <div className="sm:col-span-2">
+      <div id="modal-field-active" className="sm:col-span-2">
         <Controller
           control={control}
           name="active"
@@ -117,21 +123,21 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
       </div>
 
       <div className="sm:col-span-2 grid gap-4 sm:grid-cols-2">
-        <FormFieldWrapper label={t('personFormFields.country')} error={errors.country?.message}>
+        <FormFieldWrapper id="modal-field-country" label={t('personFormFields.country')} error={errors.country?.message}>
           <Input
             {...register('country')}
             placeholder={t('personFormFields.countryPlaceholder')}
           />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('personFormFields.city')} error={errors.city?.message}>
+        <FormFieldWrapper id="modal-field-city" label={t('personFormFields.city')} error={errors.city?.message}>
           <Input
             {...register('city')}
             placeholder={t('personFormFields.cityPlaceholder')}
           />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('personFormFields.region')} error={errors.region?.message}>
+        <FormFieldWrapper id="modal-field-region" label={t('personFormFields.region')} error={errors.region?.message}>
           <Input
             {...register('region')}
             placeholder={t('personFormFields.regionPlaceholder')}
@@ -139,6 +145,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
         </FormFieldWrapper>
 
         <FormFieldWrapper
+          id="modal-field-postalCode"
           label={t('personFormFields.postalCode')}
           error={errors.postalCode?.message}
         >
@@ -148,14 +155,14 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
           />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('personFormFields.street')} error={errors.street?.message}>
+        <FormFieldWrapper id="modal-field-street" label={t('personFormFields.street')} error={errors.street?.message}>
           <Input
             {...register('street')}
             placeholder={t('personFormFields.streetPlaceholder')}
           />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('personFormFields.number')} error={errors.number?.message}>
+        <FormFieldWrapper id="modal-field-number" label={t('personFormFields.number')} error={errors.number?.message}>
           <Input
             {...register('number')}
             placeholder={t('personFormFields.numberPlaceholder')}
@@ -163,6 +170,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
         </FormFieldWrapper>
 
         <FormFieldWrapper
+          id="modal-field-neighborhood"
           label={t('personFormFields.neighborhood')}
           error={errors.neighborhood?.message}
         >
@@ -173,6 +181,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
         </FormFieldWrapper>
 
         <FormFieldWrapper
+          id="modal-field-complement"
           label={t('personFormFields.complement')}
           error={errors.complement?.message}
         >

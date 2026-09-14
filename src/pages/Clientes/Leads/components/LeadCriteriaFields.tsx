@@ -31,7 +31,7 @@ function LeadCriteriaFields({ form }: LeadCriteriaFieldsProps) {
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper label={t('leadFormFields.purpose')} error={errors.purpose?.message}>
+      <FormFieldWrapper id="modal-field-purpose" label={t('leadFormFields.purpose')} error={errors.purpose?.message}>
         <Controller
           control={control}
           name="purpose"
@@ -46,7 +46,7 @@ function LeadCriteriaFields({ form }: LeadCriteriaFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.category')} error={errors.categoryId?.message}>
+      <FormFieldWrapper id="modal-field-category" label={t('leadFormFields.category')} error={errors.categoryId?.message}>
         <Controller
           control={control}
           name="categoryId"
@@ -61,11 +61,11 @@ function LeadCriteriaFields({ form }: LeadCriteriaFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('leadFormFields.expiresAt')} error={errors.expiresAt?.message}>
+      <FormFieldWrapper id="modal-field-expiresAt" label={t('leadFormFields.expiresAt')} error={errors.expiresAt?.message}>
         <Input {...register('expiresAt')} type="date" />
       </FormFieldWrapper>
 
-      <div className="sm:col-span-2">
+      <div id="modal-field-zones" className="sm:col-span-2">
         <Controller
           control={control}
           name="neighborhoodIds"
@@ -83,11 +83,11 @@ function LeadCriteriaFields({ form }: LeadCriteriaFieldsProps) {
         />
       </div>
 
-      <LeadRangeFields form={form} name="Budget" label={t('leadFormFields.priceRange')} />
-      <LeadRangeFields form={form} name="AreaSqm" label={t('leadFormFields.areaRange')} />
-      <LeadRangeFields form={form} name="Rooms" label={t('leadFormFields.roomsRange')} />
-      <LeadRangeFields form={form} name="Bedrooms" label={t('leadFormFields.bedroomsRange')} />
-      <LeadRangeFields form={form} name="Bathrooms" label={t('leadFormFields.bathroomsRange')} />
+      <LeadRangeFields id="modal-field-priceRange" form={form} name="Budget" label={t('leadFormFields.priceRange')} />
+      <LeadRangeFields id="modal-field-areaRange" form={form} name="AreaSqm" label={t('leadFormFields.areaRange')} />
+      <LeadRangeFields id="modal-field-roomsRange" form={form} name="Rooms" label={t('leadFormFields.roomsRange')} />
+      <LeadRangeFields id="modal-field-bedroomsRange" form={form} name="Bedrooms" label={t('leadFormFields.bedroomsRange')} />
+      <LeadRangeFields id="modal-field-bathroomsRange" form={form} name="Bathrooms" label={t('leadFormFields.bathroomsRange')} />
     </div>
   )
 }

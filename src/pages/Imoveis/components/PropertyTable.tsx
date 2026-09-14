@@ -25,13 +25,15 @@ function PropertyTable({ properties, isLoading }: PropertyTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={properties}
-        keyExtractor={(property) => property.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('table.emptyMessage')}
-      />
+      <div id="proprieta-table">
+        <DataTable
+          columns={columns}
+          data={properties}
+          keyExtractor={(property) => property.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('table.emptyMessage')}
+        />
+      </div>
 
       <ConfirmPopup
         open={!!deleteTarget}

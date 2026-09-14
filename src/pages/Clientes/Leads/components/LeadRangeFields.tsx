@@ -10,10 +10,11 @@ type LeadRangeFieldsProps = {
   form: UseFormReturn<LeadFormValues>
   name: RangeName
   label: string
+  id?: string
 }
 
 // Par "da / a" de um critério de busca (prezzo, mq, locali, camere, bagni)
-function LeadRangeFields({ form, name, label }: LeadRangeFieldsProps) {
+function LeadRangeFields({ form, name, label, id }: LeadRangeFieldsProps) {
   const { t } = useTranslation('clientes')
   const { register, control } = form
   const { errors } = useFormState({ control })
@@ -22,7 +23,7 @@ function LeadRangeFields({ form, name, label }: LeadRangeFieldsProps) {
   const maxName = `max${name}` as const
 
   return (
-    <FormFieldWrapper label={label} error={errors[minName]?.message ?? errors[maxName]?.message}>
+    <FormFieldWrapper id={id} label={label} error={errors[minName]?.message ?? errors[maxName]?.message}>
       <div className="flex items-center gap-2">
         <Input
           {...register(minName)}

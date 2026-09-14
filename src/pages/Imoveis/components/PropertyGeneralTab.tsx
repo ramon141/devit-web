@@ -25,17 +25,17 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId }: Proper
 
   return (
     <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper label={t('generalTab.codeLabel')} required error={errors.code?.message}>
+      <FormFieldWrapper id="property-field-code" label={t('generalTab.codeLabel')} required error={errors.code?.message}>
         <PropertyCodeField form={form} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('generalTab.titleLabel')} required error={errors.title?.message}>
+      <FormFieldWrapper id="property-field-title" label={t('generalTab.titleLabel')} required error={errors.title?.message}>
         <ControlledInput control={control} name="title" placeholder={t('generalTab.titlePlaceholder')} />
       </FormFieldWrapper>
 
       <PropertyCategoryOwnerFields control={control} errors={errors} />
 
-      <FormFieldWrapper label={t('generalTab.purposeLabel')} required error={errors.purpose?.message}>
+      <FormFieldWrapper id="property-field-purpose" label={t('generalTab.purposeLabel')} required error={errors.purpose?.message}>
         <Controller
           control={control}
           name="purpose"
@@ -45,7 +45,7 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId }: Proper
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('generalTab.statusLabel')} required error={errors.status?.message}>
+      <FormFieldWrapper id="property-field-status" label={t('generalTab.statusLabel')} required error={errors.status?.message}>
         <Controller
           control={control}
           name="status"
@@ -59,7 +59,7 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId }: Proper
 
       <PropertyOwnersManager propertyId={propertyId ?? ''} />
 
-      <PropertyFormFooter isSubmitting={isSubmitting} />
+      <PropertyFormFooter id="property-tab-generale-actions" isSubmitting={isSubmitting} />
     </form>
   )
 }

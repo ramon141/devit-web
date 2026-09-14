@@ -5,5 +5,10 @@
     "breadcrumb": "Notificações",
     "emptyState": "Nenhuma notificação.",
     "markAsRead": "Marcar como lida"
+  },
+  "tour": {
+    "title": { "title": "Notificações", "content": "Aqui você vê todos os avisos relacionados à sua atividade." },
+    "list": { "title": "Lista de notificações", "content": "Cada notificação mostra o tipo, título, mensagem e data de criação." },
+    "markRead": { "title": "Marcar como lida", "content": "Clique aqui para marcar uma notificação não lida como lida." }
   }
 }

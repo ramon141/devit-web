@@ -1,8 +1,11 @@
 import { useNavigate, useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import SectionPage from '@/components/layout/SectionPage'
+import JoyrideWrapper from '@/components/JoyrideWrapper'
+import TourFab from '@/components/TourFab'
 import { useHomeBannerControllerFindById } from '@/api/generated/api'
 import { useBannerForm } from '@/pages/Amministrazione/Banner/hooks/useBannerForm'
+import { useBannerSchedaTour } from '@/pages/Amministrazione/Banner/hooks/useBannerSchedaTour'
 import BannerFormFields from '@/pages/Amministrazione/Banner/components/BannerFormFields'
 import BannerPreviewPanel from '@/pages/Amministrazione/Banner/components/BannerPreviewPanel'
 
@@ -24,6 +27,7 @@ function BannerScheda() {
     banner,
     onSaved: () => navigate(LIST_PATH),
   })
+  const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour } = useBannerSchedaTour()
 
   return (
     <SectionPage
@@ -32,6 +36,15 @@ function BannerScheda() {
       parentLabel={t('bannerPage.title')}
       parentPath={LIST_PATH}
     >
+      <JoyrideWrapper
+        steps={steps}
+        run={run}
+        stepIndex={stepIndex}
+        tourKey={tourKey}
+        onEvent={handleJoyrideCallback}
+      />
+      <TourFab onClick={startTour} />
+
       <div className="grid items-start gap-6 lg:grid-cols-2">
         <div className="rounded-xl border bg-white p-6">
           <BannerFormFields

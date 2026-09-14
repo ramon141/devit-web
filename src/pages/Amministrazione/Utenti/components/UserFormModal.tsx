@@ -24,7 +24,7 @@ function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
       onOpenChange={onOpenChange}
       title={user ? t('userFormModal.editTitle') : t('userFormModal.newTitle')}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
+      <form id="modal-utenti-form" onSubmit={onSubmit} className="grid gap-4">
         <UserFormFields
           form={form}
           isEditing={isEditing}
@@ -33,7 +33,11 @@ function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
           avatarUrl={avatarUrl}
         />
 
-        <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
+        <FormModalFooter
+          id="modal-btn-actions"
+          onCancel={() => onOpenChange(false)}
+          isSubmitting={isSubmitting}
+        />
       </form>
     </ModalRegister>
   )

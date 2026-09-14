@@ -5,5 +5,11 @@
     "breadcrumb": "Il mio profilo",
     "save": "Salva",
     "languageLabel": "Lingua"
+  },
+  "tour": {
+    "title": { "title": "Il mio profilo", "content": "Qui gestisci i tuoi dati personali." },
+    "formFields": { "title": "I tuoi dati", "content": "Rivedi e aggiorna i tuoi dati anagrafici, come nome, e-mail, telefono e foto." },
+    "language": { "title": "Lingua", "content": "Scegli la lingua usata in tutto il sistema: italiano o portoghese." },
+    "save": { "title": "Salva", "content": "Clicca qui per salvare le modifiche al tuo profilo." }
   }
 }

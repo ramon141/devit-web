@@ -13,7 +13,7 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
   const featured = useWatch({ control, name: 'featured' })
 
   return (
-    <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
+    <div id="property-field-flags" className="flex flex-wrap items-center gap-4 sm:col-span-2">
       <Controller
         control={control}
         name="featured"

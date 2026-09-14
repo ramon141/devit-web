@@ -10,6 +10,7 @@ type FormFieldWrapperProps = {
   required?: boolean
   error?: string
   children: ReactNode
+  id?: string
 }
 
 // Espelha o visual de aria-invalid nos campos filhos quando há erro,
@@ -33,9 +34,10 @@ function FormFieldWrapper({
   required,
   error,
   children,
+  id,
 }: FormFieldWrapperProps) {
   return (
-    <div className={cn('grid min-w-0 content-start gap-1.5', error && invalidFieldClasses)}>
+    <div id={id} className={cn('grid min-w-0 content-start gap-1.5', error && invalidFieldClasses)}>
       <Label htmlFor={htmlFor}>
         {label}
         {required && <span className="text-destructive"> *</span>}

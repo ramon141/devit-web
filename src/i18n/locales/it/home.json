@@ -84,5 +84,67 @@
   "upcomingRenewalsCard": {
     "title": "Scadenze locazioni",
     "empty": "Nessun contratto in scadenza nei prossimi 30 giorni."
+  },
+  "tour": {
+    "title": {
+      "title": "Bacheca",
+      "content": "Questa è la panoramica dell'attività della tua agenzia."
+    },
+    "windowSelect": {
+      "title": "Periodo di analisi",
+      "content": "Scegli il periodo usato per calcolare gli immobili dormienti e le altre metriche della bacheca."
+    },
+    "todayAppointments": {
+      "title": "Impegni di oggi",
+      "content": "Elenco degli appuntamenti programmati per oggi."
+    },
+    "recentProperties": {
+      "title": "Ultimi immobili modificati",
+      "content": "Immobili che hanno subito una modifica di recente."
+    },
+    "dormantProperties": {
+      "title": "Immobili dormienti",
+      "content": "Immobili senza movimenti da più tempo del periodo selezionato."
+    },
+    "leadsByStatus": {
+      "title": "Lead per stato",
+      "content": "Distribuzione dei lead in base allo stato attuale."
+    },
+    "leadsBySource": {
+      "title": "Provenienza richieste",
+      "content": "Da dove arrivano i lead ricevuti."
+    },
+    "conversionFunnel": {
+      "title": "Imbuto di conversione",
+      "content": "Segui il percorso del lead fino alla vendita: lead, visita, proposta e vendita."
+    },
+    "agentConversion": {
+      "title": "Conversione per agente",
+      "content": "Tasso di conversione dei lead di ogni agente."
+    },
+    "propertiesByStatusPurpose": {
+      "title": "Immobili per tipologia e stato",
+      "content": "Distribuzione degli immobili per stato e per finalità (vendita o locazione)."
+    },
+    "avgTimeOnMarket": {
+      "title": "Tempo medio sul mercato",
+      "content": "Media dei giorni fino alla vendita o fino alla locazione degli immobili."
+    },
+    "incompleteProperties": {
+      "title": "Immobili con scheda incompleta",
+      "content": "Immobili senza descrizione o senza foto caricate."
+    },
+    "agentRanking": {
+      "title": "Classifica agenti",
+      "content": "Agenti ordinati per vendite e lead convertiti."
+    },
+    "appointmentsStatus": {
+      "title": "Appuntamenti per stato",
+      "content": "Numero di appuntamenti per stato: programmato, concluso o annullato."
+    },
+    "upcomingRenewals": {
+      "title": "Scadenze locazioni",
+      "content": "Contratti di locazione in scadenza nei prossimi 30 giorni."
+    }
   }
 }

@@ -367,5 +367,196 @@
     "pending": "Eliminazione del quartiere...",
     "success": "Quartiere eliminato con successo!",
     "error": "Errore durante l'eliminazione del quartiere"
+  },
+  "tour": {
+    "proprietari": {
+      "page": {
+        "title": {
+          "title": "Area proprietari",
+          "content": "Qui gestisci gli accessi che i proprietari usano per entrare nella loro area riservata sul sito."
+        },
+        "table": {
+          "title": "Elenco accessi",
+          "content": "Ogni riga è un accesso proprietario: puoi resettare il PIN o attivare/disattivare l'accesso."
+        },
+        "newBtn": {
+          "title": "Nuovo accesso",
+          "content": "Clicca qui per abilitare l'accesso all'area proprietari per un cliente."
+        }
+      },
+      "modal": {
+        "intro": {
+          "title": "Nuovo accesso proprietario",
+          "content": "Seleziona il proprietario e inserisci la sua e-mail per generare l'accesso."
+        },
+        "fields": {
+          "owner": {
+            "title": "Proprietario",
+            "content": "Cerca e seleziona il cliente con ruolo proprietario. Campo obbligatorio."
+          },
+          "email": {
+            "title": "E-mail",
+            "content": "E-mail che riceverà il PIN di accesso all'area proprietari. Campo obbligatorio."
+          }
+        },
+        "actions": {
+          "title": "Salva o annulla",
+          "content": "Clicca su Salva per generare l'accesso o su Annulla per chiudere senza salvare."
+        }
+      }
+    },
+    "audit": {
+      "title": {
+        "title": "Audit",
+        "content": "Qui puoi consultare lo storico delle azioni eseguite nel sistema."
+      },
+      "table": {
+        "title": "Elenco eventi",
+        "content": "Ogni riga registra un'azione: il tipo di azione, l'entità coinvolta, l'id dell'entità, l'utente responsabile e la data/ora."
+      }
+    },
+    "banner": {
+      "list": {
+        "title": {
+          "title": "Banner",
+          "content": "Qui gestisci i banner mostrati nella home page del sito."
+        },
+        "search": {
+          "title": "Cerca banner",
+          "content": "Digita per filtrare i banner per titolo."
+        },
+        "carousel": {
+          "title": "Banner registrati",
+          "content": "Trascina le card per riordinare i banner o clicca su una card per modificarla."
+        },
+        "newBtn": {
+          "title": "Nuovo banner",
+          "content": "Clicca qui per registrare un nuovo banner."
+        }
+      },
+      "scheda": {
+        "intro": {
+          "title": "Registrazione banner",
+          "content": "Compila i dati del banner. Vedremo insieme ogni campo del modulo."
+        },
+        "fields": {
+          "image": {
+            "title": "Immagine (desktop)",
+            "content": "Immagine mostrata nel banner per gli schermi grandi."
+          },
+          "mobileImage": {
+            "title": "Immagine (mobile)",
+            "content": "Immagine mostrata nel banner per gli schermi piccoli."
+          },
+          "title": {
+            "title": "Titolo",
+            "content": "Titolo principale mostrato sopra il banner. Campo obbligatorio."
+          },
+          "subtitle": {
+            "title": "Sottotitolo",
+            "content": "Testo secondario mostrato sotto il titolo."
+          },
+          "targetLink": {
+            "title": "Link di destinazione",
+            "content": "Indirizzo verso cui viene portato l'utente cliccando sul banner."
+          },
+          "displayOrder": {
+            "title": "Ordine di visualizzazione",
+            "content": "Definisce la posizione del banner tra gli altri. Numeri più bassi vengono mostrati prima."
+          },
+          "startDate": {
+            "title": "Data di inizio",
+            "content": "Data da cui il banner inizia a essere mostrato."
+          },
+          "endDate": {
+            "title": "Data di fine",
+            "content": "Data in cui il banner smette di essere mostrato."
+          },
+          "active": {
+            "title": "Banner attivo",
+            "content": "Disattiva per nascondere il banner senza eliminarlo."
+          }
+        },
+        "actions": {
+          "title": "Salva o annulla",
+          "content": "Clicca su Salva per registrare il banner o su Annulla per tornare indietro senza salvare."
+        }
+      }
+    },
+    "utenti": {
+      "page": {
+        "title": { "title": "Utenti", "content": "Qui gestisci gli utenti che hanno accesso al sistema." },
+        "search": { "title": "Cerca utente", "content": "Digita il nome o l'e-mail per filtrare l'elenco." },
+        "table": { "title": "Elenco utenti", "content": "Ogni riga mostra un utente registrato, la sua filiale e il livello di accesso." },
+        "newBtn": { "title": "Nuovo utente", "content": "Clicca qui per registrare un nuovo utente." }
+      },
+      "modal": {
+        "intro": { "title": "Registrazione utente", "content": "Compila i dati dell'utente." },
+        "fields": {
+          "avatar": { "title": "Foto", "content": "Foto profilo dell'utente, mostrata nel sistema." },
+          "fullName": { "title": "Nome completo", "content": "Nome completo dell'utente. Campo obbligatorio." },
+          "email": { "title": "E-mail", "content": "E-mail usata per accedere al sistema. Campo obbligatorio." },
+          "accessLevel": { "title": "Livello di accesso", "content": "Definisce i permessi dell'utente nel sistema. Campo obbligatorio." },
+          "branch": { "title": "Filiale", "content": "Filiale a cui l'utente è collegato." },
+          "password": { "title": "Password", "content": "Password di accesso. Obbligatoria alla creazione di un nuovo utente." },
+          "active": { "title": "Utente attivo", "content": "Disattiva per bloccare l'accesso dell'utente senza eliminarlo." }
+        },
+        "actions": { "title": "Salva o annulla", "content": "Clicca su Salva per registrare l'utente o su Annulla per chiudere senza salvare." }
+      }
+    },
+    "filiali": {
+      "page": {
+        "title": { "title": "Filiali", "content": "Qui gestisci le filiali registrate nel sistema." },
+        "search": { "title": "Cerca filiale", "content": "Digita il nome per filtrare l'elenco delle filiali." },
+        "table": { "title": "Elenco filiali", "content": "Ogni riga mostra una filiale registrata." },
+        "newBtn": { "title": "Nuova filiale", "content": "Clicca qui per registrare una nuova filiale." }
+      },
+      "modal": {
+        "intro": { "title": "Registrazione filiale", "content": "Compila i dati della filiale." },
+        "fields": {
+          "name": { "title": "Nome", "content": "Nome della filiale. Campo obbligatorio." },
+          "active": { "title": "Filiale attiva", "content": "Disattiva per archiviare la filiale senza eliminarla." }
+        },
+        "actions": { "title": "Salva o annulla", "content": "Clicca su Salva per registrare la filiale o su Annulla per chiudere senza salvare." }
+      }
+    },
+    "categorie": {
+      "page": {
+        "title": { "title": "Categorie", "content": "Qui gestisci le categorie di immobili del sistema." },
+        "search": { "title": "Cerca categoria", "content": "Digita il nome per filtrare l'elenco delle categorie." },
+        "table": { "title": "Elenco categorie", "content": "Ogni riga mostra una categoria di immobile registrata." },
+        "newBtn": { "title": "Nuova categoria", "content": "Clicca qui per registrare una nuova categoria." }
+      },
+      "modal": {
+        "intro": { "title": "Registrazione categoria", "content": "Compila i dati della categoria." },
+        "fields": {
+          "name": { "title": "Nome", "content": "Nome della categoria. Campo obbligatorio." },
+          "slug": { "title": "Slug", "content": "Identificativo usato negli URL e nelle integrazioni. Campo obbligatorio." },
+          "icon": { "title": "Icona", "content": "Icona mostrata accanto alla categoria." },
+          "displayOrder": { "title": "Ordine di visualizzazione", "content": "Definisce l'ordine in cui la categoria appare negli elenchi." },
+          "active": { "title": "Categoria attiva", "content": "Disattiva per archiviare la categoria senza eliminarla." }
+        },
+        "actions": { "title": "Salva o annulla", "content": "Clicca su Salva per registrare la categoria o su Annulla per chiudere senza salvare." }
+      }
+    },
+    "zone": {
+      "page": {
+        "title": { "title": "Zone", "content": "Qui gestisci le zone e i quartieri usati negli immobili." },
+        "search": { "title": "Cerca zona", "content": "Digita il nome per filtrare l'elenco delle zone." },
+        "table": { "title": "Elenco zone", "content": "Ogni riga mostra una zona registrata. Clicca su una riga per vedere i quartieri di quella zona." },
+        "newBtn": { "title": "Nuova zona", "content": "Clicca qui per registrare una nuova zona." },
+        "neighborhoodPanel": { "title": "Quartieri della zona", "content": "Qui compaiono i quartieri della zona selezionata, con la possibilità di aggiungere, modificare o eliminare." }
+      },
+      "modal": {
+        "intro": { "title": "Registrazione zona", "content": "Compila i dati della zona." },
+        "fields": {
+          "name": { "title": "Nome", "content": "Nome della zona. Campo obbligatorio." },
+          "city": { "title": "Città", "content": "Città a cui appartiene la zona. Campo obbligatorio." },
+          "region": { "title": "Regione", "content": "Regione o provincia della zona." },
+          "active": { "title": "Zona attiva", "content": "Disattiva per archiviare la zona senza eliminarla." }
+        },
+        "actions": { "title": "Salva o annulla", "content": "Clicca su Salva per registrare la zona o su Annulla per chiudere senza salvare." }
+      }
+    }
   }
 }

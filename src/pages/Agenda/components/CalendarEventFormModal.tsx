@@ -38,7 +38,7 @@ function CalendarEventFormModal({
       onOpenChange={onOpenChange}
       title={event?.id ? t('agenda:formModal.editTitle') : t('agenda:formModal.createTitle')}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
+      <form id="modal-agenda-form" onSubmit={onSubmit} className="grid gap-4">
         <CalendarEventFormFields form={form} />
 
         {event?.id && (
@@ -54,7 +54,7 @@ function CalendarEventFormModal({
           </>
         )}
 
-        <div className="flex items-center justify-between gap-2">
+        <div id="modal-btn-actions" className="flex items-center justify-between gap-2">
           {event && onRequestDelete ? (
             <Button
               type="button"

@@ -4,15 +4,16 @@ import { Button } from '@/components/ui/button'
 
 type PropertyFormFooterProps = {
   isSubmitting: boolean
+  id?: string
 }
 
 // Rodapé do wizard: salva a aba atual e avança para a próxima
-function PropertyFormFooter({ isSubmitting }: PropertyFormFooterProps) {
+function PropertyFormFooter({ isSubmitting, id }: PropertyFormFooterProps) {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
 
   return (
-    <div className="flex justify-end gap-2 sm:col-span-2">
+    <div id={id} className="flex justify-end gap-2 sm:col-span-2">
       <Button
         type="button"
         variant="outline"

@@ -41,7 +41,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
 
   return (
     <div className="grid w-full grid-cols-2 items-end gap-2 sm:grid-cols-4">
-      <FormFieldWrapper label={t('filters.statusLabel')}>
+      <FormFieldWrapper id="proposte-status-filter" label={t('filters.statusLabel')}>
         <SelectField
           value={filters.status}
           onValueChange={(value) => update({ status: value })}
@@ -50,7 +50,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.financedLabel')}>
+      <FormFieldWrapper id="proposte-financed-filter" label={t('filters.financedLabel')}>
         <SelectField
           value={filters.financed}
           onValueChange={(value) => update({ financed: value })}
@@ -59,7 +59,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.propertyLabel')}>
+      <FormFieldWrapper id="proposte-property-filter" label={t('filters.propertyLabel')}>
         <SearchableSelect
           options={propertyOptions}
           value={filters.propertyId}
@@ -68,7 +68,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.buyerLabel')}>
+      <FormFieldWrapper id="proposte-buyer-filter" label={t('filters.buyerLabel')}>
         <SearchableSelect
           options={buyerOptions}
           value={filters.buyerId}
@@ -77,7 +77,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.sellerAgentLabel')}>
+      <FormFieldWrapper id="proposte-sellerAgent-filter" label={t('filters.sellerAgentLabel')}>
         <SearchableSelect
           options={userOptions}
           value={filters.sellerAgentId}
@@ -86,7 +86,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.assignedToLabel')}>
+      <FormFieldWrapper id="proposte-assignedTo-filter" label={t('filters.assignedToLabel')}>
         <SearchableSelect
           options={userOptions}
           value={filters.assignedToId}
@@ -95,7 +95,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.proposalDateFromLabel')}>
+      <FormFieldWrapper id="proposte-dateFrom-filter" label={t('filters.proposalDateFromLabel')}>
         <Input
           type="date"
           value={filters.proposalDateFrom}
@@ -103,7 +103,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.proposalDateToLabel')}>
+      <FormFieldWrapper id="proposte-dateTo-filter" label={t('filters.proposalDateToLabel')}>
         <Input
           type="date"
           value={filters.proposalDateTo}
@@ -111,7 +111,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <Label className="flex items-center gap-2 pb-2 text-sm font-normal">
+      <Label id="proposte-onlyMine-filter" className="flex items-center gap-2 pb-2 text-sm font-normal">
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true })}

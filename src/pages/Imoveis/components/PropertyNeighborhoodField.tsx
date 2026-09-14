@@ -36,23 +36,25 @@ function PropertyNeighborhoodField({ form, error }: PropertyNeighborhoodFieldPro
 
   return (
     <>
-      <Controller
-        control={form.control}
-        name="neighborhoodId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('locationTab.neighborhoodLabel')}
-            value={field.value}
-            onValueChange={handleChange}
-            options={options}
-            placeholder={t('locationTab.neighborhoodPlaceholder')}
-            searchPlaceholder={t('locationTab.neighborhoodSearchPlaceholder')}
-            error={error}
-            creatable
-            onCreate={setCreatingName}
-          />
-        )}
-      />
+      <div id="property-field-neighborhoodId">
+        <Controller
+          control={form.control}
+          name="neighborhoodId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('locationTab.neighborhoodLabel')}
+              value={field.value}
+              onValueChange={handleChange}
+              options={options}
+              placeholder={t('locationTab.neighborhoodPlaceholder')}
+              searchPlaceholder={t('locationTab.neighborhoodSearchPlaceholder')}
+              error={error}
+              creatable
+              onCreate={setCreatingName}
+            />
+          )}
+        />
+      </div>
 
       <PropertyNeighborhoodCreateModal
         open={!!creatingName}

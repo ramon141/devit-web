@@ -17,7 +17,7 @@ function PropertyKindTabs({ activeKind, onChange }: PropertyKindTabsProps) {
   if (kindsPresent.length === 0) return null
 
   return (
-    <div className="mb-3 flex flex-wrap gap-1.5">
+    <div id="proprieta-kind-tabs" className="mb-3 flex flex-wrap gap-1.5">
       <Button
         type="button"
         size="sm"

@@ -20,5 +20,13 @@
   "communicationsSummary": {
     "title": "Riepilogo comunicazioni",
     "description": "Totali per canale negli ultimi 30 giorni: consegnati, cliccati, letti, falliti"
+  },
+  "tour": {
+    "title": { "title": "Statistiche", "content": "Qui monitori i principali indicatori dell'agenzia." },
+    "leadsByStatus": { "title": "Lead per stato", "content": "Distribuzione dei lead per lo stato attuale del funnel." },
+    "salesByStatus": { "title": "Vendite per stato", "content": "Distribuzione delle vendite per lo stato attuale." },
+    "communicationsByChannel": { "title": "Comunicazioni per canale", "content": "Numero di comunicazioni inviate per canale e per stato." },
+    "communicationsWindow": { "title": "Periodo delle comunicazioni", "content": "Scegli il periodo usato nel grafico delle comunicazioni per canale." },
+    "communicationsSummary": { "title": "Riepilogo comunicazioni", "content": "Totali di comunicazioni consegnate, cliccate, lette e fallite negli ultimi 30 giorni." }
   }
 }

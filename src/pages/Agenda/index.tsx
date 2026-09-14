@@ -18,6 +18,10 @@ import type {
 import type { EventResizeDoneArg } from '@fullcalendar/interaction'
 import AppLayout from '@/components/layout/AppLayout'
 import ConfirmPopup from '@/components/ConfirmPopup'
+import JoyrideWrapper from '@/components/JoyrideWrapper'
+import TourFab from '@/components/TourFab'
+import { useAgendaTour, MODAL_TOUR_START_STEP } from '@/pages/Agenda/hooks/useAgendaTour'
+import { useTourModalSync } from '@/hooks/useTourModalSync'
 import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { useCalendarEventList } from '@/pages/Agenda/hooks/useCalendarEventList'
 import { useDeleteCalendarEvent } from '@/pages/Agenda/hooks/useDeleteCalendarEvent'
@@ -49,6 +53,26 @@ function Agenda() {
   const hoverCloseTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const hoverOpenTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const overCard = useRef(false)
+  const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour, stopTour } =
+    useAgendaTour()
+
+  useTourModalSync({
+    run,
+    stepIndex,
+    modalStartStep: MODAL_TOUR_START_STEP,
+    isOpen: formOpen,
+    openModal: () => {
+      setEditingEvent(null)
+      setFormOpen(true)
+    },
+    closeModal: () => setFormOpen(false),
+    steps,
+  })
+
+  function handleFormOpenChange(nextOpen: boolean) {
+    setFormOpen(nextOpen)
+    if (!nextOpen && run) stopTour()
+  }
 
   const calendarEvents = useMemo(
     () =>
@@ -162,9 +186,18 @@ function Agenda() {
       description={t('agenda:page.description')}
       breadcrumbItems={[{ label: t('agenda:page.breadcrumb') }]}
     >
+      <JoyrideWrapper
+        steps={steps}
+        run={run}
+        stepIndex={stepIndex}
+        tourKey={tourKey}
+        onEvent={handleJoyrideCallback}
+      />
+      <TourFab onClick={startTour} />
+
       <AgendaFilters filters={filters} onChange={setFilters} />
 
-      <div className="devit-calendar rounded-xl bg-card p-3">
+      <div id="agenda-calendar" className="devit-calendar rounded-xl bg-card p-3">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
           initialView="dayGridMonth"
@@ -220,7 +253,7 @@ function Agenda() {
 
       <CalendarEventFormModal
         open={formOpen}
-        onOpenChange={setFormOpen}
+        onOpenChange={handleFormOpenChange}
         event={editingEvent}
         defaultDate={defaultDate ?? dayjs().format('YYYY-MM-DD')}
         onRequestDelete={(event) => {

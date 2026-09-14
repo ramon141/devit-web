@@ -27,7 +27,12 @@ function PropertyCategoryOwnerFields({ control, errors }: PropertyCategoryOwnerF
 
   return (
     <>
-      <FormFieldWrapper label={t('categoryOwnerFields.categoryLabel')} required error={errors.categoryId?.message}>
+      <FormFieldWrapper
+        id="property-field-categoryId"
+        label={t('categoryOwnerFields.categoryLabel')}
+        required
+        error={errors.categoryId?.message}
+      >
         <Controller
           control={control}
           name="categoryId"
@@ -37,22 +42,24 @@ function PropertyCategoryOwnerFields({ control, errors }: PropertyCategoryOwnerF
         />
       </FormFieldWrapper>
 
-      <Controller
-        control={control}
-        name="ownerId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('categoryOwnerFields.ownerLabel')}
-            required
-            value={field.value}
-            onValueChange={field.onChange}
-            options={ownerOptions}
-            placeholder={t('categoryOwnerFields.ownerPlaceholder')}
-            searchPlaceholder={t('categoryOwnerFields.searchClientPlaceholder')}
-            error={errors.ownerId?.message}
-          />
-        )}
-      />
+      <div id="property-field-ownerId">
+        <Controller
+          control={control}
+          name="ownerId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('categoryOwnerFields.ownerLabel')}
+              required
+              value={field.value}
+              onValueChange={field.onChange}
+              options={ownerOptions}
+              placeholder={t('categoryOwnerFields.ownerPlaceholder')}
+              searchPlaceholder={t('categoryOwnerFields.searchClientPlaceholder')}
+              error={errors.ownerId?.message}
+            />
+          )}
+        />
+      </div>
     </>
   )
 }

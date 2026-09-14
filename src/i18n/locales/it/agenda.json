@@ -187,5 +187,37 @@
     "print": "Stampa",
     "delete": "Elimina",
     "attachments": "Allegati"
+  },
+  "tour": {
+    "page": {
+      "title": { "title": "Agenda", "content": "Qui gestisci gli impegni e gli eventi dell'agenzia." },
+      "search": { "title": "Cerca evento", "content": "Digita per filtrare gli eventi mostrati nel calendario." },
+      "typeFilter": { "title": "Tipo evento", "content": "Filtra gli eventi per tipo, come visita, riunione o chiamata." },
+      "onlyCalls": { "title": "Solo chiamate", "content": "Seleziona per mostrare solo gli eventi di tipo chiamata." },
+      "visibleUsers": { "title": "Utenti visibili", "content": "Scegli quali agenti hanno i propri eventi mostrati nel calendario." },
+      "calendar": { "title": "Calendario", "content": "Clicca su una data per creare un evento, o su un evento esistente per modificarlo. Puoi anche trascinare gli eventi per riprogrammarli." }
+    },
+    "modal": {
+      "intro": { "title": "Registrazione evento", "content": "Compila i dati dell'evento. Vedremo insieme ogni campo." },
+      "fields": {
+        "title": { "title": "Titolo", "content": "Titolo dell'evento. Campo obbligatorio." },
+        "type": { "title": "Tipo", "content": "Tipo di evento: visita, riunione, chiamata, ecc. Campo obbligatorio." },
+        "place": { "title": "Luogo", "content": "Luogo in cui si svolgerà l'evento." },
+        "keysLocation": { "title": "Dove sono le chiavi", "content": "Dove ritirare le chiavi dell'immobile, se applicabile." },
+        "date": { "title": "Data", "content": "Data dell'evento. Campo obbligatorio." },
+        "allDay": { "title": "Tutto il giorno", "content": "Seleziona se l'evento dura l'intera giornata, senza orario definito." },
+        "startTime": { "title": "Ora di inizio", "content": "Orario di inizio dell'evento." },
+        "endTime": { "title": "Ora di fine", "content": "Orario di fine dell'evento." },
+        "client": { "title": "Cliente", "content": "Cliente (lead) collegato all'evento." },
+        "owner": { "title": "Proprietario", "content": "Proprietario dell'immobile collegato all'evento." },
+        "confirmationStatus": { "title": "Stato conferma", "content": "Situazione della conferma dell'evento con il cliente. Campo obbligatorio." },
+        "reminder": { "title": "Promemoria", "content": "Quando vuoi essere avvisato di questo evento. Campo obbligatorio." },
+        "recurrence": { "title": "Ricorrenza", "content": "Definisce se l'evento si ripete e con quale frequenza. Campo obbligatorio." },
+        "eventColor": { "title": "Colore evento", "content": "Colore usato per identificare l'evento nel calendario." },
+        "privateEvent": { "title": "Evento privato", "content": "Seleziona affinché l'evento sia visibile solo a te." },
+        "description": { "title": "Note", "content": "Annotazioni libere sull'evento." }
+      },
+      "actions": { "title": "Salva o annulla", "content": "Clicca su Salva per registrare l'evento o su Annulla per chiudere senza salvare." }
+    }
   }
 }

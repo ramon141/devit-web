@@ -25,10 +25,14 @@ function PersonFormModal({ open, onOpenChange, person }: PersonFormModalProps) {
       title={person ? t('personFormModal.editTitle') : t('personFormModal.newTitle')}
       description={t('personFormModal.description')}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
+      <form id="modal-clienti-form" onSubmit={onSubmit} className="grid gap-4">
         <PersonFormFields form={form} />
 
-        <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
+        <FormModalFooter
+          id="modal-btn-actions"
+          onCancel={() => onOpenChange(false)}
+          isSubmitting={isSubmitting}
+        />
       </form>
     </ModalRegister>
   )

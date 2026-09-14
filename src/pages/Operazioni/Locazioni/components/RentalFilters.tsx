@@ -37,7 +37,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
 
   return (
     <div className="grid w-full grid-cols-2 items-end gap-2 sm:grid-cols-4">
-      <FormFieldWrapper label={t('locazioni.filters.situationLabel')}>
+      <FormFieldWrapper id="locazioni-situation-filter" label={t('locazioni.filters.situationLabel')}>
         <SelectField
           value={filters.situation}
           onValueChange={(value) => update({ situation: value })}
@@ -46,7 +46,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.filters.ownerLabel')}>
+      <FormFieldWrapper id="locazioni-owner-filter" label={t('locazioni.filters.ownerLabel')}>
         <SearchableSelect
           options={personOptions}
           value={filters.ownerId}
@@ -55,7 +55,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.filters.tenantLabel')}>
+      <FormFieldWrapper id="locazioni-tenant-filter" label={t('locazioni.filters.tenantLabel')}>
         <SearchableSelect
           options={personOptions}
           value={filters.tenantId}
@@ -64,7 +64,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.filters.ownerAgentLabel')}>
+      <FormFieldWrapper id="locazioni-ownerAgent-filter" label={t('locazioni.filters.ownerAgentLabel')}>
         <SearchableSelect
           options={userOptions}
           value={filters.ownerAgentId}
@@ -73,7 +73,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.filters.tenantAgentLabel')}>
+      <FormFieldWrapper id="locazioni-tenantAgent-filter" label={t('locazioni.filters.tenantAgentLabel')}>
         <SearchableSelect
           options={userOptions}
           value={filters.tenantAgentId}
@@ -82,7 +82,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.filters.stipulaDateFromLabel')}>
+      <FormFieldWrapper id="locazioni-stipulaDateFrom-filter" label={t('locazioni.filters.stipulaDateFromLabel')}>
         <Input
           type="date"
           value={filters.stipulaDateFrom}
@@ -90,7 +90,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.filters.stipulaDateToLabel')}>
+      <FormFieldWrapper id="locazioni-stipulaDateTo-filter" label={t('locazioni.filters.stipulaDateToLabel')}>
         <Input
           type="date"
           value={filters.stipulaDateTo}
@@ -98,7 +98,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.filters.startDateFromLabel')}>
+      <FormFieldWrapper id="locazioni-startDateFrom-filter" label={t('locazioni.filters.startDateFromLabel')}>
         <Input
           type="date"
           value={filters.startDateFrom}
@@ -106,7 +106,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.filters.startDateToLabel')}>
+      <FormFieldWrapper id="locazioni-startDateTo-filter" label={t('locazioni.filters.startDateToLabel')}>
         <Input
           type="date"
           value={filters.startDateTo}
@@ -114,7 +114,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <Label className="flex items-center gap-2 pb-2 text-sm font-normal">
+      <Label id="locazioni-onlyMine-filter" className="flex items-center gap-2 pb-2 text-sm font-normal">
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true })}

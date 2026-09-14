@@ -382,5 +382,142 @@
       "onlyMine": "Somente as minhas",
       "all": "Todos"
     }
+  },
+  "tour": {
+    "locazioni": {
+      "list": {
+        "title": { "title": "Locações", "content": "Aqui você gerencia os contratos de locação registrados no sistema." },
+        "search": { "title": "Buscar contrato", "content": "Digite para filtrar contratos por número ou dados relacionados." },
+        "situation": { "title": "Situação", "content": "Filtra os contratos pela situação atual." },
+        "owner": { "title": "Proprietário", "content": "Filtra pelo proprietário do imóvel." },
+        "tenant": { "title": "Inquilino", "content": "Filtra pelo inquilino." },
+        "ownerAgent": { "title": "Agente do proprietário", "content": "Filtra pelo corretor responsável pelo proprietário." },
+        "tenantAgent": { "title": "Agente do inquilino", "content": "Filtra pelo corretor responsável pelo inquilino." },
+        "stipulaDateFrom": { "title": "Data de assinatura de", "content": "Filtra contratos assinados a partir desta data." },
+        "stipulaDateTo": { "title": "Data de assinatura até", "content": "Filtra contratos assinados até esta data." },
+        "startDateFrom": { "title": "Início de vigência de", "content": "Filtra contratos com início de vigência a partir desta data." },
+        "startDateTo": { "title": "Início de vigência até", "content": "Filtra contratos com início de vigência até esta data." },
+        "onlyMine": { "title": "Somente as minhas", "content": "Mostra apenas os contratos em que você é o agente responsável." },
+        "table": { "title": "Lista de contratos", "content": "Cada linha é um contrato. Clique para editar ou use o menu de ações para renovar, rescindir ou excluir." },
+        "newBtn": { "title": "Novo contrato", "content": "Abre o cadastro de um novo contrato de locação." }
+      },
+      "modal": {
+        "intro": { "title": "Cadastro de contrato", "content": "Preencha os dados do contrato de locação. Depois de salvo, você também poderá anexar documentos e ver o histórico." },
+        "fields": {
+          "number": { "title": "Número", "content": "Número identificador do contrato. Campo obrigatório." },
+          "situation": { "title": "Situação", "content": "Situação atual do contrato. Campo obrigatório." },
+          "propertyId": { "title": "Imóvel", "content": "Imóvel objeto da locação." },
+          "ownerIds": { "title": "Proprietários", "content": "Adicione um ou mais proprietários do imóvel." },
+          "tenantIds": { "title": "Inquilinos", "content": "Adicione um ou mais inquilinos do contrato." },
+          "ownerAgentId": { "title": "Agente do proprietário", "content": "Corretor responsável por representar o proprietário." },
+          "tenantAgentId": { "title": "Agente do inquilino", "content": "Corretor responsável por representar o inquilino." },
+          "startDate": { "title": "Início de vigência", "content": "Data de início da locação. Campo obrigatório." },
+          "endDate": { "title": "Fim de vigência", "content": "Data de término da locação." },
+          "stipulaDate": { "title": "Data de assinatura", "content": "Data em que o contrato foi assinado." },
+          "registeredAt": { "title": "Data de registro", "content": "Data em que o contrato foi registrado no órgão competente." },
+          "renewalDueDate": { "title": "Vencimento de renovação", "content": "Data limite para renovar o contrato." },
+          "rentAmount": { "title": "Valor do aluguel", "content": "Valor mensal do aluguel. Campo obrigatório." },
+          "condoFee": { "title": "Condomínio", "content": "Valor mensal do condomínio, se aplicável." },
+          "depositAmount": { "title": "Caução", "content": "Valor do depósito de caução." },
+          "dueDay": { "title": "Dia de vencimento", "content": "Dia do mês em que o aluguel vence. Campo obrigatório." },
+          "adjustmentIndex": { "title": "Índice de reajuste", "content": "Índice usado para reajustar o valor do aluguel (ex.: IPCA, IGP-M)." },
+          "noticeDays": { "title": "Dias de aviso prévio", "content": "Quantidade de dias de aviso prévio para rescisão." },
+          "notes": { "title": "Observações", "content": "Anotações livres sobre o contrato." }
+        },
+        "allegati": { "title": "Anexos", "content": "Depois de salvo o contrato, aqui você anexa documentos relacionados." },
+        "storico": { "title": "Histórico", "content": "Depois de salvo o contrato, aqui você acompanha o histórico de renovações." },
+        "actions": { "title": "Salvar ou cancelar", "content": "Salve para gravar o contrato ou cancele para fechar sem salvar." }
+      }
+    },
+    "vendite": {
+      "list": {
+        "title": { "title": "Vendas", "content": "Aqui você gerencia as vendas de imóveis registradas no sistema." },
+        "search": { "title": "Buscar venda", "content": "Digite para filtrar vendas por número ou dados relacionados." },
+        "status": { "title": "Status", "content": "Filtra as vendas pelo status atual do processo." },
+        "seller": { "title": "Vendedor", "content": "Filtra pelo cliente vendedor." },
+        "buyer": { "title": "Comprador", "content": "Filtra pelo cliente comprador." },
+        "sellerAgent": { "title": "Agente vendedor", "content": "Filtra pelo corretor responsável pelo vendedor." },
+        "buyerAgent": { "title": "Agente comprador", "content": "Filtra pelo corretor responsável pelo comprador." },
+        "saleDateFrom": { "title": "Data de assinatura de", "content": "Filtra vendas assinadas a partir desta data." },
+        "saleDateTo": { "title": "Data de assinatura até", "content": "Filtra vendas assinadas até esta data." },
+        "onlyMine": { "title": "Somente as minhas", "content": "Mostra apenas as vendas em que você é o agente responsável." },
+        "table": { "title": "Lista de vendas", "content": "Cada linha é uma venda. Clique para editar ou use o menu de ações." },
+        "newBtn": { "title": "Nova venda", "content": "Abre o cadastro de uma nova venda." }
+      },
+      "modal": {
+        "intro": { "title": "Cadastro de venda", "content": "O cadastro é dividido em etapas: Geral, Pagamento, Documentos e Histórico." },
+        "fields": {
+          "number": { "title": "Número", "content": "Número identificador da venda. Campo obrigatório." },
+          "saleDate": { "title": "Data da venda", "content": "Data de assinatura da venda. Campo obrigatório." },
+          "propertyId": { "title": "Imóvel", "content": "Imóvel objeto da venda." },
+          "sellerId": { "title": "Vendedor", "content": "Cliente vendedor principal." },
+          "buyerId": { "title": "Comprador", "content": "Cliente comprador principal." },
+          "proposalId": { "title": "Proposta", "content": "Proposta de compra vinculada a esta venda, se houver." },
+          "extraSellerIds": { "title": "Vendedores adicionais", "content": "Outros vendedores envolvidos na venda, além do principal." },
+          "extraBuyerIds": { "title": "Compradores adicionais", "content": "Outros compradores envolvidos na venda, além do principal." },
+          "sellerAgentId": { "title": "Agente do vendedor", "content": "Corretor responsável por representar o vendedor." },
+          "buyerAgentId": { "title": "Agente do comprador", "content": "Corretor responsável por representar o comprador." },
+          "paymentMethod": { "title": "Forma de pagamento", "content": "Forma de pagamento acordada. Campo obrigatório." },
+          "status": { "title": "Status", "content": "Status atual da venda. Campo obrigatório." },
+          "deedDate": { "title": "Data da escritura", "content": "Data em que a escritura foi ou será lavrada." },
+          "finalAmount": { "title": "Valor final", "content": "Valor final acordado da venda. Campo obrigatório." },
+          "downPayment": { "title": "Entrada", "content": "Valor pago como entrada/sinal." },
+          "commissionAmount": { "title": "Comissão", "content": "Valor da comissão da imobiliária nesta venda." },
+          "installmentsCount": { "title": "Número de parcelas", "content": "Quantidade de parcelas do pagamento, se financiado." },
+          "financialInstitution": { "title": "Instituição financeira", "content": "Banco ou financeira responsável pelo financiamento, se houver." },
+          "cancellationReason": { "title": "Motivo do cancelamento", "content": "Preenchido apenas se a venda for cancelada." },
+          "notes": { "title": "Observações", "content": "Anotações livres sobre a venda." }
+        },
+        "documenti": { "title": "Documentos", "content": "Depois de salva a venda, aqui você anexa contratos e outros documentos relacionados." },
+        "storico": { "title": "Histórico", "content": "Depois de salva a venda, aqui você acompanha o histórico de mudanças de status." },
+        "actions": { "title": "Salvar ou cancelar", "content": "Salve para gravar a venda ou cancele para fechar sem salvar." }
+      }
+    },
+    "adeguamenti": {
+      "title": {
+        "title": "Reajuste de aluguel",
+        "content": "Aqui você gera reajustes de aluguel em lote com base num índice percentual."
+      },
+      "indexPercent": {
+        "title": "Índice de reajuste (%)",
+        "content": "Informe o percentual do índice a aplicar sobre o valor atual dos contratos selecionados."
+      },
+      "generateBtn": {
+        "title": "Gerar reajustes",
+        "content": "Aplica o percentual informado aos contratos selecionados na tabela abaixo e cria os reajustes."
+      },
+      "eligibleTable": {
+        "title": "Contratos elegíveis",
+        "content": "Marque os contratos que devem receber o reajuste usando a caixa de seleção em cada linha."
+      },
+      "generatedTable": {
+        "title": "Reajustes gerados",
+        "content": "Depois de gerar, os reajustes aplicados aparecem aqui com o valor anterior e o novo valor."
+      }
+    },
+    "registrazioni": {
+      "title": {
+        "title": "Registro de contratos",
+        "content": "Aqui você controla quais contratos de locação já foram registrados no cartório/receita."
+      },
+      "table": {
+        "title": "Lista de contratos",
+        "content": "Cada linha é um contrato. O status mostra se já foi registrado; use o botão de check na coluna de ações para marcar como registrado."
+      }
+    },
+    "scadenziario": {
+      "title": {
+        "title": "Vencimentos",
+        "content": "Aqui você acompanha os contratos de locação com renovação próxima do vencimento."
+      },
+      "days": {
+        "title": "Janela de dias",
+        "content": "Define quantos dias à frente a lista deve considerar para mostrar contratos próximos do vencimento."
+      },
+      "table": {
+        "title": "Lista de vencimentos",
+        "content": "Cada linha é um contrato prestes a vencer. Use o botão de renovar na linha para gerar a renovação."
+      }
+    }
   }
 }

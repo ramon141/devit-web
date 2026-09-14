@@ -28,53 +28,59 @@ function ProposalAssignmentFields({ control, errors }: ProposalAssignmentFieldsP
 
   return (
     <>
-      <Controller
-        control={control}
-        name="leadId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('assignmentFields.leadLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={leadOptions}
-            placeholder={t('assignmentFields.leadPlaceholder')}
-            searchPlaceholder={t('assignmentFields.leadSearchPlaceholder')}
-            error={errors.leadId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-leadId">
+        <Controller
+          control={control}
+          name="leadId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('assignmentFields.leadLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={leadOptions}
+              placeholder={t('assignmentFields.leadPlaceholder')}
+              searchPlaceholder={t('assignmentFields.leadSearchPlaceholder')}
+              error={errors.leadId?.message}
+            />
+          )}
+        />
+      </div>
 
-      <Controller
-        control={control}
-        name="assignedToId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('assignmentFields.assignedToLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={userOptions}
-            placeholder={t('assignmentFields.assignedToPlaceholder')}
-            searchPlaceholder={t('assignmentFields.assignedToSearchPlaceholder')}
-            error={errors.assignedToId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-assignedToId">
+        <Controller
+          control={control}
+          name="assignedToId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('assignmentFields.assignedToLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder={t('assignmentFields.assignedToPlaceholder')}
+              searchPlaceholder={t('assignmentFields.assignedToSearchPlaceholder')}
+              error={errors.assignedToId?.message}
+            />
+          )}
+        />
+      </div>
 
-      <Controller
-        control={control}
-        name="sellerAgentId"
-        render={({ field }) => (
-          <SearchableSelect
-            label={t('assignmentFields.sellerAgentLabel')}
-            value={field.value}
-            onValueChange={field.onChange}
-            options={userOptions}
-            placeholder={t('assignmentFields.sellerAgentPlaceholder')}
-            searchPlaceholder={t('assignmentFields.sellerAgentSearchPlaceholder')}
-            error={errors.sellerAgentId?.message}
-          />
-        )}
-      />
+      <div id="modal-field-sellerAgentId">
+        <Controller
+          control={control}
+          name="sellerAgentId"
+          render={({ field }) => (
+            <SearchableSelect
+              label={t('assignmentFields.sellerAgentLabel')}
+              value={field.value}
+              onValueChange={field.onChange}
+              options={userOptions}
+              placeholder={t('assignmentFields.sellerAgentPlaceholder')}
+              searchPlaceholder={t('assignmentFields.sellerAgentSearchPlaceholder')}
+              error={errors.sellerAgentId?.message}
+            />
+          )}
+        />
+      </div>
     </>
   )
 }

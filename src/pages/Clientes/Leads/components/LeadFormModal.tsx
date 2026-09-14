@@ -25,16 +25,20 @@ function LeadFormModal({ open, onOpenChange, lead }: LeadFormModalProps) {
       onOpenChange={onOpenChange}
       title={lead ? t('leadFormModal.editTitle') : t('leadFormModal.newTitle')}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
+      <form id="modal-leads-form" onSubmit={onSubmit} className="grid gap-4">
         <LeadFormFields form={form} />
 
-        <div className="grid gap-4 border-t pt-4">
+        <div id="modal-leads-criteria" className="grid gap-4 border-t pt-4">
           <h3 className="text-sm font-semibold">{t('leadFormModal.criteriaTitle')}</h3>
 
           <LeadCriteriaFields form={form} />
         </div>
 
-        <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
+        <FormModalFooter
+          id="modal-btn-actions"
+          onCancel={() => onOpenChange(false)}
+          isSubmitting={isSubmitting}
+        />
       </form>
     </ModalRegister>
   )

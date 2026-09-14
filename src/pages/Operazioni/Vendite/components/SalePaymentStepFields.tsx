@@ -25,6 +25,7 @@ function SalePaymentStepFields({ form }: SalePaymentStepFieldsProps) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <FormFieldWrapper
+        id="modal-field-paymentMethod"
         label={t('vendite.paymentStepFields.paymentMethodLabel')}
         required
         error={errors.paymentMethod?.message}
@@ -38,7 +39,12 @@ function SalePaymentStepFields({ form }: SalePaymentStepFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('vendite.paymentStepFields.statusLabel')} required error={errors.status?.message}>
+      <FormFieldWrapper
+        id="modal-field-status"
+        label={t('vendite.paymentStepFields.statusLabel')}
+        required
+        error={errors.status?.message}
+      >
         <Controller
           control={control}
           name="status"
@@ -48,13 +54,17 @@ function SalePaymentStepFields({ form }: SalePaymentStepFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('vendite.paymentStepFields.deedDateLabel')} error={errors.deedDate?.message}>
+      <FormFieldWrapper
+        id="modal-field-deedDate"
+        label={t('vendite.paymentStepFields.deedDateLabel')}
+        error={errors.deedDate?.message}
+      >
         <Input {...register('deedDate')} type="date" />
       </FormFieldWrapper>
 
       <SaleFinancialFields form={form} />
 
-      <div className="sm:col-span-2">
+      <div id="modal-field-cancellationReason" className="sm:col-span-2">
         <FormFieldWrapper
           label={t('vendite.paymentStepFields.cancellationReasonLabel')}
           error={errors.cancellationReason?.message}
@@ -63,7 +73,7 @@ function SalePaymentStepFields({ form }: SalePaymentStepFieldsProps) {
         </FormFieldWrapper>
       </div>
 
-      <div className="sm:col-span-2">
+      <div id="modal-field-notes" className="sm:col-span-2">
         <FormFieldWrapper label={t('vendite.paymentStepFields.notesLabel')} error={errors.notes?.message}>
           <Textarea {...register('notes')} rows={2} />
         </FormFieldWrapper>

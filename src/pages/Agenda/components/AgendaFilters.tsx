@@ -24,21 +24,24 @@ function AgendaFilters({ filters, onChange }: AgendaFiltersProps) {
   return (
     <div className="mb-3 flex flex-wrap items-end gap-3">
       <Input
+        id="agenda-search-filter"
         className="w-56"
         placeholder={t('agenda:filters.searchPlaceholder')}
         value={filters.search}
         onChange={(event) => update({ search: event.target.value })}
       />
 
-      <SelectField
-        value={filters.type}
-        onValueChange={(value) => update({ type: value })}
-        options={getEventTypeOptions(t)}
-        placeholder={t('agenda:filters.typePlaceholder')}
-        disabled={filters.onlyCalls}
-      />
+      <div id="agenda-type-filter">
+        <SelectField
+          value={filters.type}
+          onValueChange={(value) => update({ type: value })}
+          options={getEventTypeOptions(t)}
+          placeholder={t('agenda:filters.typePlaceholder')}
+          disabled={filters.onlyCalls}
+        />
+      </div>
 
-      <label className="flex items-center gap-2 text-sm">
+      <label id="agenda-onlyCalls-filter" className="flex items-center gap-2 text-sm">
         <Checkbox
           checked={filters.onlyCalls}
           onCheckedChange={(checked) => update({ onlyCalls: checked === true, type: '' })}
@@ -46,7 +49,7 @@ function AgendaFilters({ filters, onChange }: AgendaFiltersProps) {
         {t('agenda:filters.onlyCalls')}
       </label>
 
-      <div className="w-64">
+      <div id="agenda-visibleUsers-filter" className="w-64">
         <MultiSelectField
           label={t('agenda:filters.visibleUsers')}
           placeholder={t('agenda:filters.visibleUsersPlaceholder')}

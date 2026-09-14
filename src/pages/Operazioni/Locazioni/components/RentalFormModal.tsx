@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
@@ -12,15 +13,21 @@ type RentalFormModalProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   contract?: RentalContractWithRelations | null
+  tourActiveTab?: string
 }
 
-function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps) {
+function RentalFormModal({ open, onOpenChange, contract, tourActiveTab }: RentalFormModalProps) {
   const { t } = useTranslation('operazioni')
   const { form, isSubmitting, onSubmit, ownerIds, setOwnerIds, tenantIds, setTenantIds } =
     useRentalContractForm({
       contract,
       onSaved: () => onOpenChange(false),
     })
+  const [activeTab, setActiveTab] = useState('dati')
+
+  useEffect(() => {
+    if (tourActiveTab) setActiveTab(tourActiveTab)
+  }, [tourActiveTab])
 
   return (
     <ModalRegister
@@ -28,7 +35,7 @@ function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps)
       onOpenChange={onOpenChange}
       title={contract ? t('locazioni.formModal.editTitle') : t('locazioni.formModal.newTitle')}
     >
-      <Tabs defaultValue="dati" className="w-full">
+      <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as string)} className="w-full">
         <TabsList>
           <TabsTrigger value="dati">{t('locazioni.formModal.dataTab')}</TabsTrigger>
           <TabsTrigger value="allegati" disabled={!contract?.id}>
@@ -40,7 +47,7 @@ function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps)
         </TabsList>
 
         <TabsContent value="dati">
-          <form onSubmit={onSubmit} className="grid gap-4">
+          <form id="modal-locazioni-form" onSubmit={onSubmit} className="grid gap-4">
             <RentalFormFields
               form={form}
               ownerIds={ownerIds}
@@ -49,18 +56,22 @@ function RentalFormModal({ open, onOpenChange, contract }: RentalFormModalProps)
               setTenantIds={setTenantIds}
             />
 
-            <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
+            <FormModalFooter
+              id="modal-btn-actions"
+              onCancel={() => onOpenChange(false)}
+              isSubmitting={isSubmitting}
+            />
           </form>
         </TabsContent>
 
         {contract?.id && (
-          <TabsContent value="allegati">
+          <TabsContent id="modal-locazioni-tab-allegati" value="allegati">
             <RentalContractAttachmentsManager contractId={contract.id} />
           </TabsContent>
         )}
 
         {contract?.id && (
-          <TabsContent value="storico">
+          <TabsContent id="modal-locazioni-tab-storico" value="storico">
             <RentalContractRenewalsHistory contractId={contract.id} />
           </TabsContent>
         )}

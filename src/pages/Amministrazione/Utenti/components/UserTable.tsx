@@ -34,13 +34,15 @@ function UserTable({ users, isLoading, onEdit }: UserTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={users}
-        keyExtractor={(user) => user.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('userTable.empty')}
-      />
+      <div id="utenti-table">
+        <DataTable
+          columns={columns}
+          data={users}
+          keyExtractor={(user) => user.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('userTable.empty')}
+        />
+      </div>
 
       <ConfirmPopup
         open={!!deleteTarget}

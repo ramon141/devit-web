@@ -37,7 +37,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
 
   return (
     <div className="grid w-full grid-cols-2 items-end gap-2 sm:grid-cols-4">
-      <FormFieldWrapper label={t('vendite.filters.statusLabel')}>
+      <FormFieldWrapper id="vendite-status-filter" label={t('vendite.filters.statusLabel')}>
         <SelectField
           value={filters.status}
           onValueChange={(value) => update({ status: value })}
@@ -46,7 +46,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('vendite.filters.sellerLabel')}>
+      <FormFieldWrapper id="vendite-seller-filter" label={t('vendite.filters.sellerLabel')}>
         <SearchableSelect
           options={personOptions}
           value={filters.sellerId}
@@ -55,7 +55,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('vendite.filters.buyerLabel')}>
+      <FormFieldWrapper id="vendite-buyer-filter" label={t('vendite.filters.buyerLabel')}>
         <SearchableSelect
           options={personOptions}
           value={filters.buyerId}
@@ -64,7 +64,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('vendite.filters.sellerAgentLabel')}>
+      <FormFieldWrapper id="vendite-sellerAgent-filter" label={t('vendite.filters.sellerAgentLabel')}>
         <SearchableSelect
           options={userOptions}
           value={filters.sellerAgentId}
@@ -73,7 +73,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('vendite.filters.buyerAgentLabel')}>
+      <FormFieldWrapper id="vendite-buyerAgent-filter" label={t('vendite.filters.buyerAgentLabel')}>
         <SearchableSelect
           options={userOptions}
           value={filters.buyerAgentId}
@@ -82,7 +82,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('vendite.filters.saleDateFromLabel')}>
+      <FormFieldWrapper id="vendite-saleDateFrom-filter" label={t('vendite.filters.saleDateFromLabel')}>
         <Input
           type="date"
           value={filters.saleDateFrom}
@@ -90,7 +90,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('vendite.filters.saleDateToLabel')}>
+      <FormFieldWrapper id="vendite-saleDateTo-filter" label={t('vendite.filters.saleDateToLabel')}>
         <Input
           type="date"
           value={filters.saleDateTo}
@@ -98,7 +98,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <Label className="flex items-center gap-2 pb-2 text-sm font-normal">
+      <Label id="vendite-onlyMine-filter" className="flex items-center gap-2 pb-2 text-sm font-normal">
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true })}

@@ -27,11 +27,21 @@ function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper label={t('locazioni.formFields.numberLabel')} required error={errors.number?.message}>
+      <FormFieldWrapper
+        id="modal-field-number"
+        label={t('locazioni.formFields.numberLabel')}
+        required
+        error={errors.number?.message}
+      >
         <Input {...register('number')} placeholder={t('locazioni.formFields.numberPlaceholder')} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.formFields.situationLabel')} required error={errors.situation?.message}>
+      <FormFieldWrapper
+        id="modal-field-situation"
+        label={t('locazioni.formFields.situationLabel')}
+        required
+        error={errors.situation?.message}
+      >
         <Controller
           control={control}
           name="situation"
@@ -51,15 +61,21 @@ function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds
         setTenantIds={setTenantIds}
       />
 
-      <FormFieldWrapper label={t('locazioni.formFields.startDateLabel')} required error={errors.startDate?.message}>
+      <FormFieldWrapper
+        id="modal-field-startDate"
+        label={t('locazioni.formFields.startDateLabel')}
+        required
+        error={errors.startDate?.message}
+      >
         <Input {...register('startDate')} type="date" />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('locazioni.formFields.endDateLabel')} error={errors.endDate?.message}>
+      <FormFieldWrapper id="modal-field-endDate" label={t('locazioni.formFields.endDateLabel')} error={errors.endDate?.message}>
         <Input {...register('endDate')} type="date" />
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-stipulaDate"
         label={t('locazioni.formFields.stipulaDateLabel')}
         error={errors.stipulaDate?.message}
       >
@@ -67,6 +83,7 @@ function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-registeredAt"
         label={t('locazioni.formFields.registeredAtLabel')}
         error={errors.registeredAt?.message}
       >
@@ -74,6 +91,7 @@ function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-renewalDueDate"
         label={t('locazioni.formFields.renewalDueDateLabel')}
         error={errors.renewalDueDate?.message}
       >
@@ -82,7 +100,7 @@ function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds
 
       <RentalFinancialFields form={form} />
 
-      <div className="sm:col-span-2">
+      <div id="modal-field-notes" className="sm:col-span-2">
         <FormFieldWrapper label={t('locazioni.formFields.notesLabel')} error={errors.notes?.message}>
           <Textarea {...register('notes')} rows={2} />
         </FormFieldWrapper>

@@ -38,21 +38,23 @@ function OwnerAccessFormModal({ open, onOpenChange, onCreated }: OwnerAccessForm
 
   return (
     <ModalRegister open={open} onOpenChange={onOpenChange} title={t('proprietari.formModal.title')}>
-      <form onSubmit={submit} className="grid gap-4">
-        <SearchableSelect
-          label={t('proprietari.formModal.ownerLabel')}
-          required
-          options={ownerOptions}
-          value={personId}
-          onValueChange={setPersonId}
-          placeholder={t('proprietari.formModal.ownerPlaceholder')}
-        />
+      <form id="modal-proprietari-form" onSubmit={submit} className="grid gap-4">
+        <div id="modal-field-owner">
+          <SearchableSelect
+            label={t('proprietari.formModal.ownerLabel')}
+            required
+            options={ownerOptions}
+            value={personId}
+            onValueChange={setPersonId}
+            placeholder={t('proprietari.formModal.ownerPlaceholder')}
+          />
+        </div>
 
-        <FormFieldWrapper label={t('proprietari.formModal.emailLabel')} required>
+        <FormFieldWrapper id="modal-field-email" label={t('proprietari.formModal.emailLabel')} required>
           <Input type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
         </FormFieldWrapper>
 
-        <FormModalFooter onCancel={() => onOpenChange(false)} />
+        <FormModalFooter id="modal-btn-actions" onCancel={() => onOpenChange(false)} />
       </form>
     </ModalRegister>
   )

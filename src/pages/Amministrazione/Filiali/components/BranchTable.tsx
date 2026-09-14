@@ -26,13 +26,15 @@ function BranchTable({ branches, isLoading, onEdit }: BranchTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={branches}
-        keyExtractor={(branch) => branch.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('branchTable.empty')}
-      />
+      <div id="filiali-table">
+        <DataTable
+          columns={columns}
+          data={branches}
+          keyExtractor={(branch) => branch.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('branchTable.empty')}
+        />
+      </div>
 
       <ConfirmPopup
         open={!!deleteTarget}

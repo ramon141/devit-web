@@ -72,13 +72,15 @@ function RegistrazioniTable({ contracts, isLoading, onMarkRegistered, isMarking 
   ]
 
   return (
-    <DataTable
-      columns={columns}
-      data={contracts}
-      keyExtractor={(contract) => contract.id ?? ''}
-      isLoading={isLoading}
-      emptyMessage={t('locazioni.registrazioni.table.emptyMessage')}
-    />
+    <div id="registrazioni-table">
+      <DataTable
+        columns={columns}
+        data={contracts}
+        keyExtractor={(contract) => contract.id ?? ''}
+        isLoading={isLoading}
+        emptyMessage={t('locazioni.registrazioni.table.emptyMessage')}
+      />
+    </div>
   )
 }
 

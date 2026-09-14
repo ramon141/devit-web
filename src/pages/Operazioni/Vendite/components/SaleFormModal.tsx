@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
@@ -15,15 +15,20 @@ type SaleFormModalProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   sale?: SaleWithRelations | null
+  tourActiveTab?: string
 }
 
-function SaleFormModal({ open, onOpenChange, sale }: SaleFormModalProps) {
+function SaleFormModal({ open, onOpenChange, sale, tourActiveTab }: SaleFormModalProps) {
   const { t } = useTranslation('operazioni')
   const { form, isSubmitting, onSubmit } = useSaleForm({
     sale,
     onSaved: () => onOpenChange(false),
   })
   const [activeStep, setActiveStep] = useState('generale')
+
+  useEffect(() => {
+    if (tourActiveTab) setActiveStep(tourActiveTab)
+  }, [tourActiveTab])
 
   const steps = [
     { value: 'generale', label: t('vendite.formModal.generalStep'), step: 1 },
@@ -42,28 +47,32 @@ function SaleFormModal({ open, onOpenChange, sale }: SaleFormModalProps) {
       <Tabs value={activeStep} onValueChange={(value) => setActiveStep(value as string)}>
         <Stepper steps={steps} />
 
-        <form onSubmit={onSubmit} className="grid gap-4">
-          <TabsContent value="generale">
+        <form id="modal-vendite-form" onSubmit={onSubmit} className="grid gap-4">
+          <TabsContent id="modal-vendite-tab-generale" value="generale">
             <SaleGeneralStepFields form={form} />
           </TabsContent>
 
-          <TabsContent value="pagamento">
+          <TabsContent id="modal-vendite-tab-pagamento" value="pagamento">
             <SalePaymentStepFields form={form} />
           </TabsContent>
 
           {isDataStep && (
-            <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
+            <FormModalFooter
+              id="modal-btn-actions"
+              onCancel={() => onOpenChange(false)}
+              isSubmitting={isSubmitting}
+            />
           )}
         </form>
 
         {sale?.id && (
-          <TabsContent value="documenti">
+          <TabsContent id="modal-vendite-tab-documenti" value="documenti">
             <SaleDocumentsManager saleId={sale.id} />
           </TabsContent>
         )}
 
         {sale?.id && (
-          <TabsContent value="storico">
+          <TabsContent id="modal-vendite-tab-storico" value="storico">
             <SaleStatusHistoryTab saleId={sale.id} />
           </TabsContent>
         )}

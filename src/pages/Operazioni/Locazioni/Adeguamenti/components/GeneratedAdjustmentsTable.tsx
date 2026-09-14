@@ -39,7 +39,7 @@ function GeneratedAdjustmentsTable({ adjustments }: GeneratedAdjustmentsTablePro
   ]
 
   return (
-    <div className="mt-6">
+    <div id="adeguamenti-generated-table" className="mt-6">
       <p className="mb-2 text-sm font-medium">{t('locazioni.adeguamenti.generatedTable.title')}</p>
 
       <DataTable

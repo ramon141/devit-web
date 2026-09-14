@@ -26,10 +26,14 @@ function ProposalFormModal({ open, onOpenChange, proposal }: ProposalFormModalPr
       onOpenChange={onOpenChange}
       title={proposal ? t('formModal.editTitle') : t('formModal.newTitle')}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
+      <form id="modal-proposte-form" onSubmit={onSubmit} className="grid gap-4">
         <ProposalFormFields form={form} />
 
-        <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
+        <FormModalFooter
+          id="modal-btn-actions"
+          onCancel={() => onOpenChange(false)}
+          isSubmitting={isSubmitting}
+        />
       </form>
 
       {proposal?.id && (

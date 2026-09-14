@@ -33,13 +33,15 @@ function ZoneTable({ zones, isLoading, onEdit, onSelect, selectedZoneId }: ZoneT
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={zones}
-        keyExtractor={(zone) => zone.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('zoneTable.empty')}
-      />
+      <div id="zone-table">
+        <DataTable
+          columns={columns}
+          data={zones}
+          keyExtractor={(zone) => zone.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('zoneTable.empty')}
+        />
+      </div>
 
       <ConfirmPopup
         open={!!deleteTarget}

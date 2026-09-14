@@ -12,7 +12,7 @@ function SchedaComunicazioni({ personId }: SchedaComunicazioniProps) {
   const { logs } = usePersonCommunications(personId)
 
   return (
-    <div className="grid gap-2">
+    <div id="cliente-scheda-comunicazioni" className="grid gap-2">
       {logs.length === 0 && (
         <p className="text-sm text-muted-foreground">{t('schedaComunicazioni.empty')}</p>
       )}

@@ -129,5 +129,20 @@
   },
   "headerActions": {
     "newContact": "Novo contato"
+  },
+  "tour": {
+    "locale": {
+      "back": "Voltar",
+      "close": "Fechar",
+      "last": "Fim",
+      "next": "Próximo",
+      "nextWithProgress": "Próximo ({current} de {total})",
+      "open": "Abrir",
+      "skip": "Pular"
+    },
+    "fab": {
+      "start": "Iniciar Tour Guiado",
+      "video": "Ver Vídeo Tutorial"
+    }
   }
 }

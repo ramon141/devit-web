@@ -20,13 +20,15 @@ function ScadenziarioTable({ contracts, isLoading }: ScadenziarioTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={contracts}
-        keyExtractor={(contract) => contract.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('locazioni.scadenziario.table.emptyMessage')}
-      />
+      <div id="scadenziario-table">
+        <DataTable
+          columns={columns}
+          data={contracts}
+          keyExtractor={(contract) => contract.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('locazioni.scadenziario.table.emptyMessage')}
+        />
+      </div>
 
       <RentalRenewModal
         open={!!renewTarget}

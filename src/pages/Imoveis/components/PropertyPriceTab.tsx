@@ -31,30 +31,36 @@ function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId }: Property
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
-      <InputMoney
-        name="salePrice"
-        label={t('priceTab.salePriceLabel')}
-        value={salePrice}
-        setValue={(value) => setValue('salePrice', value)}
-      />
+      <div id="property-field-salePrice">
+        <InputMoney
+          name="salePrice"
+          label={t('priceTab.salePriceLabel')}
+          value={salePrice}
+          setValue={(value) => setValue('salePrice', value)}
+        />
+      </div>
 
-      <InputMoney
-        name="rentPrice"
-        label={t('priceTab.rentPriceLabel')}
-        value={rentPrice}
-        setValue={(value) => setValue('rentPrice', value)}
-      />
+      <div id="property-field-rentPrice">
+        <InputMoney
+          name="rentPrice"
+          label={t('priceTab.rentPriceLabel')}
+          value={rentPrice}
+          setValue={(value) => setValue('rentPrice', value)}
+        />
+      </div>
 
-      <InputMoney
-        name="condoFee"
-        label={t('priceTab.condoFeeLabel')}
-        value={condoFee}
-        setValue={(value) => setValue('condoFee', value)}
-      />
+      <div id="property-field-condoFee">
+        <InputMoney
+          name="condoFee"
+          label={t('priceTab.condoFeeLabel')}
+          value={condoFee}
+          setValue={(value) => setValue('condoFee', value)}
+        />
+      </div>
 
       {!priceDetail.isLoading && <PropertyPriceDetailSection form={priceDetail.form} />}
 
-      <PropertyFormFooter isSubmitting={isSubmitting || priceDetail.isSubmitting} />
+      <PropertyFormFooter id="property-tab-prezzo-actions" isSubmitting={isSubmitting || priceDetail.isSubmitting} />
     </form>
   )
 }

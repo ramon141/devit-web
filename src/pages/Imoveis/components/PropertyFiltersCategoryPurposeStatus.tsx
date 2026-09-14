@@ -19,7 +19,7 @@ function PropertyFiltersCategoryPurposeStatus({
 
   return (
     <>
-      <FormFieldWrapper label={t('filters.categoryLabel')}>
+      <FormFieldWrapper id="proprieta-category-filter" label={t('filters.categoryLabel')}>
         <SelectField
           value={filters.categoryId}
           onValueChange={(value) => update({ categoryId: value })}
@@ -28,7 +28,7 @@ function PropertyFiltersCategoryPurposeStatus({
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.purposeLabel')}>
+      <FormFieldWrapper id="proprieta-purpose-filter" label={t('filters.purposeLabel')}>
         <SelectField
           value={filters.purpose}
           onValueChange={(value) => update({ purpose: value })}
@@ -37,7 +37,7 @@ function PropertyFiltersCategoryPurposeStatus({
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('filters.statusLabel')}>
+      <FormFieldWrapper id="proprieta-status-filter" label={t('filters.statusLabel')}>
         <SelectField
           value={filters.status}
           onValueChange={(value) => update({ status: value })}

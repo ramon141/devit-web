@@ -18,6 +18,7 @@ function ProposalDatesAndNotesFields({ form }: ProposalDatesAndNotesFieldsProps)
   return (
     <>
       <FormFieldWrapper
+        id="modal-field-proposalDate"
         label={t('datesAndNotesFields.proposalDateLabel')}
         required
         error={errors.proposalDate?.message}
@@ -26,25 +27,29 @@ function ProposalDatesAndNotesFields({ form }: ProposalDatesAndNotesFieldsProps)
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-validUntil"
         label={t('datesAndNotesFields.validUntilLabel')}
         error={errors.validUntil?.message}
       >
         <Input {...register('validUntil')} type="date" />
       </FormFieldWrapper>
 
-      <Controller
-        control={control}
-        name="financed"
-        render={({ field }) => (
-          <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
-            <Switch checked={field.value} onCheckedChange={field.onChange} />
-            {t('datesAndNotesFields.financedLabel')}
-          </label>
-        )}
-      />
+      <div id="modal-field-financed">
+        <Controller
+          control={control}
+          name="financed"
+          render={({ field }) => (
+            <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+              <Switch checked={field.value} onCheckedChange={field.onChange} />
+              {t('datesAndNotesFields.financedLabel')}
+            </label>
+          )}
+        />
+      </div>
 
       <div className="sm:col-span-2">
         <FormFieldWrapper
+          id="modal-field-paymentTerms"
           label={t('datesAndNotesFields.paymentTermsLabel')}
           error={errors.paymentTerms?.message}
         >
@@ -54,6 +59,7 @@ function ProposalDatesAndNotesFields({ form }: ProposalDatesAndNotesFieldsProps)
 
       <div className="sm:col-span-2">
         <FormFieldWrapper
+          id="modal-field-rejectionReason"
           label={t('datesAndNotesFields.rejectionReasonLabel')}
           error={errors.rejectionReason?.message}
         >
@@ -63,6 +69,7 @@ function ProposalDatesAndNotesFields({ form }: ProposalDatesAndNotesFieldsProps)
 
       <div className="sm:col-span-2">
         <FormFieldWrapper
+          id="modal-field-notes"
           label={t('datesAndNotesFields.notesLabel')}
           error={errors.notes?.message}
         >

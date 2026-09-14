@@ -13,7 +13,7 @@ function SchedaImmobili({ personId }: SchedaImmobiliProps) {
     ownerships.length === 0 && tenancies.length === 0 && purchases.length === 0 && proposals.length === 0
 
   return (
-    <div className="grid gap-4">
+    <div id="cliente-scheda-immobili" className="grid gap-4">
       {hasNothing && <p className="text-sm text-muted-foreground">{t('schedaImmobili.empty')}</p>}
 
       {ownerships.map((link) => (

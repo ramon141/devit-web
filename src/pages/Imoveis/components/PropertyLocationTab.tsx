@@ -26,6 +26,7 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: Prope
     <div className="grid gap-4 sm:grid-cols-2">
       <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
         <ControlledSelectField
+          id="property-field-country"
           control={control}
           name="country"
           label={t('locationTab.countryLabel')}
@@ -35,6 +36,7 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: Prope
         />
 
         <ControlledSelectField
+          id="property-field-city"
           control={control}
           name="city"
           label={t('locationTab.cityLabel')}
@@ -44,29 +46,29 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: Prope
           error={errors.city?.message}
         />
 
-        <FormFieldWrapper label={t('locationTab.regionLabel')} error={errors.region?.message}>
+        <FormFieldWrapper id="property-field-region" label={t('locationTab.regionLabel')} error={errors.region?.message}>
           <ControlledInput control={control} name="region" placeholder={t('locationTab.regionPlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('locationTab.postalCodeLabel')} error={errors.postalCode?.message}>
+        <FormFieldWrapper id="property-field-postalCode" label={t('locationTab.postalCodeLabel')} error={errors.postalCode?.message}>
           <ControlledInput control={control} name="postalCode" placeholder={t('locationTab.postalCodePlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('locationTab.streetLabel')} error={errors.street?.message}>
+        <FormFieldWrapper id="property-field-street" label={t('locationTab.streetLabel')} error={errors.street?.message}>
           <ControlledInput control={control} name="street" placeholder={t('locationTab.streetPlaceholder')} />
         </FormFieldWrapper>
 
-        <FormFieldWrapper label={t('locationTab.numberLabel')} error={errors.number?.message}>
+        <FormFieldWrapper id="property-field-number" label={t('locationTab.numberLabel')} error={errors.number?.message}>
           <ControlledInput control={control} name="number" placeholder={t('locationTab.numberPlaceholder')} />
         </FormFieldWrapper>
 
         <PropertyNeighborhoodField form={form} error={errors.neighborhoodId?.message} />
 
-        <FormFieldWrapper label={t('locationTab.complementLabel')} error={errors.complement?.message}>
+        <FormFieldWrapper id="property-field-complement" label={t('locationTab.complementLabel')} error={errors.complement?.message}>
           <ControlledInput control={control} name="complement" placeholder={t('locationTab.complementPlaceholder')} />
         </FormFieldWrapper>
 
-      <PropertyFormFooter isSubmitting={isSubmitting} />
+      <PropertyFormFooter id="property-tab-localizzazione-actions" isSubmitting={isSubmitting} />
       </form>
 
       <PropertyLocationDetailSection propertyId={propertyId ?? ''} />

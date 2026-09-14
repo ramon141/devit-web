@@ -145,5 +145,133 @@
     "removing": "Rimozione in corso...",
     "removeSuccess": "Acquirente rimosso con successo!",
     "removeError": "Errore durante la rimozione dell'acquirente."
+  },
+  "tour": {
+    "page": {
+      "title": {
+        "title": "Proposte",
+        "content": "Qui gestisci le proposte d'acquisto ricevute per gli immobili."
+      },
+      "search": {
+        "title": "Cerca proposta",
+        "content": "Digita per filtrare le proposte nell'elenco."
+      },
+      "status": {
+        "title": "Stato",
+        "content": "Filtra per stato della proposta (in attesa, accettata, rifiutata ecc.)."
+      },
+      "financed": {
+        "title": "Finanziato",
+        "content": "Filtra le proposte finanziate o meno."
+      },
+      "property": {
+        "title": "Immobile",
+        "content": "Filtra per le proposte relative a un immobile specifico."
+      },
+      "buyer": {
+        "title": "Acquirente",
+        "content": "Filtra per le proposte di un acquirente specifico."
+      },
+      "sellerAgent": {
+        "title": "Agente venditore",
+        "content": "Filtra per l'agente responsabile della vendita."
+      },
+      "assignedTo": {
+        "title": "Responsabile",
+        "content": "Filtra per l'utente responsabile della proposta."
+      },
+      "dateFrom": {
+        "title": "Data iniziale",
+        "content": "Filtra le proposte a partire da questa data."
+      },
+      "dateTo": {
+        "title": "Data finale",
+        "content": "Filtra le proposte fino a questa data."
+      },
+      "onlyMine": {
+        "title": "Solo le mie",
+        "content": "Mostra solo le proposte assegnate a te."
+      },
+      "table": {
+        "title": "Elenco proposte",
+        "content": "Ogni riga mostra una proposta. Usa il menu azioni per modificare, eliminare o convertire in vendita."
+      },
+      "newBtn": {
+        "title": "Nuova proposta",
+        "content": "Clicca qui per aprire il modulo di registrazione di una nuova proposta."
+      }
+    },
+    "modal": {
+      "intro": {
+        "title": "Registrazione proposta",
+        "content": "Compila i dati della proposta d'acquisto. Vedremo insieme ogni campo del modulo."
+      },
+      "fields": {
+        "number": {
+          "title": "Numero",
+          "content": "Numero identificativo della proposta. Campo obbligatorio."
+        },
+        "proposalAmount": {
+          "title": "Importo proposta",
+          "content": "Importo offerto dall'acquirente. Campo obbligatorio."
+        },
+        "propertyId": {
+          "title": "Immobile",
+          "content": "Immobile a cui si riferisce la proposta."
+        },
+        "buyerId": {
+          "title": "Acquirente",
+          "content": "Cliente che presenta la proposta."
+        },
+        "paymentMethod": {
+          "title": "Modalità di pagamento",
+          "content": "Modalità di pagamento della proposta. Campo obbligatorio."
+        },
+        "status": {
+          "title": "Stato",
+          "content": "Situazione attuale della proposta. Campo obbligatorio."
+        },
+        "leadId": {
+          "title": "Richiesta collegata",
+          "content": "Richiesta (lead) di origine, se presente."
+        },
+        "assignedToId": {
+          "title": "Responsabile",
+          "content": "Utente responsabile del follow-up della proposta."
+        },
+        "sellerAgentId": {
+          "title": "Agente venditore",
+          "content": "Agente responsabile della vendita."
+        },
+        "proposalDate": {
+          "title": "Data proposta",
+          "content": "Data in cui è stata fatta la proposta. Campo obbligatorio."
+        },
+        "validUntil": {
+          "title": "Valida fino al",
+          "content": "Data di scadenza della proposta."
+        },
+        "financed": {
+          "title": "Finanziato",
+          "content": "Indica se l'acquisto sarà finanziato."
+        },
+        "paymentTerms": {
+          "title": "Condizioni di pagamento",
+          "content": "Dettagli sulle condizioni di pagamento concordate."
+        },
+        "rejectionReason": {
+          "title": "Motivo del rifiuto",
+          "content": "Motivo indicato in caso di rifiuto della proposta."
+        },
+        "notes": {
+          "title": "Note",
+          "content": "Annotazioni libere sulla proposta."
+        }
+      },
+      "actions": {
+        "title": "Salva o annulla",
+        "content": "Clicca su Salva per registrare la proposta o su Annulla per chiudere senza salvare."
+      }
+    }
   }
 }

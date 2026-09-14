@@ -25,6 +25,7 @@ function ProposalFormFields({ form }: ProposalFormFieldsProps) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <FormFieldWrapper
+        id="modal-field-number"
         label={t('formFields.numberLabel')}
         required
         error={errors.number?.message}
@@ -32,18 +33,21 @@ function ProposalFormFields({ form }: ProposalFormFieldsProps) {
         <Input {...register('number')} placeholder={t('formFields.numberPlaceholder')} />
       </FormFieldWrapper>
 
-      <ControlledMoney
-        control={control}
-        setValue={setValue}
-        name="proposalAmount"
-        label={t('formFields.amountLabel')}
-        required
-        error={errors.proposalAmount?.message}
-      />
+      <div id="modal-field-proposalAmount">
+        <ControlledMoney
+          control={control}
+          setValue={setValue}
+          name="proposalAmount"
+          label={t('formFields.amountLabel')}
+          required
+          error={errors.proposalAmount?.message}
+        />
+      </div>
 
       <ProposalPropertyBuyerFields control={control} errors={errors} />
 
       <ControlledSelectField
+        id="modal-field-paymentMethod"
         control={control}
         name="paymentMethod"
         label={t('formFields.paymentMethodLabel')}
@@ -53,6 +57,7 @@ function ProposalFormFields({ form }: ProposalFormFieldsProps) {
       />
 
       <ControlledSelectField
+        id="modal-field-status"
         control={control}
         name="status"
         label={t('formFields.statusLabel')}

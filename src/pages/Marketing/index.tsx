@@ -2,6 +2,9 @@ import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardHeader, CardDescription } from '@/components/ui/card'
+import JoyrideWrapper from '@/components/JoyrideWrapper'
+import TourFab from '@/components/TourFab'
+import { useMarketingTour } from '@/pages/Marketing/hooks/useMarketingTour'
 import ChannelStatusDashboard from '@/pages/Marketing/components/ChannelStatusDashboard'
 import WhatsappConnectionCard from '@/pages/Marketing/components/WhatsappConnectionCard'
 import SendCampagnaTab from '@/pages/Marketing/components/SendCampagnaTab'
@@ -11,6 +14,7 @@ import StoricoTab from '@/pages/Marketing/components/StoricoTab'
 
 function Marketing() {
   const { t } = useTranslation('marketing')
+  const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour } = useMarketingTour()
 
   return (
     <AppLayout
@@ -18,13 +22,22 @@ function Marketing() {
       description={t('index.description')}
       breadcrumbItems={[{ label: t('index.breadcrumb') }]}
     >
+      <JoyrideWrapper
+        steps={steps}
+        run={run}
+        stepIndex={stepIndex}
+        tourKey={tourKey}
+        onEvent={handleJoyrideCallback}
+      />
+      <TourFab onClick={startTour} />
+
       <Tabs defaultValue="dashboard">
         <TabsList>
-          <TabsTrigger value="dashboard">{t('index.dashboardTab')}</TabsTrigger>
-          <TabsTrigger value="invia">{t('index.inviaTab')}</TabsTrigger>
-          <TabsTrigger value="storico">{t('index.storicoTab')}</TabsTrigger>
-          <TabsTrigger value="modelli">{t('index.modelliTab')}</TabsTrigger>
-          <TabsTrigger value="rimozioni">{t('index.rimozioniTab')}</TabsTrigger>
+          <TabsTrigger id="marketing-tab-dashboard" value="dashboard">{t('index.dashboardTab')}</TabsTrigger>
+          <TabsTrigger id="marketing-tab-invia" value="invia">{t('index.inviaTab')}</TabsTrigger>
+          <TabsTrigger id="marketing-tab-storico" value="storico">{t('index.storicoTab')}</TabsTrigger>
+          <TabsTrigger id="marketing-tab-modelli" value="modelli">{t('index.modelliTab')}</TabsTrigger>
+          <TabsTrigger id="marketing-tab-rimozioni" value="rimozioni">{t('index.rimozioniTab')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="dashboard">

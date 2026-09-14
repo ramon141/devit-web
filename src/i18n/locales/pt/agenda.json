@@ -187,5 +187,37 @@
     "print": "Imprimir",
     "delete": "Excluir",
     "attachments": "Anexos"
+  },
+  "tour": {
+    "page": {
+      "title": { "title": "Agenda", "content": "Aqui você gerencia os compromissos e eventos da agência." },
+      "search": { "title": "Buscar evento", "content": "Digite para filtrar os eventos exibidos no calendário." },
+      "typeFilter": { "title": "Tipo de evento", "content": "Filtre os eventos pelo tipo, como visita, reunião ou ligação." },
+      "onlyCalls": { "title": "Somente ligações", "content": "Marque para mostrar apenas eventos do tipo ligação." },
+      "visibleUsers": { "title": "Usuários visíveis", "content": "Escolha quais corretores têm seus eventos exibidos no calendário." },
+      "calendar": { "title": "Calendário", "content": "Clique em uma data para criar um evento, ou em um evento existente para editá-lo. Você também pode arrastar eventos para reagendar." }
+    },
+    "modal": {
+      "intro": { "title": "Cadastro de evento", "content": "Preencha os dados do evento. Vamos passar por cada campo." },
+      "fields": {
+        "title": { "title": "Título", "content": "Título do evento. Campo obrigatório." },
+        "type": { "title": "Tipo", "content": "Tipo do evento: visita, reunião, ligação, etc. Campo obrigatório." },
+        "place": { "title": "Local", "content": "Local onde o evento acontecerá." },
+        "keysLocation": { "title": "Local das chaves", "content": "Onde retirar as chaves do imóvel, se aplicável." },
+        "date": { "title": "Data", "content": "Data do evento. Campo obrigatório." },
+        "allDay": { "title": "Dia inteiro", "content": "Marque se o evento dura o dia todo, sem horário definido." },
+        "startTime": { "title": "Hora de início", "content": "Horário de início do evento." },
+        "endTime": { "title": "Hora de término", "content": "Horário de término do evento." },
+        "client": { "title": "Cliente", "content": "Cliente (lead) vinculado ao evento." },
+        "owner": { "title": "Proprietário", "content": "Proprietário do imóvel vinculado ao evento." },
+        "confirmationStatus": { "title": "Status de confirmação", "content": "Situação da confirmação do evento com o cliente. Campo obrigatório." },
+        "reminder": { "title": "Lembrete", "content": "Quando você deseja ser lembrado deste evento. Campo obrigatório." },
+        "recurrence": { "title": "Recorrência", "content": "Define se o evento se repete e com qual frequência. Campo obrigatório." },
+        "eventColor": { "title": "Cor do evento", "content": "Cor usada para identificar o evento no calendário." },
+        "privateEvent": { "title": "Evento privado", "content": "Marque para que o evento seja visível apenas para você." },
+        "description": { "title": "Observações", "content": "Anotações livres sobre o evento." }
+      },
+      "actions": { "title": "Salvar ou cancelar", "content": "Clique em Salvar para gravar o evento ou em Cancelar para fechar sem salvar." }
+    }
   }
 }

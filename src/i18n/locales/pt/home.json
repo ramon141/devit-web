@@ -84,5 +84,67 @@
   "upcomingRenewalsCard": {
     "title": "Vencimentos de aluguel",
     "empty": "Nenhum contrato vencendo nos próximos 30 dias."
+  },
+  "tour": {
+    "title": {
+      "title": "Painel",
+      "content": "Esta é a visão geral da atividade da sua agência."
+    },
+    "windowSelect": {
+      "title": "Período de análise",
+      "content": "Escolha o período usado para calcular imóveis inativos e outras métricas do painel."
+    },
+    "todayAppointments": {
+      "title": "Compromissos de hoje",
+      "content": "Lista dos compromissos agendados para hoje."
+    },
+    "recentProperties": {
+      "title": "Últimos imóveis modificados",
+      "content": "Imóveis que tiveram alguma alteração recentemente."
+    },
+    "dormantProperties": {
+      "title": "Imóveis inativos",
+      "content": "Imóveis sem movimentação há mais tempo que o período selecionado."
+    },
+    "leadsByStatus": {
+      "title": "Leads por status",
+      "content": "Distribuição dos leads conforme o status atual."
+    },
+    "leadsBySource": {
+      "title": "Origem dos pedidos",
+      "content": "De onde vieram os leads recebidos."
+    },
+    "conversionFunnel": {
+      "title": "Funil de conversão",
+      "content": "Acompanhe a jornada do lead até a venda: lead, visita, proposta e venda."
+    },
+    "agentConversion": {
+      "title": "Conversão por corretor",
+      "content": "Taxa de conversão de leads de cada corretor."
+    },
+    "propertiesByStatusPurpose": {
+      "title": "Imóveis por tipo e status",
+      "content": "Distribuição dos imóveis por status e por finalidade (venda ou locação)."
+    },
+    "avgTimeOnMarket": {
+      "title": "Tempo médio no mercado",
+      "content": "Média de dias até a venda ou até a locação dos imóveis."
+    },
+    "incompleteProperties": {
+      "title": "Imóveis com cadastro incompleto",
+      "content": "Imóveis sem descrição ou sem fotos cadastradas."
+    },
+    "agentRanking": {
+      "title": "Ranking de corretores",
+      "content": "Corretores ordenados por vendas e leads convertidos."
+    },
+    "appointmentsStatus": {
+      "title": "Agendamentos por situação",
+      "content": "Quantidade de agendamentos por situação: agendado, concluído ou cancelado."
+    },
+    "upcomingRenewals": {
+      "title": "Vencimentos de aluguel",
+      "content": "Contratos de locação que vencem nos próximos 30 dias."
+    }
   }
 }

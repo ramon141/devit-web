@@ -26,13 +26,15 @@ function SaleTable({ sales, isLoading, onEdit }: SaleTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={sales}
-        keyExtractor={(sale) => sale.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('vendite.table.emptyMessage')}
-      />
+      <div id="vendite-table">
+        <DataTable
+          columns={columns}
+          data={sales}
+          keyExtractor={(sale) => sale.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('vendite.table.emptyMessage')}
+        />
+      </div>
 
       <ConfirmPopup
         open={!!deleteTarget}

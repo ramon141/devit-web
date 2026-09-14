@@ -38,6 +38,7 @@
     "react-email-editor": "^2.1.2",
     "react-hook-form": "^7.86.0",
     "react-i18next": "^17.0.12",
+    "react-joyride": "^3.2.0",
     "react-router": "^7.18.2",
     "recharts": "^3.10.1",
     "shadcn": "^4.19.0",

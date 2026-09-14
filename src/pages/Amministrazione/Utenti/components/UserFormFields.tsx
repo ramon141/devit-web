@@ -33,7 +33,7 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <div className="sm:col-span-2">
+      <div id="modal-field-avatar" className="sm:col-span-2">
         <AvatarUpload
           label={t('userFormFields.avatarLabel')}
           value={avatarFiles}
@@ -44,15 +44,26 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
         />
       </div>
 
-      <FormFieldWrapper label={t('userFormFields.fullNameLabel')} required error={errors.fullName?.message}>
+      <FormFieldWrapper
+        id="modal-field-fullName"
+        label={t('userFormFields.fullNameLabel')}
+        required
+        error={errors.fullName?.message}
+      >
         <Input {...register('fullName')} placeholder={t('userFormFields.fullNamePlaceholder')} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('userFormFields.emailLabel')} required error={errors.email?.message}>
+      <FormFieldWrapper
+        id="modal-field-email"
+        label={t('userFormFields.emailLabel')}
+        required
+        error={errors.email?.message}
+      >
         <Input {...register('email')} type="email" placeholder={t('userFormFields.emailPlaceholder')} />
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-accessLevel"
         label={t('userFormFields.accessLevelLabel')}
         required
         error={errors.accessLevel?.message}
@@ -70,7 +81,7 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('userFormFields.branchLabel')} error={errors.branchId?.message}>
+      <FormFieldWrapper id="modal-field-branch" label={t('userFormFields.branchLabel')} error={errors.branchId?.message}>
         <Controller
           control={control}
           name="branchId"
@@ -86,6 +97,7 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
       </FormFieldWrapper>
 
       <FormFieldWrapper
+        id="modal-field-password"
         label={isEditing ? t('userFormFields.passwordEditLabel') : t('userFormFields.passwordLabel')}
         required={!isEditing}
         error={errors.password?.message}
@@ -97,7 +109,7 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
         control={control}
         name="active"
         render={({ field }) => (
-          <div className="flex items-center gap-2 self-end pb-1.5">
+          <div id="modal-field-active" className="flex items-center gap-2 self-end pb-1.5">
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             <span className="text-sm">{t('userFormFields.activeLabel')}</span>
           </div>

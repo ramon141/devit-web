@@ -168,5 +168,13 @@
     "lastResult": "Ultimo invio: {{sent}} inviate, {{failed}} fallite, {{skipped}} saltate",
     "missingEmail": "Senza e-mail",
     "missingPhone": "Senza telefono"
+  },
+  "tour": {
+    "title": { "title": "Marketing", "content": "Qui monitori le comunicazioni inviate ai clienti via e-mail e WhatsApp." },
+    "dashboardTab": { "title": "Bacheca", "content": "Mostra lo stato dei canali e-mail e WhatsApp." },
+    "inviaTab": { "title": "Invia campagna", "content": "Invia una nuova campagna e-mail o WhatsApp ai tuoi contatti." },
+    "storicoTab": { "title": "Storico", "content": "Consulta lo storico delle campagne già inviate." },
+    "modelliTab": { "title": "Modelli", "content": "Gestisci i modelli di messaggio riutilizzabili." },
+    "rimozioniTab": { "title": "Rimozioni", "content": "Vedi chi ha richiesto di non ricevere più comunicazioni." }
   }
 }

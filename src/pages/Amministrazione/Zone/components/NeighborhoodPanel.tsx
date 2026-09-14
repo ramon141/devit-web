@@ -30,7 +30,7 @@ function NeighborhoodPanel({ zone }: NeighborhoodPanelProps) {
   }
 
   return (
-    <div className="rounded-lg border p-4">
+    <div id="zone-neighborhood-panel" className="rounded-lg border p-4">
       <div className="mb-3 flex items-center justify-between gap-2">
         <h3 className="text-sm font-semibold">
           {t('neighborhoodPanel.title', { zone: `${zone.city} - ${zone.name}` })}

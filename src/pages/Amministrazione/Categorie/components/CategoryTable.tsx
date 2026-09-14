@@ -26,13 +26,15 @@ function CategoryTable({ categories, isLoading, onEdit }: CategoryTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={categories}
-        keyExtractor={(category) => category.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('categoryTable.empty')}
-      />
+      <div id="categorie-table">
+        <DataTable
+          columns={columns}
+          data={categories}
+          keyExtractor={(category) => category.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('categoryTable.empty')}
+        />
+      </div>
 
       <ConfirmPopup
         open={!!deleteTarget}

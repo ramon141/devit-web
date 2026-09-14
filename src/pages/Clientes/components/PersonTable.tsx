@@ -26,13 +26,15 @@ function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={people}
-        keyExtractor={(person) => person.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('personTable.emptyMessage')}
-      />
+      <div id="clienti-table">
+        <DataTable
+          columns={columns}
+          data={people}
+          keyExtractor={(person) => person.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('personTable.emptyMessage')}
+        />
+      </div>
 
       <ConfirmPopup
         open={!!deleteTarget}

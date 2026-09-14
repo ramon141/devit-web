@@ -6,8 +6,11 @@ import AppLayout from '@/components/layout/AppLayout'
 import ListToolbar from '@/components/ListToolbar'
 import ExportMenu from '@/components/ExportMenu'
 import TablePagination from '@/components/TablePagination'
+import JoyrideWrapper from '@/components/JoyrideWrapper'
+import TourFab from '@/components/TourFab'
 import { Button } from '@/components/ui/button'
 import { usePropertyList } from '@/pages/Imoveis/hooks/usePropertyList'
+import { useProprietaTour } from '@/pages/Imoveis/hooks/useProprietaTour'
 import PropertyTable from '@/pages/Imoveis/components/PropertyTable'
 import PropertyCard from '@/pages/Imoveis/components/PropertyCard'
 import PropertyMapView from '@/pages/Imoveis/components/PropertyMapView'
@@ -33,6 +36,7 @@ function Imoveis() {
     filters,
     setFilters,
   } = usePropertyList()
+  const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour } = useProprietaTour()
 
   return (
     <AppLayout
@@ -40,12 +44,23 @@ function Imoveis() {
       description={t('list.pageDescription')}
       breadcrumbItems={[{ label: t('list.breadcrumb') }]}
     >
+      <JoyrideWrapper
+        steps={steps}
+        run={run}
+        stepIndex={stepIndex}
+        tourKey={tourKey}
+        onEvent={handleJoyrideCallback}
+      />
+      <TourFab onClick={startTour} />
+
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder={t('list.searchPlaceholder')}
         onNewClick={() => setKindPickerOpen(true)}
         newLabel={t('list.newLabel')}
+        searchWrapperId="proprieta-search-filter"
+        newButtonId="proprieta-new-btn"
         actions={<ExportMenu path="/properties/export" params={{ filter: { where } }} />}
       />
 
@@ -68,7 +83,7 @@ function Imoveis() {
 
       <PropertyFilters filters={filters} onChange={setFilters} />
 
-      <div className="mb-3 flex justify-end gap-1">
+      <div id="proprieta-view-toggle" className="mb-3 flex justify-end gap-1">
         <Button
           variant={viewMode === 'table' ? 'secondary' : 'ghost'}
           size="icon-sm"

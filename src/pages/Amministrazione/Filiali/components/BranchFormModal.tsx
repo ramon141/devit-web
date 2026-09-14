@@ -32,8 +32,13 @@ function BranchFormModal({ open, onOpenChange, branch }: BranchFormModalProps) {
       onOpenChange={onOpenChange}
       title={branch ? t('branchFormModal.editTitle') : t('branchFormModal.newTitle')}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
-        <FormFieldWrapper label={t('branchFormModal.nameLabel')} required error={errors.name?.message}>
+      <form id="modal-filiali-form" onSubmit={onSubmit} className="grid gap-4">
+        <FormFieldWrapper
+          id="modal-field-name"
+          label={t('branchFormModal.nameLabel')}
+          required
+          error={errors.name?.message}
+        >
           <Input {...register('name')} placeholder={t('branchFormModal.namePlaceholder')} />
         </FormFieldWrapper>
 
@@ -41,14 +46,18 @@ function BranchFormModal({ open, onOpenChange, branch }: BranchFormModalProps) {
           control={control}
           name="active"
           render={({ field }) => (
-            <div className="flex items-center gap-2">
+            <div id="modal-field-active" className="flex items-center gap-2">
               <Switch checked={field.value} onCheckedChange={field.onChange} />
               <span className="text-sm">{t('branchFormModal.activeLabel')}</span>
             </div>
           )}
         />
 
-        <FormModalFooter onCancel={() => onOpenChange(false)} isSubmitting={isSubmitting} />
+        <FormModalFooter
+          id="modal-btn-actions"
+          onCancel={() => onOpenChange(false)}
+          isSubmitting={isSubmitting}
+        />
       </form>
     </ModalRegister>
   )

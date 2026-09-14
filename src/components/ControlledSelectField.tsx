@@ -11,6 +11,7 @@ type ControlledSelectFieldProps<TFieldValues extends FieldValues> = {
   placeholder?: string
   disabled?: boolean
   error?: string
+  id?: string
 }
 
 function ControlledSelectField<TFieldValues extends FieldValues>({
@@ -22,9 +23,10 @@ function ControlledSelectField<TFieldValues extends FieldValues>({
   placeholder,
   disabled,
   error,
+  id,
 }: ControlledSelectFieldProps<TFieldValues>) {
   return (
-    <FormFieldWrapper label={label} required={required} error={error}>
+    <FormFieldWrapper id={id} label={label} required={required} error={error}>
       <Controller
         control={control}
         name={name}

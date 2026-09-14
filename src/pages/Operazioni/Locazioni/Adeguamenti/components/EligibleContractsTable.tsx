@@ -47,13 +47,15 @@ function EligibleContractsTable({ contracts, isLoading, selectedIds, onToggle }:
   ]
 
   return (
-    <DataTable
-      columns={columns}
-      data={contracts}
-      keyExtractor={(contract) => contract.id ?? ''}
-      isLoading={isLoading}
-      emptyMessage={t('locazioni.adeguamenti.eligibleTable.emptyMessage')}
-    />
+    <div id="adeguamenti-eligible-table">
+      <DataTable
+        columns={columns}
+        data={contracts}
+        keyExtractor={(contract) => contract.id ?? ''}
+        isLoading={isLoading}
+        emptyMessage={t('locazioni.adeguamenti.eligibleTable.emptyMessage')}
+      />
+    </div>
   )
 }
 

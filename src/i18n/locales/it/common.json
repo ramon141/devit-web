@@ -129,5 +129,20 @@
   },
   "headerActions": {
     "newContact": "Nuovo contatto"
+  },
+  "tour": {
+    "locale": {
+      "back": "Indietro",
+      "close": "Chiudi",
+      "last": "Fine",
+      "next": "Avanti",
+      "nextWithProgress": "Avanti ({current} di {total})",
+      "open": "Apri",
+      "skip": "Salta"
+    },
+    "fab": {
+      "start": "Avvia Tour Guidato",
+      "video": "Guarda Video Tutorial"
+    }
   }
 }

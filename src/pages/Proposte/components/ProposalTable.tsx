@@ -39,13 +39,15 @@ function ProposalTable({ proposals, isLoading, onEdit }: ProposalTableProps) {
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={proposals}
-        keyExtractor={(proposal) => proposal.id ?? ''}
-        isLoading={isLoading}
-        emptyMessage={t('table.emptyMessage')}
-      />
+      <div id="proposte-table">
+        <DataTable
+          columns={columns}
+          data={proposals}
+          keyExtractor={(proposal) => proposal.id ?? ''}
+          isLoading={isLoading}
+          emptyMessage={t('table.emptyMessage')}
+        />
+      </div>
 
       <ConfirmPopup
         open={!!deleteTarget}

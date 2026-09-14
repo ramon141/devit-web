@@ -23,7 +23,7 @@ function SchedaAllegati({ personId }: SchedaAllegatiProps) {
   }
 
   return (
-    <div className="grid gap-4">
+    <div id="cliente-scheda-allegati" className="grid gap-4">
       <FileUpload
         label={t('schedaAllegati.uploadLabel')}
         value={pendingFiles}
