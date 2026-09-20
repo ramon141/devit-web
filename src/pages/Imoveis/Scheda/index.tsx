@@ -73,28 +73,30 @@ function PropertyScheda() {
         tourKey={tourKey}
         onEvent={handleJoyrideCallback}
       />
-      <TourFab onClick={startTour} />
+      <TourFab onClick={startTour} className="bottom-24 lg:bottom-6" />
 
-      <Breadcrumb className="mb-4">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink render={<Link to="/gestionale/proprieta" />}>{t('scheda.breadcrumbList')}</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{property?.title ?? t('scheda.pageTitle')}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <div className="flex h-full min-h-0 flex-col">
+        <Breadcrumb className="mb-4 shrink-0">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink render={<Link to="/gestionale/proprieta" />}>{t('scheda.breadcrumbList')}</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{property?.title ?? t('scheda.pageTitle')}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
-      <PropertyFormFields
-        form={form}
-        onSubmit={onSubmit}
-        isSubmitting={isSubmitting}
-        propertyId={property?.id}
-        activeTab={activeTab}
-        onActiveTabChange={setActiveTab}
-      />
+        <PropertyFormFields
+          form={form}
+          onSubmit={onSubmit}
+          isSubmitting={isSubmitting}
+          propertyId={property?.id}
+          activeTab={activeTab}
+          onActiveTabChange={setActiveTab}
+        />
+      </div>
     </AppLayout>
   )
 }

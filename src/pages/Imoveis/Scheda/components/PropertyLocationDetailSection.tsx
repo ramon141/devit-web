@@ -1,20 +1,18 @@
-import { Controller, useWatch } from 'react-hook-form'
+import { Controller, useWatch, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
-import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
-import { usePropertyLocationDetailForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyLocationDetailForm'
+import type { LocationDetailFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyLocationDetailForm'
 import PropertyLocationMapField from '@/pages/Imoveis/Scheda/components/PropertyLocationMapField'
 
 type PropertyLocationDetailSectionProps = {
-  propertyId: string
+  form: UseFormReturn<LocationDetailFormValues>
 }
 
-function PropertyLocationDetailSection({ propertyId }: PropertyLocationDetailSectionProps) {
+function PropertyLocationDetailSection({ form }: PropertyLocationDetailSectionProps) {
   const { t } = useTranslation('imoveis')
-  const { form, isLoading, isSubmitting, onSubmit } = usePropertyLocationDetailForm(propertyId)
   const { register, control, setValue } = form
   const latitude = useWatch({ control, name: 'latitude' })
   const longitude = useWatch({ control, name: 'longitude' })
@@ -24,10 +22,8 @@ function PropertyLocationDetailSection({ propertyId }: PropertyLocationDetailSec
     setValue('longitude', coords.longitude.toFixed(6), { shouldDirty: true })
   }
 
-  if (isLoading) return null
-
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
+    <div className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
       <Separator className="sm:col-span-2" />
       <p className="text-sm font-medium sm:col-span-2">{t('scheda.locationDetailSection.title')}</p>
 
@@ -80,11 +76,7 @@ function PropertyLocationDetailSection({ propertyId }: PropertyLocationDetailSec
           </label>
         )} />
       </div>
-
-      <div className="flex justify-end sm:col-span-2">
-        <Button type="submit" disabled={isSubmitting}>{t('scheda.locationDetailSection.save')}</Button>
-      </div>
-    </form>
+    </div>
   )
 }
 

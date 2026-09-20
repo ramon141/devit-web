@@ -7,6 +7,7 @@ import itAgenda from './locales/it/agenda.json'
 import itAmministrazione from './locales/it/amministrazione.json'
 import itClientes from './locales/it/clientes.json'
 import itComponentes from './locales/it/componentes.json'
+import itDesignSystemSite from './locales/it/designSystemSite.json'
 import itHome from './locales/it/home.json'
 import itImoveis from './locales/it/imoveis.json'
 import itLogin from './locales/it/login.json'
@@ -24,6 +25,7 @@ import ptAgenda from './locales/pt/agenda.json'
 import ptAmministrazione from './locales/pt/amministrazione.json'
 import ptClientes from './locales/pt/clientes.json'
 import ptComponentes from './locales/pt/componentes.json'
+import ptDesignSystemSite from './locales/pt/designSystemSite.json'
 import ptHome from './locales/pt/home.json'
 import ptImoveis from './locales/pt/imoveis.json'
 import ptLogin from './locales/pt/login.json'
@@ -48,6 +50,7 @@ i18n.use(initReactI18next).init({
       amministrazione: itAmministrazione,
       clientes: itClientes,
       componentes: itComponentes,
+      designSystemSite: itDesignSystemSite,
       home: itHome,
       imoveis: itImoveis,
       login: itLogin,
@@ -66,6 +69,7 @@ i18n.use(initReactI18next).init({
       amministrazione: ptAmministrazione,
       clientes: ptClientes,
       componentes: ptComponentes,
+      designSystemSite: ptDesignSystemSite,
       home: ptHome,
       imoveis: ptImoveis,
       login: ptLogin,
@@ -88,6 +92,7 @@ i18n.use(initReactI18next).init({
     'amministrazione',
     'clientes',
     'componentes',
+    'designSystemSite',
     'home',
     'imoveis',
     'login',

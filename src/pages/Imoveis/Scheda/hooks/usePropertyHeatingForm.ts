@@ -71,9 +71,10 @@ export function usePropertyHeatingForm(propertyId: string) {
         ? update({ id: existingRow.id, data: { ...data, propertyId } })
         : create({ data: { ...data, propertyId } })
 
+    // Seção salva junto com a etapa: o toast de sucesso vem do formulário principal
     promisePopup(promise, {
-      pending: t('toasts.heatingForm.pending'),
-      success: t('toasts.heatingForm.success'),
+      pending: '',
+      success: '',
       error: (error: AxiosError<ApiErrorResponse>) =>
         getErrorMessageFromRequest(error, t('toasts.heatingForm.error')),
     })

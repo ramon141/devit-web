@@ -1,6 +1,7 @@
 import { HelpCircle, PlayCircle, Video } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,16 +12,17 @@ import {
 type TourFabProps = {
   onClick: () => void
   videoUrl?: string
+  className?: string
 }
 
-function TourFab({ onClick, videoUrl }: TourFabProps) {
+function TourFab({ onClick, videoUrl, className }: TourFabProps) {
   const { t } = useTranslation('common')
 
   // Sem vídeo tutorial não há escolha a fazer: o clique já inicia o tour
   // direto, sem menu intermediário
   if (!videoUrl) {
     return (
-      <div className="fixed right-6 bottom-6 z-50">
+      <div className={cn('fixed right-6 bottom-6 z-50', className)}>
         <Button size="icon-lg" className="rounded-full shadow-lg" onClick={onClick}>
           <HelpCircle />
         </Button>
@@ -29,7 +31,7 @@ function TourFab({ onClick, videoUrl }: TourFabProps) {
   }
 
   return (
-    <div className="fixed right-6 bottom-6 z-50">
+    <div className={cn('fixed right-6 bottom-6 z-50', className)}>
       <DropdownMenu>
         <DropdownMenuTrigger
           render={

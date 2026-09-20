@@ -41,7 +41,7 @@ function PropertyFiltersPriceRangeToggle({
       <Button
         id="proprieta-advanced-filters-btn"
         type="button"
-        variant="outline"
+        variant="secondary"
         className="gap-1.5"
         onClick={onToggleAdvanced}
       >

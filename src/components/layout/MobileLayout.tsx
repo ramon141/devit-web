@@ -12,7 +12,7 @@ function MobileLayout({ title, children }: MobileLayoutProps) {
   const { pathname } = useLocation()
 
   return (
-    <div className="flex min-h-dvh flex-col bg-muted/40">
+    <div className="flex h-dvh flex-col overflow-hidden bg-muted/40">
       <MobileHeader title={title} />
 
       <main

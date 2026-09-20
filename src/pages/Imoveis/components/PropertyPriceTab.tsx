@@ -12,9 +12,10 @@ type PropertyPriceTabProps = {
   onSubmit: (event: FormEvent) => void
   isSubmitting: boolean
   propertyId?: string
+  onBack?: () => void
 }
 
-function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId }: PropertyPriceTabProps) {
+function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId, onBack }: PropertyPriceTabProps) {
   const { t } = useTranslation('imoveis')
   const { control, setValue } = form
   const salePrice = useWatch({ control, name: 'salePrice' })
@@ -30,37 +31,43 @@ function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId }: Property
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
-      <div id="property-field-salePrice">
-        <InputMoney
-          name="salePrice"
-          label={t('priceTab.salePriceLabel')}
-          value={salePrice}
-          setValue={(value) => setValue('salePrice', value)}
-        />
+    <form onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
+      <div className="grid flex-1 min-h-0 gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+        <div id="property-field-salePrice">
+          <InputMoney
+            name="salePrice"
+            label={t('priceTab.salePriceLabel')}
+            value={salePrice}
+            setValue={(value) => setValue('salePrice', value)}
+          />
+        </div>
+
+        <div id="property-field-rentPrice">
+          <InputMoney
+            name="rentPrice"
+            label={t('priceTab.rentPriceLabel')}
+            value={rentPrice}
+            setValue={(value) => setValue('rentPrice', value)}
+          />
+        </div>
+
+        <div id="property-field-condoFee">
+          <InputMoney
+            name="condoFee"
+            label={t('priceTab.condoFeeLabel')}
+            value={condoFee}
+            setValue={(value) => setValue('condoFee', value)}
+          />
+        </div>
+
+        {!priceDetail.isLoading && <PropertyPriceDetailSection form={priceDetail.form} />}
       </div>
 
-      <div id="property-field-rentPrice">
-        <InputMoney
-          name="rentPrice"
-          label={t('priceTab.rentPriceLabel')}
-          value={rentPrice}
-          setValue={(value) => setValue('rentPrice', value)}
-        />
-      </div>
-
-      <div id="property-field-condoFee">
-        <InputMoney
-          name="condoFee"
-          label={t('priceTab.condoFeeLabel')}
-          value={condoFee}
-          setValue={(value) => setValue('condoFee', value)}
-        />
-      </div>
-
-      {!priceDetail.isLoading && <PropertyPriceDetailSection form={priceDetail.form} />}
-
-      <PropertyFormFooter id="property-tab-prezzo-actions" isSubmitting={isSubmitting || priceDetail.isSubmitting} />
+      <PropertyFormFooter
+        id="property-tab-prezzo-actions"
+        isSubmitting={isSubmitting || priceDetail.isSubmitting}
+        onBack={onBack}
+      />
     </form>
   )
 }

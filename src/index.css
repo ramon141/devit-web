@@ -34,38 +34,38 @@
     font-size: 16px;
   }
 
-  /* Devit design system — ver docs/DESIGN_SYSTEM.md */
-  --devit-yellow: #e7cc27;
-  --devit-navy: #004274;
-  --devit-navy-dark: #0f1b24;
+  /* Devit design system — tokens alinhados ao site institucional (devit-immobiliare.netlify.app) */
+  --devit-yellow: #ffcc00;
+  --devit-navy: #0b0b0b;
+  --devit-navy-dark: #0b0b0b;
 
-  --background: #ffffff;
+  --background: #fbf7ef;
 
-  --foreground: #1a1f24;
+  --foreground: #0b0b0b;
 
   --card: #ffffff;
 
-  --card-foreground: #1a1f24;
+  --card-foreground: #0b0b0b;
 
   --popover: #ffffff;
 
-  --popover-foreground: #1a1f24;
+  --popover-foreground: #0b0b0b;
 
   --primary: var(--devit-yellow);
 
-  --primary-foreground: #1a1f24;
+  --primary-foreground: #0b0b0b;
 
   --secondary: var(--devit-navy);
 
-  --secondary-foreground: #ffffff;
+  --secondary-foreground: #fbf7ef;
 
-  --muted: #d6dce1;
+  --muted: #f4efe6;
 
-  --muted-foreground: #6b7280;
+  --muted-foreground: #8b8478;
 
   --accent: #fdf6d8;
 
-  --accent-foreground: #1a1f24;
+  --accent-foreground: #0b0b0b;
 
   --destructive: #ea3d3d;
 
@@ -73,9 +73,9 @@
 
   --success-foreground: #ffffff;
 
-  --input: #e2e4e5;
+  --input: rgba(11, 11, 11, 0.12);
 
-  --border: #e2e4e5;
+  --border: rgba(11, 11, 11, 0.12);
 
   --ring: var(--devit-yellow);
 
@@ -93,7 +93,7 @@
 
   --sidebar: var(--devit-navy-dark);
 
-  --sidebar-foreground: #e5e7eb;
+  --sidebar-foreground: #f4efe6;
 
   --sidebar-primary: var(--devit-yellow);
 

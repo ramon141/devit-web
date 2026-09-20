@@ -1,3 +1,4 @@
+import type { UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Separator } from '@/components/ui/separator'
 import PropertyAdditionalSection from '@/pages/Imoveis/Scheda/components/PropertyAdditionalSection'
@@ -6,23 +7,38 @@ import PropertyHeatingSection from '@/pages/Imoveis/Scheda/components/PropertyHe
 import PropertyCadastralSection from '@/pages/Imoveis/Scheda/components/PropertyCadastralSection'
 import PropertyFeaturesSection from '@/pages/Imoveis/Scheda/components/PropertyFeaturesSection'
 import { getAmenityOptions, getNeighborhoodOptions } from '@/pages/Imoveis/Scheda/schemas/featureOptions'
+import type { AdditionalFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyAdditionalForm'
+import type { HeatingFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyHeatingForm'
+import type { CadastralFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyCadastralForm'
 
 type PropertyDescrizioneTabProps = {
   propertyId: string
+  additionalForm: UseFormReturn<AdditionalFormValues>
+  heatingForm: UseFormReturn<HeatingFormValues>
+  cadastralForm: UseFormReturn<CadastralFormValues>
+  isLoadingDetail: boolean
 }
 
-function PropertyDescrizioneTab({ propertyId }: PropertyDescrizioneTabProps) {
+function PropertyDescrizioneTab({
+  propertyId,
+  additionalForm,
+  heatingForm,
+  cadastralForm,
+  isLoadingDetail,
+}: PropertyDescrizioneTabProps) {
   const { t } = useTranslation('imoveis')
+
+  if (isLoadingDetail) return null
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <PropertyAdditionalSection propertyId={propertyId} />
+      <PropertyAdditionalSection form={additionalForm} />
       <Separator className="sm:col-span-2" />
       <PropertyRoomsManager propertyId={propertyId} />
       <Separator className="sm:col-span-2" />
-      <PropertyHeatingSection propertyId={propertyId} />
+      <PropertyHeatingSection form={heatingForm} />
       <Separator className="sm:col-span-2" />
-      <PropertyCadastralSection propertyId={propertyId} />
+      <PropertyCadastralSection form={cadastralForm} />
       <Separator className="sm:col-span-2" />
       <PropertyFeaturesSection
         propertyId={propertyId}

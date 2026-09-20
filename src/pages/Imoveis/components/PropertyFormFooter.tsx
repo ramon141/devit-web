@@ -5,15 +5,17 @@ import { Button } from '@/components/ui/button'
 type PropertyFormFooterProps = {
   isSubmitting: boolean
   id?: string
+  onBack?: () => void
+  isLast?: boolean
 }
 
 // Rodapé do wizard: salva a aba atual e avança para a próxima
-function PropertyFormFooter({ isSubmitting, id }: PropertyFormFooterProps) {
+function PropertyFormFooter({ isSubmitting, id, onBack, isLast }: PropertyFormFooterProps) {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
 
   return (
-    <div id={id} className="flex justify-end gap-2 sm:col-span-2">
+    <div id={id} className="flex shrink-0 justify-end gap-2 border-t bg-background p-4 pr-20">
       <Button
         type="button"
         variant="outline"
@@ -22,8 +24,14 @@ function PropertyFormFooter({ isSubmitting, id }: PropertyFormFooterProps) {
         {t('formFields.cancel')}
       </Button>
 
+      {onBack && (
+        <Button type="button" variant="outline" onClick={onBack}>
+          {t('formFields.back')}
+        </Button>
+      )}
+
       <Button type="submit" disabled={isSubmitting}>
-        {t('formFields.next')}
+        {isLast ? t('formFields.finish') : t('formFields.next')}
       </Button>
     </div>
   )

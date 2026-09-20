@@ -13,6 +13,7 @@ type MultiSelectFieldProps = {
   placeholder?: string
   searchPlaceholder?: string
   error?: string
+  triggerVariant?: 'outline' | 'secondary'
 }
 
 // Seleção múltipla: SearchableSelect para adicionar + chips removíveis para os selecionados
@@ -25,6 +26,7 @@ function MultiSelectField({
   placeholder,
   searchPlaceholder,
   error,
+  triggerVariant = 'outline',
 }: MultiSelectFieldProps) {
   const { t } = useTranslation('common')
 
@@ -51,6 +53,7 @@ function MultiSelectField({
         onValueChange={add}
         placeholder={placeholder ?? t('multiSelectField.placeholder')}
         searchPlaceholder={searchPlaceholder}
+        triggerVariant={triggerVariant}
       />
 
       {selectedOptions.length > 0 && (

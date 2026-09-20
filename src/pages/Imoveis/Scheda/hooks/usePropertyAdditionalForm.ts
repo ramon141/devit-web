@@ -58,9 +58,10 @@ export function usePropertyAdditionalForm(propertyId: string) {
         ? update({ id: existingRow.id, data: { ...data, propertyId } })
         : create({ data: { ...data, propertyId } })
 
+    // Seção salva junto com a etapa: o toast de sucesso vem do formulário principal
     promisePopup(promise, {
-      pending: t('toasts.additionalForm.pending'),
-      success: t('toasts.additionalForm.success'),
+      pending: '',
+      success: '',
       error: (error: AxiosError<ApiErrorResponse>) =>
         getErrorMessageFromRequest(error, t('toasts.additionalForm.error')),
     })

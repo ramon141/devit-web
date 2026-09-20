@@ -75,9 +75,10 @@ export function usePropertyCadastralForm(propertyId: string) {
         ? update({ id: existingRow.id, data: { ...data, propertyId } })
         : create({ data: { ...data, propertyId } })
 
+    // Seção salva junto com a etapa: o toast de sucesso vem do formulário principal
     promisePopup(promise, {
-      pending: t('toasts.cadastralForm.pending'),
-      success: t('toasts.cadastralForm.success'),
+      pending: '',
+      success: '',
       error: (error: AxiosError<ApiErrorResponse>) =>
         getErrorMessageFromRequest(error, t('toasts.cadastralForm.error')),
     })

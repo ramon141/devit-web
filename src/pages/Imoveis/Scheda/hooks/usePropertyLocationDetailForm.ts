@@ -96,9 +96,10 @@ export function usePropertyLocationDetailForm(propertyId: string) {
         ? update({ id: existingRow.id, data: { ...data, propertyId } })
         : create({ data: { ...data, propertyId } })
 
+    // Seção salva junto com a etapa: o toast de sucesso vem do formulário principal
     promisePopup(promise, {
-      pending: t('toasts.locationDetailForm.pending'),
-      success: t('toasts.locationDetailForm.success'),
+      pending: '',
+      success: '',
       error: (error: AxiosError<ApiErrorResponse>) =>
         getErrorMessageFromRequest(error, t('toasts.locationDetailForm.error')),
     })

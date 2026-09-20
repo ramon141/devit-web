@@ -5,6 +5,7 @@ import Login from '@/pages/Login'
 import ForgotPassword from '@/pages/ForgotPassword'
 import ResetPassword from '@/pages/ResetPassword'
 import Componentes from '@/pages/Componentes'
+import DesignSystemSite from '@/pages/DesignSystemSite'
 import Agenda from '@/pages/Agenda'
 import ClientiPage from '@/pages/Clientes/page'
 import LeadsPage from '@/pages/Clientes/Leads/page'
@@ -101,6 +102,7 @@ const routes: RouteConfig[] = [
   { path: '/amministrazione/audit', element: <AuditPage /> },
   { path: '/amministrazione/proprietari', element: <ProprietariPage /> },
   { path: '/componenti', element: <Componentes /> },
+  { path: '/design-system-site', element: <DesignSystemSite /> },
 ]
 
 function toAbsoluteCrmPath(path: string): string {

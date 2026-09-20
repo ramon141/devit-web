@@ -39,3 +39,10 @@ export function getNextStepValue(t: TFunction<'imoveis'>, current: string) {
 
   return steps[index + 1]?.value ?? current
 }
+
+export function getPreviousStepValue(t: TFunction<'imoveis'>, current: string) {
+  const steps = getPropertySteps(t)
+  const index = steps.findIndex((step) => step.value === current)
+
+  return steps[index - 1]?.value ?? current
+}

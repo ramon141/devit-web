@@ -1,19 +1,17 @@
-import { Controller } from 'react-hook-form'
+import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
-import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
-import { usePropertyHeatingForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyHeatingForm'
+import type { HeatingFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyHeatingForm'
 
 type PropertyHeatingSectionProps = {
-  propertyId: string
+  form: UseFormReturn<HeatingFormValues>
 }
 
-function PropertyHeatingSection({ propertyId }: PropertyHeatingSectionProps) {
+function PropertyHeatingSection({ form }: PropertyHeatingSectionProps) {
   const { t } = useTranslation('imoveis')
-  const { form, isLoading, isSubmitting, onSubmit } = usePropertyHeatingForm(propertyId)
   const { register, control } = form
 
   const heatingTypeOptions = [
@@ -22,10 +20,8 @@ function PropertyHeatingSection({ propertyId }: PropertyHeatingSectionProps) {
     { value: 'none', label: t('scheda.heatingSection.typeOptions.none') },
   ]
 
-  if (isLoading) return null
-
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
+    <div className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
       <p className="text-sm font-medium sm:col-span-2">{t('scheda.heatingSection.title')}</p>
 
       <FormFieldWrapper label={t('scheda.heatingSection.typeLabel')}>
@@ -54,11 +50,7 @@ function PropertyHeatingSection({ propertyId }: PropertyHeatingSectionProps) {
           {t('scheda.heatingSection.hasRadiators')}
         </label>
       )} />
-
-      <div className="flex justify-end sm:col-span-2">
-        <Button type="submit" disabled={isSubmitting}>{t('scheda.heatingSection.save')}</Button>
-      </div>
-    </form>
+    </div>
   )
 }
 

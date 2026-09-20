@@ -144,7 +144,10 @@
   },
   "formFields": {
     "cancel": "Cancelar",
+    "back": "Voltar",
     "next": "Próximo",
+    "finish": "Salvar",
+    "saved": "Dados salvos com sucesso!",
     "steps": {
       "general": "Geral",
       "price": "Preço",

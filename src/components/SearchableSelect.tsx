@@ -32,6 +32,7 @@ type SearchableSelectProps = {
   error?: string
   creatable?: boolean
   onCreate?: (name: string) => void
+  triggerVariant?: 'outline' | 'secondary'
 }
 
 function SearchableSelect({
@@ -47,6 +48,7 @@ function SearchableSelect({
   error,
   creatable = false,
   onCreate,
+  triggerVariant = 'outline',
 }: SearchableSelectProps) {
   const { t } = useTranslation('common')
   const labelId = useId()
@@ -107,17 +109,29 @@ function SearchableSelect({
               <Button
                 type="button"
                 aria-labelledby={label ? labelId : undefined}
-                variant="outline"
+                variant={triggerVariant}
                 disabled={disabled}
                 aria-invalid={!!error}
                 className={cn(
                   'w-full justify-between font-normal',
                   showClear && 'pr-8',
-                  !selected && 'text-muted-foreground'
+                  !selected &&
+                    (triggerVariant === 'secondary'
+                      ? 'text-secondary-foreground/70'
+                      : 'text-muted-foreground')
                 )}
               >
                 <span className="min-w-0 truncate">{selected ? selected.label : resolvedPlaceholder}</span>
-                {showClear ? <span className="size-4 shrink-0" /> : <ChevronsUpDown className="shrink-0 text-muted-foreground" />}
+                {showClear ? (
+                  <span className="size-4 shrink-0" />
+                ) : (
+                  <ChevronsUpDown
+                    className={cn(
+                      'shrink-0',
+                      triggerVariant === 'secondary' ? 'text-secondary-foreground/70' : 'text-muted-foreground'
+                    )}
+                  />
+                )}
               </Button>
             }
           />

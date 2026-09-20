@@ -8,6 +8,7 @@ import ControlledSelectField from '@/components/ControlledSelectField'
 import { COUNTRY_OPTIONS, PROPERTY_CITY_OPTIONS } from '@/constants/cities'
 import PropertyNeighborhoodField from '@/pages/Imoveis/components/PropertyNeighborhoodField'
 import PropertyLocationDetailSection from '@/pages/Imoveis/Scheda/components/PropertyLocationDetailSection'
+import { usePropertyLocationDetailForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyLocationDetailForm'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyLocationTabProps = {
@@ -15,16 +16,24 @@ type PropertyLocationTabProps = {
   onSubmit: (event: FormEvent) => void
   isSubmitting: boolean
   propertyId?: string
+  onBack?: () => void
 }
 
-function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: PropertyLocationTabProps) {
+function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId, onBack }: PropertyLocationTabProps) {
   const { t } = useTranslation('imoveis')
   const { control } = form
   const { errors } = useFormState({ control })
+  const locationDetail = usePropertyLocationDetailForm(propertyId ?? '')
+
+  // Um único "Próximo" salva o form principal e os detalhes de localização juntos
+  function handleSubmit(event: FormEvent) {
+    locationDetail.onSubmit(event)
+    onSubmit(event)
+  }
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
+      <div className="grid flex-1 min-h-0 gap-4 overflow-y-auto p-1 sm:grid-cols-2">
         <ControlledSelectField
           id="property-field-country"
           control={control}
@@ -68,11 +77,15 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId }: Prope
           <ControlledInput control={control} name="complement" placeholder={t('locationTab.complementPlaceholder')} />
         </FormFieldWrapper>
 
-      <PropertyFormFooter id="property-tab-localizzazione-actions" isSubmitting={isSubmitting} />
-      </form>
+        {!locationDetail.isLoading && <PropertyLocationDetailSection form={locationDetail.form} />}
+      </div>
 
-      <PropertyLocationDetailSection propertyId={propertyId ?? ''} />
-    </div>
+      <PropertyFormFooter
+        id="property-tab-localizzazione-actions"
+        isSubmitting={isSubmitting || locationDetail.isSubmitting}
+        onBack={onBack}
+      />
+    </form>
   )
 }
 

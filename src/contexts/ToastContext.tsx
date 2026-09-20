@@ -39,15 +39,18 @@ function ToastProvider({ children }: { children: ReactNode }) {
     setToasts((current) => current.filter((toast) => toast.id !== id))
   }, [])
 
+  // Atualiza o toast de loading; sem loading (pending vazio) cria o toast já pronto
   const settleToast = useCallback(
-    (id: string, variant: ToastVariant, message?: string) => {
+    (id: string, variant: ToastVariant, message?: string, hasLoading = true) => {
       if (!message) {
         dismissToast(id)
         return
       }
 
       setToasts((current) =>
-        current.map((toast) => (toast.id === id ? { ...toast, variant, message } : toast))
+        hasLoading
+          ? current.map((toast) => (toast.id === id ? { ...toast, variant, message } : toast))
+          : [...current, { id, variant, message }]
       )
       setTimeout(() => dismissToast(id), TOAST_AUTO_DISMISS_MS)
     },
@@ -57,18 +60,23 @@ function ToastProvider({ children }: { children: ReactNode }) {
   const toastPromise = useCallback(
     <TData,>(promise: Promise<TData>, messages: ToastPromiseMessages<TData>) => {
       const id = crypto.randomUUID()
-      setToasts((current) => [...current, { id, variant: 'loading', message: messages.pending }])
+      const hasLoading = !!messages.pending
+
+      // pending vazio = sem toast de loading; só aparece o resultado
+      if (hasLoading) {
+        setToasts((current) => [...current, { id, variant: 'loading', message: messages.pending }])
+      }
 
       promise
         .then((data) => {
           const message =
             typeof messages.success === 'string' ? messages.success : messages.success(data)
-          settleToast(id, 'success', message)
+          settleToast(id, 'success', message, hasLoading)
         })
         .catch((error: AxiosError<ApiErrorResponse>) => {
           const message =
             typeof messages.error === 'string' ? messages.error : messages.error(error)
-          settleToast(id, 'error', message ?? getErrorMessageFromRequest(error))
+          settleToast(id, 'error', message ?? getErrorMessageFromRequest(error), hasLoading)
         })
     },
     [settleToast]

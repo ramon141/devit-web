@@ -1,0 +1,78 @@
+{
+  "page": {
+    "title": "Design System Site",
+    "description": "Referência visual do site institucional devit-immobiliare.netlify.app — fora do tema do gestionale."
+  },
+  "colors": {
+    "title": "Cores",
+    "description": "Paleta extraída do site institucional: creme, tinta e amarelo mostarda como único acento."
+  },
+  "typography": {
+    "title": "Tipografia",
+    "description": "Três famílias: Fraunces no display, Manrope no corpo, JetBrains Mono em rótulos e referências.",
+    "displaySample": "Trent'anni di case",
+    "sansSample": "Vendiamo e affittiamo immobili tra i quartieri nobili di Napoli e la zona vesuviana.",
+    "monoSample": "Rif. NA2401 · Fuorigrotta"
+  },
+  "propertyCard": {
+    "title": "Card de imóvel",
+    "description": "Cartão sem sombra, com badge de contrato sobre a foto e referência em mono acima do título.",
+    "sale": "Vendita",
+    "reference": "Fuorigrotta · Rif. NA2401",
+    "propertyTitle": "Appartamento con due balconi",
+    "propertyPrice": "289.000 €"
+  },
+  "buttons": {
+    "title": "Botões",
+    "description": "Peso 600 sempre em Manrope; o pill amarelo é reservado para a conversão principal.",
+    "pill": "Vendi con noi",
+    "primary": "Cerca",
+    "outline": "Vedi tutti gli immobili",
+    "ghost": "Contatti"
+  },
+  "badges": {
+    "title": "Badges & breadcrumb",
+    "description": "Pills mono uppercase para contrato, tag creme para bairro/referência, breadcrumb mono no topo das páginas internas.",
+    "sale": "Vendita",
+    "rent": "Affitto",
+    "reference": "Fuorigrotta · Rif. NA2401",
+    "breadcrumbHome": "Home",
+    "breadcrumbList": "Immobili",
+    "breadcrumbCurrent": "Fuorigrotta"
+  },
+  "searchForm": {
+    "title": "Formulário de busca",
+    "description": "Selects e inputs brancos, borda de 1px, label mono acima do campo — como no card de busca do hero.",
+    "contractLabel": "Contratto",
+    "contractPlaceholder": "Indifferente",
+    "contractSale": "Vendita",
+    "contractRent": "Affitto",
+    "zoneLabel": "Zona",
+    "zonePlaceholder": "Tutte le zone",
+    "typeLabel": "Tipologia",
+    "typePlaceholder": "Tutte le tipologie",
+    "submit": "Cerca"
+  },
+  "propertyTypes": {
+    "appartamento": "Apartamento",
+    "villa": "Casa",
+    "attico": "Cobertura"
+  },
+  "spacing": {
+    "title": "Espaçamento & grid",
+    "description": "Unidade base .25rem (Tailwind), gutter fluido e breakpoints padrão do site."
+  },
+  "motion": {
+    "title": "Motion",
+    "description": "Passe o mouse nos chips — duração e easing usados nas transições do site."
+  },
+  "anatomy": {
+    "title": "Anatomia da página",
+    "description": "Padrão repetido nas páginas do site: header creme → hero escuro com eyebrow dourado → corpo em cards → footer tinta.",
+    "header": "Header · logo Fraunces + nav Manrope + CTA pill",
+    "eyebrow": "✦ Chi siamo",
+    "headline": "Due soci, un'unica visione.",
+    "body": "Corpo: título serif, texto sans em ink-soft, cards com borda 1px, sem sombra.",
+    "footer": "Footer · fundo #0b0b0b · headings mono #ffcc00"
+  }
+}

@@ -1,12 +1,12 @@
 import type { Options, Styles } from 'react-joyride'
 import type { TFunction } from 'i18next'
 
-export const JOYRIDE_ACCENT_COLOR = '#003D68'
+export const JOYRIDE_ACCENT_COLOR = '#ffcc00'
 
 export const joyrideOptions: Partial<Options> = {
   primaryColor: JOYRIDE_ACCENT_COLOR,
-  overlayColor: 'rgba(0, 0, 0, 0.5)',
-  textColor: '#1f2937',
+  overlayColor: 'rgba(11, 11, 11, 0.5)',
+  textColor: '#0b0b0b',
   backgroundColor: '#ffffff',
   arrowColor: '#ffffff',
   zIndex: 10000,
@@ -23,6 +23,7 @@ export const joyrideStyles: Partial<Styles> = {
   },
   buttonPrimary: {
     borderRadius: 8,
+    color: '#0b0b0b',
   },
   buttonBack: {
     color: JOYRIDE_ACCENT_COLOR,

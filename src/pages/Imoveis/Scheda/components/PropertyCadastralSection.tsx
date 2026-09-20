@@ -1,22 +1,19 @@
+import type { UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
-import { usePropertyCadastralForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyCadastralForm'
+import type { CadastralFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyCadastralForm'
 
 type PropertyCadastralSectionProps = {
-  propertyId: string
+  form: UseFormReturn<CadastralFormValues>
 }
 
-function PropertyCadastralSection({ propertyId }: PropertyCadastralSectionProps) {
+function PropertyCadastralSection({ form }: PropertyCadastralSectionProps) {
   const { t } = useTranslation('imoveis')
-  const { form, isLoading, isSubmitting, onSubmit } = usePropertyCadastralForm(propertyId)
   const { register } = form
 
-  if (isLoading) return null
-
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 sm:col-span-2 sm:grid-cols-3">
+    <div className="grid gap-4 sm:col-span-2 sm:grid-cols-3">
       <p className="text-sm font-medium sm:col-span-3">{t('scheda.cadastralSection.title')}</p>
 
       <FormFieldWrapper label={t('scheda.cadastralSection.registeredAtLabel')}>
@@ -43,11 +40,7 @@ function PropertyCadastralSection({ propertyId }: PropertyCadastralSectionProps)
       <FormFieldWrapper label={t('scheda.cadastralSection.renditaLabel')}>
         <Input {...register('rendita')} type="number" />
       </FormFieldWrapper>
-
-      <div className="flex justify-end sm:col-span-3">
-        <Button type="submit" disabled={isSubmitting}>{t('scheda.cadastralSection.save')}</Button>
-      </div>
-    </form>
+    </div>
   )
 }
 

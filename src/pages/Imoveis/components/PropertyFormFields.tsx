@@ -1,4 +1,5 @@
 import type { UseFormReturn } from 'react-hook-form'
+import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import Stepper from '@/components/Stepper'
@@ -13,10 +14,11 @@ import PropertyTerrenoTab from '@/pages/Imoveis/Scheda/components/PropertyTerren
 import PropertyStoricoTab from '@/pages/Imoveis/Scheda/components/PropertyStoricoTab'
 import PropertyTasseTab from '@/pages/Imoveis/Scheda/components/PropertyTasseTab'
 import PropertyFotoTab from '@/pages/Imoveis/Scheda/components/PropertyFotoTab'
+import PropertyStepFrame from '@/pages/Imoveis/components/PropertyStepFrame'
 import PropertyDocumentiTab from '@/pages/Imoveis/Scheda/components/PropertyDocumentiTab'
 import type { FormEvent } from 'react'
 import { createPropertySchema, type PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
-import { getNextStepValue, getPropertySteps, stepFields } from '@/pages/Imoveis/schemas/propertySteps'
+import { getNextStepValue, getPreviousStepValue, getPropertySteps, stepFields } from '@/pages/Imoveis/schemas/propertySteps'
 
 type PropertyFormFieldsProps = {
   form: UseFormReturn<PropertyFormValues>
@@ -36,6 +38,7 @@ function PropertyFormFields({
   onActiveTabChange,
 }: PropertyFormFieldsProps) {
   const { t } = useTranslation('imoveis')
+  const navigate = useNavigate()
 
   // Só valida os campos da etapa atual; o save completo só acontece quando o
   // formulário inteiro está válido (campos obrigatórios vivem em etapas diferentes)
@@ -55,50 +58,74 @@ function PropertyFormFields({
     onActiveTabChange(getNextStepValue(t, activeTab))
   }
 
-  const stepperSteps = getPropertySteps(t).map((step) => ({
+  const goToNextStep = () => onActiveTabChange(getNextStepValue(t, activeTab))
+
+  const steps = getPropertySteps(t)
+  const isFirstStep = steps[0]?.value === activeTab
+  const handleBack = isFirstStep
+    ? undefined
+    : () => onActiveTabChange(getPreviousStepValue(t, activeTab))
+
+  const stepperSteps = steps.map((step) => ({
     ...step,
     locked: step.requiresId && !propertyId,
   }))
 
+  const tabContentClassName = 'h-full min-h-0 overflow-y-auto'
+
   return (
-    <Tabs value={activeTab} onValueChange={(value) => onActiveTabChange(String(value))}>
+    <Tabs value={activeTab} onValueChange={(value) => onActiveTabChange(String(value))} className="h-full min-h-0">
       <Stepper steps={stepperSteps} />
 
-      <TabsContent value="generale">
-        <PropertyGeneralTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
+      <TabsContent value="generale" className={tabContentClassName}>
+        <PropertyGeneralTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} onBack={handleBack} />
       </TabsContent>
-      <TabsContent value="dettagli">
-        <PropertyDettagliTab propertyId={propertyId ?? ''} />
+      <TabsContent value="dettagli" className={tabContentClassName}>
+        <PropertyDettagliTab propertyId={propertyId ?? ''} onBack={handleBack} onNext={goToNextStep} />
       </TabsContent>
-      <TabsContent value="foto">
-        <PropertyFotoTab propertyId={propertyId ?? ''} />
+      <TabsContent value="foto" className={tabContentClassName}>
+        <PropertyStepFrame id="property-tab-foto-actions" onBack={handleBack} onNext={goToNextStep}>
+          <PropertyFotoTab propertyId={propertyId ?? ''} />
+        </PropertyStepFrame>
       </TabsContent>
-      <TabsContent value="documenti">
-        <PropertyDocumentiTab propertyId={propertyId ?? ''} />
+      <TabsContent value="documenti" className={tabContentClassName}>
+        <PropertyStepFrame id="property-tab-documenti-actions" onBack={handleBack} onNext={goToNextStep}>
+          <PropertyDocumentiTab propertyId={propertyId ?? ''} />
+        </PropertyStepFrame>
       </TabsContent>
-      <TabsContent value="prezzo">
-        <PropertyPriceTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
+      <TabsContent value="prezzo" className={tabContentClassName}>
+        <PropertyPriceTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} onBack={handleBack} />
       </TabsContent>
-      <TabsContent value="localizzazione">
-        <PropertyLocationTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
+      <TabsContent value="localizzazione" className={tabContentClassName}>
+        <PropertyLocationTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} onBack={handleBack} />
       </TabsContent>
-      <TabsContent value="descrizione">
-        <PropertyDescriptionTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} />
+      <TabsContent value="descrizione" className={tabContentClassName}>
+        <PropertyDescriptionTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} onBack={handleBack} />
       </TabsContent>
-      <TabsContent value="commerciale">
-        <PropertyCommercialeTab propertyId={propertyId ?? ''} />
+      <TabsContent value="commerciale" className={tabContentClassName}>
+        <PropertyCommercialeTab propertyId={propertyId ?? ''} onBack={handleBack} onNext={goToNextStep} />
       </TabsContent>
-      <TabsContent value="industriale">
-        <PropertyIndustrialeTab propertyId={propertyId ?? ''} />
+      <TabsContent value="industriale" className={tabContentClassName}>
+        <PropertyIndustrialeTab propertyId={propertyId ?? ''} onBack={handleBack} onNext={goToNextStep} />
       </TabsContent>
-      <TabsContent value="terreno">
-        <PropertyTerrenoTab propertyId={propertyId ?? ''} />
+      <TabsContent value="terreno" className={tabContentClassName}>
+        <PropertyTerrenoTab propertyId={propertyId ?? ''} onBack={handleBack} onNext={goToNextStep} />
       </TabsContent>
-      <TabsContent value="tasse">
-        <PropertyTasseTab propertyId={propertyId ?? ''} />
+      <TabsContent value="tasse" className={tabContentClassName}>
+        <PropertyStepFrame id="property-tab-tasse-actions" onBack={handleBack} onNext={goToNextStep}>
+          <PropertyTasseTab propertyId={propertyId ?? ''} />
+        </PropertyStepFrame>
       </TabsContent>
-      <TabsContent value="storico">
-        {propertyId && <PropertyStoricoTab propertyId={propertyId} />}
+      <TabsContent value="storico" className={tabContentClassName}>
+        {propertyId && (
+          <PropertyStepFrame id="property-tab-storico-actions"
+            onBack={handleBack}
+            onNext={() => navigate('/gestionale/proprieta')}
+            isLast
+          >
+            <PropertyStoricoTab propertyId={propertyId} />
+          </PropertyStepFrame>
+        )}
       </TabsContent>
     </Tabs>
   )
