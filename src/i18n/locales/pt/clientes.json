@@ -52,7 +52,8 @@
     "number": "Número",
     "numberPlaceholder": "12",
     "neighborhood": "Bairro",
-    "neighborhoodPlaceholder": "Centro",
+    "neighborhoodPlaceholder": "Selecione um bairro",
+    "neighborhoodSearchPlaceholder": "Buscar bairro",
     "complement": "Complemento",
     "complementPlaceholder": "Andar 3, apto 2"
   },
@@ -253,7 +254,7 @@
         "postalCode": { "title": "CEP", "content": "Código postal do endereço." },
         "street": { "title": "Rua", "content": "Nome da rua." },
         "number": { "title": "Número", "content": "Número do imóvel no endereço." },
-        "neighborhood": { "title": "Bairro", "content": "Bairro do endereço." },
+        "neighborhoodId": { "title": "Bairro", "content": "Bairro do endereço." },
         "complement": { "title": "Complemento", "content": "Complemento do endereço." }
       },
       "tabAllegati": { "title": "Aba Anexos", "content": "Documentos e arquivos anexados a esse cliente." },
@@ -405,7 +406,7 @@
           "title": "Número",
           "content": "Número do imóvel no endereço."
         },
-        "neighborhood": {
+        "neighborhoodId": {
           "title": "Bairro",
           "content": "Bairro do endereço."
         },

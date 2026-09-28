@@ -73,7 +73,6 @@ export function createPropertySchema(t: TFunction<'imoveis'>) {
     street: z.string().optional(),
     number: z.string().optional(),
     complement: z.string().optional(),
-    neighborhood: z.string().optional(),
     neighborhoodId: z.string().optional(),
     city: z.string().min(1, t('options.validation.city')),
     region: z.string().optional(),

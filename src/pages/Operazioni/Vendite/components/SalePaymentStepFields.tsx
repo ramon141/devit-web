@@ -6,7 +6,6 @@ import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import SaleFinancialFields from '@/pages/Operazioni/Vendite/components/SaleFinancialFields'
 import {
-  getSalePaymentMethodOptions,
   getSaleStatusOptions,
   type SaleFormValues,
 } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
@@ -19,26 +18,10 @@ function SalePaymentStepFields({ form }: SalePaymentStepFieldsProps) {
   const { t } = useTranslation('operazioni')
   const { register, control } = form
   const { errors } = useFormState({ control })
-  const paymentMethodOptions = getSalePaymentMethodOptions(t)
   const statusOptions = getSaleStatusOptions(t)
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
-      <FormFieldWrapper
-        id="modal-field-paymentMethod"
-        label={t('vendite.paymentStepFields.paymentMethodLabel')}
-        required
-        error={errors.paymentMethod?.message}
-      >
-        <Controller
-          control={control}
-          name="paymentMethod"
-          render={({ field }) => (
-            <SelectField value={field.value} onValueChange={field.onChange} options={paymentMethodOptions} />
-          )}
-        />
-      </FormFieldWrapper>
-
       <FormFieldWrapper
         id="modal-field-status"
         label={t('vendite.paymentStepFields.statusLabel')}

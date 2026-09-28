@@ -20,10 +20,6 @@ export interface HomeBannerPartial {
   displayOrder?: number | null;
   /** @nullable */
   active?: boolean | null;
-  /** @nullable */
-  startDate?: string | null;
-  /** @nullable */
-  endDate?: string | null;
   attachmentId?: string;
   /** @nullable */
   mobileAttachmentId?: string | null;

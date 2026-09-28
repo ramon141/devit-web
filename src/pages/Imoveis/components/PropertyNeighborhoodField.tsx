@@ -12,26 +12,19 @@ type PropertyNeighborhoodFieldProps = {
   error?: string
 }
 
-// Quartiere cadastrado, filtrado pela cidade escolhida; guarda também o nome
-// em "neighborhood" para o endereço continuar legível sem carregar a relação
+// Quartiere cadastrado, filtrado pela cidade escolhida
 function PropertyNeighborhoodField({ form, error }: PropertyNeighborhoodFieldProps) {
   const { t } = useTranslation('imoveis')
   const [creatingName, setCreatingName] = useState('')
   const city = form.watch('city')
   const options = useNeighborhoodOptions(city)
 
-  function selectOption(value: string, label: string) {
-    form.setValue('neighborhoodId', value)
-    form.setValue('neighborhood', label)
-  }
-
   function handleCreated(created: Neighborhood) {
-    selectOption(created.id ?? '', created.name)
+    form.setValue('neighborhoodId', created.id ?? '')
   }
 
   function handleChange(value: string) {
-    const selected = options.find((option) => option.value === value)
-    selectOption(value, selected?.label ?? '')
+    form.setValue('neighborhoodId', value)
   }
 
   return (

@@ -13,8 +13,6 @@ export type HomeBannerFilterFieldsOneOf = {
   targetLink?: boolean;
   displayOrder?: boolean;
   active?: boolean;
-  startDate?: boolean;
-  endDate?: boolean;
   attachmentId?: boolean;
   mobileAttachmentId?: boolean;
 };

@@ -85,6 +85,13 @@
     "title": "Scadenze locazioni",
     "empty": "Nessun contratto in scadenza nei prossimi 30 giorni."
   },
+  "widgetSelection": {
+    "title": "Selezione widget",
+    "description": "I widget sono riquadri informativi che ti permettono di monitorare il tuo lavoro. Puoi aggiungere tutti i widget che vuoi alla tua Bacheca, per personalizzarla in base alle tue esigenze.",
+    "add": "Aggiungi widget",
+    "remove": "Rimuovi widget",
+    "empty": "Tutti i widget sono già stati aggiunti alla bacheca."
+  },
   "tour": {
     "title": {
       "title": "Bacheca",

@@ -49,16 +49,6 @@ function ProposalDatesAndNotesFields({ form }: ProposalDatesAndNotesFieldsProps)
 
       <div className="sm:col-span-2">
         <FormFieldWrapper
-          id="modal-field-paymentTerms"
-          label={t('datesAndNotesFields.paymentTermsLabel')}
-          error={errors.paymentTerms?.message}
-        >
-          <Textarea {...register('paymentTerms')} rows={2} />
-        </FormFieldWrapper>
-      </div>
-
-      <div className="sm:col-span-2">
-        <FormFieldWrapper
           id="modal-field-rejectionReason"
           label={t('datesAndNotesFields.rejectionReasonLabel')}
           error={errors.rejectionReason?.message}

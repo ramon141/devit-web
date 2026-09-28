@@ -8,14 +8,13 @@
 import type { PurchaseProposalPartialExcludingCreatedAtUpdatedAtPaymentMethod } from './purchaseProposalPartialExcludingCreatedAtUpdatedAtPaymentMethod';
 import type { PurchaseProposalPartialExcludingCreatedAtUpdatedAtStatus } from './purchaseProposalPartialExcludingCreatedAtUpdatedAtStatus';
 import type { PurchaseProposalPartialExcludingCreatedAtUpdatedAtBuyersItem } from './purchaseProposalPartialExcludingCreatedAtUpdatedAtBuyersItem';
+import type { PurchaseProposalPartialExcludingCreatedAtUpdatedAtAttachmentsItem } from './purchaseProposalPartialExcludingCreatedAtUpdatedAtAttachmentsItem';
 
 export interface PurchaseProposalPartialExcludingCreatedAtUpdatedAt {
   id?: string;
   number?: string;
   proposalAmount?: number;
   paymentMethod?: PurchaseProposalPartialExcludingCreatedAtUpdatedAtPaymentMethod;
-  /** @nullable */
-  paymentTerms?: string | null;
   /** @nullable */
   status?: PurchaseProposalPartialExcludingCreatedAtUpdatedAtStatus;
   /** @nullable */
@@ -41,4 +40,6 @@ export interface PurchaseProposalPartialExcludingCreatedAtUpdatedAt {
   createdById?: string | null;
   /** Pessoas compradoras a vincular à proposta */
   buyers?: PurchaseProposalPartialExcludingCreatedAtUpdatedAtBuyersItem[];
+  /** Anexos da proposta a enviar para o MinIO e vincular */
+  attachments?: PurchaseProposalPartialExcludingCreatedAtUpdatedAtAttachmentsItem[];
 }

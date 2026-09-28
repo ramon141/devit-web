@@ -85,6 +85,13 @@
     "title": "Vencimentos de aluguel",
     "empty": "Nenhum contrato vencendo nos próximos 30 dias."
   },
+  "widgetSelection": {
+    "title": "Seleção de widgets",
+    "description": "Widgets são caixas de informação que permitem monitorar seu trabalho. Você pode adicionar quantos widgets quiser ao seu Painel, para personalizá-lo de acordo com suas necessidades.",
+    "add": "Adicionar widget",
+    "remove": "Remover widget",
+    "empty": "Todos os widgets já foram adicionados ao painel."
+  },
   "tour": {
     "title": {
       "title": "Painel",

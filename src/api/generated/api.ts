@@ -14113,7 +14113,7 @@ export function usePropertyControllerExport<TData = Awaited<ReturnType<typeof pr
 
 
 /**
- * @summary Valores distintos para filtros de imóveis (cidades)
+ * @summary Valores distintos para filtros de imóveis (cidades e bairros)
  */
 export const propertyFacetsControllerFacets = (
     
@@ -14184,7 +14184,7 @@ export function usePropertyFacetsControllerFacets<TData = Awaited<ReturnType<typ
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary Valores distintos para filtros de imóveis (cidades)
+ * @summary Valores distintos para filtros de imóveis (cidades e bairros)
  */
 
 export function usePropertyFacetsControllerFacets<TData = Awaited<ReturnType<typeof propertyFacetsControllerFacets>>, TError = ErrorType<PropertyFacetsControllerFacets401>>(

@@ -9,6 +9,10 @@ import CalendarEventParticipantsManager from '@/pages/Agenda/components/Calendar
 import CalendarEventPropertiesManager from '@/pages/Agenda/components/CalendarEventPropertiesManager'
 import CalendarEventAttachmentsManager from '@/pages/Agenda/components/CalendarEventAttachmentsManager'
 import CalendarEventOutcomeSection from '@/pages/Agenda/components/CalendarEventOutcomeSection'
+import CalendarEventParticipantsDraftManager from '@/pages/Agenda/components/CalendarEventParticipantsDraftManager'
+import CalendarEventPropertiesDraftManager from '@/pages/Agenda/components/CalendarEventPropertiesDraftManager'
+import CalendarEventAttachmentsDraftManager from '@/pages/Agenda/components/CalendarEventAttachmentsDraftManager'
+import CalendarEventOutcomeDraftSection from '@/pages/Agenda/components/CalendarEventOutcomeDraftSection'
 
 type CalendarEventFormModalProps = {
   open: boolean
@@ -26,7 +30,7 @@ function CalendarEventFormModal({
   onRequestDelete,
 }: CalendarEventFormModalProps) {
   const { t } = useTranslation('agenda')
-  const { form, isSubmitting, onSubmit } = useCalendarEventForm({
+  const { form, draft, isSubmitting, onSubmit } = useCalendarEventForm({
     event,
     defaultDate,
     onSaved: () => onOpenChange(false),
@@ -41,7 +45,7 @@ function CalendarEventFormModal({
       <form id="modal-agenda-form" onSubmit={onSubmit} className="grid gap-4">
         <CalendarEventFormFields form={form} />
 
-        {event?.id && (
+        {event?.id ? (
           <>
             <Separator />
             <CalendarEventParticipantsManager calendarEventId={event.id} />
@@ -51,6 +55,32 @@ function CalendarEventFormModal({
             <CalendarEventAttachmentsManager calendarEventId={event.id} />
             <Separator />
             <CalendarEventOutcomeSection calendarEventId={event.id} />
+          </>
+        ) : (
+          <>
+            <Separator />
+            <CalendarEventParticipantsDraftManager
+              participants={draft.participants}
+              onAdd={draft.addParticipant}
+              onRemove={draft.removeParticipant}
+            />
+            <Separator />
+            <CalendarEventPropertiesDraftManager
+              properties={draft.properties}
+              onAdd={draft.addProperty}
+              onRemove={draft.removeProperty}
+            />
+            <Separator />
+            <CalendarEventAttachmentsDraftManager
+              files={draft.attachmentFiles}
+              onChange={draft.setAttachmentFiles}
+            />
+            <Separator />
+            <CalendarEventOutcomeDraftSection
+              outcomes={draft.outcomes}
+              onAdd={draft.addOutcome}
+              onRemove={draft.removeOutcome}
+            />
           </>
         )}
 

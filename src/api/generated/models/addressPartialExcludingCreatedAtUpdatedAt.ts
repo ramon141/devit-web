@@ -19,8 +19,6 @@ export interface AddressPartialExcludingCreatedAtUpdatedAt {
   number?: string | null;
   /** @nullable */
   complement?: string | null;
-  /** @nullable */
-  neighborhood?: string | null;
   city?: string;
   /** @nullable */
   region?: string | null;

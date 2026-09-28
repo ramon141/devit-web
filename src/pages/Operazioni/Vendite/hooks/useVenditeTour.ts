@@ -47,14 +47,11 @@ const GENERALE_FIELD_KEYS = [
 ] as const
 
 const PAGAMENTO_FIELD_KEYS = [
-  'paymentMethod',
   'status',
   'deedDate',
   'finalAmount',
-  'downPayment',
   'commissionAmount',
   'installmentsCount',
-  'financialInstitution',
   'cancellationReason',
   'notes',
 ] as const

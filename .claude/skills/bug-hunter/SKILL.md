@@ -66,6 +66,15 @@ Várias telas do Devit repetem o mesmo dado (ex: dados de um imóvel aparecem em
 3. Se os valores divergem sem justificativa de negócio clara, reportar como bug de inconsistência, citando os dois arquivos de componente/hook responsáveis por cada tela e os dois valores vistos.
 4. Se a divergência é porque as duas telas usam definições diferentes de propósito e isso não está claro pro usuário final (rótulo ambíguo, sem tooltip/legenda), reportar como problema de UX/clareza, não só como bug técnico.
 
+## Varredura longa (cobertura ampla, "achar tudo")
+
+Quando o pedido é cobertura ampla (ex: "achar tudo", "testar sistema inteiro", "100%"), a sessão pode compactar contexto ao longo da caçada — turnos antigos viram resumo e detalhe fino (query exata rodada, campo exato conferido) pode se perder. Isso não impede rodar por muito tempo, mas exige checkpoint fora da conversa:
+
+1. Antes de começar, criar um arquivo de checklist no scratchpad da sessão (`<scratchpad>/bug-hunt-checklist.md`) listando toda rota/página em `src/pages` (ou `src/routes.tsx`) que vai entrar na varredura.
+2. Conforme cada rota é testada, atualizar o arquivo na hora (não no final) com um de três estados por linha: `[ok]` sem bug, `[bug]` com referência ao achado no relatório, `[descartado]` com motivo curto.
+3. Se o contexto compactar no meio da varredura, reabrir o checklist primeiro — ele diz exatamente onde parar e o que já foi coberto, sem precisar confiar no resumo da conversa pra isso.
+4. Mesmo com o checklist, deixar claro no relatório final que "100%" é cobertura de telas/rotas listadas, não de todas as combinações de estado (validação, edge case, permissão, paginação) — isso nunca fecha por definição.
+
 ## Relatório
 
 Classificar cada bug confirmado como um dos três tipos: **código**, **valor divergente do banco**, **inconsistência entre telas**.

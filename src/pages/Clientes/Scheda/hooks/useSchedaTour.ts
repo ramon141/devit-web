@@ -22,7 +22,7 @@ const DATI_FIELD_KEYS = [
   'postalCode',
   'street',
   'number',
-  'neighborhood',
+  'neighborhoodId',
   'complement',
 ] as const
 

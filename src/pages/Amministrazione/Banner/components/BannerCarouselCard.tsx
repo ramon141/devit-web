@@ -51,6 +51,31 @@ function BannerCarouselCard({
     opacity: isDragging ? 0.85 : baseStyle.opacity,
   }
 
+  // O card só vira link clicável quando está em destaque e tem targetLink
+  function renderImage() {
+    const image = attachment?.url ? (
+      <img src={attachment.url} alt={banner.title} className="h-full w-full object-cover" />
+    ) : (
+      <div className="flex h-full w-full items-center justify-center bg-muted">
+        <ImageIcon className="size-8 text-muted-foreground" />
+      </div>
+    )
+
+    if (!isCurrent || !banner.targetLink) return image
+
+    return (
+      <a
+        href={banner.targetLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(event) => event.stopPropagation()}
+        className="block h-full w-full"
+      >
+        {image}
+      </a>
+    )
+  }
+
   return (
     <div
       ref={setDragRef}
@@ -64,17 +89,7 @@ function BannerCarouselCard({
           : 'cursor-grab transition-all duration-500 ease-out hover:shadow-2xl'
       }`}
     >
-      {attachment?.url ? (
-        <img
-          src={attachment.url}
-          alt={banner.title}
-          className="h-full w-full object-cover"
-        />
-      ) : (
-        <div className="flex h-full w-full items-center justify-center bg-muted">
-          <ImageIcon className="size-8 text-muted-foreground" />
-        </div>
-      )}
+      {renderImage()}
 
       {!banner.active ? (
         <Badge variant="secondary" className="absolute left-3 top-3">

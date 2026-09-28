@@ -14,10 +14,29 @@ import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
+import { fileToBase64 } from '@/utils/fileToBase64'
 import {
   createCalendarEventSchema,
   type CalendarEventFormValues,
 } from '@/pages/Agenda/schemas/calendarEventSchema'
+import { useCalendarEventDraft } from '@/pages/Agenda/hooks/useCalendarEventDraft'
+
+async function buildDraftPayload(draft: ReturnType<typeof useCalendarEventDraft>) {
+  const attachments = await Promise.all(
+    draft.attachmentFiles.map(async (file) => ({
+      originalName: file.name,
+      mimeType: file.type,
+      bodyBase64: await fileToBase64(file),
+    }))
+  )
+
+  return {
+    participants: draft.participants.map((participant) => ({ personId: participant.personId })),
+    linkedProperties: draft.properties.map((property) => ({ propertyId: property.propertyId })),
+    outcomes: draft.outcomes.map((outcome) => ({ outcome })),
+    attachments,
+  }
+}
 
 function emptyValues(defaultDate?: string): CalendarEventFormValues {
   return {
@@ -73,6 +92,7 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
   const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useCalendarEventControllerCreate()
   const { mutateAsync: update, isPending: updating } = useCalendarEventControllerUpdateById()
+  const draft = useCalendarEventDraft()
 
   const form = useForm<CalendarEventFormValues>({
     resolver: zodResolver(createCalendarEventSchema(t)),
@@ -81,6 +101,8 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
 
   useEffect(() => {
     form.reset(event ? eventToFormValues(event) : emptyValues(defaultDate))
+    draft.reset()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [event, defaultDate, form])
 
   function onSubmit(values: CalendarEventFormValues) {
@@ -112,7 +134,9 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
       endAt: end.toISOString(),
     }
 
-    const promise = event?.id ? update({ id: event.id, data }) : create({ data })
+    const promise = event?.id
+      ? update({ id: event.id, data })
+      : buildDraftPayload(draft).then((nested) => create({ data: { ...data, ...nested } }))
 
     promisePopup(promise, {
       pending: event ? t('agenda:toasts.form.saving') : t('agenda:toasts.form.creating'),
@@ -128,6 +152,7 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
 
   return {
     form,
+    draft,
     isSubmitting: creating || updating,
     onSubmit: form.handleSubmit(onSubmit),
   }

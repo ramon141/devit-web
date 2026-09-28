@@ -12,7 +12,6 @@ export type AddressFilterFieldsOneOf = {
   street?: boolean;
   number?: boolean;
   complement?: boolean;
-  neighborhood?: boolean;
   city?: boolean;
   region?: boolean;
   postalCode?: boolean;

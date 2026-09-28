@@ -14,7 +14,6 @@ function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
   const { register, control, setValue } = form
   const { errors } = useFormState({ control })
   const finalAmount = useWatch({ control, name: 'finalAmount' })
-  const downPayment = useWatch({ control, name: 'downPayment' })
   const commissionAmount = useWatch({ control, name: 'commissionAmount' })
 
   return (
@@ -27,15 +26,6 @@ function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
           value={finalAmount}
           setValue={(value) => setValue('finalAmount', value ?? '')}
           error={errors.finalAmount?.message}
-        />
-      </div>
-
-      <div id="modal-field-downPayment">
-        <InputMoney
-          name="downPayment"
-          label={t('vendite.financialFields.downPaymentLabel')}
-          value={downPayment}
-          setValue={(value) => setValue('downPayment', value)}
         />
       </div>
 
@@ -58,14 +48,6 @@ function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
           type="number"
           placeholder={t('vendite.financialFields.installmentsCountPlaceholder')}
         />
-      </FormFieldWrapper>
-
-      <FormFieldWrapper
-        id="modal-field-financialInstitution"
-        label={t('vendite.financialFields.financialInstitutionLabel')}
-        error={errors.financialInstitution?.message}
-      >
-        <Input {...register('financialInstitution')} />
       </FormFieldWrapper>
     </>
   )

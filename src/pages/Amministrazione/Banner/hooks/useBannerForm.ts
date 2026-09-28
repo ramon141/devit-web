@@ -16,7 +16,6 @@ import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
-import { toISODateOrNull } from '@/utils/toISODateOrNull'
 import { bannerSchema, type BannerFormValues } from '@/pages/Amministrazione/Banner/schemas/bannerSchema'
 
 const emptyValues: BannerFormValues = {
@@ -25,8 +24,6 @@ const emptyValues: BannerFormValues = {
   targetLink: '',
   displayOrder: '',
   active: true,
-  startDate: '',
-  endDate: '',
 }
 
 type UseBannerFormProps = {
@@ -63,8 +60,6 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
             targetLink: banner.targetLink ?? '',
             displayOrder: banner.displayOrder != null ? String(banner.displayOrder) : '',
             active: banner.active ?? true,
-            startDate: banner.startDate?.slice(0, 10) ?? '',
-            endDate: banner.endDate?.slice(0, 10) ?? '',
           }
         : emptyValues,
       { keepFieldsRef: true }
@@ -84,8 +79,6 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
       targetLink: cleaned.targetLink,
       displayOrder: toNumberOrNull(values.displayOrder),
       active: values.active,
-      startDate: toISODateOrNull(values.startDate),
-      endDate: toISODateOrNull(values.endDate),
     }
 
     const attachmentId = imageFiles[0]

@@ -4,6 +4,10 @@
     "brand": "Devit",
     "tagline": "Gerencie seus imóveis de forma simples e eficiente"
   },
+  "welcomeScreen": {
+    "title": "Bem-vindo à gestão imobiliária inteligente",
+    "badge": "Devit CRM"
+  },
   "desktopLoginForm": {
     "title": "Entrar",
     "subtitle": "Digite suas credenciais para continuar",

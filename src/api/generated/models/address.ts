@@ -16,8 +16,6 @@ export interface Address {
   number?: string | null;
   /** @nullable */
   complement?: string | null;
-  /** @nullable */
-  neighborhood?: string | null;
   city: string;
   /** @nullable */
   region?: string | null;

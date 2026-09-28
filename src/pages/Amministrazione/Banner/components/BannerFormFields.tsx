@@ -91,22 +91,6 @@ function BannerFormFields({ banner, bannerForm, onCancel }: BannerFormFieldsProp
           <Input {...register('displayOrder')} type="number" />
         </FormFieldWrapper>
 
-        <FormFieldWrapper
-          id="banner-field-startDate"
-          label={t('bannerFormModal.startDateLabel')}
-          error={errors.startDate?.message}
-        >
-          <Input {...register('startDate')} type="date" />
-        </FormFieldWrapper>
-
-        <FormFieldWrapper
-          id="banner-field-endDate"
-          label={t('bannerFormModal.endDateLabel')}
-          error={errors.endDate?.message}
-        >
-          <Input {...register('endDate')} type="date" />
-        </FormFieldWrapper>
-
         <div id="banner-field-active">
           <Controller
             control={control}

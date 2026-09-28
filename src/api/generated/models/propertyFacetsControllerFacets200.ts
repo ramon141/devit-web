@@ -8,4 +8,5 @@
 
 export type PropertyFacetsControllerFacets200 = {
   cities?: string[];
+  neighborhoods?: string[];
 };

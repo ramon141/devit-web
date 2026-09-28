@@ -6,6 +6,7 @@ import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import { getPersonRoleOptions, type PersonFormValues } from '@/pages/Clientes/schemas/personSchema'
+import PersonNeighborhoodField from '@/pages/Clientes/components/PersonNeighborhoodField'
 
 type PersonFormFieldsProps = {
   form: UseFormReturn<PersonFormValues>
@@ -169,16 +170,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
           />
         </FormFieldWrapper>
 
-        <FormFieldWrapper
-          id="modal-field-neighborhood"
-          label={t('personFormFields.neighborhood')}
-          error={errors.neighborhood?.message}
-        >
-          <Input
-            {...register('neighborhood')}
-            placeholder={t('personFormFields.neighborhoodPlaceholder')}
-          />
-        </FormFieldWrapper>
+        <PersonNeighborhoodField form={form} error={errors.neighborhoodId?.message} />
 
         <FormFieldWrapper
           id="modal-field-complement"

@@ -1,19 +1,6 @@
 import { z } from 'zod'
 import type { TFunction } from 'i18next'
-import { SalePaymentMethod, SaleStatus } from '@/api/generated/models'
-
-export function getSalePaymentMethodOptions(t: TFunction) {
-  return [
-    { value: SalePaymentMethod.cash, label: t('operazioni:vendite.schema.paymentCash') },
-    { value: SalePaymentMethod.financed, label: t('operazioni:vendite.schema.paymentFinanced') },
-    {
-      value: SalePaymentMethod.direct_installments,
-      label: t('operazioni:vendite.schema.paymentDirectInstallments'),
-    },
-    { value: SalePaymentMethod.exchange, label: t('operazioni:vendite.schema.paymentExchange') },
-    { value: SalePaymentMethod.other, label: t('operazioni:vendite.schema.paymentOther') },
-  ]
-}
+import { SaleStatus } from '@/api/generated/models'
 
 export function getSaleStatusOptions(t: TFunction) {
   return [
@@ -32,11 +19,6 @@ export function createSaleSchema(t: TFunction) {
     finalAmount: z.string().min(1, t('operazioni:vendite.schema.finalAmountRequired')),
     saleDate: z.string().min(1, t('operazioni:vendite.schema.saleDateRequired')),
     deedDate: z.string().optional(),
-    paymentMethod: z.enum(SalePaymentMethod, {
-      error: t('operazioni:vendite.schema.paymentMethodRequired'),
-    }),
-    financialInstitution: z.string().optional(),
-    downPayment: z.string().optional(),
     installmentsCount: z.string().optional(),
     commissionAmount: z.string().optional(),
     status: z.enum(SaleStatus, { error: t('operazioni:vendite.schema.statusRequired') }),

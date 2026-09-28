@@ -11,7 +11,6 @@ export type PurchaseProposalFilterFieldsOneOf = {
   number?: boolean;
   proposalAmount?: boolean;
   paymentMethod?: boolean;
-  paymentTerms?: boolean;
   status?: boolean;
   funnelPosition?: boolean;
   financed?: boolean;

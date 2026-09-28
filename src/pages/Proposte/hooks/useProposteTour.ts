@@ -34,7 +34,6 @@ const MODAL_FIELD_KEYS = [
   'proposalDate',
   'validUntil',
   'financed',
-  'paymentTerms',
   'rejectionReason',
   'notes',
 ] as const

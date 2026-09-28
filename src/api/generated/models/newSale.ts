@@ -5,10 +5,11 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { NewSalePaymentMethod } from './newSalePaymentMethod';
 import type { NewSaleStatus } from './newSaleStatus';
 import type { NewSaleBuyersItem } from './newSaleBuyersItem';
 import type { NewSaleSellersItem } from './newSaleSellersItem';
+import type { NewSaleDocumentsItem } from './newSaleDocumentsItem';
+import type { NewSaleStatusHistoryPropertyItem } from './newSaleStatusHistoryPropertyItem';
 
 export interface NewSale {
   number: string;
@@ -16,11 +17,6 @@ export interface NewSale {
   saleDate: string;
   /** @nullable */
   deedDate?: string | null;
-  paymentMethod: NewSalePaymentMethod;
-  /** @nullable */
-  financialInstitution?: string | null;
-  /** @nullable */
-  downPayment?: number | null;
   /** @nullable */
   installmentsCount?: number | null;
   /** @nullable */
@@ -46,4 +42,8 @@ export interface NewSale {
   buyers?: NewSaleBuyersItem[];
   /** Pessoas a vincular (compradores ou vendedores) */
   sellers?: NewSaleSellersItem[];
+  /** Documentos a vincular à venda (o anexo já deve existir) */
+  documents?: NewSaleDocumentsItem[];
+  /** Histórico de status a registrar para a venda */
+  statusHistory?: NewSaleStatusHistoryPropertyItem[];
 }

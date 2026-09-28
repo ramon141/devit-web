@@ -9,8 +9,6 @@ const FIELD_KEYS = [
   'subtitle',
   'targetLink',
   'displayOrder',
-  'startDate',
-  'endDate',
   'active',
 ] as const
 

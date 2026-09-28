@@ -33,7 +33,7 @@ const emptyValues: PersonFormValues = {
   street: '',
   number: '',
   complement: '',
-  neighborhood: '',
+  neighborhoodId: '',
   city: '',
   region: '',
   postalCode: '',
@@ -60,7 +60,7 @@ function personToFormValues(person: PersonWithRelations): PersonFormValues {
     street: person.address?.street ?? '',
     number: person.address?.number ?? '',
     complement: person.address?.complement ?? '',
-    neighborhood: person.address?.neighborhood ?? '',
+    neighborhoodId: person.address?.neighborhoodId ?? '',
     city: person.address?.city ?? '',
     region: person.address?.region ?? '',
     postalCode: person.address?.postalCode ?? '',
@@ -73,7 +73,7 @@ function hasAddressData(values: PersonFormValues) {
       values.street ||
       values.number ||
       values.complement ||
-      values.neighborhood ||
+      values.neighborhoodId ||
       values.city ||
       values.region ||
       values.postalCode
@@ -113,7 +113,7 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
       street: values.street || undefined,
       number: values.number || undefined,
       complement: values.complement || undefined,
-      neighborhood: values.neighborhood || undefined,
+      neighborhoodId: values.neighborhoodId || undefined,
       city: values.city as string,
       region: values.region || undefined,
       postalCode: values.postalCode || undefined,

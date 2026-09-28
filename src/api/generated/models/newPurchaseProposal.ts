@@ -8,13 +8,12 @@
 import type { NewPurchaseProposalPaymentMethod } from './newPurchaseProposalPaymentMethod';
 import type { NewPurchaseProposalStatus } from './newPurchaseProposalStatus';
 import type { NewPurchaseProposalBuyersItem } from './newPurchaseProposalBuyersItem';
+import type { NewPurchaseProposalAttachmentsItem } from './newPurchaseProposalAttachmentsItem';
 
 export interface NewPurchaseProposal {
   number: string;
   proposalAmount: number;
   paymentMethod: NewPurchaseProposalPaymentMethod;
-  /** @nullable */
-  paymentTerms?: string | null;
   /** @nullable */
   status?: NewPurchaseProposalStatus;
   /** @nullable */
@@ -40,4 +39,6 @@ export interface NewPurchaseProposal {
   createdById?: string | null;
   /** Pessoas compradoras a vincular à proposta */
   buyers?: NewPurchaseProposalBuyersItem[];
+  /** Anexos da proposta a enviar para o MinIO e vincular */
+  attachments?: NewPurchaseProposalAttachmentsItem[];
 }

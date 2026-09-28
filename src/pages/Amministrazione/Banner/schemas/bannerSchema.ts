@@ -7,8 +7,6 @@ export const bannerSchema = z.object({
   targetLink: z.string().optional(),
   displayOrder: z.string().optional(),
   active: z.boolean(),
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
 })
 
 export type BannerFormValues = z.infer<typeof bannerSchema>

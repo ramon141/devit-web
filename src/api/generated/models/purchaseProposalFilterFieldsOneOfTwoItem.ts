@@ -15,7 +15,6 @@ export const PurchaseProposalFilterFieldsOneOfTwoItem = {
   number: 'number',
   proposalAmount: 'proposalAmount',
   paymentMethod: 'paymentMethod',
-  paymentTerms: 'paymentTerms',
   status: 'status',
   funnelPosition: 'funnelPosition',
   financed: 'financed',

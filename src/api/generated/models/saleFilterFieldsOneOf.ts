@@ -12,9 +12,6 @@ export type SaleFilterFieldsOneOf = {
   finalAmount?: boolean;
   saleDate?: boolean;
   deedDate?: boolean;
-  paymentMethod?: boolean;
-  financialInstitution?: boolean;
-  downPayment?: boolean;
   installmentsCount?: boolean;
   commissionAmount?: boolean;
   status?: boolean;

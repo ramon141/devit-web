@@ -33,8 +33,6 @@
     "subtitleLabel": "Subtítulo",
     "linkLabel": "Link",
     "orderLabel": "Ordem",
-    "startDateLabel": "Data de início",
-    "endDateLabel": "Data de término",
     "activeLabel": "Banner ativo",
     "mobileImageLabel": "Imagem mobile"
   },
@@ -463,14 +461,6 @@
           "displayOrder": {
             "title": "Ordem de exibição",
             "content": "Define a posição do banner entre os demais. Números menores aparecem primeiro."
-          },
-          "startDate": {
-            "title": "Data de início",
-            "content": "Data a partir da qual o banner passa a ser exibido."
-          },
-          "endDate": {
-            "title": "Data de término",
-            "content": "Data em que o banner deixa de ser exibido."
           },
           "active": {
             "title": "Banner ativo",

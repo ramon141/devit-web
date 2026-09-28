@@ -5,10 +5,11 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { SalePartialExcludingCreatedAtUpdatedAtPaymentMethod } from './salePartialExcludingCreatedAtUpdatedAtPaymentMethod';
 import type { SalePartialExcludingCreatedAtUpdatedAtStatus } from './salePartialExcludingCreatedAtUpdatedAtStatus';
 import type { SalePartialExcludingCreatedAtUpdatedAtBuyersItem } from './salePartialExcludingCreatedAtUpdatedAtBuyersItem';
 import type { SalePartialExcludingCreatedAtUpdatedAtSellersItem } from './salePartialExcludingCreatedAtUpdatedAtSellersItem';
+import type { SalePartialExcludingCreatedAtUpdatedAtDocumentsItem } from './salePartialExcludingCreatedAtUpdatedAtDocumentsItem';
+import type { SalePartialExcludingCreatedAtUpdatedAtStatusHistoryItem } from './salePartialExcludingCreatedAtUpdatedAtStatusHistoryItem';
 
 export interface SalePartialExcludingCreatedAtUpdatedAt {
   id?: string;
@@ -17,11 +18,6 @@ export interface SalePartialExcludingCreatedAtUpdatedAt {
   saleDate?: string;
   /** @nullable */
   deedDate?: string | null;
-  paymentMethod?: SalePartialExcludingCreatedAtUpdatedAtPaymentMethod;
-  /** @nullable */
-  financialInstitution?: string | null;
-  /** @nullable */
-  downPayment?: number | null;
   /** @nullable */
   installmentsCount?: number | null;
   /** @nullable */
@@ -47,4 +43,8 @@ export interface SalePartialExcludingCreatedAtUpdatedAt {
   buyers?: SalePartialExcludingCreatedAtUpdatedAtBuyersItem[];
   /** Pessoas a vincular (compradores ou vendedores) */
   sellers?: SalePartialExcludingCreatedAtUpdatedAtSellersItem[];
+  /** Documentos a vincular à venda (o anexo já deve existir) */
+  documents?: SalePartialExcludingCreatedAtUpdatedAtDocumentsItem[];
+  /** Histórico de status a registrar para a venda */
+  statusHistory?: SalePartialExcludingCreatedAtUpdatedAtStatusHistoryItem[];
 }

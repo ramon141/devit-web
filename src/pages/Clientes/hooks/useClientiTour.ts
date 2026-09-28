@@ -30,7 +30,7 @@ const MODAL_FIELD_KEYS = [
   'postalCode',
   'street',
   'number',
-  'neighborhood',
+  'neighborhoodId',
   'complement',
 ] as const
 

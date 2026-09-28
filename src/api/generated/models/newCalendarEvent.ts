@@ -11,6 +11,8 @@ import type { NewCalendarEventRecurrence } from './newCalendarEventRecurrence';
 import type { NewCalendarEventReminder } from './newCalendarEventReminder';
 import type { NewCalendarEventLinkedPropertiesItem } from './newCalendarEventLinkedPropertiesItem';
 import type { NewCalendarEventAttachmentsItem } from './newCalendarEventAttachmentsItem';
+import type { NewCalendarEventParticipantsItem } from './newCalendarEventParticipantsItem';
+import type { NewCalendarEventOutcomesItem } from './newCalendarEventOutcomesItem';
 
 export interface NewCalendarEvent {
   title: string;
@@ -49,4 +51,8 @@ export interface NewCalendarEvent {
   linkedProperties?: NewCalendarEventLinkedPropertiesItem[];
   /** Anexos do compromisso a enviar para o MinIO e vincular */
   attachments?: NewCalendarEventAttachmentsItem[];
+  /** Participantes a vincular ao compromisso */
+  participants?: NewCalendarEventParticipantsItem[];
+  /** Resultados (outcomes) a registrar para o compromisso */
+  outcomes?: NewCalendarEventOutcomesItem[];
 }

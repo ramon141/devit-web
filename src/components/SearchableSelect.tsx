@@ -164,7 +164,7 @@ function SearchableSelect({
                 {filteredOptions.map((option) => (
                   <CommandItem
                     key={option.value}
-                    value={option.label}
+                    value={option.value}
                     data-checked={option.value === value}
                     onSelect={() => handleSelect(option.value)}
                   >

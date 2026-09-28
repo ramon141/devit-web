@@ -14,6 +14,7 @@ import type {
   AuthControllerLogin429,
 } from '@/api/generated/models'
 import { Auth } from '@/auth'
+import { markWelcomeScreenPending } from '@/lib/welcomeScreenFlag'
 import { getErrorMessageFromRequest } from '@/utils/getErrorMessageFromRequest'
 import { createLoginSchema, type LoginFormValues } from '@/pages/Login/schemas/loginSchema'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
@@ -48,6 +49,7 @@ export function useLoginForm() {
     try {
       const response = await login({ data: values })
       Auth.login(response)
+      markWelcomeScreenPending()
       navigate(CRM_BASE_PATH)
     } catch (err) {
       setError(getErrorMessageFromRequest(err as AxiosError<LoginError>))

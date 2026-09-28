@@ -24,8 +24,6 @@ export interface PurchaseProposalWithRelations {
   proposalAmount: number;
   paymentMethod: PurchaseProposalWithRelationsPaymentMethod;
   /** @nullable */
-  paymentTerms?: string | null;
-  /** @nullable */
   status?: PurchaseProposalWithRelationsStatus;
   /** @nullable */
   funnelPosition?: number | null;

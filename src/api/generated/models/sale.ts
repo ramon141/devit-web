@@ -5,7 +5,6 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { SalePaymentMethod } from './salePaymentMethod';
 import type { SaleStatus } from './saleStatus';
 
 export interface Sale {
@@ -15,11 +14,6 @@ export interface Sale {
   saleDate: string;
   /** @nullable */
   deedDate?: string | null;
-  paymentMethod: SalePaymentMethod;
-  /** @nullable */
-  financialInstitution?: string | null;
-  /** @nullable */
-  downPayment?: number | null;
   /** @nullable */
   installmentsCount?: number | null;
   /** @nullable */

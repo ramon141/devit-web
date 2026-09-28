@@ -17,8 +17,6 @@ export const HomeBannerFilterFieldsOneOfTwoItem = {
   targetLink: 'targetLink',
   displayOrder: 'displayOrder',
   active: 'active',
-  startDate: 'startDate',
-  endDate: 'endDate',
   attachmentId: 'attachmentId',
   mobileAttachmentId: 'mobileAttachmentId',
 } as const;

@@ -34,7 +34,6 @@ export function createProposalSchema(t: TFunction<'proposte'>) {
     paymentMethod: z.enum(PurchaseProposalPaymentMethod, {
       error: t('schema.paymentMethodRequired'),
     }),
-    paymentTerms: z.string().optional(),
     status: z.enum(PurchaseProposalStatus, { error: t('schema.statusRequired') }),
     financed: z.boolean(),
     proposalDate: z.string().min(1, t('schema.dateRequired')),

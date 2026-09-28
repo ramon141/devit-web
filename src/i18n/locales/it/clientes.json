@@ -52,7 +52,8 @@
     "number": "Numero civico",
     "numberPlaceholder": "12",
     "neighborhood": "Quartiere",
-    "neighborhoodPlaceholder": "Centro",
+    "neighborhoodPlaceholder": "Seleziona un quartiere",
+    "neighborhoodSearchPlaceholder": "Cerca quartiere",
     "complement": "Complemento",
     "complementPlaceholder": "Piano 3, interno 2"
   },
@@ -253,7 +254,7 @@
         "postalCode": { "title": "CAP", "content": "Codice postale dell'indirizzo." },
         "street": { "title": "Via", "content": "Nome della via." },
         "number": { "title": "Numero civico", "content": "Numero civico dell'indirizzo." },
-        "neighborhood": { "title": "Quartiere", "content": "Quartiere dell'indirizzo." },
+        "neighborhoodId": { "title": "Quartiere", "content": "Quartiere dell'indirizzo." },
         "complement": { "title": "Complemento", "content": "Complemento dell'indirizzo." }
       },
       "tabAllegati": { "title": "Scheda Allegati", "content": "Documenti e file allegati a questo cliente." },
@@ -405,7 +406,7 @@
           "title": "Numero civico",
           "content": "Numero civico dell'indirizzo."
         },
-        "neighborhood": {
+        "neighborhoodId": {
           "title": "Quartiere",
           "content": "Quartiere dell'indirizzo."
         },

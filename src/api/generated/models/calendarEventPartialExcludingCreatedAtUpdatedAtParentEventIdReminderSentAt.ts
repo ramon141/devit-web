@@ -11,6 +11,8 @@ import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdRemind
 import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder';
 import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtLinkedPropertiesItem } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtLinkedPropertiesItem';
 import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtAttachmentsItem } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtAttachmentsItem';
+import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtParticipantsItem } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtParticipantsItem';
+import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtOutcomesItem } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtOutcomesItem';
 
 export interface CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAt {
   id?: string;
@@ -50,4 +52,8 @@ export interface CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdRem
   linkedProperties?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtLinkedPropertiesItem[];
   /** Anexos do compromisso a enviar para o MinIO e vincular */
   attachments?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtAttachmentsItem[];
+  /** Participantes a vincular ao compromisso */
+  participants?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtParticipantsItem[];
+  /** Resultados (outcomes) a registrar para o compromisso */
+  outcomes?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtOutcomesItem[];
 }

@@ -16,7 +16,6 @@ export const AddressFilter1FieldsOneOfTwoItem = {
   street: 'street',
   number: 'number',
   complement: 'complement',
-  neighborhood: 'neighborhood',
   city: 'city',
   region: 'region',
   postalCode: 'postalCode',
