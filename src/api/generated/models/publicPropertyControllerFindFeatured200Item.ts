@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PublicPropertyControllerFindFeatured200ItemCategory } from './publicPropertyControllerFindFeatured200ItemCategory';
+import type { PublicPropertyControllerFindFeatured200ItemZone } from './publicPropertyControllerFindFeatured200ItemZone';
 import type { PublicPropertyControllerFindFeatured200ItemAddress } from './publicPropertyControllerFindFeatured200ItemAddress';
 
 export type PublicPropertyControllerFindFeatured200Item = {
@@ -29,5 +30,7 @@ export type PublicPropertyControllerFindFeatured200Item = {
   /** @nullable */
   coverPhotoUrl?: string | null;
   category?: PublicPropertyControllerFindFeatured200ItemCategory;
+  /** @nullable */
+  zone?: PublicPropertyControllerFindFeatured200ItemZone;
   address?: PublicPropertyControllerFindFeatured200ItemAddress;
 };

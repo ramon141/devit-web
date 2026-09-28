@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { ChatbotPropertyControllerFind200ItemsItemCategory } from './chatbotPropertyControllerFind200ItemsItemCategory';
+import type { ChatbotPropertyControllerFind200ItemsItemZone } from './chatbotPropertyControllerFind200ItemsItemZone';
 import type { ChatbotPropertyControllerFind200ItemsItemAddress } from './chatbotPropertyControllerFind200ItemsItemAddress';
 
 export type ChatbotPropertyControllerFind200ItemsItem = {
@@ -29,5 +30,7 @@ export type ChatbotPropertyControllerFind200ItemsItem = {
   /** @nullable */
   coverPhotoUrl?: string | null;
   category?: ChatbotPropertyControllerFind200ItemsItemCategory;
+  /** @nullable */
+  zone?: ChatbotPropertyControllerFind200ItemsItemZone;
   address?: ChatbotPropertyControllerFind200ItemsItemAddress;
 };

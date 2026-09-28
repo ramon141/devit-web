@@ -1,0 +1,174 @@
+@keyframes site-mappa-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+.site-root {
+  /* ==========================================================================
+     Mapas (imagem OpenStreetMap costurada + pontos por projeção; Google opcional)
+     ========================================================================== */
+  .mappa-quadro {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #e8e4dc;
+    border: 1px solid rgb(11 11 11 / 0.1);
+  }
+  .mappa-img {
+    position: absolute;
+    max-width: none;
+    height: auto;
+  }
+  .mappa-pino {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 22px;
+    height: 22px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--color-site-accent);
+    border: 3px solid var(--color-site-ink);
+    box-shadow: 0 0 0 6px rgb(255 204 0 / 0.3), 0 8px 20px -8px rgb(0 0 0 / 0.6);
+  }
+  .mappa-zona {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34%;
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgb(255 204 0 / 0.22);
+    border: 2px solid rgb(224 180 0 / 0.9);
+  }
+  .mappa-attr {
+    position: absolute;
+    right: 8px;
+    bottom: 6px;
+    margin: 0;
+    z-index: 2;
+    font-size: 0.62rem;
+    color: rgb(11 11 11 / 0.55);
+    background: rgb(255 255 255 / 0.7);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .mappa-google {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #e8e4dc;
+    border: 1px solid rgb(11 11 11 / 0.1);
+  }
+  .mappa-iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* ---- o mapa da home ---- */
+  .mappa-stage {
+    position: relative;
+  }
+  .mappa-static {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgb(11 11 11 / 0.1);
+    background: #e8e4dc;
+  }
+  .mappa-gmap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .mappa-punto {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--color-site-accent);
+    border: 2px solid var(--color-site-ink);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgb(0 0 0 / 0.3);
+    transition: transform var(--site-dur-fast) var(--site-ease-out), box-shadow var(--site-dur-fast);
+  }
+  .mappa-punto--affitto {
+    background: #fff;
+  }
+  .mappa-punto:hover, .mappa-punto:focus-visible, .mappa-punto.is-active {
+    transform: translate(-50%, -50%) scale(1.6);
+    z-index: 3;
+    box-shadow: 0 0 0 5px rgb(255 204 0 / 0.35), 0 6px 14px rgb(0 0 0 / 0.35);
+  }
+  .mappa-card {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    z-index: 5;
+    width: min(360px, calc(100% - 32px));
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid rgb(11 11 11 / 0.1);
+    box-shadow: 0 30px 60px -30px rgb(11 11 11 / 0.55);
+    animation: site-mappa-card-in 0.3s var(--site-ease-out) both;
+  }
+  .mappa-card-img {
+    width: 112px;
+    height: 100%;
+    min-height: 112px;
+    object-fit: cover;
+  }
+  .mappa-card-body {
+    padding: 14px 40px 14px 14px;
+  }
+  .mappa-card-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(11 11 11 / 0.06);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .mappa-card:not(:has(.mappa-card-img)) {
+    grid-template-columns: 1fr;
+  }
+  @media (max-width: 767px) {
+    .mappa-punto {
+      width: 12px;
+      height: 12px;
+    }
+    .mappa-card {
+      grid-template-columns: 1fr;
+      left: 8px;
+      bottom: 8px;
+      width: calc(100% - 16px);
+    }
+    .mappa-card-img {
+      width: 100%;
+      height: 120px;
+    }
+  }
+}

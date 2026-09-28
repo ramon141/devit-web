@@ -9,6 +9,7 @@
 export type PublicPropertyControllerFindParams = {
 purpose?: string;
 city?: string;
+zone?: string;
 keyword?: string;
 categorySlug?: string[];
 bedrooms?: number;

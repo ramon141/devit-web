@@ -1,78 +1,110 @@
 import { Link, useParams } from 'react-router'
-import { useTranslation } from 'react-i18next'
-import { Skeleton } from '@/components/ui/skeleton'
-import { usePublicPropertyControllerFindById } from '@/api/generated/api'
-import PropertyHeader from '@/pages/Site/PropertyDetail/components/PropertyHeader'
-import PropertyGallery from '@/pages/Site/PropertyDetail/components/PropertyGallery'
-import PropertyDescription from '@/pages/Site/PropertyDetail/components/PropertyDescription'
-import PropertyAddressBlock from '@/pages/Site/PropertyDetail/components/PropertyAddressBlock'
-import PropertyDetailsGrid from '@/pages/Site/PropertyDetail/components/PropertyDetailsGrid'
-import PropertyAdditionalDetailsGrid from '@/pages/Site/PropertyDetail/components/PropertyAdditionalDetailsGrid'
-import PropertyFeatures from '@/pages/Site/PropertyDetail/components/PropertyFeatures'
+import { formatPrice, useSiteDict } from '@/lib/site/dict'
+import { SITE_PATHS } from '@/lib/site/paths'
+import { toPhotos } from '@/lib/site/property'
+import type { SiteCard, SiteDetail } from '@/lib/site/types'
+import Breadcrumb from '@/pages/Site/components/Breadcrumb'
+import Room from '@/pages/Site/components/Room'
+import { useMotionReady } from '@/pages/Site/hooks/useMotionReady'
+import { usePageMeta } from '@/pages/Site/hooks/usePageMeta'
+import { useProperty, useRelatedProperties } from '@/pages/Site/hooks/useSiteData'
+import ContactCard from '@/pages/Site/PropertyDetail/components/ContactCard'
+import PhotoStack from '@/pages/Site/PropertyDetail/components/PhotoStack'
+import PropertySummary from '@/pages/Site/PropertyDetail/components/PropertySummary'
+import RelatedSection from '@/pages/Site/PropertyDetail/components/RelatedSection'
 
-function PropertyDetailSkeleton() {
-  return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-4 px-4 py-8">
-      <Skeleton className="h-64 w-full" />
-      <Skeleton className="h-8 w-2/3" />
-      <Skeleton className="h-4 w-1/3" />
-      <Skeleton className="h-40 w-full" />
-    </div>
-  )
-}
-
-function PropertyNotFound() {
-  const { t } = useTranslation('site')
+function NotFound() {
+  const { dict } = useSiteDict()
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-16 text-center">
-      <h1 className="font-heading text-xl font-semibold">{t('propertyDetail.notFound')}</h1>
-      <Link to="/" className="text-sm text-primary underline underline-offset-2">
-        {t('propertyDetail.backToHome')}
+    <div className="container-devit py-24 text-center">
+      <p className="font-site-display text-[1.8rem]">{dict.list.empty}</p>
+      <Link
+        to={SITE_PATHS.properties}
+        className="mt-6 inline-block font-semibold underline decoration-site-accent decoration-2 underline-offset-4"
+      >
+        {dict.property.backToList}
       </Link>
     </div>
   )
 }
 
-function PropertyDetail() {
-  const { id } = useParams<{ id: string }>()
-  const { data: property, isLoading, isError } = usePublicPropertyControllerFindById(id ?? '')
-
-  if (isLoading) return <PropertyDetailSkeleton />
-  if (isError || !property) return <PropertyNotFound />
+function DossierTab({ property }: { property: SiteDetail }) {
+  const { dict } = useSiteDict()
 
   return (
-    <div className="bg-muted/40 py-8">
-      <div className="mx-auto flex max-w-4xl flex-col gap-6 px-4">
-        <div className="rounded-xl bg-card p-6 shadow-sm">
-          <PropertyHeader property={property} />
-        </div>
+    <p className="dossier-tab">
+      <span>{property.zone?.name ?? property.address?.city}</span>
+      <span className="dossier-tab-ref">
+        {dict.property.reference} {property.code}
+      </span>
+    </p>
+  )
+}
 
-        <div className="rounded-xl bg-card p-4 shadow-sm">
-          <PropertyGallery photos={property.photos} />
-        </div>
+function Dossier({ property, related }: { property: SiteDetail; related: SiteCard[] }) {
+  const { dict, locale } = useSiteDict()
+  const title = property.title ?? ''
 
-        <div className="flex flex-col gap-6 rounded-xl bg-card p-6 shadow-sm">
-          <PropertyDescription description={property.description} documents={property.documents} />
-        </div>
+  usePageMeta(
+    title,
+    `${title} · ${formatPrice(property.price, locale, dict)}. ${property.zone?.name ?? property.address?.city}, Devit Immobiliare.`
+  )
 
-        <div className="rounded-xl bg-card p-6 shadow-sm">
-          <PropertyAddressBlock address={property.address} />
-        </div>
+  const crumbs = [
+    { label: dict.nav.home, to: SITE_PATHS.home },
+    { label: dict.list.title, to: SITE_PATHS.properties },
+    ...(property.zone?.slug
+      ? [{ label: property.zone.name ?? '', to: SITE_PATHS.zone(property.zone.slug) }]
+      : []),
+  ]
 
-        <div className="flex flex-col gap-6 rounded-xl bg-card p-6 shadow-sm">
-          <PropertyDetailsGrid property={property} />
-          <PropertyAdditionalDetailsGrid property={property} />
-        </div>
+  return (
+    <div className="desk-page">
+      {/* a mesa: último frame do vídeo de transição, fixo atrás de tudo */}
+      <div className="desk" aria-hidden />
 
-        {property.features && property.features.length > 0 && (
-          <div className="rounded-xl bg-card p-6 shadow-sm">
-            <PropertyFeatures features={property.features} />
+      <article className="dossier pb-8">
+        <Room className="pt-8" inner={false}>
+          <div className="room-inner container-devit">
+            <Breadcrumb dark items={crumbs} />
+            <PhotoStack
+              images={toPhotos(property)}
+              seed={property.id ?? title}
+              title={title}
+              labels={dict.gallery}
+            />
           </div>
-        )}
-      </div>
+        </Room>
+
+        {/* a pasta aberta com a ficha */}
+        <div className="container-devit mt-12">
+          <div className="dossier-folder">
+            <DossierTab property={property} />
+            <div className="dossier-sheet grid gap-12 lg:grid-cols-[1fr_340px]">
+              <PropertySummary property={property} />
+              <ContactCard property={property} />
+            </div>
+          </div>
+        </div>
+
+        <RelatedSection properties={related} />
+      </article>
     </div>
   )
+}
+
+function PropertyDetail() {
+  const { id = '' } = useParams<{ id: string }>()
+  const { data: property, isSuccess } = useProperty(id)
+  const related = useRelatedProperties(property)
+
+  useMotionReady(isSuccess && related.isSuccess)
+
+  if (!isSuccess) return null
+  if (!property) return <NotFound />
+
+  return <Dossier key={property.id} property={property} related={related.items} />
 }
 
 export default PropertyDetail

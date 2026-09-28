@@ -1,0 +1,221 @@
+@keyframes site-print-in {
+  from {
+    opacity: 0;
+    transform: rotate(-4deg) translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-1.2deg) translateY(0) scale(1);
+  }
+}
+
+
+.site-root {
+  .desk-page {
+    position: relative;
+    isolation: isolate;
+  }
+  /* a mesa: último frame do vídeo de transição (continuidade), fixa atrás de tudo */
+  .desk {
+    position: fixed;
+    inset: -8px;
+    z-index: -1;
+    background: #2a2520 url('/img/desk.jpg') center / cover no-repeat;
+    filter: blur(2px);     /* a mesa fica de fundo: as pastas do escritório viram textura */
+  }
+  .desk::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgb(11 11 11 / 0.62), rgb(11 11 11 / 0.48) 40%, rgb(11 11 11 / 0.68));
+  }
+  .desk-page .arch-decor {
+    display: none;
+  }
+
+  /* ---- as fotos impressas ---- */
+  .prints {
+    display: grid;
+    gap: 28px;
+  }
+  @media (min-width: 1024px) {
+    .prints {
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+  .print {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: #fff;
+    cursor: pointer;
+    box-shadow: 0 24px 50px -24px rgb(0 0 0 / 0.7), 0 2px 6px rgb(0 0 0 / 0.25);
+    transition: transform var(--site-dur-slow) var(--site-ease-out), box-shadow var(--site-dur-slow) var(--site-ease-out);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .print > * {
+    display: block;
+  }
+  .print--main {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    padding: 10px 10px 14px;
+    transform: rotate(-1.2deg);
+  }
+  .no-transition, .no-transition * {
+    transition: none !important;
+  }
+  .print--main:hover {
+    transform: rotate(0deg) scale(1.01);
+  }
+  .print--main > :first-child {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .print-count {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    font-family: var(--font-site-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    background: rgb(11 11 11 / 0.75);
+    color: var(--color-site-cream);
+    padding: 4px 9px;
+    border-radius: 999px;
+  }
+  /* a pilha: fotos menores sobrepostas, cada uma com sua inclinação */
+  .pile {
+    position: relative;
+    min-height: 420px;
+  }
+  .print--small {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 44%;
+    aspect-ratio: 4 / 3;
+    padding: 6px 6px 9px;
+    transform: rotate(var(--r));
+    z-index: calc(20 - var(--k));
+  }
+  .print--small:hover, .print--small:focus-visible {
+    transform: rotate(0deg) translateY(-10px) scale(1.06);
+    z-index: 30;
+    box-shadow: 0 30px 50px -20px rgb(0 0 0 / 0.75);
+  }
+  .print--small > :first-child {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* a etiqueta "tutte le foto" */
+  .print-tag {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 31;
+    border: 0;
+    cursor: pointer;
+    background: var(--color-site-accent);
+    color: var(--color-site-ink);
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-family: var(--font-site-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+    box-shadow: 0 12px 30px -14px rgb(0 0 0 / 0.7);
+    transition: transform var(--site-dur-normal) var(--site-ease-out);
+  }
+  .print-tag:hover {
+    transform: translateY(-2px);
+  }
+  .print-hint {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+    font-size: 0.72rem;
+    color: rgb(251 247 239 / 0.6);
+    max-width: 50%;
+  }
+  /* celular e tablet: a pilha vira uma tira rolável */
+  @media (max-width: 1023px) {
+    .pile {
+      min-height: 0;
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 14px 4px 18px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .pile::-webkit-scrollbar {
+      display: none;
+    }
+    .print--small {
+      position: static;
+      flex: 0 0 42%;
+      scroll-snap-align: start;
+      transform: rotate(calc(var(--r) / 3));
+    }
+    .print--small:hover {
+      transform: none;
+    }
+    .print-tag {
+      position: static;
+      flex: 0 0 auto;
+      align-self: center;
+    }
+    .print-hint {
+      display: none;
+    }
+  }
+  @media (max-width: 767px) {
+    .print--small {
+      flex-basis: 58%;
+    }
+  }
+
+  /* ---- a pasta aberta com a ficha ---- */
+  .dossier-folder {
+    position: relative;
+    padding-top: 30px;
+  }
+  .dossier-tab {
+    position: absolute;
+    top: 0;
+    left: 18px;
+    z-index: 0;
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    margin: 0;
+    padding: 8px 18px 14px;
+    border-radius: 12px 12px 0 0;
+    background: #e9dfcb;
+    font-family: var(--font-site-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-site-ink);
+  }
+  .dossier-tab-ref {
+    color: var(--color-site-muted);
+  }
+  .dossier-sheet {
+    position: relative;
+    z-index: 1;
+    padding: clamp(24px, 4vw, 56px);
+    border-radius: 16px;
+    background: #fbf7ef;
+    border: 8px solid #e9dfcb;
+    box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.8), 0 10px 30px -10px rgb(0 0 0 / 0.4);
+  }
+}

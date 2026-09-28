@@ -38,11 +38,12 @@ import { PageHeaderProvider } from '@/contexts/PageHeaderContext'
 import { Auth } from '@/auth'
 import SiteLayout from '@/pages/Site/components/SiteLayout'
 import SiteHome from '@/pages/Site/Home'
-import SiteVendita from '@/pages/Site/Vendita'
-import SiteAffitto from '@/pages/Site/Affitto'
-import SiteRisultati from '@/pages/Site/Risultati'
+import SiteProperties from '@/pages/Site/Properties'
 import SitePropertyDetail from '@/pages/Site/PropertyDetail'
+import SiteZones from '@/pages/Site/Zones'
+import SiteZoneDetail from '@/pages/Site/ZoneDetail'
 import SiteChiSiamo from '@/pages/Site/ChiSiamo'
+import SiteCalendari from '@/pages/Site/Calendari'
 import SiteRichieste from '@/pages/Site/Richieste'
 import SiteContatti from '@/pages/Site/Contatti'
 import SiteNews from '@/pages/Site/News'
@@ -57,11 +58,14 @@ export type RouteConfig = {
 // Sito pubblico (senza login): usa SiteLayout invece dello Shell del CRM
 const siteRoutes: RouteConfig[] = [
   { path: '/', element: <SiteHome /> },
-  { path: '/vendita', element: <SiteVendita /> },
-  { path: '/affitto', element: <SiteAffitto /> },
-  { path: '/risultati', element: <SiteRisultati /> },
-  { path: '/property/:id', element: <SitePropertyDetail /> },
+  { path: '/immobili', element: <SiteProperties /> },
+  { path: '/immobile/:id', element: <SitePropertyDetail /> },
+  { path: '/zone', element: <SiteZones /> },
+  { path: '/zone/:zona', element: <SiteZoneDetail /> },
   { path: '/chi-siamo', element: <SiteChiSiamo /> },
+  { path: '/calendari', element: <SiteCalendari /> },
+  { path: '/vendita', element: <Navigate to="/immobili?contract=sale" replace /> },
+  { path: '/affitto', element: <Navigate to="/immobili?contract=rent" replace /> },
   { path: '/richieste', element: <SiteRichieste /> },
   { path: '/contatti', element: <SiteContatti /> },
   { path: '/news', element: <SiteNews /> },

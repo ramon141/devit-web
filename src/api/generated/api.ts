@@ -946,6 +946,8 @@ import type {
   PublicPropertyControllerFindFeatured200Item,
   PublicPropertyControllerFindFeaturedParams,
   PublicPropertyControllerFindParams,
+  PublicPropertyMapControllerFind200Item,
+  PublicZoneControllerFind200Item,
   PurchaseProposal,
   PurchaseProposalAttachment,
   PurchaseProposalAttachmentControllerCount401,
@@ -25255,6 +25257,99 @@ export function usePublicPropertyControllerFindFeatured<TData = Awaited<ReturnTy
 
 
 /**
+ * @summary Pontos do mapa: imóveis publicados com coordenada pública
+ */
+export const publicPropertyMapControllerFind = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PublicPropertyMapControllerFind200Item[]>(
+      {url: `/public/properties/map`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPublicPropertyMapControllerFindQueryKey = () => {
+    return [
+    `/public/properties/map`
+    ] as const;
+    }
+
+    
+export const getPublicPropertyMapControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError = ErrorType<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPublicPropertyMapControllerFindQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof publicPropertyMapControllerFind>>> = ({ signal }) => publicPropertyMapControllerFind(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PublicPropertyMapControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof publicPropertyMapControllerFind>>>
+export type PublicPropertyMapControllerFindQueryError = ErrorType<unknown>
+
+
+export function usePublicPropertyMapControllerFind<TData = Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError = ErrorType<unknown>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof publicPropertyMapControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof publicPropertyMapControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePublicPropertyMapControllerFind<TData = Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof publicPropertyMapControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof publicPropertyMapControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePublicPropertyMapControllerFind<TData = Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Pontos do mapa: imóveis publicados com coordenada pública
+ */
+
+export function usePublicPropertyMapControllerFind<TData = Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPublicPropertyMapControllerFindQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Detalhe de um imóvel publicado no site
  */
 export const publicPropertyControllerFindById = (
@@ -25429,6 +25524,99 @@ export function usePublicPropertyControllerFind<TData = Awaited<ReturnType<typeo
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPublicPropertyControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Listar zonas ativas com a contagem de imóveis publicados
+ */
+export const publicZoneControllerFind = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PublicZoneControllerFind200Item[]>(
+      {url: `/public/zones`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPublicZoneControllerFindQueryKey = () => {
+    return [
+    `/public/zones`
+    ] as const;
+    }
+
+    
+export const getPublicZoneControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof publicZoneControllerFind>>, TError = ErrorType<unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicZoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPublicZoneControllerFindQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof publicZoneControllerFind>>> = ({ signal }) => publicZoneControllerFind(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof publicZoneControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PublicZoneControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof publicZoneControllerFind>>>
+export type PublicZoneControllerFindQueryError = ErrorType<unknown>
+
+
+export function usePublicZoneControllerFind<TData = Awaited<ReturnType<typeof publicZoneControllerFind>>, TError = ErrorType<unknown>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicZoneControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof publicZoneControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof publicZoneControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePublicZoneControllerFind<TData = Awaited<ReturnType<typeof publicZoneControllerFind>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicZoneControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof publicZoneControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof publicZoneControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePublicZoneControllerFind<TData = Awaited<ReturnType<typeof publicZoneControllerFind>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicZoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Listar zonas ativas com a contagem de imóveis publicados
+ */
+
+export function usePublicZoneControllerFind<TData = Awaited<ReturnType<typeof publicZoneControllerFind>>, TError = ErrorType<unknown>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicZoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPublicZoneControllerFindQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

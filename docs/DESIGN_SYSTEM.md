@@ -12,10 +12,9 @@ Ficam em `src/assets/logos/`.
 | Arquivo | Origem | Tamanho | Uso |
 |---|---|---|---|
 | `devit-logo.png` | `devitlogo-400x30072dpi.png` | 382×148px (renderizado em 150×58) | Logo principal, header desktop. Fundo transparente. |
-| `devit-logo-mobile.png` | `devitlogo-150.png` | 150×58px | Logo do menu mobile (mesma arte, versão já otimizada pro tamanho pequeno). |
 | `devit-favicon.png` | `favicon.png` | 46×46px | Favicon / ícone de aba do navegador. |
 
-Recomendação de uso: `devit-logo.png` em qualquer header/nav com largura ≥150px; `devit-logo-mobile.png` só se precisar de asset já pré-otimizado pra menu mobile (na prática dá pra usar só o principal com CSS `width`).
+Recomendação de uso: `devit-logo.png` em qualquer header/nav com largura ≥150px (na prática dá pra usar só o principal com CSS `width`).
 
 ---
 

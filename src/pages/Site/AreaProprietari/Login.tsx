@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import DropCapHeading from '@/pages/Site/components/DropCapHeading'
 import { ownerPortalApi, OwnerPortalAuth } from '@/lib/ownerPortalAuth'
 
 function AreaProprietariLogin() {
@@ -39,7 +38,7 @@ function AreaProprietariLogin() {
   return (
     <div className="bg-muted/40 py-16">
       <div className="mx-auto max-w-sm px-4">
-        <DropCapHeading as="h1" text={t('areaProprietari.login.title')} className="text-2xl font-bold" />
+        <h1 className="text-2xl font-bold">{t('areaProprietari.login.title')}</h1>
         <p className="mt-2 text-muted-foreground">{t('areaProprietari.login.intro')}</p>
 
         <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4 rounded-xl bg-card p-6 shadow-sm">

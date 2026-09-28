@@ -1,132 +1,128 @@
-import type { MouseEvent } from 'react'
 import { Link } from 'react-router'
-import { useTranslation } from 'react-i18next'
-import type { TFunction } from 'i18next'
-import { BedDouble, Bath, Ruler, Maximize2, Heart } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
-import { cn } from '@/lib/utils'
-import { useFavorite } from '@/pages/Site/hooks/useFavorite'
-import type { PublicPropertyControllerFind200ItemsItem } from '@/api/generated/models'
-import { formatAmount } from '@/utils/formatAmount'
-
-function statusLabel(t: TFunction<'site'>, purpose?: string) {
-  if (purpose === 'sale') return t('propertyCard.statusSale')
-  if (purpose === 'rent') return t('propertyCard.statusRent')
-  if (purpose === 'rent_or_sale') return t('propertyCard.statusRentOrSale')
-  return null
-}
-
-function addressLine(item: PublicPropertyControllerFind200ItemsItem) {
-  const parts = [item.address?.street, item.address?.city].filter(Boolean)
-  return parts.length > 0 ? parts.join(', ') : null
-}
+import { formatNumber, formatPrice, useSiteDict, type SiteDict } from '@/lib/site/dict'
+import { SITE_PATHS } from '@/lib/site/paths'
+import { isRentOnly, purposeLabel, toNumber } from '@/lib/site/property'
+import type { Locale, SiteCard } from '@/lib/site/types'
+import PropertyImage from '@/pages/Site/components/PropertyImage'
 
 type PropertyCardProps = {
-  property: PublicPropertyControllerFind200ItemsItem
+  property: SiteCard
+  priority?: boolean
 }
 
-function PropertyCard({ property }: PropertyCardProps) {
-  const { t } = useTranslation('site')
-  const status = statusLabel(t, property.purpose)
-  const address = addressLine(property)
-  const detailUrl = `/property/${property.id}`
-  const { isFavorite, toggle } = useFavorite(property.id ?? '')
+type StatsProps = {
+  property: SiteCard
+  locale: Locale
+  dict: SiteDict
+}
 
-  function handleFavoriteClick(event: MouseEvent) {
-    event.preventDefault()
-    event.stopPropagation()
-    toggle()
-  }
+// Só há a foto de capa: as três "folhas" da pasta repetem a mesma imagem
+function FolderPhotos({ property, priority }: PropertyCardProps) {
+  const cover = property.coverPhotoUrl ? { url: property.coverPhotoUrl } : undefined
+  const seed = property.id ?? property.code ?? 'property'
+
+  // de trás para a frente: 3, 2, capa
+  return (
+    <div className="folder-photos" aria-hidden>
+      {[2, 1, 0].map((index) => (
+        <div key={index} className={`sheet sheet-${index + 1}`}>
+          <PropertyImage
+            image={cover}
+            seed={index === 0 ? seed : `${seed}-${index}`}
+            alt=""
+            priority={priority && index === 0}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function Stat({ label, value, unit }: { label: string; value: string; unit: string }) {
+  return (
+    <div className="flex gap-1.5">
+      <dt className="sr-only">{label}</dt>
+      <dd>
+        <strong className="font-semibold">{value}</strong> {unit}
+      </dd>
+    </div>
+  )
+}
+
+function FolderStats({ property, locale, dict }: StatsProps) {
+  const area = toNumber(property.areaSqm)
+  const bedrooms = toNumber(property.bedrooms)
+  const bathrooms = toNumber(property.bathrooms)
 
   return (
-    <Card className="h-full overflow-hidden py-0 gap-0">
-      <Link to={detailUrl} className="relative block">
-        {property.coverPhotoUrl ? (
-          <img
-            src={property.coverPhotoUrl}
-            alt={property.title}
-            className="aspect-4/3 w-full object-cover"
-          />
-        ) : (
-          <div className="flex aspect-4/3 w-full items-center justify-center bg-muted text-xs text-muted-foreground">
-            {t('propertyCard.noPhoto')}
-          </div>
-        )}
+    <dl className="mt-3 flex flex-wrap gap-x-5 gap-y-1 border-t border-site-line pt-3 text-sm text-site-ink-soft">
+      {area !== null && (
+        <Stat label={dict.property.surface} value={formatNumber(area, locale)} unit={dict.common.mq} />
+      )}
+      {bedrooms !== null && bedrooms > 0 && (
+        <Stat
+          label={dict.property.bedrooms}
+          value={String(bedrooms)}
+          unit={dict.property.bedrooms.toLowerCase()}
+        />
+      )}
+      {bathrooms !== null && bathrooms > 0 && (
+        <Stat
+          label={dict.property.bathrooms}
+          value={String(bathrooms)}
+          unit={(bathrooms === 1 ? dict.property.bathroomOne : dict.property.bathrooms).toLowerCase()}
+        />
+      )}
+    </dl>
+  )
+}
 
-        <div className="absolute inset-x-0 top-0 flex items-start justify-between p-2.5">
-          {property.featured ? (
-            <span className="rounded bg-primary px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-primary-foreground">
-              {t('propertyCard.exclusive')}
-            </span>
-          ) : (
-            <span />
+/**
+ * O card é uma pasta: aba com a zona e o código, fotos espiando de dentro e a
+ * capa com título, preço e dados. No hover a pasta entreabre; no clique a névoa
+ * fecha a tela e a ficha aparece (coreografia em lib/site/casa).
+ */
+function PropertyCard({ property, priority = false }: PropertyCardProps) {
+  const { dict, locale } = useSiteDict()
+  const zoneName = property.zone?.name ?? property.address?.neighborhood ?? property.address?.city
+  const showPerMonth = isRentOnly(property.purpose) && toNumber(property.price) !== null
+
+  return (
+    <article data-card className="folder group">
+      <p className="folder-tab">
+        <span className="truncate">{zoneName}</span>
+        <span className="folder-tab-ref">
+          {dict.property.reference} {property.code}
+        </span>
+      </p>
+
+      <div className="folder-back">
+        <FolderPhotos property={property} priority={priority} />
+        <span className="folder-badge">{purposeLabel(property.purpose, dict)}</span>
+      </div>
+
+      <div className="folder-front">
+        <h3 className="text-[1.3rem] leading-tight">
+          <Link to={SITE_PATHS.property(property.id ?? '')} className="folder-link">
+            {property.title}
+          </Link>
+        </h3>
+
+        <p className="mt-2 font-site-display text-[1.55rem] leading-none text-site-ink">
+          {formatPrice(property.price, locale, dict)}
+          {showPerMonth && (
+            <span className="font-site-sans text-sm text-site-muted">{dict.property.perMonth}</span>
           )}
+        </p>
 
-          {status && (
-            <span className="rounded bg-[var(--devit-navy-dark)] px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-white">
-              {status}
-            </span>
-          )}
-        </div>
-
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-black/70 to-transparent p-2.5 pt-8">
-          {property.price != null && (
-            <span className="text-lg font-bold text-white drop-shadow-sm">
-              {formatAmount(property.price, { maximumFractionDigits: 0 })}
-            </span>
-          )}
-
-          <span className="flex gap-1.5">
-            <span className="flex size-7 items-center justify-center rounded-full bg-white/85 text-foreground">
-              <Maximize2 className="size-3.5" />
-            </span>
-            <button
-              type="button"
-              onClick={handleFavoriteClick}
-              aria-label={
-                isFavorite
-                  ? t('propertyCard.removeFavorite')
-                  : t('propertyCard.addFavorite')
-              }
-              className="flex size-7 items-center justify-center rounded-full bg-white/85 text-foreground"
-            >
-              <Heart className={cn('size-3.5', isFavorite && 'fill-red-500 text-red-500')} />
-            </button>
-          </span>
-        </div>
-      </Link>
-
-      <CardContent className="flex flex-col gap-2 py-4">
-        <Link to={detailUrl} className="font-heading text-sm font-bold uppercase tracking-wide hover:text-primary">
-          {property.title}
-        </Link>
-
-        {address && <p className="text-sm text-muted-foreground">{address}</p>}
-
-        <div className="mt-1 flex gap-4 border-t border-border pt-2 text-sm text-muted-foreground">
-          {property.bedrooms != null && (
-            <span className="flex items-center gap-1">
-              <BedDouble className="size-4" />
-              {property.bedrooms}
-            </span>
-          )}
-
-          {property.bathrooms != null && (
-            <span className="flex items-center gap-1">
-              <Bath className="size-4" />
-              {property.bathrooms}
-            </span>
-          )}
-
-          {property.areaSqm != null && (
-            <span className="flex items-center gap-1">
-              <Ruler className="size-4" />
-              {property.areaSqm} m²
-            </span>
-          )}
-        </div>
-      </CardContent>
-    </Card>
+        <FolderStats property={property} locale={locale} dict={dict} />
+        <span className="folder-open-hint" aria-hidden>
+          {dict.property.open} ↗
+        </span>
+      </div>
+    </article>
   )
 }
 

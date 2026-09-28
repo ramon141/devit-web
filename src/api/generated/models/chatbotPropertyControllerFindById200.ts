@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { ChatbotPropertyControllerFindById200Category } from './chatbotPropertyControllerFindById200Category';
+import type { ChatbotPropertyControllerFindById200Zone } from './chatbotPropertyControllerFindById200Zone';
 import type { ChatbotPropertyControllerFindById200Address } from './chatbotPropertyControllerFindById200Address';
 import type { ChatbotPropertyControllerFindById200PhotosItem } from './chatbotPropertyControllerFindById200PhotosItem';
 import type { ChatbotPropertyControllerFindById200DocumentsItem } from './chatbotPropertyControllerFindById200DocumentsItem';
@@ -37,6 +38,8 @@ export type ChatbotPropertyControllerFindById200 = {
   condoFee?: number | null;
   /** @nullable */
   parkingSpots?: number | null;
+  /** @nullable */
+  zone?: ChatbotPropertyControllerFindById200Zone;
   address?: ChatbotPropertyControllerFindById200Address;
   photos?: ChatbotPropertyControllerFindById200PhotosItem[];
   documents?: ChatbotPropertyControllerFindById200DocumentsItem[];

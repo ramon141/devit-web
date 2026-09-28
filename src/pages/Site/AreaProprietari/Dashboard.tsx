@@ -3,7 +3,6 @@ import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import DropCapHeading from '@/pages/Site/components/DropCapHeading'
 import { formatAmount } from '@/utils/formatAmount'
 import { ownerPortalApi, OwnerPortalAuth } from '@/lib/ownerPortalAuth'
 
@@ -43,7 +42,7 @@ function AreaProprietariDashboard() {
     <div className="bg-muted/40 py-12">
       <div className="mx-auto max-w-4xl px-4">
         <div className="flex items-center justify-between">
-          <DropCapHeading as="h1" text={t('areaProprietari.dashboard.title')} className="text-2xl font-bold" />
+          <h1 className="text-2xl font-bold">{t('areaProprietari.dashboard.title')}</h1>
           <Button variant="outline" onClick={logout}>
             {t('areaProprietari.dashboard.logout')}
           </Button>

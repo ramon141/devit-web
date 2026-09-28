@@ -1,0 +1,52 @@
+/* Base do site público, escopada em .site-root para não vazar para o CRM */
+
+.site-root {
+  --site-gutter: clamp(20px, 5vw, 64px);
+  --site-dur-fast: 200ms;
+  --site-dur-normal: 360ms;
+  --site-dur-slow: 700ms;
+  --site-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --site-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  min-height: 100vh;
+  background: var(--color-site-cream-light);
+  color: var(--color-site-ink);
+  font-family: var(--font-site-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  .site-root h1,
+  .site-root h2,
+  .site-root h3 {
+    font-family: var(--font-site-display);
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .site-root p {
+    text-wrap: pretty;
+  }
+
+  .site-root :focus-visible {
+    outline: 2px solid var(--color-site-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-root *,
+    .site-root *::before,
+    .site-root *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

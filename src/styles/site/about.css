@@ -1,0 +1,113 @@
+.site-root {
+  /* ---------- Chi siamo: i fondatori (DE + VIT) e i calendari ---------- */
+  .founder {
+    position: relative;
+    overflow: hidden;
+  }
+  .founder-mark {
+    position: absolute;
+    right: 14px;
+    top: -6px;
+    margin: 0;
+    font-family: var(--font-site-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(4.5rem, 9vw, 7rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--color-site-accent);
+    opacity: 0.55;
+    pointer-events: none;
+    user-select: none;
+  }
+  .founder-hl {
+    color: var(--color-site-accent-deep);
+    font-style: italic;
+  }
+  .calendari {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0 12px;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .calendario {
+    position: relative;
+    margin: 0;
+  }
+  .calendario a {
+    display: block;
+    position: relative;
+    border-radius: 10px;
+  }
+  .calendario img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 717 / 1024;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #1a1814;
+    box-shadow: 0 22px 44px -22px rgb(0 0 0 / 0.8);
+    transition: transform var(--site-dur-slow) var(--site-ease-out), box-shadow var(--site-dur-slow) var(--site-ease-out);
+  }
+  @media (hover: hover) {
+    .calendario:hover img {
+      transform: translateY(-6px) rotate(-1deg);
+      box-shadow: 0 30px 50px -24px rgb(0 0 0 / 0.85);
+    }
+  }
+  .calendario-anno {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    font-family: var(--font-site-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    background: var(--color-site-accent);
+    color: var(--color-site-ink);
+    padding: 4px 9px;
+    border-radius: 999px;
+  }
+  @media (max-width: 1023px) {
+    .calendari {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 639px) {
+    .calendari {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
+
+  /* pagina /calendari: più spazio per ogni calendario */
+  .calendari-page {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px;
+    padding: 0;
+  }
+  .calendari-page .calendario img {
+    border-radius: 14px;
+    box-shadow: 0 30px 60px -28px rgb(0 0 0 / 0.55);
+  }
+  .calendari-page .calendario-anno {
+    left: 16px;
+    bottom: 16px;
+    font-size: 0.78rem;
+    padding: 6px 12px;
+  }
+  @media (max-width: 1023px) {
+    .calendari-page {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+  }
+  @media (max-width: 639px) {
+    .calendari-page {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}

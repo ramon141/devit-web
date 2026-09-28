@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PublicPropertyControllerFindById200Category } from './publicPropertyControllerFindById200Category';
+import type { PublicPropertyControllerFindById200Zone } from './publicPropertyControllerFindById200Zone';
 import type { PublicPropertyControllerFindById200Address } from './publicPropertyControllerFindById200Address';
 import type { PublicPropertyControllerFindById200PhotosItem } from './publicPropertyControllerFindById200PhotosItem';
 import type { PublicPropertyControllerFindById200DocumentsItem } from './publicPropertyControllerFindById200DocumentsItem';
@@ -37,6 +38,8 @@ export type PublicPropertyControllerFindById200 = {
   condoFee?: number | null;
   /** @nullable */
   parkingSpots?: number | null;
+  /** @nullable */
+  zone?: PublicPropertyControllerFindById200Zone;
   address?: PublicPropertyControllerFindById200Address;
   photos?: PublicPropertyControllerFindById200PhotosItem[];
   documents?: PublicPropertyControllerFindById200DocumentsItem[];

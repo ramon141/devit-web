@@ -16,6 +16,7 @@ import itNotifiche from './locales/it/notifiche.json'
 import itOperazioni from './locales/it/operazioni.json'
 import itProfilo from './locales/it/profilo.json'
 import itProposte from './locales/it/proposte.json'
+import itPublicSite from './locales/it/publicSite.json'
 import itSite from './locales/it/site.json'
 import itStatistiche from './locales/it/statistiche.json'
 
@@ -34,6 +35,7 @@ import ptNotifiche from './locales/pt/notifiche.json'
 import ptOperazioni from './locales/pt/operazioni.json'
 import ptProfilo from './locales/pt/profilo.json'
 import ptProposte from './locales/pt/proposte.json'
+import ptPublicSite from './locales/pt/publicSite.json'
 import ptSite from './locales/pt/site.json'
 import ptStatistiche from './locales/pt/statistiche.json'
 
@@ -59,6 +61,7 @@ i18n.use(initReactI18next).init({
       operazioni: itOperazioni,
       profilo: itProfilo,
       proposte: itProposte,
+      publicSite: itPublicSite,
       site: itSite,
       statistiche: itStatistiche,
     },
@@ -78,6 +81,7 @@ i18n.use(initReactI18next).init({
       operazioni: ptOperazioni,
       profilo: ptProfilo,
       proposte: ptProposte,
+      publicSite: ptPublicSite,
       site: ptSite,
       statistiche: ptStatistiche,
     },
@@ -101,6 +105,7 @@ i18n.use(initReactI18next).init({
     'operazioni',
     'profilo',
     'proposte',
+    'publicSite',
     'site',
     'statistiche',
   ],
