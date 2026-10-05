@@ -41,7 +41,10 @@ function Richieste() {
                 <Button
                   type="button"
                   variant={field.value === 'valuation' ? 'default' : 'outline'}
-                  onClick={() => field.onChange('valuation')}
+                  onClick={() => {
+                    field.onChange('valuation')
+                    form.setValue('maxBudget', '')
+                  }}
                 >
                   {t('richieste.valuation')}
                 </Button>
@@ -61,7 +64,10 @@ function Richieste() {
         {requestType === 'search' && (
           <div>
             <Label htmlFor="maxBudget">{t('richieste.maxBudgetLabel')}</Label>
-            <Input id="maxBudget" type="number" {...register('maxBudget')} />
+            <Input id="maxBudget" type="number" min={0} {...register('maxBudget')} />
+            {errors.maxBudget && (
+              <p className="mt-1 text-sm text-destructive">{errors.maxBudget.message}</p>
+            )}
           </div>
         )}
 

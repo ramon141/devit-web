@@ -1,10 +1,11 @@
-import { useFormState, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import type { FormEvent } from 'react'
 import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import ControlledInput from '@/components/ControlledInput'
 import ControlledSelectField from '@/components/ControlledSelectField'
+import SearchableSelect from '@/components/SearchableSelect'
 import { COUNTRY_OPTIONS, PROPERTY_CITY_OPTIONS } from '@/constants/cities'
 import PropertyNeighborhoodField from '@/pages/Imoveis/components/PropertyNeighborhoodField'
 import PropertyLocationDetailSection from '@/pages/Imoveis/Scheda/components/PropertyLocationDetailSection'
@@ -44,16 +45,35 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId, onBack 
           error={errors.country?.message}
         />
 
-        <ControlledSelectField
-          id="property-field-city"
-          control={control}
-          name="city"
-          label={t('locationTab.cityLabel')}
-          options={PROPERTY_CITY_OPTIONS}
-          placeholder={t('locationTab.cityPlaceholder')}
-          required
-          error={errors.city?.message}
-        />
+        <div id="property-field-city">
+          <Controller
+            control={control}
+            name="city"
+            render={({ field }) => {
+              // A lista fixa só cobre os comuni "atendidos"; imóveis fora
+              // dela (importados, zona vesuviana) ficavam com o campo
+              // mostrando vazio mesmo tendo cidade salva no banco.
+              const options =
+                field.value && !PROPERTY_CITY_OPTIONS.some((option) => option.value === field.value)
+                  ? [{ value: field.value, label: field.value }, ...PROPERTY_CITY_OPTIONS]
+                  : PROPERTY_CITY_OPTIONS
+
+              return (
+                <SearchableSelect
+                  label={t('locationTab.cityLabel')}
+                  required
+                  value={field.value}
+                  onValueChange={field.onChange}
+                  options={options}
+                  creatable
+                  onCreate={field.onChange}
+                  placeholder={t('locationTab.cityPlaceholder')}
+                  error={errors.city?.message}
+                />
+              )
+            }}
+          />
+        </div>
 
         <FormFieldWrapper id="property-field-region" label={t('locationTab.regionLabel')} error={errors.region?.message}>
           <ControlledInput control={control} name="region" placeholder={t('locationTab.regionPlaceholder')} />

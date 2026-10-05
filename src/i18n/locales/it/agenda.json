@@ -52,6 +52,7 @@
     "startDateRequired": "Inserisci la data",
     "startTimeRequired": "Inserisci l’ora di inizio",
     "endTimeRequired": "Inserisci l’ora di fine",
+    "endTimeAfterStart": "L’ora di fine deve essere successiva all’ora di inizio",
     "confirmationStatusRequired": "Seleziona uno stato",
     "reminderRequired": "Seleziona un promemoria",
     "recurrenceRequired": "Seleziona una ricorrenza"

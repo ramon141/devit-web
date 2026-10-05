@@ -72,7 +72,11 @@ function buildWhere(range: DateRange, filters: CalendarEventFilters) {
   }
 
   if (filters.visibleUserIds.length) {
-    conditions.push({ createdById: { inq: filters.visibleUserIds } })
+    // eventos com created_by_id NULL (criador removido) ficavam
+    // escondidos pra sempre — o filtro `inq` exclui NULL por padrão
+    conditions.push({
+      or: [{ createdById: { inq: filters.visibleUserIds } }, { createdById: null }],
+    })
   }
 
   return { and: conditions }

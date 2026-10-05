@@ -1694,6 +1694,8 @@ export * from './propertyCategoryControllerDeleteById401';
 export * from './propertyCategoryControllerDeleteById401Error';
 export * from './propertyCategoryControllerDeleteById404';
 export * from './propertyCategoryControllerDeleteById404Error';
+export * from './propertyCategoryControllerDeleteById422';
+export * from './propertyCategoryControllerDeleteById422Error';
 export * from './propertyCategoryControllerFind401';
 export * from './propertyCategoryControllerFind401Error';
 export * from './propertyCategoryControllerFindById401';

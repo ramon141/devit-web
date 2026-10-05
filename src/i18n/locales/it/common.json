@@ -54,6 +54,7 @@
     "placeholder": "Seleziona un’opzione",
     "searchPlaceholder": "Cerca...",
     "emptyText": "Nessun risultato.",
+    "loading": "Ricerca in corso…",
     "createOption": "Crea \"{{name}}\""
   },
   "selectField": {

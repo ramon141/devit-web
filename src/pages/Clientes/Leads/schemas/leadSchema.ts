@@ -54,8 +54,19 @@ export function getLeadPurposeOptions(t: TFunction<'clientes'>) {
   ]
 }
 
+// pares min/max (orçamento, área, quartos, dormitórios,
+// banheiros) aceitavam mínimo > máximo, gravando uma faixa impossível
+const MIN_MAX_PAIRS = [
+  ['minBudget', 'maxBudget'],
+  ['minAreaSqm', 'maxAreaSqm'],
+  ['minRooms', 'maxRooms'],
+  ['minBedrooms', 'maxBedrooms'],
+  ['minBathrooms', 'maxBathrooms'],
+] as const
+
 export function createLeadSchema(t: TFunction<'clientes'>) {
-  return z.object({
+  return z
+    .object({
     name: z.string().min(2, t('leadSchema.nameMin')),
     phone: z.string().optional(),
     email: z.email(t('leadSchema.emailInvalid')).optional().or(z.literal('')),
@@ -82,7 +93,21 @@ export function createLeadSchema(t: TFunction<'clientes'>) {
     minBathrooms: z.string().optional(),
     maxBathrooms: z.string().optional(),
     neighborhoodIds: z.array(z.string()),
-  })
+    })
+    .superRefine((values, ctx) => {
+      for (const [minKey, maxKey] of MIN_MAX_PAIRS) {
+        const min = values[minKey]
+        const max = values[maxKey]
+        if (!min || !max) continue
+        if (Number(min) > Number(max)) {
+          ctx.addIssue({
+            code: 'custom',
+            path: [maxKey],
+            message: t('leadSchema.minGreaterThanMax'),
+          })
+        }
+      }
+    })
 }
 
 export type LeadFormValues = z.infer<ReturnType<typeof createLeadSchema>>

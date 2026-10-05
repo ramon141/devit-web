@@ -18,6 +18,10 @@ export function usePropertyLocations(propertyIds: string[]) {
 
     for (const location of data ?? []) {
       if (location.latitude == null || location.longitude == null) continue
+      // coordenada (0,0) é dado ausente gravado como 0 em vez
+      // de null (6.323 de 8.811 imóveis), não um ponto real no Golfo da
+      // Guiné; sem esse filtro o mapa pulava pro meio do oceano
+      if (location.latitude === 0 && location.longitude === 0) continue
 
       map.set(location.propertyId, {
         latitude: location.latitude,

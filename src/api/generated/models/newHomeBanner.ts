@@ -13,9 +13,15 @@ export interface NewHomeBanner {
   title: string;
   /** @nullable */
   subtitle?: string | null;
-  /** @nullable */
+  /**
+   * @nullable
+   * @pattern ^(https?://|/).*$
+   */
   targetLink?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @nullable
+   */
   displayOrder?: number | null;
   /** @nullable */
   active?: boolean | null;

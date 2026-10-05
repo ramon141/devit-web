@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import SearchableSelect from '@/components/SearchableSelect'
 import RemovableRow from '@/components/RemovableRow'
-import { usePersonControllerFind } from '@/api/generated/api'
 import { usePropertyOwners } from '@/pages/Imoveis/Scheda/hooks/usePropertyOwners'
+import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type PropertyOwnersManagerProps = {
@@ -15,8 +15,11 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
   const { t } = useTranslation('imoveis')
   const { owners, personId, setPersonId, percent, setPercent, addOwner, removeOwner } =
     usePropertyOwners(propertyId)
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-  const personOptions = (people ?? []).map((person) => ({ value: person.id ?? '', label: person.name }))
+  const {
+    options: personOptions,
+    isLoading: isLoadingPeople,
+    setSearch: setPersonSearch,
+  } = usePersonSearchOptions(personId)
 
   return (
     <div className="grid gap-3 sm:col-span-2">
@@ -37,6 +40,8 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
             value={personId}
             onValueChange={setPersonId}
             options={personOptions}
+            onSearchChange={setPersonSearch}
+            isLoading={isLoadingPeople}
             placeholder={t('scheda.ownersManager.ownerPlaceholder')}
             searchPlaceholder={t('scheda.ownersManager.searchClientPlaceholder')}
           />

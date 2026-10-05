@@ -25,7 +25,12 @@ function Scadenziario() {
 
       <div id="scadenziario-days-filter" className="mb-4 w-48">
         <FormFieldWrapper label={t('locazioni.scadenziario.index.windowLabel')}>
-          <Input value={days} onChange={(event) => setDays(event.target.value)} type="number" />
+          <Input
+            value={days}
+            onChange={(event) => setDays(event.target.value)}
+            type="number"
+            min={1}
+          />
         </FormFieldWrapper>
       </div>
 

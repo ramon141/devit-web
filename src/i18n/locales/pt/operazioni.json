@@ -49,7 +49,7 @@
         "immobile": "Imóvel",
         "inquilino": "Inquilino",
         "proprietario": "Proprietário",
-        "scadenza": "Vencimento",
+        "scadenza": "Vencimento da renovação",
         "affitto": "Aluguel",
         "azioni": "Ações",
         "scaduto": "Vencido"
@@ -99,7 +99,10 @@
       "startDateRequired": "Informe a data de início",
       "dueDayRequired": "Informe o dia de vencimento",
       "rentAmountRequired": "Informe o valor do aluguel",
-      "situationRequired": "Selecione uma situação"
+      "situationRequired": "Selecione uma situação",
+      "dueDayInvalid": "O dia de vencimento deve estar entre 1 e 31",
+      "noticeDaysInvalid": "Os dias de aviso prévio não podem ser negativos",
+      "endDateBeforeStart": "A data de fim deve ser posterior à data de início"
     },
     "renewModal": {
       "title": "Renovar contrato",

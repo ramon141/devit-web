@@ -8,6 +8,8 @@ import type { AxiosError } from 'axios'
 import {
   getPropertyControllerCountQueryKey,
   getPropertyControllerFindQueryKey,
+  getPropertyPriceHistoryControllerFindQueryKey,
+  getPropertyStatusHistoryControllerFindQueryKey,
   useAddressControllerCreate,
   useAddressControllerUpdateById,
   usePropertyControllerCreate,
@@ -105,6 +107,9 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
   const form = useForm<PropertyFormValues>({
     resolver: zodResolver(createPropertySchema(t)),
     defaultValues: { ...emptyValues, categoryId: initialCategoryId ?? emptyValues.categoryId },
+    // sem isso a mensagem de erro ficava na tela mesmo depois do campo
+    // corrigido, só sumindo no próximo clique em "Avanti"
+    reValidateMode: 'onChange',
   })
 
   useEffect(() => {
@@ -114,6 +119,10 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getPropertyControllerFindQueryKey() })
     queryClient.invalidateQueries({ queryKey: getPropertyControllerCountQueryKey() })
+    // a aba Storico ficava com o cache antigo até recarregar a página
+    // inteira depois de salvar um preço novo
+    queryClient.invalidateQueries({ queryKey: getPropertyPriceHistoryControllerFindQueryKey() })
+    queryClient.invalidateQueries({ queryKey: getPropertyStatusHistoryControllerFindQueryKey() })
   }
 
   async function saveProperty(values: PropertyFormValues) {

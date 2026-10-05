@@ -118,7 +118,9 @@
     "intro": "Il nostro portafoglio aggiornato nella zona, seguito dalla sede di",
     "otherZones": "Altre zone",
     "countOne": "immobile disponibile",
-    "countMany": "immobili disponibili"
+    "countMany": "immobili disponibili",
+    "notFound": "Zona non trovata.",
+    "backToZones": "Torna a tutte le zone"
   },
   "about": {
     "title": "Due soci,",

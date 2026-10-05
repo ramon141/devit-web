@@ -26,9 +26,13 @@ function Scheda() {
   const { t } = useTranslation('clientes')
   const { id } = useParams<{ id: string }>()
   const personId = id ?? ''
-  const { data: person } = usePersonControllerFindById(personId, undefined, {
-    query: { enabled: !!personId },
-  })
+  // sem `include: address` a API não devolve o endereço, e a
+  // aba Dati mostrava os campos de endereço vazios mesmo com dado salvo
+  const { data: person } = usePersonControllerFindById(
+    personId,
+    { filter: { include: ['address'] } },
+    { query: { enabled: !!personId } }
+  )
   const [activeTab, setActiveTab] = useState('dati')
   const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour } = useSchedaTour()
 

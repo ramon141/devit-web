@@ -118,7 +118,9 @@
     "intro": "Nossa carteira atualizada na região, atendida pela sede de",
     "otherZones": "Outras regiões",
     "countOne": "imóvel disponível",
-    "countMany": "imóveis disponíveis"
+    "countMany": "imóveis disponíveis",
+    "notFound": "Região não encontrada.",
+    "backToZones": "Voltar para todas as regiões"
   },
   "about": {
     "title": "Dois sócios,",

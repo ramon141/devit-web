@@ -16,6 +16,10 @@ export interface RentalContractPartialExcludingCreatedAtUpdatedAt {
   startDate?: string;
   /** @nullable */
   endDate?: string | null;
+  /**
+   * @minimum 1
+   * @maximum 31
+   */
   dueDay?: number;
   rentAmount?: number;
   /** @nullable */
@@ -26,7 +30,10 @@ export interface RentalContractPartialExcludingCreatedAtUpdatedAt {
   adjustmentIndex?: string | null;
   /** @nullable */
   situation?: RentalContractPartialExcludingCreatedAtUpdatedAtSituation;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @nullable
+   */
   noticeDays?: number | null;
   /** @nullable */
   notes?: string | null;

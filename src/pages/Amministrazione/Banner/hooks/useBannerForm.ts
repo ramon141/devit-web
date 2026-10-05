@@ -42,29 +42,31 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
   const [mobileImageFiles, setMobileImageFiles] = useState<File[]>([])
   const [imageError, setImageError] = useState<string | undefined>(undefined)
 
+  // reset() manual com `keepFieldsRef: true` preserva o
+  // registro interno dos campos mas NÃO reescreve o valor exibido nos
+  // inputs uncontrolled — por isso Titolo/Sottotitolo/Link/Ordine
+  // apareciam vazios ao editar, mesmo a API devolvendo os valores certos.
+  // A prop `values` do RHF é o mecanismo nativo para formulário
+  // alimentado por dado assíncrono: atualiza o DOM corretamente e evita
+  // o reset manual perder o registro do campo sob React.StrictMode.
   const form = useForm<BannerFormValues>({
     resolver: zodResolver(bannerSchema),
     defaultValues: emptyValues,
+    values: banner
+      ? {
+          title: banner.title,
+          subtitle: banner.subtitle ?? '',
+          targetLink: banner.targetLink ?? '',
+          displayOrder: banner.displayOrder != null ? String(banner.displayOrder) : '',
+          active: banner.active ?? true,
+        }
+      : emptyValues,
   })
 
   useEffect(() => {
     setImageFiles([])
     setMobileImageFiles([])
-    // keepFieldsRef: sem isso o reset limpa os campos registrados e, se não houver
-    // novo render, o form para de receber o que o usuário digita
-    form.reset(
-      banner
-        ? {
-            title: banner.title,
-            subtitle: banner.subtitle ?? '',
-            targetLink: banner.targetLink ?? '',
-            displayOrder: banner.displayOrder != null ? String(banner.displayOrder) : '',
-            active: banner.active ?? true,
-          }
-        : emptyValues,
-      { keepFieldsRef: true }
-    )
-  }, [banner, form])
+  }, [banner])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getHomeBannerControllerFindQueryKey() })

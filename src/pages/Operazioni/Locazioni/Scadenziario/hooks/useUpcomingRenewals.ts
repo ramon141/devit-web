@@ -3,9 +3,11 @@ import { useSalesRentalsReportControllerUpcomingRenewals } from '@/api/generated
 
 export function useUpcomingRenewals() {
   const [days, setDays] = useState('30')
+  const parsedDays = Number(days)
+  const effectiveDays = Number.isInteger(parsedDays) && parsedDays > 0 ? parsedDays : 30
 
   const { data, isLoading } = useSalesRentalsReportControllerUpcomingRenewals({
-    days: Number(days) || 30,
+    days: effectiveDays,
   })
 
   return {

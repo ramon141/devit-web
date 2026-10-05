@@ -1,7 +1,8 @@
-import { Controller, type Control, type FieldErrors } from 'react-hook-form'
+import { Controller, type Control, type FieldErrors, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
-import { usePropertyControllerFind, usePersonControllerFind } from '@/api/generated/api'
+import { usePropertySearchOptions } from '@/hooks/usePropertySearchOptions'
+import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import type { ProposalFormValues } from '@/pages/Proposte/schemas/proposalSchema'
 
 type ProposalPropertyBuyerFieldsProps = {
@@ -11,17 +12,20 @@ type ProposalPropertyBuyerFieldsProps = {
 
 function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerFieldsProps) {
   const { t } = useTranslation('proposte')
-  const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
-  const { data: buyers } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
+  const propertyId = useWatch({ control, name: 'propertyId' })
+  const buyerId = useWatch({ control, name: 'buyerId' })
 
-  const propertyOptions = (properties ?? []).map((property) => ({
-    value: property.id ?? '',
-    label: `${property.code} · ${property.title}`,
-  }))
-  const buyerOptions = (buyers ?? []).map((person) => ({
-    value: person.id ?? '',
-    label: person.name,
-  }))
+  const {
+    options: propertyOptions,
+    isLoading: isLoadingProperties,
+    setSearch: setPropertySearch,
+  } = usePropertySearchOptions(propertyId)
+
+  const {
+    options: buyerOptions,
+    isLoading: isLoadingBuyers,
+    setSearch: setBuyerSearch,
+  } = usePersonSearchOptions(buyerId)
 
   return (
     <>
@@ -35,6 +39,8 @@ function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerF
               value={field.value}
               onValueChange={field.onChange}
               options={propertyOptions}
+              onSearchChange={setPropertySearch}
+              isLoading={isLoadingProperties}
               placeholder={t('propertyBuyerFields.propertyPlaceholder')}
               searchPlaceholder={t('propertyBuyerFields.propertySearchPlaceholder')}
               error={errors.propertyId?.message}
@@ -53,6 +59,8 @@ function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerF
               value={field.value}
               onValueChange={field.onChange}
               options={buyerOptions}
+              onSearchChange={setBuyerSearch}
+              isLoading={isLoadingBuyers}
               placeholder={t('propertyBuyerFields.buyerPlaceholder')}
               searchPlaceholder={t('propertyBuyerFields.buyerSearchPlaceholder')}
               error={errors.buyerId?.message}

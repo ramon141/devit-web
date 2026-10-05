@@ -80,6 +80,7 @@
     "paymentMethodRequired": "Selecione uma forma de pagamento",
     "statusRequired": "Selecione um status",
     "dateRequired": "Informe a data",
+    "validUntilBeforeDate": "A validade não pode ser anterior à data da proposta",
     "rejectionReasonRequired": "Motivo da recusa obrigatório"
   },
   "deleteProposal": {

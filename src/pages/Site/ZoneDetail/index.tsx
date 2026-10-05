@@ -31,7 +31,17 @@ function ZoneDetail() {
   if (!zonesReady) return null
 
   if (!zone) {
-    return <p className="container-devit py-24 text-center">{dict.list.empty}</p>
+    return (
+      <div className="container-devit py-24 text-center">
+        <p className="font-site-display text-[1.8rem]">{dict.zone.notFound}</p>
+        <Link
+          to={SITE_PATHS.zones}
+          className="mt-6 inline-block font-semibold underline decoration-site-accent decoration-2 underline-offset-4"
+        >
+          {dict.zone.backToZones}
+        </Link>
+      </div>
+    )
   }
 
   const total = data?.total ?? 0

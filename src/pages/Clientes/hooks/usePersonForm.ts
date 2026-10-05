@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
@@ -8,6 +7,7 @@ import {
   getPersonControllerFindQueryKey,
   getPersonControllerCountQueryKey,
   useAddressControllerCreate,
+  useAddressControllerDeleteById,
   useAddressControllerUpdateById,
   usePersonControllerCreate,
   usePersonControllerUpdateById,
@@ -16,9 +16,10 @@ import type { PersonWithRelations } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
+import { toISODateOrNull } from '@/utils/toISODateOrNull'
 import { createPersonSchema, type PersonFormValues } from '@/pages/Clientes/schemas/personSchema'
 
-const emptyValues: PersonFormValues = {
+export const emptyPersonValues: PersonFormValues = {
   name: '',
   role: 'contact',
   email: '',
@@ -44,7 +45,7 @@ type UsePersonFormProps = {
   onSaved: () => void
 }
 
-function personToFormValues(person: PersonWithRelations): PersonFormValues {
+export function personToFormValues(person: PersonWithRelations): PersonFormValues {
   return {
     name: person.name,
     role: person.role,
@@ -53,7 +54,8 @@ function personToFormValues(person: PersonWithRelations): PersonFormValues {
     secondaryPhone: person.secondaryPhone ?? '',
     documentType: person.documentType ?? '',
     documentNumber: person.documentNumber ?? '',
-    birthDate: person.birthDate ?? '',
+    // a API devolve ISO completo; <input type="date"> exige "YYYY-MM-DD"
+    birthDate: person.birthDate?.slice(0, 10) ?? '',
     notes: person.notes ?? '',
     active: person.active ?? true,
     country: person.address?.country ?? '',
@@ -86,17 +88,23 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
   const { promisePopup } = usePromisePopup()
   const { mutateAsync: createAddress } = useAddressControllerCreate()
   const { mutateAsync: updateAddress } = useAddressControllerUpdateById()
+  const { mutateAsync: deleteAddress } = useAddressControllerDeleteById()
   const { mutateAsync: create, isPending: creating } = usePersonControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePersonControllerUpdateById()
 
+  // usar a prop `values` do RHF em vez de reset() manual num
+  // useEffect. O reset manual sem `keepFieldsRef` perde o registro dos
+  // campos sob React.StrictMode (duplo efeito em dev), e o usuário digita
+  // em campos que já foram desregistrados — o submit então lê valores
+  // vazios mesmo com o DOM mostrando o texto digitado. A prop `values`
+  // é o mecanismo nativo do RHF para formulário alimentado por dado
+  // assíncrono e lida com isso corretamente (reset só quando o conteúdo
+  // muda de fato, via comparação profunda).
   const form = useForm<PersonFormValues>({
     resolver: zodResolver(createPersonSchema(t)),
-    defaultValues: emptyValues,
+    defaultValues: emptyPersonValues,
+    values: person ? personToFormValues(person) : emptyPersonValues,
   })
-
-  useEffect(() => {
-    form.reset(person ? personToFormValues(person) : emptyValues)
-  }, [person, form])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getPersonControllerFindQueryKey() })
@@ -130,6 +138,7 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
 
   async function savePerson(values: PersonFormValues) {
     const addressId = await resolveAddressId(values)
+    const createdNewAddress = !!addressId && addressId !== person?.addressId
     const data = emptyStringsToNull({
       name: values.name,
       role: values.role,
@@ -138,13 +147,30 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
       secondaryPhone: values.secondaryPhone,
       documentType: values.documentType,
       documentNumber: values.documentNumber,
-      birthDate: values.birthDate,
       notes: values.notes,
       active: values.active,
       addressId,
     })
 
-    return person?.id ? update({ id: person.id, data }) : create({ data })
+    const payload = {
+      ...data,
+      // a API espera date-time ISO completo para birthDate; o
+      // <input type="date"> só devolve "YYYY-MM-DD" e era enviado cru, o
+      // que a API rejeitava com 422 (formato inválido)
+      birthDate: toISODateOrNull(values.birthDate),
+    }
+
+    try {
+      return await (person?.id ? update({ id: person.id, data: payload }) : create({ data: payload }))
+    } catch (error) {
+      // endereço recém-criado ficava órfão quando a criação da pessoa
+      // falhava depois (ex: documento duplicado) — compensa desfazendo o endereço
+      if (createdNewAddress && addressId) {
+        await deleteAddress({ id: addressId }).catch(() => undefined)
+      }
+
+      throw error
+    }
   }
 
   function onSubmit(values: PersonFormValues) {

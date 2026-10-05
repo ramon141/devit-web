@@ -22,12 +22,20 @@ function PropertyCodeField({ form }: PropertyCodeFieldProps) {
     setIsGenerating(true)
 
     try {
+      // `order: ['code DESC']` ordena como texto ("T1" > "R-…" > "000002"),
+      // então o maior código numérico real nunca aparecia no topo e o
+      // gerador sempre devolvia "000002" (repetindo um código já usado).
+      // Busca só o campo `code` de todos os imóveis e calcula o maior
+      // número no cliente.
       const properties = await propertyControllerFind({
-        filter: { order: ['code DESC'], limit: 1, fields: { code: true } },
+        filter: { fields: { code: true }, limit: 20000 },
       })
 
-      const lastCode = properties[0]?.code ?? ''
-      const lastNumber = Number(lastCode.replace(/\D/g, '')) || 0
+      const lastNumber = properties.reduce((max, property) => {
+        const digits = property.code?.replace(/\D/g, '') ?? ''
+        if (!digits) return max
+        return Math.max(max, Number(digits))
+      }, 0)
       const next = String(lastNumber + 1).padStart(CODE_LENGTH, '0')
 
       form.setValue('code', next, { shouldDirty: true, shouldValidate: true })

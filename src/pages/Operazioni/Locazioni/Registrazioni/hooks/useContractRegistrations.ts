@@ -21,7 +21,10 @@ export function useContractRegistrations() {
   const { data, isLoading } = useRentalContractControllerFind({
     filter: {
       where: {
-        or: [{ registeredAt: null }, { renewalDueDate: { lt: today } }],
+        and: [
+          { situation: 'active' },
+          { or: [{ registeredAt: null }, { renewalDueDate: { lt: today } }] },
+        ],
       },
       include: [{ relation: 'property' }, { relation: 'tenant' }],
       order: ['startDate DESC'],

@@ -55,6 +55,14 @@ export function createProposalSchema(t: TFunction<'proposte'>) {
           message: t('schema.rejectionReasonRequired'),
         })
       }
+
+      if (values.validUntil && values.validUntil < values.proposalDate) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['validUntil'],
+          message: t('schema.validUntilBeforeDate'),
+        })
+      }
     })
 }
 

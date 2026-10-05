@@ -52,6 +52,7 @@
     "startDateRequired": "Digite a data",
     "startTimeRequired": "Digite o horário de início",
     "endTimeRequired": "Digite o horário de término",
+    "endTimeAfterStart": "O horário de término deve ser depois do horário de início",
     "confirmationStatusRequired": "Selecione um status",
     "reminderRequired": "Selecione um lembrete",
     "recurrenceRequired": "Selecione uma recorrência"

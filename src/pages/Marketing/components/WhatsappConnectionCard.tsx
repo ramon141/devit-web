@@ -8,12 +8,16 @@ import { Button } from '@/components/ui/button'
 import { useWhatsappWebhook } from '@/pages/Marketing/hooks/useWhatsappWebhook'
 
 const POLL_INTERVAL_MS = 4000
+const CONNECTED_POLL_INTERVAL_MS = 30000
 
 function WhatsappConnectionCard() {
   const { t } = useTranslation('marketing')
 
   const status = useMarketingWhatsappControllerStatus({
-    query: { refetchInterval: POLL_INTERVAL_MS },
+    query: {
+      refetchInterval: (query) =>
+        query.state.data?.connected ? CONNECTED_POLL_INTERVAL_MS : POLL_INTERVAL_MS,
+    },
   })
   const connected = status.data?.connected ?? false
 

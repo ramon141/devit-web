@@ -29,7 +29,7 @@
     "webhookError": "Impossibile registrare il webhook"
   },
   "channelStatusDashboard": {
-    "total": "Totale",
+    "total": "Totale (ultimi 30 giorni)",
     "distributionByStatus": "Distribuzione per stato"
   },
   "templateChannelOptions": {
@@ -45,7 +45,8 @@
     "nameRequired": "Nome obbligatorio",
     "channelRequired": "Canale obbligatorio",
     "categoryRequired": "Categoria obbligatoria",
-    "bodyRequired": "Corpo obbligatorio"
+    "bodyRequired": "Corpo obbligatorio",
+    "subjectRequiredForEmail": "L'oggetto è obbligatorio per i modelli via e-mail"
   },
   "templateForm": {
     "pendingCreate": "Creazione modello...",
@@ -155,7 +156,7 @@
     "searchLeadsPlaceholder": "Cerca lead...",
     "noLeads": "Nessun lead trovato",
     "selectedCount": "{{count}} selezionati",
-    "searchPropertiesPlaceholder": "Cerca immobile...",
+    "searchPropertiesPlaceholder": "Cerca per codice o titolo...",
     "noProperties": "Nessun immobile trovato",
     "templateLabel": "Modello",
     "templatePlaceholder": "Seleziona un modello",

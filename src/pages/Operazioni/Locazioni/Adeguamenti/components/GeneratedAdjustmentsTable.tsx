@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { RentalAdjustmentWithRelations } from '@/api/generated/models'
 import { formatAmount } from '@/utils/formatAmount'
+import { formatPercent } from '@/utils/formatPercent'
 import { formatDate } from '@/utils/formatDate'
 
 type GeneratedAdjustmentsTableProps = {
@@ -22,7 +23,7 @@ function GeneratedAdjustmentsTable({ adjustments }: GeneratedAdjustmentsTablePro
     },
     {
       header: t('locazioni.adeguamenti.generatedTable.indicePercent'),
-      cell: (adjustment) => `${adjustment.indexPercent}%`,
+      cell: (adjustment) => formatPercent(adjustment.indexPercent),
     },
     {
       header: t('locazioni.adeguamenti.generatedTable.valorePrecedente'),

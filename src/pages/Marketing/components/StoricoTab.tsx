@@ -12,7 +12,7 @@ function StoricoTab() {
   const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null)
 
   const columns: DataTableColumn<MarketingCampaignControllerList200Item>[] = [
-    { header: t('storicoTab.campaign'), cell: (row) => row.campaignId ?? '—' },
+    { header: t('storicoTab.campaign'), cell: (row) => row.subject ?? row.campaignId ?? '—' },
     { header: t('storicoTab.channel'), cell: (row) => t(`templateChannelOptions.${row.channel}`) },
     { header: t('storicoTab.sentAt'), cell: (row) => formatDate(row.sentAt) },
     { header: t('storicoTab.total'), cell: (row) => row.total ?? 0 },

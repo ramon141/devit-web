@@ -124,7 +124,8 @@
   "leadSchema": {
     "nameMin": "Digite pelo menos 2 caracteres",
     "emailInvalid": "E-mail inválido",
-    "statusRequired": "Selecione um status"
+    "statusRequired": "Selecione um status",
+    "minGreaterThanMax": "O valor mínimo não pode ser maior que o máximo"
   },
   "leadFormFields": {
     "name": "Nome",

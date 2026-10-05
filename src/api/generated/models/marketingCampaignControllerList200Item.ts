@@ -10,6 +10,8 @@ export type MarketingCampaignControllerList200Item = {
   campaignId?: string;
   channel?: string;
   /** @nullable */
+  subject?: string | null;
+  /** @nullable */
   sentAt?: string | null;
   total?: number;
   sent?: number;

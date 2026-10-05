@@ -199,6 +199,13 @@ function HouseLights() {
       event.preventDefault()
       event.stopPropagation()
 
+      // mesma rota (paginação, filtros, ordem): sem névoa, só troca a query
+      if (url.pathname === location.pathname) {
+        go(url)
+
+        return
+      }
+
       const card = link.closest('[data-card]')
       const isLanding = url.pathname.startsWith(LANDING)
 

@@ -87,7 +87,14 @@ export function useSendCampaign() {
 
   const { data: properties, isLoading: loadingProperties } = usePropertyControllerFind({
     filter: {
-      where: debouncedPropertySearch ? { title: { ilike: `%${debouncedPropertySearch}%` } } : undefined,
+      where: debouncedPropertySearch
+        ? {
+            or: [
+              { title: { ilike: `%${debouncedPropertySearch}%` } },
+              { code: { ilike: `%${debouncedPropertySearch}%` } },
+            ],
+          }
+        : undefined,
       order: ['title ASC'],
       limit: 50,
     },

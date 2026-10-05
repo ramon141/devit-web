@@ -1,8 +1,13 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import type { PersonWithRelations } from '@/api/generated/models'
-import { usePersonForm } from '@/pages/Clientes/hooks/usePersonForm'
+import {
+  usePersonForm,
+  personToFormValues,
+  emptyPersonValues,
+} from '@/pages/Clientes/hooks/usePersonForm'
 import PersonFormFields from '@/pages/Clientes/components/PersonFormFields'
 
 type PersonFormModalProps = {
@@ -17,6 +22,13 @@ function PersonFormModal({ open, onOpenChange, person }: PersonFormModalProps) {
     person,
     onSaved: () => onOpenChange(false),
   })
+
+  useEffect(() => {
+    // o modal fica montado entre aberturas; sem isso, reabrir
+    // "Nuovo cliente" depois de "Annulla" mostrava os dados digitados antes
+    if (open) form.reset(person ? personToFormValues(person) : emptyPersonValues)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open])
 
   return (
     <ModalRegister

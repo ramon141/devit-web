@@ -623,6 +623,7 @@ import type {
   PropertyCategoryControllerCreate422,
   PropertyCategoryControllerDeleteById401,
   PropertyCategoryControllerDeleteById404,
+  PropertyCategoryControllerDeleteById422,
   PropertyCategoryControllerFind401,
   PropertyCategoryControllerFindById401,
   PropertyCategoryControllerFindById404,
@@ -16313,7 +16314,7 @@ export const propertyCategoryControllerDeleteById = (
   
 
 
-export const getPropertyCategoryControllerDeleteByIdMutationOptions = <TError = ErrorType<PropertyCategoryControllerDeleteById401 | PropertyCategoryControllerDeleteById404>,
+export const getPropertyCategoryControllerDeleteByIdMutationOptions = <TError = ErrorType<PropertyCategoryControllerDeleteById401 | PropertyCategoryControllerDeleteById404 | PropertyCategoryControllerDeleteById422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyCategoryControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
 ): UseMutationOptions<Awaited<ReturnType<typeof propertyCategoryControllerDeleteById>>, TError,{id: string}, TContext> => {
 
@@ -16340,12 +16341,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PropertyCategoryControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyCategoryControllerDeleteById>>>
     
-    export type PropertyCategoryControllerDeleteByIdMutationError = ErrorType<PropertyCategoryControllerDeleteById401 | PropertyCategoryControllerDeleteById404>
+    export type PropertyCategoryControllerDeleteByIdMutationError = ErrorType<PropertyCategoryControllerDeleteById401 | PropertyCategoryControllerDeleteById404 | PropertyCategoryControllerDeleteById422>
 
     /**
  * @summary Delete a Property Category by id
  */
-export const usePropertyCategoryControllerDeleteById = <TError = ErrorType<PropertyCategoryControllerDeleteById401 | PropertyCategoryControllerDeleteById404>,
+export const usePropertyCategoryControllerDeleteById = <TError = ErrorType<PropertyCategoryControllerDeleteById401 | PropertyCategoryControllerDeleteById404 | PropertyCategoryControllerDeleteById422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyCategoryControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof propertyCategoryControllerDeleteById>>,

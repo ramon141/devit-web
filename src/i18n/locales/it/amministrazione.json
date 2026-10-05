@@ -73,7 +73,9 @@
     "description": "Gestisci i banner della home"
   },
   "bannerSchema": {
-    "titleMin": "Inserisci almeno 2 caratteri"
+    "titleMin": "Inserisci almeno 2 caratteri",
+    "linkInvalid": "Il link deve iniziare con http://, https:// o /",
+    "orderInvalid": "L'ordine deve essere un numero intero maggiore o uguale a 0"
   },
   "categoryFormModal": {
     "editTitle": "Modifica categoria",
@@ -254,6 +256,7 @@
       "title": "Aggiungi proprietario",
       "ownerLabel": "Proprietario",
       "ownerPlaceholder": "Seleziona un proprietario",
+      "ownerSearchPlaceholder": "Cerca per nome...",
       "emailLabel": "Email",
       "submit": "Crea accesso"
     },

@@ -84,8 +84,22 @@ function buildWhere(search: string, filters: PropertyFiltersValues, kindCategory
   if (filters.purpose) conditions.push({ purpose: filters.purpose })
   if (filters.status) conditions.push({ status: filters.status })
   if (filters.ownerId) conditions.push({ ownerId: filters.ownerId })
-  if (filters.priceMin) conditions.push({ salePrice: { gte: Number(filters.priceMin) } })
-  if (filters.priceMax) conditions.push({ salePrice: { lte: Number(filters.priceMax) } })
+  // O filtro de preço precisa olhar salePrice ou rentPrice dependendo da
+  // finalidade — senão imóveis de aluguel (sem salePrice) somem sempre
+  // que uma faixa de preço é aplicada.
+  if (filters.priceMin || filters.priceMax) {
+    const range: Record<string, number> = {}
+    if (filters.priceMin) range.gte = Number(filters.priceMin)
+    if (filters.priceMax) range.lte = Number(filters.priceMax)
+
+    if (filters.purpose === 'rent') {
+      conditions.push({ rentPrice: range })
+    } else if (filters.purpose === 'sale') {
+      conditions.push({ salePrice: range })
+    } else {
+      conditions.push({ or: [{ salePrice: range }, { rentPrice: range }] })
+    }
+  }
   if (filters.bedroomsMin) conditions.push({ bedrooms: { gte: Number(filters.bedroomsMin) } })
   if (filters.bedroomsMax) conditions.push({ bedrooms: { lte: Number(filters.bedroomsMax) } })
   if (filters.bathroomsMin) conditions.push({ bathrooms: { gte: Number(filters.bathroomsMin) } })

@@ -80,26 +80,38 @@ export function getReminderOptions(t: TFunction) {
 }
 
 export function createCalendarEventSchema(t: TFunction) {
-  return z.object({
-    title: z.string().min(2, t('agenda:schema.titleMin')),
-    type: z.enum(CalendarEventType, { error: t('agenda:schema.typeRequired') }),
-    startDate: z.string().min(1, t('agenda:schema.startDateRequired')),
-    startTime: z.string().min(1, t('agenda:schema.startTimeRequired')),
-    endTime: z.string().min(1, t('agenda:schema.endTimeRequired')),
-    allDay: z.boolean(),
-    leadId: z.string().optional(),
-    ownerId: z.string().optional(),
-    place: z.string().optional(),
-    confirmationStatus: z.enum(CalendarEventConfirmationStatus, {
-      error: t('agenda:schema.confirmationStatusRequired'),
-    }),
-    reminder: z.enum(CalendarEventReminder, { error: t('agenda:schema.reminderRequired') }),
-    recurrence: z.enum(CalendarEventRecurrence, { error: t('agenda:schema.recurrenceRequired') }),
-    keysLocation: z.string().optional(),
-    backgroundColor: z.string().optional(),
-    private: z.boolean(),
-    description: z.string().optional(),
-  })
+  return z
+    .object({
+      title: z.string().min(2, t('agenda:schema.titleMin')),
+      type: z.enum(CalendarEventType, { error: t('agenda:schema.typeRequired') }),
+      startDate: z.string().min(1, t('agenda:schema.startDateRequired')),
+      startTime: z.string().min(1, t('agenda:schema.startTimeRequired')),
+      endTime: z.string().min(1, t('agenda:schema.endTimeRequired')),
+      allDay: z.boolean(),
+      leadId: z.string().optional(),
+      ownerId: z.string().optional(),
+      place: z.string().optional(),
+      confirmationStatus: z.enum(CalendarEventConfirmationStatus, {
+        error: t('agenda:schema.confirmationStatusRequired'),
+      }),
+      reminder: z.enum(CalendarEventReminder, { error: t('agenda:schema.reminderRequired') }),
+      recurrence: z.enum(CalendarEventRecurrence, { error: t('agenda:schema.recurrenceRequired') }),
+      keysLocation: z.string().optional(),
+      backgroundColor: z.string().optional(),
+      private: z.boolean(),
+      description: z.string().optional(),
+    })
+    .superRefine((values, ctx) => {
+      // hora de fim anterior à hora de início era aceita
+      if (values.allDay || !values.startTime || !values.endTime) return
+      if (values.endTime <= values.startTime) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['endTime'],
+          message: t('agenda:schema.endTimeAfterStart'),
+        })
+      }
+    })
 }
 
 export type CalendarEventFormValues = z.infer<ReturnType<typeof createCalendarEventSchema>>

@@ -15,6 +15,10 @@ export interface NewRentalContract {
   startDate: string;
   /** @nullable */
   endDate?: string | null;
+  /**
+   * @minimum 1
+   * @maximum 31
+   */
   dueDay: number;
   rentAmount: number;
   /** @nullable */
@@ -25,7 +29,10 @@ export interface NewRentalContract {
   adjustmentIndex?: string | null;
   /** @nullable */
   situation?: NewRentalContractSituation;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @nullable
+   */
   noticeDays?: number | null;
   /** @nullable */
   notes?: string | null;

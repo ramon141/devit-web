@@ -14,6 +14,7 @@ export type CommunicationLogFilter1FieldsOneOf = {
   createdAt?: boolean;
   sentAt?: boolean;
   campaignId?: boolean;
+  subject?: boolean;
   readAt?: boolean;
   clickedAt?: boolean;
   providerMessageId?: boolean;

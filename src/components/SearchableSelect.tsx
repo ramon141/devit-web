@@ -33,6 +33,10 @@ type SearchableSelectProps = {
   creatable?: boolean
   onCreate?: (name: string) => void
   triggerVariant?: 'outline' | 'secondary'
+  // Quando informado, a busca digitada é repassada pro consumidor (ex.:
+  // pra buscar no servidor) em vez de só filtrar as `options` já carregadas.
+  onSearchChange?: (search: string) => void
+  isLoading?: boolean
 }
 
 function SearchableSelect({
@@ -49,6 +53,8 @@ function SearchableSelect({
   creatable = false,
   onCreate,
   triggerVariant = 'outline',
+  onSearchChange,
+  isLoading = false,
 }: SearchableSelectProps) {
   const { t } = useTranslation('common')
   const labelId = useId()
@@ -64,16 +70,24 @@ function SearchableSelect({
   const trimmedSearch = search.trim()
   const normalizedSearch = trimmedSearch.toLowerCase()
 
-  // Filtro próprio por trecho do texto — o fuzzy do cmdk aceita matches soltos demais
-  const filteredOptions = options.filter((option) =>
-    option.label.toLowerCase().includes(normalizedSearch)
-  )
+  // Filtro próprio por trecho do texto — o fuzzy do cmdk aceita matches soltos
+  // demais. Quando a busca é remota (`onSearchChange`), confia que `options`
+  // já veio filtrada do servidor e não filtra de novo localmente.
+  const filteredOptions = onSearchChange
+    ? options
+    : options.filter((option) => option.label.toLowerCase().includes(normalizedSearch))
   const hasExactMatch = options.some((option) => option.label.toLowerCase() === normalizedSearch)
   const showCreate = creatable && !!onCreate && !!trimmedSearch && !hasExactMatch
 
   function closePopover() {
     setOpen(false)
     setSearch('')
+    onSearchChange?.('')
+  }
+
+  function handleSearchChange(value: string) {
+    setSearch(value)
+    onSearchChange?.(value)
   }
 
   function handleSelect(nextValue: string) {
@@ -152,11 +166,16 @@ function SearchableSelect({
           <Command shouldFilter={false}>
             <CommandInput
               value={search}
-              onValueChange={setSearch}
+              onValueChange={handleSearchChange}
               placeholder={resolvedSearchPlaceholder}
             />
             <CommandList>
-              {!showCreate && filteredOptions.length === 0 && (
+              {isLoading && (
+                <div className="py-6 text-center text-sm text-muted-foreground">
+                  {t('searchableSelect.loading')}
+                </div>
+              )}
+              {!isLoading && !showCreate && filteredOptions.length === 0 && (
                 <CommandEmpty>{resolvedEmptyText}</CommandEmpty>
               )}
 

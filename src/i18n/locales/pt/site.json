@@ -73,7 +73,8 @@
     "emailInvalid": "Digite um endereço de email válido",
     "phoneMin": "Digite um número de telefone válido",
     "messageMin": "Descreva sua solicitação",
-    "acceptTerms": "Você deve aceitar os termos de privacidade"
+    "acceptTerms": "Você deve aceitar os termos de privacidade",
+    "maxBudgetInvalid": "Informe um orçamento válido maior que zero"
   },
   "areaProprietari": {
     "login": {

@@ -12,6 +12,15 @@ import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
+// O Postgres devolve campos `numeric` como string; reenviar sem converter
+// fazia a API rejeitar com 422 ("deve essere di tipo number") em qualquer
+// imóvel com preço.
+function toNumberOrUndefined(value?: number | null): number | undefined {
+  if (value == null) return undefined
+  const parsed = Number(value)
+  return Number.isNaN(parsed) ? undefined : parsed
+}
+
 // ponytail: duplica reaproveitando o mesmo addressId (não clona o endereço)
 export function useDuplicateProperty() {
   const { t } = useTranslation('imoveis')
@@ -30,13 +39,13 @@ export function useDuplicateProperty() {
         categoryId: property.categoryId,
         addressId: property.addressId,
         ownerId: property.ownerId,
-        rentPrice: property.rentPrice,
-        salePrice: property.salePrice,
-        condoFee: property.condoFee,
+        rentPrice: toNumberOrUndefined(property.rentPrice),
+        salePrice: toNumberOrUndefined(property.salePrice),
+        condoFee: toNumberOrUndefined(property.condoFee),
         bedrooms: property.bedrooms,
         bathrooms: property.bathrooms,
         parkingSpots: property.parkingSpots,
-        areaSqm: property.areaSqm,
+        areaSqm: toNumberOrUndefined(property.areaSqm),
         description: property.description,
       },
     })

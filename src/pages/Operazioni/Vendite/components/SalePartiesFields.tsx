@@ -1,15 +1,16 @@
-import { Controller, type Control, type FieldErrors } from 'react-hook-form'
+import { Controller, type Control, type FieldErrors, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import MultiSelectField from '@/components/MultiSelectField'
 import {
-  usePropertyControllerFind,
   usePersonControllerFind,
   usePurchaseProposalControllerFind,
   useUserControllerFind,
 } from '@/api/generated/api'
+import { usePropertySearchOptions } from '@/hooks/usePropertySearchOptions'
+import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import type { SaleFormValues } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
 
 type SalePartiesFieldsProps = {
@@ -19,15 +20,33 @@ type SalePartiesFieldsProps = {
 
 function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
   const { t } = useTranslation('operazioni')
-  const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
+  const propertyId = useWatch({ control, name: 'propertyId' })
+  const sellerId = useWatch({ control, name: 'sellerId' })
+  const buyerId = useWatch({ control, name: 'buyerId' })
+
+  const {
+    options: propertyOptions,
+    isLoading: isLoadingProperties,
+    setSearch: setPropertySearch,
+  } = usePropertySearchOptions(propertyId)
+  const {
+    options: sellerOptions,
+    isLoading: isLoadingSellers,
+    setSearch: setSellerSearch,
+  } = usePersonSearchOptions(sellerId)
+  const {
+    options: buyerOptions,
+    isLoading: isLoadingBuyers,
+    setSearch: setBuyerSearch,
+  } = usePersonSearchOptions(buyerId)
+
+  // Os 200 primeiros nomes seguem valendo pra "outros vendedores/compradores"
+  // e proposta: são listas auxiliares, de uso bem mais raro que os campos
+  // principais acima.
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { data: proposals } = usePurchaseProposalControllerFind({ filter: { order: ['number ASC'], limit: 200 } })
   const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
-  const propertyOptions = (properties ?? []).map((property) => ({
-    value: property.id ?? '',
-    label: `${property.code} · ${property.title}`,
-  }))
   const personOptions = (people ?? []).map((person) => ({
     value: person.id ?? '',
     label: person.name,
@@ -53,6 +72,8 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
               value={field.value}
               onValueChange={field.onChange}
               options={propertyOptions}
+              onSearchChange={setPropertySearch}
+              isLoading={isLoadingProperties}
               placeholder={t('vendite.partiesFields.propertyPlaceholder')}
               searchPlaceholder={t('vendite.partiesFields.propertySearchPlaceholder')}
               error={errors.propertyId?.message}
@@ -70,7 +91,9 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
               label={t('vendite.partiesFields.sellerLabel')}
               value={field.value}
               onValueChange={field.onChange}
-              options={personOptions}
+              options={sellerOptions}
+              onSearchChange={setSellerSearch}
+              isLoading={isLoadingSellers}
               placeholder={t('vendite.partiesFields.sellerPlaceholder')}
               searchPlaceholder={t('vendite.partiesFields.personSearchPlaceholder')}
               error={errors.sellerId?.message}
@@ -88,7 +111,9 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
               label={t('vendite.partiesFields.buyerLabel')}
               value={field.value}
               onValueChange={field.onChange}
-              options={personOptions}
+              options={buyerOptions}
+              onSearchChange={setBuyerSearch}
+              isLoading={isLoadingBuyers}
               placeholder={t('vendite.partiesFields.buyerPlaceholder')}
               searchPlaceholder={t('vendite.partiesFields.personSearchPlaceholder')}
               error={errors.buyerId?.message}

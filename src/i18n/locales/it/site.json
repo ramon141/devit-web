@@ -73,7 +73,8 @@
     "emailInvalid": "Inserisci un indirizzo email valido",
     "phoneMin": "Inserisci un numero di telefono valido",
     "messageMin": "Descrivi la tua richiesta",
-    "acceptTerms": "Devi accettare i termini sulla privacy"
+    "acceptTerms": "Devi accettare i termini sulla privacy",
+    "maxBudgetInvalid": "Inserisci un budget valido maggiore di zero"
   },
   "areaProprietari": {
     "login": {

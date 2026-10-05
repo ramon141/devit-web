@@ -1,12 +1,9 @@
-import { Controller, type Control, type FieldErrors, type UseFormSetValue } from 'react-hook-form'
+import { Controller, type Control, type FieldErrors, type UseFormSetValue, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import PartyListManager from '@/components/PartyListManager'
-import {
-  usePropertyControllerFind,
-  usePersonControllerFind,
-  useUserControllerFind,
-} from '@/api/generated/api'
+import { usePersonControllerFind, useUserControllerFind } from '@/api/generated/api'
+import { usePropertySearchOptions } from '@/hooks/usePropertySearchOptions'
 import type { RentalContractFormValues } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 
 type RentalPartiesFieldsProps = {
@@ -29,7 +26,12 @@ function RentalPartiesFields({
   setTenantIds,
 }: RentalPartiesFieldsProps) {
   const { t } = useTranslation('operazioni')
-  const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
+  const propertyId = useWatch({ control, name: 'propertyId' })
+  const {
+    options: propertyOptions,
+    isLoading: isLoadingProperties,
+    setSearch: setPropertySearch,
+  } = usePropertySearchOptions(propertyId)
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
@@ -43,10 +45,6 @@ function RentalPartiesFields({
     setValue('tenantId', ids.filter(Boolean)[0] ?? '', { shouldValidate: true })
   }
 
-  const propertyOptions = (properties ?? []).map((property) => ({
-    value: property.id ?? '',
-    label: `${property.code} · ${property.title}`,
-  }))
   const personOptions = (people ?? []).map((person) => ({
     value: person.id ?? '',
     label: person.name,
@@ -68,6 +66,8 @@ function RentalPartiesFields({
               value={field.value}
               onValueChange={field.onChange}
               options={propertyOptions}
+              onSearchChange={setPropertySearch}
+              isLoading={isLoadingProperties}
               placeholder={t('locazioni.partiesFields.propertyPlaceholder')}
               searchPlaceholder={t('locazioni.partiesFields.propertySearchPlaceholder')}
               error={errors.propertyId?.message}

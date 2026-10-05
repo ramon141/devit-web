@@ -1,12 +1,11 @@
 import { useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { usePersonControllerFind } from '@/api/generated/api'
-import { PersonRole } from '@/api/generated/models/personRole'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Input } from '@/components/ui/input'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SearchableSelect from '@/components/SearchableSelect'
+import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import { useOwnerAccessActions } from '@/pages/Amministrazione/Proprietari/hooks/useOwnerAccessActions'
 
 type OwnerAccessFormModalProps = {
@@ -21,10 +20,10 @@ function OwnerAccessFormModal({ open, onOpenChange, onCreated }: OwnerAccessForm
   const [email, setEmail] = useState('')
   const { createAccess } = useOwnerAccessActions(onCreated)
 
-  const { data: owners } = usePersonControllerFind({
-    filter: { where: { role: PersonRole.owner }, order: ['name ASC'], limit: 200 },
-  })
-  const ownerOptions = (owners ?? []).map((owner) => ({ value: owner.id ?? '', label: owner.name }))
+  // role "owner" é raramente usado: a maioria dos proprietários reais está
+  // cadastrada como "contact". Busca por nome em todas as pessoas, não só por role.
+  const { options: ownerOptions, isLoading: isLoadingOwners, setSearch } =
+    usePersonSearchOptions(personId)
 
   function submit(event: FormEvent) {
     event.preventDefault()
@@ -47,6 +46,9 @@ function OwnerAccessFormModal({ open, onOpenChange, onCreated }: OwnerAccessForm
             value={personId}
             onValueChange={setPersonId}
             placeholder={t('proprietari.formModal.ownerPlaceholder')}
+            searchPlaceholder={t('proprietari.formModal.ownerSearchPlaceholder')}
+            onSearchChange={setSearch}
+            isLoading={isLoadingOwners}
           />
         </div>
 

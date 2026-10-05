@@ -22,6 +22,8 @@ export interface CommunicationLogPartialExcludingCreatedAtUpdatedAt {
   /** @nullable */
   campaignId?: string | null;
   /** @nullable */
+  subject?: string | null;
+  /** @nullable */
   readAt?: string | null;
   /** @nullable */
   clickedAt?: string | null;
