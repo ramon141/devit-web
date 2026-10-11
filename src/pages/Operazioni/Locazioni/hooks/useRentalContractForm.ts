@@ -73,11 +73,12 @@ function partyIds(parties?: {personId: string}[] | null, fallbackId?: string): s
 }
 
 type UseRentalContractFormProps = {
+  open?: boolean
   contract?: RentalContractWithRelations | null
   onSaved: () => void
 }
 
-export function useRentalContractForm({ contract, onSaved }: UseRentalContractFormProps) {
+export function useRentalContractForm({ open, contract, onSaved }: UseRentalContractFormProps) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -95,7 +96,7 @@ export function useRentalContractForm({ contract, onSaved }: UseRentalContractFo
     form.reset(contract ? contractToFormValues(contract) : emptyValues)
     setOwnerIds(partyIds(contract?.rentalContractOwners, contract?.ownerId))
     setTenantIds(partyIds(contract?.rentalContractTenants, contract?.tenantId))
-  }, [contract, form])
+  }, [contract, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getRentalContractControllerFindQueryKey() })

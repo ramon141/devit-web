@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useSaleControllerCount, useSaleControllerFind } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
 import { UserInfo } from '@/auth'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 export type SaleFiltersValues = {
   status: string
@@ -28,7 +29,7 @@ export const emptySaleFilters: SaleFiltersValues = {
 function buildWhere(search: string, filters: SaleFiltersValues) {
   const conditions: Record<string, unknown>[] = []
 
-  if (search) conditions.push({ number: { ilike: `%${search}%` } })
+  if (search) conditions.push({ number: { ilike: toLikePattern(search) } })
   if (filters.status) conditions.push({ status: filters.status })
   if (filters.sellerId) conditions.push({ sellerId: filters.sellerId })
   if (filters.buyerId) conditions.push({ buyerId: filters.buyerId })

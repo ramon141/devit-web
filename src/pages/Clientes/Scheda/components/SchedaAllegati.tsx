@@ -1,8 +1,5 @@
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Trash2Icon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import FileUpload from '@/components/FileUpload'
+import AttachmentListManager from '@/components/AttachmentListManager'
 import { usePersonAttachments } from '@/pages/Clientes/Scheda/hooks/usePersonAttachments'
 
 type SchedaAllegatiProps = {
@@ -12,41 +9,22 @@ type SchedaAllegatiProps = {
 function SchedaAllegati({ personId }: SchedaAllegatiProps) {
   const { t } = useTranslation('clientes')
   const { attachments, uploadFiles, removeAttachment } = usePersonAttachments(personId)
-  const [pendingFiles, setPendingFiles] = useState<File[]>([])
 
-  function handleChange(files: File[]) {
-    setPendingFiles(files)
-    if (files.length > 0) {
-      uploadFiles(files)
-      setPendingFiles([])
-    }
-  }
+  const items = attachments.map((link) => ({
+    id: link.id ?? '',
+    url: link.attachment?.url,
+    name: link.attachment?.originalName ?? link.attachmentId,
+  }))
 
   return (
-    <div id="cliente-scheda-allegati" className="grid gap-4">
-      <FileUpload
-        label={t('schedaAllegati.uploadLabel')}
-        value={pendingFiles}
-        onChange={handleChange}
-        multiple
+    <div id="cliente-scheda-allegati">
+      <AttachmentListManager
+        items={items}
+        onUpload={uploadFiles}
+        onRemove={removeAttachment}
+        uploadLabel={t('schedaAllegati.uploadLabel')}
+        emptyMessage={t('schedaAllegati.empty')}
       />
-
-      <div className="grid gap-2">
-        {attachments.length === 0 && (
-          <p className="text-sm text-muted-foreground">{t('schedaAllegati.empty')}</p>
-        )}
-        {attachments.map((link) => (
-          <div
-            key={link.id}
-            className="flex items-center justify-between rounded-lg px-3 py-2 ring-1 ring-border"
-          >
-            <span className="truncate text-sm">{link.attachment?.originalName ?? link.attachmentId}</span>
-            <Button variant="ghost" size="icon-sm" onClick={() => link.id && removeAttachment(link.id)}>
-              <Trash2Icon className="size-4 text-destructive" />
-            </Button>
-          </div>
-        ))}
-      </div>
     </div>
   )
 }

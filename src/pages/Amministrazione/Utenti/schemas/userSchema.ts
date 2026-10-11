@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { UserControllerCreateBodyAccessLevel } from '@/api/generated/models'
 import i18n from '@/i18n'
+import { isStrongPassword } from '@/utils/isStrongPassword'
 
 export const accessLevelOptions = [
   { value: UserControllerCreateBodyAccessLevel.admin, label: i18n.t('amministrazione:userSchema.accessLevelAdmin') },
@@ -19,7 +20,7 @@ export const userSchema = z.object({
     .string()
     .optional()
     .refine(
-      (value) => !value || value.length >= 6,
+      (value) => !value || isStrongPassword(value),
       i18n.t('amministrazione:userSchema.passwordMin')
     ),
 })

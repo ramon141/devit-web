@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { usePersonControllerCount, usePersonControllerFind } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 export function usePersonList() {
   const { search, debouncedSearch, page, setPage, pageSize, skip, onSearchChange } =
@@ -10,7 +11,7 @@ export function usePersonList() {
   const conditions: Record<string, unknown>[] = []
 
   if (debouncedSearch) {
-    conditions.push({ name: { ilike: `%${debouncedSearch}%` } })
+    conditions.push({ name: { ilike: toLikePattern(debouncedSearch) } })
   }
 
   if (roleFilter) {

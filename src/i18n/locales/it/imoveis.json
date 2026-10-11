@@ -333,7 +333,10 @@
       "hasElevator": "Ascensore",
       "hasArchitecturalBarriers": "Barriere architettoniche",
       "save": "Salva posizione",
-      "mapHint": "Clicca sulla mappa (o trascina il segnaposto) per impostare latitudine e longitudine."
+      "mapHint": "Clicca sulla mappa (o trascina il segnaposto) per impostare latitudine e longitudine.",
+      "latitudeInvalid": "La latitudine deve essere compresa tra -90 e 90",
+      "longitudeInvalid": "La longitudine deve essere compresa tra -180 e 180",
+      "nonNegative": "Il valore non può essere negativo"
     },
     "ownersManager": {
       "title": "Proprietari aggiuntivi",
@@ -528,7 +531,9 @@
       "owner": "Seleziona un proprietario",
       "purpose": "Seleziona una finalità",
       "status": "Seleziona uno stato",
-      "city": "Inserisci la città"
+      "city": "Inserisci la città",
+      "postalCode": "Il CAP deve contenere solo numeri (4-10 cifre)",
+      "nonNegativeNumber": "Inserisci un numero maggiore o uguale a zero"
     },
     "feeFrequency": {
       "once": "Una tantum",
@@ -661,7 +666,7 @@
   },
   "kindPicker": {
     "title": "Che tipo di immobile vuoi aggiungere?",
-    "noCategory": "Nessuna categoria cadastrata"
+    "noCategory": "Nessuna categoria registrata"
   },
   "kindTabs": {
     "all": "Tutti"

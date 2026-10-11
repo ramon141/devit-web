@@ -13,7 +13,7 @@ type UserFormModalProps = {
 
 function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
   const { t } = useTranslation('amministrazione')
-  const { form, avatarFiles, setAvatarFiles, avatarUrl, isSubmitting, isEditing, onSubmit } = useUserForm({
+  const { form, avatarFiles, setAvatarFiles, avatarUrl, isSubmitting, isEditing, onSubmit } = useUserForm({ open,
     user,
     onSaved: () => onOpenChange(false),
   })

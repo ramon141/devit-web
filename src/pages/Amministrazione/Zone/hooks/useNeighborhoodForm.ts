@@ -19,12 +19,13 @@ import {
 } from '@/pages/Amministrazione/Zone/schemas/zoneSchema'
 
 type UseNeighborhoodFormProps = {
+  open?: boolean
   neighborhood?: Neighborhood | null
   zoneId: string
   onSaved: () => void
 }
 
-export function useNeighborhoodForm({ neighborhood, zoneId, onSaved }: UseNeighborhoodFormProps) {
+export function useNeighborhoodForm({ open, neighborhood, zoneId, onSaved }: UseNeighborhoodFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -42,7 +43,7 @@ export function useNeighborhoodForm({ neighborhood, zoneId, onSaved }: UseNeighb
       zoneId: neighborhood?.zoneId ?? zoneId,
       active: neighborhood?.active ?? true,
     })
-  }, [neighborhood, zoneId, form])
+  }, [neighborhood, zoneId, form, open])
 
   function onSubmit(values: NeighborhoodFormValues) {
     const promise = neighborhood?.id

@@ -14,7 +14,7 @@ type LeadFormModalProps = {
 
 function LeadFormModal({ open, onOpenChange, lead }: LeadFormModalProps) {
   const { t } = useTranslation('clientes')
-  const { form, isSubmitting, onSubmit } = useLeadForm({
+  const { form, isSubmitting, onSubmit } = useLeadForm({ open,
     lead,
     onSaved: () => onOpenChange(false),
   })

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import DataTable, { type DataTableColumn } from '@/components/DataTable'
 import type { MarketingCampaignControllerList200Item } from '@/api/generated/models'
-import { formatDate } from '@/utils/formatDate'
+import { formatDate, formatDateTime } from '@/utils/formatDate'
 import { useCampaignHistory } from '@/pages/Marketing/hooks/useCampaignHistory'
 import CampaignDetailDialog from '@/pages/Marketing/components/CampaignDetailDialog'
 
@@ -12,7 +12,10 @@ function StoricoTab() {
   const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null)
 
   const columns: DataTableColumn<MarketingCampaignControllerList200Item>[] = [
-    { header: t('storicoTab.campaign'), cell: (row) => row.subject ?? row.campaignId ?? '—' },
+    {
+      header: t('storicoTab.campaign'),
+      cell: (row) => row.subject ?? t('storicoTab.untitled', { date: formatDateTime(row.sentAt) }),
+    },
     { header: t('storicoTab.channel'), cell: (row) => t(`templateChannelOptions.${row.channel}`) },
     { header: t('storicoTab.sentAt'), cell: (row) => formatDate(row.sentAt) },
     { header: t('storicoTab.total'), cell: (row) => row.total ?? 0 },

@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
+  getPropertyLocationDetailControllerFindQueryKey,
   usePropertyLocationDetailControllerFind,
   usePropertyLocationDetailControllerCreate,
   usePropertyLocationDetailControllerUpdateById,
 } from '@/api/generated/api'
+import { createLocationDetailSchema } from '@/pages/Imoveis/Scheda/schemas/locationDetailSchema'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { usePropertyDraft } from '@/pages/Imoveis/contexts/PropertyDraftContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
@@ -43,6 +47,7 @@ const emptyValues: LocationDetailFormValues = {
 
 export function usePropertyLocationDetailForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
+  const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
   const { draft, setDraftBlock } = usePropertyDraft()
   const { data: rows, isLoading } = usePropertyLocationDetailControllerFind({
@@ -53,7 +58,10 @@ export function usePropertyLocationDetailForm(propertyId: string) {
   const { mutateAsync: create, isPending: creating } = usePropertyLocationDetailControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePropertyLocationDetailControllerUpdateById()
 
-  const form = useForm<LocationDetailFormValues>({ defaultValues: emptyValues })
+  const form = useForm<LocationDetailFormValues>({
+    resolver: zodResolver(createLocationDetailSchema(t)),
+    defaultValues: emptyValues,
+  })
 
   useEffect(() => {
     if (!existing) return
@@ -94,7 +102,10 @@ export function usePropertyLocationDetailForm(propertyId: string) {
       ? Promise.resolve(setDraftBlock('locationDetail', { ...draft.locationDetail, ...data }))
       : existingRow?.id
         ? update({ id: existingRow.id, data: { ...data, propertyId } })
-        : create({ data: { ...data, propertyId } })
+        : create({ data: { ...data, propertyId } }).then((created) => {
+          queryClient.invalidateQueries({ queryKey: getPropertyLocationDetailControllerFindQueryKey() })
+          return created
+        })
 
     // Seção salva junto com a etapa: o toast de sucesso vem do formulário principal
     promisePopup(promise, {

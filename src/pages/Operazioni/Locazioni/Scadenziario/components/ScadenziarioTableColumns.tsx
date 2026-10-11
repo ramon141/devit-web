@@ -27,7 +27,7 @@ export function buildScadenziarioTableColumns(
     },
     {
       header: t('operazioni:locazioni.scadenziario.tableColumns.immobile'),
-      cell: (contract) => contract.propertyTitle ?? '—',
+      cell: (contract) => contract.propertyCode ?? '—',
     },
     {
       header: t('operazioni:locazioni.scadenziario.tableColumns.inquilino'),

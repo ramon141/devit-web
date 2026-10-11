@@ -55,11 +55,12 @@ function proposalToFormValues(proposal: PurchaseProposalWithRelations): Proposal
 }
 
 type UseProposalFormProps = {
+  open?: boolean
   proposal?: PurchaseProposalWithRelations | null
   onSaved: () => void
 }
 
-export function useProposalForm({ proposal, onSaved }: UseProposalFormProps) {
+export function useProposalForm({ open, proposal, onSaved }: UseProposalFormProps) {
   const { t } = useTranslation('proposte')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -73,7 +74,7 @@ export function useProposalForm({ proposal, onSaved }: UseProposalFormProps) {
 
   useEffect(() => {
     form.reset(proposal ? proposalToFormValues(proposal) : emptyValues)
-  }, [proposal, form])
+  }, [proposal, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getPurchaseProposalControllerFindQueryKey() })

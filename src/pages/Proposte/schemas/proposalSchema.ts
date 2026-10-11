@@ -30,7 +30,10 @@ export function createProposalSchema(t: TFunction<'proposte'>) {
     number: z.string().min(1, t('schema.numberRequired')),
     propertyId: z.string().min(1, t('schema.propertyRequired')),
     buyerId: z.string().min(1, t('schema.buyerRequired')),
-    proposalAmount: z.string().min(1, t('schema.amountRequired')),
+    proposalAmount: z
+      .string()
+      .min(1, t('schema.amountRequired'))
+      .refine((value) => Number(value) > 0, t('schema.amountPositive')),
     paymentMethod: z.enum(PurchaseProposalPaymentMethod, {
       error: t('schema.paymentMethodRequired'),
     }),

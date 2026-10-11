@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Trash2Icon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import ConfirmPopup from '@/components/ConfirmPopup'
 import FileUpload from '@/components/FileUpload'
 import RemovableRow from '@/components/RemovableRow'
 
@@ -54,6 +55,7 @@ function AttachmentListManager({
 }: AttachmentListManagerProps) {
   const { t } = useTranslation('common')
   const [pendingFiles, setPendingFiles] = useState<File[]>([])
+  const [removeTarget, setRemoveTarget] = useState<AttachmentListItem | null>(null)
   const resolvedUploadLabel = uploadLabel ?? t('attachmentListManager.uploadLabel')
   const resolvedEmptyMessage = emptyMessage ?? t('attachmentListManager.emptyMessage')
 
@@ -74,9 +76,22 @@ function AttachmentListManager({
         )}
 
         {items.map((item) => (
-          <AttachmentRow key={item.id} item={item} onRemove={() => onRemove(item.id)} />
+          <AttachmentRow key={item.id} item={item} onRemove={() => setRemoveTarget(item)} />
         ))}
       </div>
+
+      <ConfirmPopup
+        open={!!removeTarget}
+        onOpenChange={(open) => !open && setRemoveTarget(null)}
+        title={t('attachmentListManager.deleteTitle')}
+        description={t('attachmentListManager.deleteDescription', { name: removeTarget?.name })}
+        variant="destructive"
+        confirmLabel={t('attachmentListManager.deleteConfirm')}
+        onConfirm={() => {
+          if (removeTarget) onRemove(removeTarget.id)
+          setRemoveTarget(null)
+        }}
+      />
     </div>
   )
 }

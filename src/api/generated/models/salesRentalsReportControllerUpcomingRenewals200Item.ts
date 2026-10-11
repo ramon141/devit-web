@@ -13,6 +13,8 @@ export type SalesRentalsReportControllerUpcomingRenewals200Item = {
   /** @nullable */
   propertyTitle?: string | null;
   /** @nullable */
+  propertyCode?: string | null;
+  /** @nullable */
   tenantNames?: string | null;
   /** @nullable */
   ownerNames?: string | null;

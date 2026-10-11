@@ -5,6 +5,7 @@ import {
 } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
 import { UserInfo } from '@/auth'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 export type ProposalFiltersValues = {
   status: string
@@ -33,7 +34,7 @@ export const emptyProposalFilters: ProposalFiltersValues = {
 function buildWhere(search: string, filters: ProposalFiltersValues) {
   const conditions: Record<string, unknown>[] = []
 
-  if (search) conditions.push({ number: { ilike: `%${search}%` } })
+  if (search) conditions.push({ number: { ilike: toLikePattern(search) } })
   if (filters.status) conditions.push({ status: filters.status })
   if (filters.financed) conditions.push({ financed: filters.financed === 'true' })
   if (filters.propertyId) conditions.push({ propertyId: filters.propertyId })

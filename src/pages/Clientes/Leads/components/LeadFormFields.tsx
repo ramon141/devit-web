@@ -102,10 +102,6 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
         <Input {...register('desiredCity')} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper id="modal-field-maxBudget" label={t('leadFormFields.maxBudget')} error={errors.maxBudget?.message}>
-        <Input {...register('maxBudget')} type="number" min={0} />
-      </FormFieldWrapper>
-
       <FormFieldWrapper id="modal-field-subject" label={t('leadFormFields.subject')} error={errors.subject?.message}>
         <Input {...register('subject')} />
       </FormFieldWrapper>

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { usePersonControllerFind } from '@/api/generated/api'
 import { CommunicationOptOutChannel } from '@/api/generated/models/communicationOptOutChannel'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
@@ -8,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import SearchableSelect from '@/components/SearchableSelect'
 import SelectField from '@/components/SelectField'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
+import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import { useOptOutActions } from '@/pages/Marketing/hooks/useOptOutActions'
 
 type OptOutFormModalProps = {
@@ -17,14 +17,15 @@ type OptOutFormModalProps = {
 
 function OptOutFormModal({ open, onOpenChange }: OptOutFormModalProps) {
   const { t } = useTranslation('marketing')
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { handleCreate, isCreating } = useOptOutActions()
 
   const [personId, setPersonId] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const { options: personOptions, isLoading: isLoadingPeople, setSearch } =
+    usePersonSearchOptions(personId)
   const [channel, setChannel] = useState<CommunicationOptOutChannel>(CommunicationOptOutChannel.email)
   const [reason, setReason] = useState('')
 
-  const personOptions = (people ?? []).map((person) => ({ value: person.id ?? '', label: person.name }))
   const channelOptions = Object.values(CommunicationOptOutChannel).map((value) => ({
     value,
     label: t(`templateChannelOptions.${value}`),
@@ -32,11 +33,13 @@ function OptOutFormModal({ open, onOpenChange }: OptOutFormModalProps) {
 
   function reset() {
     setPersonId('')
+    setSubmitted(false)
     setChannel(CommunicationOptOutChannel.email)
     setReason('')
   }
 
   function onSubmit() {
+    setSubmitted(true)
     if (!personId) return
     handleCreate({ personId, channel, reason: reason || undefined }, () => {
       reset()
@@ -59,6 +62,9 @@ function OptOutFormModal({ open, onOpenChange }: OptOutFormModalProps) {
           value={personId}
           onValueChange={setPersonId}
           options={personOptions}
+          onSearchChange={setSearch}
+          isLoading={isLoadingPeople}
+          error={submitted && !personId ? t('optOutFormModal.personRequired') : undefined}
         />
 
         <FormFieldWrapper label={t('optOutFormModal.channelLabel')} required>

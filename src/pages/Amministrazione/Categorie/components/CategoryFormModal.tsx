@@ -4,6 +4,8 @@ import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
+import SelectField from '@/components/SelectField'
+import { PropertyCategoryKind } from '@/api/generated/models'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import type { PropertyCategory } from '@/api/generated/models'
 import { useCategoryForm } from '@/pages/Amministrazione/Categorie/hooks/useCategoryForm'
@@ -17,6 +19,7 @@ type CategoryFormModalProps = {
 function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalProps) {
   const { t } = useTranslation('amministrazione')
   const { form, isSubmitting, onSubmit } = useCategoryForm({
+    open,
     category,
     onSaved: () => onOpenChange(false),
   })
@@ -25,6 +28,10 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
     control,
     formState: { errors },
   } = form
+
+  const kindOptions = Object.values(PropertyCategoryKind).flatMap((kind) =>
+    kind ? [{ value: kind, label: t(`categoryFormModal.kinds.${kind}`) }] : []
+  )
 
   return (
     <ModalRegister
@@ -49,6 +56,22 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
           error={errors.slug?.message}
         >
           <Input {...register('slug')} placeholder={t('categoryFormModal.slugPlaceholder')} />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper id="modal-field-kind" label={t('categoryFormModal.kindLabel')}>
+          <Controller
+            control={control}
+            name="kind"
+            render={({ field }) => (
+              <SelectField
+                value={field.value || undefined}
+                onValueChange={field.onChange}
+                options={kindOptions}
+                placeholder={t('categoryFormModal.kindPlaceholder')}
+                clearable
+              />
+            )}
+          />
         </FormFieldWrapper>
 
         <FormFieldWrapper id="modal-field-icon" label={t('categoryFormModal.iconLabel')} error={errors.icon?.message}>

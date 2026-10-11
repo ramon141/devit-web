@@ -13,7 +13,6 @@ import {
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
-import { toISODateOrNull } from '@/utils/toISODateOrNull'
 
 function createRenewRentalContractSchema(t: TFunction) {
   return z.object({
@@ -55,7 +54,7 @@ export function useRenewRentalContract({ contractId, onRenewed }: UseRenewRental
     if (!contractId) return
 
     const data = {
-      newEndDate: toISODateOrNull(values.newEndDate)!,
+      newEndDate: values.newEndDate,
       newAmount: toNumberOrNull(values.newAmount) ?? undefined,
       note: values.note || undefined,
     }

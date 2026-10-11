@@ -17,10 +17,11 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 
 type DormantPropertiesCardProps = {
   properties: PropertiesReportControllerDormant200Item[]
+  total: number
   isLoading?: boolean
 }
 
-function DormantPropertiesCard({ properties, isLoading }: DormantPropertiesCardProps) {
+function DormantPropertiesCard({ properties, total, isLoading }: DormantPropertiesCardProps) {
   const { t } = useTranslation('home')
   const [deleteTarget, setDeleteTarget] = useState<PropertiesReportControllerDormant200Item | null>(
     null
@@ -37,6 +38,7 @@ function DormantPropertiesCard({ properties, isLoading }: DormantPropertiesCardP
       pending: t('dormantPropertiesCard.deleting'),
       success: () => {
         queryClient.invalidateQueries({ queryKey: getPropertiesReportControllerDormantQueryKey() })
+        queryClient.invalidateQueries({ queryKey: ['reports', 'properties', 'dormant-count'] })
         return t('dormantPropertiesCard.deleteSuccess')
       },
       error: (error: AxiosError<ApiErrorResponse>) =>
@@ -48,7 +50,7 @@ function DormantPropertiesCard({ properties, isLoading }: DormantPropertiesCardP
   return (
     <DashboardCard
       title={t('dormantPropertiesCard.title')}
-      count={properties.length}
+      count={total}
       isLoading={isLoading}
     >
       {properties.length === 0 && (

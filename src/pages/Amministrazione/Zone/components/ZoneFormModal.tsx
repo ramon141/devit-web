@@ -17,6 +17,7 @@ type ZoneFormModalProps = {
 function ZoneFormModal({ open, onOpenChange, zone }: ZoneFormModalProps) {
   const { t } = useTranslation('amministrazione')
   const { form, isSubmitting, onSubmit } = useZoneForm({
+    open,
     zone,
     onSaved: () => onOpenChange(false),
   })

@@ -107,7 +107,8 @@
     "personLabel": "Persona",
     "channelLabel": "Canale",
     "reasonLabel": "Motivo",
-    "reasonPlaceholder": "Motivo (opzionale)"
+    "reasonPlaceholder": "Motivo (opzionale)",
+    "personRequired": "Seleziona una persona"
   },
   "optOutTable": {
     "person": "Persona",
@@ -131,7 +132,8 @@
     "sent": "Inviate",
     "failed": "Fallite",
     "read": "Lette",
-    "empty": "Nessuna campagna inviata"
+    "empty": "Nessuna campagna inviata",
+    "untitled": "Campagna del {{date}}"
   },
   "campaignDetailDialog": {
     "title": "Dettaglio campagna",
@@ -171,11 +173,29 @@
     "missingPhone": "Senza telefono"
   },
   "tour": {
-    "title": { "title": "Marketing", "content": "Qui monitori le comunicazioni inviate ai clienti via e-mail e WhatsApp." },
-    "dashboardTab": { "title": "Bacheca", "content": "Mostra lo stato dei canali e-mail e WhatsApp." },
-    "inviaTab": { "title": "Invia campagna", "content": "Invia una nuova campagna e-mail o WhatsApp ai tuoi contatti." },
-    "storicoTab": { "title": "Storico", "content": "Consulta lo storico delle campagne già inviate." },
-    "modelliTab": { "title": "Modelli", "content": "Gestisci i modelli di messaggio riutilizzabili." },
-    "rimozioniTab": { "title": "Rimozioni", "content": "Vedi chi ha richiesto di non ricevere più comunicazioni." }
+    "title": {
+      "title": "Marketing",
+      "content": "Qui monitori le comunicazioni inviate ai clienti via e-mail e WhatsApp."
+    },
+    "dashboardTab": {
+      "title": "Bacheca",
+      "content": "Mostra lo stato dei canali e-mail e WhatsApp."
+    },
+    "inviaTab": {
+      "title": "Invia campagna",
+      "content": "Invia una nuova campagna e-mail o WhatsApp ai tuoi contatti."
+    },
+    "storicoTab": {
+      "title": "Storico",
+      "content": "Consulta lo storico delle campagne già inviate."
+    },
+    "modelliTab": {
+      "title": "Modelli",
+      "content": "Gestisci i modelli di messaggio riutilizzabili."
+    },
+    "rimozioniTab": {
+      "title": "Rimozioni",
+      "content": "Vedi chi ha richiesto di non ricevere più comunicazioni."
+    }
   }
 }

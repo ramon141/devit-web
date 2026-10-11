@@ -22,7 +22,10 @@
   },
   "attachmentListManager": {
     "uploadLabel": "Carica allegato",
-    "emptyMessage": "Nessun allegato caricato."
+    "emptyMessage": "Nessun allegato caricato.",
+    "deleteTitle": "Eliminare l'allegato?",
+    "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
+    "deleteConfirm": "Elimina"
   },
   "chart": {
     "noData": "Nessun dato disponibile."

@@ -4,7 +4,10 @@
     "description": "Utilizziamo i cookie per migliorare la tua esperienza sul sito.",
     "customize": "Personalizza",
     "rejectAll": "Rifiuta tutto",
-    "acceptAll": "Accettare tutto"
+    "acceptAll": "Accettare tutto",
+    "necessaryLabel": "Cookie necessari (sempre attivi)",
+    "analyticsLabel": "Cookie statistici e di preferenza",
+    "savePreferences": "Salva preferenze"
   },
   "contatti": {
     "nameLabel": "Nome Completo",

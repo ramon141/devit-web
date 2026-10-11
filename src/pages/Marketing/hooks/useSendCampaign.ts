@@ -18,6 +18,7 @@ import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { formatAmount } from '@/utils/formatAmount'
 import { exportEmail, loadEmailDesign } from '@/components/EmailDesignEditor'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 function toggleId(ids: string[], id: string): string[] {
   return ids.includes(id) ? ids.filter((current) => current !== id) : [...ids, id]
@@ -50,8 +51,8 @@ export function useSendCampaign() {
   // Quem tem contato no canal vem numa query própria pra aparecer no topo da lista:
   // a busca geral é limitada e, ordenada por nome, esconderia justamente quem pode receber
   const contactField = isEmail ? 'email' : 'phone'
-  const personSearchWhere = debouncedPersonSearch ? { name: { ilike: `%${debouncedPersonSearch}%` } } : {}
-  const leadSearchWhere = debouncedLeadSearch ? { name: { ilike: `%${debouncedLeadSearch}%` } } : {}
+  const personSearchWhere = debouncedPersonSearch ? { name: { ilike: toLikePattern(debouncedPersonSearch) } } : {}
+  const leadSearchWhere = debouncedLeadSearch ? { name: { ilike: toLikePattern(debouncedLeadSearch) } } : {}
 
   const { data: peopleWithContact } = usePersonControllerFind({
     filter: {
@@ -90,8 +91,8 @@ export function useSendCampaign() {
       where: debouncedPropertySearch
         ? {
             or: [
-              { title: { ilike: `%${debouncedPropertySearch}%` } },
-              { code: { ilike: `%${debouncedPropertySearch}%` } },
+              { title: { ilike: toLikePattern(debouncedPropertySearch) } },
+              { code: { ilike: toLikePattern(debouncedPropertySearch) } },
             ],
           }
         : undefined,

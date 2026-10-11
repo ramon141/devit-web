@@ -15,7 +15,7 @@ type ProposalFormModalProps = {
 
 function ProposalFormModal({ open, onOpenChange, proposal }: ProposalFormModalProps) {
   const { t } = useTranslation('proposte')
-  const { form, isSubmitting, onSubmit } = useProposalForm({
+  const { form, isSubmitting, onSubmit } = useProposalForm({ open,
     proposal,
     onSaved: () => onOpenChange(false),
   })

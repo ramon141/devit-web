@@ -19,6 +19,10 @@ export function useRentalAdjustments() {
   const [selectedIds, setSelectedIds] = useState<string[]>([])
   const [indexPercent, setIndexPercent] = useState('')
 
+  const percentValue = Number(indexPercent)
+  const hasIndexPercent = indexPercent !== ''
+  const isIndexPercentValid = percentValue > 0 && percentValue <= 100
+
   const { data: contracts, isLoading } = useRentalContractControllerFind({
     filter: {
       where: { situation: 'active' },
@@ -38,12 +42,11 @@ export function useRentalAdjustments() {
   }
 
   function generateAdjustments() {
-    const percent = Number(indexPercent)
-    if (!percent) return
+    if (!isIndexPercentValid) return
 
     const promise = generate({
       data: {
-        indexPercent: percent,
+        indexPercent: percentValue,
         rentalContractIds: selectedIds.length > 0 ? selectedIds : undefined,
       },
     })
@@ -70,6 +73,8 @@ export function useRentalAdjustments() {
     toggleSelected,
     indexPercent,
     setIndexPercent,
+    indexPercentError: hasIndexPercent && !isIndexPercentValid,
+    isIndexPercentValid,
     generateAdjustments,
     isGenerating: isPending,
   }

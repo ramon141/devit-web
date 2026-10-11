@@ -5,6 +5,7 @@ import {
 } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
 import { UserInfo } from '@/auth'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 export type RentalContractFiltersValues = {
   situation: string
@@ -35,7 +36,7 @@ export const emptyRentalContractFilters: RentalContractFiltersValues = {
 function buildWhere(search: string, filters: RentalContractFiltersValues) {
   const conditions: Record<string, unknown>[] = []
 
-  if (search) conditions.push({ number: { ilike: `%${search}%` } })
+  if (search) conditions.push({ number: { ilike: toLikePattern(search) } })
   if (filters.situation) conditions.push({ situation: filters.situation })
   if (filters.ownerId) conditions.push({ ownerId: filters.ownerId })
   if (filters.tenantId) conditions.push({ tenantId: filters.tenantId })

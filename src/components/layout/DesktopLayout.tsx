@@ -21,7 +21,7 @@ function DesktopLayout({ title, description, children }: DesktopLayoutProps) {
 
         <div
           key={pathname}
-          className="mb-4 flex-1 overflow-y-auto overflow-x-hidden px-1 -mx-1 animate-in fade-in slide-in-from-bottom-2 duration-300"
+          className="mb-4 flex-1 overflow-y-auto overflow-x-hidden px-1 -mx-1 pb-20 animate-in fade-in slide-in-from-bottom-2 duration-300"
         >
           {children}
         </div>

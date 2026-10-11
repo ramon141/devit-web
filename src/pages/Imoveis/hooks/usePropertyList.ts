@@ -5,6 +5,7 @@ import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import { PAGE_SIZE } from '@/constants/pagination'
 import { UserInfo } from '@/auth'
 import { useCategoryKinds, type PropertyCategoryKind } from '@/pages/Imoveis/hooks/useCategoryKinds'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 export type PropertyRow = PropertyWithRelations
 
@@ -58,13 +59,48 @@ export const emptyPropertyFilters: PropertyFiltersValues = {
   onlyAuction: false,
 }
 
-const orderByMap: Record<PropertyOrderBy, string[]> = {
-  createdAt_desc: ['createdAt DESC'],
-  createdAt_asc: ['createdAt ASC'],
-  code_asc: ['code ASC'],
-  code_desc: ['code DESC'],
-  salePrice_asc: ['salePrice ASC'],
-  salePrice_desc: ['salePrice DESC'],
+function getPriceField(purpose: string) {
+  return purpose === 'rent' ? 'rentPrice' : 'salePrice'
+}
+
+function buildOrder(filters: PropertyFiltersValues): string[] {
+  const priceField = getPriceField(filters.purpose)
+
+  const orderByMap: Record<PropertyOrderBy, string[]> = {
+    createdAt_desc: ['createdAt DESC'],
+    createdAt_asc: ['createdAt ASC'],
+    code_asc: ['code ASC'],
+    code_desc: ['code DESC'],
+    salePrice_asc: [`${priceField} ASC`],
+    salePrice_desc: [`${priceField} DESC`],
+  }
+
+  return orderByMap[filters.orderBy]
+}
+
+function buildPriceConditions(filters: PropertyFiltersValues): Record<string, unknown>[] {
+  const isPriceOrder = filters.orderBy === 'salePrice_asc' || filters.orderBy === 'salePrice_desc'
+  const hasRange = Boolean(filters.priceMin || filters.priceMax)
+
+  if (!hasRange && !isPriceOrder) return []
+
+  const fields = filters.purpose
+    ? [getPriceField(filters.purpose)]
+    : isPriceOrder
+      ? ['salePrice']
+      : ['salePrice', 'rentPrice']
+
+  const perField = fields.map((field) => {
+    const bounds: Record<string, unknown>[] = []
+
+    if (filters.priceMin) bounds.push({ [field]: { gte: Number(filters.priceMin) } })
+    if (filters.priceMax) bounds.push({ [field]: { lte: Number(filters.priceMax) } })
+    if (!hasRange) bounds.push({ [field]: { neq: null } })
+
+    return { and: bounds }
+  })
+
+  return perField.length === 1 ? perField : [{ or: perField }]
 }
 
 function buildWhere(search: string, filters: PropertyFiltersValues, kindCategoryIds: string[] | undefined) {
@@ -73,9 +109,9 @@ function buildWhere(search: string, filters: PropertyFiltersValues, kindCategory
   if (search) {
     conditions.push({
       or: [
-        { title: { ilike: `%${search}%` } },
-        { code: { ilike: `%${search}%` } },
-        { description: { ilike: `%${search}%` } },
+        { title: { ilike: toLikePattern(search) } },
+        { code: { ilike: toLikePattern(search) } },
+        { description: { ilike: toLikePattern(search) } },
       ],
     })
   }
@@ -84,22 +120,7 @@ function buildWhere(search: string, filters: PropertyFiltersValues, kindCategory
   if (filters.purpose) conditions.push({ purpose: filters.purpose })
   if (filters.status) conditions.push({ status: filters.status })
   if (filters.ownerId) conditions.push({ ownerId: filters.ownerId })
-  // O filtro de preço precisa olhar salePrice ou rentPrice dependendo da
-  // finalidade — senão imóveis de aluguel (sem salePrice) somem sempre
-  // que uma faixa de preço é aplicada.
-  if (filters.priceMin || filters.priceMax) {
-    const range: Record<string, number> = {}
-    if (filters.priceMin) range.gte = Number(filters.priceMin)
-    if (filters.priceMax) range.lte = Number(filters.priceMax)
-
-    if (filters.purpose === 'rent') {
-      conditions.push({ rentPrice: range })
-    } else if (filters.purpose === 'sale') {
-      conditions.push({ salePrice: range })
-    } else {
-      conditions.push({ or: [{ salePrice: range }, { rentPrice: range }] })
-    }
-  }
+  conditions.push(...buildPriceConditions(filters))
   if (filters.bedroomsMin) conditions.push({ bedrooms: { gte: Number(filters.bedroomsMin) } })
   if (filters.bedroomsMax) conditions.push({ bedrooms: { lte: Number(filters.bedroomsMax) } })
   if (filters.bathroomsMin) conditions.push({ bathrooms: { gte: Number(filters.bathroomsMin) } })
@@ -139,7 +160,7 @@ export function usePropertyList() {
         { relation: 'propertyPhotos', scope: { include: [{ relation: 'attachment' }] } },
         { relation: 'propertyDetail' },
       ],
-      order: orderByMap[filters.orderBy],
+      order: buildOrder(filters),
       limit: PAGE_SIZE,
       skip: (page - 1) * PAGE_SIZE,
     },

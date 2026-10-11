@@ -18,6 +18,7 @@ function OwnerAccessFormModal({ open, onOpenChange, onCreated }: OwnerAccessForm
   const { t } = useTranslation('amministrazione')
   const [personId, setPersonId] = useState('')
   const [email, setEmail] = useState('')
+  const [submitted, setSubmitted] = useState(false)
   const { createAccess } = useOwnerAccessActions(onCreated)
 
   // role "owner" é raramente usado: a maioria dos proprietários reais está
@@ -27,12 +28,14 @@ function OwnerAccessFormModal({ open, onOpenChange, onCreated }: OwnerAccessForm
 
   function submit(event: FormEvent) {
     event.preventDefault()
+    setSubmitted(true)
     if (!personId || !email) return
 
     createAccess(personId, email)
     onOpenChange(false)
     setPersonId('')
     setEmail('')
+    setSubmitted(false)
   }
 
   return (
@@ -49,10 +52,16 @@ function OwnerAccessFormModal({ open, onOpenChange, onCreated }: OwnerAccessForm
             searchPlaceholder={t('proprietari.formModal.ownerSearchPlaceholder')}
             onSearchChange={setSearch}
             isLoading={isLoadingOwners}
+            error={submitted && !personId ? t('proprietari.formModal.ownerRequired') : undefined}
           />
         </div>
 
-        <FormFieldWrapper id="modal-field-email" label={t('proprietari.formModal.emailLabel')} required>
+        <FormFieldWrapper
+          id="modal-field-email"
+          label={t('proprietari.formModal.emailLabel')}
+          required
+          error={submitted && !email ? t('proprietari.formModal.emailRequired') : undefined}
+        >
           <Input type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
         </FormFieldWrapper>
 

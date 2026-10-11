@@ -1,12 +1,13 @@
 import { useHomeBannerControllerCount, useHomeBannerControllerFind } from '@/api/generated/api'
 import type { HomeBannerWithRelations } from '@/api/generated/models'
 import { useListPagination } from '@/hooks/useListPagination'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 export function useBannerList() {
   const { search, debouncedSearch, page, setPage, pageSize, skip, onSearchChange } =
     useListPagination()
 
-  const where = debouncedSearch ? { title: { ilike: `%${debouncedSearch}%` } } : undefined
+  const where = debouncedSearch ? { title: { ilike: toLikePattern(debouncedSearch) } } : undefined
 
   const { data: banners, isLoading } = useHomeBannerControllerFind({
     filter: {

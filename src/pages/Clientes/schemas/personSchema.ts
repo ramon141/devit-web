@@ -1,6 +1,8 @@
+import dayjs from 'dayjs'
 import { z } from 'zod'
 import type { TFunction } from 'i18next'
 import { NewPersonRole } from '@/api/generated/models'
+import { PHONE_REGEX } from '@/utils/phoneRegex'
 
 export function getPersonRoleOptions(t: TFunction<'clientes'>) {
   return [
@@ -29,11 +31,18 @@ export function createPersonSchema(t: TFunction<'clientes'>) {
       name: z.string().min(2, t('personSchema.nameMin')),
       role: z.enum(NewPersonRole, { error: t('personSchema.roleRequired') }),
       email: z.email(t('personSchema.emailInvalid')).optional().or(z.literal('')),
-      phone: z.string().optional(),
-      secondaryPhone: z.string().optional(),
+      phone: z.string().regex(PHONE_REGEX, t('personSchema.phoneInvalid')).optional().or(z.literal('')),
+      secondaryPhone: z
+        .string()
+        .regex(PHONE_REGEX, t('personSchema.phoneInvalid'))
+        .optional()
+        .or(z.literal('')),
       documentType: z.string().optional(),
       documentNumber: z.string().optional(),
-      birthDate: z.string().optional(),
+      birthDate: z
+        .string()
+        .refine((value) => !value || !dayjs(value).isAfter(dayjs(), 'day'), t('personSchema.birthDateFuture'))
+        .optional(),
       notes: z.string().optional(),
       active: z.boolean(),
 

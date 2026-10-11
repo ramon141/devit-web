@@ -18,11 +18,12 @@ import { branchSchema, type BranchFormValues } from '@/pages/Amministrazione/Fil
 const emptyValues: BranchFormValues = { name: '', active: true }
 
 type UseBranchFormProps = {
+  open?: boolean
   branch?: Branch | null
   onSaved: () => void
 }
 
-export function useBranchForm({ branch, onSaved }: UseBranchFormProps) {
+export function useBranchForm({ open, branch, onSaved }: UseBranchFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -36,7 +37,7 @@ export function useBranchForm({ branch, onSaved }: UseBranchFormProps) {
 
   useEffect(() => {
     form.reset(branch ? { name: branch.name, active: branch.active ?? true } : emptyValues)
-  }, [branch, form])
+  }, [branch, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getBranchControllerFindQueryKey() })

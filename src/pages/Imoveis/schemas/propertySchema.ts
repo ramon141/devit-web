@@ -45,6 +45,16 @@ export function getShortStatusOptions(t: TFunction<'imoveis'>) {
   ]
 }
 
+function nonNegativeNumber(t: TFunction<'imoveis'>) {
+  return z
+    .string()
+    .refine(
+      (value) => !value || (Number.isFinite(Number(value)) && Number(value) >= 0),
+      t('options.validation.nonNegativeNumber'),
+    )
+    .optional()
+}
+
 export function createPropertySchema(t: TFunction<'imoveis'>) {
   return z.object({
     code: z.string().min(1, t('options.validation.code')),
@@ -63,10 +73,10 @@ export function createPropertySchema(t: TFunction<'imoveis'>) {
     rentPrice: z.string().optional(),
     condoFee: z.string().optional(),
 
-    bedrooms: z.string().optional(),
-    bathrooms: z.string().optional(),
-    parkingSpots: z.string().optional(),
-    areaSqm: z.string().optional(),
+    bedrooms: nonNegativeNumber(t),
+    bathrooms: nonNegativeNumber(t),
+    parkingSpots: nonNegativeNumber(t),
+    areaSqm: nonNegativeNumber(t),
     description: z.string().optional(),
 
     country: z.string().optional(),
@@ -76,7 +86,10 @@ export function createPropertySchema(t: TFunction<'imoveis'>) {
     neighborhoodId: z.string().optional(),
     city: z.string().min(1, t('options.validation.city')),
     region: z.string().optional(),
-    postalCode: z.string().optional(),
+    postalCode: z
+      .string()
+      .regex(/^(\d{4,10})?$/, t('options.validation.postalCode'))
+      .optional(),
   })
 }
 

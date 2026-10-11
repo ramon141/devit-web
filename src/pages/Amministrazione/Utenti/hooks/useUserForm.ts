@@ -29,11 +29,12 @@ const emptyValues: UserFormValues = {
 }
 
 type UseUserFormProps = {
+  open?: boolean
   user?: UserExcludingPasswordHashWithRelations | null
   onSaved: () => void
 }
 
-export function useUserForm({ user, onSaved }: UseUserFormProps) {
+export function useUserForm({ open, user, onSaved }: UseUserFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -64,7 +65,7 @@ export function useUserForm({ user, onSaved }: UseUserFormProps) {
           }
         : emptyValues
     )
-  }, [user, form])
+  }, [user, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getUserControllerFindQueryKey() })

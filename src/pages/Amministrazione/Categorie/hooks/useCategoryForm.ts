@@ -17,14 +17,22 @@ import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { categorySchema, type CategoryFormValues } from '@/pages/Amministrazione/Categorie/schemas/categorySchema'
 
-const emptyValues: CategoryFormValues = { name: '', slug: '', icon: '', displayOrder: '', active: true }
+const emptyValues: CategoryFormValues = {
+  name: '',
+  slug: '',
+  kind: '',
+  icon: '',
+  displayOrder: '',
+  active: true,
+}
 
 type UseCategoryFormProps = {
+  open?: boolean
   category?: PropertyCategory | null
   onSaved: () => void
 }
 
-export function useCategoryForm({ category, onSaved }: UseCategoryFormProps) {
+export function useCategoryForm({ open, category, onSaved }: UseCategoryFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -42,13 +50,14 @@ export function useCategoryForm({ category, onSaved }: UseCategoryFormProps) {
         ? {
             name: category.name,
             slug: category.slug,
+            kind: category.kind ?? '',
             icon: category.icon ?? '',
             displayOrder: category.displayOrder != null ? String(category.displayOrder) : '',
             active: category.active ?? true,
           }
         : emptyValues
     )
-  }, [category, form])
+  }, [category, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getPropertyCategoryControllerFindQueryKey() })
@@ -57,7 +66,11 @@ export function useCategoryForm({ category, onSaved }: UseCategoryFormProps) {
 
   function onSubmit(values: CategoryFormValues) {
     const cleaned = emptyStringsToNull(values)
-    const data = { ...cleaned, displayOrder: toNumberOrNull(values.displayOrder) }
+    const data = {
+      ...cleaned,
+      kind: values.kind ? values.kind : null,
+      displayOrder: toNumberOrNull(values.displayOrder),
+    }
 
     const promise = category?.id ? update({ id: category.id, data }) : create({ data })
 

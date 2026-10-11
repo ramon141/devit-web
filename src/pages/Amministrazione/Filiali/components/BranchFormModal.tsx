@@ -17,6 +17,7 @@ type BranchFormModalProps = {
 function BranchFormModal({ open, onOpenChange, branch }: BranchFormModalProps) {
   const { t } = useTranslation('amministrazione')
   const { form, isSubmitting, onSubmit } = useBranchForm({
+    open,
     branch,
     onSaved: () => onOpenChange(false),
   })

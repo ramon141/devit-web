@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { usePropertyControllerFind, usePropertyControllerFindById } from '@/api/generated/api'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import type { SearchableSelectOption } from '@/components/SearchableSelect'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 function propertyLabel(property: { code: string; title: string }) {
   return `${property.code} · ${property.title}`
@@ -20,8 +21,8 @@ export function usePropertySearchOptions(selectedId?: string) {
       where: debouncedSearch
         ? {
             or: [
-              { code: { ilike: `%${debouncedSearch}%` } },
-              { title: { ilike: `%${debouncedSearch}%` } },
+              { code: { ilike: toLikePattern(debouncedSearch) } },
+              { title: { ilike: toLikePattern(debouncedSearch) } },
             ],
           }
         : undefined,

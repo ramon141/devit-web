@@ -22,7 +22,10 @@
   },
   "attachmentListManager": {
     "uploadLabel": "Anexar arquivo",
-    "emptyMessage": "Nenhum anexo enviado."
+    "emptyMessage": "Nenhum anexo enviado.",
+    "deleteTitle": "Excluir o anexo?",
+    "deleteDescription": "Esta ação excluirá definitivamente \"{{name}}\".",
+    "deleteConfirm": "Excluir"
   },
   "chart": {
     "noData": "Nenhum dado disponível."

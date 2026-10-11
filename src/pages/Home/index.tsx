@@ -40,6 +40,7 @@ function Home() {
   const [dormantDays, setDormantDays] = useState(readDormantDays)
   const {
     dormantProperties,
+    dormantTotal,
     loadingDormant,
     recentProperties,
     loadingRecent,
@@ -104,7 +105,11 @@ function Home() {
 
         {activeWidgets.includes('dormantProperties') && (
           <DashboardWidget id="dormantProperties" onRemove={removeWidget}>
-            <DormantPropertiesCard properties={dormantProperties} isLoading={loadingDormant} />
+            <DormantPropertiesCard
+              properties={dormantProperties}
+              total={dormantTotal}
+              isLoading={loadingDormant}
+            />
           </DashboardWidget>
         )}
 

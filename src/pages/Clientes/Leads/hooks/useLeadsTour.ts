@@ -30,7 +30,6 @@ const MODAL_FIELD_KEYS = [
   'source',
   'requestType',
   'desiredCity',
-  'maxBudget',
   'subject',
   'assignedTo',
   'lossReason',

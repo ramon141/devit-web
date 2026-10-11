@@ -8,9 +8,12 @@ type SchedaImmobiliProps = {
 
 function SchedaImmobili({ personId }: SchedaImmobiliProps) {
   const { t } = useTranslation('clientes')
-  const { ownerships, tenancies, purchases, proposals } = usePersonProperties(personId)
+  const { ownerships, primaryOwned, sales, tenancies, purchases, proposals } =
+    usePersonProperties(personId)
   const hasNothing =
-    ownerships.length === 0 && tenancies.length === 0 && purchases.length === 0 && proposals.length === 0
+    ownerships.length === 0 &&
+    primaryOwned.length === 0 &&
+    sales.length === 0 && tenancies.length === 0 && purchases.length === 0 && proposals.length === 0
 
   return (
     <div id="cliente-scheda-immobili" className="grid gap-4">
@@ -20,6 +23,22 @@ function SchedaImmobili({ personId }: SchedaImmobiliProps) {
         <div key={link.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
           <Badge variant="secondary">{t('schedaImmobili.owner')}</Badge>
           <span className="text-sm">{link.property?.code} · {link.property?.title}</span>
+        </div>
+      ))}
+
+      {primaryOwned.map((property) => (
+        <div key={property.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
+          <Badge variant="secondary">{t('schedaImmobili.owner')}</Badge>
+          <span className="text-sm">{property.code} · {property.title}</span>
+        </div>
+      ))}
+
+      {sales.map((link) => (
+        <div key={link.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
+          <Badge variant="secondary">{t('schedaImmobili.seller')}</Badge>
+          <span className="text-sm">
+            {t('schedaImmobili.salePrefix', { number: link.sale?.number })}
+          </span>
         </div>
       ))}
 

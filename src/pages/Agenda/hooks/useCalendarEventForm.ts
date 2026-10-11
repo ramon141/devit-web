@@ -38,13 +38,23 @@ async function buildDraftPayload(draft: ReturnType<typeof useCalendarEventDraft>
   }
 }
 
+function getDefaultSlot(defaultDate?: string) {
+  const hasTime = !!defaultDate && defaultDate.includes('T')
+  const start = defaultDate ? dayjs(defaultDate) : dayjs()
+  const base = start.isValid() ? start : dayjs()
+
+  return {
+    startDate: base.format('YYYY-MM-DD'),
+    startTime: hasTime ? base.format('HH:mm') : '09:00',
+    endTime: hasTime ? base.add(1, 'hour').format('HH:mm') : '10:00',
+  }
+}
+
 function emptyValues(defaultDate?: string): CalendarEventFormValues {
   return {
     title: '',
     type: 'generic_appointment',
-    startDate: defaultDate ?? dayjs().format('YYYY-MM-DD'),
-    startTime: '09:00',
-    endTime: '10:00',
+    ...getDefaultSlot(defaultDate),
     allDay: false,
     leadId: '',
     ownerId: '',

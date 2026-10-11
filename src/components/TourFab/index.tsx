@@ -22,7 +22,7 @@ function TourFab({ onClick, videoUrl, className }: TourFabProps) {
   // direto, sem menu intermediário
   if (!videoUrl) {
     return (
-      <div className={cn('fixed right-6 bottom-6 z-50', className)}>
+      <div className={cn('fixed right-6 bottom-24 z-50 lg:bottom-6', className)}>
         <Button size="icon-lg" className="rounded-full shadow-lg" onClick={onClick}>
           <HelpCircle />
         </Button>
@@ -31,7 +31,7 @@ function TourFab({ onClick, videoUrl, className }: TourFabProps) {
   }
 
   return (
-    <div className={cn('fixed right-6 bottom-6 z-50', className)}>
+    <div className={cn('fixed right-6 bottom-24 z-50 lg:bottom-6', className)}>
       <DropdownMenu>
         <DropdownMenuTrigger
           render={

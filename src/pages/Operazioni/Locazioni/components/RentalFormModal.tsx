@@ -19,7 +19,7 @@ type RentalFormModalProps = {
 function RentalFormModal({ open, onOpenChange, contract, tourActiveTab }: RentalFormModalProps) {
   const { t } = useTranslation('operazioni')
   const { form, isSubmitting, onSubmit, ownerIds, setOwnerIds, tenantIds, setTenantIds } =
-    useRentalContractForm({
+    useRentalContractForm({ open,
       contract,
       onSaved: () => onOpenChange(false),
     })

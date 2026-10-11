@@ -69,11 +69,12 @@ function toPersonList(primaryId: string, extraIds: string[] = []) {
 }
 
 type UseSaleFormProps = {
+  open?: boolean
   sale?: SaleWithRelations | null
   onSaved: () => void
 }
 
-export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
+export function useSaleForm({ open, sale, onSaved }: UseSaleFormProps) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -87,7 +88,7 @@ export function useSaleForm({ sale, onSaved }: UseSaleFormProps) {
 
   useEffect(() => {
     form.reset(sale ? saleToFormValues(sale) : emptyValues)
-  }, [sale, form])
+  }, [sale, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getSaleControllerFindQueryKey() })

@@ -333,7 +333,10 @@
       "hasElevator": "Elevador",
       "hasArchitecturalBarriers": "Barreiras arquitetônicas",
       "save": "Salvar localização",
-      "mapHint": "Clique no mapa (ou arraste o marcador) para definir latitude e longitude."
+      "mapHint": "Clique no mapa (ou arraste o marcador) para definir latitude e longitude.",
+      "latitudeInvalid": "A latitude deve estar entre -90 e 90",
+      "longitudeInvalid": "A longitude deve estar entre -180 e 180",
+      "nonNegative": "O valor não pode ser negativo"
     },
     "ownersManager": {
       "title": "Proprietários adicionais",
@@ -528,7 +531,9 @@
       "owner": "Selecione um proprietário",
       "purpose": "Selecione uma finalidade",
       "status": "Selecione um status",
-      "city": "Informe a cidade"
+      "city": "Informe a cidade",
+      "postalCode": "O CEP deve conter apenas números (4 a 10 dígitos)",
+      "nonNegativeNumber": "Informe um número maior ou igual a zero"
     },
     "feeFrequency": {
       "once": "Única",

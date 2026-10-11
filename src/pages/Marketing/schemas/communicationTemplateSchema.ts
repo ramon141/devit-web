@@ -14,7 +14,7 @@ export function communicationTemplateSchema(t: TFunction<'marketing'>) {
       channel: z.string().min(1, t('templateSchema.channelRequired')),
       category: z.string().min(1, t('templateSchema.categoryRequired')),
       subject: z.string().optional(),
-      body: z.string().min(1, t('templateSchema.bodyRequired')),
+      body: z.string({ error: t('templateSchema.bodyRequired') }).min(1, t('templateSchema.bodyRequired')),
       design: z.string().nullable(),
       active: z.boolean(),
     })

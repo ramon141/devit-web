@@ -13,7 +13,12 @@ type PropertyLocationDetailSectionProps = {
 
 function PropertyLocationDetailSection({ form }: PropertyLocationDetailSectionProps) {
   const { t } = useTranslation('imoveis')
-  const { register, control, setValue } = form
+  const {
+    register,
+    control,
+    setValue,
+    formState: { errors },
+  } = form
   const latitude = useWatch({ control, name: 'latitude' })
   const longitude = useWatch({ control, name: 'longitude' })
 
@@ -33,32 +38,53 @@ function PropertyLocationDetailSection({ form }: PropertyLocationDetailSectionPr
         onSelect={handleMapSelect}
       />
 
-      <FormFieldWrapper label={t('scheda.locationDetailSection.latitudeLabel')}>
+      <FormFieldWrapper
+        label={t('scheda.locationDetailSection.latitudeLabel')}
+        error={errors.latitude?.message}
+      >
         <Input {...register('latitude')} type="number" step="0.000001" />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.locationDetailSection.longitudeLabel')}>
+      <FormFieldWrapper
+        label={t('scheda.locationDetailSection.longitudeLabel')}
+        error={errors.longitude?.message}
+      >
         <Input {...register('longitude')} type="number" step="0.000001" />
       </FormFieldWrapper>
 
       <FormFieldWrapper label={t('scheda.locationDetailSection.positionLabel')}>
         <Input {...register('position')} placeholder={t('scheda.locationDetailSection.positionPlaceholder')} />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.locationDetailSection.distanceToWaterLabel')}>
+      <FormFieldWrapper
+        label={t('scheda.locationDetailSection.distanceToWaterLabel')}
+        error={errors.distanceToWaterM?.message}
+      >
         <Input {...register('distanceToWaterM')} type="number" />
       </FormFieldWrapper>
       <FormFieldWrapper label={t('scheda.locationDetailSection.floorLabel')}>
         <Input {...register('floorNumber')} type="number" />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.locationDetailSection.totalFloorsLabel')}>
+      <FormFieldWrapper
+        label={t('scheda.locationDetailSection.totalFloorsLabel')}
+        error={errors.totalFloors?.message}
+      >
         <Input {...register('totalFloors')} type="number" />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.locationDetailSection.builtYearLabel')}>
+      <FormFieldWrapper
+        label={t('scheda.locationDetailSection.builtYearLabel')}
+        error={errors.builtYear?.message}
+      >
         <Input {...register('builtYear')} type="number" />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.locationDetailSection.totalUnitsLabel')}>
+      <FormFieldWrapper
+        label={t('scheda.locationDetailSection.totalUnitsLabel')}
+        error={errors.totalUnitsInBuilding?.message}
+      >
         <Input {...register('totalUnitsInBuilding')} type="number" />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.locationDetailSection.usableAreaLabel')}>
+      <FormFieldWrapper
+        label={t('scheda.locationDetailSection.usableAreaLabel')}
+        error={errors.usableAreaSqm?.message}
+      >
         <Input {...register('usableAreaSqm')} type="number" />
       </FormFieldWrapper>
 

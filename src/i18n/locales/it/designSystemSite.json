@@ -5,7 +5,16 @@
   },
   "colors": {
     "title": "Colori",
-    "description": "Palette estratta dal sito istituzionale: crema, inchiostro e giallo senape come unico accento."
+    "description": "Palette estratta dal sito istituzionale: crema, inchiostro e giallo senape come unico accento.",
+    "roles": {
+      "creamLight": "Sfondo principale",
+      "cream": "Sezione alternata",
+      "ink": "Testo, footer, pulsante",
+      "inkSoft": "Testo secondario",
+      "muted": "Etichette, metadati",
+      "accent": "CTA, badge, eyebrow",
+      "accentDeep": "Hover dell'accento"
+    }
   },
   "typography": {
     "title": "Tipografia",

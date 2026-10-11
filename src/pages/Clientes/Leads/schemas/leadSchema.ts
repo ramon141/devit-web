@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import type { TFunction } from 'i18next'
 import { LeadPurpose, LeadRequestType, LeadSource, LeadStatus } from '@/api/generated/models'
+import { PHONE_REGEX } from '@/utils/phoneRegex'
 
 export function getLeadStatusOptions(t: TFunction<'clientes'>) {
   return [
@@ -54,8 +55,6 @@ export function getLeadPurposeOptions(t: TFunction<'clientes'>) {
   ]
 }
 
-// pares min/max (orçamento, área, quartos, dormitórios,
-// banheiros) aceitavam mínimo > máximo, gravando uma faixa impossível
 const MIN_MAX_PAIRS = [
   ['minBudget', 'maxBudget'],
   ['minAreaSqm', 'maxAreaSqm'],
@@ -68,7 +67,7 @@ export function createLeadSchema(t: TFunction<'clientes'>) {
   return z
     .object({
     name: z.string().min(2, t('leadSchema.nameMin')),
-    phone: z.string().optional(),
+    phone: z.string().regex(PHONE_REGEX, t('leadSchema.phoneInvalid')).optional().or(z.literal('')),
     email: z.email(t('leadSchema.emailInvalid')).optional().or(z.literal('')),
     firstContactAt: z.string().optional(),
     status: z.enum(LeadStatus, { error: t('leadSchema.statusRequired') }),

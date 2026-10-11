@@ -81,7 +81,8 @@
     "statusRequired": "Selecione um status",
     "dateRequired": "Informe a data",
     "validUntilBeforeDate": "A validade não pode ser anterior à data da proposta",
-    "rejectionReasonRequired": "Motivo da recusa obrigatório"
+    "rejectionReasonRequired": "Motivo da recusa obrigatório",
+    "amountPositive": "O valor deve ser maior que zero"
   },
   "deleteProposal": {
     "pending": "Excluindo proposta...",

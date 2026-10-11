@@ -107,7 +107,8 @@
     "personLabel": "Pessoa",
     "channelLabel": "Canal",
     "reasonLabel": "Motivo",
-    "reasonPlaceholder": "Motivo (opcional)"
+    "reasonPlaceholder": "Motivo (opcional)",
+    "personRequired": "Selecione uma pessoa"
   },
   "optOutTable": {
     "person": "Pessoa",
@@ -131,7 +132,8 @@
     "sent": "Enviadas",
     "failed": "Falhas",
     "read": "Lidas",
-    "empty": "Nenhuma campanha enviada"
+    "empty": "Nenhuma campanha enviada",
+    "untitled": "Campanha de {{date}}"
   },
   "campaignDetailDialog": {
     "title": "Detalhe da campanha",
@@ -171,11 +173,29 @@
     "missingPhone": "Sem telefone"
   },
   "tour": {
-    "title": { "title": "Marketing", "content": "Aqui você acompanha as comunicações enviadas aos clientes por e-mail e WhatsApp." },
-    "dashboardTab": { "title": "Painel", "content": "Mostra o status dos canais de e-mail e WhatsApp." },
-    "inviaTab": { "title": "Enviar campanha", "content": "Envie uma nova campanha de e-mail ou WhatsApp para seus contatos." },
-    "storicoTab": { "title": "Histórico", "content": "Consulte o histórico de campanhas já enviadas." },
-    "modelliTab": { "title": "Modelos", "content": "Gerencie os modelos de mensagem reutilizáveis." },
-    "rimozioniTab": { "title": "Descadastros", "content": "Veja quem solicitou não receber mais comunicações." }
+    "title": {
+      "title": "Marketing",
+      "content": "Aqui você acompanha as comunicações enviadas aos clientes por e-mail e WhatsApp."
+    },
+    "dashboardTab": {
+      "title": "Painel",
+      "content": "Mostra o status dos canais de e-mail e WhatsApp."
+    },
+    "inviaTab": {
+      "title": "Enviar campanha",
+      "content": "Envie uma nova campanha de e-mail ou WhatsApp para seus contatos."
+    },
+    "storicoTab": {
+      "title": "Histórico",
+      "content": "Consulte o histórico de campanhas já enviadas."
+    },
+    "modelliTab": {
+      "title": "Modelos",
+      "content": "Gerencie os modelos de mensagem reutilizáveis."
+    },
+    "rimozioniTab": {
+      "title": "Descadastros",
+      "content": "Veja quem solicitou não receber mais comunicações."
+    }
   }
 }

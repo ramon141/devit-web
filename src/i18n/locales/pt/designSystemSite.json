@@ -5,7 +5,16 @@
   },
   "colors": {
     "title": "Cores",
-    "description": "Paleta extraída do site institucional: creme, tinta e amarelo mostarda como único acento."
+    "description": "Paleta extraída do site institucional: creme, tinta e amarelo mostarda como único acento.",
+    "roles": {
+      "creamLight": "Fundo principal",
+      "cream": "Seção alternada",
+      "ink": "Texto, rodapé, botão",
+      "inkSoft": "Texto secundário",
+      "muted": "Rótulos, metadados",
+      "accent": "CTA, badge, eyebrow",
+      "accentDeep": "Hover do destaque"
+    }
   },
   "typography": {
     "title": "Tipografia",

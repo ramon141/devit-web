@@ -11,16 +11,29 @@ export function getSaleStatusOptions(t: TFunction) {
 }
 
 export function createSaleSchema(t: TFunction) {
-  return z.object({
+  return z
+    .object({
     number: z.string().min(1, t('operazioni:vendite.schema.numberRequired')),
     propertyId: z.string().min(1, t('operazioni:vendite.schema.propertyRequired')),
     buyerId: z.string().min(1, t('operazioni:vendite.schema.buyerRequired')),
     sellerId: z.string().min(1, t('operazioni:vendite.schema.sellerRequired')),
-    finalAmount: z.string().min(1, t('operazioni:vendite.schema.finalAmountRequired')),
+    finalAmount: z
+      .string()
+      .min(1, t('operazioni:vendite.schema.finalAmountRequired'))
+      .refine((value) => Number(value) > 0, t('operazioni:vendite.schema.finalAmountPositive')),
     saleDate: z.string().min(1, t('operazioni:vendite.schema.saleDateRequired')),
     deedDate: z.string().optional(),
-    installmentsCount: z.string().optional(),
-    commissionAmount: z.string().optional(),
+    installmentsCount: z
+      .string()
+      .refine(
+        (value) => !value || (Number.isInteger(Number(value)) && Number(value) > 0),
+        t('operazioni:vendite.schema.installmentsInvalid'),
+      )
+      .optional(),
+    commissionAmount: z
+      .string()
+      .refine((value) => !value || Number(value) >= 0, t('operazioni:vendite.schema.commissionInvalid'))
+      .optional(),
     status: z.enum(SaleStatus, { error: t('operazioni:vendite.schema.statusRequired') }),
     cancellationReason: z.string().optional(),
     notes: z.string().optional(),
@@ -29,7 +42,16 @@ export function createSaleSchema(t: TFunction) {
     buyerAgentId: z.string().optional(),
     extraBuyerIds: z.array(z.string()).optional(),
     extraSellerIds: z.array(z.string()).optional(),
-  })
+    })
+    .superRefine((values, ctx) => {
+      if (values.deedDate && values.saleDate && values.deedDate < values.saleDate) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['deedDate'],
+          message: t('operazioni:vendite.schema.deedBeforeSale'),
+        })
+      }
+    })
 }
 
 export type SaleFormValues = z.infer<ReturnType<typeof createSaleSchema>>

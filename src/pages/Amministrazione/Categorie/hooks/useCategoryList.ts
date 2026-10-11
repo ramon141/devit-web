@@ -3,12 +3,13 @@ import {
   usePropertyCategoryControllerFind,
 } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 export function useCategoryList() {
   const { search, debouncedSearch, page, setPage, pageSize, skip, onSearchChange } =
     useListPagination()
 
-  const where = debouncedSearch ? { name: { ilike: `%${debouncedSearch}%` } } : undefined
+  const where = debouncedSearch ? { name: { ilike: toLikePattern(debouncedSearch) } } : undefined
 
   const { data: categories, isLoading } = usePropertyCategoryControllerFind({
     filter: { where, order: ['displayOrder ASC', 'name ASC'], limit: pageSize, skip },

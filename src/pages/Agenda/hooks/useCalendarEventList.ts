@@ -4,6 +4,7 @@ import { useCalendarEventControllerFind } from '@/api/generated/api'
 import { CalendarEventType } from '@/api/generated/models'
 import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { UserInfo } from '@/auth'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 const VISIBLE_USER_IDS_KEY = 'agenda.visibleUserIds'
 
@@ -68,7 +69,7 @@ function buildWhere(range: DateRange, filters: CalendarEventFilters) {
   }
 
   if (filters.search) {
-    conditions.push({ title: { ilike: `%${filters.search}%` } })
+    conditions.push({ title: { ilike: toLikePattern(filters.search) } })
   }
 
   if (filters.visibleUserIds.length) {

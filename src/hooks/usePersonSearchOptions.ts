@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { usePersonControllerFind, usePersonControllerFindById } from '@/api/generated/api'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import type { SearchableSelectOption } from '@/components/SearchableSelect'
+import { toLikePattern } from '@/utils/toLikePattern'
 
 // Select de pessoa (proprietário/comprador/vendedor/inquilino) sem busca no
 // servidor só mostrava os primeiros 200 nomes — a maioria ficava impossível
@@ -13,7 +14,7 @@ export function usePersonSearchOptions(selectedId?: string) {
 
   const { data: people, isLoading } = usePersonControllerFind({
     filter: {
-      where: debouncedSearch ? { name: { ilike: `%${debouncedSearch}%` } } : undefined,
+      where: debouncedSearch ? { name: { ilike: toLikePattern(debouncedSearch) } } : undefined,
       order: ['name ASC'],
       limit: 50,
     },

@@ -10,7 +10,7 @@ type WidgetSelectionFabProps = {
 // Botão flutuante "+" que abre o modal de seleção de widgets do painel
 function WidgetSelectionFab({ onClick, className }: WidgetSelectionFabProps) {
   return (
-    <div className={cn('fixed right-[4.5rem] bottom-6 z-50', className)}>
+    <div className={cn('fixed right-[4.5rem] bottom-24 z-50 lg:bottom-6', className)}>
       <Button size="icon-lg" className="rounded-full shadow-lg" onClick={onClick}>
         <Plus />
       </Button>

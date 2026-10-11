@@ -6,7 +6,8 @@ import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { useCalendarEventPropertyControllerFind } from '@/api/generated/api'
 import { getEventTypeOptions } from '@/pages/Agenda/schemas/calendarEventSchema'
 import { getEventColor } from '@/pages/Agenda/utils/eventColors'
-import { formatDateTime } from '@/utils/formatDate'
+import dayjs from 'dayjs'
+import { formatDate, formatDateTime } from '@/utils/formatDate'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 
@@ -52,6 +53,14 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
           </div>
         )}
       </div>
+
+      <p className="text-sm font-medium">
+        {t('agenda:hoverCard.timeRange', {
+          date: formatDate(event.startAt),
+          start: dayjs(event.startAt).format('HH:mm'),
+          end: dayjs(event.endAt).format('HH:mm'),
+        })}
+      </p>
 
       {event.place && <p className="text-sm text-muted-foreground">{event.place}</p>}
 

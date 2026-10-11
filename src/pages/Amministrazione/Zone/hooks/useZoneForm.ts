@@ -19,11 +19,12 @@ import { zoneSchema, type ZoneFormValues } from '@/pages/Amministrazione/Zone/sc
 const emptyValues: ZoneFormValues = { name: '', city: '', region: '', active: true }
 
 type UseZoneFormProps = {
+  open?: boolean
   zone?: Zone | null
   onSaved: () => void
 }
 
-export function useZoneForm({ zone, onSaved }: UseZoneFormProps) {
+export function useZoneForm({ open, zone, onSaved }: UseZoneFormProps) {
   const { t } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -46,7 +47,7 @@ export function useZoneForm({ zone, onSaved }: UseZoneFormProps) {
           }
         : emptyValues
     )
-  }, [zone, form])
+  }, [zone, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getZoneControllerFindQueryKey() })

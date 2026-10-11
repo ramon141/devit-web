@@ -1,8 +1,10 @@
 import { useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
+  getPropertyCadastralInfoControllerFindQueryKey,
   usePropertyCadastralInfoControllerFind,
   usePropertyCadastralInfoControllerCreate,
   usePropertyCadastralInfoControllerUpdateById,
@@ -37,6 +39,7 @@ const emptyValues: CadastralFormValues = {
 
 export function usePropertyCadastralForm(propertyId: string) {
   const { t } = useTranslation('imoveis')
+  const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
   const { draft, setDraftBlock } = usePropertyDraft()
   const { data: rows, isLoading } = usePropertyCadastralInfoControllerFind({
@@ -73,7 +76,10 @@ export function usePropertyCadastralForm(propertyId: string) {
       ? Promise.resolve(setDraftBlock('cadastralInfo', { ...draft.cadastralInfo, ...data }))
       : existingRow?.id
         ? update({ id: existingRow.id, data: { ...data, propertyId } })
-        : create({ data: { ...data, propertyId } })
+        : create({ data: { ...data, propertyId } }).then((created) => {
+          queryClient.invalidateQueries({ queryKey: getPropertyCadastralInfoControllerFindQueryKey() })
+          return created
+        })
 
     // Seção salva junto com a etapa: o toast de sucesso vem do formulário principal
     promisePopup(promise, {

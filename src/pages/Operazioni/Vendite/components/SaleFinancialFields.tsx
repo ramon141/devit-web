@@ -35,6 +35,7 @@ function SaleFinancialFields({ form }: SaleFinancialFieldsProps) {
           label={t('vendite.financialFields.commissionAmountLabel')}
           value={commissionAmount}
           setValue={(value) => setValue('commissionAmount', value)}
+          error={errors.commissionAmount?.message}
         />
       </div>
 

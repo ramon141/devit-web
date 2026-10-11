@@ -22,7 +22,7 @@ function NeighborhoodFormModal({
   neighborhood,
 }: NeighborhoodFormModalProps) {
   const { t } = useTranslation('amministrazione')
-  const { form, isSubmitting, onSubmit } = useNeighborhoodForm({
+  const { form, isSubmitting, onSubmit } = useNeighborhoodForm({ open,
     neighborhood,
     zoneId,
     onSaved: () => onOpenChange(false),

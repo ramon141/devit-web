@@ -81,7 +81,8 @@
     "statusRequired": "Seleziona uno stato",
     "dateRequired": "Inserisci la data",
     "validUntilBeforeDate": "La validità non può essere anteriore alla data della proposta",
-    "rejectionReasonRequired": "Motivo del rifiuto obbligatorio"
+    "rejectionReasonRequired": "Motivo del rifiuto obbligatorio",
+    "amountPositive": "Il valore deve essere maggiore di zero"
   },
   "deleteProposal": {
     "pending": "Eliminazione proposta...",

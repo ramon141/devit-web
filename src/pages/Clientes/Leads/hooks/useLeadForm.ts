@@ -49,11 +49,12 @@ const emptyValues: LeadFormValues = {
 }
 
 type UseLeadFormProps = {
+  open?: boolean
   lead?: Lead | null
   onSaved: () => void
 }
 
-export function useLeadForm({ lead, onSaved }: UseLeadFormProps) {
+export function useLeadForm({ open, lead, onSaved }: UseLeadFormProps) {
   const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -99,7 +100,7 @@ export function useLeadForm({ lead, onSaved }: UseLeadFormProps) {
           }
         : emptyValues
     )
-  }, [lead, neighborhoodIds, form])
+  }, [lead, neighborhoodIds, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getLeadControllerFindQueryKey() })

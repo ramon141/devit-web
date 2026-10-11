@@ -33,11 +33,12 @@ const emptyValues: TemplateFormValues = {
 }
 
 type UseTemplateFormProps = {
+  open?: boolean
   template?: CommunicationTemplate | null
   onSaved: () => void
 }
 
-export function useTemplateForm({ template, onSaved }: UseTemplateFormProps) {
+export function useTemplateForm({ open, template, onSaved }: UseTemplateFormProps) {
   const { t } = useTranslation('marketing')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -65,7 +66,7 @@ export function useTemplateForm({ template, onSaved }: UseTemplateFormProps) {
           }
         : emptyValues,
     )
-  }, [template, form])
+  }, [template, form, open])
 
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getCommunicationTemplateControllerFindQueryKey() })

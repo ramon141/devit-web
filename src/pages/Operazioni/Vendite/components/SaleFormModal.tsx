@@ -20,7 +20,7 @@ type SaleFormModalProps = {
 
 function SaleFormModal({ open, onOpenChange, sale, tourActiveTab }: SaleFormModalProps) {
   const { t } = useTranslation('operazioni')
-  const { form, isSubmitting, onSubmit } = useSaleForm({
+  const { form, isSubmitting, onSubmit } = useSaleForm({ open,
     sale,
     onSaved: () => onOpenChange(false),
   })

@@ -13,7 +13,7 @@ const SKELETON_ITEMS = 4
 
 type DashboardCardProps = {
   title: string
-  count?: number
+  count?: number | string
   isLoading?: boolean
   children: ReactNode
 }

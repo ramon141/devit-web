@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { formatAmount } from '@/utils/formatAmount'
 import { ownerPortalApi, OwnerPortalAuth } from '@/lib/ownerPortalAuth'
+import { getStatusOptions } from '@/pages/Imoveis/schemas/propertySchema'
+import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type OwnerProperty = {
   id: string
@@ -29,6 +31,8 @@ function useOwnerProperties() {
 
 function AreaProprietariDashboard() {
   const { t } = useTranslation('site')
+  const { t: tProperties } = useTranslation('imoveis')
+  const statusOptions = getStatusOptions(tProperties)
   const { data: properties, isLoading } = useOwnerProperties()
 
   if (!OwnerPortalAuth.isAuthenticated()) return <Navigate to="/area-proprietari/login" replace />
@@ -66,7 +70,7 @@ function AreaProprietariDashboard() {
                 <span className="font-medium">
                   {formatAmount(property.salePrice ?? property.rentPrice ?? 0)}
                 </span>
-                <Badge variant="secondary">{property.status}</Badge>
+                <Badge variant="secondary">{getOptionLabel(statusOptions, property.status)}</Badge>
               </div>
             </div>
           ))}

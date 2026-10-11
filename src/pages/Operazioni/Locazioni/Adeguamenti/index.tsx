@@ -19,6 +19,8 @@ function AdeguamentiCanone() {
     selectedIds,
     toggleSelected,
     indexPercent,
+    indexPercentError,
+    isIndexPercentValid,
     setIndexPercent,
     generateAdjustments,
     isGenerating,
@@ -40,7 +42,10 @@ function AdeguamentiCanone() {
 
       <div className="mb-4 flex flex-wrap items-end gap-3">
         <div id="adeguamenti-index-filter" className="w-48">
-          <FormFieldWrapper label={t('locazioni.adeguamenti.index.indexPercentLabel')}>
+          <FormFieldWrapper
+            label={t('locazioni.adeguamenti.index.indexPercentLabel')}
+            error={indexPercentError ? t('locazioni.adeguamenti.index.indexPercentInvalid') : undefined}
+          >
             <Input
               value={indexPercent}
               onChange={(event) => setIndexPercent(event.target.value)}
@@ -53,7 +58,7 @@ function AdeguamentiCanone() {
         <Button
           id="adeguamenti-generate-btn"
           onClick={generateAdjustments}
-          disabled={!indexPercent || isGenerating}
+          disabled={!isIndexPercentValid || isGenerating}
         >
           {t('locazioni.adeguamenti.index.generateButton')}
         </Button>

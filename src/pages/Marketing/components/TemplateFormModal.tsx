@@ -24,7 +24,7 @@ type TemplateFormModalProps = {
 
 function TemplateFormModal({ open, onOpenChange, template }: TemplateFormModalProps) {
   const { t } = useTranslation('marketing')
-  const { form, editorRef, isSubmitting, onSubmit } = useTemplateForm({
+  const { form, editorRef, isSubmitting, onSubmit } = useTemplateForm({ open,
     template,
     onSaved: () => onOpenChange(false),
   })
