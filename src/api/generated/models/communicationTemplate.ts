@@ -15,6 +15,7 @@ export interface CommunicationTemplate {
   category: CommunicationTemplateCategory;
   /** @nullable */
   subject?: string | null;
+  /** @minLength 1 */
   body: string;
   /** @nullable */
   design?: string | null;

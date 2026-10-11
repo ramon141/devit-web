@@ -50,5 +50,5 @@ function buildSteps(t: TFunction<'home'>): Step[] {
 
 export function useHomeTour() {
   const { t } = useTranslation('home')
-  return useTour({ steps: buildSteps(t) })
+  return useTour({ steps: buildSteps(t), onlyExistingTargets: true })
 }

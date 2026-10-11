@@ -83,6 +83,11 @@
       "category": "Tipologia",
       "size": "Superficie",
       "updatedAt": "Modificato il"
+    },
+    "size": {
+      "area": "{{value, number}} m²",
+      "bedrooms": "{{count}} cam.",
+      "bathrooms": "{{count}} bg."
     }
   },
   "categoryOwnerFields": {

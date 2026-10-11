@@ -19,6 +19,7 @@ export interface CommunicationTemplateWithRelations {
   category: CommunicationTemplateWithRelationsCategory;
   /** @nullable */
   subject?: string | null;
+  /** @minLength 1 */
   body: string;
   /** @nullable */
   design?: string | null;

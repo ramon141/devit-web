@@ -32,10 +32,10 @@ function CheckboxListPicker({
   emptyMessage,
 }: CheckboxListPickerProps) {
   return (
-    <div className="grid gap-2">
+    <div className="grid grid-cols-1 gap-2">
       <Input value={search} onChange={(event) => onSearchChange(event.target.value)} placeholder={searchPlaceholder} />
 
-      <div className="grid max-h-56 gap-1 overflow-y-auto rounded-md border p-2">
+      <div className="grid max-h-56 grid-cols-1 gap-1 overflow-y-auto overflow-x-hidden rounded-md border p-2">
         {items.length === 0 && <p className="py-4 text-center text-sm text-muted-foreground">{emptyMessage}</p>}
 
         {items.map((item) => (

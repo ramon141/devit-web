@@ -17,6 +17,7 @@ export interface NewCommunicationTemplate {
   category: NewCommunicationTemplateCategory;
   /** @nullable */
   subject?: string | null;
+  /** @minLength 1 */
   body: string;
   /** @nullable */
   design?: string | null;

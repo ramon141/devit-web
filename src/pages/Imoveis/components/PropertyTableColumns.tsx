@@ -11,11 +11,11 @@ import { formatAmount } from '@/utils/formatAmount'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 import { formatDate } from '@/utils/formatDate'
 
-function formatPropertySize(property: PropertyWithRelations): string {
+function formatPropertySize(property: PropertyWithRelations, t: TFunction<'imoveis'>): string {
   const parts: string[] = []
-  if (property.areaSqm) parts.push(`${property.areaSqm} m²`)
-  if (property.bedrooms) parts.push(`${property.bedrooms} cam.`)
-  if (property.bathrooms) parts.push(`${property.bathrooms} bg.`)
+  if (property.areaSqm) parts.push(t('table.size.area', { value: Number(property.areaSqm) }))
+  if (property.bedrooms) parts.push(t('table.size.bedrooms', { count: property.bedrooms }))
+  if (property.bathrooms) parts.push(t('table.size.bathrooms', { count: property.bathrooms }))
 
   return parts.length > 0 ? parts.join(' · ') : '—'
 }
@@ -34,7 +34,7 @@ export function buildPropertyTableColumns({
     { header: t('table.columns.title'), cell: (property) => property.title },
     { header: t('table.columns.category'), cell: (property) => property.category?.name ?? '—' },
     { header: t('table.columns.city'), cell: (property) => property.address?.city ?? '—' },
-    { header: t('table.columns.size'), cell: (property) => formatPropertySize(property) },
+    { header: t('table.columns.size'), cell: (property) => formatPropertySize(property, t) },
     { header: t('table.columns.owner'), cell: (property) => property.owner?.name ?? '—' },
     { header: t('table.columns.price'), cell: (property) => formatAmount(property.salePrice ?? property.rentPrice) },
     {

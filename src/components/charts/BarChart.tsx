@@ -53,7 +53,7 @@ function BarChart({ categories, series, height = 280, stacked = false }: BarChar
       <RechartsBarChart data={data}>
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
         <XAxis dataKey="category" />
-        <YAxis />
+        <YAxis allowDecimals={false} />
         <Tooltip />
         <Legend verticalAlign="bottom" />
         {series.map((item, index) =>

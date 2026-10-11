@@ -1,17 +1,21 @@
 import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
-import { usePropertiesReportControllerIncomplete } from '@/api/generated/api'
+import {
+  usePropertiesReportControllerIncomplete,
+  usePropertiesReportControllerIncompleteCount,
+} from '@/api/generated/api'
 
 function IncompletePropertiesCard() {
   const { t } = useTranslation('home')
   const { data, isLoading } = usePropertiesReportControllerIncomplete()
+  const { data: countData } = usePropertiesReportControllerIncompleteCount()
   const properties = data ?? []
 
   return (
     <DashboardCard
       title={t('incompletePropertiesCard.title')}
-      count={properties.length}
+      count={countData?.count ?? properties.length}
       isLoading={isLoading}
     >
       {properties.length === 0 && (

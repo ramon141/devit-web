@@ -9,7 +9,6 @@ type NumberFieldProps = {
   label: string
   placeholder: string
   min: number
-  step?: number
   max?: number
   name: keyof FilterValues
   register: UseFormRegister<FilterValues>
@@ -41,7 +40,6 @@ function PanelFields({ dict, register }: { dict: SiteDict; register: UseFormRegi
           label={dict.search.priceMin}
           placeholder="0"
           min={0}
-          step={10000}
           register={register}
         />
         <NumberField
@@ -50,7 +48,6 @@ function PanelFields({ dict, register }: { dict: SiteDict; register: UseFormRegi
           label={dict.search.priceMax}
           placeholder="—"
           min={0}
-          step={10000}
           register={register}
         />
       </div>
@@ -62,7 +59,6 @@ function PanelFields({ dict, register }: { dict: SiteDict; register: UseFormRegi
           label={dict.search.surfaceMin}
           placeholder="m²"
           min={0}
-          step={10}
           register={register}
         />
         <NumberField

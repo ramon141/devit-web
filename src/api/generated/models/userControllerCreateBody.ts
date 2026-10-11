@@ -12,6 +12,9 @@ export type UserControllerCreateBody = {
   email: string;
   accessLevel: UserControllerCreateBodyAccessLevel;
   active?: boolean;
-  /** @minLength 6 */
+  /**
+   * @minLength 8
+   * @pattern ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$
+   */
   password: string;
 };

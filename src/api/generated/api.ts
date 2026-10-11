@@ -558,9 +558,14 @@ import type {
   PropertiesReportControllerByStatusPurpose401,
   PropertiesReportControllerDormant200Item,
   PropertiesReportControllerDormant401,
+  PropertiesReportControllerDormantCount200,
+  PropertiesReportControllerDormantCount401,
+  PropertiesReportControllerDormantCountParams,
   PropertiesReportControllerDormantParams,
   PropertiesReportControllerIncomplete200Item,
   PropertiesReportControllerIncomplete401,
+  PropertiesReportControllerIncompleteCount200,
+  PropertiesReportControllerIncompleteCount401,
   PropertiesReportControllerRecent200Item,
   PropertiesReportControllerRecent401,
   PropertiesReportControllerRecentParams,
@@ -30487,6 +30492,100 @@ export function usePropertiesReportControllerByStatusPurpose<TData = Awaited<Ret
 
 
 /**
+ * @summary Total de imóveis sem atualização recente
+ */
+export const propertiesReportControllerDormantCount = (
+    params?: PropertiesReportControllerDormantCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertiesReportControllerDormantCount200>(
+      {url: `/reports/properties/dormant/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertiesReportControllerDormantCountQueryKey = (params?: PropertiesReportControllerDormantCountParams,) => {
+    return [
+    `/reports/properties/dormant/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertiesReportControllerDormantCountQueryOptions = <TData = Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError = ErrorType<PropertiesReportControllerDormantCount401>>(params?: PropertiesReportControllerDormantCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertiesReportControllerDormantCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>> = ({ signal }) => propertiesReportControllerDormantCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertiesReportControllerDormantCountQueryResult = NonNullable<Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>>
+export type PropertiesReportControllerDormantCountQueryError = ErrorType<PropertiesReportControllerDormantCount401>
+
+
+export function usePropertiesReportControllerDormantCount<TData = Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError = ErrorType<PropertiesReportControllerDormantCount401>>(
+ params: undefined |  PropertiesReportControllerDormantCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerDormantCount<TData = Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError = ErrorType<PropertiesReportControllerDormantCount401>>(
+ params?: PropertiesReportControllerDormantCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerDormantCount<TData = Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError = ErrorType<PropertiesReportControllerDormantCount401>>(
+ params?: PropertiesReportControllerDormantCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Total de imóveis sem atualização recente
+ */
+
+export function usePropertiesReportControllerDormantCount<TData = Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError = ErrorType<PropertiesReportControllerDormantCount401>>(
+ params?: PropertiesReportControllerDormantCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerDormantCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertiesReportControllerDormantCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Imóveis sem atualização recente
  */
 export const propertiesReportControllerDormant = (
@@ -30568,6 +30667,99 @@ export function usePropertiesReportControllerDormant<TData = Awaited<ReturnType<
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPropertiesReportControllerDormantQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Total de imóveis com cadastro incompleto
+ */
+export const propertiesReportControllerIncompleteCount = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertiesReportControllerIncompleteCount200>(
+      {url: `/reports/properties/incomplete/count`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertiesReportControllerIncompleteCountQueryKey = () => {
+    return [
+    `/reports/properties/incomplete/count`
+    ] as const;
+    }
+
+    
+export const getPropertiesReportControllerIncompleteCountQueryOptions = <TData = Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError = ErrorType<PropertiesReportControllerIncompleteCount401>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertiesReportControllerIncompleteCountQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>> = ({ signal }) => propertiesReportControllerIncompleteCount(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertiesReportControllerIncompleteCountQueryResult = NonNullable<Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>>
+export type PropertiesReportControllerIncompleteCountQueryError = ErrorType<PropertiesReportControllerIncompleteCount401>
+
+
+export function usePropertiesReportControllerIncompleteCount<TData = Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError = ErrorType<PropertiesReportControllerIncompleteCount401>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerIncompleteCount<TData = Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError = ErrorType<PropertiesReportControllerIncompleteCount401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>,
+          TError,
+          Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertiesReportControllerIncompleteCount<TData = Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError = ErrorType<PropertiesReportControllerIncompleteCount401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Total de imóveis com cadastro incompleto
+ */
+
+export function usePropertiesReportControllerIncompleteCount<TData = Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError = ErrorType<PropertiesReportControllerIncompleteCount401>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertiesReportControllerIncompleteCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertiesReportControllerIncompleteCountQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

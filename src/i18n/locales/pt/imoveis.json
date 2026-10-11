@@ -83,6 +83,11 @@
       "category": "Tipologia",
       "size": "Metragem",
       "updatedAt": "Modificado em"
+    },
+    "size": {
+      "area": "{{value, number}} m²",
+      "bedrooms": "{{count}} quartos",
+      "bathrooms": "{{count}} banh."
     }
   },
   "categoryOwnerFields": {
