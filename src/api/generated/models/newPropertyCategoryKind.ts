@@ -7,6 +7,7 @@
  */
 
 /**
+ * @maxLength 30
  * @nullable
  */
 export type NewPropertyCategoryKind = typeof NewPropertyCategoryKind[keyof typeof NewPropertyCategoryKind] | null;

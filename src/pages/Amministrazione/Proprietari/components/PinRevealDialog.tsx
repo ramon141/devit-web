@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
 
 type PinRevealDialogProps = {
@@ -12,20 +12,18 @@ function PinRevealDialog({ pin, onClose }: PinRevealDialogProps) {
   const { t } = useTranslation('amministrazione')
 
   return (
-    <Dialog open={!!pin} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{t('proprietari.pinDialog.title')}</DialogTitle>
-        </DialogHeader>
-
+    <ModalRegister
+      open={!!pin}
+      onOpenChange={(open) => !open && onClose()}
+      title={t('proprietari.pinDialog.title')}
+    >
         <p className="text-center text-3xl font-bold tracking-widest">{pin}</p>
         <p className="text-center text-sm text-muted-foreground">{t('proprietari.pinDialog.warning')}</p>
 
-        <Button onClick={onClose} className="mt-2">
+        <Button onClick={onClose} className="mt-2 w-full">
           {t('proprietari.pinDialog.close')}
         </Button>
-      </DialogContent>
-    </Dialog>
+    </ModalRegister>
   )
 }
 

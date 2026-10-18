@@ -42,7 +42,7 @@ const emptyValues: LandFormValues = {
   plantations: '',
 }
 
-export function usePropertyLandForm(propertyId: string) {
+export function usePropertyLandForm(propertyId: string, onSaved?: () => void) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -95,6 +95,8 @@ export function usePropertyLandForm(propertyId: string) {
           queryClient.invalidateQueries({ queryKey: getPropertyLandDetailControllerFindQueryKey() })
           return created
         })
+
+    promise.then(() => onSaved?.(), () => undefined)
 
     promisePopup(promise, {
       pending: t('toasts.landForm.pending'),

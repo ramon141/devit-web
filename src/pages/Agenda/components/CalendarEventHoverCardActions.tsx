@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Copy, FileText, Pencil, Printer, Trash2 } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 type CalendarEventHoverCardActionsProps = {
   onEdit: () => void
@@ -17,15 +18,17 @@ type ActionButtonProps = {
 
 function ActionButton({ label, onClick, children }: ActionButtonProps) {
   return (
-    <button
+    <Button
       type="button"
+      variant="ghost"
+      size="icon-xs"
       title={label}
       aria-label={label}
       onClick={onClick}
-      className="rounded p-1 text-white/90 transition-colors hover:bg-white/20 hover:text-white"
+      className="text-white/90 hover:bg-white/20 hover:text-white"
     >
       {children}
-    </button>
+    </Button>
   )
 }
 

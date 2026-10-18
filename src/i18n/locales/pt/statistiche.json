@@ -19,7 +19,7 @@
   },
   "communicationsSummary": {
     "title": "Resumo de comunicações",
-    "description": "Totais por canal nos últimos 30 dias: entregues, clicados, lidos, falhados"
+    "description": "Totais por canal nos últimos {{days}} dias: entregues, clicados, lidos, falhados"
   },
   "tour": {
     "title": { "title": "Estatísticas", "content": "Aqui você acompanha os principais indicadores da agência." },

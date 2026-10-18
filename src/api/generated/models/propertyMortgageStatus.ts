@@ -10,9 +10,16 @@ export interface PropertyMortgageStatus {
   id?: string;
   /** @nullable */
   hasMortgage?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   creditor?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   mortgageAmount?: number | null;
   /** @nullable */
   hasLien?: boolean | null;

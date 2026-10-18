@@ -11,13 +11,23 @@ export interface PropertyHeatingDetail {
   id?: string;
   /** @nullable */
   heatingType?: PropertyHeatingDetailHeatingType;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   fuel?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   system?: string | null;
   /** @nullable */
   hasRadiators?: boolean | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   monthlyCost?: number | null;
   propertyId: string;
 }

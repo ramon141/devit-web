@@ -10,9 +10,16 @@
  * (tsType: Omit<PropertyPhoto, 'id'>, schemaOptions: { title: 'NewPropertyPhoto', exclude: [ 'id' ] })
  */
 export interface NewPropertyPhoto {
-  /** @nullable */
+  /**
+   * @maxLength 160
+   * @nullable
+   */
   caption?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   displayOrder?: number | null;
   /** @nullable */
   cover?: boolean | null;

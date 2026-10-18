@@ -41,7 +41,7 @@ function ForgotPassword() {
               {t('forgotPasswordPage.subtitle')}
             </p>
 
-            <form onSubmit={onSubmit} className="flex flex-col gap-7">
+            <form noValidate onSubmit={onSubmit} className="flex flex-col gap-7">
               <div>
                 <label
                   htmlFor="forgot-email"

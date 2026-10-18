@@ -11,6 +11,10 @@
  */
 export interface NeighborhoodPartialExcludingCreatedAtUpdatedAt {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name?: string;
   /** @nullable */
   active?: boolean | null;

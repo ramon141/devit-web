@@ -10,7 +10,10 @@
  * (tsType: Omit<CalendarEventAttachment, 'id'>, schemaOptions: { title: 'NewCalendarEventAttachment', exclude: [ 'id' ] })
  */
 export interface NewCalendarEventAttachment {
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   description?: string | null;
   calendarEventId: string;
   attachmentId: string;

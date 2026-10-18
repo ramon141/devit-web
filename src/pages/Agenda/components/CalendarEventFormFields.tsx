@@ -1,4 +1,6 @@
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import FieldHint from '@/components/FieldHint'
+import { CalendarEventReminder, CalendarEventRecurrence } from '@/api/generated/models'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -34,6 +36,8 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
   const backgroundColorOptions = getBackgroundColorOptions(t)
 
   const isAllDay = watch('allDay')
+  const reminder = watch('reminder')
+  const recurrence = watch('recurrence')
 
   const { data: leads } = useLeadControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { data: owners } = usePersonControllerFind({
@@ -172,6 +176,10 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
             <SelectField value={field.value} onValueChange={field.onChange} options={reminderOptions} />
           )}
         />
+
+        {reminder !== CalendarEventReminder.none && (
+          <FieldHint>{t('agenda:hints.reminder')}</FieldHint>
+        )}
       </FormFieldWrapper>
 
       <FormFieldWrapper
@@ -187,6 +195,10 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
             <SelectField value={field.value} onValueChange={field.onChange} options={recurrenceOptions} />
           )}
         />
+
+        {recurrence !== CalendarEventRecurrence.none && (
+          <FieldHint>{t('agenda:hints.recurrence')}</FieldHint>
+        )}
       </FormFieldWrapper>
 
       <Controller

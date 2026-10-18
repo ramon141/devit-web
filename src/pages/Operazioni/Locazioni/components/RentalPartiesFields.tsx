@@ -63,6 +63,7 @@ function RentalPartiesFields({
           render={({ field }) => (
             <SearchableSelect
               label={t('locazioni.partiesFields.propertyLabel')}
+              required
               value={field.value}
               onValueChange={field.onChange}
               options={propertyOptions}
@@ -79,6 +80,7 @@ function RentalPartiesFields({
       <div id="modal-field-ownerIds">
         <PartyListManager
           label={t('locazioni.partiesFields.ownerLabel')}
+          required
           options={personOptions}
           personIds={ownerIds}
           onChange={updateOwnerIds}
@@ -93,6 +95,7 @@ function RentalPartiesFields({
       <div id="modal-field-tenantIds">
         <PartyListManager
           label={t('locazioni.partiesFields.tenantLabel')}
+          required
           options={personOptions}
           personIds={tenantIds}
           onChange={updateTenantIds}

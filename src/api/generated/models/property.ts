@@ -10,22 +10,58 @@ import type { PropertyStatus } from './propertyStatus';
 
 export interface Property {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 20
+   */
   code: string;
+  /**
+   * @minLength 1
+   * @maxLength 200
+   */
   title: string;
   purpose: PropertyPurpose;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   rentPrice?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   salePrice?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   condoFee?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   bedrooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   bathrooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   parkingSpots?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   areaSqm?: number | null;
   /** @nullable */
   description?: string | null;
@@ -33,7 +69,11 @@ export interface Property {
   status?: PropertyStatus;
   /** @nullable */
   featured?: boolean | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   featuredOrder?: number | null;
   /** @nullable */
   active?: boolean | null;

@@ -39,7 +39,7 @@ function Profilo() {
       <TourFab onClick={startTour} />
 
       {user && (
-        <form onSubmit={onSubmit} className="grid gap-4">
+        <form noValidate onSubmit={onSubmit} className="grid gap-4">
           <div id="profilo-form-fields">
             <UserFormFields
               key={user.id}

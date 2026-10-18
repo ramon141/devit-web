@@ -11,9 +11,20 @@
  */
 export interface ZoneWithRelations {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name: string;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   city: string;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   region?: string | null;
   /** @nullable */
   active?: boolean | null;

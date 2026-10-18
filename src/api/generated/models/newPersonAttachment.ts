@@ -10,7 +10,10 @@
  * (tsType: Omit<PersonAttachment, 'id'>, schemaOptions: { title: 'NewPersonAttachment', exclude: [ 'id' ] })
  */
 export interface NewPersonAttachment {
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   description?: string | null;
   personId: string;
   attachmentId: string;

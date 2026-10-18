@@ -48,7 +48,7 @@ function SearchFilters({ current, variant = 'panel' }: SearchFiltersProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={compact ? HERO_FORM : 'grid gap-5'}>
+    <form noValidate onSubmit={handleSubmit(onSubmit)} className={compact ? HERO_FORM : 'grid gap-5'}>
       <ControlledSelectField
         id="f-contract"
         control={control}

@@ -10,8 +10,15 @@
  * (tsType: Omit<HomeBanner, 'id'>, schemaOptions: { title: 'NewHomeBanner', exclude: [ 'id' ] })
  */
 export interface NewHomeBanner {
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
   title: string;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   subtitle?: string | null;
   /**
    * @nullable
@@ -20,6 +27,7 @@ export interface NewHomeBanner {
   targetLink?: string | null;
   /**
    * @minimum 0
+   * @maximum 32767
    * @nullable
    */
   displayOrder?: number | null;

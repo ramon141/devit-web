@@ -8,8 +8,16 @@
 
 export interface PropertyPriceHistory {
   id?: string;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   previousPrice?: number | null;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   */
   newPrice: number;
   /** @nullable */
   changedAt?: string | null;

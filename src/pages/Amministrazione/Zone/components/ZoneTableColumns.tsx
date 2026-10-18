@@ -24,17 +24,18 @@ export function buildZoneTableColumns({
     {
       header: t('zoneTableColumns.name'),
       cell: (zone) => (
-        <button
+        <Button
           type="button"
+          variant="link"
           onClick={() => onSelect(zone)}
           className={
             zone.id === selectedZoneId
-              ? 'font-semibold underline underline-offset-4'
-              : 'font-medium hover:underline hover:underline-offset-4'
+              ? 'h-auto p-0 font-semibold text-foreground underline'
+              : 'h-auto p-0 font-medium text-foreground'
           }
         >
-          {zone.name}
-        </button>
+          <span className="block max-w-64 truncate">{zone.name}</span>
+        </Button>
       ),
     },
     { header: t('zoneTableColumns.city'), cell: (zone) => zone.city },

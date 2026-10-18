@@ -9,13 +9,31 @@ import type { PropertyCategoryKind } from './propertyCategoryKind';
 
 export interface PropertyCategory {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 80
+   */
   name: string;
+  /**
+   * @minLength 1
+   * @maxLength 80
+   */
   slug: string;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   icon?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   kind?: PropertyCategoryKind;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   displayOrder?: number | null;
   /** @nullable */
   active?: boolean | null;

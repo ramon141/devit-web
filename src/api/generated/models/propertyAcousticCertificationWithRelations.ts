@@ -12,7 +12,10 @@ import type { Property } from './property';
  */
 export interface PropertyAcousticCertificationWithRelations {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 20
+   * @nullable
+   */
   acousticClass?: string | null;
   /** @nullable */
   certificationDate?: string | null;

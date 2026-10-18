@@ -12,7 +12,15 @@ import type { PropertyFeePartialFrequency } from './propertyFeePartialFrequency'
  */
 export interface PropertyFeePartial {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 80
+   */
   name?: string;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   */
   amount?: number;
   frequency?: PropertyFeePartialFrequency;
   /** @nullable */

@@ -1,4 +1,6 @@
-import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
+import FieldHint from '@/components/FieldHint'
+import { LeadStatus } from '@/api/generated/models'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -20,6 +22,7 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
   const { t } = useTranslation('clientes')
   const { register, control } = form
   const { errors } = useFormState({ control })
+  const status = useWatch({ control, name: 'status' })
   const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
   const userOptions = (users ?? []).map((user) => ({ value: user.id ?? '', label: user.fullName }))
   const leadStatusOptions = getLeadStatusOptions(t)
@@ -62,6 +65,8 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
             <SelectField value={field.value} onValueChange={field.onChange} options={leadStatusOptions} />
           )}
         />
+
+        {status === LeadStatus.converted && <FieldHint>{t('hints.leadConverted')}</FieldHint>}
       </FormFieldWrapper>
 
       <FormFieldWrapper id="modal-field-source" label={t('leadFormFields.source')} error={errors.source?.message}>

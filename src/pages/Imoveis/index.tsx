@@ -26,6 +26,7 @@ function Imoveis() {
   const {
     properties,
     where,
+    mapParams,
     isLoading,
     totalItems,
     pageSize,
@@ -107,7 +108,7 @@ function Imoveis() {
         </Button>
       </div>
 
-      {viewMode === 'map' && <PropertyMapView properties={properties} isLoading={isLoading} />}
+      {viewMode === 'map' && <PropertyMapView params={mapParams} />}
 
       {viewMode === 'table' && <PropertyTable properties={properties} isLoading={isLoading} />}
 

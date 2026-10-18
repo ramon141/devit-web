@@ -10,6 +10,7 @@
  * (tsType: Omit<CalendarEventOutcome, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewCalendarEventOutcome', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewCalendarEventOutcome {
+  /** @minLength 1 */
   outcome: string;
   calendarEventId: string;
   /** @nullable */

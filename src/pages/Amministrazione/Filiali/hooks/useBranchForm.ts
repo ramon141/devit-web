@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -13,7 +13,7 @@ import {
 import type { Branch } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
-import { branchSchema, type BranchFormValues } from '@/pages/Amministrazione/Filiali/schemas/branchSchema'
+import { createBranchSchema, type BranchFormValues } from '@/pages/Amministrazione/Filiali/schemas/branchSchema'
 
 const emptyValues: BranchFormValues = { name: '', active: true }
 
@@ -29,9 +29,10 @@ export function useBranchForm({ open, branch, onSaved }: UseBranchFormProps) {
   const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useBranchControllerCreate()
   const { mutateAsync: update, isPending: updating } = useBranchControllerUpdateById()
+  const schema = useMemo(() => createBranchSchema(t), [t])
 
   const form = useForm<BranchFormValues>({
-    resolver: zodResolver(branchSchema),
+    resolver: zodResolver(schema),
     defaultValues: emptyValues,
   })
 

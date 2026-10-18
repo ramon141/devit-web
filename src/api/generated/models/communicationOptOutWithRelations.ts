@@ -14,7 +14,10 @@ import type { Person } from './person';
 export interface CommunicationOptOutWithRelations {
   id?: string;
   channel: CommunicationOptOutWithRelationsChannel;
-  /** @nullable */
+  /**
+   * @maxLength 200
+   * @nullable
+   */
   reason?: string | null;
   createdAt: string;
   updatedAt: string;

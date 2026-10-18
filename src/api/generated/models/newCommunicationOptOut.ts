@@ -12,7 +12,10 @@ import type { NewCommunicationOptOutChannel } from './newCommunicationOptOutChan
  */
 export interface NewCommunicationOptOut {
   channel: NewCommunicationOptOutChannel;
-  /** @nullable */
+  /**
+   * @maxLength 200
+   * @nullable
+   */
   reason?: string | null;
   personId: string;
 }

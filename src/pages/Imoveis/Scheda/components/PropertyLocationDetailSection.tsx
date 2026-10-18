@@ -50,6 +50,12 @@ function PropertyLocationDetailSection({ form }: PropertyLocationDetailSectionPr
       >
         <Input {...register('longitude')} type="number" step="0.000001" />
       </FormFieldWrapper>
+      <FormFieldWrapper label={t('scheda.locationDetailSection.publicLatitudeLabel')}>
+        <Input {...register('publicLatitude')} type="number" step="0.000001" />
+      </FormFieldWrapper>
+      <FormFieldWrapper label={t('scheda.locationDetailSection.publicLongitudeLabel')}>
+        <Input {...register('publicLongitude')} type="number" step="0.000001" />
+      </FormFieldWrapper>
 
       <FormFieldWrapper label={t('scheda.locationDetailSection.positionLabel')}>
         <Input {...register('position')} placeholder={t('scheda.locationDetailSection.positionPlaceholder')} />

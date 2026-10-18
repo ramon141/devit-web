@@ -14,7 +14,15 @@ import type { BranchExcludingPasswordHash } from './branchExcludingPasswordHash'
  */
 export interface UserExcludingPasswordHashWithRelations {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   fullName: string;
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
   email: string;
   accessLevel: UserExcludingPasswordHashWithRelationsAccessLevel;
   /** @nullable */

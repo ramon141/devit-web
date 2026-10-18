@@ -11,9 +11,16 @@
  */
 export interface SaleDocumentPartial {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 50
+   * @nullable
+   */
   type?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   version?: number | null;
   /** @nullable */
   generatedAt?: string | null;

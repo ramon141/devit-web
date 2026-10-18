@@ -12,6 +12,7 @@ import type { NewPropertyFeatureCategory } from './newPropertyFeatureCategory';
  */
 export interface NewPropertyFeature {
   category: NewPropertyFeatureCategory;
+  /** @maxLength 80 */
   featureKey: string;
   propertyId: string;
 }

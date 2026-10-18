@@ -51,6 +51,32 @@ export function createSaleSchema(t: TFunction) {
           message: t('operazioni:vendite.schema.deedBeforeSale'),
         })
       }
+
+      if (Number(values.commissionAmount) > Number(values.finalAmount)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['commissionAmount'],
+          message: t('operazioni:vendite.schema.commissionAboveSale'),
+        })
+      }
+
+      if (values.buyerId && values.buyerId === values.sellerId) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['sellerId'],
+          message: t('operazioni:vendite.schema.samePerson'),
+        })
+      }
+
+      const canceled = values.status === SaleStatus.canceled
+
+      if (canceled && !(values.cancellationReason ?? '').trim()) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['cancellationReason'],
+          message: t('operazioni:vendite.schema.cancellationReasonRequired'),
+        })
+      }
     })
 }
 

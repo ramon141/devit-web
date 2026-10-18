@@ -1,4 +1,6 @@
-import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
+import FieldHint from '@/components/FieldHint'
+import { RentalContractSituation } from '@/api/generated/models'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -24,6 +26,7 @@ function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds
   const { register, control, setValue } = form
   const { errors } = useFormState({ control })
   const situationOptions = getRentalSituationOptions(t)
+  const situation = useWatch({ control, name: 'situation' })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -49,6 +52,14 @@ function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds
             <SelectField value={field.value} onValueChange={field.onChange} options={situationOptions} />
           )}
         />
+
+        {situation === RentalContractSituation.active && (
+          <FieldHint warning>{t('hints.rentalActive')}</FieldHint>
+        )}
+
+        {situation !== undefined && situation !== RentalContractSituation.active && (
+          <FieldHint>{t('hints.rentalEnded')}</FieldHint>
+        )}
       </FormFieldWrapper>
 
       <RentalPartiesFields

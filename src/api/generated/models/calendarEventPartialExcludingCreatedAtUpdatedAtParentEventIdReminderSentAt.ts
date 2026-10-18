@@ -16,6 +16,10 @@ import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdRemind
 
 export interface CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAt {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 200
+   */
   title?: string;
   type?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtType;
   /** @nullable */
@@ -26,15 +30,24 @@ export interface CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdRem
   allDay?: boolean | null;
   /** @nullable */
   occurred?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   place?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   backgroundColor?: string | null;
   /** @nullable */
   confirmationStatus?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtConfirmationStatus;
   /** @nullable */
   private?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   keysLocation?: string | null;
   /** @nullable */
   recurrence?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtRecurrence;

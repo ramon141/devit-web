@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslation } from 'react-i18next'
@@ -18,7 +18,7 @@ import type { Neighborhood } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import {
-  neighborhoodSchema,
+  createNeighborhoodSchema,
   type NeighborhoodFormValues,
 } from '@/pages/Amministrazione/Zone/schemas/zoneSchema'
 
@@ -40,6 +40,7 @@ function PropertyNeighborhoodCreateModal({
   onCreated,
 }: PropertyNeighborhoodCreateModalProps) {
   const { t } = useTranslation('imoveis')
+  const { t: tAmministrazione } = useTranslation('amministrazione')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending } = useNeighborhoodControllerCreate()
@@ -47,6 +48,11 @@ function PropertyNeighborhoodCreateModal({
   const { data: zones } = useZoneControllerFind({
     filter: { where: city ? { city, active: true } : { active: true }, order: ['name ASC'] },
   })
+
+  const neighborhoodSchema = useMemo(
+    () => createNeighborhoodSchema(tAmministrazione),
+    [tAmministrazione]
+  )
 
   const form = useForm<NeighborhoodFormValues>({
     resolver: zodResolver(neighborhoodSchema),
@@ -87,9 +93,9 @@ function PropertyNeighborhoodCreateModal({
       onOpenChange={onOpenChange}
       title={t('neighborhoodCreateModal.title')}
     >
-      <form
+      <form noValidate
         onSubmit={(event) => {
-          // O modal vive dentro do <form> do imóvel; sem isso o submit sobe pela
+          // O modal vive dentro do <form noValidate> do imóvel; sem isso o submit sobe pela
           // árvore do React (portal não isola evento) e salva o imóvel junto
           event.stopPropagation()
           form.handleSubmit(onSubmit)(event)

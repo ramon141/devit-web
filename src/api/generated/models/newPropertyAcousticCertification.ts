@@ -10,7 +10,10 @@
  * (tsType: Omit<PropertyAcousticCertification, 'id'>, schemaOptions: { title: 'NewPropertyAcousticCertification', exclude: [ 'id' ] })
  */
 export interface NewPropertyAcousticCertification {
-  /** @nullable */
+  /**
+   * @maxLength 20
+   * @nullable
+   */
   acousticClass?: string | null;
   /** @nullable */
   certificationDate?: string | null;

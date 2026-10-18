@@ -36,6 +36,7 @@ function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerF
           render={({ field }) => (
             <SearchableSelect
               label={t('propertyBuyerFields.propertyLabel')}
+              required
               value={field.value}
               onValueChange={field.onChange}
               options={propertyOptions}
@@ -56,6 +57,7 @@ function ProposalPropertyBuyerFields({ control, errors }: ProposalPropertyBuyerF
           render={({ field }) => (
             <SearchableSelect
               label={t('propertyBuyerFields.buyerLabel')}
+              required
               value={field.value}
               onValueChange={field.onChange}
               options={buyerOptions}

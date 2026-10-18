@@ -47,7 +47,7 @@ function RentalFormModal({ open, onOpenChange, contract, tourActiveTab }: Rental
         </TabsList>
 
         <TabsContent value="dati">
-          <form id="modal-locazioni-form" onSubmit={onSubmit} className="grid gap-4">
+          <form noValidate id="modal-locazioni-form" onSubmit={onSubmit} className="grid gap-4">
             <RentalFormFields
               form={form}
               ownerIds={ownerIds}

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import type { AxiosError } from 'axios'
 import {
   getPersonControllerFindQueryKey,
+  getPersonControllerFindByIdQueryKey,
   getPersonControllerCountQueryKey,
   useAddressControllerCreate,
   useAddressControllerDeleteById,
@@ -109,6 +110,10 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
   function invalidateList() {
     queryClient.invalidateQueries({ queryKey: getPersonControllerFindQueryKey() })
     queryClient.invalidateQueries({ queryKey: getPersonControllerCountQueryKey() })
+
+    if (person?.id) {
+      queryClient.invalidateQueries({ queryKey: getPersonControllerFindByIdQueryKey(person.id) })
+    }
   }
 
   async function resolveAddressId(values: PersonFormValues) {

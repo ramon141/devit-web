@@ -65,7 +65,7 @@
         "indexPercentLabel": "Variazione percentuale ISTAT",
         "indexPercentPlaceholder": "Es. 5",
         "generateButton": "Genera documenti",
-        "indexPercentInvalid": "Inserisci una variazione maggiore di 0 e fino a 100"
+        "indexPercentInvalid": "Inserisci una variazione tra -50 e +100, diversa da 0"
       },
       "eligibleTable": {
         "numero": "Numero",
@@ -112,7 +112,9 @@
       "newAmountPlaceholder": "Lascia vuoto per mantenere il valore attuale",
       "noteLabel": "Osservazione",
       "submitLabel": "Proroga",
-      "newEndDateRequired": "Inserisci la nuova data di fine"
+      "newEndDateRequired": "Inserisci la nuova data di fine",
+      "newEndNotAfterCurrent": "La nuova data di fine deve essere successiva a quella attuale",
+      "newAmountPositive": "Il nuovo canone deve essere maggiore di zero"
     },
     "terminationModal": {
       "title": "Rescindi contratto",
@@ -122,7 +124,8 @@
       "requestedByLabel": "Richiesto da",
       "requestedByPlaceholder": "Nome del richiedente",
       "submitLabel": "Rescindi",
-      "terminationDateRequired": "Inserisci la data"
+      "terminationDateRequired": "Inserisci la data",
+      "terminationBeforeStart": "La data di risoluzione non può precedere l'inizio della locazione"
     },
     "tableModals": {
       "deleteTitle": "Eliminare il contratto?",
@@ -279,7 +282,10 @@
       "finalAmountPositive": "Il valore finale deve essere maggiore di zero",
       "installmentsInvalid": "Inserisci un numero intero di rate maggiore di zero",
       "deedBeforeSale": "La data del rogito non può precedere la data della vendita",
-      "commissionInvalid": "La provvigione non può essere negativa"
+      "commissionInvalid": "La provvigione non può essere negativa",
+      "commissionAboveSale": "La provvigione non può superare il valore della vendita",
+      "samePerson": "Acquirente e venditore devono essere persone diverse",
+      "cancellationReasonRequired": "Indica il motivo dell'annullamento"
     },
     "financialFields": {
       "finalAmountLabel": "Valore finale",
@@ -363,7 +369,9 @@
         "creating": "Creazione vendita...",
         "updateSuccess": "Vendita aggiornata con successo!",
         "createSuccess": "Vendita creata con successo!",
-        "error": "Errore durante il salvataggio della vendita"
+        "error": "Errore durante il salvataggio della vendita",
+        "duplicateNumber": "Esiste già una vendita con questo numero.",
+        "propertyAlreadySold": "Esiste già una vendita conclusa per questo immobile."
       },
       "delete": {
         "pending": "Eliminazione vendita...",
@@ -746,5 +754,11 @@
         "content": "Ogni riga è un contratto in scadenza. Usa il pulsante di rinnovo sulla riga per generare il rinnovo."
       }
     }
+  },
+  "hints": {
+    "saleSold": "Salvando, l'immobile passa a «venduto» e esce dal chatbot.",
+    "saleCanceled": "Lo stato dell'immobile non cambia. Indica il motivo dell'annullamento.",
+    "rentalActive": "Salvando, l'immobile passa ad «affittato» e esce dal chatbot.",
+    "rentalEnded": "L'immobile torna «disponibile» se non ci sono altre locazioni attive."
   }
 }

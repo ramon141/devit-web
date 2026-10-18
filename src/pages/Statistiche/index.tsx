@@ -120,7 +120,9 @@ function Statistiche() {
         <Card id="statistiche-card-communicationsSummary" className="lg:col-span-2">
           <CardHeader>
             <CardTitle>{t('communicationsSummary.title')}</CardTitle>
-            <CardDescription>{t('communicationsSummary.description')}</CardDescription>
+            <CardDescription>
+              {t('communicationsSummary.description', { days: communicationsDays })}
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <BarChart

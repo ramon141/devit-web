@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { StarIcon, Trash2Icon } from 'lucide-react'
+import { StarIcon } from 'lucide-react'
+import ConfirmDeleteButton from '@/components/ConfirmDeleteButton'
 import { Button } from '@/components/ui/button'
 import FileUpload from '@/components/FileUpload'
 import { usePropertyPhotos } from '@/pages/Imoveis/Scheda/hooks/usePropertyPhotos'
@@ -43,14 +44,10 @@ function PhotoCard({ photo, onSetCover, onRemove }: PhotoCardProps) {
           >
             <StarIcon className="size-4" />
           </Button>
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            title={t('scheda.fotoTab.remove')}
-            onClick={() => photo.id && onRemove(photo.id)}
-          >
-            <Trash2Icon className="size-4 text-destructive" />
-          </Button>
+          <ConfirmDeleteButton
+            name={photo.attachment?.originalName ?? ''}
+            onConfirm={() => photo.id && onRemove(photo.id)}
+          />
         </div>
       </div>
     </div>

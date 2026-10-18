@@ -13,6 +13,7 @@ import {
 import { Link } from 'react-router'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
+import NotFoundState from '@/components/NotFoundState'
 import { usePropertyControllerFindById } from '@/api/generated/api'
 import { usePropertyForm } from '@/pages/Imoveis/hooks/usePropertyForm'
 import PropertyFormFields from '@/pages/Imoveis/components/PropertyFormFields'
@@ -30,11 +31,12 @@ function PropertyScheda() {
   const [searchParams] = useSearchParams()
   const isNew = !id
 
-  const { data: property } = usePropertyControllerFindById(
+  const { data: property, isLoading, isError } = usePropertyControllerFindById(
     id ?? '',
     { filter: { include: [{ relation: 'category' }, { relation: 'address' }, { relation: 'owner' }] } },
-    { query: { enabled: !isNew } }
+    { query: { enabled: !isNew, retry: false } }
   )
+  const notFound = !isNew && !isLoading && (isError || !property)
 
   const [activeTab, setActiveTab] = useState('generale')
 
@@ -88,14 +90,22 @@ function PropertyScheda() {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <PropertyFormFields
-          form={form}
-          onSubmit={onSubmit}
-          isSubmitting={isSubmitting}
-          propertyId={property?.id}
-          activeTab={activeTab}
-          onActiveTabChange={setActiveTab}
-        />
+        {notFound ? (
+          <NotFoundState
+            message={t('scheda.notFound')}
+            backLabel={t('scheda.breadcrumbList')}
+            backTo="/gestionale/proprieta"
+          />
+        ) : (
+          <PropertyFormFields
+            form={form}
+            onSubmit={onSubmit}
+            isSubmitting={isSubmitting}
+            propertyId={property?.id}
+            activeTab={activeTab}
+            onActiveTabChange={setActiveTab}
+          />
+        )}
       </div>
     </AppLayout>
   )

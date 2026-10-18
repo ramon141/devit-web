@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -14,7 +14,7 @@ import type { Zone } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
-import { zoneSchema, type ZoneFormValues } from '@/pages/Amministrazione/Zone/schemas/zoneSchema'
+import { createZoneSchema, type ZoneFormValues } from '@/pages/Amministrazione/Zone/schemas/zoneSchema'
 
 const emptyValues: ZoneFormValues = { name: '', city: '', region: '', active: true }
 
@@ -30,6 +30,7 @@ export function useZoneForm({ open, zone, onSaved }: UseZoneFormProps) {
   const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useZoneControllerCreate()
   const { mutateAsync: update, isPending: updating } = useZoneControllerUpdateById()
+  const zoneSchema = useMemo(() => createZoneSchema(t), [t])
 
   const form = useForm<ZoneFormValues>({
     resolver: zodResolver(zoneSchema),

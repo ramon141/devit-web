@@ -10,10 +10,17 @@ import type { CommunicationTemplateCategory } from './communicationTemplateCateg
 
 export interface CommunicationTemplate {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name: string;
   channel: CommunicationTemplateChannel;
   category: CommunicationTemplateCategory;
-  /** @nullable */
+  /**
+   * @maxLength 200
+   * @nullable
+   */
   subject?: string | null;
   /** @minLength 1 */
   body: string;

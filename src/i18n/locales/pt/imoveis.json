@@ -112,6 +112,7 @@
     "useInChatbot": "Usar no ChatBot WhatsApp"
   },
   "generalTab": {
+    "codeExists": "Já existe um imóvel com este código.",
     "codeLabel": "Código",
     "codePlaceholder": "AP001",
     "generateCode": "Gerar código",
@@ -152,6 +153,7 @@
     "back": "Voltar",
     "next": "Próximo",
     "finish": "Salvar",
+    "close": "Fechar",
     "saved": "Dados salvos com sucesso!",
     "steps": {
       "general": "Geral",
@@ -172,6 +174,7 @@
     "pageTitle": "Novo imóvel",
     "pageDescription": "Gerencie todos os dados do imóvel",
     "breadcrumbList": "Propriedades",
+    "notFound": "Imóvel não encontrado.",
     "commercialActivityFields": {
       "scopeLabel": "Âmbito",
       "scopePlaceholder": "Nenhum",
@@ -289,6 +292,7 @@
       "save": "Salvar detalhes"
     },
     "feesManager": {
+      "missingFields": "Preencha nome, valor e frequência.",
       "title": "Taxas e despesas",
       "namePlaceholder": "Nome da taxa",
       "frequencyPlaceholder": "Frequência",
@@ -325,6 +329,8 @@
     },
     "locationDetailSection": {
       "title": "Detalhes adicionais",
+      "publicLatitudeLabel": "Latitude pública (mapa do site)",
+      "publicLongitudeLabel": "Longitude pública (mapa do site)",
       "latitudeLabel": "Latitude",
       "longitudeLabel": "Longitude",
       "positionLabel": "Posição",
@@ -538,7 +544,11 @@
       "status": "Selecione um status",
       "city": "Informe a cidade",
       "postalCode": "O CEP deve conter apenas números (4 a 10 dígitos)",
-      "nonNegativeNumber": "Informe um número maior ou igual a zero"
+      "maxCount": "O valor máximo é {{max}}",
+      "nonNegativeNumber": "Informe um número maior ou igual a zero",
+      "maxSmallint": "O valor máximo permitido é 32767",
+      "percentRange": "Informe um valor entre 0 e 100",
+      "minMaxRange": "O valor mínimo não pode ser maior que o máximo"
     },
     "feeFrequency": {
       "once": "Única",
@@ -888,5 +898,9 @@
         "content": "Aqui você cadastra e edita todos os dados do imóvel, organizados em abas."
       }
     }
+  },
+  "hints": {
+    "chatbotHidden": "Com esta situação o imóvel deixa de aparecer no chatbot até voltar a «disponível».",
+    "siteStillVisible": "Continua visível no site enquanto estiver publicado."
   }
 }

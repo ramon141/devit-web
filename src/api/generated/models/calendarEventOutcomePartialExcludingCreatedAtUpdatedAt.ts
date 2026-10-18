@@ -11,6 +11,7 @@
  */
 export interface CalendarEventOutcomePartialExcludingCreatedAtUpdatedAt {
   id?: string;
+  /** @minLength 1 */
   outcome?: string;
   calendarEventId?: string;
   /** @nullable */

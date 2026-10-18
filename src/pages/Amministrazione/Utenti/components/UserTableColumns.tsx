@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { DataTableColumn } from '@/components/DataTable'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
-import { accessLevelOptions } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
+import { getAccessLevelOptions } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 import i18n from '@/i18n'
 
@@ -37,7 +37,8 @@ export function buildUserTableColumns({
   onEdit,
   onDelete,
 }: BuildUserTableColumnsProps): DataTableColumn<UserExcludingPasswordHashWithRelations>[] {
-  const t = (key: string) => i18n.t(`amministrazione:${key}`)
+  const t = i18n.getFixedT(null, 'amministrazione')
+  const accessLevelOptions = getAccessLevelOptions(t)
 
   return [
     {

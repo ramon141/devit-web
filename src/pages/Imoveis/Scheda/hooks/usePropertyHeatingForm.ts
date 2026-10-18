@@ -32,7 +32,7 @@ const emptyValues: HeatingFormValues = {
   monthlyCost: '',
 }
 
-export function usePropertyHeatingForm(propertyId: string) {
+export function usePropertyHeatingForm(propertyId: string, onSaved?: () => void) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -78,6 +78,8 @@ export function usePropertyHeatingForm(propertyId: string) {
         })
 
     // Seção salva junto com a etapa: o toast de sucesso vem do formulário principal
+    promise.then(() => onSaved?.(), () => undefined)
+
     promisePopup(promise, {
       pending: '',
       success: '',

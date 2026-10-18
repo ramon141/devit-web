@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -17,7 +17,7 @@ import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
-import { userSchema, type UserFormValues } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
+import { createUserSchema, type UserFormValues } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
 
 const emptyValues: UserFormValues = {
   fullName: '',
@@ -45,6 +45,8 @@ export function useUserForm({ open, user, onSaved }: UseUserFormProps) {
   const { data: avatar } = useAttachmentControllerFindById(user?.avatarId ?? '', undefined, {
     query: { enabled: !!user?.avatarId },
   })
+
+  const userSchema = useMemo(() => createUserSchema(t, !user), [t, user])
 
   const form = useForm<UserFormValues>({
     resolver: zodResolver(userSchema),
@@ -88,11 +90,6 @@ export function useUserForm({ open, user, onSaved }: UseUserFormProps) {
   }
 
   function onSubmit(values: UserFormValues) {
-    if (!user && !values.password) {
-      form.setError('password', { message: t('userForm.passwordRequired') })
-      return
-    }
-
     promisePopup(saveUser(values), {
       pending: user ? t('userForm.pendingUpdate') : t('userForm.pendingCreate'),
       success: () => {

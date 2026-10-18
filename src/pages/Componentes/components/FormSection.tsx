@@ -55,7 +55,7 @@ function FormSection() {
       description={t('form.description')}
     >
       <Form {...form}>
-        <form
+        <form noValidate
           onSubmit={form.handleSubmit(onSubmit)}
           className="grid max-w-md gap-4"
         >

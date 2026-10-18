@@ -11,35 +11,79 @@ export interface PropertyCommercialDetail {
   id?: string;
   /** @nullable */
   scope?: PropertyCommercialDetailScope;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   mainActivity?: string | null;
   /** @nullable */
   alternativeActivities?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   activityValue?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   averageRevenueFrom?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   averageRevenueTo?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   monthlyRent?: number | null;
   /** @nullable */
   manageable?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 20
+   * @nullable
+   */
   weeklyRestDay?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   showcaseCount?: number | null;
   /** @nullable */
   showcaseExposure?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   coveredAreaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   uncoveredAreaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   coverableAreaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   roomSeparation?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   context?: string | null;
   propertyId: string;
 }

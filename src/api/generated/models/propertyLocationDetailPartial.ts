@@ -11,31 +11,74 @@
  */
 export interface PropertyLocationDetailPartial {
   id?: string;
-  /** @nullable */
+  /**
+   * @minimum -90
+   * @maximum 90
+   * @nullable
+   */
   latitude?: number | null;
-  /** @nullable */
+  /**
+   * @minimum -180
+   * @maximum 180
+   * @nullable
+   */
   longitude?: number | null;
-  /** @nullable */
+  /**
+   * @minimum -90
+   * @maximum 90
+   * @nullable
+   */
   publicLatitude?: number | null;
-  /** @nullable */
+  /**
+   * @minimum -180
+   * @maximum 180
+   * @nullable
+   */
   publicLongitude?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   position?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 2147483647
+   * @nullable
+   */
   distanceToWaterM?: number | null;
-  /** @nullable */
+  /**
+   * @minimum -20
+   * @maximum 500
+   * @nullable
+   */
   floorNumber?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 500
+   * @nullable
+   */
   totalFloors?: number | null;
   /** @nullable */
   hasElevator?: boolean | null;
   /** @nullable */
   hasArchitecturalBarriers?: boolean | null;
-  /** @nullable */
+  /**
+   * @minimum 1000
+   * @maximum 2200
+   * @nullable
+   */
   builtYear?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   totalUnitsInBuilding?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   usableAreaSqm?: number | null;
   propertyId?: string;
   /** @nullable */

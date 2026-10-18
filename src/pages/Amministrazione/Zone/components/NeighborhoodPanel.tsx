@@ -52,8 +52,8 @@ function NeighborhoodPanel({ zone }: NeighborhoodPanelProps) {
             key={neighborhood.id}
             className="flex items-center justify-between gap-2 rounded-md px-2 py-1.5 hover:bg-accent"
           >
-            <span className="flex items-center gap-2 text-sm">
-              {neighborhood.name}
+            <span className="flex min-w-0 items-center gap-2 text-sm">
+              <span className="truncate" title={neighborhood.name}>{neighborhood.name}</span>
               {!neighborhood.active && (
                 <Badge variant="secondary">{t('neighborhoodPanel.inactive')}</Badge>
               )}

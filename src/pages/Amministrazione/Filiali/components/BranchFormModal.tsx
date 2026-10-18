@@ -33,7 +33,7 @@ function BranchFormModal({ open, onOpenChange, branch }: BranchFormModalProps) {
       onOpenChange={onOpenChange}
       title={branch ? t('branchFormModal.editTitle') : t('branchFormModal.newTitle')}
     >
-      <form id="modal-filiali-form" onSubmit={onSubmit} className="grid gap-4">
+      <form noValidate id="modal-filiali-form" onSubmit={onSubmit} className="grid gap-4">
         <FormFieldWrapper
           id="modal-field-name"
           label={t('branchFormModal.nameLabel')}

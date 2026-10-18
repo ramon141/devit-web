@@ -10,7 +10,10 @@
  * (tsType: Omit<PurchaseProposalAttachment, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewPurchaseProposalAttachment', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewPurchaseProposalAttachment {
-  /** @nullable */
+  /**
+   * @maxLength 160
+   * @nullable
+   */
   label?: string | null;
   proposalId: string;
   attachmentId: string;

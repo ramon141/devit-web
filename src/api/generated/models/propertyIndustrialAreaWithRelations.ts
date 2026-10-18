@@ -14,9 +14,17 @@ import type { Property } from './property';
 export interface PropertyIndustrialAreaWithRelations {
   id?: string;
   areaType: PropertyIndustrialAreaWithRelationsAreaType;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   areaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 9999
+   * @nullable
+   */
   heightM?: number | null;
   propertyId: string;
   property?: Property;

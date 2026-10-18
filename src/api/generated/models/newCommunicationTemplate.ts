@@ -12,10 +12,17 @@ import type { NewCommunicationTemplateCategory } from './newCommunicationTemplat
  * (tsType: Omit<CommunicationTemplate, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewCommunicationTemplate', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewCommunicationTemplate {
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name: string;
   channel: NewCommunicationTemplateChannel;
   category: NewCommunicationTemplateCategory;
-  /** @nullable */
+  /**
+   * @maxLength 200
+   * @nullable
+   */
   subject?: string | null;
   /** @minLength 1 */
   body: string;

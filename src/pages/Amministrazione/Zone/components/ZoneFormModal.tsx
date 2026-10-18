@@ -33,7 +33,7 @@ function ZoneFormModal({ open, onOpenChange, zone }: ZoneFormModalProps) {
       onOpenChange={onOpenChange}
       title={zone ? t('zoneFormModal.editTitle') : t('zoneFormModal.newTitle')}
     >
-      <form id="modal-zone-form" onSubmit={onSubmit} className="grid w-full gap-4 sm:grid-cols-2">
+      <form noValidate id="modal-zone-form" onSubmit={onSubmit} className="grid w-full gap-4 sm:grid-cols-2">
         <FormFieldWrapper
           id="modal-field-name"
           label={t('zoneFormModal.nameLabel')}

@@ -13,7 +13,7 @@ function SchedaDati({ person }: SchedaDatiProps) {
   const { form, isSubmitting, onSubmit } = usePersonForm({ person, onSaved: () => {} })
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4">
+    <form noValidate onSubmit={onSubmit} className="grid gap-4">
       <PersonFormFields form={form} />
 
       <div className="flex justify-end">

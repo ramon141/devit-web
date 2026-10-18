@@ -8,7 +8,10 @@
 
 export interface CalendarEventAttachment {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   description?: string | null;
   calendarEventId: string;
   attachmentId: string;

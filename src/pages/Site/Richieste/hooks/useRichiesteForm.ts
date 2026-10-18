@@ -29,7 +29,7 @@ export function useRichiesteForm() {
   const { t } = useTranslation('site')
   const { promisePopup } = usePromisePopup()
   const { mutateAsync, isPending } = usePublicLeadControllerCreate()
-  // Key do <form>: forçar remontagem no sucesso, pois o reset do RHF não
+  // Key do <form noValidate>: forçar remontagem no sucesso, pois o reset do RHF não
   // limpa visualmente os inputs (ref interna do Field do base-ui prevalece)
   const [formKey, setFormKey] = useState(0)
 

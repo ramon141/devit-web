@@ -22,6 +22,7 @@ export function usePropertyFees(propertyId: string) {
   const [amount, setAmount] = useState<string | undefined>(undefined)
   const [frequency, setFrequency] = useState<NewPropertyFeeFrequency | ''>('')
   const [note, setNote] = useState('')
+  const [missingFields, setMissingFields] = useState(false)
 
   const { data: fees } = usePropertyFeeControllerFind(
     { filter: { where: { propertyId } } },
@@ -38,7 +39,9 @@ export function usePropertyFees(propertyId: string) {
   }
 
   function addFee() {
-    if (!name || !amount || !frequency) return
+    const isIncomplete = !name || !amount || !frequency
+    setMissingFields(isIncomplete)
+    if (isIncomplete) return
 
     const fee = { name, amount: Number(amount), frequency, note: note || null }
 
@@ -87,6 +90,7 @@ export function usePropertyFees(propertyId: string) {
     setFrequency,
     note,
     setNote,
+    missingFields,
     addFee,
     removeFee,
   }

@@ -197,5 +197,8 @@
       "title": "Descadastros",
       "content": "Veja quem solicitou não receber mais comunicações."
     }
+  },
+  "hints": {
+    "whatsappPrefix": "Números sem o prefixo 55 recebem o 55 automaticamente (padrão brasileiro): confira números italianos."
   }
 }

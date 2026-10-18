@@ -6,6 +6,18 @@ import FileUploadList from '@/components/file-upload/FileUploadList'
 
 const DEFAULT_MAX_SIZE_MB = 10
 
+function matchesAccept(file: File, accept: string) {
+  const patterns = accept.split(',').map((pattern) => pattern.trim())
+
+  return patterns.some((pattern) => {
+    if (pattern.endsWith('/*')) {
+      return file.type.startsWith(pattern.slice(0, -1))
+    }
+
+    return file.type === pattern
+  })
+}
+
 export type FileUploadProps = {
   label?: string
   value: File[]
@@ -42,13 +54,23 @@ function FileUpload({
 
     const maxSizeBytes = maxSizeMb * 1024 * 1024
     const selected = Array.from(files)
+
     const oversized = selected.some((file) => file.size > maxSizeBytes)
+    const invalidType = accept
+      ? selected.some((file) => !matchesAccept(file, accept))
+      : false
 
     setSizeError(
-      oversized ? t('fileUpload.maxSizeError', { size: maxSizeMb }) : undefined
+      invalidType
+        ? t('fileUpload.invalidTypeError')
+        : oversized
+          ? t('fileUpload.maxSizeError', { size: maxSizeMb })
+          : undefined
     )
 
-    const valid = selected.filter((file) => file.size <= maxSizeBytes)
+    const valid = selected.filter(
+      (file) => file.size <= maxSizeBytes && (!accept || matchesAccept(file, accept))
+    )
     const first = valid[0]
     if (!first) return
 

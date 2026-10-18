@@ -9,8 +9,17 @@ import type { UserAccessLevel } from './userAccessLevel';
 
 export interface User {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   fullName: string;
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
   email: string;
+  /** @maxLength 255 */
   passwordHash: string;
   accessLevel: UserAccessLevel;
   /** @nullable */

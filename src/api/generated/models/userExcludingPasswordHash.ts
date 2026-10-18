@@ -12,7 +12,15 @@ import type { UserExcludingPasswordHashAccessLevel } from './userExcludingPasswo
  */
 export interface UserExcludingPasswordHash {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   fullName: string;
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
   email: string;
   accessLevel: UserExcludingPasswordHashAccessLevel;
   /** @nullable */

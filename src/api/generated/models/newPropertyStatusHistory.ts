@@ -17,7 +17,10 @@ export interface NewPropertyStatusHistory {
   newStatus: NewPropertyStatusHistoryNewStatus;
   /** @nullable */
   reason?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   source?: string | null;
   /** @nullable */
   occurredAt?: string | null;

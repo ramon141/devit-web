@@ -13,6 +13,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
+import NotFoundState from '@/components/NotFoundState'
 import { usePersonControllerFindById } from '@/api/generated/api'
 import { useSchedaTour, SCHEDA_TAB_BY_STEP } from '@/pages/Clientes/Scheda/hooks/useSchedaTour'
 import { useSchedaTourTabSync } from '@/pages/Clientes/Scheda/hooks/useSchedaTourTabSync'
@@ -28,11 +29,12 @@ function Scheda() {
   const personId = id ?? ''
   // sem `include: address` a API não devolve o endereço, e a
   // aba Dati mostrava os campos de endereço vazios mesmo com dado salvo
-  const { data: person } = usePersonControllerFindById(
+  const { data: person, isLoading, isError } = usePersonControllerFindById(
     personId,
     { filter: { include: ['address'] } },
     { query: { enabled: !!personId } }
   )
+  const notFound = !isLoading && (isError || !person)
   const [activeTab, setActiveTab] = useState('dati')
   const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour } = useSchedaTour()
 
@@ -65,6 +67,14 @@ function Scheda() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+
+      {notFound && (
+        <NotFoundState
+          message={t('scheda.notFound')}
+          backLabel={t('scheda.breadcrumbClients')}
+          backTo="/gestionale/clienti"
+        />
+      )}
 
       {person && (
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as string)}>

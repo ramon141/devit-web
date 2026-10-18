@@ -1,6 +1,7 @@
 import type { UseFormReturn } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { propertyControllerFind } from '@/api/generated/api'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import Stepper from '@/components/Stepper'
 import PropertyGeneralTab from '@/pages/Imoveis/components/PropertyGeneralTab'
@@ -42,11 +43,22 @@ function PropertyFormFields({
 
   // Só valida os campos da etapa atual; o save completo só acontece quando o
   // formulário inteiro está válido (campos obrigatórios vivem em etapas diferentes)
+  async function isCodeTaken() {
+    if (activeTab !== 'generale' || propertyId) return false
+
+    const code = form.getValues('code')
+    const found = await propertyControllerFind({ filter: { where: { code }, fields: { id: true }, limit: 1 } })
+    if (found.length === 0) return false
+
+    form.setError('code', { message: t('generalTab.codeExists') })
+    return true
+  }
+
   async function handleNext(event: FormEvent) {
     event.preventDefault()
 
     const isStepValid = await form.trigger(stepFields[activeTab])
-    if (!isStepValid) return
+    if (!isStepValid || (await isCodeTaken())) return
 
     const isFormComplete = createPropertySchema(t).safeParse(form.getValues()).success
 
@@ -122,6 +134,8 @@ function PropertyFormFields({
             onBack={handleBack}
             onNext={() => navigate('/gestionale/proprieta')}
             isLast
+            finishLabelKey="formFields.close"
+            skipSavedToast
           >
             <PropertyStoricoTab propertyId={propertyId} />
           </PropertyStepFrame>

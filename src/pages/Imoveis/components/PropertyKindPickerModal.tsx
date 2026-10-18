@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
 import { useCategoryKinds, type PropertyCategoryKind } from '@/pages/Imoveis/hooks/useCategoryKinds'
 import { getCategoryKindOptions } from '@/pages/Imoveis/schemas/propertySchema'
@@ -20,12 +20,11 @@ function PropertyKindPickerModal({ open, onOpenChange, onSelect }: PropertyKindP
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{t('kindPicker.title')}</DialogTitle>
-        </DialogHeader>
-
+    <ModalRegister
+      open={open}
+      onOpenChange={onOpenChange}
+      title={t('kindPicker.title')}
+    >
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {getCategoryKindOptions(t).map((option) => {
             const hasCategory = !!categoryIdsByKind[option.value]?.length
@@ -48,8 +47,7 @@ function PropertyKindPickerModal({ open, onOpenChange, onSelect }: PropertyKindP
             )
           })}
         </div>
-      </DialogContent>
-    </Dialog>
+    </ModalRegister>
   )
 }
 

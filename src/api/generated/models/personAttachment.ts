@@ -8,7 +8,10 @@
 
 export interface PersonAttachment {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   description?: string | null;
   personId: string;
   attachmentId: string;

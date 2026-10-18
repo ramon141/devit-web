@@ -12,6 +12,9 @@ import { useQueryClient } from '@tanstack/react-query'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
+const MIN_INDEX_PERCENT = -50
+const MAX_INDEX_PERCENT = 100
+
 export function useRentalAdjustments() {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
@@ -21,7 +24,8 @@ export function useRentalAdjustments() {
 
   const percentValue = Number(indexPercent)
   const hasIndexPercent = indexPercent !== ''
-  const isIndexPercentValid = percentValue > 0 && percentValue <= 100
+  const isIndexPercentValid =
+    percentValue !== 0 && percentValue >= MIN_INDEX_PERCENT && percentValue <= MAX_INDEX_PERCENT
 
   const { data: contracts, isLoading } = useRentalContractControllerFind({
     filter: {

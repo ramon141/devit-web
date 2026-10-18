@@ -12,6 +12,7 @@ type RentalContractTerminationModalProps = {
   onOpenChange: (open: boolean) => void
   contractId?: string
   contractNumber?: string
+  startDate?: string | null
 }
 
 function RentalContractTerminationModal({
@@ -19,10 +20,12 @@ function RentalContractTerminationModal({
   onOpenChange,
   contractId,
   contractNumber,
+  startDate,
 }: RentalContractTerminationModalProps) {
   const { t } = useTranslation('operazioni')
   const { form, isSubmitting, onSubmit } = useTerminateRentalContract({
     contractId,
+    startDate,
     onTerminated: () => onOpenChange(false),
   })
   const { register, control } = form
@@ -34,7 +37,7 @@ function RentalContractTerminationModal({
       onOpenChange={onOpenChange}
       title={`${t('locazioni.terminationModal.title')}${contractNumber ? ` ${contractNumber}` : ''}`}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
+      <form noValidate onSubmit={onSubmit} className="grid gap-4">
         <FormFieldWrapper
           label={t('locazioni.terminationModal.terminationDateLabel')}
           required

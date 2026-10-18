@@ -128,6 +128,7 @@
     "emailInvalid": "E-mail inválido",
     "statusRequired": "Selecione um status",
     "minGreaterThanMax": "O valor mínimo não pode ser maior que o máximo",
+    "negativeValue": "O valor não pode ser negativo",
     "phoneInvalid": "Número de telefone inválido"
   },
   "leadFormFields": {
@@ -189,6 +190,7 @@
   },
   "scheda": {
     "defaultTitle": "Ficha do cliente",
+    "notFound": "Cliente não encontrado.",
     "description": "Cadastro completo do cliente",
     "breadcrumbClients": "Clientes",
     "tabDati": "Dados",
@@ -623,5 +625,8 @@
         "content": "Clique em Salvar para gravar o cliente ou em Cancelar para fechar sem salvar."
       }
     }
+  },
+  "hints": {
+    "leadConverted": "A data de conversão é registrada automaticamente."
   }
 }

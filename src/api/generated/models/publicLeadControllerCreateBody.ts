@@ -9,18 +9,34 @@ import type { PublicLeadControllerCreateBodyRequestType } from './publicLeadCont
 
 export type PublicLeadControllerCreateBody = {
   requestType: PublicLeadControllerCreateBodyRequestType;
+  /** @maxLength 150 */
   name: string;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   email?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   phone?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 5000
+   * @nullable
+   */
   message?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   desiredCity?: string | null;
   /** @nullable */
   maxBudget?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   subject?: string | null;
   /** @nullable */
   propertyId?: string | null;

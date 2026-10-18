@@ -8,6 +8,10 @@
 
 export type NewPropertyOwnersItem = {
   personId: string;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 100
+   * @nullable
+   */
   ownershipPercent?: number | null;
 };

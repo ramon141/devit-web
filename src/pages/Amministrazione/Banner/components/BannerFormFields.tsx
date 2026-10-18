@@ -33,7 +33,7 @@ function BannerFormFields({ banner, bannerForm, onCancel }: BannerFormFieldsProp
   const { errors } = useFormState({ control })
 
   return (
-    <form id="banner-form" onSubmit={onSubmit} className="grid gap-6">
+    <form noValidate id="banner-form" onSubmit={onSubmit} className="grid gap-6">
       <div className="grid items-start gap-4">
         <div id="banner-field-image">
           <FileUpload

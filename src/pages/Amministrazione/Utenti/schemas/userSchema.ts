@@ -1,28 +1,32 @@
 import { z } from 'zod'
+import type { TFunction } from 'i18next'
 import { UserControllerCreateBodyAccessLevel } from '@/api/generated/models'
-import i18n from '@/i18n'
 import { isStrongPassword } from '@/utils/isStrongPassword'
 
-export const accessLevelOptions = [
-  { value: UserControllerCreateBodyAccessLevel.admin, label: i18n.t('amministrazione:userSchema.accessLevelAdmin') },
-  { value: UserControllerCreateBodyAccessLevel.broker, label: i18n.t('amministrazione:userSchema.accessLevelBroker') },
-]
+export function getAccessLevelOptions(t: TFunction<'amministrazione'>) {
+  return [
+    { value: UserControllerCreateBodyAccessLevel.admin, label: t('userSchema.accessLevelAdmin') },
+    { value: UserControllerCreateBodyAccessLevel.broker, label: t('userSchema.accessLevelBroker') },
+  ]
+}
 
-export const userSchema = z.object({
-  fullName: z.string().min(2, i18n.t('amministrazione:userSchema.fullNameMin')),
-  email: z.email(i18n.t('amministrazione:userSchema.emailInvalid')),
-  accessLevel: z.enum(UserControllerCreateBodyAccessLevel, {
-    error: i18n.t('amministrazione:userSchema.accessLevelRequired'),
-  }),
-  branchId: z.string().optional(),
-  active: z.boolean(),
-  password: z
-    .string()
-    .optional()
-    .refine(
-      (value) => !value || isStrongPassword(value),
-      i18n.t('amministrazione:userSchema.passwordMin')
-    ),
-})
+export function createUserSchema(t: TFunction<'amministrazione'>, isNewUser = false) {
+  const strongPassword = (value?: string) => !value || isStrongPassword(value)
+  const requiredPassword = z.string({ error: t('userForm.passwordRequired') }).min(1, t('userForm.passwordRequired'))
+  const password = isNewUser
+    ? requiredPassword.refine(strongPassword, t('userSchema.passwordMin'))
+    : z.string().optional().refine(strongPassword, t('userSchema.passwordMin'))
 
-export type UserFormValues = z.infer<typeof userSchema>
+  return z.object({
+    fullName: z.string().min(2, t('userSchema.fullNameMin')),
+    email: z.email(t('userSchema.emailInvalid')),
+    accessLevel: z.enum(UserControllerCreateBodyAccessLevel, {
+      error: t('userSchema.accessLevelRequired'),
+    }),
+    branchId: z.string().optional(),
+    active: z.boolean(),
+    password,
+  })
+}
+
+export type UserFormValues = z.infer<ReturnType<typeof createUserSchema>>

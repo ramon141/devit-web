@@ -8,8 +8,15 @@
 
 export interface HomeBanner {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
   title: string;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   subtitle?: string | null;
   /**
    * @nullable
@@ -18,6 +25,7 @@ export interface HomeBanner {
   targetLink?: string | null;
   /**
    * @minimum 0
+   * @maximum 32767
    * @nullable
    */
   displayOrder?: number | null;

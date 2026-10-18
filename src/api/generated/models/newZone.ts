@@ -10,9 +10,20 @@
  * (tsType: Omit<Zone, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewZone', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewZone {
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name: string;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   city: string;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   region?: string | null;
   /** @nullable */
   active?: boolean | null;

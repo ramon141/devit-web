@@ -19,7 +19,7 @@
   },
   "communicationsSummary": {
     "title": "Riepilogo comunicazioni",
-    "description": "Totali per canale negli ultimi 30 giorni: consegnati, cliccati, letti, falliti"
+    "description": "Totali per canale negli ultimi {{days}} giorni: consegnati, cliccati, letti, falliti"
   },
   "tour": {
     "title": { "title": "Statistiche", "content": "Qui monitori i principali indicatori dell'agenzia." },

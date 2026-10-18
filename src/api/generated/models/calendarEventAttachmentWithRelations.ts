@@ -13,7 +13,10 @@ import type { Attachment } from './attachment';
  */
 export interface CalendarEventAttachmentWithRelations {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   description?: string | null;
   calendarEventId: string;
   attachmentId: string;

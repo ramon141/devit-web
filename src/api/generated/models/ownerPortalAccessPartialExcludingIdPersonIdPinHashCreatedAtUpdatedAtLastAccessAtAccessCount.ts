@@ -10,6 +10,10 @@
  * (tsType: Omit<Partial<OwnerPortalAccess>, 'id' | 'personId' | 'pinHash' | 'createdAt' | 'updatedAt' | 'lastAccessAt' | 'accessCount'>, schemaOptions: { partial: true, exclude: [ 'id', 'personId', 'pinHash', 'createdAt', 'updatedAt', 'lastAccessAt', 'accessCount' ] })
  */
 export interface OwnerPortalAccessPartialExcludingIdPersonIdPinHashCreatedAtUpdatedAtLastAccessAtAccessCount {
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   email?: string;
   /** @nullable */
   active?: boolean | null;

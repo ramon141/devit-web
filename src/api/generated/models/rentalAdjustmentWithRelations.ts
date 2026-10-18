@@ -13,8 +13,20 @@ import type { RentalContract } from './rentalContract';
 export interface RentalAdjustmentWithRelations {
   id?: string;
   effectiveDate: string;
+  /**
+   * @minimum -100
+   * @maximum 1000
+   */
   indexPercent: number;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   */
   oldAmount: number;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   */
   newAmount: number;
   createdAt: string;
   updatedAt: string;

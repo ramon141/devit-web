@@ -10,5 +10,11 @@
   "error_message_invalid_credentials": "Email ou PIN inválidos.",
   "error_message_entity_not_found": "Item não encontrado.",
   "error_message_validation_failed": "Dados da requisição inválidos.",
-  "error_message_unauthorized": "Acesso não autorizado."
+  "error_message_unauthorized": "Acesso não autorizado.",
+  "error_message_sale_duplicate_number": "Já existe uma venda com este número.",
+  "error_message_sale_already_sold": "Já existe uma venda concluída para este imóvel.",
+  "error_message_renewal_dates_order": "A nova data de término deve ser posterior à anterior.",
+  "error_message_file_content_mismatch": "O conteúdo do arquivo não corresponde ao tipo declarado.",
+  "error_message_endpoint_not_found": "Endpoint não encontrado.",
+  "error_message_invalid_parameter": "Parâmetro da requisição inválido."
 }

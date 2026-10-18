@@ -37,7 +37,7 @@ const emptyValues: IndustrialFormValues = {
   allowedActivities: '',
 }
 
-export function usePropertyIndustrialForm(propertyId: string) {
+export function usePropertyIndustrialForm(propertyId: string, onSaved?: () => void) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -89,6 +89,8 @@ export function usePropertyIndustrialForm(propertyId: string) {
           queryClient.invalidateQueries({ queryKey: getPropertyIndustrialDetailControllerFindQueryKey() })
           return created
         })
+
+    promise.then(() => onSaved?.(), () => undefined)
 
     promisePopup(promise, {
       pending: t('toasts.industrialForm.pending'),

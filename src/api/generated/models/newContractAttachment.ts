@@ -10,9 +10,15 @@
  * (tsType: Omit<ContractAttachment, 'id'>, schemaOptions: { title: 'NewContractAttachment', exclude: [ 'id' ] })
  */
 export interface NewContractAttachment {
-  /** @nullable */
+  /**
+   * @maxLength 50
+   * @nullable
+   */
   type?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   description?: string | null;
   contractId: string;
   attachmentId: string;

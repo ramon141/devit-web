@@ -18,30 +18,79 @@ export interface NewLead {
   purpose?: NewLeadPurpose;
   /** @nullable */
   expiresAt?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   minBudget?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   minAreaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   maxAreaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   minRooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   maxRooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   minBedrooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   maxBedrooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   minBathrooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   maxBathrooms?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   externalId?: string | null;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   name: string;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   phone?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   email?: string | null;
   /** @nullable */
   firstContactAt?: string | null;
@@ -49,7 +98,11 @@ export interface NewLead {
   status?: NewLeadStatus;
   /** @nullable */
   source?: NewLeadSource;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 2147483647
+   * @nullable
+   */
   kanbanPosition?: number | null;
   /** @nullable */
   convertedAt?: string | null;
@@ -59,11 +112,21 @@ export interface NewLead {
   notes?: string | null;
   /** @nullable */
   requestType?: NewLeadRequestType;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   desiredCity?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   maxBudget?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 200
+   * @nullable
+   */
   subject?: string | null;
   /** @nullable */
   syncedAt?: string | null;

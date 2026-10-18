@@ -10,13 +10,26 @@
  * (tsType: Omit<PropertyAdditionalDetail, 'id'>, schemaOptions: { title: 'NewPropertyAdditionalDetail', exclude: [ 'id' ] })
  */
 export interface NewPropertyAdditionalDetail {
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   roomsCount?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   quality?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   habitability?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   windowFrames?: string | null;
   propertyId: string;
 }

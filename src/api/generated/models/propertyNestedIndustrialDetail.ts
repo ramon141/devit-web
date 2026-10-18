@@ -10,19 +10,39 @@
  * Dados industriais do imóvel
  */
 export interface PropertyNestedIndustrialDetail {
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 9999
+   * @nullable
+   */
   heightM?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 9999
+   * @nullable
+   */
   heightUnderBeamM?: number | null;
   /** @nullable */
   hasOverheadCrane?: boolean | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   floorsCount?: number | null;
   /** @nullable */
   hasAlarm?: boolean | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   entrancesCount?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   loadingBaysCount?: number | null;
   /** @nullable */
   allowedActivities?: string | null;

@@ -11,7 +11,10 @@
  */
 export interface PurchaseProposalAttachmentPartialExcludingCreatedAtUpdatedAt {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 160
+   * @nullable
+   */
   label?: string | null;
   proposalId?: string;
   attachmentId?: string;

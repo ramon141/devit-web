@@ -15,6 +15,10 @@ import type { NewCalendarEventParticipantsItem } from './newCalendarEventPartici
 import type { NewCalendarEventOutcomesItem } from './newCalendarEventOutcomesItem';
 
 export interface NewCalendarEvent {
+  /**
+   * @minLength 1
+   * @maxLength 200
+   */
   title: string;
   type: NewCalendarEventType;
   /** @nullable */
@@ -25,15 +29,24 @@ export interface NewCalendarEvent {
   allDay?: boolean | null;
   /** @nullable */
   occurred?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   place?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   backgroundColor?: string | null;
   /** @nullable */
   confirmationStatus?: NewCalendarEventConfirmationStatus;
   /** @nullable */
   private?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   keysLocation?: string | null;
   /** @nullable */
   recurrence?: NewCalendarEventRecurrence;

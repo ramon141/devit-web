@@ -128,6 +128,7 @@
     "emailInvalid": "E-mail non valida",
     "statusRequired": "Seleziona uno stato",
     "minGreaterThanMax": "Il valore minimo non può essere maggiore del massimo",
+    "negativeValue": "Il valore non può essere negativo",
     "phoneInvalid": "Numero di telefono non valido"
   },
   "leadFormFields": {
@@ -189,6 +190,7 @@
   },
   "scheda": {
     "defaultTitle": "Scheda cliente",
+    "notFound": "Cliente non trovato.",
     "description": "Anagrafica completa del cliente",
     "breadcrumbClients": "Clienti",
     "tabDati": "Dati",
@@ -623,5 +625,8 @@
         "content": "Clicca su Salva per registrare il cliente o su Annulla per chiudere senza salvare."
       }
     }
+  },
+  "hints": {
+    "leadConverted": "La data di conversione viene registrata automaticamente."
   }
 }

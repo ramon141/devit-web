@@ -17,17 +17,31 @@ import type { PropertyNestedDetailFurnished } from './propertyNestedDetailFurnis
 export interface PropertyNestedDetail {
   /** @nullable */
   acquisitionDate?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   listingStage?: string | null;
   /** @nullable */
   rating?: PropertyNestedDetailRating;
   /** @nullable */
   mediationType?: PropertyNestedDetailMediationType;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 100
+   * @nullable
+   */
   mediationFeeClientPct?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 100
+   * @nullable
+   */
   mediationFeeOwnerPct?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 80
+   * @nullable
+   */
   subtype?: string | null;
   /** @nullable */
   bareOwnership?: boolean | null;
@@ -43,7 +57,11 @@ export interface PropertyNestedDetail {
   internalNote?: string | null;
   /** @nullable */
   sharedNote?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   estimatedValue?: number | null;
   /** @nullable */
   negotiable?: boolean | null;
@@ -61,7 +79,10 @@ export interface PropertyNestedDetail {
   condition?: PropertyNestedDetailCondition;
   /** @nullable */
   furnished?: PropertyNestedDetailFurnished;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   exposure?: string | null;
   /** @nullable */
   agentId?: string | null;

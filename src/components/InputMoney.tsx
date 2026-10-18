@@ -27,6 +27,16 @@ function formatCents(digits: string) {
   return centsFormatter.format(numeric)
 }
 
+// O valor chega como número decimal ("150000" ou "1500.50"); converte para centavos
+function toCentsDigits(value: string | undefined) {
+  if (!value) return ''
+
+  const parsed = Number(value)
+  if (!Number.isFinite(parsed)) return value.replace(/\D/g, '')
+
+  return String(Math.round(parsed * 100))
+}
+
 function InputMoney({
   value,
   setValue,
@@ -38,7 +48,7 @@ function InputMoney({
   placeholder = '0,00',
 }: InputMoneyProps) {
   const inputId = useId()
-  const digits = value ? value.replace(/\D/g, '') : ''
+  const digits = toCentsDigits(value)
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const nextDigits = event.target.value.replace(/\D/g, '')

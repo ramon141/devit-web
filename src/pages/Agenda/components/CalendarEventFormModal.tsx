@@ -42,7 +42,7 @@ function CalendarEventFormModal({
       onOpenChange={onOpenChange}
       title={event?.id ? t('agenda:formModal.editTitle') : t('agenda:formModal.createTitle')}
     >
-      <form id="modal-agenda-form" onSubmit={onSubmit} className="grid gap-4">
+      <form noValidate id="modal-agenda-form" onSubmit={onSubmit} className="grid gap-4">
         <CalendarEventFormFields form={form} />
 
         {event?.id ? (

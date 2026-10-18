@@ -8,6 +8,7 @@ import type { UseFormReturn } from 'react-hook-form'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 const CODE_LENGTH = 6
+const NUMERIC_CODE = /^\d{1,9}$/
 
 type PropertyCodeFieldProps = {
   form: UseFormReturn<PropertyFormValues>
@@ -22,19 +23,15 @@ function PropertyCodeField({ form }: PropertyCodeFieldProps) {
     setIsGenerating(true)
 
     try {
-      // `order: ['code DESC']` ordena como texto ("T1" > "R-…" > "000002"),
-      // então o maior código numérico real nunca aparecia no topo e o
-      // gerador sempre devolvia "000002" (repetindo um código já usado).
-      // Busca só o campo `code` de todos os imóveis e calcula o maior
-      // número no cliente.
+      // Considera só códigos puramente numéricos (até 9 dígitos), para o próximo número não perder precisão
       const properties = await propertyControllerFind({
         filter: { fields: { code: true }, limit: 20000 },
       })
 
       const lastNumber = properties.reduce((max, property) => {
-        const digits = property.code?.replace(/\D/g, '') ?? ''
-        if (!digits) return max
-        return Math.max(max, Number(digits))
+        const code = property.code ?? ''
+        if (!NUMERIC_CODE.test(code)) return max
+        return Math.max(max, Number(code))
       }, 0)
       const next = String(lastNumber + 1).padStart(CODE_LENGTH, '0')
 

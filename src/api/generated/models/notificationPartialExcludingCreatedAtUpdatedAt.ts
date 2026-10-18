@@ -14,10 +14,17 @@ import type { NotificationPartialExcludingCreatedAtUpdatedAtData } from './notif
 export interface NotificationPartialExcludingCreatedAtUpdatedAt {
   id?: string;
   type?: NotificationPartialExcludingCreatedAtUpdatedAtType;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   title?: string;
   /** @nullable */
   message?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   entityType?: string | null;
   /** @nullable */
   entityId?: string | null;

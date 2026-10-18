@@ -42,6 +42,7 @@ function RentalTableModals({
         onOpenChange={(open) => !open && onRenewTargetChange(null)}
         contractId={renewTarget?.id}
         contractNumber={renewTarget?.number}
+        currentEndDate={renewTarget?.endDate}
       />
 
       <RentalContractTerminationModal
@@ -49,6 +50,7 @@ function RentalTableModals({
         onOpenChange={(open) => !open && onTerminateTargetChange(null)}
         contractId={terminateTarget?.id}
         contractNumber={terminateTarget?.number}
+        startDate={terminateTarget?.startDate}
       />
     </>
   )

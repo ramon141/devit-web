@@ -1,4 +1,5 @@
-import { Controller, type Control, type FieldErrors, useWatch } from 'react-hook-form'
+import { useEffect } from 'react'
+import { Controller, type Control, type FieldErrors, useController, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -6,6 +7,7 @@ import SelectField from '@/components/SelectField'
 import MultiSelectField from '@/components/MultiSelectField'
 import {
   usePersonControllerFind,
+  usePropertyControllerFindById,
   usePurchaseProposalControllerFind,
   useUserControllerFind,
 } from '@/api/generated/api'
@@ -23,6 +25,17 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
   const propertyId = useWatch({ control, name: 'propertyId' })
   const sellerId = useWatch({ control, name: 'sellerId' })
   const buyerId = useWatch({ control, name: 'buyerId' })
+  const { field: sellerField } = useController({ control, name: 'sellerId' })
+  const { data: selectedProperty } = usePropertyControllerFindById(propertyId, undefined, {
+    query: { enabled: !!propertyId },
+  })
+  const propertyOwnerId = selectedProperty?.ownerId
+
+  // Ao escolher o imóvel, o proprietário dele já vem como vendedor se o campo estiver vazio
+  useEffect(() => {
+    if (propertyOwnerId && !sellerId) sellerField.onChange(propertyOwnerId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [propertyOwnerId])
 
   const {
     options: propertyOptions,
@@ -69,6 +82,7 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
           render={({ field }) => (
             <SearchableSelect
               label={t('vendite.partiesFields.propertyLabel')}
+              required
               value={field.value}
               onValueChange={field.onChange}
               options={propertyOptions}
@@ -89,6 +103,7 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
           render={({ field }) => (
             <SearchableSelect
               label={t('vendite.partiesFields.sellerLabel')}
+              required
               value={field.value}
               onValueChange={field.onChange}
               options={sellerOptions}
@@ -109,6 +124,7 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
           render={({ field }) => (
             <SearchableSelect
               label={t('vendite.partiesFields.buyerLabel')}
+              required
               value={field.value}
               onValueChange={field.onChange}
               options={buyerOptions}

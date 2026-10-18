@@ -7,13 +7,24 @@
  */
 
 export type ChatbotLeadControllerUpsertBody = {
+  /** @maxLength 120 */
   externalId: string;
+  /** @maxLength 150 */
   name: string;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   phone?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   email?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 5000
+   * @nullable
+   */
   notes?: string | null;
   /** @nullable */
   desiredCity?: string | null;

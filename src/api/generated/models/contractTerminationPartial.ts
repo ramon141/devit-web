@@ -14,9 +14,16 @@ export interface ContractTerminationPartial {
   terminationDate?: string;
   /** @nullable */
   reason?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   penaltyAmount?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 20
+   * @nullable
+   */
   requestedBy?: string | null;
   contractId?: string;
   /** @nullable */

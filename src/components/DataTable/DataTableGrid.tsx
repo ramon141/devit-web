@@ -40,7 +40,13 @@ function DataTableGridRow<TRow>({
     >
       {columns.map((column, index) => (
         <TableCell key={index} className={column.cellClassName}>
-          {column.cell(row)}
+          {column.isActions ? (
+            column.cell(row)
+          ) : (
+            <div className="max-w-[320px] overflow-hidden truncate">
+              {column.cell(row)}
+            </div>
+          )}
         </TableCell>
       ))}
     </TableRow>

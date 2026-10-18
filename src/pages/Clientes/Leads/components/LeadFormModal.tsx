@@ -25,7 +25,7 @@ function LeadFormModal({ open, onOpenChange, lead }: LeadFormModalProps) {
       onOpenChange={onOpenChange}
       title={lead ? t('leadFormModal.editTitle') : t('leadFormModal.newTitle')}
     >
-      <form id="modal-leads-form" onSubmit={onSubmit} className="grid gap-4">
+      <form noValidate id="modal-leads-form" onSubmit={onSubmit} className="grid gap-4">
         <LeadFormFields form={form} />
 
         <div id="modal-leads-criteria" className="grid gap-4 border-t pt-4">

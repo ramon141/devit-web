@@ -13,9 +13,17 @@ import type { PropertyIndustrialAreaPartialAreaType } from './propertyIndustrial
 export interface PropertyIndustrialAreaPartial {
   id?: string;
   areaType?: PropertyIndustrialAreaPartialAreaType;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   areaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 9999
+   * @nullable
+   */
   heightM?: number | null;
   propertyId?: string;
 }

@@ -112,6 +112,7 @@
     "useInChatbot": "Usa nel ChatBot WhatsApp"
   },
   "generalTab": {
+    "codeExists": "Esiste già un immobile con questo codice.",
     "codeLabel": "Codice",
     "codePlaceholder": "AP001",
     "generateCode": "Genera codice",
@@ -152,6 +153,7 @@
     "back": "Indietro",
     "next": "Avanti",
     "finish": "Salva",
+    "close": "Chiudi",
     "saved": "Dati salvati con successo!",
     "steps": {
       "general": "Generale",
@@ -172,6 +174,7 @@
     "pageTitle": "Nuovo immobile",
     "pageDescription": "Gestisci tutti i dati dell'immobile",
     "breadcrumbList": "Proprietà",
+    "notFound": "Immobile non trovato.",
     "commercialActivityFields": {
       "scopeLabel": "Ambito",
       "scopePlaceholder": "Nessuno",
@@ -289,6 +292,7 @@
       "save": "Salva dettagli"
     },
     "feesManager": {
+      "missingFields": "Compila nome, importo e frequenza.",
       "title": "Tasse e spese",
       "namePlaceholder": "Nome tassa",
       "frequencyPlaceholder": "Frequenza",
@@ -325,6 +329,8 @@
     },
     "locationDetailSection": {
       "title": "Dettagli aggiuntivi",
+      "publicLatitudeLabel": "Latitudine pubblica (mappa del sito)",
+      "publicLongitudeLabel": "Longitudine pubblica (mappa del sito)",
       "latitudeLabel": "Latitudine",
       "longitudeLabel": "Longitudine",
       "positionLabel": "Posizione",
@@ -538,7 +544,11 @@
       "status": "Seleziona uno stato",
       "city": "Inserisci la città",
       "postalCode": "Il CAP deve contenere solo numeri (4-10 cifre)",
-      "nonNegativeNumber": "Inserisci un numero maggiore o uguale a zero"
+      "maxCount": "Il valore massimo è {{max}}",
+      "nonNegativeNumber": "Inserisci un numero maggiore o uguale a zero",
+      "maxSmallint": "Il valore massimo consentito è 32767",
+      "percentRange": "Inserisci un valore tra 0 e 100",
+      "minMaxRange": "Il valore minimo non può essere maggiore del massimo"
     },
     "feeFrequency": {
       "once": "Una tantum",
@@ -888,5 +898,9 @@
         "content": "Qui registri e modifichi tutti i dati dell'immobile, organizzati in schede."
       }
     }
+  },
+  "hints": {
+    "chatbotHidden": "Con questo stato l'immobile non comparirà più nel chatbot finché non tornerà «disponibile».",
+    "siteStillVisible": "Resta visibile sul sito finché è pubblicato."
   }
 }

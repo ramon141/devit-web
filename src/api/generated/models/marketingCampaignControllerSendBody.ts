@@ -9,14 +9,28 @@ import type { MarketingCampaignControllerSendBodyChannel } from './marketingCamp
 
 export type MarketingCampaignControllerSendBody = {
   channel: MarketingCampaignControllerSendBodyChannel;
+  /** @maxItems 5000 */
   personIds: string[];
-  /** @nullable */
+  /**
+   * @maxItems 5000
+   * @nullable
+   */
   leadIds?: string[] | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   subject?: string | null;
+  /**
+   * @minLength 1
+   * @maxLength 100000
+   */
   content: string;
   /** @nullable */
   propertyId?: string | null;
-  /** @nullable */
+  /**
+   * @maxItems 50
+   * @nullable
+   */
   propertyIds?: string[] | null;
 };

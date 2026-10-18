@@ -8,7 +8,10 @@
 
 export interface PurchaseProposalAttachment {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 160
+   * @nullable
+   */
   label?: string | null;
   createdAt: string;
   updatedAt: string;

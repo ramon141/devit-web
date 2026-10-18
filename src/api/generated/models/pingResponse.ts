@@ -5,11 +5,9 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PingResponseHeaders } from './pingResponseHeaders';
 
 export interface PingResponse {
   greeting?: string;
   date?: string;
   url?: string;
-  headers?: PingResponseHeaders;
 }

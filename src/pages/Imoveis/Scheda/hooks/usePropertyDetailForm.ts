@@ -65,7 +65,7 @@ const emptyValues: DettagliFormValues = {
   sharedNote: '',
 }
 
-export function usePropertyDetailForm(propertyId: string) {
+export function usePropertyDetailForm(propertyId: string, onSaved?: () => void) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -105,7 +105,20 @@ export function usePropertyDetailForm(propertyId: string) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [existing])
 
+  function validatePercent(field: 'mediationFeeClientPct' | 'mediationFeeOwnerPct', value: string) {
+    if (!value) return true
+    const parsed = Number(value)
+    if (Number.isFinite(parsed) && parsed >= 0 && parsed <= 100) return true
+
+    form.setError(field, { message: t('options.validation.percentRange') })
+    return false
+  }
+
   function onSubmit(values: DettagliFormValues) {
+    const clientPctValid = validatePercent('mediationFeeClientPct', values.mediationFeeClientPct)
+    const ownerPctValid = validatePercent('mediationFeeOwnerPct', values.mediationFeeOwnerPct)
+    if (!clientPctValid || !ownerPctValid) return
+
     const cleaned = emptyStringsToNull(values)
     const data = {
       ...cleaned,
@@ -128,6 +141,8 @@ export function usePropertyDetailForm(propertyId: string) {
           queryClient.invalidateQueries({ queryKey: getPropertyDetailControllerFindQueryKey() })
           return created
         })
+
+    promise.then(() => onSaved?.(), () => undefined)
 
     promisePopup(promise, {
       pending: t('toasts.detailForm.pending'),

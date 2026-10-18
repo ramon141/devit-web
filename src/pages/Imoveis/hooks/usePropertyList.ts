@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { usePropertyControllerCount, usePropertyControllerFind } from '@/api/generated/api'
-import type { PropertyWithRelations } from '@/api/generated/models'
+import type { PropertyControllerFindParams, PropertyWithRelations } from '@/api/generated/models'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import { PAGE_SIZE } from '@/constants/pagination'
+
+const MAP_LIMIT = 300
 import { UserInfo } from '@/auth'
 import { useCategoryKinds, type PropertyCategoryKind } from '@/pages/Imoveis/hooks/useCategoryKinds'
 import { toLikePattern } from '@/utils/toLikePattern'
@@ -181,9 +183,15 @@ export function usePropertyList() {
     setPage(1)
   }
 
+  const mapParams: PropertyControllerFindParams = {
+    filter: { where, include: [{ relation: 'propertyDetail' }], order: buildOrder(filters), limit: MAP_LIMIT },
+    ...extraFilters,
+  }
+
   return {
     properties,
     where,
+    mapParams,
     isLoading,
     totalItems: countResult?.count ?? 0,
     pageSize: PAGE_SIZE,

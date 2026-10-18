@@ -12,6 +12,7 @@ type PartyListManagerProps = {
   onChange: (ids: string[]) => void
   placeholder?: string
   addLabel?: string
+  required?: boolean
 }
 
 // Gerenciador de lista de pessoas (proprietari/inquilini/acquirenti plurais) —
@@ -23,6 +24,7 @@ function PartyListManager({
   onChange,
   placeholder,
   addLabel = '+',
+  required = false,
 }: PartyListManagerProps) {
   const ids = personIds.length > 0 ? personIds : ['']
 
@@ -39,7 +41,7 @@ function PartyListManager({
 
   return (
     <div className="grid gap-2 sm:col-span-2">
-      <FormFieldWrapper label={label}>
+      <FormFieldWrapper label={label} required={required}>
         <div className="grid gap-2">
           {ids.map((id, index) => (
             <div key={index} className="flex items-center gap-2">

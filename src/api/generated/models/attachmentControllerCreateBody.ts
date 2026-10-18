@@ -7,12 +7,21 @@
  */
 
 export type AttachmentControllerCreateBody = {
-  /** Nome original do arquivo */
+  /**
+   * Nome original do arquivo
+   * @maxLength 200
+   */
   originalName: string;
   /** Ex: image/png, application/pdf */
   mimeType: string;
-  /** Conteúdo do arquivo em base64 */
+  /**
+   * Conteúdo do arquivo em base64
+   * @maxLength 30000000
+   */
   bodyBase64: string;
-  /** Pasta de destino no bucket (padrão: attachments) */
+  /**
+   * Pasta de destino no bucket (padrão: attachments)
+   * @maxLength 100
+   */
   folder?: string;
 };

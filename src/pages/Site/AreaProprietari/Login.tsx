@@ -41,7 +41,7 @@ function AreaProprietariLogin() {
         <h1 className="text-2xl font-bold">{t('areaProprietari.login.title')}</h1>
         <p className="mt-2 text-muted-foreground">{t('areaProprietari.login.intro')}</p>
 
-        <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4 rounded-xl bg-card p-6 shadow-sm">
+        <form noValidate onSubmit={onSubmit} className="mt-8 flex flex-col gap-4 rounded-xl bg-card p-6 shadow-sm">
           <div>
             <Label htmlFor="owner-email">{t('areaProprietari.login.emailLabel')}</Label>
             <Input

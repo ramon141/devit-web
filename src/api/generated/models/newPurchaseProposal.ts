@@ -11,12 +11,24 @@ import type { NewPurchaseProposalBuyersItem } from './newPurchaseProposalBuyersI
 import type { NewPurchaseProposalAttachmentsItem } from './newPurchaseProposalAttachmentsItem';
 
 export interface NewPurchaseProposal {
+  /**
+   * @minLength 1
+   * @maxLength 20
+   */
   number: string;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   */
   proposalAmount: number;
   paymentMethod: NewPurchaseProposalPaymentMethod;
   /** @nullable */
   status?: NewPurchaseProposalStatus;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 2147483647
+   * @nullable
+   */
   funnelPosition?: number | null;
   /** @nullable */
   financed?: boolean | null;

@@ -107,8 +107,7 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
   const form = useForm<PropertyFormValues>({
     resolver: zodResolver(createPropertySchema(t)),
     defaultValues: { ...emptyValues, categoryId: initialCategoryId ?? emptyValues.categoryId },
-    // sem isso a mensagem de erro ficava na tela mesmo depois do campo
-    // corrigido, só sumindo no próximo clique em "Avanti"
+    mode: 'onChange',
     reValidateMode: 'onChange',
   })
 

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import SectionPage from '@/components/layout/SectionPage'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
+import NotFoundState from '@/components/NotFoundState'
 import { useHomeBannerControllerFindById } from '@/api/generated/api'
 import { useBannerForm } from '@/pages/Amministrazione/Banner/hooks/useBannerForm'
 import { useBannerSchedaTour } from '@/pages/Amministrazione/Banner/hooks/useBannerSchedaTour'
@@ -17,11 +18,12 @@ function BannerScheda() {
   const navigate = useNavigate()
   const isNew = !id
 
-  const { data: banner } = useHomeBannerControllerFindById(
+  const { data: banner, isLoading, isError } = useHomeBannerControllerFindById(
     id ?? '',
     { filter: { include: [{ relation: 'attachment' }, { relation: 'mobileAttachment' }] } },
     { query: { enabled: !isNew } }
   )
+  const notFound = !isNew && !isLoading && (isError || !banner)
 
   const bannerForm = useBannerForm({
     banner,
@@ -45,26 +47,34 @@ function BannerScheda() {
       />
       <TourFab onClick={startTour} />
 
-      <div className="grid items-start gap-6 lg:grid-cols-2">
-        <div className="rounded-xl border bg-white p-6">
-          <BannerFormFields
-            banner={banner}
-            bannerForm={bannerForm}
-            onCancel={() => navigate(LIST_PATH)}
-          />
-        </div>
+      {notFound ? (
+        <NotFoundState
+          message={t('bannerPage.notFound')}
+          backLabel={t('bannerPage.title')}
+          backTo={LIST_PATH}
+        />
+      ) : (
+        <div className="grid items-start gap-6 lg:grid-cols-2">
+          <div className="rounded-xl border bg-white p-6">
+            <BannerFormFields
+              banner={banner}
+              bannerForm={bannerForm}
+              onCancel={() => navigate(LIST_PATH)}
+            />
+          </div>
 
-        <div className="rounded-xl border bg-white p-6">
-          <BannerPreviewPanel
-            title={bannerForm.form.watch('title')}
-            subtitle={bannerForm.form.watch('subtitle')}
-            desktopFile={bannerForm.imageFiles[0]}
-            mobileFile={bannerForm.mobileImageFiles[0]}
-            desktopUrl={banner?.attachment?.url}
-            mobileUrl={banner?.mobileAttachment?.url}
-          />
+          <div className="rounded-xl border bg-white p-6">
+            <BannerPreviewPanel
+              title={bannerForm.form.watch('title')}
+              subtitle={bannerForm.form.watch('subtitle')}
+              desktopFile={bannerForm.imageFiles[0]}
+              mobileFile={bannerForm.mobileImageFiles[0]}
+              desktopUrl={banner?.attachment?.url}
+              mobileUrl={banner?.mobileAttachment?.url}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </SectionPage>
   )
 }

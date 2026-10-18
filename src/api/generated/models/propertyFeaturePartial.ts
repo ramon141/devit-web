@@ -13,6 +13,7 @@ import type { PropertyFeaturePartialCategory } from './propertyFeaturePartialCat
 export interface PropertyFeaturePartial {
   id?: string;
   category?: PropertyFeaturePartialCategory;
+  /** @maxLength 80 */
   featureKey?: string;
   propertyId?: string;
 }

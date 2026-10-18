@@ -12,7 +12,15 @@ import type { UserPartialExcludingPasswordHashCreatedAtUpdatedAtAccessLevel } fr
  */
 export interface UserPartialExcludingPasswordHashCreatedAtUpdatedAt {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   fullName?: string;
+  /**
+   * @minLength 1
+   * @maxLength 255
+   */
   email?: string;
   accessLevel?: UserPartialExcludingPasswordHashCreatedAtUpdatedAtAccessLevel;
   /** @nullable */

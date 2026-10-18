@@ -24,7 +24,11 @@ function PropertyIndustrialAreasManager({ propertyId }: PropertyIndustrialAreasM
 
       <div className="grid gap-2">
         {areas.map((area) => (
-          <RemovableRow key={area.id} onRemove={() => area.id && removeArea(area.id)}>
+          <RemovableRow
+            key={area.id}
+            confirmName={getOptionLabel(industrialAreaTypeOptions, area.areaType)}
+            onRemove={() => area.id && removeArea(area.id)}
+          >
             <span className="text-sm">
               {getOptionLabel(industrialAreaTypeOptions, area.areaType)}
               {area.areaSqm != null && ` · ${area.areaSqm} m²`}

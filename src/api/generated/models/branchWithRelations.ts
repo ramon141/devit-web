@@ -12,14 +12,32 @@ import type { Address } from './address';
  */
 export interface BranchWithRelations {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   name: string;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   phone?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   email?: string | null;
-  /** @nullable */
+  /**
+   * @minimum -90
+   * @maximum 90
+   * @nullable
+   */
   latitude?: number | null;
-  /** @nullable */
+  /**
+   * @minimum -180
+   * @maximum 180
+   * @nullable
+   */
   longitude?: number | null;
   /** @nullable */
   active?: boolean | null;

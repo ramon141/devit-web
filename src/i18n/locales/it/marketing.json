@@ -197,5 +197,8 @@
       "title": "Rimozioni",
       "content": "Vedi chi ha richiesto di non ricevere più comunicazioni."
     }
+  },
+  "hints": {
+    "whatsappPrefix": "I numeri senza prefisso 55 ricevono il 55 in automatico (standard brasiliano): verifica i numeri italiani."
   }
 }

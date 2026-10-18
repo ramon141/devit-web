@@ -14,10 +14,17 @@ import type { User } from './user';
  */
 export interface CommunicationTemplateWithRelations {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name: string;
   channel: CommunicationTemplateWithRelationsChannel;
   category: CommunicationTemplateWithRelationsCategory;
-  /** @nullable */
+  /**
+   * @maxLength 200
+   * @nullable
+   */
   subject?: string | null;
   /** @minLength 1 */
   body: string;

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DownloadIcon, Trash2Icon } from 'lucide-react'
+import { DownloadIcon } from 'lucide-react'
+import ConfirmDeleteButton from '@/components/ConfirmDeleteButton'
 import { Button } from '@/components/ui/button'
 import FileUpload from '@/components/FileUpload'
 import { formatDate } from '@/utils/formatDate'
@@ -52,9 +53,10 @@ function PropertyDocumentiTab({ propertyId }: PropertyDocumentiTabProps) {
                   <DownloadIcon className="size-4" />
                 </Button>
               )}
-              <Button variant="ghost" size="icon-sm" onClick={() => doc.id && removeDocument(doc.id)}>
-                <Trash2Icon className="size-4 text-destructive" />
-              </Button>
+              <ConfirmDeleteButton
+                name={doc.label ?? doc.attachment?.originalName ?? ''}
+                onConfirm={() => doc.id && removeDocument(doc.id)}
+              />
             </div>
           </div>
         ))}

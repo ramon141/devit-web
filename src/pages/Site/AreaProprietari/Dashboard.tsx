@@ -68,7 +68,7 @@ function AreaProprietariDashboard() {
 
               <div className="flex items-center gap-3">
                 <span className="font-medium">
-                  {formatAmount(property.salePrice ?? property.rentPrice ?? 0)}
+                  {formatAmount(property.salePrice ?? property.rentPrice)}
                 </span>
                 <Badge variant="secondary">{getOptionLabel(statusOptions, property.status)}</Badge>
               </div>

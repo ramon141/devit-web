@@ -11,6 +11,8 @@ import SalePaymentStepFields from '@/pages/Operazioni/Vendite/components/SalePay
 import SaleDocumentsManager from '@/pages/Operazioni/Vendite/components/SaleDocumentsManager'
 import SaleStatusHistoryTab from '@/pages/Operazioni/Vendite/components/SaleStatusHistoryTab'
 
+const PAYMENT_FIELDS = ['status', 'deedDate', 'finalAmount', 'commissionAmount', 'installmentsCount', 'cancellationReason', 'notes']
+
 type SaleFormModalProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -20,11 +22,23 @@ type SaleFormModalProps = {
 
 function SaleFormModal({ open, onOpenChange, sale, tourActiveTab }: SaleFormModalProps) {
   const { t } = useTranslation('operazioni')
-  const { form, isSubmitting, onSubmit } = useSaleForm({ open,
+  const [activeStep, setActiveStep] = useState('generale')
+  const { form, isSubmitting, onSubmit } = useSaleForm({
+    open,
     sale,
     onSaved: () => onOpenChange(false),
+    onInvalid: goToStepWithError,
   })
-  const [activeStep, setActiveStep] = useState('generale')
+
+  // Leva o usuário para a etapa onde está o erro quando a etapa atual está correta
+  function goToStepWithError(fields: string[]) {
+    const hasPaymentError = fields.some((field) => PAYMENT_FIELDS.includes(field))
+    const hasGeneralError = fields.some((field) => !PAYMENT_FIELDS.includes(field))
+    const currentHasError = activeStep === 'pagamento' ? hasPaymentError : hasGeneralError
+    if (currentHasError) return
+
+    setActiveStep(hasGeneralError ? 'generale' : 'pagamento')
+  }
 
   useEffect(() => {
     if (tourActiveTab) setActiveStep(tourActiveTab)
@@ -47,7 +61,7 @@ function SaleFormModal({ open, onOpenChange, sale, tourActiveTab }: SaleFormModa
       <Tabs value={activeStep} onValueChange={(value) => setActiveStep(value as string)}>
         <Stepper steps={steps} />
 
-        <form id="modal-vendite-form" onSubmit={onSubmit} className="grid gap-4">
+        <form noValidate id="modal-vendite-form" onSubmit={onSubmit} className="grid gap-4">
           <TabsContent id="modal-vendite-tab-generale" value="generale">
             <SaleGeneralStepFields form={form} />
           </TabsContent>

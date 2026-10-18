@@ -16,7 +16,8 @@ import type { OwnerPortalAccess } from '@/pages/Amministrazione/Proprietari/type
 function Proprietari() {
   const { t } = useTranslation('amministrazione')
   const { accesses, isLoading, refetch } = useOwnerAccessList()
-  const { resetPin, toggleActive, revealedPin, clearRevealedPin } = useOwnerAccessActions(refetch)
+  const { createAccess, resetPin, toggleActive, revealedPin, clearRevealedPin } =
+    useOwnerAccessActions(refetch)
   const [formOpen, setFormOpen] = useState(false)
   const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour, stopTour } =
     useProprietariTour()
@@ -70,7 +71,11 @@ function Proprietari() {
         />
       </div>
 
-      <OwnerAccessFormModal open={formOpen} onOpenChange={handleModalOpenChange} onCreated={refetch} />
+      <OwnerAccessFormModal
+        open={formOpen}
+        onOpenChange={handleModalOpenChange}
+        createAccess={createAccess}
+      />
       <PinRevealDialog pin={revealedPin} onClose={clearRevealedPin} />
     </div>
   )

@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -6,7 +7,7 @@ import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import AvatarUpload from '@/components/AvatarUpload'
 import { useBranchControllerFind } from '@/api/generated/api'
-import { accessLevelOptions, type UserFormValues } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
+import { getAccessLevelOptions, type UserFormValues } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
 
 type UserFormFieldsProps = {
   form: UseFormReturn<UserFormValues>
@@ -26,6 +27,7 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
   const { register, control, watch } = form
   const { errors } = useFormState({ control })
   const { data: branches } = useBranchControllerFind({ filter: { order: ['name ASC'] } })
+  const accessLevelOptions = useMemo(() => getAccessLevelOptions(t), [t])
   const branchOptions = (branches ?? []).map((branch) => ({
     value: branch.id ?? '',
     label: branch.name,

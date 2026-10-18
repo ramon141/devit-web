@@ -45,12 +45,39 @@ export function getShortStatusOptions(t: TFunction<'imoveis'>) {
   ]
 }
 
-function nonNegativeNumber(t: TFunction<'imoveis'>) {
+export function nonNegativeNumber(t: TFunction<'imoveis'>) {
   return z
     .string()
     .refine(
       (value) => !value || (Number.isFinite(Number(value)) && Number(value) >= 0),
       t('options.validation.nonNegativeNumber'),
+    )
+    .optional()
+}
+
+export function percentRange(t: TFunction<'imoveis'>) {
+  return z
+    .string()
+    .refine(
+      (value) => !value || (Number.isFinite(Number(value)) && Number(value) >= 0 && Number(value) <= 100),
+      t('options.validation.percentRange'),
+    )
+    .optional()
+}
+
+const SMALLINT_MAX = 32767
+const MAX_ROOM_COUNT = 50
+
+function nonNegativeSmallint(t: TFunction<'imoveis'>, max = SMALLINT_MAX) {
+  return z
+    .string()
+    .refine(
+      (value) => !value || (Number.isFinite(Number(value)) && Number(value) >= 0),
+      t('options.validation.nonNegativeNumber'),
+    )
+    .refine(
+      (value) => !value || Number(value) <= max,
+      max === SMALLINT_MAX ? t('options.validation.maxSmallint') : t('options.validation.maxCount', { max }),
     )
     .optional()
 }
@@ -73,8 +100,8 @@ export function createPropertySchema(t: TFunction<'imoveis'>) {
     rentPrice: z.string().optional(),
     condoFee: z.string().optional(),
 
-    bedrooms: nonNegativeNumber(t),
-    bathrooms: nonNegativeNumber(t),
+    bedrooms: nonNegativeSmallint(t, MAX_ROOM_COUNT),
+    bathrooms: nonNegativeSmallint(t, MAX_ROOM_COUNT),
     parkingSpots: nonNegativeNumber(t),
     areaSqm: nonNegativeNumber(t),
     description: z.string().optional(),

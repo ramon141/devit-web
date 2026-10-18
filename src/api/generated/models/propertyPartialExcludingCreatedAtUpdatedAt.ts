@@ -27,22 +27,58 @@ import type { PropertyNestedIndustrialArea } from './propertyNestedIndustrialAre
 
 export interface PropertyPartialExcludingCreatedAtUpdatedAt {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 20
+   */
   code?: string;
+  /**
+   * @minLength 1
+   * @maxLength 200
+   */
   title?: string;
   purpose?: PropertyPartialExcludingCreatedAtUpdatedAtPurpose;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   rentPrice?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   salePrice?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   condoFee?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   bedrooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   bathrooms?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   parkingSpots?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   areaSqm?: number | null;
   /** @nullable */
   description?: string | null;
@@ -50,7 +86,11 @@ export interface PropertyPartialExcludingCreatedAtUpdatedAt {
   status?: PropertyPartialExcludingCreatedAtUpdatedAtStatus;
   /** @nullable */
   featured?: boolean | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   featuredOrder?: number | null;
   /** @nullable */
   active?: boolean | null;

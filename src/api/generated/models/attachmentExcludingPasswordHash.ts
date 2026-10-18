@@ -13,13 +13,19 @@ export interface AttachmentExcludingPasswordHash {
   id?: string;
   /** @nullable */
   bodyBase64?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 100
+   * @nullable
+   */
   mimeType?: string | null;
   /** @nullable */
   size?: number | null;
   /** @nullable */
   path?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   originalName?: string | null;
   createdAt: string;
   updatedAt: string;

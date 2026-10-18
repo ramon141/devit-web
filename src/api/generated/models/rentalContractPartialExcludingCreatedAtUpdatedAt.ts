@@ -12,6 +12,10 @@ import type { RentalContractPartialExcludingCreatedAtUpdatedAtAttachmentsItem } 
 
 export interface RentalContractPartialExcludingCreatedAtUpdatedAt {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 20
+   */
   number?: string;
   startDate?: string;
   /** @nullable */
@@ -21,12 +25,27 @@ export interface RentalContractPartialExcludingCreatedAtUpdatedAt {
    * @maximum 31
    */
   dueDay?: number;
+  /**
+   * @minimum 0.01
+   * @maximum 999999999999
+   */
   rentAmount?: number;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   condoFee?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   depositAmount?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   adjustmentIndex?: string | null;
   /** @nullable */
   situation?: RentalContractPartialExcludingCreatedAtUpdatedAtSituation;

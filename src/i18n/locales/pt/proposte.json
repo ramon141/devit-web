@@ -275,5 +275,9 @@
         "content": "Clique em Salvar para gravar a proposta ou em Cancelar para fechar sem salvar."
       }
     }
+  },
+  "hints": {
+    "accepted": "Aceitar não altera o imóvel nem avisa ninguém: depois converta a proposta em venda.",
+    "rejected": "A recusa exige o motivo."
   }
 }

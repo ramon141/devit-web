@@ -1,4 +1,5 @@
 import { Controller } from 'react-hook-form'
+import FieldHint from '@/components/FieldHint'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
@@ -43,7 +44,7 @@ function TemplateFormModal({ open, onOpenChange, template }: TemplateFormModalPr
       wide={isEmail}
       title={template ? t('templateFormModal.editTitle') : t('templateFormModal.newTitle')}
     >
-      <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
+      <form noValidate onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
         <FormFieldWrapper label={t('templateFormModal.nameLabel')} required error={errors.name?.message}>
           <Input {...register('name')} placeholder={t('templateFormModal.namePlaceholder')} />
         </FormFieldWrapper>
@@ -54,6 +55,10 @@ function TemplateFormModal({ open, onOpenChange, template }: TemplateFormModalPr
           render={({ field }) => (
             <FormFieldWrapper label={t('templateFormModal.channelLabel')} required error={errors.channel?.message}>
               <SelectField value={field.value} onValueChange={field.onChange} options={getTemplateChannelOptions(t)} />
+
+              {field.value === CommunicationTemplateChannel.whatsapp && (
+                <FieldHint warning>{t('hints.whatsappPrefix')}</FieldHint>
+              )}
             </FormFieldWrapper>
           )}
         />

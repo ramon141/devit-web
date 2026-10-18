@@ -8,7 +8,10 @@
 
 export interface PropertyAcousticCertification {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 20
+   * @nullable
+   */
   acousticClass?: string | null;
   /** @nullable */
   certificationDate?: string | null;

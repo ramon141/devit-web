@@ -12,12 +12,20 @@ type RentalRenewModalProps = {
   onOpenChange: (open: boolean) => void
   contractId?: string
   contractNumber?: string
+  currentEndDate?: string | null
 }
 
-function RentalRenewModal({ open, onOpenChange, contractId, contractNumber }: RentalRenewModalProps) {
+function RentalRenewModal({
+  open,
+  onOpenChange,
+  contractId,
+  contractNumber,
+  currentEndDate,
+}: RentalRenewModalProps) {
   const { t } = useTranslation('operazioni')
   const { form, isSubmitting, onSubmit } = useRenewRentalContract({
     contractId,
+    currentEndDate,
     onRenewed: () => onOpenChange(false),
   })
   const { register, control } = form
@@ -29,7 +37,7 @@ function RentalRenewModal({ open, onOpenChange, contractId, contractNumber }: Re
       onOpenChange={onOpenChange}
       title={`${t('locazioni.renewModal.title')}${contractNumber ? ` ${contractNumber}` : ''}`}
     >
-      <form onSubmit={onSubmit} className="grid gap-4">
+      <form noValidate onSubmit={onSubmit} className="grid gap-4">
         <FormFieldWrapper
           label={t('locazioni.renewModal.newEndDateLabel')}
           required

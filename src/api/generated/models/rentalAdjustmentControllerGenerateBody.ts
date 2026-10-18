@@ -7,6 +7,14 @@
  */
 
 export type RentalAdjustmentControllerGenerateBody = {
+  /**
+   * @minimum -50
+   * @maximum 100
+   */
   indexPercent: number;
+  /**
+   * @minItems 1
+   * @maxItems 500
+   */
   rentalContractIds?: string[];
 };

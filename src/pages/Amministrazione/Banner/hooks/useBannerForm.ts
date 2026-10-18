@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -16,7 +16,7 @@ import { useAttachmentUpload } from '@/hooks/useAttachmentUpload'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
-import { bannerSchema, type BannerFormValues } from '@/pages/Amministrazione/Banner/schemas/bannerSchema'
+import { createBannerSchema, type BannerFormValues } from '@/pages/Amministrazione/Banner/schemas/bannerSchema'
 
 const emptyValues: BannerFormValues = {
   title: '',
@@ -41,6 +41,7 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
   const [imageFiles, setImageFiles] = useState<File[]>([])
   const [mobileImageFiles, setMobileImageFiles] = useState<File[]>([])
   const [imageError, setImageError] = useState<string | undefined>(undefined)
+  const bannerSchema = useMemo(() => createBannerSchema(t), [t])
 
   // reset() manual com `keepFieldsRef: true` preserva o
   // registro interno dos campos mas NÃO reescreve o valor exibido nos
@@ -101,6 +102,10 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
     return update({ id: banner?.id ?? '', data: partialData })
   }
 
+  function onInvalid() {
+    if (!banner && !imageFiles[0]) setImageError(t('bannerForm.imageRequired'))
+  }
+
   function onSubmit(values: BannerFormValues) {
     if (!banner && !imageFiles[0]) {
       setImageError(t('bannerForm.imageRequired'))
@@ -128,6 +133,6 @@ export function useBannerForm({ banner, onSaved }: UseBannerFormProps) {
     setMobileImageFiles,
     imageError,
     isSubmitting: creating || updating,
-    onSubmit: form.handleSubmit(onSubmit),
+    onSubmit: form.handleSubmit(onSubmit, onInvalid),
   }
 }

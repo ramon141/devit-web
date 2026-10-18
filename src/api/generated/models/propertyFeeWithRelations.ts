@@ -13,7 +13,15 @@ import type { Property } from './property';
  */
 export interface PropertyFeeWithRelations {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 80
+   */
   name: string;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   */
   amount: number;
   frequency: PropertyFeeWithRelationsFrequency;
   /** @nullable */

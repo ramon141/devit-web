@@ -12,13 +12,19 @@
 export interface NewPropertyUrbanRegularity {
   /** @nullable */
   isCompliant?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   buildingPermitNumber?: string | null;
   /** @nullable */
   buildingPermitDate?: string | null;
   /** @nullable */
   hasAmnesty?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   amnestyProtocolNumber?: string | null;
   /** @nullable */
   notes?: string | null;

@@ -7,6 +7,7 @@
  */
 
 export type LeadsReportControllerByStatus200Item = {
-  status?: string;
+  /** @nullable */
+  status?: string | null;
   total?: number;
 };

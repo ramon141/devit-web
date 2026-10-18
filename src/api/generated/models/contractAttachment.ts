@@ -8,9 +8,15 @@
 
 export interface ContractAttachment {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 50
+   * @nullable
+   */
   type?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   description?: string | null;
   contractId: string;
   attachmentId: string;

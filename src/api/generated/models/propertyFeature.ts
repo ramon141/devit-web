@@ -10,6 +10,7 @@ import type { PropertyFeatureCategory } from './propertyFeatureCategory';
 export interface PropertyFeature {
   id?: string;
   category: PropertyFeatureCategory;
+  /** @maxLength 80 */
   featureKey: string;
   propertyId: string;
 }

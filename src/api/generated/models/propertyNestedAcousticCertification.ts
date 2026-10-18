@@ -10,7 +10,10 @@
  * Certificação acústica
  */
 export interface PropertyNestedAcousticCertification {
-  /** @nullable */
+  /**
+   * @maxLength 20
+   * @nullable
+   */
   acousticClass?: string | null;
   /** @nullable */
   certificationDate?: string | null;

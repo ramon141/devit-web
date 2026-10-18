@@ -17,17 +17,31 @@ import type { NewPropertyDetailFurnished } from './newPropertyDetailFurnished';
 export interface NewPropertyDetail {
   /** @nullable */
   acquisitionDate?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   listingStage?: string | null;
   /** @nullable */
   rating?: NewPropertyDetailRating;
   /** @nullable */
   mediationType?: NewPropertyDetailMediationType;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 100
+   * @nullable
+   */
   mediationFeeClientPct?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 100
+   * @nullable
+   */
   mediationFeeOwnerPct?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 80
+   * @nullable
+   */
   subtype?: string | null;
   /** @nullable */
   bareOwnership?: boolean | null;
@@ -43,7 +57,11 @@ export interface NewPropertyDetail {
   internalNote?: string | null;
   /** @nullable */
   sharedNote?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   estimatedValue?: number | null;
   /** @nullable */
   negotiable?: boolean | null;
@@ -61,7 +79,10 @@ export interface NewPropertyDetail {
   condition?: NewPropertyDetailCondition;
   /** @nullable */
   furnished?: NewPropertyDetailFurnished;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   exposure?: string | null;
   propertyId: string;
   /** @nullable */

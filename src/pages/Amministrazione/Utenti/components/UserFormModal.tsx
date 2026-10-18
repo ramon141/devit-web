@@ -24,7 +24,7 @@ function UserFormModal({ open, onOpenChange, user }: UserFormModalProps) {
       onOpenChange={onOpenChange}
       title={user ? t('userFormModal.editTitle') : t('userFormModal.newTitle')}
     >
-      <form id="modal-utenti-form" onSubmit={onSubmit} className="grid gap-4">
+      <form noValidate id="modal-utenti-form" onSubmit={onSubmit} className="grid gap-4">
         <UserFormFields
           form={form}
           isEditing={isEditing}

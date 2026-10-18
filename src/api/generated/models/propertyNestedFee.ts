@@ -11,7 +11,15 @@ import type { PropertyNestedFeeFrequency } from './propertyNestedFeeFrequency';
  * Taxas e despesas do imóvel
  */
 export interface PropertyNestedFee {
+  /**
+   * @minLength 1
+   * @maxLength 80
+   */
   name: string;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   */
   amount: number;
   frequency: PropertyNestedFeeFrequency;
   /** @nullable */

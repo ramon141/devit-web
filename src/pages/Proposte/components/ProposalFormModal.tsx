@@ -26,7 +26,7 @@ function ProposalFormModal({ open, onOpenChange, proposal }: ProposalFormModalPr
       onOpenChange={onOpenChange}
       title={proposal ? t('formModal.editTitle') : t('formModal.newTitle')}
     >
-      <form id="modal-proposte-form" onSubmit={onSubmit} className="grid gap-4">
+      <form noValidate id="modal-proposte-form" onSubmit={onSubmit} className="grid gap-4">
         <ProposalFormFields form={form} />
 
         <FormModalFooter

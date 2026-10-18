@@ -64,6 +64,12 @@ export function usePropertyPriceDetailForm(propertyId: string) {
   }, [existing])
 
   function onSubmit(values: PriceDetailFormValues) {
+    const estimated = Number(values.estimatedValue)
+    if (values.estimatedValue && (!Number.isFinite(estimated) || estimated < 0)) {
+      form.setError('estimatedValue', { message: t('options.validation.nonNegativeNumber') })
+      return
+    }
+
     const data = { ...values, estimatedValue: toNumberOrNull(values.estimatedValue) }
 
     // Sem imóvel ainda: guarda no rascunho para ir junto no POST /properties

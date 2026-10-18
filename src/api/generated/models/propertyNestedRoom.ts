@@ -12,14 +12,33 @@ import type { PropertyNestedRoomRoomType } from './propertyNestedRoomRoomType';
  */
 export interface PropertyNestedRoom {
   roomType: PropertyNestedRoomRoomType;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   quantity?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 9999
+   * @nullable
+   */
   widthM?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 9999
+   * @nullable
+   */
   lengthM?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999
+   * @nullable
+   */
   areaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 80
+   * @nullable
+   */
   equipment?: string | null;
 }

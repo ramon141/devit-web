@@ -8,6 +8,7 @@
 
 export type CommunicationsReportControllerByChannelStatus200Item = {
   channel?: string;
-  status?: string;
+  /** @nullable */
+  status?: string | null;
   total?: number;
 };

@@ -22,7 +22,7 @@ function TablePagination({
   return (
     <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
       <span>
-        {t('tablePagination.summary', { page, totalPages, totalItems })}
+        {t('tablePagination.summary', { page, totalPages, count: totalItems })}
       </span>
 
       <div className="flex gap-2">

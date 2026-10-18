@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -15,7 +15,7 @@ import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
-import { categorySchema, type CategoryFormValues } from '@/pages/Amministrazione/Categorie/schemas/categorySchema'
+import { createCategorySchema, type CategoryFormValues } from '@/pages/Amministrazione/Categorie/schemas/categorySchema'
 
 const emptyValues: CategoryFormValues = {
   name: '',
@@ -38,6 +38,7 @@ export function useCategoryForm({ open, category, onSaved }: UseCategoryFormProp
   const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = usePropertyCategoryControllerCreate()
   const { mutateAsync: update, isPending: updating } = usePropertyCategoryControllerUpdateById()
+  const categorySchema = useMemo(() => createCategorySchema(t), [t])
 
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(categorySchema),

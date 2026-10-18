@@ -7,6 +7,7 @@
  */
 
 /**
+ * @maxLength 30
  * @nullable
  */
 export type PropertyCategoryPartialKind = typeof PropertyCategoryPartialKind[keyof typeof PropertyCategoryPartialKind] | null;

@@ -1,4 +1,6 @@
-import { useFormState, type UseFormReturn } from 'react-hook-form'
+import { useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
+import FieldHint from '@/components/FieldHint'
+import { PurchaseProposalStatus } from '@/api/generated/models'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -21,6 +23,7 @@ function ProposalFormFields({ form }: ProposalFormFieldsProps) {
   const { t } = useTranslation('proposte')
   const { register, control, setValue } = form
   const { errors } = useFormState({ control })
+  const status = useWatch({ control, name: 'status' })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -65,6 +68,16 @@ function ProposalFormFields({ form }: ProposalFormFieldsProps) {
         options={getProposalStatusOptions(t)}
         error={errors.status?.message}
       />
+
+      {status === PurchaseProposalStatus.accepted && (
+        <FieldHint warning className="sm:col-span-2">
+          {t('hints.accepted')}
+        </FieldHint>
+      )}
+
+      {status === PurchaseProposalStatus.rejected && (
+        <FieldHint className="sm:col-span-2">{t('hints.rejected')}</FieldHint>
+      )}
 
       <ProposalAssignmentFields control={control} errors={errors} />
 

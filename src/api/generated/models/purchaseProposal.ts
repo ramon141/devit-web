@@ -10,12 +10,24 @@ import type { PurchaseProposalStatus } from './purchaseProposalStatus';
 
 export interface PurchaseProposal {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 20
+   */
   number: string;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   */
   proposalAmount: number;
   paymentMethod: PurchaseProposalPaymentMethod;
   /** @nullable */
   status?: PurchaseProposalStatus;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 2147483647
+   * @nullable
+   */
   funnelPosition?: number | null;
   /** @nullable */
   financed?: boolean | null;

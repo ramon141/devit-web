@@ -8,6 +8,10 @@
 
 export type RentalContractRenewControllerRenewBody = {
   newEndDate: string;
+  /**
+   * @minimum 0.01
+   * @maximum 999999999999
+   */
   newAmount?: number;
   note?: string;
 };

@@ -1,4 +1,6 @@
-import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
+import FieldHint from '@/components/FieldHint'
+import { SaleStatus } from '@/api/generated/models'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -19,6 +21,7 @@ function SalePaymentStepFields({ form }: SalePaymentStepFieldsProps) {
   const { register, control } = form
   const { errors } = useFormState({ control })
   const statusOptions = getSaleStatusOptions(t)
+  const status = useWatch({ control, name: 'status' })
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -35,6 +38,10 @@ function SalePaymentStepFields({ form }: SalePaymentStepFieldsProps) {
             <SelectField value={field.value} onValueChange={field.onChange} options={statusOptions} />
           )}
         />
+
+        {status === SaleStatus.sold && <FieldHint warning>{t('hints.saleSold')}</FieldHint>}
+
+        {status === SaleStatus.canceled && <FieldHint>{t('hints.saleCanceled')}</FieldHint>}
       </FormFieldWrapper>
 
       <FormFieldWrapper

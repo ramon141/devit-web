@@ -15,17 +15,31 @@ export interface PropertyDetail {
   id?: string;
   /** @nullable */
   acquisitionDate?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   listingStage?: string | null;
   /** @nullable */
   rating?: PropertyDetailRating;
   /** @nullable */
   mediationType?: PropertyDetailMediationType;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 100
+   * @nullable
+   */
   mediationFeeClientPct?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 100
+   * @nullable
+   */
   mediationFeeOwnerPct?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 80
+   * @nullable
+   */
   subtype?: string | null;
   /** @nullable */
   bareOwnership?: boolean | null;
@@ -41,7 +55,11 @@ export interface PropertyDetail {
   internalNote?: string | null;
   /** @nullable */
   sharedNote?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   estimatedValue?: number | null;
   /** @nullable */
   negotiable?: boolean | null;
@@ -59,7 +77,10 @@ export interface PropertyDetail {
   condition?: PropertyDetailCondition;
   /** @nullable */
   furnished?: PropertyDetailFurnished;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   exposure?: string | null;
   createdAt: string;
   updatedAt: string;

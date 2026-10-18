@@ -13,14 +13,30 @@ import type { SalePartialExcludingCreatedAtUpdatedAtStatusHistoryItem } from './
 
 export interface SalePartialExcludingCreatedAtUpdatedAt {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 20
+   */
   number?: string;
+  /**
+   * @minimum 0.01
+   * @maximum 999999999999
+   */
   finalAmount?: number;
   saleDate?: string;
   /** @nullable */
   deedDate?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 1
+   * @maximum 32767
+   * @nullable
+   */
   installmentsCount?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   commissionAmount?: number | null;
   /** @nullable */
   status?: SalePartialExcludingCreatedAtUpdatedAtStatus;

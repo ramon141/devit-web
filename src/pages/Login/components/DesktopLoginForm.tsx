@@ -33,7 +33,7 @@ function DesktopLoginForm({ form, onSubmit, loading, error }: DesktopLoginFormPr
         {t('desktopLoginForm.subtitle')}
       </p>
 
-      <form onSubmit={onSubmit} className="flex flex-col gap-7">
+      <form noValidate onSubmit={onSubmit} className="flex flex-col gap-7">
         <div>
           <label
             htmlFor="login-email"

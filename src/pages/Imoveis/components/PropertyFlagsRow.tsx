@@ -2,6 +2,8 @@ import { Controller, useWatch, type Control } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Switch } from '@/components/ui/switch'
 import { Input } from '@/components/ui/input'
+import FieldHint from '@/components/FieldHint'
+import { PropertyStatus } from '@/api/generated/models'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyFlagsRowProps = {
@@ -11,6 +13,10 @@ type PropertyFlagsRowProps = {
 function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
   const { t } = useTranslation('imoveis')
   const featured = useWatch({ control, name: 'featured' })
+  const status = useWatch({ control, name: 'status' })
+  const useInChatbot = useWatch({ control, name: 'useInChatbot' })
+  const publishedOnSite = useWatch({ control, name: 'publishedOnSite' })
+  const isAvailable = status === PropertyStatus.available
 
   return (
     <div id="property-field-flags" className="flex flex-wrap items-center gap-4 sm:col-span-2">
@@ -68,6 +74,16 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
           </label>
         )}
       />
+
+      {!isAvailable && useInChatbot && (
+        <FieldHint warning className="w-full">
+          {t('hints.chatbotHidden')}
+        </FieldHint>
+      )}
+
+      {!isAvailable && publishedOnSite && (
+        <FieldHint className="w-full">{t('hints.siteStillVisible')}</FieldHint>
+      )}
     </div>
   )
 }

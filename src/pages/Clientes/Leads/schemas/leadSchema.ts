@@ -97,6 +97,13 @@ export function createLeadSchema(t: TFunction<'clientes'>) {
       for (const [minKey, maxKey] of MIN_MAX_PAIRS) {
         const min = values[minKey]
         const max = values[maxKey]
+
+        for (const key of [minKey, maxKey]) {
+          if (Number(values[key]) < 0) {
+            ctx.addIssue({ code: 'custom', path: [key], message: t('leadSchema.negativeValue') })
+          }
+        }
+
         if (!min || !max) continue
         if (Number(min) > Number(max)) {
           ctx.addIssue({

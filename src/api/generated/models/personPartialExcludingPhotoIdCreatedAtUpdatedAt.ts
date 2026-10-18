@@ -11,19 +11,41 @@ import type { PersonPartialExcludingPhotoIdCreatedAtUpdatedAtAttachmentsItem } f
 
 export interface PersonPartialExcludingPhotoIdCreatedAtUpdatedAt {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   externalId?: string | null;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   name?: string;
   role?: PersonPartialExcludingPhotoIdCreatedAtUpdatedAtRole;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   email?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   phone?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   secondaryPhone?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   documentType?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 50
+   * @nullable
+   */
   documentNumber?: string | null;
   /** @nullable */
   birthDate?: string | null;

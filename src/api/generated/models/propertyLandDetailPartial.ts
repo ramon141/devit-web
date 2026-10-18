@@ -14,17 +14,32 @@ export interface PropertyLandDetailPartial {
   id?: string;
   /** @nullable */
   terrainType?: PropertyLandDetailPartialTerrainType;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999
+   * @nullable
+   */
   buildabilityIndex?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   buildableAreaSqm?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 99999999
+   * @nullable
+   */
   agriculturalAreaSqm?: number | null;
   /** @nullable */
   hasExistingConstruction?: boolean | null;
   /** @nullable */
   projectApproved?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   possibleConstruction?: string | null;
   /** @nullable */
   rightOfWay?: string | null;

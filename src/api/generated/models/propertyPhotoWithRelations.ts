@@ -13,9 +13,16 @@ import type { Attachment } from './attachment';
  */
 export interface PropertyPhotoWithRelations {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 160
+   * @nullable
+   */
   caption?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   displayOrder?: number | null;
   /** @nullable */
   cover?: boolean | null;

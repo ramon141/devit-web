@@ -26,6 +26,7 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
     setFrequency,
     note,
     setNote,
+    missingFields,
     addFee,
     removeFee,
   } = usePropertyFees(propertyId)
@@ -37,7 +38,11 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
 
       <div className="grid gap-2">
         {fees.map((fee) => (
-          <RemovableRow key={fee.id} onRemove={() => fee.id && removeFee(fee.id)}>
+          <RemovableRow
+            key={fee.id}
+            confirmName={fee.name}
+            onRemove={() => fee.id && removeFee(fee.id)}
+          >
             <span className="text-sm">
               {fee.name} · {formatAmount(fee.amount)} · {getOptionLabel(feeFrequencyOptions, fee.frequency)}
               {fee.note && ` · ${fee.note}`}
@@ -72,6 +77,10 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
         />
         <Button type="button" onClick={addFee}>{t('scheda.feesManager.add')}</Button>
       </div>
+
+      {missingFields && (
+        <p className="mt-1 text-sm text-destructive">{t('scheda.feesManager.missingFields')}</p>
+      )}
     </div>
   )
 }

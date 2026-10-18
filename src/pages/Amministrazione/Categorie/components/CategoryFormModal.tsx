@@ -39,7 +39,7 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
       onOpenChange={onOpenChange}
       title={category ? t('categoryFormModal.editTitle') : t('categoryFormModal.newTitle')}
     >
-      <form id="modal-categorie-form" onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
+      <form noValidate id="modal-categorie-form" onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
         <FormFieldWrapper
           id="modal-field-name"
           label={t('categoryFormModal.nameLabel')}

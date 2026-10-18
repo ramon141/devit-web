@@ -10,9 +10,16 @@
  * (tsType: Omit<PropertyDocument, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewPropertyDocument', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewPropertyDocument {
-  /** @nullable */
+  /**
+   * @maxLength 160
+   * @nullable
+   */
   label?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   displayOrder?: number | null;
   propertyId: string;
   attachmentId: string;

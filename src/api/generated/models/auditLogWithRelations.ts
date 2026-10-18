@@ -16,6 +16,7 @@ import type { User } from './user';
 export interface AuditLogWithRelations {
   id?: number;
   action: AuditLogWithRelationsAction;
+  /** @maxLength 40 */
   entity: string;
   /** @nullable */
   entityId?: string | null;

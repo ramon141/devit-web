@@ -12,6 +12,10 @@ import type { CalendarEventReminder } from './calendarEventReminder';
 
 export interface CalendarEvent {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 200
+   */
   title: string;
   type: CalendarEventType;
   /** @nullable */
@@ -22,15 +26,24 @@ export interface CalendarEvent {
   allDay?: boolean | null;
   /** @nullable */
   occurred?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   place?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   backgroundColor?: string | null;
   /** @nullable */
   confirmationStatus?: CalendarEventConfirmationStatus;
   /** @nullable */
   private?: boolean | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   keysLocation?: string | null;
   /** @nullable */
   recurrence?: CalendarEventRecurrence;

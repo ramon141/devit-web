@@ -19,20 +19,19 @@ type PropertyCommercialeTabProps = {
 
 function PropertyCommercialeTab({ propertyId, onBack, onNext }: PropertyCommercialeTabProps) {
   const { t } = useTranslation('imoveis')
-  const { form, isLoading, isSubmitting, onSubmit } = usePropertyCommercialForm(propertyId)
+  const { form, isLoading, isSubmitting, onSubmit } = usePropertyCommercialForm(propertyId, onNext)
   const heating = usePropertyHeatingForm(propertyId)
 
   // Um único "Próximo" grava os dados comerciais e o aquecimento juntos
   function handleSubmit(event: FormEvent) {
     heating.onSubmit(event)
     onSubmit(event)
-    onNext()
   }
 
   if (isLoading || heating.isLoading) return null
 
   return (
-    <form onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
+    <form noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
       <div className="grid flex-1 min-h-0 gap-4 overflow-y-auto p-1 sm:grid-cols-2">
         <CommercialActivityFields form={form} />
         <CommercialAreaFields form={form} />

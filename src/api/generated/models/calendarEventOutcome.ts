@@ -8,6 +8,7 @@
 
 export interface CalendarEventOutcome {
   id?: string;
+  /** @minLength 1 */
   outcome: string;
   createdAt: string;
   updatedAt: string;

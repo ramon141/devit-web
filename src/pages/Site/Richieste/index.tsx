@@ -1,4 +1,4 @@
-import { Controller } from 'react-hook-form'
+import { Controller, useWatch } from 'react-hook-form'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -11,9 +11,9 @@ import { useRichiesteForm } from '@/pages/Site/Richieste/hooks/useRichiesteForm'
 function Richieste() {
   const { t } = useTranslation('site')
   const { form, formKey, isSubmitting, onSubmit } = useRichiesteForm()
-  const { register, control, watch, formState } = form
+  const { register, control, formState } = form
   const { errors } = formState
-  const requestType = watch('requestType')
+  const requestType = useWatch({ control, name: 'requestType' })
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
@@ -23,7 +23,7 @@ function Richieste() {
         {t('richieste.intro')}
       </p>
 
-      <form key={formKey} onSubmit={onSubmit} className="mt-8 space-y-5">
+      <form noValidate key={formKey} onSubmit={onSubmit} className="mt-8 space-y-5">
         <div className="flex gap-2">
           <Controller
             control={control}

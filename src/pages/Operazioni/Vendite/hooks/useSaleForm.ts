@@ -16,6 +16,7 @@ import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getEr
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
+import { findSaleConflict } from '@/pages/Operazioni/Vendite/utils/findSaleConflict'
 import { createSaleSchema, type SaleFormValues } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
 
 const emptyValues: SaleFormValues = {
@@ -72,9 +73,10 @@ type UseSaleFormProps = {
   open?: boolean
   sale?: SaleWithRelations | null
   onSaved: () => void
+  onInvalid?: (fields: string[]) => void
 }
 
-export function useSaleForm({ open, sale, onSaved }: UseSaleFormProps) {
+export function useSaleForm({ open, sale, onSaved, onInvalid }: UseSaleFormProps) {
   const { t } = useTranslation('operazioni')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -95,10 +97,11 @@ export function useSaleForm({ open, sale, onSaved }: UseSaleFormProps) {
     queryClient.invalidateQueries({ queryKey: getSaleControllerCountQueryKey() })
   }
 
-  function onSubmit(values: SaleFormValues) {
-    const {extraBuyerIds, extraSellerIds, ...rest} = values
+  function buildPayload(values: SaleFormValues) {
+    const { extraBuyerIds, extraSellerIds, ...rest } = values
     const cleaned = emptyStringsToNull(rest)
-    const data = {
+
+    return {
       ...cleaned,
       finalAmount: toNumberOrNull(values.finalAmount) ?? 0,
       installmentsCount: toNumberOrNull(values.installmentsCount),
@@ -108,7 +111,10 @@ export function useSaleForm({ open, sale, onSaved }: UseSaleFormProps) {
       buyers: toPersonList(values.buyerId, extraBuyerIds),
       sellers: toPersonList(values.sellerId, extraSellerIds),
     }
+  }
 
+  function save(values: SaleFormValues) {
+    const data = buildPayload(values)
     const promise = sale?.id ? update({ id: sale.id, data }) : create({ data })
 
     promisePopup(promise, {
@@ -123,9 +129,27 @@ export function useSaleForm({ open, sale, onSaved }: UseSaleFormProps) {
     })
   }
 
+  async function onSubmit(values: SaleFormValues) {
+    const conflict = await findSaleConflict({
+      number: values.number,
+      propertyId: values.propertyId,
+      saleId: sale?.id,
+    })
+
+    if (!conflict) {
+      save(values)
+      return
+    }
+
+    const field = conflict === 'duplicateNumber' ? 'number' : 'propertyId'
+
+    form.setError(field, { message: t(`vendite.hooks.form.${conflict}`) })
+    onInvalid?.([field])
+  }
+
   return {
     form,
     isSubmitting: creating || updating,
-    onSubmit: form.handleSubmit(onSubmit),
+    onSubmit: form.handleSubmit(onSubmit, (errors) => onInvalid?.(Object.keys(errors))),
   }
 }

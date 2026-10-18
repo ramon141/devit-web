@@ -13,7 +13,10 @@ import type { Attachment } from './attachment';
  */
 export interface PurchaseProposalAttachmentWithRelations {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 160
+   * @nullable
+   */
   label?: string | null;
   createdAt: string;
   updatedAt: string;

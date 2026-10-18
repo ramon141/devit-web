@@ -12,6 +12,10 @@ import type { Zone } from './zone';
  */
 export interface NeighborhoodWithRelations {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name: string;
   /** @nullable */
   active?: boolean | null;

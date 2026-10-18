@@ -10,7 +10,7 @@ type PropertyPriceDetailSectionProps = {
   form: UseFormReturn<PriceDetailFormValues>
 }
 
-// Campos de "opções de preço": sem <form>/botão próprio, o submit é
+// Campos de "opções de preço": sem <form noValidate>/botão próprio, o submit é
 // disparado junto com o botão "Próximo" do wizard (ver PropertyPriceTab)
 function PropertyPriceDetailSection({ form }: PropertyPriceDetailSectionProps) {
   const { t } = useTranslation('imoveis')

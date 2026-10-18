@@ -43,7 +43,7 @@ function NeighborhoodFormModal({
           : t('neighborhoodFormModal.newTitle')
       }
     >
-      <form onSubmit={onSubmit} className="grid w-full gap-4 sm:grid-cols-2">
+      <form noValidate onSubmit={onSubmit} className="grid w-full gap-4 sm:grid-cols-2">
         <FormFieldWrapper
           label={t('neighborhoodFormModal.nameLabel')}
           required

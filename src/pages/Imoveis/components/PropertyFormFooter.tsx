@@ -7,10 +7,17 @@ type PropertyFormFooterProps = {
   id?: string
   onBack?: () => void
   isLast?: boolean
+  finishLabelKey?: string
 }
 
 // Rodapé do wizard: salva a aba atual e avança para a próxima
-function PropertyFormFooter({ isSubmitting, id, onBack, isLast }: PropertyFormFooterProps) {
+function PropertyFormFooter({
+  isSubmitting,
+  id,
+  onBack,
+  isLast,
+  finishLabelKey = 'formFields.finish',
+}: PropertyFormFooterProps) {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
 
@@ -31,7 +38,7 @@ function PropertyFormFooter({ isSubmitting, id, onBack, isLast }: PropertyFormFo
       )}
 
       <Button type="submit" disabled={isSubmitting}>
-        {isLast ? t('formFields.finish') : t('formFields.next')}
+        {isLast ? t(finishLabelKey) : t('formFields.next')}
       </Button>
     </div>
   )

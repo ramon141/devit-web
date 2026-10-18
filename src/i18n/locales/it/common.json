@@ -42,7 +42,8 @@
     "dragHint": "o trascina il file qui",
     "removeFile": "Rimuovi {{fileName}}",
     "maxSizeHint": "Dimensione massima: {{size}} MB",
-    "maxSizeError": "File troppo grande. Dimensione massima: {{size}} MB"
+    "maxSizeError": "File troppo grande. Dimensione massima: {{size}} MB",
+    "invalidTypeError": "Tipo di file non consentito"
   },
   "formModalFooter": {
     "save": "Salva",
@@ -68,7 +69,8 @@
     "remove": "Rimuovi"
   },
   "tablePagination": {
-    "summary": "Pagina {{page}} di {{totalPages}} · {{totalItems}} risultati"
+    "summary_one": "Pagina {{page}} di {{totalPages}} · {{count}} risultato",
+    "summary_other": "Pagina {{page}} di {{totalPages}} · {{count}} risultati"
   },
   "sidebar": {
     "collapseMenu": "Comprimi il menu",
@@ -96,7 +98,6 @@
       "banner": "Banner",
       "auditLog": "Log di audit",
       "componenti": "Componenti",
-      "designSystemSite": "Design System Sito",
       "proprietari": "Proprietari",
       "zone": "Zone"
     }

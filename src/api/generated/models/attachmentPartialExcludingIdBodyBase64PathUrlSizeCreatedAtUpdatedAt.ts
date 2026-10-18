@@ -10,8 +10,14 @@
  * (tsType: Omit<Partial<Attachment>, 'id' | 'bodyBase64' | 'path' | 'url' | 'size' | 'createdAt' | 'updatedAt'>, schemaOptions: { partial: true, exclude: [ 'id', 'bodyBase64', 'path', 'url', 'size', 'createdAt', 'updatedAt' ] })
  */
 export interface AttachmentPartialExcludingIdBodyBase64PathUrlSizeCreatedAtUpdatedAt {
-  /** @nullable */
+  /**
+   * @maxLength 100
+   * @nullable
+   */
   mimeType?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   originalName?: string | null;
 }

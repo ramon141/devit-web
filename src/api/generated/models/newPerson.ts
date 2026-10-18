@@ -10,19 +10,41 @@ import type { NewPersonPhoto } from './newPersonPhoto';
 import type { NewPersonAttachmentsItem } from './newPersonAttachmentsItem';
 
 export interface NewPerson {
-  /** @nullable */
+  /**
+   * @maxLength 60
+   * @nullable
+   */
   externalId?: string | null;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   name: string;
   role: NewPersonRole;
-  /** @nullable */
+  /**
+   * @maxLength 255
+   * @nullable
+   */
   email?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   phone?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   secondaryPhone?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 30
+   * @nullable
+   */
   documentType?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 50
+   * @nullable
+   */
   documentNumber?: string | null;
   /** @nullable */
   birthDate?: string | null;

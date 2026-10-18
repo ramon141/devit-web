@@ -49,7 +49,7 @@ function OptOutFormModal({ open, onOpenChange }: OptOutFormModalProps) {
 
   return (
     <ModalRegister open={open} onOpenChange={onOpenChange} title={t('optOutFormModal.title')}>
-      <form
+      <form noValidate
         className="grid gap-4"
         onSubmit={(event) => {
           event.preventDefault()

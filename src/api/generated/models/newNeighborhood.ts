@@ -10,6 +10,10 @@
  * (tsType: Omit<Neighborhood, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewNeighborhood', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
  */
 export interface NewNeighborhood {
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name: string;
   /** @nullable */
   active?: boolean | null;

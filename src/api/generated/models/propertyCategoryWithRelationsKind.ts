@@ -7,6 +7,7 @@
  */
 
 /**
+ * @maxLength 30
  * @nullable
  */
 export type PropertyCategoryWithRelationsKind = typeof PropertyCategoryWithRelationsKind[keyof typeof PropertyCategoryWithRelationsKind] | null;

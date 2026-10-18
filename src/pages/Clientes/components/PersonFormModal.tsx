@@ -37,7 +37,7 @@ function PersonFormModal({ open, onOpenChange, person }: PersonFormModalProps) {
       title={person ? t('personFormModal.editTitle') : t('personFormModal.newTitle')}
       description={t('personFormModal.description')}
     >
-      <form id="modal-clienti-form" onSubmit={onSubmit} className="grid gap-4">
+      <form noValidate id="modal-clienti-form" onSubmit={onSubmit} className="grid gap-4">
         <PersonFormFields form={form} />
 
         <FormModalFooter

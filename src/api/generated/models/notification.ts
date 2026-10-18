@@ -11,10 +11,17 @@ import type { NotificationData } from './notificationData';
 export interface Notification {
   id?: string;
   type: NotificationType;
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   title: string;
   /** @nullable */
   message?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   entityType?: string | null;
   /** @nullable */
   entityId?: string | null;

@@ -1,11 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog'
+import ModalRegister from '@/components/ModalRegister'
+import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
   Table,
@@ -37,12 +33,11 @@ function CampaignDetailDialog({ campaignId, onClose }: CampaignDetailDialogProps
 
   return (
     <>
-      <Dialog open={!!campaignId} onOpenChange={(open) => !open && onClose()}>
-        <DialogContent className="max-w-3xl">
-          <DialogHeader>
-            <DialogTitle>{t('campaignDetailDialog.title')}</DialogTitle>
-          </DialogHeader>
-
+      <ModalRegister
+        open={!!campaignId}
+        onOpenChange={(open) => !open && onClose()}
+        title={t('campaignDetailDialog.title')}
+      >
           <div className="max-h-[60vh] overflow-y-auto">
             <Table>
               <TableHeader>
@@ -77,28 +72,27 @@ function CampaignDetailDialog({ campaignId, onClose }: CampaignDetailDialogProps
                     <TableCell>{log.readAt ? formatDate(log.readAt) : '—'}</TableCell>
                     <TableCell>{log.clickedAt ? formatDate(log.clickedAt) : '—'}</TableCell>
                     <TableCell>
-                      <button
+                      <Button
                         type="button"
-                        className="text-primary underline underline-offset-4"
+                        variant="link"
+                        className="h-auto p-0"
                         onClick={() => setPreviewLog(log)}
                       >
                         {t('campaignDetailDialog.viewContent')}
-                      </button>
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
-        </DialogContent>
-      </Dialog>
+      </ModalRegister>
 
-      <Dialog open={!!previewLog} onOpenChange={(open) => !open && setPreviewLog(null)}>
-        <DialogContent className="max-w-3xl">
-          <DialogHeader>
-            <DialogTitle>{t('campaignDetailDialog.contentTitle')}</DialogTitle>
-          </DialogHeader>
-
+      <ModalRegister
+        open={!!previewLog}
+        onOpenChange={(open) => !open && setPreviewLog(null)}
+        title={t('campaignDetailDialog.contentTitle')}
+      >
           {previewLog && (
             <iframe
               title="campaign-content-preview"
@@ -107,8 +101,7 @@ function CampaignDetailDialog({ campaignId, onClose }: CampaignDetailDialogProps
               className="h-[60vh] w-full rounded-lg border border-border bg-white"
             />
           )}
-        </DialogContent>
-      </Dialog>
+      </ModalRegister>
     </>
   )
 }

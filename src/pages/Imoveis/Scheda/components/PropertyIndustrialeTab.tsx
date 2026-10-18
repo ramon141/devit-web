@@ -1,4 +1,3 @@
-import type { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Separator } from '@/components/ui/separator'
 import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
@@ -16,18 +15,12 @@ type PropertyIndustrialeTabProps = {
 
 function PropertyIndustrialeTab({ propertyId, onBack, onNext }: PropertyIndustrialeTabProps) {
   const { t } = useTranslation('imoveis')
-  const { form, isLoading, isSubmitting, onSubmit } = usePropertyIndustrialForm(propertyId)
-
-  // Salva e avança para a próxima etapa
-  function handleSubmit(event: FormEvent) {
-    onSubmit(event)
-    onNext()
-  }
+  const { form, isLoading, isSubmitting, onSubmit } = usePropertyIndustrialForm(propertyId, onNext)
 
   if (isLoading) return null
 
   return (
-    <form onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
+    <form noValidate onSubmit={onSubmit} className="flex h-full min-h-0 flex-col">
       <div className="grid flex-1 min-h-0 gap-4 overflow-y-auto p-1 sm:grid-cols-2">
         <IndustrialDetailFields form={form} />
 

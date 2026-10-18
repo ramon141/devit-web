@@ -14,6 +14,7 @@ import type { Property } from './property';
 export interface PropertyFeatureWithRelations {
   id?: string;
   category: PropertyFeatureWithRelationsCategory;
+  /** @maxLength 80 */
   featureKey: string;
   propertyId: string;
   property?: Property;

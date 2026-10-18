@@ -1,19 +1,23 @@
 import { z } from 'zod'
-import i18n from '@/i18n'
+import type { TFunction } from 'i18next'
 
-export const zoneSchema = z.object({
-  name: z.string().min(2, i18n.t('amministrazione:zoneSchema.nameMin')),
-  city: z.string().min(2, i18n.t('amministrazione:zoneSchema.cityMin')),
-  region: z.string().optional(),
-  active: z.boolean(),
-})
+export function createZoneSchema(t: TFunction<'amministrazione'>) {
+  return z.object({
+    name: z.string().min(2, t('zoneSchema.nameMin')).max(120, t('zoneSchema.nameMax')),
+    city: z.string().min(2, t('zoneSchema.cityMin')),
+    region: z.string().optional(),
+    active: z.boolean(),
+  })
+}
 
-export type ZoneFormValues = z.infer<typeof zoneSchema>
+export type ZoneFormValues = z.infer<ReturnType<typeof createZoneSchema>>
 
-export const neighborhoodSchema = z.object({
-  name: z.string().min(2, i18n.t('amministrazione:neighborhoodSchema.nameMin')),
-  zoneId: z.string().min(1, i18n.t('amministrazione:neighborhoodSchema.zoneRequired')),
-  active: z.boolean(),
-})
+export function createNeighborhoodSchema(t: TFunction<'amministrazione'>) {
+  return z.object({
+    name: z.string().min(2, t('neighborhoodSchema.nameMin')).max(120, t('neighborhoodSchema.nameMax')),
+    zoneId: z.string().min(1, t('neighborhoodSchema.zoneRequired')),
+    active: z.boolean(),
+  })
+}
 
-export type NeighborhoodFormValues = z.infer<typeof neighborhoodSchema>
+export type NeighborhoodFormValues = z.infer<ReturnType<typeof createNeighborhoodSchema>>

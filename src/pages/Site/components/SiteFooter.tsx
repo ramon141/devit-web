@@ -11,12 +11,12 @@ const LINK = 'text-site-cream/75 transition-colors hover:text-site-accent'
 
 function ZoneColumn({ zones, title }: { zones: SiteZone[]; title: string }) {
   return (
-    <nav aria-label={title}>
+    <nav aria-label={title} className="min-w-0">
       <h2 className={HEADING}>{title}</h2>
       <ul className="space-y-2 text-sm">
         {zones.map((zone) => (
-          <li key={zone.slug}>
-            <Link to={SITE_PATHS.zone(zone.slug ?? '')} className={LINK}>
+          <li key={zone.slug} className="min-w-0">
+            <Link to={SITE_PATHS.zone(zone.slug ?? '')} className={`${LINK} block truncate`}>
               {zone.name}
             </Link>
           </li>
@@ -30,12 +30,12 @@ function OfficeColumn({ dict }: { dict: SiteDict }) {
   const { data: branches } = useBranches()
 
   return (
-    <div>
+    <div className="min-w-0">
       <h2 className={HEADING}>{dict.about.officesTitle}</h2>
       <ul className="space-y-5 text-sm text-site-cream/75">
         {(branches ?? []).map((branch) => (
-          <li key={branch.id}>
-            <p className="font-semibold text-site-cream">{branch.name}</p>
+          <li key={branch.id} className="min-w-0">
+            <p className="truncate font-semibold text-site-cream">{branch.name}</p>
             <p>{branchStreet(branch)}</p>
             <p>{branchCity(branch)}</p>
             {branch.phone && (
@@ -67,7 +67,7 @@ function SiteFooter() {
 
   return (
     <footer className="mt-24 bg-site-ink text-site-cream">
-      <div className="container-devit grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="container-devit grid min-w-0 gap-12 py-16 [&>*]:min-w-0 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="flex items-baseline gap-1.5">
             <span className="font-site-display text-[1.6rem] italic leading-none text-site-accent">

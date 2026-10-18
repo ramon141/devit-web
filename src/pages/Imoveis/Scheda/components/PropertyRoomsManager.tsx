@@ -37,7 +37,11 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
 
       <div className="grid gap-2">
         {rooms.map((room) => (
-          <RemovableRow key={room.id} onRemove={() => room.id && removeRoom(room.id)}>
+          <RemovableRow
+            key={room.id}
+            confirmName={getOptionLabel(roomTypeOptions, room.roomType)}
+            onRemove={() => room.id && removeRoom(room.id)}
+          >
             <span className="text-sm">
               {room.quantity != null && room.quantity > 1 && `${room.quantity}x `}
               {getOptionLabel(roomTypeOptions, room.roomType)}

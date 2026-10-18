@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import L from 'leaflet'
-import type { PropertyWithRelations } from '@/api/generated/models'
+import { usePropertyControllerFind } from '@/api/generated/api'
+import type { PropertyControllerFindParams, PropertyWithRelations } from '@/api/generated/models'
 import { useLeafletMap } from '@/hooks/useLeafletMap'
 import { createPriceIcon } from '@/lib/mapIcons'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
@@ -10,8 +11,7 @@ import { usePropertyLocations, type PropertyCoords } from '@/pages/Imoveis/hooks
 import { formatAmount } from '@/utils/formatAmount'
 
 type PropertyMapViewProps = {
-  properties: PropertyWithRelations[]
-  isLoading: boolean
+  params: PropertyControllerFindParams
 }
 
 type MarkerBuilderOptions = {
@@ -47,9 +47,11 @@ function addPriceMarkers({ properties, coordsByPropertyId, group, referenceLabel
   return points
 }
 
-function PropertyMapView({ properties, isLoading }: PropertyMapViewProps) {
+function PropertyMapView({ params }: PropertyMapViewProps) {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
+  const { data, isLoading: isLoadingProperties } = usePropertyControllerFind(params)
+  const properties = (data ?? []) as PropertyWithRelations[]
   const propertyIds = properties.flatMap((property) => (property.id ? [property.id] : []))
   const { coordsByPropertyId, isLoading: isLoadingCoords } = usePropertyLocations(propertyIds)
   const { containerRef, map } = useLeafletMap()
@@ -86,7 +88,7 @@ function PropertyMapView({ properties, isLoading }: PropertyMapViewProps) {
     <div className="relative">
       <div ref={containerRef} className="h-[600px] w-full rounded-lg ring-1 ring-border" />
 
-      {!isLoading && !isLoadingCoords && !hasCoords && (
+      {!isLoadingProperties && !isLoadingCoords && !hasCoords && (
         <p className="absolute inset-x-0 top-3 z-[400] mx-auto w-fit rounded-md bg-card px-3 py-1.5 text-sm text-muted-foreground ring-1 ring-border">
           {t('list.emptyMap')}
         </p>

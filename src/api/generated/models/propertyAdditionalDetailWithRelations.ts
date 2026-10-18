@@ -12,13 +12,26 @@ import type { Property } from './property';
  */
 export interface PropertyAdditionalDetailWithRelations {
   id?: string;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   roomsCount?: number | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   quality?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 40
+   * @nullable
+   */
   habitability?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   windowFrames?: string | null;
   propertyId: string;
   property?: Property;

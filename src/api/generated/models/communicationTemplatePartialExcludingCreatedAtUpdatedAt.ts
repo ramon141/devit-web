@@ -13,10 +13,17 @@ import type { CommunicationTemplatePartialExcludingCreatedAtUpdatedAtCategory } 
  */
 export interface CommunicationTemplatePartialExcludingCreatedAtUpdatedAt {
   id?: string;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   name?: string;
   channel?: CommunicationTemplatePartialExcludingCreatedAtUpdatedAtChannel;
   category?: CommunicationTemplatePartialExcludingCreatedAtUpdatedAtCategory;
-  /** @nullable */
+  /**
+   * @maxLength 200
+   * @nullable
+   */
   subject?: string | null;
   /** @minLength 1 */
   body?: string;

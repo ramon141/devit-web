@@ -13,7 +13,10 @@ import type { Attachment } from './attachment';
  */
 export interface PersonAttachmentWithRelations {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   description?: string | null;
   personId: string;
   attachmentId: string;

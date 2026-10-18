@@ -13,7 +13,11 @@ import type { Person } from './person';
  */
 export interface PropertyOwnerWithRelations {
   id?: string;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 100
+   * @nullable
+   */
   ownershipPercent?: number | null;
   propertyId: string;
   personId: string;

@@ -6,20 +6,18 @@ import { Input } from '@/components/ui/input'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SearchableSelect from '@/components/SearchableSelect'
 import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
-import { useOwnerAccessActions } from '@/pages/Amministrazione/Proprietari/hooks/useOwnerAccessActions'
 
 type OwnerAccessFormModalProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
-  onCreated: () => void
+  createAccess: (personId: string, email: string) => void
 }
 
-function OwnerAccessFormModal({ open, onOpenChange, onCreated }: OwnerAccessFormModalProps) {
+function OwnerAccessFormModal({ open, onOpenChange, createAccess }: OwnerAccessFormModalProps) {
   const { t } = useTranslation('amministrazione')
   const [personId, setPersonId] = useState('')
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const { createAccess } = useOwnerAccessActions(onCreated)
 
   // role "owner" é raramente usado: a maioria dos proprietários reais está
   // cadastrada como "contact". Busca por nome em todas as pessoas, não só por role.
@@ -40,7 +38,7 @@ function OwnerAccessFormModal({ open, onOpenChange, onCreated }: OwnerAccessForm
 
   return (
     <ModalRegister open={open} onOpenChange={onOpenChange} title={t('proprietari.formModal.title')}>
-      <form id="modal-proprietari-form" onSubmit={submit} className="grid gap-4">
+      <form noValidate id="modal-proprietari-form" onSubmit={submit} className="grid gap-4">
         <div id="modal-field-owner">
           <SearchableSelect
             label={t('proprietari.formModal.ownerLabel')}

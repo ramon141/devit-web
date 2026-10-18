@@ -15,7 +15,7 @@ function ContactForm() {
   const { errors } = formState
 
   return (
-    <form key={formKey} onSubmit={onSubmit} className="grid max-w-[560px] gap-5">
+    <form noValidate key={formKey} onSubmit={onSubmit} className="grid max-w-[560px] gap-5">
       <ContactFields register={register} errors={errors} />
 
       <Controller

@@ -19,7 +19,7 @@ function MobileLoginForm({ form, onSubmit, loading, error }: MobileLoginFormProp
   const { errors } = useFormState({ control })
 
   return (
-    <form onSubmit={onSubmit} className="w-full">
+    <form noValidate onSubmit={onSubmit} className="w-full">
       <MobileEmailField register={register} error={errors.email} />
       <MobilePasswordField
         register={register}

@@ -13,9 +13,16 @@ import type { Attachment } from './attachment';
  */
 export interface PropertyDocumentWithRelations {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 160
+   * @nullable
+   */
   label?: string | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
   displayOrder?: number | null;
   createdAt: string;
   updatedAt: string;

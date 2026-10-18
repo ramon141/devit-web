@@ -11,18 +11,40 @@
  */
 export interface AddressPartialExcludingCreatedAtUpdatedAt {
   id?: string;
-  /** @nullable */
+  /**
+   * @maxLength 80
+   * @nullable
+   */
   country?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 200
+   * @nullable
+   */
   street?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 20
+   * @nullable
+   */
   number?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 100
+   * @nullable
+   */
   complement?: string | null;
+  /**
+   * @minLength 1
+   * @maxLength 120
+   */
   city?: string;
-  /** @nullable */
+  /**
+   * @maxLength 120
+   * @nullable
+   */
   region?: string | null;
-  /** @nullable */
+  /**
+   * @maxLength 20
+   * @nullable
+   */
   postalCode?: string | null;
   /** @nullable */
   neighborhoodId?: string | null;

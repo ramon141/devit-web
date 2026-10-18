@@ -29,9 +29,11 @@
       "Sale": "Vendita",
       "User": "Utente",
       "Zone": "Zona",
+      "Neighborhood": "Quartiere",
       "Lead": "Richiesta",
       "CalendarEvent": "Impegno",
-      "HomeBanner": "Banner"
+      "HomeBanner": "Banner",
+      "CommunicationTemplate": "Modello di comunicazione"
     }
   },
   "auditPage": {
@@ -84,7 +86,8 @@
   },
   "bannerPage": {
     "title": "Banner",
-    "description": "Gestisci i banner della home"
+    "description": "Gestisci i banner della home",
+    "notFound": "Banner non trovato."
   },
   "bannerSchema": {
     "titleMin": "Inserisci almeno 2 caratteri",
@@ -152,7 +155,7 @@
     "nameMin": "Inserisci almeno 2 caratteri",
     "slugMin": "Inserisci almeno 2 caratteri",
     "slugInvalid": "Usa solo lettere minuscole, numeri e trattini (es. appartamento-lusso)",
-    "orderInvalid": "L'ordine deve essere un numero intero maggiore o uguale a 0"
+    "orderInvalid": "L'ordine deve essere un numero intero tra 0 e {{max}}"
   },
   "branchFormModal": {
     "editTitle": "Modifica filiale",
@@ -324,10 +327,12 @@
     "newLabel": "Nuova zona"
   },
   "zoneSchema": {
+    "nameMax": "Massimo 120 caratteri",
     "nameMin": "Inserisci almeno 2 caratteri",
     "cityMin": "Inserisci almeno 2 caratteri"
   },
   "neighborhoodSchema": {
+    "nameMax": "Massimo 120 caratteri",
     "nameMin": "Inserisci almeno 2 caratteri",
     "zoneRequired": "Seleziona una zona"
   },

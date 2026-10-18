@@ -13,6 +13,7 @@ import type { User } from './user';
  */
 export interface CalendarEventOutcomeWithRelations {
   id?: string;
+  /** @minLength 1 */
   outcome: string;
   createdAt: string;
   updatedAt: string;

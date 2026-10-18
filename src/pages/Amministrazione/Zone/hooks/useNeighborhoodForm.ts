@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -14,7 +14,7 @@ import type { Neighborhood } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import {
-  neighborhoodSchema,
+  createNeighborhoodSchema,
   type NeighborhoodFormValues,
 } from '@/pages/Amministrazione/Zone/schemas/zoneSchema'
 
@@ -31,6 +31,7 @@ export function useNeighborhoodForm({ open, neighborhood, zoneId, onSaved }: Use
   const { promisePopup } = usePromisePopup()
   const { mutateAsync: create, isPending: creating } = useNeighborhoodControllerCreate()
   const { mutateAsync: update, isPending: updating } = useNeighborhoodControllerUpdateById()
+  const neighborhoodSchema = useMemo(() => createNeighborhoodSchema(t), [t])
 
   const form = useForm<NeighborhoodFormValues>({
     resolver: zodResolver(neighborhoodSchema),

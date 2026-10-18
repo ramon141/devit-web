@@ -7,7 +7,6 @@ import {
   Handshake,
   LayoutDashboard,
   Megaphone,
-  Palette,
   ShieldCheck,
   Settings,
   Users,
@@ -105,11 +104,6 @@ const allNavItems: NavItem[] = [
     label: 'sidebar.nav.componenti',
     path: crmPath('/componenti'),
     icon: Settings,
-  },
-  {
-    label: 'sidebar.nav.designSystemSite',
-    path: crmPath('/design-system-site'),
-    icon: Palette,
   },
 ]
 

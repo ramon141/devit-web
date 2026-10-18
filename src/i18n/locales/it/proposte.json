@@ -275,5 +275,9 @@
         "content": "Clicca su Salva per registrare la proposta o su Annulla per chiudere senza salvare."
       }
     }
+  },
+  "hints": {
+    "accepted": "Accettare non modifica l'immobile né avvisa nessuno: poi converti la proposta in vendita.",
+    "rejected": "Il rifiuto richiede il motivo."
   }
 }

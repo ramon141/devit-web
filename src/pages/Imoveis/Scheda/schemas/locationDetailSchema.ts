@@ -16,6 +16,8 @@ export function createLocationDetailSchema(t: TFunction<'imoveis'>) {
   return z.object({
     latitude: optionalNumberInRange(-90, 90, t('scheda.locationDetailSection.latitudeInvalid')),
     longitude: optionalNumberInRange(-180, 180, t('scheda.locationDetailSection.longitudeInvalid')),
+    publicLatitude: optionalNumberInRange(-90, 90, t('scheda.locationDetailSection.latitudeInvalid')),
+    publicLongitude: optionalNumberInRange(-180, 180, t('scheda.locationDetailSection.longitudeInvalid')),
     position: z.string(),
     distanceToWaterM: optionalNumberInRange(0, Number.MAX_SAFE_INTEGER, nonNegative),
     floorNumber: z.string(),

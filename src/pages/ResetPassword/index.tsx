@@ -45,7 +45,7 @@ function ResetPassword() {
               {t('resetPasswordPage.subtitle')}
             </p>
 
-            <form onSubmit={onSubmit} className="flex flex-col gap-7">
+            <form noValidate onSubmit={onSubmit} className="flex flex-col gap-7">
               <div>
                 <label
                   htmlFor="reset-password"

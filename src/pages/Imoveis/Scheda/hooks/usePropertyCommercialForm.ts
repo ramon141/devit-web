@@ -54,7 +54,7 @@ const emptyValues: CommercialFormValues = {
   context: '',
 }
 
-export function usePropertyCommercialForm(propertyId: string) {
+export function usePropertyCommercialForm(propertyId: string, onSaved?: () => void) {
   const { t } = useTranslation('imoveis')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -93,6 +93,13 @@ export function usePropertyCommercialForm(propertyId: string) {
   }, [existing])
 
   function onSubmit(values: CommercialFormValues) {
+    const from = Number(values.averageRevenueFrom)
+    const to = Number(values.averageRevenueTo)
+    if (values.averageRevenueFrom && values.averageRevenueTo && from > to) {
+      form.setError('averageRevenueTo', { message: t('options.validation.minMaxRange') })
+      return
+    }
+
     const cleaned = emptyStringsToNull(values)
     const data = {
       ...cleaned,
@@ -118,6 +125,8 @@ export function usePropertyCommercialForm(propertyId: string) {
           queryClient.invalidateQueries({ queryKey: getPropertyCommercialDetailControllerFindQueryKey() })
           return created
         })
+
+    promise.then(() => onSaved?.(), () => undefined)
 
     promisePopup(promise, {
       pending: t('toasts.commercialForm.pending'),

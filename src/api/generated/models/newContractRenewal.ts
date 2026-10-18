@@ -12,11 +12,23 @@
 export interface NewContractRenewal {
   previousEndDate: string;
   newEndDate: string;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   previousAmount?: number | null;
-  /** @nullable */
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
   newAmount?: number | null;
-  /** @nullable */
+  /**
+   * @minimum -100
+   * @maximum 1000
+   * @nullable
+   */
   adjustmentPercentage?: number | null;
   /** @nullable */
   note?: string | null;
