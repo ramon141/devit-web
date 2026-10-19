@@ -49,7 +49,9 @@
     "cityLabel": "Comune",
     "cityPlaceholder": "Tutti i comuni",
     "onlyPrestige": "Solo prestigio",
-    "onlyAuction": "Solo all'asta"
+    "onlyAuction": "Solo all'asta",
+    "brokerLabel": "Agente responsabile",
+    "brokerPlaceholder": "Codice agente"
   },
   "card": {
     "new": "Nuovo",
@@ -89,7 +91,8 @@
       "category": "Tipologia",
       "size": "Superficie",
       "updatedAt": "Ultima modifica",
-      "registeredAt": "Registrazione"
+      "registeredAt": "Registrazione",
+      "broker": "Responsabile"
     },
     "size": {
       "area": "{{value, number}} m²",
@@ -945,5 +948,39 @@
     "registeredBy": "Registrato il {{date}} da {{author}}",
     "unknownOrigin": "Origine non indicata",
     "lastChange": "Ultima modifica di {{author}} il {{date}}"
+  },
+  "broker": {
+    "label": "Agente responsabile",
+    "since": "Responsabile dal {{date}}",
+    "transfer": {
+      "button": "Trasferisci responsabile",
+      "title": "Trasferisci l'agente responsabile",
+      "description": "Solo la gestione può trasferire un immobile. Il trasferimento viene registrato.",
+      "newBroker": "Nuovo agente responsabile",
+      "newBrokerPlaceholder": "Seleziona un agente",
+      "reason": "Motivo del trasferimento",
+      "reasonPlaceholder": "Spiega perché l'immobile cambia agente",
+      "confirm": "Trasferisci",
+      "success": "Agente responsabile aggiornato.",
+      "pending": "Trasferimento in corso...",
+      "newBrokerRequired": "Seleziona il nuovo agente responsabile.",
+      "reasonRequired": "Il motivo del trasferimento è obbligatorio (minimo 3 caratteri)."
+    },
+    "duplicate": {
+      "title": "Immobile già esistente",
+      "registeredAt": "Registrato il {{date}}",
+      "status": {
+        "active": "Attivo",
+        "inactive": "Inattivo"
+      },
+      "matched": "Valore coincidente",
+      "existing": "Immobile esistente",
+      "responsible": "Agente responsabile",
+      "phone": "Tel. {{phone}}",
+      "since": "Responsabile dal {{date}}",
+      "close": "Chiudi",
+      "transferHint": "L'immobile appartiene già a un altro agente: solo la gestione può trasferirlo."
+    },
+    "createPlaceholder": "Come chi registra"
   }
 }

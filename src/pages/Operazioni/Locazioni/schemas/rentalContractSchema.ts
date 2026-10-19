@@ -34,8 +34,6 @@ export function createRentalContractSchema(t: TFunction) {
       notes: z.string().optional(),
       stipulaDate: z.string().optional(),
       renewalDueDate: z.string().optional(),
-      ownerAgentId: z.string().optional(),
-      tenantAgentId: z.string().optional(),
     })
     .superRefine((values, ctx) => {
       const dueDay = Number(values.dueDay)

@@ -56,16 +56,6 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
       />
       <Controller
         control={control}
-        name="active"
-        render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
-            <Switch checked={field.value} onCheckedChange={field.onChange} />
-            {t('flagsRow.active')}
-          </label>
-        )}
-      />
-      <Controller
-        control={control}
         name="useInChatbot"
         render={({ field }) => (
           <label className="flex items-center gap-2 text-sm">

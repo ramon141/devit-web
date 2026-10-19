@@ -7,6 +7,7 @@ import PropertyFiltersPriceRangeToggle from '@/pages/Imoveis/components/Property
 import PropertyFiltersOwnerOrderBy from '@/pages/Imoveis/components/PropertyFiltersOwnerOrderBy'
 import PropertyFiltersRoomsRange from '@/pages/Imoveis/components/PropertyFiltersRoomsRange'
 import PropertyFiltersAreaCity from '@/pages/Imoveis/components/PropertyFiltersAreaCity'
+import PropertyFiltersBroker from '@/pages/Imoveis/components/PropertyFiltersBroker'
 import PropertyFiltersCheckboxes from '@/pages/Imoveis/components/PropertyFiltersCheckboxes'
 
 type PropertyFiltersProps = {
@@ -46,6 +47,7 @@ function PropertyFilters({ filters, onChange }: PropertyFiltersProps) {
           <PropertyFiltersOwnerOrderBy filters={filters} ownerOptions={ownerOptions} update={update} />
           <PropertyFiltersRoomsRange filters={filters} update={update} />
           <PropertyFiltersAreaCity filters={filters} cities={cities} update={update} />
+          <PropertyFiltersBroker filters={filters} update={update} />
           <PropertyFiltersCheckboxes filters={filters} update={update} />
         </div>
       )}

@@ -5,11 +5,11 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { AddressControllerUpdateById409ErrorDetails } from './addressControllerUpdateById409ErrorDetails';
+import type { AddressControllerUpdateById409ErrorDetailsItem } from './addressControllerUpdateById409ErrorDetailsItem';
 
 export type AddressControllerUpdateById409Error = {
   statusCode?: number;
   name?: string;
   message?: string;
-  details?: AddressControllerUpdateById409ErrorDetails;
+  details?: AddressControllerUpdateById409ErrorDetailsItem[];
 };

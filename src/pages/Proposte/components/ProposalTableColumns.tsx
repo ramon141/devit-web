@@ -1,3 +1,4 @@
+import { formatPropertyBroker } from '@/utils/formatBroker'
 import { ArrowRightLeftIcon, PencilIcon, Trash2Icon } from 'lucide-react'
 import type { TFunction } from 'i18next'
 import { Button } from '@/components/ui/button'
@@ -91,8 +92,10 @@ export function buildProposalTableColumns({
         </Badge>
       ),
     },
-    { header: t('tableColumns.sellerAgent'), cell: (proposal) => proposal.sellerAgent?.fullName ?? '—' },
-    { header: t('tableColumns.assignedTo'), cell: (proposal) => proposal.assignedTo?.fullName ?? '—' },
+    {
+      header: t('tableColumns.broker'),
+      cell: (proposal) => formatPropertyBroker(proposal.property),
+    },
     { header: t('tableColumns.createdBy'), cell: (proposal) => proposal.createdBy?.fullName ?? '—' },
     {
       header: t('tableColumns.notes'),

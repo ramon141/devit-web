@@ -22,6 +22,7 @@ function Locazioni() {
   const {
     contracts,
     where,
+    brokerParams,
     isLoading,
     totalItems,
     pageSize,
@@ -75,7 +76,7 @@ function Locazioni() {
         searchWrapperId="locazioni-search-filter"
         newButtonId="locazioni-new-btn"
         filters={<RentalFilters filters={filters} onChange={setFilters} />}
-        actions={<ExportMenu path="/rental-contracts/export" params={{ filter: { where } }} />}
+        actions={<ExportMenu path="/rental-contracts/export" params={{ filter: { where }, ...brokerParams }} />}
       />
 
       <RentalTable contracts={contracts} isLoading={isLoading} onEdit={openEdit} />

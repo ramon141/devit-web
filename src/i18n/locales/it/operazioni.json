@@ -119,9 +119,6 @@
       "personSearchPlaceholder": "Cerca un cliente...",
       "tenantLabel": "Inquilino",
       "tenantPlaceholder": "Seleziona un inquilino",
-      "ownerAgentLabel": "Agente del proprietario",
-      "tenantAgentLabel": "Agente dell'inquilino",
-      "agentSearchPlaceholder": "Cerca un agente...",
       "noneOption": "Nessuno",
       "addOwner": "Aggiungi proprietario",
       "addTenant": "Aggiungi inquilino"
@@ -175,12 +172,11 @@
       "deleteTooltip": "Elimina",
       "lockedTooltip": "Contratto rescisso/chiuso: non modificabile",
       "dataStipula": "Data stipula",
-      "agenteProprietario": "Agente P",
-      "agenteInquilino": "Agente I",
       "al": "Al",
       "inCorso": "In corso",
       "inCorsoYes": "Sì",
-      "note": "Note"
+      "note": "Note",
+      "broker": "Agente responsabile"
     },
     "hooks": {
       "attachments": {
@@ -219,8 +215,6 @@
       "all": "Tutti",
       "ownerLabel": "Proprietario",
       "tenantLabel": "Inquilino",
-      "ownerAgentLabel": "Agente del proprietario",
-      "tenantAgentLabel": "Agente dell'inquilino",
       "stipulaDateFromLabel": "Data stipula dal",
       "stipulaDateToLabel": "Data stipula al",
       "startDateFromLabel": "Data inizio dal",
@@ -294,8 +288,6 @@
       "proposalLabel": "Proposta di origine",
       "proposalPlaceholder": "Nessuna",
       "proposalSearchPlaceholder": "Cerca per numero...",
-      "sellerAgentLabel": "Agente del venditore",
-      "buyerAgentLabel": "Agente dell'acquirente",
       "noneOption": "Nessuno",
       "extraSellersLabel": "Altri venditori",
       "extraBuyersLabel": "Altri acquirenti"
@@ -328,10 +320,9 @@
       "azioni": "Azioni",
       "lockedTooltip": "Vendita conclusa: non modificabile",
       "rogito": "Rogito",
-      "agenteV": "Agente V",
-      "agenteA": "Agente A",
       "note": "Note",
-      "plusOthers": "+{{count}} altri"
+      "plusOthers": "+{{count}} altri",
+      "broker": "Agente responsabile"
     },
     "documentsManager": {
       "typePlaceholder": "Tipo di documento (facoltativo)",
@@ -366,8 +357,6 @@
       "statusLabel": "Stato",
       "sellerLabel": "Venditore",
       "buyerLabel": "Acquirente",
-      "sellerAgentLabel": "Agente venditore",
-      "buyerAgentLabel": "Agente acquirente",
       "saleDateFromLabel": "Data stipula dal",
       "saleDateToLabel": "Data stipula al",
       "onlyMine": "Solo le mie",
@@ -397,14 +386,6 @@
           "title": "Inquilino",
           "content": "Filtra per l'inquilino."
         },
-        "ownerAgent": {
-          "title": "Agente del proprietario",
-          "content": "Filtra per l'agente responsabile del proprietario."
-        },
-        "tenantAgent": {
-          "title": "Agente dell'inquilino",
-          "content": "Filtra per l'agente responsabile dell'inquilino."
-        },
         "stipulaDateFrom": {
           "title": "Data stipula dal",
           "content": "Filtra i contratti stipulati a partire da questa data."
@@ -432,6 +413,10 @@
         "newBtn": {
           "title": "Nuovo contratto",
           "content": "Apre la registrazione di un nuovo contratto di locazione."
+        },
+        "broker": {
+          "title": "Agente responsabile",
+          "content": "Filtra per l'agente responsabile dell'immobile (codice agente)."
         }
       },
       "modal": {
@@ -459,14 +444,6 @@
           "tenantIds": {
             "title": "Inquilini",
             "content": "Aggiungi uno o più inquilini del contratto."
-          },
-          "ownerAgentId": {
-            "title": "Agente del proprietario",
-            "content": "Agente responsabile di rappresentare il proprietario."
-          },
-          "tenantAgentId": {
-            "title": "Agente dell'inquilino",
-            "content": "Agente responsabile di rappresentare l'inquilino."
           },
           "startDate": {
             "title": "Decorrenza",
@@ -549,14 +526,6 @@
           "title": "Acquirente",
           "content": "Filtra per il cliente acquirente."
         },
-        "sellerAgent": {
-          "title": "Agente venditore",
-          "content": "Filtra per l'agente responsabile del venditore."
-        },
-        "buyerAgent": {
-          "title": "Agente acquirente",
-          "content": "Filtra per l'agente responsabile dell'acquirente."
-        },
         "saleDateFrom": {
           "title": "Data stipula dal",
           "content": "Filtra le vendite stipulate a partire da questa data."
@@ -576,6 +545,10 @@
         "newBtn": {
           "title": "Nuova vendita",
           "content": "Apre la registrazione di una nuova vendita."
+        },
+        "broker": {
+          "title": "Agente responsabile",
+          "content": "Filtra per l'agente responsabile dell'immobile (codice agente)."
         }
       },
       "modal": {
@@ -615,14 +588,6 @@
           "extraBuyerIds": {
             "title": "Acquirenti aggiuntivi",
             "content": "Altri acquirenti coinvolti nella vendita, oltre al principale."
-          },
-          "sellerAgentId": {
-            "title": "Agente del venditore",
-            "content": "Agente responsabile di rappresentare il venditore."
-          },
-          "buyerAgentId": {
-            "title": "Agente dell'acquirente",
-            "content": "Agente responsabile di rappresentare l'acquirente."
           },
           "paymentMethod": {
             "title": "Metodo di pagamento",

@@ -18,7 +18,7 @@ export function useCalendarEventProperties(calendarEventId: string) {
   const [propertyId, setPropertyId] = useState('')
 
   const { data: links } = useCalendarEventPropertyControllerFind({
-    filter: { where: { calendarEventId }, include: [{ relation: 'property' }] },
+    filter: { where: { calendarEventId }, include: [{ relation: 'property', scope: { include: [{ relation: 'responsibleBroker' }] } }] },
   })
   const { mutateAsync: create } = useCalendarEventPropertyControllerCreate()
   const { mutateAsync: remove } = useCalendarEventPropertyControllerDeleteById()

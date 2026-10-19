@@ -31,8 +31,6 @@ const emptyValues: ProposalFormValues = {
   rejectionReason: '',
   notes: '',
   leadId: '',
-  assignedToId: '',
-  sellerAgentId: '',
 }
 
 function proposalToFormValues(proposal: PurchaseProposalWithRelations): ProposalFormValues {
@@ -49,8 +47,6 @@ function proposalToFormValues(proposal: PurchaseProposalWithRelations): Proposal
     rejectionReason: proposal.rejectionReason ?? '',
     notes: proposal.notes ?? '',
     leadId: proposal.leadId ?? '',
-    assignedToId: proposal.assignedToId ?? '',
-    sellerAgentId: proposal.sellerAgentId ?? '',
   }
 }
 

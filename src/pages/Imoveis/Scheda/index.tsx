@@ -16,6 +16,8 @@ import TourFab from '@/components/TourFab'
 import NotFoundState from '@/components/NotFoundState'
 import { usePropertyControllerFindById } from '@/api/generated/api'
 import { usePropertyForm } from '@/pages/Imoveis/hooks/usePropertyForm'
+import PropertyBrokerHeader from '@/pages/Imoveis/components/PropertyBrokerHeader'
+import PropertyDuplicateModal from '@/pages/Imoveis/components/PropertyDuplicateModal'
 import PropertyRegistrationInfo from '@/pages/Imoveis/components/PropertyRegistrationInfo'
 import PropertyFormFields from '@/pages/Imoveis/components/PropertyFormFields'
 import { PropertyDraftProvider } from '@/pages/Imoveis/contexts/PropertyDraftProvider'
@@ -42,6 +44,7 @@ function PropertyScheda() {
           { relation: 'owner' },
           { relation: 'createdBy' },
           { relation: 'lastChangedBy' },
+          { relation: 'responsibleBroker' },
         ],
       },
     },
@@ -51,7 +54,7 @@ function PropertyScheda() {
 
   const [activeTab, setActiveTab] = useState('generale')
 
-  const { form, isSubmitting, onSubmit } = usePropertyForm({
+  const { form, isSubmitting, onSubmit, duplicateInfo, closeDuplicate } = usePropertyForm({
     property,
     initialCategoryId: isNew ? (searchParams.get('categoryId') ?? undefined) : undefined,
     onSaved: (savedId) => {
@@ -88,6 +91,8 @@ function PropertyScheda() {
       />
       <TourFab onClick={startTour} className="bottom-24 lg:bottom-6" />
 
+      <PropertyDuplicateModal info={duplicateInfo} onClose={closeDuplicate} />
+
       <div className="flex h-full min-h-0 flex-col">
         <Breadcrumb className="mb-4 shrink-0">
           <BreadcrumbList>
@@ -102,7 +107,8 @@ function PropertyScheda() {
         </Breadcrumb>
 
         {property && (
-          <div className="mb-3 shrink-0">
+          <div className="mb-3 grid shrink-0 gap-2">
+            <PropertyBrokerHeader property={property} />
             <PropertyRegistrationInfo property={property} />
           </div>
         )}

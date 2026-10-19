@@ -5,10 +5,10 @@ import { Label } from '@/components/ui/label'
 import SelectField from '@/components/SelectField'
 import SearchableSelect from '@/components/SearchableSelect'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
+import BrokerCodeFilter from '@/components/BrokerCodeFilter'
 import {
   usePersonControllerFind,
   usePropertyControllerFind,
-  useUserControllerFind,
 } from '@/api/generated/api'
 import { getProposalStatusOptions } from '@/pages/Proposte/schemas/proposalSchema'
 import type { ProposalFiltersValues } from '@/pages/Proposte/hooks/useProposalList'
@@ -22,14 +22,12 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
   const { t } = useTranslation('proposte')
   const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-  const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
   const propertyOptions = (properties ?? []).map((property) => ({
     value: property.id ?? '',
     label: `${property.code} · ${property.title}`,
   }))
   const buyerOptions = (people ?? []).map((person) => ({ value: person.id ?? '', label: person.name }))
-  const userOptions = (users ?? []).map((user) => ({ value: user.id ?? '', label: user.fullName }))
   const financedOptions = [
     { value: 'true', label: t('filters.financedYes') },
     { value: 'false', label: t('filters.financedNo') },
@@ -77,23 +75,11 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper id="proposte-sellerAgent-filter" label={t('filters.sellerAgentLabel')}>
-        <SearchableSelect
-          options={userOptions}
-          value={filters.sellerAgentId}
-          onValueChange={(value) => update({ sellerAgentId: value })}
-          placeholder={t('filters.all')}
-        />
-      </FormFieldWrapper>
-
-      <FormFieldWrapper id="proposte-assignedTo-filter" label={t('filters.assignedToLabel')}>
-        <SearchableSelect
-          options={userOptions}
-          value={filters.assignedToId}
-          onValueChange={(value) => update({ assignedToId: value })}
-          placeholder={t('filters.all')}
-        />
-      </FormFieldWrapper>
+      <BrokerCodeFilter
+        id="proposte-broker-filter"
+        value={filters.brokerCode}
+        onChange={(value) => update({ brokerCode: value })}
+      />
 
       <FormFieldWrapper id="proposte-dateFrom-filter" label={t('filters.proposalDateFromLabel')}>
         <Input

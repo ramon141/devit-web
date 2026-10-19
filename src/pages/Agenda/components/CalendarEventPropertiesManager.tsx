@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import SearchableSelect from '@/components/SearchableSelect'
 import RemovableRow from '@/components/RemovableRow'
+import { formatPropertyBroker } from '@/utils/formatBroker'
 import { usePropertyControllerFind } from '@/api/generated/api'
 import { useCalendarEventProperties } from '@/pages/Agenda/hooks/useCalendarEventProperties'
 
@@ -26,7 +27,7 @@ function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventProper
       {links.map((link) => (
         <RemovableRow key={link.id} onRemove={() => link.id && removeProperty(link.id)}>
           <span className="text-sm">
-            {link.property?.code} · {link.property?.title}
+            {link.property?.code} · {link.property?.title} · {formatPropertyBroker(link.property)}
           </span>
         </RemovableRow>
       ))}

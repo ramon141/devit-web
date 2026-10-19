@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useQueryClient } from '@tanstack/react-query'
@@ -11,6 +11,7 @@ import {
   getPropertyPriceHistoryControllerFindQueryKey,
   getPropertyStatusHistoryControllerFindQueryKey,
   useAddressControllerCreate,
+  useAddressControllerDeleteById,
   useAddressControllerUpdateById,
   usePropertyControllerCreate,
   usePropertyControllerUpdateById,
@@ -23,6 +24,7 @@ import type { PropertyFeatureCategory } from '@/api/generated/models'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
+import { extractDuplicateInfo, type PropertyDuplicateInfo } from '@/pages/Imoveis/types/duplicate'
 import { createPropertySchema, type PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 
 const emptyValues: PropertyFormValues = {
@@ -30,11 +32,11 @@ const emptyValues: PropertyFormValues = {
   title: '',
   categoryId: '',
   ownerId: '',
+  responsibleBrokerId: '',
   purpose: 'sale',
   status: 'available',
   featured: false,
   featuredOrder: '',
-  active: true,
   publishedOnSite: false,
   useInChatbot: false,
   salePrice: undefined,
@@ -69,11 +71,11 @@ function propertyToFormValues(property: PropertyWithRelations): PropertyFormValu
     title: property.title,
     categoryId: property.categoryId,
     ownerId: property.ownerId,
+    responsibleBrokerId: property.responsibleBrokerId ?? '',
     purpose: property.purpose,
     status: property.status ?? 'available',
     featured: property.featured ?? false,
     featuredOrder: property.featuredOrder != null ? String(property.featuredOrder) : '',
-    active: property.active ?? true,
     publishedOnSite: property.publishedOnSite ?? false,
     useInChatbot: property.useInChatbot ?? false,
     salePrice: property.salePrice != null ? String(property.salePrice) : undefined,
@@ -105,6 +107,8 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
   const { mutateAsync: createFeature } = usePropertyFeatureControllerCreate()
   const { mutateAsync: createAddress } = useAddressControllerCreate()
   const { mutateAsync: updateAddress } = useAddressControllerUpdateById()
+  const { mutateAsync: deleteAddress } = useAddressControllerDeleteById()
+  const [duplicateInfo, setDuplicateInfo] = useState<PropertyDuplicateInfo | null>(null)
   const { mutateAsync: createProperty, isPending: creating } = usePropertyControllerCreate()
   const { mutateAsync: updateProperty, isPending: updating } = usePropertyControllerUpdateById()
 
@@ -150,7 +154,6 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
       status: values.status,
       featured: values.featured,
       featuredOrder: toNumberOrNull(values.featuredOrder),
-      active: values.active,
       publishedOnSite: values.publishedOnSite,
       useInChatbot: values.useInChatbot,
       salePrice: toNumberOrNull(values.salePrice),
@@ -176,6 +179,7 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
       data: {
         ...propertyData,
         addressId: address.id ?? '',
+        responsibleBrokerId: values.responsibleBrokerId || undefined,
         detail: draft.detail,
         additionalDetail: draft.additionalDetail,
         heatingDetail: draft.heatingDetail,
@@ -191,6 +195,10 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
         documents: draft.documents,
         owners: draft.owners,
       },
+    }).catch(async (error: AxiosError<ApiErrorResponse>) => {
+      // endereço criado para este imóvel não pode ficar solto quando o cadastro é bloqueado
+      await deleteAddress({ id: address.id ?? '' }).catch(() => undefined)
+      throw error
     })
 
     const createdId = created.id ?? ''
@@ -220,8 +228,11 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
         onSaved(savedId)
         return property ? t('toasts.saveProperty.successUpdate') : t('toasts.saveProperty.successCreate')
       },
-      error: (error: AxiosError<ApiErrorResponse>) =>
-        getErrorMessageFromRequest(error, t('toasts.saveProperty.error')),
+      error: (error: AxiosError<ApiErrorResponse>) => {
+        setDuplicateInfo(extractDuplicateInfo(error))
+
+        return getErrorMessageFromRequest(error, t('toasts.saveProperty.error'))
+      },
     })
   }
 
@@ -229,5 +240,7 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
     form,
     isSubmitting: creating || updating,
     onSubmit: form.handleSubmit(onSubmit),
+    duplicateInfo,
+    closeDuplicate: () => setDuplicateInfo(null),
   }
 }

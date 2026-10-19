@@ -49,7 +49,9 @@
     "cityLabel": "Cidade",
     "cityPlaceholder": "Todas as cidades",
     "onlyPrestige": "Só prestígio",
-    "onlyAuction": "Só leilão"
+    "onlyAuction": "Só leilão",
+    "brokerLabel": "Corretor responsável",
+    "brokerPlaceholder": "Código do corretor"
   },
   "card": {
     "new": "Novo",
@@ -89,7 +91,8 @@
       "category": "Tipologia",
       "size": "Metragem",
       "updatedAt": "Última alteração",
-      "registeredAt": "Cadastro"
+      "registeredAt": "Cadastro",
+      "broker": "Responsável"
     },
     "size": {
       "area": "{{value, number}} m²",
@@ -945,5 +948,39 @@
     "registeredBy": "Cadastrado em {{date}} por {{author}}",
     "unknownOrigin": "Origem não informada",
     "lastChange": "Última alteração por {{author}} em {{date}}"
+  },
+  "broker": {
+    "label": "Corretor responsável",
+    "since": "Responsável desde {{date}}",
+    "transfer": {
+      "button": "Transferir responsável",
+      "title": "Transferir o corretor responsável",
+      "description": "Só a gestão pode transferir um imóvel. A transferência fica registrada.",
+      "newBroker": "Novo corretor responsável",
+      "newBrokerPlaceholder": "Selecione um corretor",
+      "reason": "Motivo da transferência",
+      "reasonPlaceholder": "Explique por que o imóvel muda de corretor",
+      "confirm": "Transferir",
+      "success": "Corretor responsável atualizado.",
+      "pending": "Transferindo...",
+      "newBrokerRequired": "Selecione o novo corretor responsável.",
+      "reasonRequired": "O motivo da transferência é obrigatório (mínimo 3 caracteres)."
+    },
+    "duplicate": {
+      "title": "Imóvel já existente",
+      "registeredAt": "Cadastrado em {{date}}",
+      "status": {
+        "active": "Ativo",
+        "inactive": "Inativo"
+      },
+      "matched": "Valor coincidente",
+      "existing": "Imóvel existente",
+      "responsible": "Corretor responsável",
+      "phone": "Tel. {{phone}}",
+      "since": "Responsável desde {{date}}",
+      "close": "Fechar",
+      "transferHint": "O imóvel já pertence a outro corretor: só a gestão pode transferir."
+    },
+    "createPlaceholder": "Quem está cadastrando"
   }
 }

@@ -19,6 +19,7 @@ function Proposte() {
   const {
     proposals,
     where,
+    brokerParams,
     isLoading,
     totalItems,
     pageSize,
@@ -73,7 +74,7 @@ function Proposte() {
         searchWrapperId="proposte-search-filter"
         newButtonId="proposte-new-btn"
         filters={<ProposalFilters filters={filters} onChange={setFilters} />}
-        actions={<ExportMenu path="/purchase-proposals/export" params={{ filter: { where } }} />}
+        actions={<ExportMenu path="/purchase-proposals/export" params={{ filter: { where }, ...brokerParams }} />}
       />
 
       <ProposalTable proposals={proposals} isLoading={isLoading} onEdit={openEdit} />

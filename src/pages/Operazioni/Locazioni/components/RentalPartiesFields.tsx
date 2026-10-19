@@ -2,7 +2,7 @@ import { Controller, type Control, type FieldErrors, type UseFormSetValue, useWa
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import PartyListManager from '@/components/PartyListManager'
-import { usePersonControllerFind, useUserControllerFind } from '@/api/generated/api'
+import { usePersonControllerFind } from '@/api/generated/api'
 import { usePropertySearchOptions } from '@/hooks/usePropertySearchOptions'
 import type { RentalContractFormValues } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 
@@ -33,7 +33,6 @@ function RentalPartiesFields({
     setSearch: setPropertySearch,
   } = usePropertySearchOptions(propertyId)
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-  const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
   function updateOwnerIds(ids: string[]) {
     setOwnerIds(ids)
@@ -48,10 +47,6 @@ function RentalPartiesFields({
   const personOptions = (people ?? []).map((person) => ({
     value: person.id ?? '',
     label: person.name,
-  }))
-  const userOptions = (users ?? []).map((user) => ({
-    value: user.id ?? '',
-    label: user.fullName,
   }))
 
   return (
@@ -105,42 +100,6 @@ function RentalPartiesFields({
         {errors.tenantId?.message && (
           <p className="text-sm text-destructive sm:col-span-2">{errors.tenantId.message}</p>
         )}
-      </div>
-
-      <div id="modal-field-ownerAgentId">
-        <Controller
-          control={control}
-          name="ownerAgentId"
-          render={({ field }) => (
-            <SearchableSelect
-              label={t('locazioni.partiesFields.ownerAgentLabel')}
-              value={field.value}
-              onValueChange={field.onChange}
-              options={userOptions}
-              placeholder={t('locazioni.partiesFields.noneOption')}
-              searchPlaceholder={t('locazioni.partiesFields.agentSearchPlaceholder')}
-              error={errors.ownerAgentId?.message}
-            />
-          )}
-        />
-      </div>
-
-      <div id="modal-field-tenantAgentId">
-        <Controller
-          control={control}
-          name="tenantAgentId"
-          render={({ field }) => (
-            <SearchableSelect
-              label={t('locazioni.partiesFields.tenantAgentLabel')}
-              value={field.value}
-              onValueChange={field.onChange}
-              options={userOptions}
-              placeholder={t('locazioni.partiesFields.noneOption')}
-              searchPlaceholder={t('locazioni.partiesFields.agentSearchPlaceholder')}
-              error={errors.tenantAgentId?.message}
-            />
-          )}
-        />
       </div>
     </>
   )

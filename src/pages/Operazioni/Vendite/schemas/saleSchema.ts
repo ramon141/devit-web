@@ -38,8 +38,6 @@ export function createSaleSchema(t: TFunction) {
     cancellationReason: z.string().optional(),
     notes: z.string().optional(),
     proposalId: z.string().optional(),
-    sellerAgentId: z.string().optional(),
-    buyerAgentId: z.string().optional(),
     extraBuyerIds: z.array(z.string()).optional(),
     extraSellerIds: z.array(z.string()).optional(),
     })

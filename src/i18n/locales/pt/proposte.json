@@ -2,13 +2,7 @@
   "assignmentFields": {
     "leadLabel": "Lead de origem",
     "leadPlaceholder": "Nenhum",
-    "leadSearchPlaceholder": "Buscar um lead...",
-    "assignedToLabel": "Responsável",
-    "assignedToPlaceholder": "Nenhum",
-    "assignedToSearchPlaceholder": "Buscar um usuário...",
-    "sellerAgentLabel": "Agente vendedor",
-    "sellerAgentPlaceholder": "Nenhum",
-    "sellerAgentSearchPlaceholder": "Buscar um usuário..."
+    "leadSearchPlaceholder": "Buscar um lead..."
   },
   "datesAndNotesFields": {
     "proposalDateLabel": "Data da proposta",
@@ -54,10 +48,9 @@
     "financed": "Financiamento",
     "financedYes": "Sim",
     "financedNo": "Não",
-    "sellerAgent": "Agente V",
-    "assignedTo": "Agente C",
     "createdBy": "Criada por",
-    "notes": "Notas"
+    "notes": "Notas",
+    "broker": "Corretor responsável"
   },
   "paymentMethodOptions": {
     "cash": "Dinheiro",
@@ -130,8 +123,6 @@
     "financedNo": "Não",
     "propertyLabel": "Imóvel",
     "buyerLabel": "Comprador",
-    "sellerAgentLabel": "Agente vendedor",
-    "assignedToLabel": "Agente comprador",
     "proposalDateFromLabel": "Período de",
     "proposalDateToLabel": "Período até",
     "onlyMine": "Somente as minhas",
@@ -174,14 +165,6 @@
         "title": "Comprador",
         "content": "Filtra pelas propostas de um comprador específico."
       },
-      "sellerAgent": {
-        "title": "Corretor vendedor",
-        "content": "Filtra pelo corretor responsável pela venda."
-      },
-      "assignedTo": {
-        "title": "Responsável",
-        "content": "Filtra pelo usuário responsável pela proposta."
-      },
       "dateFrom": {
         "title": "Data inicial",
         "content": "Filtra propostas a partir desta data."
@@ -201,6 +184,10 @@
       "newBtn": {
         "title": "Nova proposta",
         "content": "Clique aqui para abrir o formulário de cadastro de uma nova proposta."
+      },
+      "broker": {
+        "title": "Corretor responsável",
+        "content": "Filtra pelo corretor responsável pelo imóvel (código do corretor)."
       }
     },
     "modal": {
@@ -236,14 +223,6 @@
         "leadId": {
           "title": "Solicitação vinculada",
           "content": "Solicitação (lead) de origem, se houver."
-        },
-        "assignedToId": {
-          "title": "Responsável",
-          "content": "Usuário responsável pelo acompanhamento da proposta."
-        },
-        "sellerAgentId": {
-          "title": "Corretor vendedor",
-          "content": "Corretor responsável pela venda."
         },
         "proposalDate": {
           "title": "Data da proposta",

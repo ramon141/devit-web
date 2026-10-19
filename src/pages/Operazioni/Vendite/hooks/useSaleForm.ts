@@ -33,8 +33,6 @@ const emptyValues: SaleFormValues = {
   cancellationReason: '',
   notes: '',
   proposalId: '',
-  sellerAgentId: '',
-  buyerAgentId: '',
   extraBuyerIds: [],
   extraSellerIds: [],
 }
@@ -54,8 +52,6 @@ function saleToFormValues(sale: SaleWithRelations): SaleFormValues {
     cancellationReason: sale.cancellationReason ?? '',
     notes: sale.notes ?? '',
     proposalId: sale.proposalId ?? '',
-    sellerAgentId: sale.sellerAgentId ?? '',
-    buyerAgentId: sale.buyerAgentId ?? '',
     extraBuyerIds: (sale.saleBuyers ?? [])
       .map((entry) => entry.personId)
       .filter((personId) => personId !== sale.buyerId),

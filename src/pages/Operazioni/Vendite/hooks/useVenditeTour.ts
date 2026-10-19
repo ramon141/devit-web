@@ -9,8 +9,7 @@ const LIST_STEP_KEYS = [
   'status',
   'seller',
   'buyer',
-  'sellerAgent',
-  'buyerAgent',
+  'broker',
   'saleDateFrom',
   'saleDateTo',
   'onlyMine',
@@ -24,8 +23,7 @@ const LIST_TARGETS: Record<(typeof LIST_STEP_KEYS)[number], string> = {
   status: '#vendite-status-filter',
   seller: '#vendite-seller-filter',
   buyer: '#vendite-buyer-filter',
-  sellerAgent: '#vendite-sellerAgent-filter',
-  buyerAgent: '#vendite-buyerAgent-filter',
+  broker: '#vendite-broker-filter',
   saleDateFrom: '#vendite-saleDateFrom-filter',
   saleDateTo: '#vendite-saleDateTo-filter',
   onlyMine: '#vendite-onlyMine-filter',
@@ -42,8 +40,6 @@ const GENERALE_FIELD_KEYS = [
   'proposalId',
   'extraSellerIds',
   'extraBuyerIds',
-  'sellerAgentId',
-  'buyerAgentId',
 ] as const
 
 const PAGAMENTO_FIELD_KEYS = [

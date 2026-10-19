@@ -4,15 +4,14 @@ import {
   useRentalContractControllerFind,
 } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
-import { UserInfo } from '@/auth'
+import { useBrokerListParams } from '@/hooks/useBrokerListParams'
 import { toLikePattern } from '@/utils/toLikePattern'
 
 export type RentalContractFiltersValues = {
   situation: string
   ownerId: string
   tenantId: string
-  ownerAgentId: string
-  tenantAgentId: string
+  brokerCode: string
   stipulaDateFrom: string
   stipulaDateTo: string
   startDateFrom: string
@@ -24,8 +23,7 @@ export const emptyRentalContractFilters: RentalContractFiltersValues = {
   situation: '',
   ownerId: '',
   tenantId: '',
-  ownerAgentId: '',
-  tenantAgentId: '',
+  brokerCode: '',
   stipulaDateFrom: '',
   stipulaDateTo: '',
   startDateFrom: '',
@@ -40,8 +38,6 @@ function buildWhere(search: string, filters: RentalContractFiltersValues) {
   if (filters.situation) conditions.push({ situation: filters.situation })
   if (filters.ownerId) conditions.push({ ownerId: filters.ownerId })
   if (filters.tenantId) conditions.push({ tenantId: filters.tenantId })
-  if (filters.ownerAgentId) conditions.push({ ownerAgentId: filters.ownerAgentId })
-  if (filters.tenantAgentId) conditions.push({ tenantAgentId: filters.tenantAgentId })
   if (filters.stipulaDateFrom) conditions.push({ stipulaDate: { gte: filters.stipulaDateFrom } })
   if (filters.stipulaDateTo) {
     conditions.push({ stipulaDate: { lte: `${filters.stipulaDateTo}T23:59:59.999Z` } })
@@ -51,12 +47,6 @@ function buildWhere(search: string, filters: RentalContractFiltersValues) {
     conditions.push({ startDate: { lte: `${filters.startDateTo}T23:59:59.999Z` } })
   }
 
-  if (filters.onlyMine) {
-    const userId = UserInfo.getUserId()
-    if (userId) {
-      conditions.push({ or: [{ ownerAgentId: userId }, { tenantAgentId: userId }, { createdById: userId }] })
-    }
-  }
 
   return conditions.length === 0 ? undefined : conditions.length === 1 ? conditions[0] : { and: conditions }
 }
@@ -67,16 +57,16 @@ export function useRentalContractList() {
   const [filters, setFiltersState] = useState<RentalContractFiltersValues>(emptyRentalContractFilters)
 
   const where = buildWhere(debouncedSearch, filters)
+  const brokerParams = useBrokerListParams(filters)
 
   const { data: contracts, isLoading } = useRentalContractControllerFind({
+    ...brokerParams,
     filter: {
       where,
       include: [
-        { relation: 'property' },
+        { relation: 'property', scope: { include: [{ relation: 'responsibleBroker' }] } },
         { relation: 'tenant' },
         { relation: 'owner' },
-        { relation: 'ownerAgent' },
-        { relation: 'tenantAgent' },
         { relation: 'rentalContractOwners', scope: { include: [{ relation: 'person' }] } },
         { relation: 'rentalContractTenants', scope: { include: [{ relation: 'person' }] } },
       ],
@@ -86,7 +76,7 @@ export function useRentalContractList() {
     },
   })
 
-  const { data: countResult } = useRentalContractControllerCount({ where })
+  const { data: countResult } = useRentalContractControllerCount({ where, ...brokerParams })
 
   function setFilters(next: RentalContractFiltersValues) {
     setFiltersState(next)
@@ -96,6 +86,7 @@ export function useRentalContractList() {
   return {
     contracts: contracts ?? [],
     where,
+    brokerParams,
     isLoading,
     totalItems: countResult?.count ?? 0,
     pageSize,

@@ -1,3 +1,4 @@
+import { formatPropertyBroker } from '@/utils/formatBroker'
 import type { ReactNode } from 'react'
 import type { TFunction } from 'i18next'
 import { BanIcon, PencilIcon, RefreshCwIcon, Trash2Icon } from 'lucide-react'
@@ -146,12 +147,8 @@ export function buildRentalTableColumns(
         ),
     },
     {
-      header: t('operazioni:locazioni.tableColumns.agenteProprietario'),
-      cell: (contract) => contract.ownerAgent?.fullName ?? '—',
-    },
-    {
-      header: t('operazioni:locazioni.tableColumns.agenteInquilino'),
-      cell: (contract) => contract.tenantAgent?.fullName ?? '—',
+      header: t('operazioni:locazioni.tableColumns.broker'),
+      cell: (contract) => formatPropertyBroker(contract.property),
     },
     {
       header: t('operazioni:locazioni.tableColumns.affitto'),

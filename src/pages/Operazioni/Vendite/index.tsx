@@ -22,6 +22,7 @@ function Vendite() {
   const {
     sales,
     where,
+    brokerParams,
     isLoading,
     totalItems,
     pageSize,
@@ -73,7 +74,7 @@ function Vendite() {
         searchWrapperId="vendite-search-filter"
         newButtonId="vendite-new-btn"
         filters={<SaleFilters filters={filters} onChange={setFilters} />}
-        actions={<ExportMenu path="/sales/export" params={{ filter: { where } }} />}
+        actions={<ExportMenu path="/sales/export" params={{ filter: { where }, ...brokerParams }} />}
       />
 
       <SaleTable sales={sales} isLoading={isLoading} onEdit={openEdit} />

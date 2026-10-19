@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
-import { useUserControllerFind } from '@/api/generated/api'
 import { getRatingOptions, getMediationOptions } from '@/pages/Imoveis/Scheda/schemas/propertyDetailOptions'
 import type { DettagliFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyDetailForm'
 
@@ -15,8 +14,6 @@ function DettagliMainFields({ form }: DettagliMainFieldsProps) {
   const { t } = useTranslation('imoveis')
   const { register, control } = form
   const { errors } = useFormState({ control })
-  const { data: agents } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
-  const agentOptions = (agents ?? []).map((agent) => ({ value: agent.id ?? '', label: agent.fullName }))
 
   return (
     <>
@@ -31,17 +28,6 @@ function DettagliMainFields({ form }: DettagliMainFieldsProps) {
       <FormFieldWrapper label={t('scheda.dettagliMainFields.ratingLabel')} error={errors.rating?.message}>
         <Controller control={control} name="rating" render={({ field }) => (
           <SelectField value={field.value} onValueChange={field.onChange} options={getRatingOptions(t)} />
-        )} />
-      </FormFieldWrapper>
-
-      <FormFieldWrapper label={t('scheda.dettagliMainFields.agentLabel')} error={errors.agentId?.message}>
-        <Controller control={control} name="agentId" render={({ field }) => (
-          <SelectField
-            value={field.value}
-            onValueChange={field.onChange}
-            options={agentOptions}
-            placeholder={t('scheda.dettagliMainFields.agentPlaceholder')}
-          />
         )} />
       </FormFieldWrapper>
 

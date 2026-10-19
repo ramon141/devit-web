@@ -6,7 +6,8 @@ import { Label } from '@/components/ui/label'
 import SelectField from '@/components/SelectField'
 import SearchableSelect from '@/components/SearchableSelect'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
-import { usePersonControllerFind, useUserControllerFind } from '@/api/generated/api'
+import BrokerCodeFilter from '@/components/BrokerCodeFilter'
+import { usePersonControllerFind } from '@/api/generated/api'
 import { getSaleStatusOptions } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
 import type { SaleFiltersValues } from '@/pages/Operazioni/Vendite/hooks/useSaleList'
 
@@ -19,17 +20,11 @@ function personToOption(person: { id?: string; name: string }) {
   return { value: person.id ?? '', label: person.name }
 }
 
-function userToOption(user: { id?: string; fullName: string }) {
-  return { value: user.id ?? '', label: user.fullName }
-}
-
 function SaleFilters({ filters, onChange }: SaleFiltersProps) {
   const { t } = useTranslation('operazioni')
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-  const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
   const personOptions = (people ?? []).map(personToOption)
-  const userOptions = (users ?? []).map(userToOption)
 
   function update(patch: Partial<SaleFiltersValues>) {
     onChange({ ...filters, ...patch })
@@ -64,23 +59,11 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper id="vendite-sellerAgent-filter" label={t('vendite.filters.sellerAgentLabel')}>
-        <SearchableSelect
-          options={userOptions}
-          value={filters.sellerAgentId}
-          onValueChange={(value) => update({ sellerAgentId: value })}
-          placeholder={t('vendite.filters.all')}
-        />
-      </FormFieldWrapper>
-
-      <FormFieldWrapper id="vendite-buyerAgent-filter" label={t('vendite.filters.buyerAgentLabel')}>
-        <SearchableSelect
-          options={userOptions}
-          value={filters.buyerAgentId}
-          onValueChange={(value) => update({ buyerAgentId: value })}
-          placeholder={t('vendite.filters.all')}
-        />
-      </FormFieldWrapper>
+      <BrokerCodeFilter
+        id="vendite-broker-filter"
+        value={filters.brokerCode}
+        onChange={(value) => update({ brokerCode: value })}
+      />
 
       <FormFieldWrapper id="vendite-saleDateFrom-filter" label={t('vendite.filters.saleDateFromLabel')}>
         <Input

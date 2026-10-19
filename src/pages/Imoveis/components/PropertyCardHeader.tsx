@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import dayjs from 'dayjs'
-import { UserRoundIcon } from 'lucide-react'
+import { BadgeCheckIcon, UserRoundIcon } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import type { PropertyWithRelations } from '@/api/generated/models'
 import { getPurposeOptions, getStatusOptions } from '@/pages/Imoveis/schemas/propertySchema'
+import { formatBroker } from '@/utils/formatBroker'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 
 type PropertyCardHeaderProps = {
@@ -33,6 +34,11 @@ function PropertyCardHeader({ property }: PropertyCardHeaderProps) {
         <span className="flex items-center gap-1 text-sm text-muted-foreground">
           <UserRoundIcon className="size-4" />
           {property.owner?.name ?? '—'}
+        </span>
+
+        <span className="flex items-center gap-1 text-sm font-medium">
+          <BadgeCheckIcon className="size-4 text-primary" />
+          {formatBroker(property.responsibleBroker)}
         </span>
       </div>
     </div>

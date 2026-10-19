@@ -1,3 +1,4 @@
+import { formatPropertyBroker } from '@/utils/formatBroker'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -29,7 +30,12 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
   const ownerName = event.owner?.name ?? event.createdBy?.fullName ?? ''
 
   const { data: links } = useCalendarEventPropertyControllerFind(
-    { filter: { where: { calendarEventId: event.id ?? '' }, include: [{ relation: 'property' }] } },
+    {
+      filter: {
+        where: { calendarEventId: event.id ?? '' },
+        include: [{ relation: 'property', scope: { include: [{ relation: 'responsibleBroker' }] } }],
+      },
+    },
     { query: { enabled: !!event.id } }
   )
 
@@ -94,7 +100,8 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
             to={`${CRM_BASE_PATH}/proprieta/${link.propertyId}`}
             className="text-primary hover:underline"
           >
-            {t('agenda:hoverCard.refLabel')} {link.property?.code} - {link.property?.title}
+            {t('agenda:hoverCard.refLabel')} {link.property?.code} - {link.property?.title} ·{' '}
+            {formatPropertyBroker(link.property)}
           </Link>
         ))}
       </div>

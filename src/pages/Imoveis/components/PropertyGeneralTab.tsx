@@ -6,6 +6,8 @@ import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import ControlledInput from '@/components/ControlledInput'
 import PropertyCategoryOwnerFields from '@/pages/Imoveis/components/PropertyCategoryOwnerFields'
+import { Auth } from '@/auth'
+import PropertyResponsibleBrokerField from '@/pages/Imoveis/components/PropertyResponsibleBrokerField'
 import PropertyCodeField from '@/pages/Imoveis/components/PropertyCodeField'
 import PropertyFlagsRow from '@/pages/Imoveis/components/PropertyFlagsRow'
 import PropertyOwnersManager from '@/pages/Imoveis/Scheda/components/PropertyOwnersManager'
@@ -36,6 +38,8 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId, onBack }
         </FormFieldWrapper>
 
         <PropertyCategoryOwnerFields control={control} errors={errors} />
+
+        {Auth.isAdmin() && !propertyId && <PropertyResponsibleBrokerField control={control} errors={errors} />}
 
         <FormFieldWrapper id="property-field-purpose" label={t('generalTab.purposeLabel')} required error={errors.purpose?.message}>
           <Controller

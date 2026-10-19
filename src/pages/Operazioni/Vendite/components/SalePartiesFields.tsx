@@ -2,14 +2,11 @@ import { useEffect } from 'react'
 import { Controller, type Control, type FieldErrors, useController, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
-import FormFieldWrapper from '@/components/FormFieldWrapper'
-import SelectField from '@/components/SelectField'
 import MultiSelectField from '@/components/MultiSelectField'
 import {
   usePersonControllerFind,
   usePropertyControllerFindById,
   usePurchaseProposalControllerFind,
-  useUserControllerFind,
 } from '@/api/generated/api'
 import { usePropertySearchOptions } from '@/hooks/usePropertySearchOptions'
 import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
@@ -58,7 +55,6 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
   // principais acima.
   const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const { data: proposals } = usePurchaseProposalControllerFind({ filter: { order: ['number ASC'], limit: 200 } })
-  const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
 
   const personOptions = (people ?? []).map((person) => ({
     value: person.id ?? '',
@@ -67,10 +63,6 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
   const proposalOptions = (proposals ?? []).map((proposal) => ({
     value: proposal.id ?? '',
     label: proposal.number,
-  }))
-  const userOptions = (users ?? []).map((user) => ({
-    value: user.id ?? '',
-    label: user.fullName,
   }))
 
   return (
@@ -185,44 +177,6 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
           )}
         />
       </div>
-
-      <FormFieldWrapper
-        id="modal-field-sellerAgentId"
-        label={t('vendite.partiesFields.sellerAgentLabel')}
-        error={errors.sellerAgentId?.message}
-      >
-        <Controller
-          control={control}
-          name="sellerAgentId"
-          render={({ field }) => (
-            <SelectField
-              value={field.value}
-              onValueChange={field.onChange}
-              options={userOptions}
-              placeholder={t('vendite.partiesFields.noneOption')}
-            />
-          )}
-        />
-      </FormFieldWrapper>
-
-      <FormFieldWrapper
-        id="modal-field-buyerAgentId"
-        label={t('vendite.partiesFields.buyerAgentLabel')}
-        error={errors.buyerAgentId?.message}
-      >
-        <Controller
-          control={control}
-          name="buyerAgentId"
-          render={({ field }) => (
-            <SelectField
-              value={field.value}
-              onValueChange={field.onChange}
-              options={userOptions}
-              placeholder={t('vendite.partiesFields.noneOption')}
-            />
-          )}
-        />
-      </FormFieldWrapper>
     </>
   )
 }

@@ -1,3 +1,4 @@
+import { formatPropertyBroker } from '@/utils/formatBroker'
 import type { TFunction } from 'i18next'
 import { PencilIcon, Trash2Icon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -95,12 +96,8 @@ export function buildSaleTableColumns(
       cell: (sale) => (sale.deedDate ? formatDate(sale.deedDate) : '—'),
     },
     {
-      header: t('operazioni:vendite.tableColumns.agenteV'),
-      cell: (sale) => sale.sellerAgent?.fullName ?? '—',
-    },
-    {
-      header: t('operazioni:vendite.tableColumns.agenteA'),
-      cell: (sale) => sale.buyerAgent?.fullName ?? '—',
+      header: t('operazioni:vendite.tableColumns.broker'),
+      cell: (sale) => formatPropertyBroker(sale.property),
     },
     {
       header: t('operazioni:vendite.tableColumns.stato'),

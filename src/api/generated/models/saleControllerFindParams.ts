@@ -13,4 +13,8 @@ filter?: SaleFilter;
  * Filtra pelo código do corretor (busca parcial, sem diferenciar maiúsculas)
  */
 brokerCode?: string;
+/**
+ * Filtra os registros dos imóveis em que o usuário logado é o corretor responsável
+ */
+mine?: boolean;
 };

@@ -1,15 +1,14 @@
 import { useState } from 'react'
 import { useSaleControllerCount, useSaleControllerFind } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
-import { UserInfo } from '@/auth'
+import { useBrokerListParams } from '@/hooks/useBrokerListParams'
 import { toLikePattern } from '@/utils/toLikePattern'
 
 export type SaleFiltersValues = {
   status: string
   sellerId: string
   buyerId: string
-  sellerAgentId: string
-  buyerAgentId: string
+  brokerCode: string
   saleDateFrom: string
   saleDateTo: string
   onlyMine: boolean
@@ -19,8 +18,7 @@ export const emptySaleFilters: SaleFiltersValues = {
   status: '',
   sellerId: '',
   buyerId: '',
-  sellerAgentId: '',
-  buyerAgentId: '',
+  brokerCode: '',
   saleDateFrom: '',
   saleDateTo: '',
   onlyMine: false,
@@ -33,17 +31,9 @@ function buildWhere(search: string, filters: SaleFiltersValues) {
   if (filters.status) conditions.push({ status: filters.status })
   if (filters.sellerId) conditions.push({ sellerId: filters.sellerId })
   if (filters.buyerId) conditions.push({ buyerId: filters.buyerId })
-  if (filters.sellerAgentId) conditions.push({ sellerAgentId: filters.sellerAgentId })
-  if (filters.buyerAgentId) conditions.push({ buyerAgentId: filters.buyerAgentId })
   if (filters.saleDateFrom) conditions.push({ saleDate: { gte: filters.saleDateFrom } })
   if (filters.saleDateTo) conditions.push({ saleDate: { lte: `${filters.saleDateTo}T23:59:59.999Z` } })
 
-  if (filters.onlyMine) {
-    const userId = UserInfo.getUserId()
-    if (userId) {
-      conditions.push({ or: [{ sellerAgentId: userId }, { buyerAgentId: userId }, { createdById: userId }] })
-    }
-  }
 
   return conditions.length === 0 ? undefined : conditions.length === 1 ? conditions[0] : { and: conditions }
 }
@@ -53,16 +43,16 @@ export function useSaleList() {
   const [filters, setFiltersState] = useState<SaleFiltersValues>(emptySaleFilters)
 
   const where = buildWhere(debouncedSearch, filters)
+  const brokerParams = useBrokerListParams(filters)
 
   const { data: sales, isLoading } = useSaleControllerFind({
+    ...brokerParams,
     filter: {
       where,
       include: [
-        { relation: 'property' },
+        { relation: 'property', scope: { include: [{ relation: 'responsibleBroker' }] } },
         { relation: 'buyer' },
         { relation: 'seller' },
-        { relation: 'sellerAgent' },
-        { relation: 'buyerAgent' },
         { relation: 'saleBuyers', scope: { include: [{ relation: 'person' }] } },
         { relation: 'saleSellers', scope: { include: [{ relation: 'person' }] } },
       ],
@@ -72,7 +62,7 @@ export function useSaleList() {
     },
   })
 
-  const { data: countResult } = useSaleControllerCount({ where })
+  const { data: countResult } = useSaleControllerCount({ where, ...brokerParams })
 
   function setFilters(next: SaleFiltersValues) {
     setFiltersState(next)
@@ -82,6 +72,7 @@ export function useSaleList() {
   return {
     sales: sales ?? [],
     where,
+    brokerParams,
     isLoading,
     totalItems: countResult?.count ?? 0,
     pageSize,

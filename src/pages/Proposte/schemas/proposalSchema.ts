@@ -44,8 +44,6 @@ export function createProposalSchema(t: TFunction<'proposte'>) {
     rejectionReason: z.string().optional(),
     notes: z.string().optional(),
     leadId: z.string().optional(),
-    assignedToId: z.string().optional(),
-    sellerAgentId: z.string().optional(),
     })
     .superRefine((values, ctx) => {
       const rejected = values.status === PurchaseProposalStatus.rejected

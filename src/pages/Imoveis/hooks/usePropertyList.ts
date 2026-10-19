@@ -5,7 +5,6 @@ import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import { PAGE_SIZE } from '@/constants/pagination'
 
 const MAP_LIMIT = 300
-import { UserInfo } from '@/auth'
 import { useCategoryKinds, type PropertyCategoryKind } from '@/pages/Imoveis/hooks/useCategoryKinds'
 import { toLikePattern } from '@/utils/toLikePattern'
 
@@ -34,6 +33,7 @@ export type PropertyFiltersValues = {
   areaMax: string
   orderBy: PropertyOrderBy
   onlyMine: boolean
+  brokerCode: string
   kind: PropertyCategoryKind | ''
   city: string
   onlyPrestige: boolean
@@ -55,6 +55,7 @@ export const emptyPropertyFilters: PropertyFiltersValues = {
   areaMax: '',
   orderBy: 'createdAt_desc',
   onlyMine: false,
+  brokerCode: '',
   kind: '',
   city: '',
   onlyPrestige: false,
@@ -129,10 +130,6 @@ function buildWhere(search: string, filters: PropertyFiltersValues, kindCategory
   if (filters.bathroomsMax) conditions.push({ bathrooms: { lte: Number(filters.bathroomsMax) } })
   if (filters.areaMin) conditions.push({ areaSqm: { gte: Number(filters.areaMin) } })
   if (filters.areaMax) conditions.push({ areaSqm: { lte: Number(filters.areaMax) } })
-  if (filters.onlyMine) {
-    const userId = UserInfo.getUserId()
-    if (userId) conditions.push({ createdById: userId })
-  }
 
   return conditions.length > 0 ? { and: conditions } : undefined
 }
@@ -146,7 +143,10 @@ export function usePropertyList() {
 
   const kindCategoryIds = filters.kind ? categoryIdsByKind[filters.kind] : undefined
   const where = buildWhere(debouncedSearch, filters, kindCategoryIds)
+  const debouncedBrokerCode = useDebouncedValue(filters.brokerCode.trim())
   const extraFilters = {
+    mine: filters.onlyMine || undefined,
+    brokerCode: debouncedBrokerCode || undefined,
     prestige: filters.onlyPrestige || undefined,
     auction: filters.onlyAuction || undefined,
     city: filters.city || undefined,
@@ -162,6 +162,7 @@ export function usePropertyList() {
         { relation: 'propertyPhotos', scope: { include: [{ relation: 'attachment' }] } },
         { relation: 'propertyDetail' },
         { relation: 'createdBy' },
+        { relation: 'responsibleBroker' },
         { relation: 'lastChangedBy' },
       ],
       order: buildOrder(filters),
@@ -186,7 +187,7 @@ export function usePropertyList() {
   }
 
   const mapParams: PropertyControllerFindParams = {
-    filter: { where, include: [{ relation: 'propertyDetail' }], order: buildOrder(filters), limit: MAP_LIMIT },
+    filter: { where, include: [{ relation: 'propertyDetail' }, { relation: 'responsibleBroker' }], order: buildOrder(filters), limit: MAP_LIMIT },
     ...extraFilters,
   }
 

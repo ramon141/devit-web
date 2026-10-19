@@ -120,7 +120,6 @@ import type {
   AuthControllerLogin422,
   AuthControllerLogin429,
   AuthControllerLoginBody,
-  AuthControllerMe200,
   AuthControllerMe400,
   AuthControllerMe401,
   AuthControllerMe404,
@@ -3458,7 +3457,7 @@ export const authControllerMe = (
 ) => {
       
       
-      return mutator<AuthControllerMe200>(
+      return mutator<UserExcludingPasswordHash>(
       {url: `/auth/me`, method: 'GET', signal
     },
       options);

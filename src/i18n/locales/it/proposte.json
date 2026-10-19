@@ -2,13 +2,7 @@
   "assignmentFields": {
     "leadLabel": "Lead di origine",
     "leadPlaceholder": "Nessuno",
-    "leadSearchPlaceholder": "Cerca un lead...",
-    "assignedToLabel": "Responsabile",
-    "assignedToPlaceholder": "Nessuno",
-    "assignedToSearchPlaceholder": "Cerca un utente...",
-    "sellerAgentLabel": "Agente venditore",
-    "sellerAgentPlaceholder": "Nessuno",
-    "sellerAgentSearchPlaceholder": "Cerca un utente..."
+    "leadSearchPlaceholder": "Cerca un lead..."
   },
   "datesAndNotesFields": {
     "proposalDateLabel": "Data proposta",
@@ -54,10 +48,9 @@
     "financed": "Mutuo",
     "financedYes": "Sì",
     "financedNo": "No",
-    "sellerAgent": "Agente V",
-    "assignedTo": "Agente A",
     "createdBy": "Creata da",
-    "notes": "Note"
+    "notes": "Note",
+    "broker": "Agente responsabile"
   },
   "paymentMethodOptions": {
     "cash": "Contanti",
@@ -130,8 +123,6 @@
     "financedNo": "No",
     "propertyLabel": "Immobile",
     "buyerLabel": "Acquirente",
-    "sellerAgentLabel": "Agente venditore",
-    "assignedToLabel": "Agente acquirente",
     "proposalDateFromLabel": "Periodo dal",
     "proposalDateToLabel": "Periodo al",
     "onlyMine": "Solo le mie",
@@ -174,14 +165,6 @@
         "title": "Acquirente",
         "content": "Filtra per le proposte di un acquirente specifico."
       },
-      "sellerAgent": {
-        "title": "Agente venditore",
-        "content": "Filtra per l'agente responsabile della vendita."
-      },
-      "assignedTo": {
-        "title": "Responsabile",
-        "content": "Filtra per l'utente responsabile della proposta."
-      },
       "dateFrom": {
         "title": "Data iniziale",
         "content": "Filtra le proposte a partire da questa data."
@@ -201,6 +184,10 @@
       "newBtn": {
         "title": "Nuova proposta",
         "content": "Clicca qui per aprire il modulo di registrazione di una nuova proposta."
+      },
+      "broker": {
+        "title": "Agente responsabile",
+        "content": "Filtra per l'agente responsabile dell'immobile (codice agente)."
       }
     },
     "modal": {
@@ -236,14 +223,6 @@
         "leadId": {
           "title": "Richiesta collegata",
           "content": "Richiesta (lead) di origine, se presente."
-        },
-        "assignedToId": {
-          "title": "Responsabile",
-          "content": "Utente responsabile del follow-up della proposta."
-        },
-        "sellerAgentId": {
-          "title": "Agente venditore",
-          "content": "Agente responsabile della vendita."
         },
         "proposalDate": {
           "title": "Data proposta",

@@ -8,6 +8,7 @@ import { useLeafletMap } from '@/hooks/useLeafletMap'
 import { createPriceIcon } from '@/lib/mapIcons'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { usePropertyLocations, type PropertyCoords } from '@/pages/Imoveis/hooks/usePropertyLocations'
+import { formatBroker } from '@/utils/formatBroker'
 import { formatAmount } from '@/utils/formatAmount'
 
 type PropertyMapViewProps = {
@@ -40,6 +41,7 @@ function addPriceMarkers({ properties, coordsByPropertyId, group, referenceLabel
         selected: !!property.propertyDetail?.prestige,
       }),
     })
+      .bindTooltip(formatBroker(property.responsibleBroker))
       .on('click', () => onSelect(propertyId))
       .addTo(group)
   }

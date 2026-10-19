@@ -38,8 +38,6 @@ const emptyValues: RentalContractFormValues = {
   notes: '',
   stipulaDate: '',
   renewalDueDate: '',
-  ownerAgentId: '',
-  tenantAgentId: '',
 }
 
 function contractToFormValues(contract: RentalContractWithRelations): RentalContractFormValues {
@@ -60,8 +58,6 @@ function contractToFormValues(contract: RentalContractWithRelations): RentalCont
     notes: contract.notes ?? '',
     stipulaDate: contract.stipulaDate?.slice(0, 10) ?? '',
     renewalDueDate: contract.renewalDueDate?.slice(0, 10) ?? '',
-    ownerAgentId: contract.ownerAgentId ?? '',
-    tenantAgentId: contract.tenantAgentId ?? '',
   }
 }
 

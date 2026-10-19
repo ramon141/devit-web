@@ -5,11 +5,11 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyControllerCreate409ErrorDetails } from './propertyControllerCreate409ErrorDetails';
+import type { PropertyControllerCreate409ErrorDetailsItem } from './propertyControllerCreate409ErrorDetailsItem';
 
 export type PropertyControllerCreate409Error = {
   statusCode?: number;
   name?: string;
   message?: string;
-  details?: PropertyControllerCreate409ErrorDetails;
+  details?: PropertyControllerCreate409ErrorDetailsItem[];
 };

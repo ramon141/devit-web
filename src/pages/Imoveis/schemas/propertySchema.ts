@@ -112,11 +112,11 @@ export function createPropertySchema(t: TFunction<'imoveis'>) {
     title: z.string().min(3, t('options.validation.title')),
     categoryId: z.string().min(1, t('options.validation.category')),
     ownerId: z.string().min(1, t('options.validation.owner')),
+    responsibleBrokerId: z.string().optional(),
     purpose: z.enum(PropertyPurpose, { error: t('options.validation.purpose') }),
     status: z.enum(PropertyStatus, { error: t('options.validation.status') }),
     featured: z.boolean(),
     featuredOrder: z.string().optional(),
-    active: z.boolean(),
     publishedOnSite: z.boolean(),
     useInChatbot: z.boolean(),
 

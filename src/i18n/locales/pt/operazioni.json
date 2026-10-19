@@ -119,9 +119,6 @@
       "personSearchPlaceholder": "Buscar um cliente...",
       "tenantLabel": "Inquilino",
       "tenantPlaceholder": "Selecione um inquilino",
-      "ownerAgentLabel": "Agente do proprietário",
-      "tenantAgentLabel": "Agente do inquilino",
-      "agentSearchPlaceholder": "Buscar um agente...",
       "noneOption": "Nenhum",
       "addOwner": "Adicionar proprietário",
       "addTenant": "Adicionar inquilino"
@@ -175,12 +172,11 @@
       "deleteTooltip": "Excluir",
       "lockedTooltip": "Contrato rescindido/encerrado: não editável",
       "dataStipula": "Data de assinatura",
-      "agenteProprietario": "Agente P",
-      "agenteInquilino": "Agente I",
       "al": "Até",
       "inCorso": "Em andamento",
       "inCorsoYes": "Sim",
-      "note": "Notas"
+      "note": "Notas",
+      "broker": "Corretor responsável"
     },
     "hooks": {
       "attachments": {
@@ -219,8 +215,6 @@
       "all": "Todos",
       "ownerLabel": "Proprietário",
       "tenantLabel": "Inquilino",
-      "ownerAgentLabel": "Agente do proprietário",
-      "tenantAgentLabel": "Agente do inquilino",
       "stipulaDateFromLabel": "Data de assinatura de",
       "stipulaDateToLabel": "Data de assinatura até",
       "startDateFromLabel": "Data de início de",
@@ -294,8 +288,6 @@
       "proposalLabel": "Proposta de origem",
       "proposalPlaceholder": "Nenhuma",
       "proposalSearchPlaceholder": "Buscar por número...",
-      "sellerAgentLabel": "Agente do vendedor",
-      "buyerAgentLabel": "Agente do comprador",
       "noneOption": "Nenhum",
       "extraSellersLabel": "Outros vendedores",
       "extraBuyersLabel": "Outros compradores"
@@ -328,10 +320,9 @@
       "azioni": "Ações",
       "lockedTooltip": "Venda concluída: não editável",
       "rogito": "Escritura",
-      "agenteV": "Agente V",
-      "agenteA": "Agente A",
       "note": "Notas",
-      "plusOthers": "+{{count}} outros"
+      "plusOthers": "+{{count}} outros",
+      "broker": "Corretor responsável"
     },
     "documentsManager": {
       "typePlaceholder": "Tipo de documento (opcional)",
@@ -366,8 +357,6 @@
       "statusLabel": "Status",
       "sellerLabel": "Vendedor",
       "buyerLabel": "Comprador",
-      "sellerAgentLabel": "Agente vendedor",
-      "buyerAgentLabel": "Agente comprador",
       "saleDateFromLabel": "Data de assinatura de",
       "saleDateToLabel": "Data de assinatura até",
       "onlyMine": "Somente as minhas",
@@ -397,14 +386,6 @@
           "title": "Inquilino",
           "content": "Filtra pelo inquilino."
         },
-        "ownerAgent": {
-          "title": "Agente do proprietário",
-          "content": "Filtra pelo corretor responsável pelo proprietário."
-        },
-        "tenantAgent": {
-          "title": "Agente do inquilino",
-          "content": "Filtra pelo corretor responsável pelo inquilino."
-        },
         "stipulaDateFrom": {
           "title": "Data de assinatura de",
           "content": "Filtra contratos assinados a partir desta data."
@@ -432,6 +413,10 @@
         "newBtn": {
           "title": "Novo contrato",
           "content": "Abre o cadastro de um novo contrato de locação."
+        },
+        "broker": {
+          "title": "Corretor responsável",
+          "content": "Filtra pelo corretor responsável pelo imóvel (código do corretor)."
         }
       },
       "modal": {
@@ -459,14 +444,6 @@
           "tenantIds": {
             "title": "Inquilinos",
             "content": "Adicione um ou mais inquilinos do contrato."
-          },
-          "ownerAgentId": {
-            "title": "Agente do proprietário",
-            "content": "Corretor responsável por representar o proprietário."
-          },
-          "tenantAgentId": {
-            "title": "Agente do inquilino",
-            "content": "Corretor responsável por representar o inquilino."
           },
           "startDate": {
             "title": "Início de vigência",
@@ -549,14 +526,6 @@
           "title": "Comprador",
           "content": "Filtra pelo cliente comprador."
         },
-        "sellerAgent": {
-          "title": "Agente vendedor",
-          "content": "Filtra pelo corretor responsável pelo vendedor."
-        },
-        "buyerAgent": {
-          "title": "Agente comprador",
-          "content": "Filtra pelo corretor responsável pelo comprador."
-        },
         "saleDateFrom": {
           "title": "Data de assinatura de",
           "content": "Filtra vendas assinadas a partir desta data."
@@ -576,6 +545,10 @@
         "newBtn": {
           "title": "Nova venda",
           "content": "Abre o cadastro de uma nova venda."
+        },
+        "broker": {
+          "title": "Corretor responsável",
+          "content": "Filtra pelo corretor responsável pelo imóvel (código do corretor)."
         }
       },
       "modal": {
@@ -615,14 +588,6 @@
           "extraBuyerIds": {
             "title": "Compradores adicionais",
             "content": "Outros compradores envolvidos na venda, além do principal."
-          },
-          "sellerAgentId": {
-            "title": "Agente do vendedor",
-            "content": "Corretor responsável por representar o vendedor."
-          },
-          "buyerAgentId": {
-            "title": "Agente do comprador",
-            "content": "Corretor responsável por representar o comprador."
           },
           "paymentMethod": {
             "title": "Forma de pagamento",
