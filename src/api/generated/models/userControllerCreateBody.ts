@@ -17,6 +17,8 @@ export type UserControllerCreateBody = {
   email: string;
   accessLevel: UserControllerCreateBodyAccessLevel;
   active?: boolean;
+  /** @maxLength 20 */
+  brokerCode?: string;
   /**
    * @minLength 8
    * @pattern ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$

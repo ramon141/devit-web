@@ -19,6 +19,10 @@ export type ChatbotPropertyControllerFindById200 = {
   id?: string;
   /** @nullable */
   slug?: string | null;
+  /** @nullable */
+  instagramUrl?: string | null;
+  /** @nullable */
+  tiktokUrl?: string | null;
   code?: string;
   title?: string;
   purpose?: string;

@@ -9,4 +9,8 @@ import type { LeadFilter1 } from './leadFilter1';
 
 export type LeadControllerFindParams = {
 filter?: LeadFilter1;
+/**
+ * Filtra pelo código do corretor (busca parcial, sem diferenciar maiúsculas)
+ */
+brokerCode?: string;
 };

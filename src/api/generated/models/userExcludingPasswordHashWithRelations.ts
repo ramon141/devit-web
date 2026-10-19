@@ -31,6 +31,17 @@ export interface UserExcludingPasswordHashWithRelations {
   passwordChangedAt?: string | null;
   /** @nullable */
   lastLoginAt?: string | null;
+  /**
+   * @maxLength 30
+   * @nullable
+   */
+  phone?: string | null;
+  /**
+   * @minLength 1
+   * @maxLength 20
+   * @nullable
+   */
+  brokerCode?: string | null;
   /** @nullable */
   active?: boolean | null;
   createdAt: string;

@@ -35,5 +35,4 @@ export type PropertyDetailFilterFieldsOneOf = {
   createdAt?: boolean;
   updatedAt?: boolean;
   propertyId?: boolean;
-  agentId?: boolean;
 };

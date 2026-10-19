@@ -12,5 +12,4 @@ export type PropertyDetailIncludeFilterItemsRelation = typeof PropertyDetailIncl
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const PropertyDetailIncludeFilterItemsRelation = {
   property: 'property',
-  agent: 'agent',
 } as const;

@@ -8,4 +8,8 @@
 
 export type RentalContractControllerCountParams = {
 where?: { [key: string]: unknown };
+/**
+ * Filtra pelo código do corretor (busca parcial, sem diferenciar maiúsculas)
+ */
+brokerCode?: string;
 };

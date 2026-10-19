@@ -45,10 +45,6 @@ export interface PurchaseProposalPartialExcludingCreatedAtUpdatedAt {
   /** @nullable */
   leadId?: string | null;
   /** @nullable */
-  assignedToId?: string | null;
-  /** @nullable */
-  sellerAgentId?: string | null;
-  /** @nullable */
   createdById?: string | null;
   /** Pessoas compradoras a vincular à proposta */
   buyers?: PurchaseProposalPartialExcludingCreatedAtUpdatedAtBuyersItem[];

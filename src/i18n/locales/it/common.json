@@ -89,18 +89,17 @@
       "locazioni": "Locazioni",
       "adeguamentoCanone": "Adeguamento canone",
       "scadenziario": "Scadenziario",
-      "registrazioni": "Registrazioni",
       "marketing": "Marketing",
       "statistiche": "Statistiche",
       "amministrazione": "Amministrazione",
       "utenti": "Utenti",
       "filiali": "Filiali",
       "categorie": "Categorie",
-      "banner": "Banner",
       "auditLog": "Log di audit",
       "componenti": "Componenti",
       "proprietari": "Proprietari",
-      "zone": "Zone"
+      "zone": "Zone",
+      "videoHome": "Video home"
     }
   },
   "notificationsPopover": {

@@ -21,4 +21,16 @@ auction?: boolean;
  * Filtra imóveis pela cidade do endereço
  */
 city?: string;
+/**
+ * Filtra imóveis pelo corretor responsável
+ */
+responsibleBrokerId?: string;
+/**
+ * Filtra imóveis pelo código do corretor responsável
+ */
+brokerCode?: string;
+/**
+ * Filtra os imóveis do corretor logado (meus imóveis)
+ */
+mine?: boolean;
 };

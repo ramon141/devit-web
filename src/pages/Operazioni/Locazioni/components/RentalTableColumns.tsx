@@ -185,15 +185,6 @@ export function buildRentalTableColumns(
         ),
     },
     {
-      header: t('operazioni:locazioni.tableColumns.reg'),
-      cell: (contract) =>
-        contract.registeredAt ? (
-          <Badge variant="secondary">{t('operazioni:locazioni.tableColumns.regYes')}</Badge>
-        ) : (
-          '—'
-        ),
-    },
-    {
       header: t('operazioni:locazioni.tableColumns.note'),
       cell: (contract) => (
         <span className="block max-w-40 truncate" title={contract.notes ?? undefined}>

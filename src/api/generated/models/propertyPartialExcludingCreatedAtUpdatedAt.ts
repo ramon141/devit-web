@@ -7,6 +7,7 @@
  */
 import type { PropertyPartialExcludingCreatedAtUpdatedAtPurpose } from './propertyPartialExcludingCreatedAtUpdatedAtPurpose';
 import type { PropertyPartialExcludingCreatedAtUpdatedAtStatus } from './propertyPartialExcludingCreatedAtUpdatedAtStatus';
+import type { PropertyPartialExcludingCreatedAtUpdatedAtDeactivatedById } from './propertyPartialExcludingCreatedAtUpdatedAtDeactivatedById';
 import type { PropertyPartialExcludingCreatedAtUpdatedAtPhotosItem } from './propertyPartialExcludingCreatedAtUpdatedAtPhotosItem';
 import type { PropertyPartialExcludingCreatedAtUpdatedAtDocumentsItem } from './propertyPartialExcludingCreatedAtUpdatedAtDocumentsItem';
 import type { PropertyPartialExcludingCreatedAtUpdatedAtOwnersItem } from './propertyPartialExcludingCreatedAtUpdatedAtOwnersItem';
@@ -42,6 +43,16 @@ export interface PropertyPartialExcludingCreatedAtUpdatedAt {
    * @nullable
    */
   slug?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  instagramUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  tiktokUrl?: string | null;
   purpose?: PropertyPartialExcludingCreatedAtUpdatedAtPurpose;
   /**
    * @minimum 0
@@ -98,8 +109,6 @@ export interface PropertyPartialExcludingCreatedAtUpdatedAt {
    */
   featuredOrder?: number | null;
   /** @nullable */
-  active?: boolean | null;
-  /** @nullable */
   deactivatedAt?: string | null;
   /** @nullable */
   publishedOnSite?: boolean | null;
@@ -109,7 +118,7 @@ export interface PropertyPartialExcludingCreatedAtUpdatedAt {
   addressId?: string;
   ownerId?: string;
   /** @nullable */
-  deactivatedById?: string | null;
+  deactivatedById?: PropertyPartialExcludingCreatedAtUpdatedAtDeactivatedById;
   /** @nullable */
   createdById?: string | null;
   /** Fotos do imóvel a serem enviadas para o MinIO e vinculadas */

@@ -68,8 +68,6 @@ export interface RentalContractWithRelations {
   /** @nullable */
   stipulaDate?: string | null;
   /** @nullable */
-  registeredAt?: string | null;
-  /** @nullable */
   renewalDueDate?: string | null;
   createdAt: string;
   updatedAt: string;
@@ -77,17 +75,11 @@ export interface RentalContractWithRelations {
   tenantId: string;
   ownerId: string;
   /** @nullable */
-  ownerAgentId?: string | null;
-  /** @nullable */
-  tenantAgentId?: string | null;
-  /** @nullable */
   createdById?: string | null;
   property?: Property;
   foreignKey?: unknown;
   tenant?: Person;
   owner?: Person;
-  ownerAgent?: User;
-  tenantAgent?: User;
   createdBy?: User;
   contractAttachments?: ContractAttachment[];
   contractRenewals?: ContractRenewal[];

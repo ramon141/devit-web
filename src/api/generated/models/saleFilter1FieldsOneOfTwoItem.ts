@@ -27,7 +27,5 @@ export const SaleFilter1FieldsOneOfTwoItem = {
   buyerId: 'buyerId',
   sellerId: 'sellerId',
   proposalId: 'proposalId',
-  sellerAgentId: 'sellerAgentId',
-  buyerAgentId: 'buyerAgentId',
   createdById: 'createdById',
 } as const;

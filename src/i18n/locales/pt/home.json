@@ -82,8 +82,8 @@
     }
   },
   "upcomingRenewalsCard": {
-    "title": "Vencimentos de aluguel",
-    "empty": "Nenhum contrato vencendo nos próximos 30 dias."
+    "title": "Contratos de aluguel a vencer",
+    "empty": "Nenhum contrato de aluguel chega ao fim nos próximos 30 dias."
   },
   "widgetSelection": {
     "title": "Seleção de widgets",
@@ -150,8 +150,8 @@
       "content": "Quantidade de agendamentos por situação: agendado, concluído ou cancelado."
     },
     "upcomingRenewals": {
-      "title": "Vencimentos de aluguel",
-      "content": "Contratos de locação que vencem nos próximos 30 dias."
+      "title": "Contratos de aluguel a vencer",
+      "content": "Contratos de aluguel que chegam ao fim (fim da vigência, não data de cobrança) nos próximos 30 dias."
     }
   }
 }

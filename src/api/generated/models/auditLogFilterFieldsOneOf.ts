@@ -13,6 +13,10 @@ export type AuditLogFilterFieldsOneOf = {
   entityId?: boolean;
   previousData?: boolean;
   newData?: boolean;
+  propertyId?: boolean;
+  source?: boolean;
+  category?: boolean;
+  changes?: boolean;
   ip?: boolean;
   createdAt?: boolean;
   userId?: boolean;

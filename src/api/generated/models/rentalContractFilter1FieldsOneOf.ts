@@ -20,14 +20,11 @@ export type RentalContractFilter1FieldsOneOf = {
   noticeDays?: boolean;
   notes?: boolean;
   stipulaDate?: boolean;
-  registeredAt?: boolean;
   renewalDueDate?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
   propertyId?: boolean;
   tenantId?: boolean;
   ownerId?: boolean;
-  ownerAgentId?: boolean;
-  tenantAgentId?: boolean;
   createdById?: boolean;
 };

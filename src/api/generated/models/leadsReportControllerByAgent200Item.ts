@@ -9,6 +9,8 @@
 export type LeadsReportControllerByAgent200Item = {
   agentId?: string;
   agentName?: string;
+  /** @nullable */
+  agentCode?: string | null;
   total?: number;
   converted?: number;
 };

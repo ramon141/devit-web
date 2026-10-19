@@ -10,4 +10,8 @@ import type { RentalContractFilter } from './rentalContractFilter';
 export type RentalContractControllerExportParams = {
 format?: string;
 filter?: RentalContractFilter;
+/**
+ * Filtra pelo código do corretor (busca parcial, sem diferenciar maiúsculas)
+ */
+brokerCode?: string;
 };

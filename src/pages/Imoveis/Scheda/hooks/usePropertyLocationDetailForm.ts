@@ -20,8 +20,6 @@ import { toNumberOrNull } from '@/utils/toNumberOrNull'
 export type LocationDetailFormValues = {
   latitude: string
   longitude: string
-  publicLatitude: string
-  publicLongitude: string
   position: string
   distanceToWaterM: string
   floorNumber: string
@@ -36,8 +34,6 @@ export type LocationDetailFormValues = {
 const emptyValues: LocationDetailFormValues = {
   latitude: '',
   longitude: '',
-  publicLatitude: '',
-  publicLongitude: '',
   position: '',
   distanceToWaterM: '',
   floorNumber: '',
@@ -72,8 +68,6 @@ export function usePropertyLocationDetailForm(propertyId: string) {
     form.reset({
       latitude: existing.latitude != null ? String(existing.latitude) : '',
       longitude: existing.longitude != null ? String(existing.longitude) : '',
-      publicLatitude: existing.publicLatitude != null ? String(existing.publicLatitude) : '',
-      publicLongitude: existing.publicLongitude != null ? String(existing.publicLongitude) : '',
       position: existing.position ?? '',
       distanceToWaterM: existing.distanceToWaterM != null ? String(existing.distanceToWaterM) : '',
       floorNumber: existing.floorNumber != null ? String(existing.floorNumber) : '',
@@ -93,8 +87,6 @@ export function usePropertyLocationDetailForm(propertyId: string) {
       ...cleaned,
       latitude: toNumberOrNull(values.latitude),
       longitude: toNumberOrNull(values.longitude),
-      publicLatitude: toNumberOrNull(values.publicLatitude),
-      publicLongitude: toNumberOrNull(values.publicLongitude),
       distanceToWaterM: toNumberOrNull(values.distanceToWaterM),
       floorNumber: toNumberOrNull(values.floorNumber),
       totalFloors: toNumberOrNull(values.totalFloors),

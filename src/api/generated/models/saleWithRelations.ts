@@ -59,18 +59,12 @@ export interface SaleWithRelations {
   /** @nullable */
   proposalId?: string | null;
   /** @nullable */
-  sellerAgentId?: string | null;
-  /** @nullable */
-  buyerAgentId?: string | null;
-  /** @nullable */
   createdById?: string | null;
   property?: Property;
   foreignKey?: unknown;
   buyer?: Person;
   seller?: Person;
   proposal?: PurchaseProposal;
-  sellerAgent?: User;
-  buyerAgent?: User;
   createdBy?: User;
   saleStatusHistories?: SaleStatusHistory[];
   saleDocuments?: SaleDocument[];

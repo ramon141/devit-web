@@ -45,9 +45,5 @@ export interface PurchaseProposal {
   /** @nullable */
   leadId?: string | null;
   /** @nullable */
-  assignedToId?: string | null;
-  /** @nullable */
-  sellerAgentId?: string | null;
-  /** @nullable */
   createdById?: string | null;
 }

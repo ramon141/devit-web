@@ -9,6 +9,8 @@
 export type SalesRentalsReportControllerByAgent200Item = {
   agentId?: string;
   agentName?: string;
+  /** @nullable */
+  agentCode?: string | null;
   salesCount?: number;
   salesAmount?: number;
   leadsConverted?: number;

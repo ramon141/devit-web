@@ -5,6 +5,7 @@ import type { SiteDetail } from '@/lib/site/types'
 import { useBranches } from '@/pages/Site/hooks/useSiteData'
 
 const SECONDARY = 'block rounded-lg border px-5 py-3.5 text-center transition-colors '
+const SECONDARY_DARK = `${SECONDARY} border-site-line-dark text-site-cream hover:border-site-accent hover:text-site-accent`
 
 // A Devit responde (não um sócio): WhatsApp h24, telefone da sede (vindo da API) e, se houver, o vídeo
 function ContactCard({ property }: { property: SiteDetail }) {
@@ -37,9 +38,21 @@ function ContactCard({ property }: { property: SiteDetail }) {
           {branch?.phone && (
             <a
               href={telHref(branch.phone)}
-              className={`${SECONDARY} border-site-line-dark text-site-cream hover:border-site-accent hover:text-site-accent`}
+              className={SECONDARY_DARK}
             >
               {dict.property.call} · {branch.phone}
+            </a>
+          )}
+
+          {property.instagramUrl && (
+            <a href={property.instagramUrl} target="_blank" rel="noopener noreferrer" className={SECONDARY_DARK}>
+              {dict.property.instagram}
+            </a>
+          )}
+
+          {property.tiktokUrl && (
+            <a href={property.tiktokUrl} target="_blank" rel="noopener noreferrer" className={SECONDARY_DARK}>
+              {dict.property.tiktok}
             </a>
           )}
         </div>

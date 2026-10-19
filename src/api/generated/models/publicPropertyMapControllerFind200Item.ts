@@ -17,6 +17,7 @@ export type PublicPropertyMapControllerFind200Item = {
   price?: number | null;
   latitude?: number;
   longitude?: number;
+  radiusMeters?: number;
   /** @nullable */
   coverPhotoUrl?: string | null;
   /** @nullable */

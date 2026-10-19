@@ -200,5 +200,32 @@
   },
   "hints": {
     "whatsappPrefix": "Números sem o prefixo 55 recebem o 55 automaticamente (padrão brasileiro): confira números italianos."
+  },
+  "leadGroup": {
+    "description": "Filtre por bairro e rua, confira a lista e adicione o grupo aos destinatários.",
+    "neighborhoods": "Bairros",
+    "neighborhoodsPlaceholder": "Todos os bairros",
+    "street": "Rua",
+    "streetPlaceholder": "Buscar por rua...",
+    "selectAll": "Selecionar todos",
+    "clearAll": "Desmarcar todos",
+    "loading": "Carregando...",
+    "excluded": "{{count}} excluídos: {{optedOut}} pediram para não receber comunicações, {{withoutContact}} sem contato neste canal",
+    "cancel": "Cancelar",
+    "confirm": "Adicionar {{count}} destinatários",
+    "openButton": "Selecionar grupo",
+    "added": "{{count}} leads do grupo",
+    "lead": {
+      "title": "Selecionar grupo de leads",
+      "count": "{{selected}} de {{total}} leads no grupo",
+      "search": "Buscar lead...",
+      "empty": "Nenhum lead encontrado"
+    },
+    "person": {
+      "title": "Selecionar grupo de pessoas",
+      "count": "{{selected}} de {{total}} pessoas no grupo",
+      "search": "Buscar pessoa...",
+      "empty": "Nenhuma pessoa encontrada"
+    }
   }
 }

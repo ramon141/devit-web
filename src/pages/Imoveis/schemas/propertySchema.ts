@@ -82,6 +82,30 @@ function nonNegativeSmallint(t: TFunction<'imoveis'>, max = SMALLINT_MAX) {
     .optional()
 }
 
+const SOCIAL_URL_MAX_LENGTH = 500
+
+// Link opcional: vazio é aceito; preenchido precisa ser http(s) de um host do domínio informado
+function socialUrl(domain: string, message: string) {
+  return z
+    .string()
+    .refine((value) => {
+      const trimmed = value.trim()
+      if (!trimmed) return true
+      if (trimmed.length > SOCIAL_URL_MAX_LENGTH) return false
+
+      try {
+        const url = new URL(trimmed)
+        const host = url.hostname.toLowerCase()
+        const isHttp = url.protocol === 'http:' || url.protocol === 'https:'
+
+        return isHttp && (host === domain || host.endsWith(`.${domain}`))
+      } catch {
+        return false
+      }
+    }, message)
+    .optional()
+}
+
 export function createPropertySchema(t: TFunction<'imoveis'>) {
   return z.object({
     code: z.string().min(1, t('options.validation.code')),
@@ -105,6 +129,8 @@ export function createPropertySchema(t: TFunction<'imoveis'>) {
     parkingSpots: nonNegativeNumber(t),
     areaSqm: nonNegativeNumber(t),
     description: z.string().optional(),
+    instagramUrl: socialUrl('instagram.com', t('options.validation.instagramUrl')),
+    tiktokUrl: socialUrl('tiktok.com', t('options.validation.tiktokUrl')),
 
     country: z.string().optional(),
     street: z.string().optional(),

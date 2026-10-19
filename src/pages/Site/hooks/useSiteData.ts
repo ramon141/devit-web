@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { keepPreviousData } from '@tanstack/react-query'
 import {
   usePublicBranchControllerFind,
+  usePublicHomeVideoControllerCurrent,
   usePublicPropertyControllerFacets,
   usePublicPropertyControllerFind,
   usePublicPropertyControllerFindById,
@@ -38,6 +39,13 @@ export function useBranches() {
   return usePublicBranchControllerFind()
 }
 
+// Vídeo da abertura configurado no gestionale (null = usar o vídeo padrão)
+export function useHomeVideoUrl() {
+  const { data } = usePublicHomeVideoControllerCurrent()
+
+  return data?.url ?? null
+}
+
 export function useCategoryFacets() {
   return usePublicPropertyControllerFacets()
 }
@@ -60,7 +68,7 @@ export function useRelatedProperties(detail: SiteDetail | undefined) {
   return { items, isSuccess }
 }
 
-// Só o necessário para os pontos do mapa (a API já devolve só o que tem coordenada pública)
+// Só o necessário para os pontos do mapa (a API já devolve só o que tem coordenada)
 export function useMapPins() {
   const { dict, locale } = useSiteDict()
   const { data, isSuccess } = usePublicPropertyMapControllerFind()
@@ -80,6 +88,7 @@ export function useMapPins() {
           purpose: pin.purpose ?? 'sale',
           lat: toNumber(pin.latitude) ?? 0,
           lng: toNumber(pin.longitude) ?? 0,
+          radiusMeters: toNumber(pin.radiusMeters) ?? 0,
           cover: pin.coverPhotoUrl ?? undefined,
         }
       }),

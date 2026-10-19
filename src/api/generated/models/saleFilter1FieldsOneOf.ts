@@ -23,7 +23,5 @@ export type SaleFilter1FieldsOneOf = {
   buyerId?: boolean;
   sellerId?: boolean;
   proposalId?: boolean;
-  sellerAgentId?: boolean;
-  buyerAgentId?: boolean;
   createdById?: boolean;
 };

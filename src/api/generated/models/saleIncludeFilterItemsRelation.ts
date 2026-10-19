@@ -15,8 +15,6 @@ export const SaleIncludeFilterItemsRelation = {
   buyer: 'buyer',
   seller: 'seller',
   proposal: 'proposal',
-  sellerAgent: 'sellerAgent',
-  buyerAgent: 'buyerAgent',
   createdBy: 'createdBy',
   saleStatusHistories: 'saleStatusHistories',
   saleDocuments: 'saleDocuments',

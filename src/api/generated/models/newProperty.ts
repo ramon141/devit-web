@@ -7,6 +7,7 @@
  */
 import type { NewPropertyPurpose } from './newPropertyPurpose';
 import type { NewPropertyStatus } from './newPropertyStatus';
+import type { NewPropertyLastChangeSource } from './newPropertyLastChangeSource';
 import type { NewPropertyPhotosItem } from './newPropertyPhotosItem';
 import type { NewPropertyDocumentsItem } from './newPropertyDocumentsItem';
 import type { NewPropertyOwnersItem } from './newPropertyOwnersItem';
@@ -30,7 +31,7 @@ export interface NewProperty {
    * @minLength 1
    * @maxLength 20
    */
-  code: string;
+  code?: string;
   /**
    * @minLength 1
    * @maxLength 200
@@ -41,6 +42,16 @@ export interface NewProperty {
    * @nullable
    */
   slug?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  instagramUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  tiktokUrl?: string | null;
   purpose: NewPropertyPurpose;
   /**
    * @minimum 0
@@ -97,8 +108,6 @@ export interface NewProperty {
    */
   featuredOrder?: number | null;
   /** @nullable */
-  active?: boolean | null;
-  /** @nullable */
   deactivatedAt?: string | null;
   /** @nullable */
   publishedOnSite?: boolean | null;
@@ -111,6 +120,14 @@ export interface NewProperty {
   deactivatedById?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** @nullable */
+  lastChangedAt?: string | null;
+  /** @nullable */
+  lastChangedById?: string | null;
+  /** @nullable */
+  lastChangeSource?: NewPropertyLastChangeSource;
+  /** @nullable */
+  responsibleBrokerId?: string | null;
   /** Fotos do imóvel a serem enviadas para o MinIO e vinculadas */
   photos?: NewPropertyPhotosItem[];
   /** Documentos do imóvel (ex.: planimetria) a serem enviados para o MinIO e vinculados */

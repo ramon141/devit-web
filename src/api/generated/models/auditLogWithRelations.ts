@@ -8,6 +8,9 @@
 import type { AuditLogWithRelationsAction } from './auditLogWithRelationsAction';
 import type { AuditLogWithRelationsPreviousData } from './auditLogWithRelationsPreviousData';
 import type { AuditLogWithRelationsNewData } from './auditLogWithRelationsNewData';
+import type { AuditLogWithRelationsSource } from './auditLogWithRelationsSource';
+import type { AuditLogWithRelationsCategory } from './auditLogWithRelationsCategory';
+import type { AuditLogWithRelationsChangesItemItem } from './auditLogWithRelationsChangesItemItem';
 import type { User } from './user';
 
 /**
@@ -24,6 +27,13 @@ export interface AuditLogWithRelations {
   previousData?: AuditLogWithRelationsPreviousData;
   /** @nullable */
   newData?: AuditLogWithRelationsNewData;
+  /** @nullable */
+  propertyId?: string | null;
+  /** @nullable */
+  source?: AuditLogWithRelationsSource;
+  /** @nullable */
+  category?: AuditLogWithRelationsCategory;
+  changes?: (AuditLogWithRelationsChangesItemItem[] | null)[];
   /** @nullable */
   ip?: string | null;
   /** @nullable */

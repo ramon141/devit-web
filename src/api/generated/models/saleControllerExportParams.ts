@@ -10,4 +10,8 @@ import type { SaleFilter } from './saleFilter';
 export type SaleControllerExportParams = {
 format?: string;
 filter?: SaleFilter;
+/**
+ * Filtra pelo código do corretor (busca parcial, sem diferenciar maiúsculas)
+ */
+brokerCode?: string;
 };

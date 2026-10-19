@@ -30,7 +30,7 @@ export const stepFields: Record<string, (keyof PropertyFormValues)[]> = {
   generale: ['code', 'title', 'categoryId', 'ownerId', 'purpose', 'status', 'featuredOrder'],
   prezzo: ['salePrice', 'rentPrice', 'condoFee'],
   localizzazione: ['country', 'city', 'region', 'postalCode', 'street', 'number', 'neighborhoodId', 'complement'],
-  descrizione: ['areaSqm', 'bedrooms', 'bathrooms', 'parkingSpots', 'description'],
+  descrizione: ['areaSqm', 'bedrooms', 'bathrooms', 'parkingSpots', 'description', 'instagramUrl', 'tiktokUrl'],
 }
 
 export function getNextStepValue(t: TFunction<'imoveis'>, current: string) {

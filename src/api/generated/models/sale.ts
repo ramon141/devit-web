@@ -48,9 +48,5 @@ export interface Sale {
   /** @nullable */
   proposalId?: string | null;
   /** @nullable */
-  sellerAgentId?: string | null;
-  /** @nullable */
-  buyerAgentId?: string | null;
-  /** @nullable */
   createdById?: string | null;
 }

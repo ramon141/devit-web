@@ -19,6 +19,8 @@ export const UserFilterFieldsOneOfTwoItem = {
   emailConfirmedAt: 'emailConfirmedAt',
   passwordChangedAt: 'passwordChangedAt',
   lastLoginAt: 'lastLoginAt',
+  phone: 'phone',
+  brokerCode: 'brokerCode',
   active: 'active',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',

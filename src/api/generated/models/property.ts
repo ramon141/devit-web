@@ -7,6 +7,7 @@
  */
 import type { PropertyPurpose } from './propertyPurpose';
 import type { PropertyStatus } from './propertyStatus';
+import type { PropertyLastChangeSource } from './propertyLastChangeSource';
 
 /**
  * {"indexInfo":{"slug":{"unique":true}}}
@@ -28,6 +29,16 @@ export interface Property {
    * @nullable
    */
   slug?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  instagramUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  tiktokUrl?: string | null;
   purpose: PropertyPurpose;
   /**
    * @minimum 0
@@ -84,8 +95,6 @@ export interface Property {
    */
   featuredOrder?: number | null;
   /** @nullable */
-  active?: boolean | null;
-  /** @nullable */
   deactivatedAt?: string | null;
   /** @nullable */
   publishedOnSite?: boolean | null;
@@ -94,10 +103,20 @@ export interface Property {
   createdAt: string;
   updatedAt: string;
   categoryId: string;
+  /** @nullable */
+  responsibleSince?: string | null;
   addressId: string;
   ownerId: string;
   /** @nullable */
   deactivatedById?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** @nullable */
+  lastChangedAt?: string | null;
+  /** @nullable */
+  lastChangedById?: string | null;
+  /** @nullable */
+  lastChangeSource?: PropertyLastChangeSource;
+  /** @nullable */
+  responsibleBrokerId?: string | null;
 }

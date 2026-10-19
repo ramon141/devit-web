@@ -10,8 +10,6 @@ export type PropertyLocationDetailFilterFieldsOneOf = {
   id?: boolean;
   latitude?: boolean;
   longitude?: boolean;
-  publicLatitude?: boolean;
-  publicLongitude?: boolean;
   position?: boolean;
   distanceToWaterM?: boolean;
   floorNumber?: boolean;

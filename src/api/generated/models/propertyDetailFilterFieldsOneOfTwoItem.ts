@@ -39,5 +39,4 @@ export const PropertyDetailFilterFieldsOneOfTwoItem = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   propertyId: 'propertyId',
-  agentId: 'agentId',
 } as const;

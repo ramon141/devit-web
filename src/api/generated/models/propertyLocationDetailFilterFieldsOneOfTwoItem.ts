@@ -14,8 +14,6 @@ export const PropertyLocationDetailFilterFieldsOneOfTwoItem = {
   id: 'id',
   latitude: 'latitude',
   longitude: 'longitude',
-  publicLatitude: 'publicLatitude',
-  publicLongitude: 'publicLongitude',
   position: 'position',
   distanceToWaterM: 'distanceToWaterM',
   floorNumber: 'floorNumber',

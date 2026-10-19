@@ -7,6 +7,7 @@
  */
 import type { PropertyWithRelationsPurpose } from './propertyWithRelationsPurpose';
 import type { PropertyWithRelationsStatus } from './propertyWithRelationsStatus';
+import type { PropertyWithRelationsLastChangeSource } from './propertyWithRelationsLastChangeSource';
 import type { PropertyCategory } from './propertyCategory';
 import type { Address } from './address';
 import type { Person } from './person';
@@ -41,6 +42,16 @@ export interface PropertyWithRelations {
    * @nullable
    */
   slug?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  instagramUrl?: string | null;
+  /**
+   * @maxLength 500
+   * @nullable
+   */
+  tiktokUrl?: string | null;
   purpose: PropertyWithRelationsPurpose;
   /**
    * @minimum 0
@@ -97,8 +108,6 @@ export interface PropertyWithRelations {
    */
   featuredOrder?: number | null;
   /** @nullable */
-  active?: boolean | null;
-  /** @nullable */
   deactivatedAt?: string | null;
   /** @nullable */
   publishedOnSite?: boolean | null;
@@ -107,18 +116,30 @@ export interface PropertyWithRelations {
   createdAt: string;
   updatedAt: string;
   categoryId: string;
+  /** @nullable */
+  responsibleSince?: string | null;
   addressId: string;
   ownerId: string;
   /** @nullable */
   deactivatedById?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** @nullable */
+  lastChangedAt?: string | null;
+  /** @nullable */
+  lastChangedById?: string | null;
+  /** @nullable */
+  lastChangeSource?: PropertyWithRelationsLastChangeSource;
+  /** @nullable */
+  responsibleBrokerId?: string | null;
   category?: PropertyCategory;
   foreignKey?: unknown;
   address?: Address;
   owner?: Person;
   deactivatedBy?: User;
   createdBy?: User;
+  lastChangedBy?: User;
+  responsibleBroker?: User;
   propertyDetail?: PropertyDetail;
   propertyFees?: PropertyFee[];
   propertyPhotos?: PropertyPhoto[];

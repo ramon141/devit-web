@@ -22,7 +22,9 @@ export type PublicPropertyControllerFindById200LocationDetail = {
   /** @nullable */
   usableAreaSqm?: number | null;
   /** @nullable */
-  publicLatitude?: number | null;
+  latitude?: number | null;
   /** @nullable */
-  publicLongitude?: number | null;
+  longitude?: number | null;
+  /** @nullable */
+  radiusMeters?: number | null;
 } | null;

@@ -32,67 +32,12 @@
       "Neighborhood": "Quartiere",
       "Lead": "Richiesta",
       "CalendarEvent": "Impegno",
-      "HomeBanner": "Banner",
       "CommunicationTemplate": "Modello di comunicazione"
     }
   },
   "auditPage": {
     "title": "Log di audit",
     "description": "Cronologia delle azioni nel sistema"
-  },
-  "bannerFormModal": {
-    "editTitle": "Modifica banner",
-    "newTitle": "Nuovo banner",
-    "imageLabel": "Immagine desktop",
-    "imageHint": "Lascia vuoto per mantenere l’immagine attuale",
-    "titleLabel": "Titolo",
-    "subtitleLabel": "Sottotitolo",
-    "linkLabel": "Link",
-    "orderLabel": "Ordine",
-    "activeLabel": "Banner attivo",
-    "mobileImageLabel": "Immagine mobile"
-  },
-  "bannerTable": {
-    "empty": "Nessun banner trovato.",
-    "deleteTitle": "Eliminare il banner?",
-    "deleteDescription": "Questa azione eliminerà definitivamente \"{{title}}\".",
-    "deleteConfirm": "Elimina"
-  },
-  "bannerTableColumns": {
-    "title": "Titolo",
-    "link": "Link",
-    "order": "Ordine",
-    "status": "Stato",
-    "active": "Attivo",
-    "inactive": "Inattivo",
-    "actions": "Azioni"
-  },
-  "bannerForm": {
-    "imageRequired": "Seleziona un’immagine per il banner",
-    "pendingUpdate": "Salvataggio banner...",
-    "pendingCreate": "Creazione banner...",
-    "successUpdate": "Banner aggiornato con successo!",
-    "successCreate": "Banner creato con successo!",
-    "error": "Errore durante il salvataggio del banner"
-  },
-  "deleteBanner": {
-    "pending": "Eliminazione banner...",
-    "success": "Banner eliminato con successo!",
-    "error": "Errore durante l’eliminazione del banner"
-  },
-  "banner": {
-    "searchPlaceholder": "Cerca un banner...",
-    "newLabel": "Nuovo banner"
-  },
-  "bannerPage": {
-    "title": "Banner",
-    "description": "Gestisci i banner della home",
-    "notFound": "Banner non trovato."
-  },
-  "bannerSchema": {
-    "titleMin": "Inserisci almeno 2 caratteri",
-    "linkInvalid": "Il link deve iniziare con http://, https:// o /",
-    "orderInvalid": "L'ordine deve essere un numero intero maggiore o uguale a 0"
   },
   "categoryFormModal": {
     "editTitle": "Modifica categoria",
@@ -308,16 +253,6 @@
       "updateError": "Errore durante l'aggiornamento"
     }
   },
-  "bannerCarousel": {
-    "loading": "Caricamento banner...",
-    "desktop": "Desktop",
-    "mobile": "Mobile"
-  },
-  "reorderBanners": {
-    "pending": "Riordino banner...",
-    "success": "Ordine aggiornato!",
-    "error": "Errore durante il riordino dei banner"
-  },
   "zonePage": {
     "title": "Zone",
     "description": "Gestisci le zone e i quartieri"
@@ -447,66 +382,6 @@
       "table": {
         "title": "Elenco eventi",
         "content": "Ogni riga registra un'azione: il tipo di azione, l'entità coinvolta, l'id dell'entità, l'utente responsabile e la data/ora."
-      }
-    },
-    "banner": {
-      "list": {
-        "title": {
-          "title": "Banner",
-          "content": "Qui gestisci i banner mostrati nella home page del sito."
-        },
-        "search": {
-          "title": "Cerca banner",
-          "content": "Digita per filtrare i banner per titolo."
-        },
-        "carousel": {
-          "title": "Banner registrati",
-          "content": "Trascina le card per riordinare i banner o clicca su una card per modificarla."
-        },
-        "newBtn": {
-          "title": "Nuovo banner",
-          "content": "Clicca qui per registrare un nuovo banner."
-        }
-      },
-      "scheda": {
-        "intro": {
-          "title": "Registrazione banner",
-          "content": "Compila i dati del banner. Vedremo insieme ogni campo del modulo."
-        },
-        "fields": {
-          "image": {
-            "title": "Immagine (desktop)",
-            "content": "Immagine mostrata nel banner per gli schermi grandi."
-          },
-          "mobileImage": {
-            "title": "Immagine (mobile)",
-            "content": "Immagine mostrata nel banner per gli schermi piccoli."
-          },
-          "title": {
-            "title": "Titolo",
-            "content": "Titolo principale mostrato sopra il banner. Campo obbligatorio."
-          },
-          "subtitle": {
-            "title": "Sottotitolo",
-            "content": "Testo secondario mostrato sotto il titolo."
-          },
-          "targetLink": {
-            "title": "Link di destinazione",
-            "content": "Indirizzo verso cui viene portato l'utente cliccando sul banner."
-          },
-          "displayOrder": {
-            "title": "Ordine di visualizzazione",
-            "content": "Definisce la posizione del banner tra gli altri. Numeri più bassi vengono mostrati prima."
-          },
-          "active": {
-            "title": "Banner attivo",
-            "content": "Disattiva per nascondere il banner senza eliminarlo."
-          }
-        },
-        "actions": {
-          "title": "Salva o annulla",
-          "content": "Clicca su Salva per registrare il banner o su Annulla per tornare indietro senza salvare."
-        }
       }
     },
     "utenti": {
@@ -712,6 +587,34 @@
           "content": "Clicca su Salva per registrare la zona o su Annulla per chiudere senza salvare."
         }
       }
+    }
+  },
+  "videoHomePage": {
+    "title": "Video della home",
+    "description": "Scegli il video di apertura della pagina iniziale del sito"
+  },
+  "videoHome": {
+    "currentCustom": "Video attuale del sito",
+    "currentDefault": "Video attuale: predefinito",
+    "newVideo": "Nuovo video",
+    "hint": "Solo MP4, massimo {{mb}} MB e {{seconds}} secondi. Viene ottimizzato automaticamente per il sito.",
+    "previewNote": "Anteprima del file scelto: non è ancora pubblicato.",
+    "publishButton": "Pubblica video",
+    "publishing": "Pubblicazione e ottimizzazione del video...",
+    "published": "Video pubblicato con successo!",
+    "publishError": "Errore durante la pubblicazione del video",
+    "resetButton": "Torna al video predefinito",
+    "resetTitle": "Tornare al video predefinito?",
+    "resetDescription": "Il video personalizzato verrà eliminato e il sito userà di nuovo il video predefinito.",
+    "resetConfirm": "Ripristina",
+    "resetting": "Ripristino del video predefinito...",
+    "resetDone": "Video predefinito ripristinato!",
+    "resetError": "Errore durante il ripristino del video",
+    "errors": {
+      "type": "Il file deve essere un video MP4.",
+      "size": "Il video supera la dimensione massima di 40 MB.",
+      "duration": "Il video supera la durata massima di 60 secondi.",
+      "unreadable": "Impossibile leggere il video: il file potrebbe essere danneggiato."
     }
   }
 }

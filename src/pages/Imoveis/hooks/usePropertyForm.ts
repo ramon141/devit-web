@@ -45,6 +45,8 @@ const emptyValues: PropertyFormValues = {
   parkingSpots: '',
   areaSqm: '',
   description: '',
+  instagramUrl: '',
+  tiktokUrl: '',
   country: DEFAULT_COUNTRY,
   street: '',
   number: '',
@@ -82,6 +84,8 @@ function propertyToFormValues(property: PropertyWithRelations): PropertyFormValu
     parkingSpots: property.parkingSpots != null ? String(property.parkingSpots) : '',
     areaSqm: property.areaSqm != null ? String(property.areaSqm) : '',
     description: property.description ?? '',
+    instagramUrl: property.instagramUrl ?? '',
+    tiktokUrl: property.tiktokUrl ?? '',
     country: property.address?.country ?? DEFAULT_COUNTRY,
     street: property.address?.street ?? '',
     number: property.address?.number ?? '',
@@ -157,6 +161,8 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
       parkingSpots: toNumberOrNull(values.parkingSpots),
       areaSqm: toNumberOrNull(values.areaSqm),
       description: cleaned.description,
+      instagramUrl: values.instagramUrl?.trim() || null,
+      tiktokUrl: values.tiktokUrl?.trim() || null,
     }
 
     if (property?.id) {

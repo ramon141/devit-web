@@ -50,6 +50,7 @@ import type {
   AddressControllerUpdateById400,
   AddressControllerUpdateById401,
   AddressControllerUpdateById404,
+  AddressControllerUpdateById409,
   AddressControllerUpdateById415,
   AddressControllerUpdateById422,
   AddressPartialExcludingCreatedAtUpdatedAt,
@@ -311,6 +312,10 @@ import type {
   ChatbotPropertyControllerFind200,
   ChatbotPropertyControllerFind400,
   ChatbotPropertyControllerFind422,
+  ChatbotPropertyControllerFindByCode200,
+  ChatbotPropertyControllerFindByCode400,
+  ChatbotPropertyControllerFindByCode404,
+  ChatbotPropertyControllerFindByCode422,
   ChatbotPropertyControllerFindById200,
   ChatbotPropertyControllerFindById400,
   ChatbotPropertyControllerFindById404,
@@ -512,35 +517,20 @@ import type {
   EvolutionWebhookControllerReceive422,
   EvolutionWebhookControllerReceiveBody,
   EvolutionWebhookControllerReceiveParams,
-  HomeBanner,
-  HomeBannerControllerCount400,
-  HomeBannerControllerCount401,
-  HomeBannerControllerCount422,
-  HomeBannerControllerCountParams,
-  HomeBannerControllerCreate400,
-  HomeBannerControllerCreate401,
-  HomeBannerControllerCreate415,
-  HomeBannerControllerCreate422,
-  HomeBannerControllerDeleteById400,
-  HomeBannerControllerDeleteById401,
-  HomeBannerControllerDeleteById404,
-  HomeBannerControllerDeleteById422,
-  HomeBannerControllerFind400,
-  HomeBannerControllerFind401,
-  HomeBannerControllerFind422,
-  HomeBannerControllerFindById400,
-  HomeBannerControllerFindById401,
-  HomeBannerControllerFindById404,
-  HomeBannerControllerFindById422,
-  HomeBannerControllerFindByIdParams,
-  HomeBannerControllerFindParams,
-  HomeBannerControllerUpdateById400,
-  HomeBannerControllerUpdateById401,
-  HomeBannerControllerUpdateById404,
-  HomeBannerControllerUpdateById415,
-  HomeBannerControllerUpdateById422,
-  HomeBannerPartial,
-  HomeBannerWithRelations,
+  HomeVideoControllerCurrent200,
+  HomeVideoControllerCurrent400,
+  HomeVideoControllerCurrent401,
+  HomeVideoControllerCurrent422,
+  HomeVideoControllerRemove400,
+  HomeVideoControllerRemove401,
+  HomeVideoControllerRemove422,
+  HomeVideoControllerReplace200,
+  HomeVideoControllerReplace400,
+  HomeVideoControllerReplace401,
+  HomeVideoControllerReplace415,
+  HomeVideoControllerReplace422,
+  HomeVideoControllerReplaceBody,
+  HomeVideoControllerReplaceParams,
   Lead,
   LeadControllerCount400,
   LeadControllerCount401,
@@ -715,7 +705,6 @@ import type {
   NewContractAttachment,
   NewContractRenewal,
   NewContractTermination,
-  NewHomeBanner,
   NewLead,
   NewLeadNeighborhood,
   NewLeadProperty,
@@ -974,6 +963,18 @@ import type {
   PropertyAdditionalDetailControllerUpdateById422,
   PropertyAdditionalDetailPartial,
   PropertyAdditionalDetailWithRelations,
+  PropertyBrokerChangeWithRelations,
+  PropertyBrokerControllerHistory400,
+  PropertyBrokerControllerHistory401,
+  PropertyBrokerControllerHistory404,
+  PropertyBrokerControllerHistory422,
+  PropertyBrokerControllerTransfer400,
+  PropertyBrokerControllerTransfer401,
+  PropertyBrokerControllerTransfer403,
+  PropertyBrokerControllerTransfer404,
+  PropertyBrokerControllerTransfer415,
+  PropertyBrokerControllerTransfer422,
+  PropertyBrokerControllerTransferBody,
   PropertyCadastralInfo,
   PropertyCadastralInfoControllerCount400,
   PropertyCadastralInfoControllerCount401,
@@ -1067,6 +1068,8 @@ import type {
   PropertyControllerCountParams,
   PropertyControllerCreate400,
   PropertyControllerCreate401,
+  PropertyControllerCreate403,
+  PropertyControllerCreate409,
   PropertyControllerCreate415,
   PropertyControllerCreate422,
   PropertyControllerDeleteById400,
@@ -1086,9 +1089,15 @@ import type {
   PropertyControllerFindById422,
   PropertyControllerFindByIdParams,
   PropertyControllerFindParams,
+  PropertyControllerNextCode200,
+  PropertyControllerNextCode400,
+  PropertyControllerNextCode401,
+  PropertyControllerNextCode422,
   PropertyControllerUpdateById400,
   PropertyControllerUpdateById401,
+  PropertyControllerUpdateById403,
   PropertyControllerUpdateById404,
+  PropertyControllerUpdateById409,
   PropertyControllerUpdateById415,
   PropertyControllerUpdateById422,
   PropertyDetail,
@@ -1240,6 +1249,12 @@ import type {
   PropertyHeatingDetailControllerUpdateById422,
   PropertyHeatingDetailPartial,
   PropertyHeatingDetailWithRelations,
+  PropertyHistoryControllerHistory200,
+  PropertyHistoryControllerHistory400,
+  PropertyHistoryControllerHistory401,
+  PropertyHistoryControllerHistory404,
+  PropertyHistoryControllerHistory422,
+  PropertyHistoryControllerHistoryParams,
   PropertyIndustrialArea,
   PropertyIndustrialAreaControllerCount400,
   PropertyIndustrialAreaControllerCount401,
@@ -1403,7 +1418,7 @@ import type {
   PropertyOwnerControllerFindByIdParams,
   PropertyOwnerControllerFindParams,
   PropertyOwnerWithRelations,
-  PropertyPartialExcludingCreatedAtUpdatedAt,
+  PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSince,
   PropertyPhoto,
   PropertyPhotoControllerCount400,
   PropertyPhotoControllerCount401,
@@ -1500,10 +1515,6 @@ import type {
   PropertyStatusHistoryControllerCreate401,
   PropertyStatusHistoryControllerCreate415,
   PropertyStatusHistoryControllerCreate422,
-  PropertyStatusHistoryControllerDeleteById400,
-  PropertyStatusHistoryControllerDeleteById401,
-  PropertyStatusHistoryControllerDeleteById404,
-  PropertyStatusHistoryControllerDeleteById422,
   PropertyStatusHistoryControllerFind400,
   PropertyStatusHistoryControllerFind401,
   PropertyStatusHistoryControllerFind422,
@@ -1513,12 +1524,6 @@ import type {
   PropertyStatusHistoryControllerFindById422,
   PropertyStatusHistoryControllerFindByIdParams,
   PropertyStatusHistoryControllerFindParams,
-  PropertyStatusHistoryControllerUpdateById400,
-  PropertyStatusHistoryControllerUpdateById401,
-  PropertyStatusHistoryControllerUpdateById404,
-  PropertyStatusHistoryControllerUpdateById415,
-  PropertyStatusHistoryControllerUpdateById422,
-  PropertyStatusHistoryPartial,
   PropertyStatusHistoryWithRelations,
   PropertyUrbanRegularity,
   PropertyUrbanRegularityControllerCount400,
@@ -1555,6 +1560,9 @@ import type {
   PublicAttachmentControllerRedirectToFile422,
   PublicBranchControllerFind400,
   PublicBranchControllerFind422,
+  PublicHomeVideoControllerCurrent200,
+  PublicHomeVideoControllerCurrent400,
+  PublicHomeVideoControllerCurrent422,
   PublicLeadControllerCreate200,
   PublicLeadControllerCreate400,
   PublicLeadControllerCreate415,
@@ -2007,6 +2015,11 @@ import type {
   UserControllerFindById422,
   UserControllerFindByIdParams,
   UserControllerFindParams,
+  UserControllerNextBrokerCode200,
+  UserControllerNextBrokerCode400,
+  UserControllerNextBrokerCode401,
+  UserControllerNextBrokerCode403,
+  UserControllerNextBrokerCode422,
   UserControllerUpdateById400,
   UserControllerUpdateById401,
   UserControllerUpdateById403,
@@ -2168,7 +2181,7 @@ export const addressControllerUpdateById = (
   
 
 
-export const getAddressControllerUpdateByIdMutationOptions = <TError = ErrorType<AddressControllerUpdateById400 | AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById415 | AddressControllerUpdateById422>,
+export const getAddressControllerUpdateByIdMutationOptions = <TError = ErrorType<AddressControllerUpdateById400 | AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById409 | AddressControllerUpdateById415 | AddressControllerUpdateById422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
 ): UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
 
@@ -2195,12 +2208,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type AddressControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof addressControllerUpdateById>>>
     export type AddressControllerUpdateByIdMutationBody = BodyType<AddressPartialExcludingCreatedAtUpdatedAt>
-    export type AddressControllerUpdateByIdMutationError = ErrorType<AddressControllerUpdateById400 | AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById415 | AddressControllerUpdateById422>
+    export type AddressControllerUpdateByIdMutationError = ErrorType<AddressControllerUpdateById400 | AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById409 | AddressControllerUpdateById415 | AddressControllerUpdateById422>
 
     /**
  * @summary Update a Address by id
  */
-export const useAddressControllerUpdateById = <TError = ErrorType<AddressControllerUpdateById400 | AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById415 | AddressControllerUpdateById422>,
+export const useAddressControllerUpdateById = <TError = ErrorType<AddressControllerUpdateById400 | AddressControllerUpdateById401 | AddressControllerUpdateById404 | AddressControllerUpdateById409 | AddressControllerUpdateById415 | AddressControllerUpdateById422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof addressControllerUpdateById>>, TError,{id: string;data: BodyType<AddressPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof addressControllerUpdateById>>,
@@ -9497,17 +9510,82 @@ export function useContractTerminationControllerFind<TData = Awaited<ReturnType<
 
 
 /**
- * @summary Count Home Banners
+ * @summary Enviar MP4, converter para WebM e publicar como vídeo da home
  */
-export const homeBannerControllerCount = (
-    params?: HomeBannerControllerCountParams,
+export const homeVideoControllerReplace = (
+    homeVideoControllerReplaceBody: BodyType<HomeVideoControllerReplaceBody>,
+    params?: HomeVideoControllerReplaceParams,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<HomeVideoControllerReplace200>(
+      {url: `/home-video`, method: 'PUT',
+      headers: {'Content-Type': 'video/mp4', },
+      data: homeVideoControllerReplaceBody,
+        params
+    },
+      options);
+    }
+  
+
+
+export const getHomeVideoControllerReplaceMutationOptions = <TError = ErrorType<HomeVideoControllerReplace400 | HomeVideoControllerReplace401 | unknown | HomeVideoControllerReplace415 | HomeVideoControllerReplace422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeVideoControllerReplace>>, TError,{data: BodyType<HomeVideoControllerReplaceBody>;params?: HomeVideoControllerReplaceParams}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof homeVideoControllerReplace>>, TError,{data: BodyType<HomeVideoControllerReplaceBody>;params?: HomeVideoControllerReplaceParams}, TContext> => {
+
+const mutationKey = ['homeVideoControllerReplace'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof homeVideoControllerReplace>>, {data: BodyType<HomeVideoControllerReplaceBody>;params?: HomeVideoControllerReplaceParams}> = (props) => {
+          const {data,params} = props ?? {};
+
+          return  homeVideoControllerReplace(data,params,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type HomeVideoControllerReplaceMutationResult = NonNullable<Awaited<ReturnType<typeof homeVideoControllerReplace>>>
+    export type HomeVideoControllerReplaceMutationBody = BodyType<HomeVideoControllerReplaceBody>
+    export type HomeVideoControllerReplaceMutationError = ErrorType<HomeVideoControllerReplace400 | HomeVideoControllerReplace401 | unknown | HomeVideoControllerReplace415 | HomeVideoControllerReplace422>
+
+    /**
+ * @summary Enviar MP4, converter para WebM e publicar como vídeo da home
+ */
+export const useHomeVideoControllerReplace = <TError = ErrorType<HomeVideoControllerReplace400 | HomeVideoControllerReplace401 | unknown | HomeVideoControllerReplace415 | HomeVideoControllerReplace422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeVideoControllerReplace>>, TError,{data: BodyType<HomeVideoControllerReplaceBody>;params?: HomeVideoControllerReplaceParams}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof homeVideoControllerReplace>>,
+        TError,
+        {data: BodyType<HomeVideoControllerReplaceBody>;params?: HomeVideoControllerReplaceParams},
+        TContext
+      > => {
+
+      const mutationOptions = getHomeVideoControllerReplaceMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Vídeo de destaque da página inicial (null = vídeo padrão)
+ */
+export const homeVideoControllerCurrent = (
+    
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
-      return mutator<LoopbackCount>(
-      {url: `/home-banners/count`, method: 'GET',
-        params, signal
+      return mutator<HomeVideoControllerCurrent200>(
+      {url: `/home-video`, method: 'GET', signal
     },
       options);
     }
@@ -9515,69 +9593,69 @@ export const homeBannerControllerCount = (
 
 
 
-export const getHomeBannerControllerCountQueryKey = (params?: HomeBannerControllerCountParams,) => {
+export const getHomeVideoControllerCurrentQueryKey = () => {
     return [
-    `/home-banners/count`, ...(params ? [params]: [])
+    `/home-video`
     ] as const;
     }
 
     
-export const getHomeBannerControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof homeBannerControllerCount>>, TError = ErrorType<HomeBannerControllerCount400 | HomeBannerControllerCount401 | HomeBannerControllerCount422>>(params?: HomeBannerControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export const getHomeVideoControllerCurrentQueryOptions = <TData = Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError = ErrorType<HomeVideoControllerCurrent400 | HomeVideoControllerCurrent401 | HomeVideoControllerCurrent422>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getHomeBannerControllerCountQueryKey(params);
+  const queryKey =  queryOptions?.queryKey ?? getHomeVideoControllerCurrentQueryKey();
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof homeBannerControllerCount>>> = ({ signal }) => homeBannerControllerCount(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof homeVideoControllerCurrent>>> = ({ signal }) => homeVideoControllerCurrent(requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
-export type HomeBannerControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof homeBannerControllerCount>>>
-export type HomeBannerControllerCountQueryError = ErrorType<HomeBannerControllerCount400 | HomeBannerControllerCount401 | HomeBannerControllerCount422>
+export type HomeVideoControllerCurrentQueryResult = NonNullable<Awaited<ReturnType<typeof homeVideoControllerCurrent>>>
+export type HomeVideoControllerCurrentQueryError = ErrorType<HomeVideoControllerCurrent400 | HomeVideoControllerCurrent401 | HomeVideoControllerCurrent422>
 
 
-export function useHomeBannerControllerCount<TData = Awaited<ReturnType<typeof homeBannerControllerCount>>, TError = ErrorType<HomeBannerControllerCount400 | HomeBannerControllerCount401 | HomeBannerControllerCount422>>(
- params: undefined |  HomeBannerControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerCount>>, TError, TData>> & Pick<
+export function useHomeVideoControllerCurrent<TData = Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError = ErrorType<HomeVideoControllerCurrent400 | HomeVideoControllerCurrent401 | HomeVideoControllerCurrent422>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof homeBannerControllerCount>>,
+          Awaited<ReturnType<typeof homeVideoControllerCurrent>>,
           TError,
-          Awaited<ReturnType<typeof homeBannerControllerCount>>
+          Awaited<ReturnType<typeof homeVideoControllerCurrent>>
         > , 'initialData'
       >, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useHomeBannerControllerCount<TData = Awaited<ReturnType<typeof homeBannerControllerCount>>, TError = ErrorType<HomeBannerControllerCount400 | HomeBannerControllerCount401 | HomeBannerControllerCount422>>(
- params?: HomeBannerControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerCount>>, TError, TData>> & Pick<
+export function useHomeVideoControllerCurrent<TData = Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError = ErrorType<HomeVideoControllerCurrent400 | HomeVideoControllerCurrent401 | HomeVideoControllerCurrent422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof homeBannerControllerCount>>,
+          Awaited<ReturnType<typeof homeVideoControllerCurrent>>,
           TError,
-          Awaited<ReturnType<typeof homeBannerControllerCount>>
+          Awaited<ReturnType<typeof homeVideoControllerCurrent>>
         > , 'initialData'
       >, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useHomeBannerControllerCount<TData = Awaited<ReturnType<typeof homeBannerControllerCount>>, TError = ErrorType<HomeBannerControllerCount400 | HomeBannerControllerCount401 | HomeBannerControllerCount422>>(
- params?: HomeBannerControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export function useHomeVideoControllerCurrent<TData = Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError = ErrorType<HomeVideoControllerCurrent400 | HomeVideoControllerCurrent401 | HomeVideoControllerCurrent422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary Count Home Banners
+ * @summary Vídeo de destaque da página inicial (null = vídeo padrão)
  */
 
-export function useHomeBannerControllerCount<TData = Awaited<ReturnType<typeof homeBannerControllerCount>>, TError = ErrorType<HomeBannerControllerCount400 | HomeBannerControllerCount401 | HomeBannerControllerCount422>>(
- params?: HomeBannerControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export function useHomeVideoControllerCurrent<TData = Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError = ErrorType<HomeVideoControllerCurrent400 | HomeVideoControllerCurrent401 | HomeVideoControllerCurrent422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeVideoControllerCurrent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getHomeBannerControllerCountQueryOptions(params,options)
+  const queryOptions = getHomeVideoControllerCurrentQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -9591,29 +9669,26 @@ export function useHomeBannerControllerCount<TData = Awaited<ReturnType<typeof h
 
 
 /**
- * @summary Update a Home Banner by id
+ * @summary Voltar ao vídeo padrão do site
  */
-export const homeBannerControllerUpdateById = (
-    id: string,
-    homeBannerPartial: BodyType<HomeBannerPartial>,
+export const homeVideoControllerRemove = (
+    
  options?: SecondParameter<typeof mutator>,) => {
       
       
       return mutator<unknown>(
-      {url: `/home-banners/${id}`, method: 'PATCH',
-      headers: {'Content-Type': 'application/json', },
-      data: homeBannerPartial
+      {url: `/home-video`, method: 'DELETE'
     },
       options);
     }
   
 
 
-export const getHomeBannerControllerUpdateByIdMutationOptions = <TError = ErrorType<HomeBannerControllerUpdateById400 | HomeBannerControllerUpdateById401 | HomeBannerControllerUpdateById404 | HomeBannerControllerUpdateById415 | HomeBannerControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerUpdateById>>, TError,{id: string;data: BodyType<HomeBannerPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerUpdateById>>, TError,{id: string;data: BodyType<HomeBannerPartial>}, TContext> => {
+export const getHomeVideoControllerRemoveMutationOptions = <TError = ErrorType<HomeVideoControllerRemove400 | HomeVideoControllerRemove401 | HomeVideoControllerRemove422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeVideoControllerRemove>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof homeVideoControllerRemove>>, TError,void, TContext> => {
 
-const mutationKey = ['homeBannerControllerUpdateById'];
+const mutationKey = ['homeVideoControllerRemove'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
       options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
       options
@@ -9623,10 +9698,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof homeBannerControllerUpdateById>>, {id: string;data: BodyType<HomeBannerPartial>}> = (props) => {
-          const {id,data} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof homeVideoControllerRemove>>, void> = () => {
+          
 
-          return  homeBannerControllerUpdateById(id,data,requestOptions)
+          return  homeVideoControllerRemove(requestOptions)
         }
 
         
@@ -9634,349 +9709,27 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
   return  { mutationFn, ...mutationOptions }}
 
-    export type HomeBannerControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof homeBannerControllerUpdateById>>>
-    export type HomeBannerControllerUpdateByIdMutationBody = BodyType<HomeBannerPartial>
-    export type HomeBannerControllerUpdateByIdMutationError = ErrorType<HomeBannerControllerUpdateById400 | HomeBannerControllerUpdateById401 | HomeBannerControllerUpdateById404 | HomeBannerControllerUpdateById415 | HomeBannerControllerUpdateById422>
+    export type HomeVideoControllerRemoveMutationResult = NonNullable<Awaited<ReturnType<typeof homeVideoControllerRemove>>>
+    
+    export type HomeVideoControllerRemoveMutationError = ErrorType<HomeVideoControllerRemove400 | HomeVideoControllerRemove401 | HomeVideoControllerRemove422>
 
     /**
- * @summary Update a Home Banner by id
+ * @summary Voltar ao vídeo padrão do site
  */
-export const useHomeBannerControllerUpdateById = <TError = ErrorType<HomeBannerControllerUpdateById400 | HomeBannerControllerUpdateById401 | HomeBannerControllerUpdateById404 | HomeBannerControllerUpdateById415 | HomeBannerControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerUpdateById>>, TError,{id: string;data: BodyType<HomeBannerPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+export const useHomeVideoControllerRemove = <TError = ErrorType<HomeVideoControllerRemove400 | HomeVideoControllerRemove401 | HomeVideoControllerRemove422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeVideoControllerRemove>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof homeBannerControllerUpdateById>>,
+        Awaited<ReturnType<typeof homeVideoControllerRemove>>,
         TError,
-        {id: string;data: BodyType<HomeBannerPartial>},
+        void,
         TContext
       > => {
 
-      const mutationOptions = getHomeBannerControllerUpdateByIdMutationOptions(options);
+      const mutationOptions = getHomeVideoControllerRemoveMutationOptions(options);
 
       return useMutation(mutationOptions, queryClient);
     }
     
-/**
- * @summary Get a Home Banner by id
- */
-export const homeBannerControllerFindById = (
-    id: string,
-    params?: HomeBannerControllerFindByIdParams,
- options?: SecondParameter<typeof mutator>,signal?: AbortSignal
-) => {
-      
-      
-      return mutator<HomeBannerWithRelations>(
-      {url: `/home-banners/${id}`, method: 'GET',
-        params, signal
-    },
-      options);
-    }
-  
-
-
-
-export const getHomeBannerControllerFindByIdQueryKey = (id?: string,
-    params?: HomeBannerControllerFindByIdParams,) => {
-    return [
-    `/home-banners/${id}`, ...(params ? [params]: [])
-    ] as const;
-    }
-
-    
-export const getHomeBannerControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError = ErrorType<HomeBannerControllerFindById400 | HomeBannerControllerFindById401 | HomeBannerControllerFindById404 | HomeBannerControllerFindById422>>(id: string,
-    params?: HomeBannerControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
-) => {
-
-const {query: queryOptions, request: requestOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getHomeBannerControllerFindByIdQueryKey(id,params);
-
-  
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof homeBannerControllerFindById>>> = ({ signal }) => homeBannerControllerFindById(id,params, requestOptions, signal);
-
-      
-
-      
-
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
-}
-
-export type HomeBannerControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof homeBannerControllerFindById>>>
-export type HomeBannerControllerFindByIdQueryError = ErrorType<HomeBannerControllerFindById400 | HomeBannerControllerFindById401 | HomeBannerControllerFindById404 | HomeBannerControllerFindById422>
-
-
-export function useHomeBannerControllerFindById<TData = Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError = ErrorType<HomeBannerControllerFindById400 | HomeBannerControllerFindById401 | HomeBannerControllerFindById404 | HomeBannerControllerFindById422>>(
- id: string,
-    params: undefined |  HomeBannerControllerFindByIdParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError, TData>> & Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof homeBannerControllerFindById>>,
-          TError,
-          Awaited<ReturnType<typeof homeBannerControllerFindById>>
-        > , 'initialData'
-      >, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient
-  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useHomeBannerControllerFindById<TData = Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError = ErrorType<HomeBannerControllerFindById400 | HomeBannerControllerFindById401 | HomeBannerControllerFindById404 | HomeBannerControllerFindById422>>(
- id: string,
-    params?: HomeBannerControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError, TData>> & Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof homeBannerControllerFindById>>,
-          TError,
-          Awaited<ReturnType<typeof homeBannerControllerFindById>>
-        > , 'initialData'
-      >, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useHomeBannerControllerFindById<TData = Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError = ErrorType<HomeBannerControllerFindById400 | HomeBannerControllerFindById401 | HomeBannerControllerFindById404 | HomeBannerControllerFindById422>>(
- id: string,
-    params?: HomeBannerControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-/**
- * @summary Get a Home Banner by id
- */
-
-export function useHomeBannerControllerFindById<TData = Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError = ErrorType<HomeBannerControllerFindById400 | HomeBannerControllerFindById401 | HomeBannerControllerFindById404 | HomeBannerControllerFindById422>>(
- id: string,
-    params?: HomeBannerControllerFindByIdParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient 
- ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-
-  const queryOptions = getHomeBannerControllerFindByIdQueryOptions(id,params,options)
-
-  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-
-  query.queryKey = queryOptions.queryKey ;
-
-  return query;
-}
-
-
-
-
-
-/**
- * @summary Delete a Home Banner by id
- */
-export const homeBannerControllerDeleteById = (
-    id: string,
- options?: SecondParameter<typeof mutator>,) => {
-      
-      
-      return mutator<unknown>(
-      {url: `/home-banners/${id}`, method: 'DELETE'
-    },
-      options);
-    }
-  
-
-
-export const getHomeBannerControllerDeleteByIdMutationOptions = <TError = ErrorType<HomeBannerControllerDeleteById400 | HomeBannerControllerDeleteById401 | HomeBannerControllerDeleteById404 | HomeBannerControllerDeleteById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerDeleteById>>, TError,{id: string}, TContext> => {
-
-const mutationKey = ['homeBannerControllerDeleteById'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof homeBannerControllerDeleteById>>, {id: string}> = (props) => {
-          const {id} = props ?? {};
-
-          return  homeBannerControllerDeleteById(id,requestOptions)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type HomeBannerControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof homeBannerControllerDeleteById>>>
-    
-    export type HomeBannerControllerDeleteByIdMutationError = ErrorType<HomeBannerControllerDeleteById400 | HomeBannerControllerDeleteById401 | HomeBannerControllerDeleteById404 | HomeBannerControllerDeleteById422>
-
-    /**
- * @summary Delete a Home Banner by id
- */
-export const useHomeBannerControllerDeleteById = <TError = ErrorType<HomeBannerControllerDeleteById400 | HomeBannerControllerDeleteById401 | HomeBannerControllerDeleteById404 | HomeBannerControllerDeleteById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof homeBannerControllerDeleteById>>,
-        TError,
-        {id: string},
-        TContext
-      > => {
-
-      const mutationOptions = getHomeBannerControllerDeleteByIdMutationOptions(options);
-
-      return useMutation(mutationOptions, queryClient);
-    }
-    
-/**
- * @summary Create a new Home Banner
- */
-export const homeBannerControllerCreate = (
-    newHomeBanner: BodyType<NewHomeBanner>,
- options?: SecondParameter<typeof mutator>,signal?: AbortSignal
-) => {
-      
-      
-      return mutator<HomeBanner>(
-      {url: `/home-banners`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: newHomeBanner, signal
-    },
-      options);
-    }
-  
-
-
-export const getHomeBannerControllerCreateMutationOptions = <TError = ErrorType<HomeBannerControllerCreate400 | HomeBannerControllerCreate401 | HomeBannerControllerCreate415 | HomeBannerControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerCreate>>, TError,{data: BodyType<NewHomeBanner>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerCreate>>, TError,{data: BodyType<NewHomeBanner>}, TContext> => {
-
-const mutationKey = ['homeBannerControllerCreate'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof homeBannerControllerCreate>>, {data: BodyType<NewHomeBanner>}> = (props) => {
-          const {data} = props ?? {};
-
-          return  homeBannerControllerCreate(data,requestOptions)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type HomeBannerControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof homeBannerControllerCreate>>>
-    export type HomeBannerControllerCreateMutationBody = BodyType<NewHomeBanner>
-    export type HomeBannerControllerCreateMutationError = ErrorType<HomeBannerControllerCreate400 | HomeBannerControllerCreate401 | HomeBannerControllerCreate415 | HomeBannerControllerCreate422>
-
-    /**
- * @summary Create a new Home Banner
- */
-export const useHomeBannerControllerCreate = <TError = ErrorType<HomeBannerControllerCreate400 | HomeBannerControllerCreate401 | HomeBannerControllerCreate415 | HomeBannerControllerCreate422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof homeBannerControllerCreate>>, TError,{data: BodyType<NewHomeBanner>}, TContext>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof homeBannerControllerCreate>>,
-        TError,
-        {data: BodyType<NewHomeBanner>},
-        TContext
-      > => {
-
-      const mutationOptions = getHomeBannerControllerCreateMutationOptions(options);
-
-      return useMutation(mutationOptions, queryClient);
-    }
-    
-/**
- * @summary List Home Banners
- */
-export const homeBannerControllerFind = (
-    params?: HomeBannerControllerFindParams,
- options?: SecondParameter<typeof mutator>,signal?: AbortSignal
-) => {
-      
-      
-      return mutator<HomeBannerWithRelations[]>(
-      {url: `/home-banners`, method: 'GET',
-        params, signal
-    },
-      options);
-    }
-  
-
-
-
-export const getHomeBannerControllerFindQueryKey = (params?: HomeBannerControllerFindParams,) => {
-    return [
-    `/home-banners`, ...(params ? [params]: [])
-    ] as const;
-    }
-
-    
-export const getHomeBannerControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof homeBannerControllerFind>>, TError = ErrorType<HomeBannerControllerFind400 | HomeBannerControllerFind401 | HomeBannerControllerFind422>>(params?: HomeBannerControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
-) => {
-
-const {query: queryOptions, request: requestOptions} = options ?? {};
-
-  const queryKey =  queryOptions?.queryKey ?? getHomeBannerControllerFindQueryKey(params);
-
-  
-
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof homeBannerControllerFind>>> = ({ signal }) => homeBannerControllerFind(params, requestOptions, signal);
-
-      
-
-      
-
-   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
-}
-
-export type HomeBannerControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof homeBannerControllerFind>>>
-export type HomeBannerControllerFindQueryError = ErrorType<HomeBannerControllerFind400 | HomeBannerControllerFind401 | HomeBannerControllerFind422>
-
-
-export function useHomeBannerControllerFind<TData = Awaited<ReturnType<typeof homeBannerControllerFind>>, TError = ErrorType<HomeBannerControllerFind400 | HomeBannerControllerFind401 | HomeBannerControllerFind422>>(
- params: undefined |  HomeBannerControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFind>>, TError, TData>> & Pick<
-        DefinedInitialDataOptions<
-          Awaited<ReturnType<typeof homeBannerControllerFind>>,
-          TError,
-          Awaited<ReturnType<typeof homeBannerControllerFind>>
-        > , 'initialData'
-      >, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient
-  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useHomeBannerControllerFind<TData = Awaited<ReturnType<typeof homeBannerControllerFind>>, TError = ErrorType<HomeBannerControllerFind400 | HomeBannerControllerFind401 | HomeBannerControllerFind422>>(
- params?: HomeBannerControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFind>>, TError, TData>> & Pick<
-        UndefinedInitialDataOptions<
-          Awaited<ReturnType<typeof homeBannerControllerFind>>,
-          TError,
-          Awaited<ReturnType<typeof homeBannerControllerFind>>
-        > , 'initialData'
-      >, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useHomeBannerControllerFind<TData = Awaited<ReturnType<typeof homeBannerControllerFind>>, TError = ErrorType<HomeBannerControllerFind400 | HomeBannerControllerFind401 | HomeBannerControllerFind422>>(
- params?: HomeBannerControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient
-  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-/**
- * @summary List Home Banners
- */
-
-export function useHomeBannerControllerFind<TData = Awaited<ReturnType<typeof homeBannerControllerFind>>, TError = ErrorType<HomeBannerControllerFind400 | HomeBannerControllerFind401 | HomeBannerControllerFind422>>(
- params?: HomeBannerControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof homeBannerControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient 
- ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
-
-  const queryOptions = getHomeBannerControllerFindQueryOptions(params,options)
-
-  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
-
-  query.queryKey = queryOptions.queryKey ;
-
-  return query;
-}
-
-
-
-
-
 /**
  * @summary Count Lead Neighborhoods
  */
@@ -14841,27 +14594,380 @@ export function usePropertyFacetsControllerFacets<TData = Awaited<ReturnType<typ
 
 
 /**
- * @summary Update a Property by id
+ * @summary Suggest the next free property code
  */
-export const propertyControllerUpdateById = (
-    id: string,
-    propertyPartialExcludingCreatedAtUpdatedAt: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>,
- options?: SecondParameter<typeof mutator>,) => {
+export const propertyControllerNextCode = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
       
       
-      return mutator<unknown>(
-      {url: `/properties/${id}`, method: 'PATCH',
-      headers: {'Content-Type': 'application/json', },
-      data: propertyPartialExcludingCreatedAtUpdatedAt
+      return mutator<PropertyControllerNextCode200>(
+      {url: `/properties/next-code`, method: 'GET', signal
     },
       options);
     }
   
 
 
-export const getPropertyControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyControllerUpdateById400 | PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById415 | PropertyControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>}, TContext> => {
+
+export const getPropertyControllerNextCodeQueryKey = () => {
+    return [
+    `/properties/next-code`
+    ] as const;
+    }
+
+    
+export const getPropertyControllerNextCodeQueryOptions = <TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyControllerNextCodeQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyControllerNextCode>>> = ({ signal }) => propertyControllerNextCode(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyControllerNextCodeQueryResult = NonNullable<Awaited<ReturnType<typeof propertyControllerNextCode>>>
+export type PropertyControllerNextCodeQueryError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>
+
+
+export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyControllerNextCode>>,
+          TError,
+          Awaited<ReturnType<typeof propertyControllerNextCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyControllerNextCode>>,
+          TError,
+          Awaited<ReturnType<typeof propertyControllerNextCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Suggest the next free property code
+ */
+
+export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyControllerNextCodeQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Histórico de trocas do corretor responsável (quem trocou, quando e o motivo)
+ */
+export const propertyBrokerControllerHistory = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyBrokerChangeWithRelations[]>(
+      {url: `/properties/${id}/broker-changes`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyBrokerControllerHistoryQueryKey = (id?: string,) => {
+    return [
+    `/properties/${id}/broker-changes`
+    ] as const;
+    }
+
+    
+export const getPropertyBrokerControllerHistoryQueryOptions = <TData = Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError = ErrorType<PropertyBrokerControllerHistory400 | PropertyBrokerControllerHistory401 | PropertyBrokerControllerHistory404 | PropertyBrokerControllerHistory422>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyBrokerControllerHistoryQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyBrokerControllerHistory>>> = ({ signal }) => propertyBrokerControllerHistory(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyBrokerControllerHistoryQueryResult = NonNullable<Awaited<ReturnType<typeof propertyBrokerControllerHistory>>>
+export type PropertyBrokerControllerHistoryQueryError = ErrorType<PropertyBrokerControllerHistory400 | PropertyBrokerControllerHistory401 | PropertyBrokerControllerHistory404 | PropertyBrokerControllerHistory422>
+
+
+export function usePropertyBrokerControllerHistory<TData = Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError = ErrorType<PropertyBrokerControllerHistory400 | PropertyBrokerControllerHistory401 | PropertyBrokerControllerHistory404 | PropertyBrokerControllerHistory422>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyBrokerControllerHistory>>,
+          TError,
+          Awaited<ReturnType<typeof propertyBrokerControllerHistory>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyBrokerControllerHistory<TData = Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError = ErrorType<PropertyBrokerControllerHistory400 | PropertyBrokerControllerHistory401 | PropertyBrokerControllerHistory404 | PropertyBrokerControllerHistory422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyBrokerControllerHistory>>,
+          TError,
+          Awaited<ReturnType<typeof propertyBrokerControllerHistory>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyBrokerControllerHistory<TData = Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError = ErrorType<PropertyBrokerControllerHistory400 | PropertyBrokerControllerHistory401 | PropertyBrokerControllerHistory404 | PropertyBrokerControllerHistory422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Histórico de trocas do corretor responsável (quem trocou, quando e o motivo)
+ */
+
+export function usePropertyBrokerControllerHistory<TData = Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError = ErrorType<PropertyBrokerControllerHistory400 | PropertyBrokerControllerHistory401 | PropertyBrokerControllerHistory404 | PropertyBrokerControllerHistory422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyBrokerControllerHistory>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyBrokerControllerHistoryQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Storico delle modifiche dell'immobile (chi, quando e cosa), dalla più recente alla più vecchia
+ */
+export const propertyHistoryControllerHistory = (
+    id: string,
+    params?: PropertyHistoryControllerHistoryParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyHistoryControllerHistory200>(
+      {url: `/properties/${id}/history`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyHistoryControllerHistoryQueryKey = (id?: string,
+    params?: PropertyHistoryControllerHistoryParams,) => {
+    return [
+    `/properties/${id}/history`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyHistoryControllerHistoryQueryOptions = <TData = Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError = ErrorType<PropertyHistoryControllerHistory400 | PropertyHistoryControllerHistory401 | PropertyHistoryControllerHistory404 | PropertyHistoryControllerHistory422>>(id: string,
+    params?: PropertyHistoryControllerHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyHistoryControllerHistoryQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyHistoryControllerHistory>>> = ({ signal }) => propertyHistoryControllerHistory(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyHistoryControllerHistoryQueryResult = NonNullable<Awaited<ReturnType<typeof propertyHistoryControllerHistory>>>
+export type PropertyHistoryControllerHistoryQueryError = ErrorType<PropertyHistoryControllerHistory400 | PropertyHistoryControllerHistory401 | PropertyHistoryControllerHistory404 | PropertyHistoryControllerHistory422>
+
+
+export function usePropertyHistoryControllerHistory<TData = Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError = ErrorType<PropertyHistoryControllerHistory400 | PropertyHistoryControllerHistory401 | PropertyHistoryControllerHistory404 | PropertyHistoryControllerHistory422>>(
+ id: string,
+    params: undefined |  PropertyHistoryControllerHistoryParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyHistoryControllerHistory>>,
+          TError,
+          Awaited<ReturnType<typeof propertyHistoryControllerHistory>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyHistoryControllerHistory<TData = Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError = ErrorType<PropertyHistoryControllerHistory400 | PropertyHistoryControllerHistory401 | PropertyHistoryControllerHistory404 | PropertyHistoryControllerHistory422>>(
+ id: string,
+    params?: PropertyHistoryControllerHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyHistoryControllerHistory>>,
+          TError,
+          Awaited<ReturnType<typeof propertyHistoryControllerHistory>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyHistoryControllerHistory<TData = Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError = ErrorType<PropertyHistoryControllerHistory400 | PropertyHistoryControllerHistory401 | PropertyHistoryControllerHistory404 | PropertyHistoryControllerHistory422>>(
+ id: string,
+    params?: PropertyHistoryControllerHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Storico delle modifiche dell'immobile (chi, quando e cosa), dalla più recente alla più vecchia
+ */
+
+export function usePropertyHistoryControllerHistory<TData = Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError = ErrorType<PropertyHistoryControllerHistory400 | PropertyHistoryControllerHistory401 | PropertyHistoryControllerHistory404 | PropertyHistoryControllerHistory422>>(
+ id: string,
+    params?: PropertyHistoryControllerHistoryParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyHistoryControllerHistory>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyHistoryControllerHistoryQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Transfere o corretor responsável pelo imóvel (somente gestão, com motivo obrigatório)
+ */
+export const propertyBrokerControllerTransfer = (
+    id: string,
+    propertyBrokerControllerTransferBody: BodyType<PropertyBrokerControllerTransferBody>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/properties/${id}/responsible-broker`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: propertyBrokerControllerTransferBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getPropertyBrokerControllerTransferMutationOptions = <TError = ErrorType<PropertyBrokerControllerTransfer400 | PropertyBrokerControllerTransfer401 | PropertyBrokerControllerTransfer403 | PropertyBrokerControllerTransfer404 | PropertyBrokerControllerTransfer415 | PropertyBrokerControllerTransfer422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyBrokerControllerTransfer>>, TError,{id: string;data: BodyType<PropertyBrokerControllerTransferBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyBrokerControllerTransfer>>, TError,{id: string;data: BodyType<PropertyBrokerControllerTransferBody>}, TContext> => {
+
+const mutationKey = ['propertyBrokerControllerTransfer'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyBrokerControllerTransfer>>, {id: string;data: BodyType<PropertyBrokerControllerTransferBody>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  propertyBrokerControllerTransfer(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyBrokerControllerTransferMutationResult = NonNullable<Awaited<ReturnType<typeof propertyBrokerControllerTransfer>>>
+    export type PropertyBrokerControllerTransferMutationBody = BodyType<PropertyBrokerControllerTransferBody>
+    export type PropertyBrokerControllerTransferMutationError = ErrorType<PropertyBrokerControllerTransfer400 | PropertyBrokerControllerTransfer401 | PropertyBrokerControllerTransfer403 | PropertyBrokerControllerTransfer404 | PropertyBrokerControllerTransfer415 | PropertyBrokerControllerTransfer422>
+
+    /**
+ * @summary Transfere o corretor responsável pelo imóvel (somente gestão, com motivo obrigatório)
+ */
+export const usePropertyBrokerControllerTransfer = <TError = ErrorType<PropertyBrokerControllerTransfer400 | PropertyBrokerControllerTransfer401 | PropertyBrokerControllerTransfer403 | PropertyBrokerControllerTransfer404 | PropertyBrokerControllerTransfer415 | PropertyBrokerControllerTransfer422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyBrokerControllerTransfer>>, TError,{id: string;data: BodyType<PropertyBrokerControllerTransferBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyBrokerControllerTransfer>>,
+        TError,
+        {id: string;data: BodyType<PropertyBrokerControllerTransferBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyBrokerControllerTransferMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Update a Property by id
+ */
+export const propertyControllerUpdateById = (
+    id: string,
+    propertyPartialExcludingCreatedAtUpdatedAtResponsibleSince: BodyType<PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSince>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/properties/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: propertyPartialExcludingCreatedAtUpdatedAtResponsibleSince
+    },
+      options);
+    }
+  
+
+
+export const getPropertyControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyControllerUpdateById400 | PropertyControllerUpdateById401 | PropertyControllerUpdateById403 | PropertyControllerUpdateById404 | PropertyControllerUpdateById409 | PropertyControllerUpdateById415 | PropertyControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSince>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSince>}, TContext> => {
 
 const mutationKey = ['propertyControllerUpdateById'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -14873,7 +14979,7 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyControllerUpdateById>>, {id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>}> = (props) => {
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyControllerUpdateById>>, {id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSince>}> = (props) => {
           const {id,data} = props ?? {};
 
           return  propertyControllerUpdateById(id,data,requestOptions)
@@ -14885,18 +14991,18 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
   return  { mutationFn, ...mutationOptions }}
 
     export type PropertyControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyControllerUpdateById>>>
-    export type PropertyControllerUpdateByIdMutationBody = BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>
-    export type PropertyControllerUpdateByIdMutationError = ErrorType<PropertyControllerUpdateById400 | PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById415 | PropertyControllerUpdateById422>
+    export type PropertyControllerUpdateByIdMutationBody = BodyType<PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSince>
+    export type PropertyControllerUpdateByIdMutationError = ErrorType<PropertyControllerUpdateById400 | PropertyControllerUpdateById401 | PropertyControllerUpdateById403 | PropertyControllerUpdateById404 | PropertyControllerUpdateById409 | PropertyControllerUpdateById415 | PropertyControllerUpdateById422>
 
     /**
  * @summary Update a Property by id
  */
-export const usePropertyControllerUpdateById = <TError = ErrorType<PropertyControllerUpdateById400 | PropertyControllerUpdateById401 | PropertyControllerUpdateById404 | PropertyControllerUpdateById415 | PropertyControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>}, TContext>, request?: SecondParameter<typeof mutator>}
+export const usePropertyControllerUpdateById = <TError = ErrorType<PropertyControllerUpdateById400 | PropertyControllerUpdateById401 | PropertyControllerUpdateById403 | PropertyControllerUpdateById404 | PropertyControllerUpdateById409 | PropertyControllerUpdateById415 | PropertyControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSince>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof propertyControllerUpdateById>>,
         TError,
-        {id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAt>},
+        {id: string;data: BodyType<PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSince>},
         TContext
       > => {
 
@@ -15087,7 +15193,7 @@ export const propertyControllerCreate = (
   
 
 
-export const getPropertyControllerCreateMutationOptions = <TError = ErrorType<PropertyControllerCreate400 | PropertyControllerCreate401 | PropertyControllerCreate415 | PropertyControllerCreate422>,
+export const getPropertyControllerCreateMutationOptions = <TError = ErrorType<PropertyControllerCreate400 | PropertyControllerCreate401 | PropertyControllerCreate403 | PropertyControllerCreate409 | PropertyControllerCreate415 | PropertyControllerCreate422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<NewProperty>}, TContext>, request?: SecondParameter<typeof mutator>}
 ): UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<NewProperty>}, TContext> => {
 
@@ -15114,12 +15220,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type PropertyControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof propertyControllerCreate>>>
     export type PropertyControllerCreateMutationBody = BodyType<NewProperty>
-    export type PropertyControllerCreateMutationError = ErrorType<PropertyControllerCreate400 | PropertyControllerCreate401 | PropertyControllerCreate415 | PropertyControllerCreate422>
+    export type PropertyControllerCreateMutationError = ErrorType<PropertyControllerCreate400 | PropertyControllerCreate401 | PropertyControllerCreate403 | PropertyControllerCreate409 | PropertyControllerCreate415 | PropertyControllerCreate422>
 
     /**
  * @summary Create a new Property
  */
-export const usePropertyControllerCreate = <TError = ErrorType<PropertyControllerCreate400 | PropertyControllerCreate401 | PropertyControllerCreate415 | PropertyControllerCreate422>,
+export const usePropertyControllerCreate = <TError = ErrorType<PropertyControllerCreate400 | PropertyControllerCreate401 | PropertyControllerCreate403 | PropertyControllerCreate409 | PropertyControllerCreate415 | PropertyControllerCreate422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyControllerCreate>>, TError,{data: BodyType<NewProperty>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof propertyControllerCreate>>,
@@ -24331,71 +24437,6 @@ export function usePropertyStatusHistoryControllerCount<TData = Awaited<ReturnTy
 
 
 /**
- * @summary Update a Property Status History by id
- */
-export const propertyStatusHistoryControllerUpdateById = (
-    id: number,
-    propertyStatusHistoryPartial: BodyType<PropertyStatusHistoryPartial>,
- options?: SecondParameter<typeof mutator>,) => {
-      
-      
-      return mutator<unknown>(
-      {url: `/property-status-history/${id}`, method: 'PATCH',
-      headers: {'Content-Type': 'application/json', },
-      data: propertyStatusHistoryPartial
-    },
-      options);
-    }
-  
-
-
-export const getPropertyStatusHistoryControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyStatusHistoryControllerUpdateById400 | PropertyStatusHistoryControllerUpdateById401 | PropertyStatusHistoryControllerUpdateById404 | PropertyStatusHistoryControllerUpdateById415 | PropertyStatusHistoryControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyStatusHistoryControllerUpdateById>>, TError,{id: number;data: BodyType<PropertyStatusHistoryPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyStatusHistoryControllerUpdateById>>, TError,{id: number;data: BodyType<PropertyStatusHistoryPartial>}, TContext> => {
-
-const mutationKey = ['propertyStatusHistoryControllerUpdateById'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyStatusHistoryControllerUpdateById>>, {id: number;data: BodyType<PropertyStatusHistoryPartial>}> = (props) => {
-          const {id,data} = props ?? {};
-
-          return  propertyStatusHistoryControllerUpdateById(id,data,requestOptions)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type PropertyStatusHistoryControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyStatusHistoryControllerUpdateById>>>
-    export type PropertyStatusHistoryControllerUpdateByIdMutationBody = BodyType<PropertyStatusHistoryPartial>
-    export type PropertyStatusHistoryControllerUpdateByIdMutationError = ErrorType<PropertyStatusHistoryControllerUpdateById400 | PropertyStatusHistoryControllerUpdateById401 | PropertyStatusHistoryControllerUpdateById404 | PropertyStatusHistoryControllerUpdateById415 | PropertyStatusHistoryControllerUpdateById422>
-
-    /**
- * @summary Update a Property Status History by id
- */
-export const usePropertyStatusHistoryControllerUpdateById = <TError = ErrorType<PropertyStatusHistoryControllerUpdateById400 | PropertyStatusHistoryControllerUpdateById401 | PropertyStatusHistoryControllerUpdateById404 | PropertyStatusHistoryControllerUpdateById415 | PropertyStatusHistoryControllerUpdateById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyStatusHistoryControllerUpdateById>>, TError,{id: number;data: BodyType<PropertyStatusHistoryPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof propertyStatusHistoryControllerUpdateById>>,
-        TError,
-        {id: number;data: BodyType<PropertyStatusHistoryPartial>},
-        TContext
-      > => {
-
-      const mutationOptions = getPropertyStatusHistoryControllerUpdateByIdMutationOptions(options);
-
-      return useMutation(mutationOptions, queryClient);
-    }
-    
-/**
  * @summary Get a Property Status History by id
  */
 export const propertyStatusHistoryControllerFindById = (
@@ -24496,68 +24537,6 @@ export function usePropertyStatusHistoryControllerFindById<TData = Awaited<Retur
 
 
 
-/**
- * @summary Delete a Property Status History by id
- */
-export const propertyStatusHistoryControllerDeleteById = (
-    id: number,
- options?: SecondParameter<typeof mutator>,) => {
-      
-      
-      return mutator<unknown>(
-      {url: `/property-status-history/${id}`, method: 'DELETE'
-    },
-      options);
-    }
-  
-
-
-export const getPropertyStatusHistoryControllerDeleteByIdMutationOptions = <TError = ErrorType<PropertyStatusHistoryControllerDeleteById400 | PropertyStatusHistoryControllerDeleteById401 | PropertyStatusHistoryControllerDeleteById404 | PropertyStatusHistoryControllerDeleteById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyStatusHistoryControllerDeleteById>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof propertyStatusHistoryControllerDeleteById>>, TError,{id: number}, TContext> => {
-
-const mutationKey = ['propertyStatusHistoryControllerDeleteById'];
-const {mutation: mutationOptions, request: requestOptions} = options ?
-      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
-      options
-      : {...options, mutation: {...options.mutation, mutationKey}}
-      : {mutation: { mutationKey, }, request: undefined};
-
-      
-
-
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyStatusHistoryControllerDeleteById>>, {id: number}> = (props) => {
-          const {id} = props ?? {};
-
-          return  propertyStatusHistoryControllerDeleteById(id,requestOptions)
-        }
-
-        
-
-
-  return  { mutationFn, ...mutationOptions }}
-
-    export type PropertyStatusHistoryControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyStatusHistoryControllerDeleteById>>>
-    
-    export type PropertyStatusHistoryControllerDeleteByIdMutationError = ErrorType<PropertyStatusHistoryControllerDeleteById400 | PropertyStatusHistoryControllerDeleteById401 | PropertyStatusHistoryControllerDeleteById404 | PropertyStatusHistoryControllerDeleteById422>
-
-    /**
- * @summary Delete a Property Status History by id
- */
-export const usePropertyStatusHistoryControllerDeleteById = <TError = ErrorType<PropertyStatusHistoryControllerDeleteById400 | PropertyStatusHistoryControllerDeleteById401 | PropertyStatusHistoryControllerDeleteById404 | PropertyStatusHistoryControllerDeleteById422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyStatusHistoryControllerDeleteById>>, TError,{id: number}, TContext>, request?: SecondParameter<typeof mutator>}
- , queryClient?: QueryClient): UseMutationResult<
-        Awaited<ReturnType<typeof propertyStatusHistoryControllerDeleteById>>,
-        TError,
-        {id: number},
-        TContext
-      > => {
-
-      const mutationOptions = getPropertyStatusHistoryControllerDeleteByIdMutationOptions(options);
-
-      return useMutation(mutationOptions, queryClient);
-    }
-    
 /**
  * @summary Create a new Property Status History
  */
@@ -25450,6 +25429,99 @@ export const useChatbotLeadControllerUpsert = <TError = ErrorType<ChatbotLeadCon
     }
     
 /**
+ * @summary Detalhe de um imóvel habilitado para o ChatBot WhatsApp, pelo código exato
+ */
+export const chatbotPropertyControllerFindByCode = (
+    code: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ChatbotPropertyControllerFindByCode200>(
+      {url: `/public/chatbot/properties/by-code/${code}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getChatbotPropertyControllerFindByCodeQueryKey = (code?: string,) => {
+    return [
+    `/public/chatbot/properties/by-code/${code}`
+    ] as const;
+    }
+
+    
+export const getChatbotPropertyControllerFindByCodeQueryOptions = <TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError = ErrorType<ChatbotPropertyControllerFindByCode400 | ChatbotPropertyControllerFindByCode404 | ChatbotPropertyControllerFindByCode422>>(code: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getChatbotPropertyControllerFindByCodeQueryKey(code);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>> = ({ signal }) => chatbotPropertyControllerFindByCode(code, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(code), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ChatbotPropertyControllerFindByCodeQueryResult = NonNullable<Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>>
+export type ChatbotPropertyControllerFindByCodeQueryError = ErrorType<ChatbotPropertyControllerFindByCode400 | ChatbotPropertyControllerFindByCode404 | ChatbotPropertyControllerFindByCode422>
+
+
+export function useChatbotPropertyControllerFindByCode<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError = ErrorType<ChatbotPropertyControllerFindByCode400 | ChatbotPropertyControllerFindByCode404 | ChatbotPropertyControllerFindByCode422>>(
+ code: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>,
+          TError,
+          Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useChatbotPropertyControllerFindByCode<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError = ErrorType<ChatbotPropertyControllerFindByCode400 | ChatbotPropertyControllerFindByCode404 | ChatbotPropertyControllerFindByCode422>>(
+ code: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>,
+          TError,
+          Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useChatbotPropertyControllerFindByCode<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError = ErrorType<ChatbotPropertyControllerFindByCode400 | ChatbotPropertyControllerFindByCode404 | ChatbotPropertyControllerFindByCode422>>(
+ code: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Detalhe de um imóvel habilitado para o ChatBot WhatsApp, pelo código exato
+ */
+
+export function useChatbotPropertyControllerFindByCode<TData = Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError = ErrorType<ChatbotPropertyControllerFindByCode400 | ChatbotPropertyControllerFindByCode404 | ChatbotPropertyControllerFindByCode422>>(
+ code: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof chatbotPropertyControllerFindByCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getChatbotPropertyControllerFindByCodeQueryOptions(code,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Detalhe de um imóvel habilitado para o ChatBot WhatsApp
  */
 export const chatbotPropertyControllerFindById = (
@@ -25624,6 +25696,99 @@ export function useChatbotPropertyControllerFind<TData = Awaited<ReturnType<type
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getChatbotPropertyControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary URL do vídeo de destaque da home (null = usar o vídeo padrão)
+ */
+export const publicHomeVideoControllerCurrent = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PublicHomeVideoControllerCurrent200>(
+      {url: `/public/home-video`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPublicHomeVideoControllerCurrentQueryKey = () => {
+    return [
+    `/public/home-video`
+    ] as const;
+    }
+
+    
+export const getPublicHomeVideoControllerCurrentQueryOptions = <TData = Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError = ErrorType<PublicHomeVideoControllerCurrent400 | PublicHomeVideoControllerCurrent422>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPublicHomeVideoControllerCurrentQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>> = ({ signal }) => publicHomeVideoControllerCurrent(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PublicHomeVideoControllerCurrentQueryResult = NonNullable<Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>>
+export type PublicHomeVideoControllerCurrentQueryError = ErrorType<PublicHomeVideoControllerCurrent400 | PublicHomeVideoControllerCurrent422>
+
+
+export function usePublicHomeVideoControllerCurrent<TData = Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError = ErrorType<PublicHomeVideoControllerCurrent400 | PublicHomeVideoControllerCurrent422>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>,
+          TError,
+          Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePublicHomeVideoControllerCurrent<TData = Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError = ErrorType<PublicHomeVideoControllerCurrent400 | PublicHomeVideoControllerCurrent422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>,
+          TError,
+          Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePublicHomeVideoControllerCurrent<TData = Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError = ErrorType<PublicHomeVideoControllerCurrent400 | PublicHomeVideoControllerCurrent422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary URL do vídeo de destaque da home (null = usar o vídeo padrão)
+ */
+
+export function usePublicHomeVideoControllerCurrent<TData = Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError = ErrorType<PublicHomeVideoControllerCurrent400 | PublicHomeVideoControllerCurrent422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicHomeVideoControllerCurrent>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPublicHomeVideoControllerCurrentQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -25890,7 +26055,7 @@ export function usePublicPropertyControllerFindFeatured<TData = Awaited<ReturnTy
 
 
 /**
- * @summary Pontos do mapa: imóveis publicados com coordenada pública
+ * @summary Pontos do mapa: imóveis publicados com coordenada, só a área aproximada
  */
 export const publicPropertyMapControllerFind = (
     
@@ -25961,7 +26126,7 @@ export function usePublicPropertyMapControllerFind<TData = Awaited<ReturnType<ty
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary Pontos do mapa: imóveis publicados com coordenada pública
+ * @summary Pontos do mapa: imóveis publicados com coordenada, só a área aproximada
  */
 
 export function usePublicPropertyMapControllerFind<TData = Awaited<ReturnType<typeof publicPropertyMapControllerFind>>, TError = ErrorType<PublicPropertyMapControllerFind400 | PublicPropertyMapControllerFind422>>(
@@ -34536,6 +34701,99 @@ export function useUserControllerCount<TData = Awaited<ReturnType<typeof userCon
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getUserControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Suggest the next free broker code
+ */
+export const userControllerNextBrokerCode = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<UserControllerNextBrokerCode200>(
+      {url: `/users/next-broker-code`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getUserControllerNextBrokerCodeQueryKey = () => {
+    return [
+    `/users/next-broker-code`
+    ] as const;
+    }
+
+    
+export const getUserControllerNextBrokerCodeQueryOptions = <TData = Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError = ErrorType<UserControllerNextBrokerCode400 | UserControllerNextBrokerCode401 | UserControllerNextBrokerCode403 | UserControllerNextBrokerCode422>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getUserControllerNextBrokerCodeQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof userControllerNextBrokerCode>>> = ({ signal }) => userControllerNextBrokerCode(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type UserControllerNextBrokerCodeQueryResult = NonNullable<Awaited<ReturnType<typeof userControllerNextBrokerCode>>>
+export type UserControllerNextBrokerCodeQueryError = ErrorType<UserControllerNextBrokerCode400 | UserControllerNextBrokerCode401 | UserControllerNextBrokerCode403 | UserControllerNextBrokerCode422>
+
+
+export function useUserControllerNextBrokerCode<TData = Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError = ErrorType<UserControllerNextBrokerCode400 | UserControllerNextBrokerCode401 | UserControllerNextBrokerCode403 | UserControllerNextBrokerCode422>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof userControllerNextBrokerCode>>,
+          TError,
+          Awaited<ReturnType<typeof userControllerNextBrokerCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useUserControllerNextBrokerCode<TData = Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError = ErrorType<UserControllerNextBrokerCode400 | UserControllerNextBrokerCode401 | UserControllerNextBrokerCode403 | UserControllerNextBrokerCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof userControllerNextBrokerCode>>,
+          TError,
+          Awaited<ReturnType<typeof userControllerNextBrokerCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useUserControllerNextBrokerCode<TData = Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError = ErrorType<UserControllerNextBrokerCode400 | UserControllerNextBrokerCode401 | UserControllerNextBrokerCode403 | UserControllerNextBrokerCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Suggest the next free broker code
+ */
+
+export function useUserControllerNextBrokerCode<TData = Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError = ErrorType<UserControllerNextBrokerCode400 | UserControllerNextBrokerCode401 | UserControllerNextBrokerCode403 | UserControllerNextBrokerCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof userControllerNextBrokerCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getUserControllerNextBrokerCodeQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

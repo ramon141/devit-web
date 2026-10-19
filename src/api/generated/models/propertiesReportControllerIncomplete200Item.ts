@@ -12,4 +12,8 @@ export type PropertiesReportControllerIncomplete200Item = {
   title?: string;
   missingDescription?: boolean;
   missingPhotos?: boolean;
+  /** @nullable */
+  responsibleBrokerName?: string | null;
+  /** @nullable */
+  responsibleBrokerCode?: string | null;
 };

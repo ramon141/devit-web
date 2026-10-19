@@ -8,5 +8,6 @@ export type MapPin = {
   purpose: string
   lat: number
   lng: number
+  radiusMeters: number
   cover?: string
 }

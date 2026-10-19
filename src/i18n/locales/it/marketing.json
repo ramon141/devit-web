@@ -200,5 +200,32 @@
   },
   "hints": {
     "whatsappPrefix": "I numeri senza prefisso 55 ricevono il 55 in automatico (standard brasiliano): verifica i numeri italiani."
+  },
+  "leadGroup": {
+    "description": "Filtra per quartiere e via, controlla l'elenco e aggiungi il gruppo ai destinatari.",
+    "neighborhoods": "Quartieri",
+    "neighborhoodsPlaceholder": "Tutti i quartieri",
+    "street": "Via",
+    "streetPlaceholder": "Cerca per via...",
+    "selectAll": "Seleziona tutti",
+    "clearAll": "Deseleziona tutti",
+    "loading": "Caricamento...",
+    "excluded": "{{count}} esclusi: {{optedOut}} non vogliono ricevere comunicazioni, {{withoutContact}} senza contatto per questo canale",
+    "cancel": "Annulla",
+    "confirm": "Aggiungi {{count}} destinatari",
+    "openButton": "Seleziona gruppo",
+    "added": "{{count}} lead dal gruppo",
+    "lead": {
+      "title": "Seleziona gruppo di lead",
+      "count": "{{selected}} di {{total}} lead nel gruppo",
+      "search": "Cerca lead...",
+      "empty": "Nessun lead trovato"
+    },
+    "person": {
+      "title": "Seleziona gruppo di persone",
+      "count": "{{selected}} di {{total}} persone nel gruppo",
+      "search": "Cerca persona...",
+      "empty": "Nessuna persona trovata"
+    }
   }
 }

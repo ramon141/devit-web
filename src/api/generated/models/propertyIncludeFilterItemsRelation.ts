@@ -16,6 +16,8 @@ export const PropertyIncludeFilterItemsRelation = {
   owner: 'owner',
   deactivatedBy: 'deactivatedBy',
   createdBy: 'createdBy',
+  lastChangedBy: 'lastChangedBy',
+  responsibleBroker: 'responsibleBroker',
   propertyDetail: 'propertyDetail',
   propertyFees: 'propertyFees',
   propertyPhotos: 'propertyPhotos',

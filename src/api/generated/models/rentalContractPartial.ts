@@ -30,8 +30,6 @@ export interface RentalContractPartial {
   /** @nullable */
   notes?: string | null;
   /** @nullable */
-  registeredAt?: string | null;
-  /** @nullable */
   renewalDueDate?: string | null;
   createdAt?: string;
   /** @nullable */

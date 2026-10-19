@@ -23,7 +23,5 @@ export type PurchaseProposalFilter1FieldsOneOf = {
   propertyId?: boolean;
   buyerId?: boolean;
   leadId?: boolean;
-  assignedToId?: boolean;
-  sellerAgentId?: boolean;
   createdById?: boolean;
 };

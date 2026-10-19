@@ -89,18 +89,17 @@
       "locazioni": "Locações",
       "adeguamentoCanone": "Reajuste de aluguel",
       "scadenziario": "Vencimentos",
-      "registrazioni": "Registros",
       "marketing": "Marketing",
       "statistiche": "Estatísticas",
       "amministrazione": "Administração",
       "utenti": "Usuários",
       "filiali": "Filiais",
       "categorie": "Categorias",
-      "banner": "Banner",
       "auditLog": "Log de auditoria",
       "componenti": "Componentes",
       "proprietari": "Proprietários",
-      "zone": "Zonas"
+      "zone": "Zonas",
+      "videoHome": "Vídeo da home"
     }
   },
   "notificationsPopover": {

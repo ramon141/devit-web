@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import { formatNumber, useSiteDict } from '@/lib/site/dict'
+import { useHomeVideoUrl } from '@/pages/Site/hooks/useSiteData'
 import SearchFilters from '@/pages/Site/components/SearchFilters'
 import { EMPTY_FILTERS } from '@/pages/Site/components/SearchFilters/filterValues'
 
@@ -34,15 +35,18 @@ function HeroStats({ total, offices }: { total: number; offices: number }) {
 /**
  * Abertura em loop: quatro planos de Napoli com crossfade. Celular recebe a
  * versão 720p; desktop, 1080p. Com prefers-reduced-motion o vídeo some e fica
- * uma imagem da cidade.
+ * uma imagem da cidade. Se o gestionale tiver um vídeo próprio (WebM), ele vai
+ * primeiro; os MP4 padrão ficam de reserva para navegadores sem suporte a WebM.
  */
 function HomeHero({ total, offices }: { total: number; offices: number }) {
   const { dict } = useSiteDict()
+  const customVideoUrl = useHomeVideoUrl()
 
   return (
     <section data-hero className="hero relative overflow-hidden bg-site-ink text-site-cream">
       <div className="hero-media" aria-hidden>
         <video
+          key={customVideoUrl ?? 'default'}
           className="hero-video"
           autoPlay
           muted
@@ -53,6 +57,7 @@ function HomeHero({ total, offices }: { total: number; offices: number }) {
           width={1920}
           height={1080}
         >
+          {customVideoUrl ? <source src={customVideoUrl} type="video/webm" /> : null}
           <source src="/video/hero-loop-720.mp4" type="video/mp4" media="(max-width: 768px)" />
           <source src="/video/hero-loop-1080.mp4" type="video/mp4" />
         </video>

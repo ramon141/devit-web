@@ -71,7 +71,6 @@ const allNavItems: NavItem[] = [
       { label: 'sidebar.nav.locazioni', path: crmPath('/operazioni/locazioni') },
       { label: 'sidebar.nav.adeguamentoCanone', path: crmPath('/operazioni/adeguamenti-canone') },
       { label: 'sidebar.nav.scadenziario', path: crmPath('/operazioni/scadenziario') },
-      { label: 'sidebar.nav.registrazioni', path: crmPath('/operazioni/registrazioni') },
     ],
   },
   {
@@ -94,6 +93,7 @@ const allNavItems: NavItem[] = [
       { label: 'sidebar.nav.filiali', path: crmPath('/amministrazione/filiali') },
       { label: 'sidebar.nav.categorie', path: crmPath('/amministrazione/categorie') },
       { label: 'sidebar.nav.zone', path: crmPath('/amministrazione/zone') },
+      { label: 'sidebar.nav.videoHome', path: crmPath('/amministrazione/video-home') },
       { label: 'sidebar.nav.auditLog', path: crmPath('/amministrazione/audit') },
       { label: 'sidebar.nav.proprietari', path: crmPath('/amministrazione/proprietari') },
     ],

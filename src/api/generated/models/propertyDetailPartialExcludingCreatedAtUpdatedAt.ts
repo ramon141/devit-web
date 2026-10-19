@@ -86,6 +86,4 @@ export interface PropertyDetailPartialExcludingCreatedAtUpdatedAt {
    */
   exposure?: string | null;
   propertyId?: string;
-  /** @nullable */
-  agentId?: string | null;
 }

@@ -10,4 +10,8 @@ import type { PurchaseProposalFilter } from './purchaseProposalFilter';
 export type PurchaseProposalControllerExportParams = {
 format?: string;
 filter?: PurchaseProposalFilter;
+/**
+ * Filtra pelo código do corretor (busca parcial, sem diferenciar maiúsculas)
+ */
+brokerCode?: string;
 };

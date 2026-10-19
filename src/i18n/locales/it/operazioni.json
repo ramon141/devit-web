@@ -11,28 +11,6 @@
       "searchPlaceholder": "Cerca per numero...",
       "newLabel": "Nuovo contratto"
     },
-    "registrazioni": {
-      "page": {
-        "title": "Registrazioni",
-        "description": "Registrazione e rinnovo dei contratti di locazione"
-      },
-      "table": {
-        "numero": "Numero",
-        "scadenza": "Scadenza",
-        "statoRegistrazione": "Stato registrazione",
-        "registrato": "Registrato",
-        "daRegistrare": "Da registrare",
-        "periodo": "Periodo",
-        "immobile": "Immobile",
-        "inquilino": "Inquilino",
-        "emptyMessage": "Nessun contratto da registrare o rinnovare.",
-        "azioni": "Azioni",
-        "markRegistered": "Segna come registrato",
-        "marking": "Registrazione in corso...",
-        "markSuccess": "Contratto segnato come registrato.",
-        "markError": "Impossibile registrare il contratto."
-      }
-    },
     "scadenziario": {
       "page": {
         "title": "Scadenziario",
@@ -154,7 +132,6 @@
       "situationLabel": "Situazione",
       "startDateLabel": "Data di inizio",
       "endDateLabel": "Data di fine",
-      "registeredAtLabel": "Data di registrazione",
       "renewalDueDateLabel": "Data prevista di rinnovo",
       "notesLabel": "Note",
       "stipulaDateLabel": "Data stipula"
@@ -203,8 +180,6 @@
       "al": "Al",
       "inCorso": "In corso",
       "inCorsoYes": "Sì",
-      "reg": "Reg.",
-      "regYes": "Sì",
       "note": "Note"
     },
     "hooks": {
@@ -505,10 +480,6 @@
             "title": "Data di stipula",
             "content": "Data in cui il contratto è stato firmato."
           },
-          "registeredAt": {
-            "title": "Data di registrazione",
-            "content": "Data in cui il contratto è stato registrato presso l'ente competente."
-          },
           "renewalDueDate": {
             "title": "Scadenza rinnovo",
             "content": "Data limite per rinnovare il contratto."
@@ -728,16 +699,6 @@
       "generatedTable": {
         "title": "Adeguamenti generati",
         "content": "Dopo la generazione, gli adeguamenti applicati compaiono qui con il valore precedente e il nuovo valore."
-      }
-    },
-    "registrazioni": {
-      "title": {
-        "title": "Registrazione contratti",
-        "content": "Qui controlli quali contratti di locazione sono già stati registrati presso l'Agenzia delle Entrate."
-      },
-      "table": {
-        "title": "Elenco contratti",
-        "content": "Ogni riga è un contratto. Lo stato mostra se è già registrato; usa il pulsante di spunta nella colonna azioni per segnarlo come registrato."
       }
     },
     "scadenziario": {

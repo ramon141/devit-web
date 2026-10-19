@@ -108,6 +108,9 @@
     "bathroomsLabel": "Banheiros",
     "parkingLabel": "Vagas de garagem",
     "descriptionLabel": "Descrição",
+    "instagramLabel": "Link Instagram",
+    "tiktokLabel": "Link TikTok",
+    "socialPlaceholder": "https://",
     "save": "Salvar descrição"
   },
   "flagsRow": {
@@ -335,8 +338,6 @@
     },
     "locationDetailSection": {
       "title": "Detalhes adicionais",
-      "publicLatitudeLabel": "Latitude pública (mapa do site)",
-      "publicLongitudeLabel": "Longitude pública (mapa do site)",
       "latitudeLabel": "Latitude",
       "longitudeLabel": "Longitude",
       "positionLabel": "Posição",
@@ -550,6 +551,8 @@
       "status": "Selecione um status",
       "city": "Informe a cidade",
       "postalCode": "O CEP deve conter apenas números (4 a 10 dígitos)",
+      "instagramUrl": "Informe um link válido do Instagram",
+      "tiktokUrl": "Informe um link válido do TikTok",
       "maxCount": "O valor máximo é {{max}}",
       "nonNegativeNumber": "Informe um número maior ou igual a zero",
       "maxSmallint": "O valor máximo permitido é 32767",

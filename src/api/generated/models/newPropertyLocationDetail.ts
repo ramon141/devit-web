@@ -23,18 +23,6 @@ export interface NewPropertyLocationDetail {
    */
   longitude?: number | null;
   /**
-   * @minimum -90
-   * @maximum 90
-   * @nullable
-   */
-  publicLatitude?: number | null;
-  /**
-   * @minimum -180
-   * @maximum 180
-   * @nullable
-   */
-  publicLongitude?: number | null;
-  /**
    * @maxLength 60
    * @nullable
    */

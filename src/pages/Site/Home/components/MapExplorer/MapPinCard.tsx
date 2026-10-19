@@ -1,6 +1,5 @@
 import { Link } from 'react-router'
 import { useSiteDict } from '@/lib/site/dict'
-import { googleMapsUrl } from '@/lib/site/geo'
 import { purposeLabel } from '@/lib/site/property'
 import type { MapPin } from '@/pages/Site/Home/types/mapPin'
 
@@ -26,14 +25,6 @@ function MapPinCard({ pin, onClose }: { pin: MapPin; onClose: () => void }) {
           <Link to={pin.href} className={LINK}>
             {dict.map.open} →
           </Link>
-          <a
-            href={googleMapsUrl(pin.lat, pin.lng)}
-            target="_blank"
-            rel="noopener"
-            className="text-site-ink-soft underline underline-offset-4"
-          >
-            Google Maps ↗
-          </a>
         </div>
       </div>
 

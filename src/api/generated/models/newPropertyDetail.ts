@@ -85,6 +85,4 @@ export interface NewPropertyDetail {
    */
   exposure?: string | null;
   propertyId: string;
-  /** @nullable */
-  agentId?: string | null;
 }

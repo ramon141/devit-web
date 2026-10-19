@@ -94,14 +94,6 @@ function RentalFormFields({ form, ownerIds, setOwnerIds, tenantIds, setTenantIds
       </FormFieldWrapper>
 
       <FormFieldWrapper
-        id="modal-field-registeredAt"
-        label={t('locazioni.formFields.registeredAtLabel')}
-        error={errors.registeredAt?.message}
-      >
-        <Input {...register('registeredAt')} type="date" />
-      </FormFieldWrapper>
-
-      <FormFieldWrapper
         id="modal-field-renewalDueDate"
         label={t('locazioni.formFields.renewalDueDateLabel')}
         error={errors.renewalDueDate?.message}

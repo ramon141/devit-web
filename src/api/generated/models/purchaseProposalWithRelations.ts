@@ -55,17 +55,11 @@ export interface PurchaseProposalWithRelations {
   /** @nullable */
   leadId?: string | null;
   /** @nullable */
-  assignedToId?: string | null;
-  /** @nullable */
-  sellerAgentId?: string | null;
-  /** @nullable */
   createdById?: string | null;
   property?: Property;
   foreignKey?: unknown;
   buyer?: Person;
   lead?: Lead;
-  assignedTo?: User;
-  sellerAgent?: User;
   createdBy?: User;
   sale?: Sale;
   attachments?: PurchaseProposalAttachment[];

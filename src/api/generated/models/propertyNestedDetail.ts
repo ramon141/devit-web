@@ -84,6 +84,4 @@ export interface PropertyNestedDetail {
    * @nullable
    */
   exposure?: string | null;
-  /** @nullable */
-  agentId?: string | null;
 }

@@ -11,28 +11,6 @@
       "searchPlaceholder": "Buscar por número...",
       "newLabel": "Novo contrato"
     },
-    "registrazioni": {
-      "page": {
-        "title": "Registros",
-        "description": "Registro e renovação dos contratos de locação"
-      },
-      "table": {
-        "numero": "Número",
-        "scadenza": "Vencimento",
-        "statoRegistrazione": "Status de registro",
-        "registrato": "Registrado",
-        "daRegistrare": "A registrar",
-        "periodo": "Período",
-        "immobile": "Imóvel",
-        "inquilino": "Inquilino",
-        "emptyMessage": "Nenhum contrato para registrar ou renovar.",
-        "azioni": "Ações",
-        "markRegistered": "Marcar como registrado",
-        "marking": "Registrando...",
-        "markSuccess": "Contrato marcado como registrado.",
-        "markError": "Não foi possível registrar o contrato."
-      }
-    },
     "scadenziario": {
       "page": {
         "title": "Vencimentos",
@@ -154,7 +132,6 @@
       "situationLabel": "Situação",
       "startDateLabel": "Data de início",
       "endDateLabel": "Data de término",
-      "registeredAtLabel": "Data de registro",
       "renewalDueDateLabel": "Data prevista de renovação",
       "notesLabel": "Observações",
       "stipulaDateLabel": "Data de assinatura"
@@ -203,8 +180,6 @@
       "al": "Até",
       "inCorso": "Em andamento",
       "inCorsoYes": "Sim",
-      "reg": "Reg.",
-      "regYes": "Sim",
       "note": "Notas"
     },
     "hooks": {
@@ -505,10 +480,6 @@
             "title": "Data de assinatura",
             "content": "Data em que o contrato foi assinado."
           },
-          "registeredAt": {
-            "title": "Data de registro",
-            "content": "Data em que o contrato foi registrado no órgão competente."
-          },
           "renewalDueDate": {
             "title": "Vencimento de renovação",
             "content": "Data limite para renovar o contrato."
@@ -728,16 +699,6 @@
       "generatedTable": {
         "title": "Reajustes gerados",
         "content": "Depois de gerar, os reajustes aplicados aparecem aqui com o valor anterior e o novo valor."
-      }
-    },
-    "registrazioni": {
-      "title": {
-        "title": "Registro de contratos",
-        "content": "Aqui você controla quais contratos de locação já foram registrados no cartório/receita."
-      },
-      "table": {
-        "title": "Lista de contratos",
-        "content": "Cada linha é um contrato. O status mostra se já foi registrado; use o botão de check na coluna de ações para marcar como registrado."
       }
     },
     "scadenziario": {

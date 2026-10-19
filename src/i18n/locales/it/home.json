@@ -82,8 +82,8 @@
     }
   },
   "upcomingRenewalsCard": {
-    "title": "Scadenze locazioni",
-    "empty": "Nessun contratto in scadenza nei prossimi 30 giorni."
+    "title": "Contratti di locazione in scadenza",
+    "empty": "Nessun contratto di locazione termina nei prossimi 30 giorni."
   },
   "widgetSelection": {
     "title": "Selezione widget",
@@ -150,8 +150,8 @@
       "content": "Numero di appuntamenti per stato: programmato, concluso o annullato."
     },
     "upcomingRenewals": {
-      "title": "Scadenze locazioni",
-      "content": "Contratti di locazione in scadenza nei prossimi 30 giorni."
+      "title": "Contratti di locazione in scadenza",
+      "content": "Contratti di locazione che terminano (fine validità, non data di incasso) nei prossimi 30 giorni."
     }
   }
 }

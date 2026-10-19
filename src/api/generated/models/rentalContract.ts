@@ -56,18 +56,12 @@ export interface RentalContract {
   /** @nullable */
   stipulaDate?: string | null;
   /** @nullable */
-  registeredAt?: string | null;
-  /** @nullable */
   renewalDueDate?: string | null;
   createdAt: string;
   updatedAt: string;
   propertyId: string;
   tenantId: string;
   ownerId: string;
-  /** @nullable */
-  ownerAgentId?: string | null;
-  /** @nullable */
-  tenantAgentId?: string | null;
   /** @nullable */
   createdById?: string | null;
 }

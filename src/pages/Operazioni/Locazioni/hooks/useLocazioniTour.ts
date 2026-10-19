@@ -48,7 +48,6 @@ const DATI_FIELD_KEYS = [
   'startDate',
   'endDate',
   'stipulaDate',
-  'registeredAt',
   'renewalDueDate',
   'rentAmount',
   'condoFee',

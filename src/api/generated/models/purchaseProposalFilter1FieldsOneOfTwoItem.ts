@@ -27,7 +27,5 @@ export const PurchaseProposalFilter1FieldsOneOfTwoItem = {
   propertyId: 'propertyId',
   buyerId: 'buyerId',
   leadId: 'leadId',
-  assignedToId: 'assignedToId',
-  sellerAgentId: 'sellerAgentId',
   createdById: 'createdById',
 } as const;

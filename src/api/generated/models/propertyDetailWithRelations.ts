@@ -11,7 +11,6 @@ import type { PropertyDetailWithRelationsAvailability } from './propertyDetailWi
 import type { PropertyDetailWithRelationsCondition } from './propertyDetailWithRelationsCondition';
 import type { PropertyDetailWithRelationsFurnished } from './propertyDetailWithRelationsFurnished';
 import type { Property } from './property';
-import type { User } from './user';
 
 /**
  * (tsType: PropertyDetailWithRelations, schemaOptions: { includeRelations: true })
@@ -90,9 +89,6 @@ export interface PropertyDetailWithRelations {
   createdAt: string;
   updatedAt: string;
   propertyId: string;
-  /** @nullable */
-  agentId?: string | null;
   property?: Property;
   foreignKey?: unknown;
-  agent?: User;
 }

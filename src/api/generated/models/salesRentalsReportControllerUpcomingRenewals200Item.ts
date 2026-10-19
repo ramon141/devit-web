@@ -19,5 +19,9 @@ export type SalesRentalsReportControllerUpcomingRenewals200Item = {
   /** @nullable */
   ownerNames?: string | null;
   renewalDueDate?: string;
+  /** @nullable */
+  responsibleBrokerName?: string | null;
+  /** @nullable */
+  responsibleBrokerCode?: string | null;
   rentAmount?: number;
 };

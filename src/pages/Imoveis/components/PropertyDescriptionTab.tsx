@@ -62,6 +62,14 @@ function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId, onBa
           </FormFieldWrapper>
         </div>
 
+        <FormFieldWrapper id="property-field-instagramUrl" label={t('descriptionTab.instagramLabel')} error={errors.instagramUrl?.message}>
+          <ControlledInput control={control} name="instagramUrl" type="url" placeholder={t('descriptionTab.socialPlaceholder')} />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper id="property-field-tiktokUrl" label={t('descriptionTab.tiktokLabel')} error={errors.tiktokUrl?.message}>
+          <ControlledInput control={control} name="tiktokUrl" type="url" placeholder={t('descriptionTab.socialPlaceholder')} />
+        </FormFieldWrapper>
+
         <Separator className="sm:col-span-2" />
         <div className="sm:col-span-2">
           <PropertyDescrizioneTab

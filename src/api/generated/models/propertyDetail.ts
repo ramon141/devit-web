@@ -85,6 +85,4 @@ export interface PropertyDetail {
   createdAt: string;
   updatedAt: string;
   propertyId: string;
-  /** @nullable */
-  agentId?: string | null;
 }

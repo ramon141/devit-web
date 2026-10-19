@@ -108,6 +108,9 @@
     "bathroomsLabel": "Bagni",
     "parkingLabel": "Posti auto",
     "descriptionLabel": "Descrizione",
+    "instagramLabel": "Link Instagram",
+    "tiktokLabel": "Link TikTok",
+    "socialPlaceholder": "https://",
     "save": "Salva descrizione"
   },
   "flagsRow": {
@@ -335,8 +338,6 @@
     },
     "locationDetailSection": {
       "title": "Dettagli aggiuntivi",
-      "publicLatitudeLabel": "Latitudine pubblica (mappa del sito)",
-      "publicLongitudeLabel": "Longitudine pubblica (mappa del sito)",
       "latitudeLabel": "Latitudine",
       "longitudeLabel": "Longitudine",
       "positionLabel": "Posizione",
@@ -550,6 +551,8 @@
       "status": "Seleziona uno stato",
       "city": "Inserisci la città",
       "postalCode": "Il CAP deve contenere solo numeri (4-10 cifre)",
+      "instagramUrl": "Inserisci un link valido di Instagram",
+      "tiktokUrl": "Inserisci un link valido di TikTok",
       "maxCount": "Il valore massimo è {{max}}",
       "nonNegativeNumber": "Inserisci un numero maggiore o uguale a zero",
       "maxSmallint": "Il valore massimo consentito è 32767",

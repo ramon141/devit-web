@@ -14,8 +14,6 @@ export const PurchaseProposalIncludeFilterItemsRelation = {
   property: 'property',
   buyer: 'buyer',
   lead: 'lead',
-  assignedTo: 'assignedTo',
-  sellerAgent: 'sellerAgent',
   createdBy: 'createdBy',
   sale: 'sale',
   attachments: 'attachments',

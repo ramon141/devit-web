@@ -14,8 +14,6 @@ export const RentalContractIncludeFilterItemsRelation = {
   property: 'property',
   tenant: 'tenant',
   owner: 'owner',
-  ownerAgent: 'ownerAgent',
-  tenantAgent: 'tenantAgent',
   createdBy: 'createdBy',
   contractAttachments: 'contractAttachments',
   contractRenewals: 'contractRenewals',

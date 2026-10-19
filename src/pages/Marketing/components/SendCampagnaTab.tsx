@@ -8,12 +8,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import EmailDesignEditor from '@/components/EmailDesignEditor'
+import RecipientGroupDialog from '@/pages/Marketing/components/RecipientGroupDialog'
+import type { GroupKind } from '@/pages/Marketing/utils/leadGroup'
 import CheckboxListPicker from '@/pages/Marketing/components/CheckboxListPicker'
 import { useSendCampaign } from '@/pages/Marketing/hooks/useSendCampaign'
 
 function SendCampagnaTab() {
   const { t } = useTranslation('marketing')
   const [lastResult, setLastResult] = useState<{ sent: number; failed: number; skipped: number } | null>(null)
+  const [groupKind, setGroupKind] = useState<GroupKind | null>(null)
   const campaign = useSendCampaign()
 
   return (
@@ -41,6 +44,12 @@ function SendCampagnaTab() {
             </Button>
           </div>
 
+          <div className="flex justify-end">
+            <Button type="button" variant="outline" size="sm" onClick={() => setGroupKind('person')}>
+              {t('leadGroup.openButton')}
+            </Button>
+          </div>
+
           <CheckboxListPicker
             items={campaign.personOptions}
             selectedIds={campaign.personIds}
@@ -54,7 +63,14 @@ function SendCampagnaTab() {
             {t('sendCampaign.selectedCount', { count: campaign.personIds.length })}
           </p>
 
-          <p className="text-sm font-medium">{t('sendCampaign.leadsTitle')}</p>
+          <div className="flex items-center justify-between">
+            <p className="text-sm font-medium">{t('sendCampaign.leadsTitle')}</p>
+
+            <Button type="button" variant="outline" size="sm" onClick={() => setGroupKind('lead')}>
+              {t('leadGroup.openButton')}
+            </Button>
+          </div>
+
           <CheckboxListPicker
             items={campaign.leadOptions}
             selectedIds={campaign.leadIds}
@@ -69,6 +85,17 @@ function SendCampagnaTab() {
           </p>
         </CardContent>
       </Card>
+
+      {groupKind && (
+        <RecipientGroupDialog
+          kind={groupKind}
+          open
+          onOpenChange={(open) => !open && setGroupKind(null)}
+          isEmail={campaign.isEmail}
+          optedOutPersonIds={campaign.optedOutPersonIds}
+          onConfirm={groupKind === 'lead' ? campaign.addLeads : campaign.addPeople}
+        />
+      )}
 
       <Card>
         <CardHeader>

@@ -16,7 +16,6 @@ import VenditePage from '@/pages/Operazioni/Vendite/page'
 import LocazioniPage from '@/pages/Operazioni/Locazioni/page'
 import AdeguamentiCanonePage from '@/pages/Operazioni/Locazioni/Adeguamenti/page'
 import ScadenziarioPage from '@/pages/Operazioni/Locazioni/Scadenziario/page'
-import RegistrazioniPage from '@/pages/Operazioni/Locazioni/Registrazioni/page'
 import Marketing from '@/pages/Marketing'
 import Statistiche from '@/pages/Statistiche'
 import Notifiche from '@/pages/Notifiche'
@@ -24,8 +23,7 @@ import UtentiPage from '@/pages/Amministrazione/Utenti/page'
 import FilialiPage from '@/pages/Amministrazione/Filiali/page'
 import CategoriePage from '@/pages/Amministrazione/Categorie/page'
 import ZonePage from '@/pages/Amministrazione/Zone/page'
-import BannerPage from '@/pages/Amministrazione/Banner/page'
-import BannerScheda from '@/pages/Amministrazione/Banner/Scheda'
+import VideoHomePage from '@/pages/Amministrazione/VideoHome/page'
 import AuditPage from '@/pages/Amministrazione/Audit/page'
 import ProprietariPage from '@/pages/Amministrazione/Proprietari/page'
 import AreaProprietariLogin from '@/pages/Site/AreaProprietari/Login'
@@ -91,7 +89,6 @@ const routes: RouteConfig[] = [
   { path: '/operazioni/locazioni', element: <LocazioniPage /> },
   { path: '/operazioni/adeguamenti-canone', element: <AdeguamentiCanonePage /> },
   { path: '/operazioni/scadenziario', element: <ScadenziarioPage /> },
-  { path: '/operazioni/registrazioni', element: <RegistrazioniPage /> },
   { path: '/marketing', element: <Marketing /> },
   { path: '/statistiche', element: <Statistiche /> },
   { path: '/notifiche', element: <Notifiche /> },
@@ -101,9 +98,7 @@ const routes: RouteConfig[] = [
   { path: '/amministrazione/filiali', element: <FilialiPage /> },
   { path: '/amministrazione/categorie', element: <CategoriePage /> },
   { path: '/amministrazione/zone', element: <ZonePage /> },
-  { path: '/amministrazione/banner', element: <BannerPage /> },
-  { path: '/amministrazione/banner/nuovo', element: <BannerScheda /> },
-  { path: '/amministrazione/banner/:id', element: <BannerScheda /> },
+  { path: '/amministrazione/video-home', element: <VideoHomePage /> },
   { path: '/amministrazione/audit', element: <AuditPage /> },
   { path: '/amministrazione/proprietari', element: <ProprietariPage /> },
   { path: '/componenti', element: <Componentes /> },

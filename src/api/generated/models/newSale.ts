@@ -49,10 +49,6 @@ export interface NewSale {
   /** @nullable */
   proposalId?: string | null;
   /** @nullable */
-  sellerAgentId?: string | null;
-  /** @nullable */
-  buyerAgentId?: string | null;
-  /** @nullable */
   createdById?: string | null;
   /** Pessoas a vincular (compradores ou vendedores) */
   buyers?: NewSaleBuyersItem[];
