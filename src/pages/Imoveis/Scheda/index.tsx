@@ -16,6 +16,7 @@ import TourFab from '@/components/TourFab'
 import NotFoundState from '@/components/NotFoundState'
 import { usePropertyControllerFindById } from '@/api/generated/api'
 import { usePropertyForm } from '@/pages/Imoveis/hooks/usePropertyForm'
+import PropertyRegistrationInfo from '@/pages/Imoveis/components/PropertyRegistrationInfo'
 import PropertyFormFields from '@/pages/Imoveis/components/PropertyFormFields'
 import { PropertyDraftProvider } from '@/pages/Imoveis/contexts/PropertyDraftProvider'
 import { getNextStepValue } from '@/pages/Imoveis/schemas/propertySteps'
@@ -33,7 +34,17 @@ function PropertyScheda() {
 
   const { data: property, isLoading, isError } = usePropertyControllerFindById(
     id ?? '',
-    { filter: { include: [{ relation: 'category' }, { relation: 'address' }, { relation: 'owner' }] } },
+    {
+      filter: {
+        include: [
+          { relation: 'category' },
+          { relation: 'address' },
+          { relation: 'owner' },
+          { relation: 'createdBy' },
+          { relation: 'lastChangedBy' },
+        ],
+      },
+    },
     { query: { enabled: !isNew, retry: false } }
   )
   const notFound = !isNew && !isLoading && (isError || !property)
@@ -89,6 +100,12 @@ function PropertyScheda() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
+
+        {property && (
+          <div className="mb-3 shrink-0">
+            <PropertyRegistrationInfo property={property} />
+          </div>
+        )}
 
         {notFound ? (
           <NotFoundState

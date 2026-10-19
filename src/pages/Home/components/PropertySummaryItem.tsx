@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getPurposeOptions } from '@/pages/Imoveis/schemas/propertySchema'
 import { getOptionLabel } from '@/utils/getOptionLabel'
-import { formatDate } from '@/utils/formatDate'
+import { formatDateTime } from '@/utils/formatDate'
 import type {
   PropertiesReportControllerDormant200Item,
   PropertiesReportControllerRecent200Item,
@@ -44,7 +44,7 @@ function PropertySummaryItem({ property, date, dateLabel, action }: PropertySumm
         {date && (
           <span className="text-xs text-muted-foreground">
             {dateLabel && `${dateLabel} `}
-            {formatDate(date)}
+            {formatDateTime(date)}
           </span>
         )}
 

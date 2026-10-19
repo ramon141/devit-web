@@ -1,7 +1,11 @@
 import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 
 dayjs.extend(utc)
+dayjs.extend(timezone)
+
+const ITALY_TIME_ZONE = 'Europe/Rome'
 
 const UTC_MIDNIGHT = /^\d{4}-\d{2}-\d{2}(T00:00:00(\.000)?Z)?$/
 
@@ -17,5 +21,5 @@ export function formatDate(value?: string | Date | null) {
 }
 
 export function formatDateTime(value?: string | Date | null) {
-  return value ? dayjs(value).format('DD/MM/YYYY HH:mm') : '—'
+  return value ? dayjs(value).tz(ITALY_TIME_ZONE).format('DD/MM/YYYY HH:mm:ss') : '—'
 }

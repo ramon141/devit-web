@@ -4,7 +4,7 @@ import { DownloadIcon } from 'lucide-react'
 import ConfirmDeleteButton from '@/components/ConfirmDeleteButton'
 import { Button } from '@/components/ui/button'
 import FileUpload from '@/components/FileUpload'
-import { formatDate } from '@/utils/formatDate'
+import { formatDateTime } from '@/utils/formatDate'
 import { usePropertyDocuments } from '@/pages/Imoveis/Scheda/hooks/usePropertyDocuments'
 
 type PropertyDocumentiTabProps = {
@@ -43,7 +43,7 @@ function PropertyDocumentiTab({ propertyId }: PropertyDocumentiTabProps) {
             <div className="min-w-0">
               <p className="truncate text-sm">{doc.label ?? doc.attachment?.originalName}</p>
               {doc.createdAt && (
-                <p className="text-xs text-muted-foreground">{formatDate(doc.createdAt)}</p>
+                <p className="text-xs text-muted-foreground">{formatDateTime(doc.createdAt)}</p>
               )}
             </div>
 

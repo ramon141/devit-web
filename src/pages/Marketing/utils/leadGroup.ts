@@ -25,11 +25,12 @@ export function onlyDigits(value: string): string {
   return value.replace(/\D/g, '')
 }
 
-export function matchesStreet(candidate: GroupCandidate, street: string): boolean {
-  const term = normalizeText(street)
-  if (!term) return true
+export function matchesStreet(candidate: GroupCandidate, streets: string[]): boolean {
+  if (streets.length === 0) return true
 
-  return normalizeText(candidate.street ?? '').includes(term)
+  const candidateStreet = normalizeText(candidate.street ?? '')
+
+  return streets.some((street) => candidateStreet.includes(normalizeText(street)))
 }
 
 export function isContactOptedOut(candidate: GroupCandidate, optedOut: OptedOutContacts): boolean {

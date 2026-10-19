@@ -88,7 +88,8 @@
       "actions": "Ações",
       "category": "Tipologia",
       "size": "Metragem",
-      "updatedAt": "Modificado em"
+      "updatedAt": "Última alteração",
+      "registeredAt": "Cadastro"
     },
     "size": {
       "area": "{{value, number}} m²",
@@ -386,9 +387,37 @@
       "add": "Adicionar"
     },
     "storicoTab": {
-      "priceHistoryTitle": "Histórico de preço",
-      "statusHistoryTitle": "Histórico de status",
-      "emptyHistory": "Nenhuma alteração registrada."
+      "emptyHistory": "Nenhuma alteração registrada.",
+      "filterBroker": "Corretor",
+      "filterType": "Tipo de alteração",
+      "filterFrom": "De (data e hora)",
+      "filterTo": "Até (data e hora)",
+      "filterAll": "Todos",
+      "unknownOrigin": "Origem não informada",
+      "categories": {
+        "data": "Dados",
+        "price": "Preço",
+        "status": "Situação",
+        "activation": "Ativação/desativação",
+        "owner": "Proprietário",
+        "responsible": "Corretor responsável",
+        "photos": "Fotos",
+        "documents": "Documentos",
+        "features": "Características",
+        "rooms": "Ambientes",
+        "fees": "Valores",
+        "details": "Detalhes"
+      },
+      "actions": {
+        "create": "Criado",
+        "update": "Alterado",
+        "delete": "Removido"
+      },
+      "sources": {
+        "management": "Sistema de gestão",
+        "import": "Importação",
+        "chatbot": "Chatbot"
+      }
     },
     "terrenoTab": {
       "save": "Salvar dados do terreno",
@@ -911,5 +940,10 @@
   "hints": {
     "chatbotHidden": "Com esta situação o imóvel deixa de aparecer no chatbot até voltar a «disponível».",
     "siteStillVisible": "Continua visível no site enquanto estiver publicado."
+  },
+  "registration": {
+    "registeredBy": "Cadastrado em {{date}} por {{author}}",
+    "unknownOrigin": "Origem não informada",
+    "lastChange": "Última alteração por {{author}} em {{date}}"
   }
 }

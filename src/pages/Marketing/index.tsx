@@ -32,7 +32,7 @@ function Marketing() {
       <TourFab onClick={startTour} />
 
       <Tabs defaultValue="dashboard">
-        <TabsList>
+        <TabsList className="bg-[#e8dfcc]">
           <TabsTrigger id="marketing-tab-dashboard" value="dashboard">{t('index.dashboardTab')}</TabsTrigger>
           <TabsTrigger id="marketing-tab-invia" value="invia">{t('index.inviaTab')}</TabsTrigger>
           <TabsTrigger id="marketing-tab-storico" value="storico">{t('index.storicoTab')}</TabsTrigger>

@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import MultiSelectField from '@/components/MultiSelectField'
-import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import CheckboxListPicker from '@/pages/Marketing/components/CheckboxListPicker'
 import { useRecipientGroup } from '@/pages/Marketing/hooks/useRecipientGroup'
 import type { GroupKind } from '@/pages/Marketing/utils/leadGroup'
@@ -32,6 +30,7 @@ function RecipientGroupDialog({
   const group = useRecipientGroup({ kind, open, isEmail, optedOutPersonIds })
   const { partition } = group
 
+  const streetOptions = group.streetOptions.map((street) => ({ value: street, label: street }))
   const nameTerm = normalizeText(group.nameSearch)
 
   const items = partition.eligible
@@ -66,13 +65,13 @@ function RecipientGroupDialog({
           placeholder={t('leadGroup.neighborhoodsPlaceholder')}
         />
 
-        <FormFieldWrapper label={t('leadGroup.street')}>
-          <Input
-            value={group.street}
-            onChange={(event) => group.setStreet(event.target.value)}
-            placeholder={t('leadGroup.streetPlaceholder')}
-          />
-        </FormFieldWrapper>
+        <MultiSelectField
+          options={streetOptions}
+          values={group.streets}
+          onChange={group.setStreets}
+          label={t('leadGroup.street')}
+          placeholder={t('leadGroup.streetPlaceholder')}
+        />
 
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm font-medium">

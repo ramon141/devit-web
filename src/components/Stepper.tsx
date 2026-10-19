@@ -16,7 +16,13 @@ type StepperProps = {
 function Stepper({ steps }: StepperProps) {
   return (
     <TabsList className="relative !h-auto w-full shrink-0 items-start justify-between gap-1 bg-transparent p-0 mb-6">
-      <div className="absolute top-4 right-4 left-4 h-0.5 bg-border" />
+      <div
+        className="absolute top-4 h-0.5 bg-border"
+        style={{
+          left: `${50 / steps.length}%`,
+          right: `${50 / steps.length}%`,
+        }}
+      />
 
       {steps.map((step) => (
         <TabsTrigger

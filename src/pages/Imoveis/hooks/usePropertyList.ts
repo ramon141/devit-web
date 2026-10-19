@@ -161,6 +161,8 @@ export function usePropertyList() {
         { relation: 'owner' },
         { relation: 'propertyPhotos', scope: { include: [{ relation: 'attachment' }] } },
         { relation: 'propertyDetail' },
+        { relation: 'createdBy' },
+        { relation: 'lastChangedBy' },
       ],
       order: buildOrder(filters),
       limit: PAGE_SIZE,

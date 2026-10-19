@@ -3,7 +3,7 @@ import { FlagIcon, ImageIcon } from 'lucide-react'
 import type { Attachment, PropertyPhoto, PropertyWithRelations } from '@/api/generated/models'
 import { PropertyDetailRating } from '@/api/generated/models'
 import PropertyCardActions from '@/pages/Imoveis/components/PropertyCardActions'
-import { formatDateTime } from '@/utils/formatDate'
+import PropertyRegistrationInfo from '@/pages/Imoveis/components/PropertyRegistrationInfo'
 
 type PropertyCardBodyProps = {
   property: PropertyWithRelations
@@ -46,9 +46,9 @@ function PropertyCardBody({ property }: PropertyCardBodyProps) {
       </div>
 
       <div className="flex shrink-0 flex-col items-end gap-2 sm:border-l sm:border-border sm:pl-3">
-        <p className="text-xs text-muted-foreground">
-          {t('card.modifiedOn', { date: formatDateTime(property.updatedAt ?? property.createdAt) })}
-        </p>
+        <div className="text-right">
+          <PropertyRegistrationInfo property={property} />
+        </div>
 
         <div className="flex items-center gap-1 text-xs text-muted-foreground">
           {t('card.quality')}

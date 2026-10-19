@@ -10,7 +10,8 @@ import { getStatusOptions } from '@/pages/Imoveis/schemas/propertySchema'
 import { formatAmount } from '@/utils/formatAmount'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 import PropertyShareButton from '@/pages/Imoveis/components/PropertyShareButton'
-import { formatDate } from '@/utils/formatDate'
+import { formatDateTime } from '@/utils/formatDate'
+import { lastChangeText } from '@/utils/propertyRegistration'
 
 function formatPropertySize(property: PropertyWithRelations, t: TFunction<'imoveis'>): string {
   const parts: string[] = []
@@ -44,7 +45,8 @@ export function buildPropertyTableColumns({
         <Badge variant="secondary">{getOptionLabel(getStatusOptions(t), property.status)}</Badge>
       ),
     },
-    { header: t('table.columns.updatedAt'), cell: (property) => formatDate(property.updatedAt) },
+    { header: t('table.columns.registeredAt'), cell: (property) => formatDateTime(property.createdAt) },
+    { header: t('table.columns.updatedAt'), cell: (property) => lastChangeText(t, property) ?? formatDateTime(property.updatedAt) },
     {
       header: t('table.columns.actions'),
       headerClassName: 'w-32 text-right',
