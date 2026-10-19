@@ -18,7 +18,7 @@
     "backHome": "Torna alla home"
   },
   "auth": {
-    "tokenMissing": "Token inesistente. Prova a effettuare nuovamente il login."
+    "tokenMissing": "Token mancante. Prova a effettuare nuovamente il login."
   },
   "attachmentListManager": {
     "uploadLabel": "Carica allegato",
@@ -70,7 +70,8 @@
   },
   "tablePagination": {
     "summary_one": "Pagina {{page}} di {{totalPages}} · {{count}} risultato",
-    "summary_other": "Pagina {{page}} di {{totalPages}} · {{count}} risultati"
+    "summary_other": "Pagina {{page}} di {{totalPages}} · {{count}} risultati",
+    "summary_many": "Pagina {{page}} di {{totalPages}} · {{count}} risultati"
   },
   "sidebar": {
     "collapseMenu": "Comprimi il menu",
@@ -79,7 +80,7 @@
     "nav": {
       "bacheca": "Bacheca",
       "agenda": "Agenda",
-      "proprieta": "Proprietà",
+      "proprieta": "Immobili",
       "clienti": "Clienti",
       "richieste": "Richieste",
       "proposte": "Proposte",
@@ -147,8 +148,8 @@
       "skip": "Salta"
     },
     "fab": {
-      "start": "Avvia Tour Guidato",
-      "video": "Guarda Video Tutorial"
+      "start": "Avvia tour guidato",
+      "video": "Guarda video tutorial"
     }
   }
 }

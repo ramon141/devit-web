@@ -56,7 +56,7 @@
     "neighborhood": "Quartiere",
     "neighborhoodPlaceholder": "Seleziona un quartiere",
     "neighborhoodSearchPlaceholder": "Cerca quartiere",
-    "complement": "Complemento",
+    "complement": "Scala / interno",
     "complementPlaceholder": "Piano 3, interno 2"
   },
   "personFormModal": {
@@ -247,13 +247,13 @@
         "content": "Qui vedi e modifichi tutti i dati di questo cliente, organizzati in schede."
       },
       "tabDati": {
-        "title": "Scheda Dati",
+        "title": "Scheda dati",
         "content": "Dati anagrafici del cliente, identici al modulo di registrazione."
       },
       "dati": {
         "name": {
           "title": "Nome",
-          "content": "Nome completo del cliente."
+          "content": "Nome e cognome del cliente."
         },
         "role": {
           "title": "Ruolo",
@@ -325,7 +325,7 @@
         }
       },
       "tabAllegati": {
-        "title": "Scheda Allegati",
+        "title": "Scheda allegati",
         "content": "Documenti e file allegati a questo cliente."
       },
       "allegati": {
@@ -333,7 +333,7 @@
         "content": "Carica nuovi file o rimuovi allegati esistenti del cliente."
       },
       "tabImmobili": {
-        "title": "Scheda Immobili",
+        "title": "Scheda immobili",
         "content": "Immobili collegati a questo cliente, come proprietà, locazione o acquisto."
       },
       "immobili": {
@@ -341,7 +341,7 @@
         "content": "Elenco degli immobili dove questo cliente è proprietario, inquilino, acquirente o ha fatto una proposta."
       },
       "tabAgenda": {
-        "title": "Scheda Agenda",
+        "title": "Scheda agenda",
         "content": "Eventi in agenda a cui partecipa questo cliente."
       },
       "agenda": {
@@ -349,7 +349,7 @@
         "content": "Appuntamenti e visite programmate con questo cliente."
       },
       "tabComunicazioni": {
-        "title": "Scheda Comunicazioni",
+        "title": "Scheda comunicazioni",
         "content": "Storico di e-mail, messaggi e chiamate con questo cliente."
       },
       "comunicazioni": {
@@ -549,7 +549,7 @@
       "fields": {
         "name": {
           "title": "Nome",
-          "content": "Nome completo del cliente. Campo obbligatorio."
+          "content": "Nome e cognome del cliente. Campo obbligatorio."
         },
         "role": {
           "title": "Ruolo",

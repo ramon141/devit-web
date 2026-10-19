@@ -126,7 +126,7 @@
     "titlePlaceholder": "Appartamento in centro",
     "purposeLabel": "Finalità",
     "statusLabel": "Stato",
-    "save": "Salva generale"
+    "save": "Salva dati generali"
   },
   "locationTab": {
     "countryLabel": "Paese",
@@ -143,7 +143,7 @@
     "numberPlaceholder": "12",
     "neighborhoodLabel": "Quartiere",
     "neighborhoodPlaceholder": "Seleziona un quartiere",
-    "complementLabel": "Complemento",
+    "complementLabel": "Scala / interno",
     "complementPlaceholder": "Piano 3, interno 2",
     "save": "Salva localizzazione",
     "neighborhoodSearchPlaceholder": "Cerca quartiere"
@@ -179,7 +179,7 @@
   "scheda": {
     "pageTitle": "Nuovo immobile",
     "pageDescription": "Gestisci tutti i dati dell'immobile",
-    "breadcrumbList": "Proprietà",
+    "breadcrumbList": "Immobili",
     "notFound": "Immobile non trovato.",
     "commercialActivityFields": {
       "scopeLabel": "Ambito",
@@ -381,7 +381,7 @@
       "quantityPlaceholder": "Quantità",
       "widthPlaceholder": "Larghezza (m)",
       "lengthPlaceholder": "Lunghezza (m)",
-      "equipmentPlaceholder": "Equipaggiamento",
+      "equipmentPlaceholder": "Dotazioni",
       "add": "Aggiungi"
     },
     "storicoTab": {
@@ -662,7 +662,7 @@
         "industrialWater": "Acqua a uso industriale",
         "fireAlarm": "Antincendio",
         "transformerCabin": "Cabina di trasformazione",
-        "loadingDocks": "Docks di carico",
+        "loadingDocks": "Baie di carico",
         "freightElevator": "Montacarichi",
         "fence": "Recinzione",
         "ramps": "Rampe"
@@ -754,51 +754,51 @@
     },
     "scheda": {
       "tabGenerale": {
-        "title": "Scheda Generale",
+        "title": "Scheda generale",
         "content": "Dati principali dell'immobile: codice, titolo, categoria, proprietario, finalità e stato."
       },
       "tabPrezzo": {
-        "title": "Scheda Prezzo",
+        "title": "Scheda prezzo",
         "content": "Valori di vendita, affitto e condominio dell'immobile."
       },
       "tabLocalizzazione": {
-        "title": "Scheda Localizzazione",
+        "title": "Scheda localizzazione",
         "content": "Indirizzo completo dell'immobile."
       },
       "tabDescrizione": {
-        "title": "Scheda Descrizione",
+        "title": "Scheda descrizione",
         "content": "Superficie, camere, bagni, posti auto e descrizione testuale dell'immobile."
       },
       "tabDettagli": {
-        "title": "Scheda Dettagli",
+        "title": "Scheda dettagli",
         "content": "Caratteristiche aggiuntive dell'immobile."
       },
       "tabFoto": {
-        "title": "Scheda Foto",
+        "title": "Scheda foto",
         "content": "Carica e organizza le foto dell'immobile."
       },
       "tabDocumenti": {
-        "title": "Scheda Documenti",
+        "title": "Scheda documenti",
         "content": "Allega i documenti dell'immobile."
       },
       "tabCommerciale": {
-        "title": "Scheda Commerciale",
+        "title": "Scheda commerciale",
         "content": "Informazioni commerciali specifiche dell'immobile."
       },
       "tabIndustriale": {
-        "title": "Scheda Industriale",
+        "title": "Scheda industriale",
         "content": "Informazioni specifiche per immobili industriali."
       },
       "tabTerreno": {
-        "title": "Scheda Terreno",
+        "title": "Scheda terreno",
         "content": "Informazioni specifiche per i terreni."
       },
       "tabTasse": {
-        "title": "Scheda Tasse",
+        "title": "Scheda tasse",
         "content": "Dati fiscali e tributari dell'immobile."
       },
       "tabStorico": {
-        "title": "Scheda Storico",
+        "title": "Scheda storico",
         "content": "Storico delle modifiche dell'immobile. Disponibile dopo aver salvato la registrazione."
       },
       "field": {

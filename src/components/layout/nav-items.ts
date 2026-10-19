@@ -8,7 +8,6 @@ import {
   LayoutDashboard,
   Megaphone,
   ShieldCheck,
-  Settings,
   Users,
 } from 'lucide-react'
 import { Auth } from '@/auth'
@@ -95,15 +94,9 @@ const allNavItems: NavItem[] = [
       { label: 'sidebar.nav.filiali', path: crmPath('/amministrazione/filiali') },
       { label: 'sidebar.nav.categorie', path: crmPath('/amministrazione/categorie') },
       { label: 'sidebar.nav.zone', path: crmPath('/amministrazione/zone') },
-      { label: 'sidebar.nav.banner', path: crmPath('/amministrazione/banner') },
       { label: 'sidebar.nav.auditLog', path: crmPath('/amministrazione/audit') },
       { label: 'sidebar.nav.proprietari', path: crmPath('/amministrazione/proprietari') },
     ],
-  },
-  {
-    label: 'sidebar.nav.componenti',
-    path: crmPath('/componenti'),
-    icon: Settings,
   },
 ]
 

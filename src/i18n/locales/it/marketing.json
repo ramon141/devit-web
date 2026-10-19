@@ -45,7 +45,7 @@
     "nameRequired": "Nome obbligatorio",
     "channelRequired": "Canale obbligatorio",
     "categoryRequired": "Categoria obbligatoria",
-    "bodyRequired": "Corpo obbligatorio",
+    "bodyRequired": "Testo obbligatorio",
     "subjectRequiredForEmail": "L'oggetto è obbligatorio per i modelli via e-mail"
   },
   "templateForm": {
@@ -69,7 +69,7 @@
     "categoryLabel": "Categoria",
     "subjectLabel": "Oggetto",
     "subjectPlaceholder": "Oggetto dell'e-mail",
-    "bodyLabel": "Corpo",
+    "bodyLabel": "Testo",
     "bodyPlaceholder": "Testo del messaggio...",
     "activeLabel": "Attivo"
   },
@@ -98,7 +98,7 @@
     "error": "Errore nella registrazione della rimozione"
   },
   "deleteOptOut": {
-    "pending": "Rimozione della rimozione...",
+    "pending": "Eliminazione in corso...",
     "success": "Rimozione eliminata",
     "error": "Errore nell'eliminazione"
   },

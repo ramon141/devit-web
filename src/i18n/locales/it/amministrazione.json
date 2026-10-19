@@ -8,7 +8,7 @@
       "update": "Aggiornamento",
       "delete": "Eliminazione",
       "login": "Accesso",
-      "logout": "Uscita",
+      "logout": "Disconnessione",
       "export": "Esportazione"
     },
     "columns": {
@@ -203,7 +203,7 @@
   "userFormFields": {
     "avatarLabel": "Foto profilo",
     "avatarHint": "Lascia vuoto per mantenere la foto attuale",
-    "fullNameLabel": "Nome completo",
+    "fullNameLabel": "Nome e cognome",
     "fullNamePlaceholder": "Mario Rossi",
     "emailLabel": "E-mail",
     "emailPlaceholder": "mario@devit.it",
@@ -264,7 +264,7 @@
     "accessLevelBroker": "Agente"
   },
   "proprietariPage": {
-    "title": "Portale Proprietari",
+    "title": "Portale proprietari",
     "description": "Gestisci gli accessi dei proprietari all'area riservata"
   },
   "proprietari": {
@@ -278,7 +278,7 @@
       "accessCount": "Totale accessi",
       "status": "Stato",
       "active": "Attivo",
-      "inactive": "Disattivo",
+      "inactive": "Inattivo",
       "actions": "Azioni"
     },
     "formModal": {
@@ -539,8 +539,8 @@
             "content": "Foto profilo dell'utente, mostrata nel sistema."
           },
           "fullName": {
-            "title": "Nome completo",
-            "content": "Nome completo dell'utente. Campo obbligatorio."
+            "title": "Nome e cognome",
+            "content": "Nome e cognome dell'utente. Campo obbligatorio."
           },
           "email": {
             "title": "E-mail",

@@ -10,7 +10,7 @@
     "savePreferences": "Salvar preferências"
   },
   "contatti": {
-    "nameLabel": "Nome Completo",
+    "nameLabel": "Nome completo",
     "emailLabel": "Seu email",
     "phoneLabel": "Telefone",
     "subjectLabel": "Assunto",
@@ -59,9 +59,9 @@
     "valuation": "Avaliação de propriedade",
     "desiredCityLabel": "Cidade do imóvel",
     "maxBudgetLabel": "Preço máximo",
-    "nameLabel": "Nome Completo",
+    "nameLabel": "Nome completo",
     "emailLabel": "Email",
-    "phoneLabel": "Contato Telefônico",
+    "phoneLabel": "Contato telefônico",
     "messageLabel": "Mensagem",
     "acceptTermsPrefix": "Aceito os termos da lei de Privacidade (Dlgs 196/2003). Leia a",
     "acceptTermsLink": "Política de Privacidade e Cookies",

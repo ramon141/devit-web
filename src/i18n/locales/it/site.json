@@ -4,13 +4,13 @@
     "description": "Utilizziamo i cookie per migliorare la tua esperienza sul sito.",
     "customize": "Personalizza",
     "rejectAll": "Rifiuta tutto",
-    "acceptAll": "Accettare tutto",
+    "acceptAll": "Accetta tutto",
     "necessaryLabel": "Cookie necessari (sempre attivi)",
     "analyticsLabel": "Cookie statistici e di preferenza",
     "savePreferences": "Salva preferenze"
   },
   "contatti": {
-    "nameLabel": "Nome Completo",
+    "nameLabel": "Nome e cognome",
     "emailLabel": "La tua email",
     "phoneLabel": "Telefono",
     "subjectLabel": "Oggetto",
@@ -23,7 +23,7 @@
     "toastError": "Errore durante l’invio del messaggio"
   },
   "contattiSchema": {
-    "nameMin": "Inserisci il tuo nome completo",
+    "nameMin": "Inserisci nome e cognome",
     "emailInvalid": "Inserisci un indirizzo email valido",
     "phoneMin": "Inserisci un numero di telefono valido",
     "messageMin": "Scrivi il tuo messaggio",
@@ -59,9 +59,9 @@
     "valuation": "Valutazione proprietà",
     "desiredCityLabel": "Città dell'immobile",
     "maxBudgetLabel": "Prezzo max",
-    "nameLabel": "Nome Completo",
+    "nameLabel": "Nome e cognome",
     "emailLabel": "Email",
-    "phoneLabel": "Contatto Telefonico",
+    "phoneLabel": "Contatto telefonico",
     "messageLabel": "Messaggio",
     "acceptTermsPrefix": "Accetto i termini sulla legge della Privacy (Dlgs 196/2003). Leggi la",
     "acceptTermsLink": "Privacy e Cookie Policy",
@@ -72,7 +72,7 @@
   },
   "richiesteSchema": {
     "desiredCityMin": "Inserisci la città",
-    "nameMin": "Inserisci il tuo nome completo",
+    "nameMin": "Inserisci nome e cognome",
     "emailInvalid": "Inserisci un indirizzo email valido",
     "phoneMin": "Inserisci un numero di telefono valido",
     "messageMin": "Descrivi la tua richiesta",
@@ -81,7 +81,7 @@
   },
   "areaProprietari": {
     "login": {
-      "title": "Area Proprietari",
+      "title": "Area proprietari",
       "intro": "Accedi con l'email e il PIN forniti dalla tua agenzia.",
       "emailLabel": "Email",
       "pinLabel": "PIN",

@@ -15,6 +15,6 @@
   "error_message_sale_already_sold": "Esiste già una vendita conclusa per questo immobile.",
   "error_message_renewal_dates_order": "La nuova data di fine deve essere successiva alla precedente.",
   "error_message_file_content_mismatch": "Il contenuto del file non corrisponde al tipo dichiarato.",
-  "error_message_endpoint_not_found": "Endpoint non trovato.",
+  "error_message_endpoint_not_found": "Risorsa non trovata.",
   "error_message_invalid_parameter": "Parametro della richiesta non valido."
 }
