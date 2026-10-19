@@ -11,6 +11,8 @@ import type { ChatbotPropertyControllerFind200ItemsItemAddress } from './chatbot
 
 export type ChatbotPropertyControllerFind200ItemsItem = {
   id?: string;
+  /** @nullable */
+  slug?: string | null;
   code?: string;
   title?: string;
   purpose?: string;

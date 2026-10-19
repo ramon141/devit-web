@@ -17,6 +17,8 @@ import type { ChatbotPropertyControllerFindById200LocationDetail } from './chatb
 
 export type ChatbotPropertyControllerFindById200 = {
   id?: string;
+  /** @nullable */
+  slug?: string | null;
   code?: string;
   title?: string;
   purpose?: string;

@@ -22,7 +22,7 @@ import type { PurchaseProposal } from './purchaseProposal';
 import type { Sale } from './sale';
 
 /**
- * (tsType: PropertyWithRelations, schemaOptions: { includeRelations: true })
+ * (tsType: PropertyWithRelations, schemaOptions: { includeRelations: true }), {"indexInfo":{"slug":{"unique":true}}}
  */
 export interface PropertyWithRelations {
   id?: string;
@@ -36,6 +36,11 @@ export interface PropertyWithRelations {
    * @maxLength 200
    */
   title: string;
+  /**
+   * @maxLength 220
+   * @nullable
+   */
+  slug?: string | null;
   purpose: PropertyWithRelationsPurpose;
   /**
    * @minimum 0

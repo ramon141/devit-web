@@ -10,6 +10,7 @@ export type PropertyFilter1FieldsOneOf = {
   id?: boolean;
   code?: boolean;
   title?: boolean;
+  slug?: boolean;
   purpose?: boolean;
   rentPrice?: boolean;
   salePrice?: boolean;

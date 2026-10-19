@@ -9,6 +9,7 @@ import type { PropertyWithRelations } from '@/api/generated/models'
 import { getStatusOptions } from '@/pages/Imoveis/schemas/propertySchema'
 import { formatAmount } from '@/utils/formatAmount'
 import { getOptionLabel } from '@/utils/getOptionLabel'
+import PropertyShareButton from '@/pages/Imoveis/components/PropertyShareButton'
 import { formatDate } from '@/utils/formatDate'
 
 function formatPropertySize(property: PropertyWithRelations, t: TFunction<'imoveis'>): string {
@@ -46,11 +47,12 @@ export function buildPropertyTableColumns({
     { header: t('table.columns.updatedAt'), cell: (property) => formatDate(property.updatedAt) },
     {
       header: t('table.columns.actions'),
-      headerClassName: 'w-24 text-right',
+      headerClassName: 'w-32 text-right',
       cellClassName: 'text-right',
       isActions: true,
       cell: (property) => (
         <>
+          <PropertyShareButton property={property} variant="ghost" />
           <Button
             variant="ghost"
             size="icon-sm"

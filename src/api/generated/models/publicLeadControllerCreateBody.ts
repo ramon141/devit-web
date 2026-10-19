@@ -27,7 +27,7 @@ export type PublicLeadControllerCreateBody = {
    */
   message?: string | null;
   /**
-   * @maxLength 255
+   * @maxLength 120
    * @nullable
    */
   desiredCity?: string | null;

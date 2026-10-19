@@ -26,8 +26,8 @@ export function useFeaturedProperties(limit: number) {
   return usePublicPropertyControllerFindFeatured({ limit })
 }
 
-export function useProperty(id: string) {
-  return usePublicPropertyControllerFindById(id, { query: { retry: false } })
+export function useProperty(slug: string) {
+  return usePublicPropertyControllerFindById(slug, { query: { retry: false } })
 }
 
 export function useZones() {
@@ -72,7 +72,7 @@ export function useMapPins() {
 
         return {
           id: pin.id ?? '',
-          href: SITE_PATHS.property(pin.id ?? ''),
+          href: SITE_PATHS.property(pin.slug ?? pin.id ?? ''),
           title: pin.title ?? '',
           price: formatPrice(pin.price, locale, dict) + (isRent ? dict.property.perMonth : ''),
           zone: pin.zone?.slug ?? '',

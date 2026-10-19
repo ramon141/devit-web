@@ -8,6 +8,9 @@
 import type { PropertyPurpose } from './propertyPurpose';
 import type { PropertyStatus } from './propertyStatus';
 
+/**
+ * {"indexInfo":{"slug":{"unique":true}}}
+ */
 export interface Property {
   id?: string;
   /**
@@ -20,6 +23,11 @@ export interface Property {
    * @maxLength 200
    */
   title: string;
+  /**
+   * @maxLength 220
+   * @nullable
+   */
+  slug?: string | null;
   purpose: PropertyPurpose;
   /**
    * @minimum 0

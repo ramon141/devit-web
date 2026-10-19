@@ -6,7 +6,7 @@ export const SELL_URL = '/vendi-con-noi/index.html'
 export const SITE_PATHS = {
   home: '/',
   properties: '/immobili',
-  property: (id: string) => `/immobile/${id}`,
+  property: (slug: string) => `/property/${slug}`,
   zones: '/zone',
   zone: (slug: string) => `/zone/${slug}`,
   about: '/chi-siamo',
@@ -18,4 +18,4 @@ export const SITE_PATHS = {
   ownerArea: '/area-proprietari/login',
 }
 
-export const PROPERTY_PATH = /^\/immobile\//
+export const PROPERTY_PATH = /^\/property\//

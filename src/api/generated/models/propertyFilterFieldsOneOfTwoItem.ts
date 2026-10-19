@@ -14,6 +14,7 @@ export const PropertyFilterFieldsOneOfTwoItem = {
   id: 'id',
   code: 'code',
   title: 'title',
+  slug: 'slug',
   purpose: 'purpose',
   rentPrice: 'rentPrice',
   salePrice: 'salePrice',

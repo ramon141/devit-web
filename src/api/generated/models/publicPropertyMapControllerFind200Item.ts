@@ -9,6 +9,8 @@ import type { PublicPropertyMapControllerFind200ItemZone } from './publicPropert
 
 export type PublicPropertyMapControllerFind200Item = {
   id?: string;
+  /** @nullable */
+  slug?: string | null;
   title?: string;
   purpose?: string;
   /** @nullable */

@@ -105,7 +105,7 @@ function PropertyCard({ property, priority = false }: PropertyCardProps) {
 
       <div className="folder-front">
         <h3 className="text-[1.3rem] leading-tight">
-          <Link to={SITE_PATHS.property(property.id ?? '')} className="folder-link">
+          <Link to={SITE_PATHS.property(property.slug ?? property.id ?? '')} className="folder-link">
             {property.title}
           </Link>
         </h3>

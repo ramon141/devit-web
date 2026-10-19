@@ -11,6 +11,8 @@ import type { PublicPropertyControllerFind200ItemsItemAddress } from './publicPr
 
 export type PublicPropertyControllerFind200ItemsItem = {
   id?: string;
+  /** @nullable */
+  slug?: string | null;
   code?: string;
   title?: string;
   purpose?: string;

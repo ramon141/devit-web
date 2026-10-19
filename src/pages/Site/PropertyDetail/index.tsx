@@ -95,8 +95,8 @@ function Dossier({ property, related }: { property: SiteDetail; related: SiteCar
 }
 
 function PropertyDetail() {
-  const { id = '' } = useParams<{ id: string }>()
-  const { data: property, isSuccess, isError } = useProperty(id)
+  const { slug = '' } = useParams<{ slug: string }>()
+  const { data: property, isSuccess, isError } = useProperty(slug)
   const related = useRelatedProperties(property)
 
   useMotionReady(isError || (isSuccess && related.isSuccess))

@@ -60,6 +60,12 @@
     "reference": "Ref. {{code}}",
     "quality": "Qualidade do anúncio",
     "edit": "Editar",
+    "share": {
+      "title": "Copiar link do imóvel",
+      "pending": "Copiando link...",
+      "success": "Link copiado",
+      "error": "Não foi possível copiar o link"
+    },
     "duplicate": "Duplicar",
     "area": "M²",
     "bedrooms": "Quartos",

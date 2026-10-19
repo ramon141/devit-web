@@ -8,7 +8,12 @@
 import type { UserControllerCreateBodyAccessLevel } from './userControllerCreateBodyAccessLevel';
 
 export type UserControllerCreateBody = {
+  /**
+   * @minLength 1
+   * @maxLength 150
+   */
   fullName: string;
+  /** @maxLength 255 */
   email: string;
   accessLevel: UserControllerCreateBodyAccessLevel;
   active?: boolean;

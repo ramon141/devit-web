@@ -25983,16 +25983,16 @@ export function usePublicPropertyMapControllerFind<TData = Awaited<ReturnType<ty
 
 
 /**
- * @summary Detalhe de um imóvel publicado no site
+ * @summary Detalhe de um imóvel publicado no site (por slug ou id)
  */
 export const publicPropertyControllerFindById = (
-    id: string,
+    idOrSlug: string,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
       return mutator<PublicPropertyControllerFindById200>(
-      {url: `/public/properties/${id}`, method: 'GET', signal
+      {url: `/public/properties/${idOrSlug}`, method: 'GET', signal
     },
       options);
     }
@@ -26000,29 +26000,29 @@ export const publicPropertyControllerFindById = (
 
 
 
-export const getPublicPropertyControllerFindByIdQueryKey = (id?: string,) => {
+export const getPublicPropertyControllerFindByIdQueryKey = (idOrSlug?: string,) => {
     return [
-    `/public/properties/${id}`
+    `/public/properties/${idOrSlug}`
     ] as const;
     }
 
     
-export const getPublicPropertyControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError = ErrorType<PublicPropertyControllerFindById400 | PublicPropertyControllerFindById404 | PublicPropertyControllerFindById422>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export const getPublicPropertyControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError = ErrorType<PublicPropertyControllerFindById400 | PublicPropertyControllerFindById404 | PublicPropertyControllerFindById422>>(idOrSlug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getPublicPropertyControllerFindByIdQueryKey(id);
+  const queryKey =  queryOptions?.queryKey ?? getPublicPropertyControllerFindByIdQueryKey(idOrSlug);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof publicPropertyControllerFindById>>> = ({ signal }) => publicPropertyControllerFindById(id, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof publicPropertyControllerFindById>>> = ({ signal }) => publicPropertyControllerFindById(idOrSlug, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, enabled: !!(idOrSlug), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type PublicPropertyControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof publicPropertyControllerFindById>>>
@@ -26030,7 +26030,7 @@ export type PublicPropertyControllerFindByIdQueryError = ErrorType<PublicPropert
 
 
 export function usePublicPropertyControllerFindById<TData = Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError = ErrorType<PublicPropertyControllerFindById400 | PublicPropertyControllerFindById404 | PublicPropertyControllerFindById422>>(
- id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>> & Pick<
+ idOrSlug: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof publicPropertyControllerFindById>>,
           TError,
@@ -26040,7 +26040,7 @@ export function usePublicPropertyControllerFindById<TData = Awaited<ReturnType<t
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePublicPropertyControllerFindById<TData = Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError = ErrorType<PublicPropertyControllerFindById400 | PublicPropertyControllerFindById404 | PublicPropertyControllerFindById422>>(
- id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>> & Pick<
+ idOrSlug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof publicPropertyControllerFindById>>,
           TError,
@@ -26050,19 +26050,19 @@ export function usePublicPropertyControllerFindById<TData = Awaited<ReturnType<t
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function usePublicPropertyControllerFindById<TData = Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError = ErrorType<PublicPropertyControllerFindById400 | PublicPropertyControllerFindById404 | PublicPropertyControllerFindById422>>(
- id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ idOrSlug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
- * @summary Detalhe de um imóvel publicado no site
+ * @summary Detalhe de um imóvel publicado no site (por slug ou id)
  */
 
 export function usePublicPropertyControllerFindById<TData = Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError = ErrorType<PublicPropertyControllerFindById400 | PublicPropertyControllerFindById404 | PublicPropertyControllerFindById422>>(
- id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ idOrSlug: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof publicPropertyControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getPublicPropertyControllerFindByIdQueryOptions(id,options)
+  const queryOptions = getPublicPropertyControllerFindByIdQueryOptions(idOrSlug,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

@@ -36,6 +36,11 @@ export interface NewProperty {
    * @maxLength 200
    */
   title: string;
+  /**
+   * @maxLength 220
+   * @nullable
+   */
+  slug?: string | null;
   purpose: NewPropertyPurpose;
   /**
    * @minimum 0

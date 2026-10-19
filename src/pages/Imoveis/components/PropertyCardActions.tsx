@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import ConfirmPopup from '@/components/ConfirmPopup'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import type { PropertyWithRelations } from '@/api/generated/models'
+import PropertyShareButton from '@/pages/Imoveis/components/PropertyShareButton'
 import { useDeleteProperty } from '@/pages/Imoveis/hooks/useDeleteProperty'
 import { useDuplicateProperty } from '@/pages/Imoveis/hooks/useDuplicateProperty'
 
@@ -26,6 +27,8 @@ function PropertyCardActions({ property }: PropertyCardActionsProps) {
 
   return (
     <div className="flex items-center gap-1">
+      <PropertyShareButton property={property} />
+
       <Button
         variant="outline"
         size="icon-sm"

@@ -11,6 +11,8 @@ import type { PublicPropertyControllerFindFeatured200ItemAddress } from './publi
 
 export type PublicPropertyControllerFindFeatured200Item = {
   id?: string;
+  /** @nullable */
+  slug?: string | null;
   code?: string;
   title?: string;
   purpose?: string;

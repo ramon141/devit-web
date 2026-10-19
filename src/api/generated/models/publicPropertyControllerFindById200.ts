@@ -17,6 +17,8 @@ import type { PublicPropertyControllerFindById200LocationDetail } from './public
 
 export type PublicPropertyControllerFindById200 = {
   id?: string;
+  /** @nullable */
+  slug?: string | null;
   code?: string;
   title?: string;
   purpose?: string;

@@ -58,7 +58,9 @@ export type RouteConfig = {
 const siteRoutes: RouteConfig[] = [
   { path: '/', element: <SiteHome /> },
   { path: '/immobili', element: <SiteProperties /> },
-  { path: '/immobile/:id', element: <SitePropertyDetail /> },
+  { path: '/property/:slug', element: <SitePropertyDetail /> },
+  // links antigos (por id) continuam abrindo o imóvel
+  { path: '/immobile/:slug', element: <SitePropertyDetail /> },
   { path: '/zone', element: <SiteZones /> },
   { path: '/zone/:zona', element: <SiteZoneDetail /> },
   { path: '/chi-siamo', element: <SiteChiSiamo /> },
