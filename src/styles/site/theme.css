@@ -13,8 +13,8 @@
   --color-site-line-dark: rgb(244 239 230 / 0.16);
 
   --font-site-display: 'Fraunces Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-site-sans: 'Manrope Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-site-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, 'SF Mono', monospace;
+  --font-site-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-site-mono: ui-monospace, SFMono-Regular, 'SF Mono', monospace;
 
   --ease-site-brand: cubic-bezier(0.22, 1, 0.36, 1);
 }

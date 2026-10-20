@@ -2,12 +2,8 @@ import { useEffect } from 'react'
 import { Controller, type Control, type FieldErrors, useController, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
-import MultiSelectField from '@/components/MultiSelectField'
-import {
-  usePersonControllerFind,
-  usePropertyControllerFindById,
-  usePurchaseProposalControllerFind,
-} from '@/api/generated/api'
+import { PersonMultiSelect, ProposalSelect } from '@/components/RemoteSelects'
+import { usePropertyControllerFindById } from '@/api/generated/api'
 import { usePropertySearchOptions } from '@/hooks/usePropertySearchOptions'
 import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import type { SaleFormValues } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
@@ -49,21 +45,6 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
     isLoading: isLoadingBuyers,
     setSearch: setBuyerSearch,
   } = usePersonSearchOptions(buyerId)
-
-  // Os 200 primeiros nomes seguem valendo pra "outros vendedores/compradores"
-  // e proposta: são listas auxiliares, de uso bem mais raro que os campos
-  // principais acima.
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-  const { data: proposals } = usePurchaseProposalControllerFind({ filter: { order: ['number ASC'], limit: 200 } })
-
-  const personOptions = (people ?? []).map((person) => ({
-    value: person.id ?? '',
-    label: person.name,
-  }))
-  const proposalOptions = (proposals ?? []).map((proposal) => ({
-    value: proposal.id ?? '',
-    label: proposal.number,
-  }))
 
   return (
     <>
@@ -135,11 +116,10 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
           control={control}
           name="proposalId"
           render={({ field }) => (
-            <SearchableSelect
+            <ProposalSelect
               label={t('vendite.partiesFields.proposalLabel')}
               value={field.value}
               onValueChange={field.onChange}
-              options={proposalOptions}
               placeholder={t('vendite.partiesFields.proposalPlaceholder')}
               searchPlaceholder={t('vendite.partiesFields.proposalSearchPlaceholder')}
               error={errors.proposalId?.message}
@@ -153,11 +133,10 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
           control={control}
           name="extraSellerIds"
           render={({ field }) => (
-            <MultiSelectField
+            <PersonMultiSelect
               label={t('vendite.partiesFields.extraSellersLabel')}
               values={field.value ?? []}
               onChange={field.onChange}
-              options={personOptions}
             />
           )}
         />
@@ -168,11 +147,10 @@ function SalePartiesFields({ control, errors }: SalePartiesFieldsProps) {
           control={control}
           name="extraBuyerIds"
           render={({ field }) => (
-            <MultiSelectField
+            <PersonMultiSelect
               label={t('vendite.partiesFields.extraBuyersLabel')}
               values={field.value ?? []}
               onChange={field.onChange}
-              options={personOptions}
             />
           )}
         />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { Outlet } from 'react-router'
 import { useIsDesktop } from '@/hooks/useIsDesktop'
 import { usePageHeader } from '@/contexts/PageHeaderContext'
@@ -16,11 +16,15 @@ function Shell() {
 
   const content = isDesktop ? (
     <DesktopLayout title={header.title} description={header.description}>
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </DesktopLayout>
   ) : (
     <MobileLayout title={header.title}>
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </MobileLayout>
   )
 

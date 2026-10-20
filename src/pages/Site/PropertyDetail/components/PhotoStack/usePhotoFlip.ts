@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, type RefObject } from 'react'
 import { gsap } from 'gsap'
+import { isReduced } from '@/lib/site/casa/shared'
 
 const MAIN_TILT = -1.2
 
@@ -57,7 +58,7 @@ export function usePhotoFlip(rootRef: RefObject<HTMLDivElement | null>, main: nu
     const state = flip.current
     flip.current = null
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const reduced = isReduced()
     if (!state || !rootRef.current || reduced) return
 
     const mainElement = rootRef.current.querySelector<HTMLElement>('.print--main')

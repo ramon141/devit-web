@@ -1,16 +1,15 @@
 import { useTranslation } from 'react-i18next'
-import SelectField, { type SelectFieldOption } from '@/components/SelectField'
-import SearchableSelect from '@/components/SearchableSelect'
+import SelectField from '@/components/SelectField'
+import { PersonSelect } from '@/components/RemoteSelects'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import type { PropertyFiltersValues } from '@/pages/Imoveis/hooks/usePropertyList'
 
 type PropertyFiltersOwnerOrderByProps = {
   filters: PropertyFiltersValues
-  ownerOptions: SelectFieldOption[]
   update: (patch: Partial<PropertyFiltersValues>) => void
 }
 
-function PropertyFiltersOwnerOrderBy({ filters, ownerOptions, update }: PropertyFiltersOwnerOrderByProps) {
+function PropertyFiltersOwnerOrderBy({ filters, update }: PropertyFiltersOwnerOrderByProps) {
   const { t } = useTranslation('imoveis')
 
   const orderByOptions = [
@@ -26,10 +25,9 @@ function PropertyFiltersOwnerOrderBy({ filters, ownerOptions, update }: Property
     <>
       <div className="sm:col-span-2">
         <FormFieldWrapper label={t('filters.ownerLabel')}>
-          <SearchableSelect
+          <PersonSelect
             value={filters.ownerId}
             onValueChange={(value) => update({ ownerId: value })}
-            options={ownerOptions}
             placeholder={t('filters.ownerPlaceholder')}
             searchPlaceholder={t('filters.searchClientPlaceholder')}
           />

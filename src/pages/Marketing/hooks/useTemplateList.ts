@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import {
   useCommunicationTemplateControllerCount,
   useCommunicationTemplateControllerFind,
@@ -13,9 +14,9 @@ export function useTemplateList() {
 
   const { data: templates, isLoading } = useCommunicationTemplateControllerFind({
     filter: { where, order: ['name ASC'], limit: pageSize, skip },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = useCommunicationTemplateControllerCount({ where })
+  const { data: countResult } = useCommunicationTemplateControllerCount({ where }, KEEP_PREVIOUS_DATA)
 
   return {
     templates: templates ?? [],

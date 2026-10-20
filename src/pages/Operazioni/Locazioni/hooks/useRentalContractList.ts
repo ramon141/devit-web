@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import { useState } from 'react'
 import {
   useRentalContractControllerCount,
@@ -74,9 +75,9 @@ export function useRentalContractList() {
       limit: pageSize,
       skip,
     },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = useRentalContractControllerCount({ where, ...brokerParams })
+  const { data: countResult } = useRentalContractControllerCount({ where, ...brokerParams }, KEEP_PREVIOUS_DATA)
 
   function setFilters(next: RentalContractFiltersValues) {
     setFiltersState(next)

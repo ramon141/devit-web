@@ -6,6 +6,7 @@ import { useBranchControllerFind } from '@/api/generated/api'
 import type { UserExcludingPasswordHashWithRelations } from '@/api/generated/models'
 import { useDeleteUser } from '@/pages/Amministrazione/Utenti/hooks/useDeleteUser'
 import { buildUserTableColumns } from '@/pages/Amministrazione/Utenti/components/UserTableColumns'
+import { STABLE_DATA } from '@/constants/queryOptions'
 
 type UserTableProps = {
   users: UserExcludingPasswordHashWithRelations[]
@@ -18,7 +19,7 @@ function UserTable({ users, isLoading, onEdit }: UserTableProps) {
   const [deleteTarget, setDeleteTarget] =
     useState<UserExcludingPasswordHashWithRelations | null>(null)
   const { handleDelete } = useDeleteUser()
-  const { data: branches } = useBranchControllerFind({ filter: {} })
+  const { data: branches } = useBranchControllerFind({ filter: {} }, STABLE_DATA)
   const branchNameById = new Map((branches ?? []).map((branch) => [branch.id, branch.name]))
 
   function confirmDelete() {

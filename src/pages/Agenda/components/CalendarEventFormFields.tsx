@@ -7,8 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
-import SearchableSelect from '@/components/SearchableSelect'
-import { useLeadControllerFind, usePersonControllerFind } from '@/api/generated/api'
+import { LeadSelect, PersonSelect } from '@/components/RemoteSelects'
 import { PersonRole } from '@/api/generated/models'
 import {
   getEventTypeOptions,
@@ -38,13 +37,6 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
   const isAllDay = watch('allDay')
   const reminder = watch('reminder')
   const recurrence = watch('recurrence')
-
-  const { data: leads } = useLeadControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-  const { data: owners } = usePersonControllerFind({
-    filter: { where: { role: PersonRole.owner }, order: ['name ASC'], limit: 200 },
-  })
-  const leadOptions = (leads ?? []).map((lead) => ({ value: lead.id ?? '', label: lead.name }))
-  const ownerOptions = (owners ?? []).map((owner) => ({ value: owner.id ?? '', label: owner.name }))
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -122,10 +114,9 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
           control={control}
           name="leadId"
           render={({ field }) => (
-            <SearchableSelect
+            <LeadSelect
               value={field.value}
               onValueChange={field.onChange}
-              options={leadOptions}
               placeholder={t('agenda:formFields.clientPlaceholder')}
               searchPlaceholder={t('agenda:formFields.clientSearchPlaceholder')}
             />
@@ -138,10 +129,10 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
           control={control}
           name="ownerId"
           render={({ field }) => (
-            <SearchableSelect
+            <PersonSelect
+              role={PersonRole.owner}
               value={field.value}
               onValueChange={field.onChange}
-              options={ownerOptions}
               placeholder={t('agenda:formFields.ownerPlaceholder')}
               searchPlaceholder={t('agenda:formFields.ownerSearchPlaceholder')}
             />

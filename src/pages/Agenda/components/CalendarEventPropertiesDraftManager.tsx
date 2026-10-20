@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import SearchableSelect from '@/components/SearchableSelect'
 import RemovableRow from '@/components/RemovableRow'
-import { usePropertyControllerFind } from '@/api/generated/api'
+import { usePropertySearchOptions } from '@/hooks/usePropertySearchOptions'
 import type { DraftProperty } from '@/pages/Agenda/hooks/useCalendarEventDraft'
 
 type CalendarEventPropertiesDraftManagerProps = {
@@ -19,14 +19,10 @@ function CalendarEventPropertiesDraftManager({
 }: CalendarEventPropertiesDraftManagerProps) {
   const { t } = useTranslation('agenda')
   const [propertyId, setPropertyId] = useState('')
-  const { data: options } = usePropertyControllerFind({ filter: { order: ['title ASC'], limit: 200 } })
-  const propertyOptions = (options ?? []).map((property) => ({
-    value: property.id ?? '',
-    label: `${property.code} · ${property.title}`,
-  }))
+  const { options, properties: knownProperties, isLoading, setSearch } = usePropertySearchOptions(propertyId)
 
   function handleAdd() {
-    const property = options?.find((item) => item.id === propertyId)
+    const property = knownProperties.find((item) => item.id === propertyId)
     if (!property?.id) return
 
     onAdd({ propertyId: property.id, code: property.code, title: property.title })
@@ -50,7 +46,9 @@ function CalendarEventPropertiesDraftManager({
           <SearchableSelect
             value={propertyId}
             onValueChange={setPropertyId}
-            options={propertyOptions}
+            options={options}
+            isLoading={isLoading}
+            onSearchChange={setSearch}
             placeholder={t('agenda:propertiesManager.placeholder')}
             searchPlaceholder={t('agenda:propertiesManager.searchPlaceholder')}
           />

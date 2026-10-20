@@ -1,51 +1,54 @@
+import { lazy, Suspense } from 'react'
 import type { ReactElement } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router'
-import Home from '@/pages/Home'
-import Login from '@/pages/Login'
-import ForgotPassword from '@/pages/ForgotPassword'
-import ResetPassword from '@/pages/ResetPassword'
-import Componentes from '@/pages/Componentes'
-import Agenda from '@/pages/Agenda'
-import ClientiPage from '@/pages/Clientes/page'
-import LeadsPage from '@/pages/Clientes/Leads/page'
-import ClienteScheda from '@/pages/Clientes/Scheda'
-import Imoveis from '@/pages/Imoveis'
-import ImovelScheda from '@/pages/Imoveis/Scheda'
-import Proposte from '@/pages/Proposte'
-import VenditePage from '@/pages/Operazioni/Vendite/page'
-import LocazioniPage from '@/pages/Operazioni/Locazioni/page'
-import AdeguamentiCanonePage from '@/pages/Operazioni/Locazioni/Adeguamenti/page'
-import ScadenziarioPage from '@/pages/Operazioni/Locazioni/Scadenziario/page'
-import Marketing from '@/pages/Marketing'
-import Statistiche from '@/pages/Statistiche'
-import Notifiche from '@/pages/Notifiche'
-import UtentiPage from '@/pages/Amministrazione/Utenti/page'
-import FilialiPage from '@/pages/Amministrazione/Filiali/page'
-import CategoriePage from '@/pages/Amministrazione/Categorie/page'
-import ZonePage from '@/pages/Amministrazione/Zone/page'
-import VideoHomePage from '@/pages/Amministrazione/VideoHome/page'
-import AuditPage from '@/pages/Amministrazione/Audit/page'
-import ProprietariPage from '@/pages/Amministrazione/Proprietari/page'
-import AreaProprietariLogin from '@/pages/Site/AreaProprietari/Login'
-import AreaProprietariDashboard from '@/pages/Site/AreaProprietari/Dashboard'
-import Profilo from '@/pages/Profilo'
-import NotFound from '@/pages/NotFound'
-import Shell from '@/components/layout/Shell'
 import { PageHeaderProvider } from '@/contexts/PageHeaderContext'
 import { Auth } from '@/auth'
-import SiteLayout from '@/pages/Site/components/SiteLayout'
-import SiteHome from '@/pages/Site/Home'
-import SiteProperties from '@/pages/Site/Properties'
-import SitePropertyDetail from '@/pages/Site/PropertyDetail'
-import SiteZones from '@/pages/Site/Zones'
-import SiteZoneDetail from '@/pages/Site/ZoneDetail'
-import SiteChiSiamo from '@/pages/Site/ChiSiamo'
-import SiteCalendari from '@/pages/Site/Calendari'
-import SiteRichieste from '@/pages/Site/Richieste'
-import SiteContatti from '@/pages/Site/Contatti'
-import SiteNews from '@/pages/Site/News'
-import SitePrivacyCookies from '@/pages/Site/PrivacyCookies'
+import { useSessionRenewal } from '@/hooks/useSessionRenewal'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
+
+const Home = lazy(() => import('@/pages/Home'))
+const Login = lazy(() => import('@/pages/Login'))
+const ForgotPassword = lazy(() => import('@/pages/ForgotPassword'))
+const ResetPassword = lazy(() => import('@/pages/ResetPassword'))
+const Componentes = lazy(() => import('@/pages/Componentes'))
+const Agenda = lazy(() => import('@/pages/Agenda'))
+const ClientiPage = lazy(() => import('@/pages/Clientes/page'))
+const LeadsPage = lazy(() => import('@/pages/Clientes/Leads/page'))
+const ClienteScheda = lazy(() => import('@/pages/Clientes/Scheda'))
+const Imoveis = lazy(() => import('@/pages/Imoveis'))
+const ImovelScheda = lazy(() => import('@/pages/Imoveis/Scheda'))
+const Proposte = lazy(() => import('@/pages/Proposte'))
+const VenditePage = lazy(() => import('@/pages/Operazioni/Vendite/page'))
+const LocazioniPage = lazy(() => import('@/pages/Operazioni/Locazioni/page'))
+const AdeguamentiCanonePage = lazy(() => import('@/pages/Operazioni/Locazioni/Adeguamenti/page'))
+const ScadenziarioPage = lazy(() => import('@/pages/Operazioni/Locazioni/Scadenziario/page'))
+const Marketing = lazy(() => import('@/pages/Marketing'))
+const Statistiche = lazy(() => import('@/pages/Statistiche'))
+const Notifiche = lazy(() => import('@/pages/Notifiche'))
+const UtentiPage = lazy(() => import('@/pages/Amministrazione/Utenti/page'))
+const FilialiPage = lazy(() => import('@/pages/Amministrazione/Filiali/page'))
+const CategoriePage = lazy(() => import('@/pages/Amministrazione/Categorie/page'))
+const ZonePage = lazy(() => import('@/pages/Amministrazione/Zone/page'))
+const VideoHomePage = lazy(() => import('@/pages/Amministrazione/VideoHome/page'))
+const AuditPage = lazy(() => import('@/pages/Amministrazione/Audit/page'))
+const ProprietariPage = lazy(() => import('@/pages/Amministrazione/Proprietari/page'))
+const AreaProprietariLogin = lazy(() => import('@/pages/Site/AreaProprietari/Login'))
+const AreaProprietariDashboard = lazy(() => import('@/pages/Site/AreaProprietari/Dashboard'))
+const Profilo = lazy(() => import('@/pages/Profilo'))
+const NotFound = lazy(() => import('@/pages/NotFound'))
+const Shell = lazy(() => import('@/components/layout/Shell'))
+const SiteLayout = lazy(() => import('@/pages/Site/components/SiteLayout'))
+const SiteHome = lazy(() => import('@/pages/Site/Home'))
+const SiteProperties = lazy(() => import('@/pages/Site/Properties'))
+const SitePropertyDetail = lazy(() => import('@/pages/Site/PropertyDetail'))
+const SiteZones = lazy(() => import('@/pages/Site/Zones'))
+const SiteZoneDetail = lazy(() => import('@/pages/Site/ZoneDetail'))
+const SiteChiSiamo = lazy(() => import('@/pages/Site/ChiSiamo'))
+const SiteCalendari = lazy(() => import('@/pages/Site/Calendari'))
+const SiteRichieste = lazy(() => import('@/pages/Site/Richieste'))
+const SiteContatti = lazy(() => import('@/pages/Site/Contatti'))
+const SiteNews = lazy(() => import('@/pages/Site/News'))
+const SitePrivacyCookies = lazy(() => import('@/pages/Site/PrivacyCookies'))
 
 export type RouteConfig = {
   path: string
@@ -111,11 +114,15 @@ function toAbsoluteCrmPath(path: string): string {
 // Layout persistente: Sidebar/Header non rimontano più ad ogni navigazione,
 // solo il contenuto dentro <Outlet/> (vedi Shell)
 function PrivateRoute() {
+  useSessionRenewal()
+
   if (!Auth.isAuthenticated()) return <Navigate to={`${CRM_BASE_PATH}/login`} replace />
 
   return (
     <PageHeaderProvider>
-      <Shell />
+      <Suspense fallback={null}>
+        <Shell />
+      </Suspense>
     </PageHeaderProvider>
   )
 }
@@ -124,7 +131,8 @@ function AppRoutes() {
   const location = useLocation()
 
   return (
-    <Routes location={location}>
+    <Suspense fallback={null}>
+      <Routes location={location}>
       <Route path={`${CRM_BASE_PATH}/login`} element={<Login />} />
       <Route path={`${CRM_BASE_PATH}/forgot-password`} element={<ForgotPassword />} />
       <Route path={`${CRM_BASE_PATH}/reset-password`} element={<ResetPassword />} />
@@ -142,7 +150,8 @@ function AppRoutes() {
       </Route>
 
       <Route path="*" element={<NotFound />} />
-    </Routes>
+      </Routes>
+    </Suspense>
   )
 }
 

@@ -1,4 +1,5 @@
 import { useSiteDict } from '@/lib/site/dict'
+import SiteVideo from '@/pages/Site/components/SiteVideo'
 import Room from '@/pages/Site/components/Room'
 
 // o palazzo acende as janelas uma a uma quando a página abre (toca uma vez)
@@ -8,17 +9,15 @@ function AboutHero() {
   return (
     <Room tone="dark" className="about-hero py-20" inner={false}>
       <div className="about-bg" aria-hidden>
-        <video
+        <SiteVideo
+          name="finestre"
           data-play-once
           className="about-video"
           muted
           playsInline
           preload="metadata"
           poster="/video/finestre-poster.jpg"
-        >
-          <source src="/video/finestre-720.mp4" type="video/mp4" media="(max-width: 768px)" />
-          <source src="/video/finestre-1080.mp4" type="video/mp4" />
-        </video>
+        />
         <div className="about-veil" />
       </div>
 

@@ -44,12 +44,24 @@ export function useGroupSources({
   const isLead = kind === 'lead'
 
   const { data: links, isLoading: loadingLinks } = useLeadNeighborhoodControllerFind(
-    { filter: { where: { neighborhoodId: { inq: neighborhoodIds } }, limit: 5000 } },
+    {
+      filter: {
+        where: { neighborhoodId: { inq: neighborhoodIds } },
+        fields: { leadId: true },
+        limit: 5000,
+      },
+    },
     { query: { enabled: open && isLead && hasNeighborhoods } },
   )
 
   const { data: addresses, isLoading: loadingAddresses } = useAddressControllerFind(
-    { filter: { where: { neighborhoodId: { inq: neighborhoodIds } }, limit: 5000 } },
+    {
+      filter: {
+        where: { neighborhoodId: { inq: neighborhoodIds } },
+        fields: { id: true },
+        limit: 5000,
+      },
+    },
     { query: { enabled: open && !isLead && hasNeighborhoods } },
   )
 
@@ -60,10 +72,11 @@ export function useGroupSources({
           street: { neq: null },
           ...(hasNeighborhoods ? { neighborhoodId: { inq: neighborhoodIds } } : {}),
         },
+        fields: { street: true },
         limit: 5000,
       },
     },
-    { query: { enabled: open } },
+    { query: { enabled: open, staleTime: 5 * 60 * 1000 } },
   )
 
   const loadingFilter = hasNeighborhoods && (isLead ? loadingLinks : loadingAddresses)
@@ -74,6 +87,7 @@ export function useGroupSources({
     {
       filter: {
         where: hasNeighborhoods ? { id: { inq: linkedLeadIds } } : {},
+        fields: { id: true, name: true, email: true, phone: true },
         order: ['name ASC'],
         limit: GROUP_LIMIT,
       },

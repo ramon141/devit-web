@@ -6,6 +6,7 @@ import SearchableSelect from '@/components/SearchableSelect'
 import { usePropertyCategoryControllerFind } from '@/api/generated/api'
 import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
+import { STABLE_DATA } from '@/constants/queryOptions'
 
 type PropertyCategoryOwnerFieldsProps = {
   control: Control<PropertyFormValues>
@@ -14,7 +15,7 @@ type PropertyCategoryOwnerFieldsProps = {
 
 function PropertyCategoryOwnerFields({ control, errors }: PropertyCategoryOwnerFieldsProps) {
   const { t } = useTranslation('imoveis')
-  const { data: categories } = usePropertyCategoryControllerFind({ filter: { order: ['name ASC'] } })
+  const { data: categories } = usePropertyCategoryControllerFind({ filter: { order: ['name ASC'] } }, STABLE_DATA)
   const ownerId = useWatch({ control, name: 'ownerId' })
   const {
     options: ownerOptions,

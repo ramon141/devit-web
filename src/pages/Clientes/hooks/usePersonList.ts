@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import { useState } from 'react'
 import { usePersonControllerCount, usePersonControllerFind } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
@@ -29,9 +30,9 @@ export function usePersonList() {
       skip,
       include: [{ relation: 'address' }],
     },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = usePersonControllerCount({ where })
+  const { data: countResult } = usePersonControllerCount({ where }, KEEP_PREVIOUS_DATA)
 
   return {
     people: people ?? [],

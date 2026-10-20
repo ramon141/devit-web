@@ -40,4 +40,14 @@ export type PublicLeadControllerCreateBody = {
   subject?: string | null;
   /** @nullable */
   propertyId?: string | null;
+  /**
+   * @maxLength 255
+   * @nullable
+   */
+  website?: string | null;
+  /**
+   * @maxLength 2048
+   * @nullable
+   */
+  turnstileToken?: string | null;
 };

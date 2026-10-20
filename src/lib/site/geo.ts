@@ -1,12 +1,12 @@
 /**
- * O mapa estático do golfo (public/img/mappa-napoli.jpg): 2048×1280, tiles
+ * O mapa estático do golfo (public/img/mappa-napoli.webp): 2048×1280, tiles
  * OpenStreetMap z14 costurados e dessaturados, de Pozzuoli a Torre del Greco.
  * Projeção Web Mercator — estas funções colocam um par lat/lng em % da imagem.
  * Serve ao mapa da home e ao "dove si trova" da ficha, e funciona sem chave
  * de API nem scripts externos.
  */
 export const MAP = {
-  src: '/img/mappa-napoli.jpg',
+  src: '/img/mappa-napoli.webp',
   width: 2048,
   height: 1280,
   north: 40.91351257612758,

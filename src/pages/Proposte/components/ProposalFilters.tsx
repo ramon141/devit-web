@@ -3,13 +3,9 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import SelectField from '@/components/SelectField'
-import SearchableSelect from '@/components/SearchableSelect'
+import { PersonSelect, PropertySelect } from '@/components/RemoteSelects'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import BrokerCodeFilter from '@/components/BrokerCodeFilter'
-import {
-  usePersonControllerFind,
-  usePropertyControllerFind,
-} from '@/api/generated/api'
 import { getProposalStatusOptions } from '@/pages/Proposte/schemas/proposalSchema'
 import type { ProposalFiltersValues } from '@/pages/Proposte/hooks/useProposalList'
 
@@ -20,14 +16,6 @@ type ProposalFiltersProps = {
 
 function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
   const { t } = useTranslation('proposte')
-  const { data: properties } = usePropertyControllerFind({ filter: { order: ['code ASC'], limit: 200 } })
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-
-  const propertyOptions = (properties ?? []).map((property) => ({
-    value: property.id ?? '',
-    label: `${property.code} · ${property.title}`,
-  }))
-  const buyerOptions = (people ?? []).map((person) => ({ value: person.id ?? '', label: person.name }))
   const financedOptions = [
     { value: 'true', label: t('filters.financedYes') },
     { value: 'false', label: t('filters.financedNo') },
@@ -58,8 +46,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper id="proposte-property-filter" label={t('filters.propertyLabel')}>
-        <SearchableSelect
-          options={propertyOptions}
+        <PropertySelect
           value={filters.propertyId}
           onValueChange={(value) => update({ propertyId: value })}
           placeholder={t('filters.all')}
@@ -67,8 +54,7 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper id="proposte-buyer-filter" label={t('filters.buyerLabel')}>
-        <SearchableSelect
-          options={buyerOptions}
+        <PersonSelect
           value={filters.buyerId}
           onValueChange={(value) => update({ buyerId: value })}
           placeholder={t('filters.all')}

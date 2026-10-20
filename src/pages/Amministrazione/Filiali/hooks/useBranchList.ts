@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import { useBranchControllerCount, useBranchControllerFind } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
 import { toLikePattern } from '@/utils/toLikePattern'
@@ -10,9 +11,9 @@ export function useBranchList() {
 
   const { data: branches, isLoading } = useBranchControllerFind({
     filter: { where, order: ['name ASC'], limit: pageSize, skip },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = useBranchControllerCount({ where })
+  const { data: countResult } = useBranchControllerCount({ where }, KEEP_PREVIOUS_DATA)
 
   return {
     branches: branches ?? [],

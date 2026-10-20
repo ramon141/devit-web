@@ -12,7 +12,17 @@ function MapPinCard({ pin, onClose }: { pin: MapPin; onClose: () => void }) {
 
   return (
     <div className="mappa-card" role="dialog" aria-label={pin.title}>
-      {hasCover && <img src={pin.cover} alt="" className="mappa-card-img" />}
+      {hasCover && (
+        <img
+          src={pin.cover}
+          alt=""
+          width={320}
+          height={200}
+          loading="lazy"
+          decoding="async"
+          className="mappa-card-img"
+        />
+      )}
 
       <div className="mappa-card-body">
         <p className="font-site-mono text-[0.66rem] uppercase tracking-[0.14em] text-site-muted">

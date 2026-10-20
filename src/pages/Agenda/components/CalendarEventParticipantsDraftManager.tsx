@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
-import SearchableSelect from '@/components/SearchableSelect'
 import RemovableRow from '@/components/RemovableRow'
-import { usePersonControllerFind } from '@/api/generated/api'
+import SearchableSelect from '@/components/SearchableSelect'
+import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import type { DraftParticipant } from '@/pages/Agenda/hooks/useCalendarEventDraft'
 
 type CalendarEventParticipantsDraftManagerProps = {
@@ -19,11 +19,10 @@ function CalendarEventParticipantsDraftManager({
 }: CalendarEventParticipantsDraftManagerProps) {
   const { t } = useTranslation('agenda')
   const [personId, setPersonId] = useState('')
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-  const personOptions = (people ?? []).map((person) => ({ value: person.id ?? '', label: person.name }))
+  const { options, people, isLoading, setSearch } = usePersonSearchOptions(personId)
 
   function handleAdd() {
-    const person = people?.find((item) => item.id === personId)
+    const person = people.find((item) => item.id === personId)
     if (!person?.id) return
 
     onAdd({ personId: person.id, personName: person.name })
@@ -45,7 +44,9 @@ function CalendarEventParticipantsDraftManager({
           <SearchableSelect
             value={personId}
             onValueChange={setPersonId}
-            options={personOptions}
+            options={options}
+            isLoading={isLoading}
+            onSearchChange={setSearch}
             placeholder={t('agenda:participantsManager.placeholder')}
             searchPlaceholder={t('agenda:participantsManager.searchPlaceholder')}
           />

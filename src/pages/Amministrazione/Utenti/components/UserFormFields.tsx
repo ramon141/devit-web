@@ -8,6 +8,7 @@ import SelectField from '@/components/SelectField'
 import AvatarUpload from '@/components/AvatarUpload'
 import { useBranchControllerFind } from '@/api/generated/api'
 import { getAccessLevelOptions, type UserFormValues } from '@/pages/Amministrazione/Utenti/schemas/userSchema'
+import { STABLE_DATA } from '@/constants/queryOptions'
 
 type UserFormFieldsProps = {
   form: UseFormReturn<UserFormValues>
@@ -26,7 +27,7 @@ function UserFormFields({ form, isEditing, avatarFiles, setAvatarFiles, avatarUr
   const { t } = useTranslation('amministrazione')
   const { register, control, watch } = form
   const { errors } = useFormState({ control })
-  const { data: branches } = useBranchControllerFind({ filter: { order: ['name ASC'] } })
+  const { data: branches } = useBranchControllerFind({ filter: { order: ['name ASC'] } }, STABLE_DATA)
   const accessLevelOptions = useMemo(() => getAccessLevelOptions(t), [t])
   const branchOptions = (branches ?? []).map((branch) => ({
     value: branch.id ?? '',

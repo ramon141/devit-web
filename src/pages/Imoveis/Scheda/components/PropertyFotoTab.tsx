@@ -25,7 +25,13 @@ function PhotoCard({ photo, onSetCover, onRemove }: PhotoCardProps) {
   return (
     <div className="relative overflow-hidden rounded-lg ring-1 ring-border">
       {photo.attachment?.url ? (
-        <img src={photo.attachment.url} alt={photo.caption ?? ''} className="aspect-video w-full object-cover" />
+        <img
+          src={photo.attachment.url}
+          alt={photo.caption ?? ''}
+          loading="lazy"
+          decoding="async"
+          className="aspect-video w-full object-cover"
+        />
       ) : (
         <div className="aspect-video w-full bg-muted" />
       )}

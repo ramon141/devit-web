@@ -13,6 +13,9 @@ type ParamValue =
 
 export const api = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API_URL,
+  withCredentials: true,
+  // Cabeçalho exigido pela API em escritas autenticadas por cookie (proteção CSRF)
+  headers: { 'X-Requested-With': 'devit-web' },
   paramsSerializer: {
     serialize: (params: Record<string, ParamValue>) => {
       const searchParams = new URLSearchParams()
@@ -34,24 +37,16 @@ export const api = axios.create({
   },
 })
 
-api.interceptors.request.use((config) => {
-  const token = Auth.getToken()
-
-  if (token && config.headers) {
-    config.headers.Authorization = `Bearer ${token}`
-  }
-
-  return config
-})
-
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
     const requestUrl = error.request?.responseURL ?? ''
     const status = error.response?.status
 
-    if (status === 401 && !requestUrl.endsWith('/login')) {
-      Auth.logout()
+    const isAuthEndpoint = requestUrl.endsWith('/login') || requestUrl.endsWith('/auth/logout')
+
+    if (status === 401 && !isAuthEndpoint) {
+      Auth.logout(true, false)
     }
 
     if (error.code === 'ERR_NETWORK') {

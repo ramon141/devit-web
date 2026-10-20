@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import {
   usePropertyCategoryControllerCount,
   usePropertyCategoryControllerFind,
@@ -13,9 +14,9 @@ export function useCategoryList() {
 
   const { data: categories, isLoading } = usePropertyCategoryControllerFind({
     filter: { where, order: ['displayOrder ASC', 'name ASC'], limit: pageSize, skip },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = usePropertyCategoryControllerCount({ where })
+  const { data: countResult } = usePropertyCategoryControllerCount({ where }, KEEP_PREVIOUS_DATA)
 
   return {
     categories: categories ?? [],

@@ -4,10 +4,9 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import SelectField from '@/components/SelectField'
-import SearchableSelect from '@/components/SearchableSelect'
+import { PersonSelect } from '@/components/RemoteSelects'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import BrokerCodeFilter from '@/components/BrokerCodeFilter'
-import { usePersonControllerFind } from '@/api/generated/api'
 import { getRentalSituationOptions } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 import type { RentalContractFiltersValues } from '@/pages/Operazioni/Locazioni/hooks/useRentalContractList'
 
@@ -16,16 +15,8 @@ type RentalFiltersProps = {
   onChange: (filters: RentalContractFiltersValues) => void
 }
 
-function personToOption(person: { id?: string; name: string }) {
-  return { value: person.id ?? '', label: person.name }
-}
-
 function RentalFilters({ filters, onChange }: RentalFiltersProps) {
   const { t } = useTranslation('operazioni')
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-
-  const personOptions = (people ?? []).map(personToOption)
-
   function update(patch: Partial<RentalContractFiltersValues>) {
     onChange({ ...filters, ...patch })
   }
@@ -42,8 +33,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper id="locazioni-owner-filter" label={t('locazioni.filters.ownerLabel')}>
-        <SearchableSelect
-          options={personOptions}
+        <PersonSelect
           value={filters.ownerId}
           onValueChange={(value) => update({ ownerId: value })}
           placeholder={t('locazioni.filters.all')}
@@ -51,8 +41,7 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper id="locazioni-tenant-filter" label={t('locazioni.filters.tenantLabel')}>
-        <SearchableSelect
-          options={personOptions}
+        <PersonSelect
           value={filters.tenantId}
           onValueChange={(value) => update({ tenantId: value })}
           placeholder={t('locazioni.filters.all')}

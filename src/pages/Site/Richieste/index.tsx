@@ -6,11 +6,12 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import TurnstileWidget from '@/components/TurnstileWidget'
 import { useRichiesteForm } from '@/pages/Site/Richieste/hooks/useRichiesteForm'
 
 function Richieste() {
   const { t } = useTranslation('site')
-  const { form, formKey, isSubmitting, onSubmit } = useRichiesteForm()
+  const { form, formKey, setTurnstileToken, isSubmitting, onSubmit } = useRichiesteForm()
   const { register, control, formState } = form
   const { errors } = formState
   const requestType = useWatch({ control, name: 'requestType' })
@@ -120,6 +121,8 @@ function Richieste() {
         {errors.acceptTerms && (
           <p className="text-sm text-destructive">{errors.acceptTerms.message}</p>
         )}
+
+        <TurnstileWidget onToken={setTurnstileToken} />
 
         <Button type="submit" disabled={isSubmitting} className="w-full">
           {t('richieste.submit')}

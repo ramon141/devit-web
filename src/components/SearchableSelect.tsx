@@ -19,7 +19,7 @@ export type SearchableSelectOption = {
   label: string
 }
 
-type SearchableSelectProps = {
+export type SearchableSelectProps = {
   options: SearchableSelectOption[]
   value: string | undefined
   onValueChange: (value: string) => void

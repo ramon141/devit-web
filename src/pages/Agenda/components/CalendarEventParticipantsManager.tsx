@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
-import SearchableSelect from '@/components/SearchableSelect'
+import { PersonSelect } from '@/components/RemoteSelects'
 import RemovableRow from '@/components/RemovableRow'
-import { usePersonControllerFind } from '@/api/generated/api'
 import { useCalendarEventParticipants } from '@/pages/Agenda/hooks/useCalendarEventParticipants'
 
 type CalendarEventParticipantsManagerProps = {
@@ -13,8 +12,6 @@ function CalendarEventParticipantsManager({ calendarEventId }: CalendarEventPart
   const { t } = useTranslation('agenda')
   const { participants, personId, setPersonId, addParticipant, removeParticipant } =
     useCalendarEventParticipants(calendarEventId)
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-  const personOptions = (people ?? []).map((person) => ({ value: person.id ?? '', label: person.name }))
 
   return (
     <div className="grid gap-3">
@@ -31,10 +28,9 @@ function CalendarEventParticipantsManager({ calendarEventId }: CalendarEventPart
 
       <div className="flex flex-wrap items-end gap-2">
         <div className="min-w-52 flex-1">
-          <SearchableSelect
+          <PersonSelect
             value={personId}
             onValueChange={setPersonId}
-            options={personOptions}
             placeholder={t('agenda:participantsManager.placeholder')}
             searchPlaceholder={t('agenda:participantsManager.searchPlaceholder')}
           />

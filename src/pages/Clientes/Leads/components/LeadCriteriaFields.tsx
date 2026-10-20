@@ -8,6 +8,7 @@ import { usePropertyCategoryControllerFind } from '@/api/generated/api'
 import { getLeadPurposeOptions, type LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
 import { useNeighborhoodOptions } from '@/hooks/useNeighborhoodOptions'
 import LeadRangeFields from '@/pages/Clientes/Leads/components/LeadRangeFields'
+import { STABLE_DATA } from '@/constants/queryOptions'
 
 type LeadCriteriaFieldsProps = {
   form: UseFormReturn<LeadFormValues>
@@ -22,7 +23,7 @@ function LeadCriteriaFields({ form }: LeadCriteriaFieldsProps) {
 
   const { data: categories } = usePropertyCategoryControllerFind({
     filter: { where: { active: true }, order: ['displayOrder ASC', 'name ASC'] },
-  })
+  }, STABLE_DATA)
 
   const categoryOptions = (categories ?? []).map((category) => ({
     value: category.id ?? '',

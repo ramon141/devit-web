@@ -2,7 +2,6 @@ import { Controller, type Control, type FieldErrors, type UseFormSetValue, useWa
 import { useTranslation } from 'react-i18next'
 import SearchableSelect from '@/components/SearchableSelect'
 import PartyListManager from '@/components/PartyListManager'
-import { usePersonControllerFind } from '@/api/generated/api'
 import { usePropertySearchOptions } from '@/hooks/usePropertySearchOptions'
 import type { RentalContractFormValues } from '@/pages/Operazioni/Locazioni/schemas/rentalContractSchema'
 
@@ -32,7 +31,6 @@ function RentalPartiesFields({
     isLoading: isLoadingProperties,
     setSearch: setPropertySearch,
   } = usePropertySearchOptions(propertyId)
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
 
   function updateOwnerIds(ids: string[]) {
     setOwnerIds(ids)
@@ -43,11 +41,6 @@ function RentalPartiesFields({
     setTenantIds(ids)
     setValue('tenantId', ids.filter(Boolean)[0] ?? '', { shouldValidate: true })
   }
-
-  const personOptions = (people ?? []).map((person) => ({
-    value: person.id ?? '',
-    label: person.name,
-  }))
 
   return (
     <>
@@ -76,7 +69,6 @@ function RentalPartiesFields({
         <PartyListManager
           label={t('locazioni.partiesFields.ownerLabel')}
           required
-          options={personOptions}
           personIds={ownerIds}
           onChange={updateOwnerIds}
           placeholder={t('locazioni.partiesFields.ownerPlaceholder')}
@@ -91,7 +83,6 @@ function RentalPartiesFields({
         <PartyListManager
           label={t('locazioni.partiesFields.tenantLabel')}
           required
-          options={personOptions}
           personIds={tenantIds}
           onChange={updateTenantIds}
           placeholder={t('locazioni.partiesFields.tenantPlaceholder')}

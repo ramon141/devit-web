@@ -1,4 +1,5 @@
 import { useNeighborhoodControllerFind } from '@/api/generated/api'
+import { STABLE_DATA } from '@/constants/queryOptions'
 
 // Opções de quartiere; com "city" mostra apenas os da cidade e encurta o label
 export function useNeighborhoodOptions(city?: string) {
@@ -8,7 +9,7 @@ export function useNeighborhoodOptions(city?: string) {
       order: ['name ASC'],
       include: [{ relation: 'zone' }],
     },
-  })
+  }, STABLE_DATA)
 
   return (neighborhoods ?? [])
     .filter((neighborhood) => !city || neighborhood.zone?.city === city)

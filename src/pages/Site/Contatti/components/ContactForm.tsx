@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
+import TurnstileWidget from '@/components/TurnstileWidget'
 import { SITE_PATHS } from '@/lib/site/paths'
 import ContactFields from '@/pages/Site/Contatti/components/ContactFields'
 import { useContattiForm } from '@/pages/Site/Contatti/hooks/useContattiForm'
@@ -10,7 +11,7 @@ import { useContattiForm } from '@/pages/Site/Contatti/hooks/useContattiForm'
 // Envia o contato como lead para a API (mesmo fluxo de antes, novo visual)
 function ContactForm() {
   const { t } = useTranslation('site')
-  const { form, formKey, isSubmitting, onSubmit } = useContattiForm()
+  const { form, formKey, setTurnstileToken, isSubmitting, onSubmit } = useContattiForm()
   const { register, control, formState } = form
   const { errors } = formState
 
@@ -35,6 +36,8 @@ function ContactForm() {
         )}
       />
       {errors.acceptPrivacy && <p className="text-sm text-destructive">{errors.acceptPrivacy.message}</p>}
+
+      <TurnstileWidget onToken={setTurnstileToken} />
 
       <Button type="submit" disabled={isSubmitting} className="justify-self-start px-7">
         {t('contatti.submit')}

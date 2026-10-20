@@ -8,6 +8,9 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
+      // dados dinâmicos: validade curta; estáveis sobrescrevem na própria query
+      staleTime: 30 * 1000,
+      gcTime: 10 * 60 * 1000,
     },
   },
 })

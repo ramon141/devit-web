@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import { useState } from 'react'
 import {
   usePurchaseProposalControllerCount,
@@ -68,9 +69,9 @@ export function useProposalList() {
       limit: pageSize,
       skip,
     },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = usePurchaseProposalControllerCount({ where, ...brokerParams })
+  const { data: countResult } = usePurchaseProposalControllerCount({ where, ...brokerParams }, KEEP_PREVIOUS_DATA)
 
   function setFilters(next: ProposalFiltersValues) {
     setFiltersState(next)

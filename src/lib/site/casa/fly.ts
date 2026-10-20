@@ -2,7 +2,7 @@ import { gsap } from 'gsap'
 import { whiteOut } from './mist'
 import { isReduced } from './shared'
 
-const H264 = 'video/mp4; codecs="avc1.640028"'
+const VP9 = 'video/webm; codecs="vp9"'
 const PLAYBACK_RATE = 1 // o vídeo já traz a rampa de velocidade; 1 = natural
 
 /** Aquece o vídeo do voo (chamado no primeiro toque/hover numa pasta). */
@@ -39,7 +39,7 @@ export function flyIn(onNavigate: () => void) {
   const video = fly?.querySelector('video')
 
   if (!fly || !video || isReduced()) return null
-  if (!video.canPlayType || !video.canPlayType(H264)) return null
+  if (!video.canPlayType || !video.canPlayType(VP9)) return null
 
   fly.classList.add('is-active')
   gsap.set(fly, { opacity: 1 }) // já está debaixo do branco

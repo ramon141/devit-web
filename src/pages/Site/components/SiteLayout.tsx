@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, Suspense } from 'react'
 import { Outlet } from 'react-router'
 import { useSiteDict } from '@/lib/site/dict'
 import Atmosphere from '@/pages/Site/components/Atmosphere'
@@ -25,7 +25,9 @@ function SiteLayout() {
       <main id="main">
         {/* remonta a página ao trocar de idioma: os títulos divididos pelo SplitText não se atualizam sozinhos */}
         <Fragment key={locale}>
-          <Outlet />
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
         </Fragment>
       </main>
 

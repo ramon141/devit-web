@@ -3,6 +3,7 @@ import { formatNumber, useSiteDict } from '@/lib/site/dict'
 import { useHomeVideoUrl } from '@/pages/Site/hooks/useSiteData'
 import SearchFilters from '@/pages/Site/components/SearchFilters'
 import { EMPTY_FILTERS } from '@/pages/Site/components/SearchFilters/filterValues'
+import SiteVideo from '@/pages/Site/components/SiteVideo'
 
 const FOUNDED_YEAR = 1995
 
@@ -45,8 +46,9 @@ function HomeHero({ total, offices }: { total: number; offices: number }) {
   return (
     <section data-hero className="hero relative overflow-hidden bg-site-ink text-site-cream">
       <div className="hero-media" aria-hidden>
-        <video
-          key={customVideoUrl ?? 'default'}
+        <SiteVideo
+          name="hero-loop"
+          customSrc={customVideoUrl}
           className="hero-video"
           autoPlay
           muted
@@ -56,11 +58,7 @@ function HomeHero({ total, offices }: { total: number; offices: number }) {
           poster="/video/hero-poster.jpg"
           width={1920}
           height={1080}
-        >
-          {customVideoUrl ? <source src={customVideoUrl} type="video/webm" /> : null}
-          <source src="/video/hero-loop-720.mp4" type="video/mp4" media="(max-width: 768px)" />
-          <source src="/video/hero-loop-1080.mp4" type="video/mp4" />
-        </video>
+        />
         <div className="hero-veil" />
       </div>
 

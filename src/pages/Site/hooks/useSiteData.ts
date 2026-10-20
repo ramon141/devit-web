@@ -16,11 +16,14 @@ import { toNumber } from '@/lib/site/property'
 import { SITE_PATHS } from '@/lib/site/paths'
 import type { SiteCard, SiteDetail } from '@/lib/site/types'
 import type { MapPin } from '@/pages/Site/Home/types/mapPin'
+import { STABLE_DATA } from '@/constants/queryOptions'
 
 // Toda leitura do site público passa por aqui (endpoints /public/*, sem login)
 
 export function usePropertyList(params: PublicPropertyControllerFindParams) {
-  return usePublicPropertyControllerFind(params, { query: { placeholderData: keepPreviousData } })
+  return usePublicPropertyControllerFind(params, {
+    query: { placeholderData: keepPreviousData, staleTime: 60 * 1000 },
+  })
 }
 
 export function useFeaturedProperties(limit: number) {
@@ -32,22 +35,22 @@ export function useProperty(slug: string) {
 }
 
 export function useZones() {
-  return usePublicZoneControllerFind()
+  return usePublicZoneControllerFind(STABLE_DATA)
 }
 
 export function useBranches() {
-  return usePublicBranchControllerFind()
+  return usePublicBranchControllerFind(STABLE_DATA)
 }
 
 // Vídeo da abertura configurado no gestionale (null = usar o vídeo padrão)
 export function useHomeVideoUrl() {
-  const { data } = usePublicHomeVideoControllerCurrent()
+  const { data } = usePublicHomeVideoControllerCurrent(STABLE_DATA)
 
   return data?.url ?? null
 }
 
 export function useCategoryFacets() {
-  return usePublicPropertyControllerFacets()
+  return usePublicPropertyControllerFacets(undefined, STABLE_DATA)
 }
 
 // Imóveis parecidos: mesma zona (ou cidade) e mesmo tipo de contrato, sem o próprio imóvel
@@ -71,7 +74,7 @@ export function useRelatedProperties(detail: SiteDetail | undefined) {
 // Só o necessário para os pontos do mapa (a API já devolve só o que tem coordenada)
 export function useMapPins() {
   const { dict, locale } = useSiteDict()
-  const { data, isSuccess } = usePublicPropertyMapControllerFind()
+  const { data, isSuccess } = usePublicPropertyMapControllerFind({ query: { staleTime: 5 * 60 * 1000 } })
 
   const pins = useMemo<MapPin[]>(
     () =>

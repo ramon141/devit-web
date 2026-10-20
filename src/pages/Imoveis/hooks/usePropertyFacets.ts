@@ -10,6 +10,7 @@ export function usePropertyFacets() {
       const { data } = await api.get<PropertyFacets>('/properties/facets')
       return data
     },
+    staleTime: 30 * 60 * 1000,
   })
 
   return { cities: data?.cities ?? [] }

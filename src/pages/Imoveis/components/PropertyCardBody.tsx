@@ -24,7 +24,13 @@ function PropertyCardBody({ property }: PropertyCardBodyProps) {
     <div className="flex flex-col gap-3 p-3 sm:flex-row">
       <div className="flex h-28 w-full shrink-0 items-center justify-center overflow-hidden rounded-md bg-muted sm:w-40">
         {photo ? (
-          <img src={photo} alt={property.title} className="h-full w-full object-cover" />
+          <img
+            src={photo}
+            alt={property.title}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
         ) : (
           <ImageIcon className="size-8 text-muted-foreground" />
         )}

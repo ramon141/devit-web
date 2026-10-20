@@ -32,6 +32,7 @@ export function useRichiesteForm() {
   // Key do <form noValidate>: forçar remontagem no sucesso, pois o reset do RHF não
   // limpa visualmente os inputs (ref interna do Field do base-ui prevalece)
   const [formKey, setFormKey] = useState(0)
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
 
   const richiesteSchema = useMemo(() => createRichiesteSchema(t), [t])
 
@@ -43,6 +44,7 @@ export function useRichiesteForm() {
   function onSubmit(values: RichiesteFormValues) {
     const promise = mutateAsync({
       data: {
+        turnstileToken,
         requestType: values.requestType,
         name: values.name,
         email: values.email,
@@ -68,6 +70,7 @@ export function useRichiesteForm() {
   return {
     form,
     formKey,
+    setTurnstileToken,
     isSubmitting: isPending,
     onSubmit: form.handleSubmit(onSubmit),
   }

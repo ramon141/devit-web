@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import { useState } from 'react'
 import { useAuditLogControllerCount, useAuditLogControllerFind } from '@/api/generated/api'
 import { AUDIT_PAGE_SIZE as PAGE_SIZE } from '@/constants/pagination'
@@ -11,9 +12,9 @@ export function useAuditLogList() {
       limit: PAGE_SIZE,
       skip: (page - 1) * PAGE_SIZE,
     },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = useAuditLogControllerCount({})
+  const { data: countResult } = useAuditLogControllerCount({}, KEEP_PREVIOUS_DATA)
 
   return {
     logs: logs ?? [],

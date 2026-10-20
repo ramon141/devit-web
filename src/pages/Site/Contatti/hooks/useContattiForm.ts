@@ -30,6 +30,7 @@ export function useContattiForm() {
   // Key do <form noValidate>: forçar remontagem no sucesso, pois o reset do RHF não
   // limpa visualmente os inputs (ref interna do Field do base-ui prevalece)
   const [formKey, setFormKey] = useState(0)
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
 
   const contattiSchema = useMemo(() => createContattiSchema(t), [t])
 
@@ -41,6 +42,7 @@ export function useContattiForm() {
   function onSubmit(values: ContattiFormValues) {
     const promise = mutateAsync({
       data: {
+        turnstileToken,
         requestType: 'contact',
         name: values.name,
         email: values.email,
@@ -65,6 +67,7 @@ export function useContattiForm() {
   return {
     form,
     formKey,
+    setTurnstileToken,
     isSubmitting: isPending,
     onSubmit: form.handleSubmit(onSubmit),
   }

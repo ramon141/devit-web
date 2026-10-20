@@ -1,5 +1,6 @@
 import { useSiteDict } from '@/lib/site/dict'
 import { SELL_URL } from '@/lib/site/paths'
+import SiteVideo from '@/pages/Site/components/SiteVideo'
 import Room from '@/pages/Site/components/Room'
 
 // o pendente acende quando o bloco entra na tela: o vídeo toca uma vez e para no último frame
@@ -10,7 +11,9 @@ function SellSection() {
     <Room className="py-20">
       <div className="container-devit">
         <div className="sell relative overflow-hidden rounded-2xl bg-site-ink px-8 py-16 text-site-cream md:px-16 md:py-20">
-          <video
+          <SiteVideo
+            name="pendente"
+            lazy
             data-play-once
             className="sell-video"
             muted
@@ -18,10 +21,7 @@ function SellSection() {
             preload="metadata"
             poster="/video/pendente-poster.jpg"
             aria-hidden
-          >
-            <source src="/video/pendente-720.mp4" type="video/mp4" media="(max-width: 768px)" />
-            <source src="/video/pendente-1080.mp4" type="video/mp4" />
-          </video>
+          />
           <div className="sell-veil" aria-hidden />
 
           <div className="relative">

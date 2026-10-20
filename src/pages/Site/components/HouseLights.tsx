@@ -14,7 +14,7 @@ import {
   warmFly,
 } from '@/lib/site/casa'
 import { CASA_REFRESH_EVENT } from '@/lib/site/casa/events'
-import { DOSSIER_PIECES } from '@/lib/site/casa/shared'
+import { DOSSIER_PIECES, isReduced } from '@/lib/site/casa/shared'
 import { PROPERTY_PATH } from '@/lib/site/paths'
 
 type Pending = null | 'mist' | Promise<void>
@@ -27,10 +27,6 @@ function showDossier() {
   if (document.querySelector(DOSSIER_PIECES)) {
     gsap.set(DOSSIER_PIECES, { clearProps: 'opacity,visibility' })
   }
-}
-
-function isReducedMotion() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 // a pasta inteira é clicável: um clique em qualquer ponto dela vale pelo link do título
@@ -189,7 +185,7 @@ function HouseLights() {
     }
 
     const onClick = (event: MouseEvent) => {
-      if (!isPlainClick(event) || isReducedMotion()) return
+      if (!isPlainClick(event) || isReduced()) return
 
       const link = findLink(event)
       const url = link ? internalUrl(link) : null

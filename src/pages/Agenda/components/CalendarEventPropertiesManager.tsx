@@ -1,9 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
-import SearchableSelect from '@/components/SearchableSelect'
+import { PropertySelect } from '@/components/RemoteSelects'
 import RemovableRow from '@/components/RemovableRow'
 import { formatPropertyBroker } from '@/utils/formatBroker'
-import { usePropertyControllerFind } from '@/api/generated/api'
 import { useCalendarEventProperties } from '@/pages/Agenda/hooks/useCalendarEventProperties'
 
 type CalendarEventPropertiesManagerProps = {
@@ -14,11 +13,6 @@ function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventProper
   const { t } = useTranslation('agenda')
   const { links, propertyId, setPropertyId, addProperty, removeProperty } =
     useCalendarEventProperties(calendarEventId)
-  const { data: properties } = usePropertyControllerFind({ filter: { order: ['title ASC'], limit: 200 } })
-  const propertyOptions = (properties ?? []).map((property) => ({
-    value: property.id ?? '',
-    label: `${property.code} · ${property.title}`,
-  }))
 
   return (
     <div className="grid gap-3">
@@ -34,10 +28,9 @@ function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventProper
 
       <div className="flex flex-wrap items-end gap-2">
         <div className="min-w-52 flex-1">
-          <SearchableSelect
+          <PropertySelect
             value={propertyId}
             onValueChange={setPropertyId}
-            options={propertyOptions}
             placeholder={t('agenda:propertiesManager.placeholder')}
             searchPlaceholder={t('agenda:propertiesManager.searchPlaceholder')}
           />

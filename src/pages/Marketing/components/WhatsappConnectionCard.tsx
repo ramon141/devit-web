@@ -73,6 +73,8 @@ function WhatsappConnectionCard() {
               <img
                 src={qrCode.data.qrCodeBase64}
                 alt={t('whatsappConnection.qrCodeAlt')}
+                width={256}
+                height={256}
                 className="h-64 w-64"
               />
             )}

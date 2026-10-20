@@ -29,6 +29,7 @@ export function useCategoryKinds() {
       const { data } = await api.get<CategoryRow[]>('/property-categories')
       return data
     },
+    staleTime: 30 * 60 * 1000,
   })
 
   const categories = data ?? []

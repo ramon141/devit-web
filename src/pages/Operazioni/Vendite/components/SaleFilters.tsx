@@ -4,10 +4,9 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import SelectField from '@/components/SelectField'
-import SearchableSelect from '@/components/SearchableSelect'
+import { PersonSelect } from '@/components/RemoteSelects'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import BrokerCodeFilter from '@/components/BrokerCodeFilter'
-import { usePersonControllerFind } from '@/api/generated/api'
 import { getSaleStatusOptions } from '@/pages/Operazioni/Vendite/schemas/saleSchema'
 import type { SaleFiltersValues } from '@/pages/Operazioni/Vendite/hooks/useSaleList'
 
@@ -16,15 +15,8 @@ type SaleFiltersProps = {
   onChange: (filters: SaleFiltersValues) => void
 }
 
-function personToOption(person: { id?: string; name: string }) {
-  return { value: person.id ?? '', label: person.name }
-}
-
 function SaleFilters({ filters, onChange }: SaleFiltersProps) {
   const { t } = useTranslation('operazioni')
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
-
-  const personOptions = (people ?? []).map(personToOption)
 
   function update(patch: Partial<SaleFiltersValues>) {
     onChange({ ...filters, ...patch })
@@ -42,8 +34,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper id="vendite-seller-filter" label={t('vendite.filters.sellerLabel')}>
-        <SearchableSelect
-          options={personOptions}
+        <PersonSelect
           value={filters.sellerId}
           onValueChange={(value) => update({ sellerId: value })}
           placeholder={t('vendite.filters.all')}
@@ -51,8 +42,7 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
       </FormFieldWrapper>
 
       <FormFieldWrapper id="vendite-buyer-filter" label={t('vendite.filters.buyerLabel')}>
-        <SearchableSelect
-          options={personOptions}
+        <PersonSelect
           value={filters.buyerId}
           onValueChange={(value) => update({ buyerId: value })}
           placeholder={t('vendite.filters.all')}

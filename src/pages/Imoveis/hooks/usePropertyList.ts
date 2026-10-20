@@ -1,12 +1,19 @@
-import { useState } from 'react'
-import { usePropertyControllerCount, usePropertyControllerFind } from '@/api/generated/api'
+import { useEffect, useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import {
+  getPropertyControllerFindQueryOptions,
+  usePropertyControllerCount,
+  usePropertyControllerFind,
+} from '@/api/generated/api'
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import type { PropertyControllerFindParams, PropertyWithRelations } from '@/api/generated/models'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import { PAGE_SIZE } from '@/constants/pagination'
 
-const MAP_LIMIT = 300
 import { useCategoryKinds, type PropertyCategoryKind } from '@/pages/Imoveis/hooks/useCategoryKinds'
 import { toLikePattern } from '@/utils/toLikePattern'
+
+const MAP_LIMIT = 300
 
 export type PropertyRow = PropertyWithRelations
 
@@ -134,12 +141,30 @@ function buildWhere(search: string, filters: PropertyFiltersValues, kindCategory
   return conditions.length > 0 ? { and: conditions } : undefined
 }
 
+const LIST_INCLUDE: NonNullable<PropertyControllerFindParams['filter']>['include'] = [
+  { relation: 'category' },
+  { relation: 'address' },
+  { relation: 'owner' },
+  {
+    relation: 'propertyPhotos',
+    scope: {
+      fields: { id: true, propertyId: true, cover: true, attachmentId: true },
+      include: [{ relation: 'attachment', scope: { fields: { id: true, url: true } } }],
+    },
+  },
+  { relation: 'propertyDetail' },
+  { relation: 'createdBy' },
+  { relation: 'responsibleBroker' },
+  { relation: 'lastChangedBy' },
+]
+
 export function usePropertyList() {
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
   const [filters, setFiltersState] = useState<PropertyFiltersValues>(emptyPropertyFilters)
   const debouncedSearch = useDebouncedValue(search)
   const { categoryIdsByKind } = useCategoryKinds()
+  const queryClient = useQueryClient()
 
   const kindCategoryIds = filters.kind ? categoryIdsByKind[filters.kind] : undefined
   const where = buildWhere(debouncedSearch, filters, kindCategoryIds)
@@ -152,29 +177,34 @@ export function usePropertyList() {
     city: filters.city || undefined,
   }
 
-  const { data: allProperties, isLoading } = usePropertyControllerFind({
+  const listParams = (pageNumber: number): PropertyControllerFindParams => ({
     filter: {
       where,
-      include: [
-        { relation: 'category' },
-        { relation: 'address' },
-        { relation: 'owner' },
-        { relation: 'propertyPhotos', scope: { include: [{ relation: 'attachment' }] } },
-        { relation: 'propertyDetail' },
-        { relation: 'createdBy' },
-        { relation: 'responsibleBroker' },
-        { relation: 'lastChangedBy' },
-      ],
+      include: LIST_INCLUDE,
       order: buildOrder(filters),
       limit: PAGE_SIZE,
-      skip: (page - 1) * PAGE_SIZE,
+      skip: (pageNumber - 1) * PAGE_SIZE,
     },
     ...extraFilters,
   })
 
-  const { data: countResult } = usePropertyControllerCount({ where, ...extraFilters })
+  const { data: allProperties, isLoading } = usePropertyControllerFind(listParams(page), KEEP_PREVIOUS_DATA)
+
+  const { data: countResult } = usePropertyControllerCount({ where, ...extraFilters }, KEEP_PREVIOUS_DATA)
 
   const properties = (allProperties ?? []) as PropertyRow[]
+  const totalItems = countResult?.count ?? 0
+  const hasNextPage = page * PAGE_SIZE < totalItems
+  const nextPageParams = JSON.stringify(listParams(page + 1))
+
+  // Pré-carrega a próxima página para a troca ser instantânea
+  useEffect(() => {
+    if (!hasNextPage) return
+
+    queryClient.prefetchQuery(
+      getPropertyControllerFindQueryOptions(JSON.parse(nextPageParams) as PropertyControllerFindParams),
+    )
+  }, [hasNextPage, nextPageParams, queryClient])
 
   function handleSearchChange(value: string) {
     setSearch(value)
@@ -196,7 +226,7 @@ export function usePropertyList() {
     where,
     mapParams,
     isLoading,
-    totalItems: countResult?.count ?? 0,
+    totalItems,
     pageSize: PAGE_SIZE,
     page,
     setPage,

@@ -7,9 +7,12 @@ import 'dayjs/locale/pt'
 import './index.css'
 import i18n from './i18n'
 import App from './App.tsx'
+import { initVitals } from './lib/vitals'
 
 dayjs.locale(i18n.language)
 i18n.on('languageChanged', (lng) => dayjs.locale(lng))
+
+initVitals()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -16,6 +16,8 @@ COPY . .
 # Build-time env (Vite bakes VITE_* vars into the bundle at build time)
 ARG VITE_APP_BASE_API_URL
 ENV VITE_APP_BASE_API_URL=${VITE_APP_BASE_API_URL}
+ARG SITE_URL
+ENV SITE_URL=${SITE_URL}
 
 RUN npm run build
 
@@ -23,6 +25,7 @@ FROM docker.io/library/nginx:1.29-alpine AS runtime
 
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx-security-headers.inc /etc/nginx/conf.d/nginx-security-headers.inc
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

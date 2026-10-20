@@ -13,7 +13,7 @@ import {
 } from '@/pages/Amministrazione/VideoHome/hooks/useVideoSelection'
 import VideoPlayer from '@/pages/Amministrazione/VideoHome/components/VideoPlayer'
 
-const DEFAULT_VIDEO_URL = '/video/hero-loop-1080.mp4'
+const DEFAULT_VIDEO_URL = '/video/hero-loop-1080.webm'
 const DEFAULT_POSTER_URL = '/video/hero-poster.jpg'
 
 function VideoHome() {

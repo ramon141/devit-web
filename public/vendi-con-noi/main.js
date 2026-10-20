@@ -6,6 +6,12 @@
   "use strict";
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // Economia de dados ou conexão lenta: não baixa os vídeos pesados, fica só o poster
+  const conn = navigator.connection;
+  const saveData = !!(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || "")));
+  const skipVideo = prefersReduced || saveData;
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const setVideoSrc = (v) => { v.src = (isMobile && v.dataset.srcMobile) || v.dataset.src; };
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
 
@@ -106,7 +112,8 @@
   const metodoSec = $("#metodo");
   const testiSec = $("#testimonianze");
   const sociSec = $("#soci");
-  if (methodVideo && bg2 && metodoSec && testiSec && !prefersReduced) {
+  if (methodVideo && bg2 && metodoSec && testiSec && !skipVideo) {
+    setVideoSrc(methodVideo);
     let mdur = 0, mready = false, mTarget = 0, mCur = 0, mLoop = false, mprog = 0;
 
     methodVideo.addEventListener("loadedmetadata", () => { mdur = methodVideo.duration || 0; });
@@ -177,7 +184,8 @@
   const heroVideo = $("#heroVideo");
   const cinema = $("#cinema");
   const stage = $(".cinema-stage");
-  if (heroVideo && cinema && stage && !prefersReduced) {
+  if (heroVideo && cinema && stage && !skipVideo) {
+    setVideoSrc(heroVideo);
     let mx = 0, my = 0, sy = 0, prog = 0;
     let duration = 0, ready = false, targetTime = 0, curTime = 0, looping = false;
 

@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import SearchableSelect from '@/components/SearchableSelect'
+import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import RemovableRow from '@/components/RemovableRow'
-import { usePersonControllerFind } from '@/api/generated/api'
 import { useProposalBuyers } from '@/pages/Proposte/hooks/useProposalBuyers'
 
 type ProposalBuyersManagerProps = {
@@ -14,13 +14,11 @@ type ProposalBuyersManagerProps = {
 function ProposalBuyersManager({ proposalId }: ProposalBuyersManagerProps) {
   const { t } = useTranslation('proposte')
   const { buyers, addBuyer, removeBuyer } = useProposalBuyers(proposalId)
-  const { data: people } = usePersonControllerFind({ filter: { order: ['name ASC'], limit: 200 } })
   const [personId, setPersonId] = useState('')
+  const { options, isLoading, setSearch } = usePersonSearchOptions(personId)
 
   const takenIds = new Set(buyers.map((buyer) => buyer.personId))
-  const personOptions = (people ?? [])
-    .filter((person) => !takenIds.has(person.id ?? ''))
-    .map((person) => ({ value: person.id ?? '', label: person.name }))
+  const personOptions = options.filter((option) => !takenIds.has(option.value))
 
   function handleAdd() {
     if (!personId) return
@@ -44,6 +42,8 @@ function ProposalBuyersManager({ proposalId }: ProposalBuyersManagerProps) {
             value={personId}
             onValueChange={setPersonId}
             options={personOptions}
+            isLoading={isLoading}
+            onSearchChange={setSearch}
             placeholder={t('buyersManager.buyerPlaceholder')}
             searchPlaceholder={t('propertyBuyerFields.buyerSearchPlaceholder')}
           />

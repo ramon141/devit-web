@@ -14,6 +14,8 @@ type MultiSelectFieldProps = {
   searchPlaceholder?: string
   error?: string
   triggerVariant?: 'outline' | 'secondary'
+  onSearchChange?: (search: string) => void
+  isLoading?: boolean
 }
 
 // Seleção múltipla: SearchableSelect para adicionar + chips removíveis para os selecionados
@@ -27,6 +29,8 @@ function MultiSelectField({
   searchPlaceholder,
   error,
   triggerVariant = 'outline',
+  onSearchChange,
+  isLoading,
 }: MultiSelectFieldProps) {
   const { t } = useTranslation('common')
 
@@ -54,6 +58,8 @@ function MultiSelectField({
         placeholder={placeholder ?? t('multiSelectField.placeholder')}
         searchPlaceholder={searchPlaceholder}
         triggerVariant={triggerVariant}
+        onSearchChange={onSearchChange}
+        isLoading={isLoading}
       />
 
       {selectedOptions.length > 0 && (

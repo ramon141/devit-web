@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import { useState } from 'react'
 import { useSaleControllerCount, useSaleControllerFind } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
@@ -60,9 +61,9 @@ export function useSaleList() {
       limit: pageSize,
       skip,
     },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = useSaleControllerCount({ where, ...brokerParams })
+  const { data: countResult } = useSaleControllerCount({ where, ...brokerParams }, KEEP_PREVIOUS_DATA)
 
   function setFilters(next: SaleFiltersValues) {
     setFiltersState(next)

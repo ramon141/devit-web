@@ -1,5 +1,6 @@
 import type { AuthControllerLogin200 } from '@/api/generated/models'
 import i18n from '@/i18n'
+import { api } from '@/api/mutator'
 
 export const UserInfo = {
   getFullName: (): string | null => localStorage.getItem('fullName'),
@@ -18,29 +19,20 @@ export const UserInfo = {
   removeUserId: (): void => localStorage.removeItem('userId'),
 }
 
+// A sessão vive num cookie HttpOnly gerenciado pela API; aqui só fica um indicador não sensível de que há login.
 export const Auth = {
   isAdmin: (): boolean => {
     return UserInfo.getAccessLevel()?.toUpperCase() === 'ADMIN'
   },
 
   isAuthenticated: (): boolean => {
-    return !!Auth.getToken()
+    return !!UserInfo.getUserId()
   },
 
-  getToken: (): string | null => {
-    return localStorage.getItem('token')
-  },
+  // notifyServer = false quando a API já recusou a sessão (401): não há o que encerrar lá.
+  logout: (redirect = true, notifyServer = true): void => {
+    if (notifyServer) void api.post('/auth/logout').catch(() => undefined)
 
-  setToken: (token: string): void => {
-    localStorage.setItem('token', token)
-  },
-
-  removeToken: (): void => {
-    localStorage.removeItem('token')
-  },
-
-  logout: (redirect = true): void => {
-    Auth.removeToken()
     UserInfo.removeFullName()
     UserInfo.removeEmail()
     UserInfo.removeAccessLevel()
@@ -51,17 +43,13 @@ export const Auth = {
   },
 
   login: (response: AuthControllerLogin200): void => {
-    if (!response.token) {
+    if (!response.user?.id) {
       throw new Error(i18n.t('auth.tokenMissing', { ns: 'common' }))
     }
 
-    Auth.setToken(response.token)
-
-    if (response.user) {
-      if (response.user.fullName) UserInfo.setFullName(response.user.fullName)
-      if (response.user.email) UserInfo.setEmail(response.user.email)
-      if (response.user.accessLevel) UserInfo.setAccessLevel(response.user.accessLevel)
-      if (response.user.id) UserInfo.setUserId(response.user.id)
-    }
+    if (response.user.fullName) UserInfo.setFullName(response.user.fullName)
+    if (response.user.email) UserInfo.setEmail(response.user.email)
+    if (response.user.accessLevel) UserInfo.setAccessLevel(response.user.accessLevel)
+    UserInfo.setUserId(response.user.id)
   },
 }

@@ -1,3 +1,5 @@
+import SiteVideo from '@/pages/Site/components/SiteVideo'
+
 /**
  * As transições entre páginas, animadas por lib/site/casa:
  *  - o branco (`.white`): a tela toda branca, ponte entre uma cena e outra;
@@ -24,10 +26,14 @@ function Atmosphere() {
         <div className="carry-front" />
       </div>
       <div className="fly" aria-hidden>
-        <video className="fly-video" muted playsInline preload="metadata" poster="/video/volo-poster.jpg">
-          <source src="/video/volo-720.mp4" type="video/mp4" media="(max-width: 768px)" />
-          <source src="/video/volo-1080.mp4" type="video/mp4" />
-        </video>
+        <SiteVideo
+          name="volo"
+          className="fly-video"
+          muted
+          playsInline
+          preload="metadata"
+          poster="/video/volo-poster.jpg"
+        />
         <p className="fly-skip">Devit</p>
       </div>
     </>

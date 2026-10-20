@@ -1,3 +1,4 @@
+import { KEEP_PREVIOUS_DATA } from '@/constants/queryOptions'
 import { useUserControllerCount, useUserControllerFind } from '@/api/generated/api'
 import { useListPagination } from '@/hooks/useListPagination'
 import { toLikePattern } from '@/utils/toLikePattern'
@@ -10,9 +11,9 @@ export function useUserList() {
 
   const { data: users, isLoading } = useUserControllerFind({
     filter: { where, order: ['fullName ASC'], limit: pageSize, skip },
-  })
+  }, KEEP_PREVIOUS_DATA)
 
-  const { data: countResult } = useUserControllerCount({ where })
+  const { data: countResult } = useUserControllerCount({ where }, KEEP_PREVIOUS_DATA)
 
   return {
     users: users ?? [],

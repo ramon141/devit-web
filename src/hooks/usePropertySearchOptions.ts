@@ -26,6 +26,7 @@ export function usePropertySearchOptions(selectedId?: string) {
             ],
           }
         : undefined,
+      fields: { id: true, code: true, title: true },
       order: ['code ASC'],
       limit: 50,
     },
@@ -46,5 +47,10 @@ export function usePropertySearchOptions(selectedId?: string) {
     options.unshift({ value: selectedProperty.id ?? '', label: propertyLabel(selectedProperty) })
   }
 
-  return { options, isLoading, search, setSearch }
+  const knownProperties =
+    selectedProperty && !hasSelectedInList
+      ? [selectedProperty, ...(properties ?? [])]
+      : (properties ?? [])
+
+  return { options, properties: knownProperties, isLoading, search, setSearch }
 }
