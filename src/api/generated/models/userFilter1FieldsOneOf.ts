@@ -14,6 +14,7 @@ export type UserFilter1FieldsOneOf = {
   accessLevel?: boolean;
   emailConfirmedAt?: boolean;
   passwordChangedAt?: boolean;
+  sessionsRevokedAt?: boolean;
   lastLoginAt?: boolean;
   phone?: boolean;
   brokerCode?: boolean;

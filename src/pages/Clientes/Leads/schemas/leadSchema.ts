@@ -61,7 +61,11 @@ const MIN_MAX_PAIRS = [
   ['minRooms', 'maxRooms'],
   ['minBedrooms', 'maxBedrooms'],
   ['minBathrooms', 'maxBathrooms'],
+  ['minFloor', 'maxFloor'],
 ] as const
+
+// andar pode ser negativo (interrato/seminterrato)
+const SIGNED_KEYS: ReadonlyArray<string> = ['minFloor', 'maxFloor']
 
 export function createLeadSchema(t: TFunction<'clientes'>) {
   return z
@@ -91,6 +95,12 @@ export function createLeadSchema(t: TFunction<'clientes'>) {
     maxBedrooms: z.string().optional(),
     minBathrooms: z.string().optional(),
     maxBathrooms: z.string().optional(),
+    minFloor: z.string().optional(),
+    maxFloor: z.string().optional(),
+    wantsElevator: z.boolean(),
+    wantsParking: z.boolean(),
+    wantsTerrace: z.boolean(),
+    wantsBalcony: z.boolean(),
     neighborhoodIds: z.array(z.string()),
     })
     .superRefine((values, ctx) => {
@@ -99,7 +109,7 @@ export function createLeadSchema(t: TFunction<'clientes'>) {
         const max = values[maxKey]
 
         for (const key of [minKey, maxKey]) {
-          if (Number(values[key]) < 0) {
+          if (!SIGNED_KEYS.includes(key) && Number(values[key]) < 0) {
             ctx.addIssue({ code: 'custom', path: [key], message: t('leadSchema.negativeValue') })
           }
         }

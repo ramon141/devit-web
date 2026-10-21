@@ -72,6 +72,26 @@ export interface LeadPartialExcludingCreatedAtUpdatedAt {
    * @nullable
    */
   maxBathrooms?: number | null;
+  /**
+   * @minimum -5
+   * @maximum 200
+   * @nullable
+   */
+  minFloor?: number | null;
+  /**
+   * @minimum -5
+   * @maximum 200
+   * @nullable
+   */
+  maxFloor?: number | null;
+  /** @nullable */
+  wantsElevator?: boolean | null;
+  /** @nullable */
+  wantsParking?: boolean | null;
+  /** @nullable */
+  wantsTerrace?: boolean | null;
+  /** @nullable */
+  wantsBalcony?: boolean | null;
   id?: string;
   /**
    * @maxLength 120

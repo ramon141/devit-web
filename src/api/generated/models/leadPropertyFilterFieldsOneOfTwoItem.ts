@@ -16,4 +16,12 @@ export const LeadPropertyFilterFieldsOneOfTwoItem = {
   primary: 'primary',
   leadId: 'leadId',
   propertyId: 'propertyId',
+  matchScore: 'matchScore',
+  matchTotal: 'matchTotal',
+  matchedCriteria: 'matchedCriteria',
+  unmatchedCriteria: 'unmatchedCriteria',
+  contactStatus: 'contactStatus',
+  contactStatusUpdatedAt: 'contactStatusUpdatedAt',
+  matchedAt: 'matchedAt',
+  contactStatusUpdatedById: 'contactStatusUpdatedById',
 } as const;

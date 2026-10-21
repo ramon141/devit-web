@@ -18,6 +18,12 @@ export type LeadFilterFieldsOneOf = {
   maxBedrooms?: boolean;
   minBathrooms?: boolean;
   maxBathrooms?: boolean;
+  minFloor?: boolean;
+  maxFloor?: boolean;
+  wantsElevator?: boolean;
+  wantsParking?: boolean;
+  wantsTerrace?: boolean;
+  wantsBalcony?: boolean;
   id?: boolean;
   externalId?: boolean;
   name?: boolean;

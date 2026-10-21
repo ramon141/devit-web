@@ -28,6 +28,8 @@ export interface UserExcludingPasswordHash {
   /** @nullable */
   passwordChangedAt?: string | null;
   /** @nullable */
+  sessionsRevokedAt?: string | null;
+  /** @nullable */
   lastLoginAt?: string | null;
   /**
    * @maxLength 30

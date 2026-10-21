@@ -164,7 +164,13 @@
     "bedroomsRange": "Quartos",
     "bathroomsRange": "Banheiros",
     "rangeFrom": "de",
-    "rangeTo": "até"
+    "rangeTo": "até",
+    "floorRange": "Andar",
+    "features": "Características desejadas",
+    "wantsElevator": "Elevador",
+    "wantsParking": "Vaga de garagem",
+    "wantsTerrace": "Terraço",
+    "wantsBalcony": "Varanda"
   },
   "leadFormModal": {
     "editTitle": "Editar solicitação",
@@ -628,5 +634,37 @@
   },
   "hints": {
     "leadConverted": "A data de conversão é registrada automaticamente."
+  },
+  "leadContactStatusOptions": {
+    "to_contact": "A entrar em contato",
+    "contacted": "Contato realizado",
+    "not_interested": "Sem interesse",
+    "visit_scheduled": "Visita agendada"
+  },
+  "leadMatchCriteria": {
+    "category": "Tipologia",
+    "city": "Cidade",
+    "zones": "Zona",
+    "budget": "Preço",
+    "area": "Metragem",
+    "rooms": "Cômodos",
+    "bedrooms": "Quartos",
+    "bathrooms": "Banheiros",
+    "floor": "Andar",
+    "elevator": "Elevador",
+    "parking": "Vaga de garagem",
+    "terrace": "Terraço",
+    "balcony": "Varanda"
+  },
+  "leadMatches": {
+    "title": "Imóveis compatíveis",
+    "description": "Imóveis disponíveis que atendem a pelo menos 60% dos critérios da solicitação. A lista se atualiza sozinha quando um imóvel é cadastrado ou alterado.",
+    "empty": "Nenhum imóvel compatível no momento.",
+    "score": "{{score}} de {{total}} critérios",
+    "statusPlaceholder": "Status do contato",
+    "updatedBy": "Atualizado por {{name}} em {{date}}",
+    "pendingStatus": "Atualizando o status...",
+    "successStatus": "Status atualizado.",
+    "errorStatus": "Não foi possível atualizar o status."
   }
 }

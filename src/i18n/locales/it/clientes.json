@@ -164,7 +164,13 @@
     "bedroomsRange": "Camere",
     "bathroomsRange": "Bagni",
     "rangeFrom": "da",
-    "rangeTo": "a"
+    "rangeTo": "a",
+    "floorRange": "Piano",
+    "features": "Caratteristiche richieste",
+    "wantsElevator": "Ascensore",
+    "wantsParking": "Posto auto",
+    "wantsTerrace": "Terrazzo",
+    "wantsBalcony": "Balcone"
   },
   "leadFormModal": {
     "editTitle": "Modifica richiesta",
@@ -628,5 +634,37 @@
   },
   "hints": {
     "leadConverted": "La data di conversione viene registrata automaticamente."
+  },
+  "leadContactStatusOptions": {
+    "to_contact": "Da contattare",
+    "contacted": "Contatto effettuato",
+    "not_interested": "Non interessato",
+    "visit_scheduled": "Visita programmata"
+  },
+  "leadMatchCriteria": {
+    "category": "Tipologia",
+    "city": "Città",
+    "zones": "Zona",
+    "budget": "Prezzo",
+    "area": "Superficie",
+    "rooms": "Locali",
+    "bedrooms": "Camere",
+    "bathrooms": "Bagni",
+    "floor": "Piano",
+    "elevator": "Ascensore",
+    "parking": "Posto auto",
+    "terrace": "Terrazzo",
+    "balcony": "Balcone"
+  },
+  "leadMatches": {
+    "title": "Immobili compatibili",
+    "description": "Immobili disponibili che soddisfano almeno il 60% dei criteri della richiesta. Si aggiornano da soli quando viene inserito o modificato un immobile.",
+    "empty": "Nessun immobile compatibile al momento.",
+    "score": "{{score}} criteri su {{total}}",
+    "statusPlaceholder": "Stato del contatto",
+    "updatedBy": "Aggiornato da {{name}} il {{date}}",
+    "pendingStatus": "Aggiornamento dello stato...",
+    "successStatus": "Stato aggiornato.",
+    "errorStatus": "Impossibile aggiornare lo stato."
   }
 }

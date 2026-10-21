@@ -6,6 +6,9 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { NewLeadPropertySource } from './newLeadPropertySource';
+import type { NewLeadPropertyMatchedCriteriaItem } from './newLeadPropertyMatchedCriteriaItem';
+import type { NewLeadPropertyUnmatchedCriteriaItem } from './newLeadPropertyUnmatchedCriteriaItem';
+import type { NewLeadPropertyContactStatus } from './newLeadPropertyContactStatus';
 
 /**
  * (tsType: Omit<LeadProperty, 'id'>, schemaOptions: { title: 'NewLeadProperty', exclude: [ 'id' ] })
@@ -17,4 +20,26 @@ export interface NewLeadProperty {
   primary?: boolean | null;
   leadId: string;
   propertyId: string;
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
+  matchScore?: number | null;
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
+  matchTotal?: number | null;
+  matchedCriteria?: NewLeadPropertyMatchedCriteriaItem[];
+  unmatchedCriteria?: NewLeadPropertyUnmatchedCriteriaItem[];
+  /** @nullable */
+  contactStatus?: NewLeadPropertyContactStatus;
+  /** @nullable */
+  contactStatusUpdatedAt?: string | null;
+  /** @nullable */
+  matchedAt?: string | null;
+  /** @nullable */
+  contactStatusUpdatedById?: string | null;
 }

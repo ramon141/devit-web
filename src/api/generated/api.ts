@@ -120,10 +120,17 @@ import type {
   AuthControllerLogin422,
   AuthControllerLogin429,
   AuthControllerLoginBody,
+  AuthControllerLogout400,
+  AuthControllerLogout401,
+  AuthControllerLogout422,
   AuthControllerMe400,
   AuthControllerMe401,
   AuthControllerMe404,
   AuthControllerMe422,
+  AuthControllerRefresh200,
+  AuthControllerRefresh400,
+  AuthControllerRefresh401,
+  AuthControllerRefresh422,
   AuthControllerResetPassword200,
   AuthControllerResetPassword400,
   AuthControllerResetPassword415,
@@ -515,7 +522,6 @@ import type {
   EvolutionWebhookControllerReceive415,
   EvolutionWebhookControllerReceive422,
   EvolutionWebhookControllerReceiveBody,
-  EvolutionWebhookControllerReceiveParams,
   HomeVideoControllerCurrent200,
   HomeVideoControllerCurrent400,
   HomeVideoControllerCurrent401,
@@ -557,6 +563,11 @@ import type {
   LeadControllerUpdateById404,
   LeadControllerUpdateById415,
   LeadControllerUpdateById422,
+  LeadMatchControllerRun200,
+  LeadMatchControllerRun400,
+  LeadMatchControllerRun401,
+  LeadMatchControllerRun404,
+  LeadMatchControllerRun422,
   LeadNeighborhood,
   LeadNeighborhoodControllerCount400,
   LeadNeighborhoodControllerCount401,
@@ -3449,6 +3460,69 @@ export const useAuthControllerLogin = <TError = ErrorType<AuthControllerLogin400
     }
     
 /**
+ * @summary Encerrar a sessão e invalidar os tokens emitidos até agora
+ */
+export const authControllerLogout = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/auth/logout`, method: 'POST', signal
+    },
+      options);
+    }
+  
+
+
+export const getAuthControllerLogoutMutationOptions = <TError = ErrorType<AuthControllerLogout400 | AuthControllerLogout401 | AuthControllerLogout422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerLogout>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof authControllerLogout>>, TError,void, TContext> => {
+
+const mutationKey = ['authControllerLogout'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authControllerLogout>>, void> = () => {
+          
+
+          return  authControllerLogout(requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthControllerLogoutMutationResult = NonNullable<Awaited<ReturnType<typeof authControllerLogout>>>
+    
+    export type AuthControllerLogoutMutationError = ErrorType<AuthControllerLogout400 | AuthControllerLogout401 | AuthControllerLogout422>
+
+    /**
+ * @summary Encerrar a sessão e invalidar os tokens emitidos até agora
+ */
+export const useAuthControllerLogout = <TError = ErrorType<AuthControllerLogout400 | AuthControllerLogout401 | AuthControllerLogout422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerLogout>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof authControllerLogout>>,
+        TError,
+        void,
+        TContext
+      > => {
+
+      const mutationOptions = getAuthControllerLogoutMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
  * @summary Obter dados do usuário autenticado
  */
 export const authControllerMe = (
@@ -3541,6 +3615,69 @@ export function useAuthControllerMe<TData = Awaited<ReturnType<typeof authContro
 
 
 
+/**
+ * @summary Renovar o token da sessão atual
+ */
+export const authControllerRefresh = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<AuthControllerRefresh200>(
+      {url: `/auth/refresh`, method: 'POST', signal
+    },
+      options);
+    }
+  
+
+
+export const getAuthControllerRefreshMutationOptions = <TError = ErrorType<AuthControllerRefresh400 | AuthControllerRefresh401 | AuthControllerRefresh422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerRefresh>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof authControllerRefresh>>, TError,void, TContext> => {
+
+const mutationKey = ['authControllerRefresh'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof authControllerRefresh>>, void> = () => {
+          
+
+          return  authControllerRefresh(requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type AuthControllerRefreshMutationResult = NonNullable<Awaited<ReturnType<typeof authControllerRefresh>>>
+    
+    export type AuthControllerRefreshMutationError = ErrorType<AuthControllerRefresh400 | AuthControllerRefresh401 | AuthControllerRefresh422>
+
+    /**
+ * @summary Renovar o token da sessão atual
+ */
+export const useAuthControllerRefresh = <TError = ErrorType<AuthControllerRefresh400 | AuthControllerRefresh401 | AuthControllerRefresh422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof authControllerRefresh>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof authControllerRefresh>>,
+        TError,
+        void,
+        TContext
+      > => {
+
+      const mutationOptions = getAuthControllerRefreshMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
 /**
  * @summary Redefinir senha a partir do token do magic link
  */
@@ -10785,6 +10922,69 @@ export function useLeadControllerCount<TData = Awaited<ReturnType<typeof leadCon
 
 
 
+/**
+ * @summary Cruzar a richiesta com os imóveis disponíveis
+ */
+export const leadMatchControllerRun = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadMatchControllerRun200>(
+      {url: `/leads/${id}/matches`, method: 'POST', signal
+    },
+      options);
+    }
+  
+
+
+export const getLeadMatchControllerRunMutationOptions = <TError = ErrorType<LeadMatchControllerRun400 | LeadMatchControllerRun401 | LeadMatchControllerRun404 | LeadMatchControllerRun422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadMatchControllerRun>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof leadMatchControllerRun>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['leadMatchControllerRun'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof leadMatchControllerRun>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  leadMatchControllerRun(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type LeadMatchControllerRunMutationResult = NonNullable<Awaited<ReturnType<typeof leadMatchControllerRun>>>
+    
+    export type LeadMatchControllerRunMutationError = ErrorType<LeadMatchControllerRun400 | LeadMatchControllerRun401 | LeadMatchControllerRun404 | LeadMatchControllerRun422>
+
+    /**
+ * @summary Cruzar a richiesta com os imóveis disponíveis
+ */
+export const useLeadMatchControllerRun = <TError = ErrorType<LeadMatchControllerRun400 | LeadMatchControllerRun401 | LeadMatchControllerRun404 | LeadMatchControllerRun422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadMatchControllerRun>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof leadMatchControllerRun>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getLeadMatchControllerRunMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
 /**
  * @summary Update a Lead by id
  */
@@ -35197,7 +35397,6 @@ export function useUserControllerFind<TData = Awaited<ReturnType<typeof userCont
  */
 export const evolutionWebhookControllerReceive = (
     evolutionWebhookControllerReceiveBody: BodyType<EvolutionWebhookControllerReceiveBody>,
-    params?: EvolutionWebhookControllerReceiveParams,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
@@ -35205,8 +35404,7 @@ export const evolutionWebhookControllerReceive = (
       return mutator<unknown>(
       {url: `/webhooks/evolution`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: evolutionWebhookControllerReceiveBody,
-        params, signal
+      data: evolutionWebhookControllerReceiveBody, signal
     },
       options);
     }
@@ -35214,8 +35412,8 @@ export const evolutionWebhookControllerReceive = (
 
 
 export const getEvolutionWebhookControllerReceiveMutationOptions = <TError = ErrorType<EvolutionWebhookControllerReceive400 | EvolutionWebhookControllerReceive401 | EvolutionWebhookControllerReceive415 | EvolutionWebhookControllerReceive422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams}, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams}, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>}, TContext> => {
 
 const mutationKey = ['evolutionWebhookControllerReceive'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -35227,10 +35425,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, {data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams}> = (props) => {
-          const {data,params} = props ?? {};
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, {data: BodyType<EvolutionWebhookControllerReceiveBody>}> = (props) => {
+          const {data} = props ?? {};
 
-          return  evolutionWebhookControllerReceive(data,params,requestOptions)
+          return  evolutionWebhookControllerReceive(data,requestOptions)
         }
 
         
@@ -35246,11 +35444,11 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
  * @summary Receber eventos de status do WhatsApp (endpoint público, protegido por token)
  */
 export const useEvolutionWebhookControllerReceive = <TError = ErrorType<EvolutionWebhookControllerReceive400 | EvolutionWebhookControllerReceive401 | EvolutionWebhookControllerReceive415 | EvolutionWebhookControllerReceive422>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams}, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>, TError,{data: BodyType<EvolutionWebhookControllerReceiveBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof evolutionWebhookControllerReceive>>,
         TError,
-        {data: BodyType<EvolutionWebhookControllerReceiveBody>;params?: EvolutionWebhookControllerReceiveParams},
+        {data: BodyType<EvolutionWebhookControllerReceiveBody>},
         TContext
       > => {
 

@@ -5,6 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { ChatbotLeadControllerUpsertBodyPurpose } from './chatbotLeadControllerUpsertBodyPurpose';
+import type { ChatbotLeadControllerUpsertBodyRequestType } from './chatbotLeadControllerUpsertBodyRequestType';
 
 export type ChatbotLeadControllerUpsertBody = {
   /** @maxLength 120 */
@@ -31,4 +33,50 @@ export type ChatbotLeadControllerUpsertBody = {
    * @nullable
    */
   desiredCity?: string | null;
+  /** @nullable */
+  purpose?: ChatbotLeadControllerUpsertBodyPurpose;
+  /** @nullable */
+  requestType?: ChatbotLeadControllerUpsertBodyRequestType;
+  /**
+   * @maxLength 120
+   * @nullable
+   */
+  categoryName?: string | null;
+  /**
+   * @maxLength 120
+   * @nullable
+   */
+  zoneName?: string | null;
+  /**
+   * @minimum 0
+   * @maximum 50
+   * @nullable
+   */
+  minRooms?: number | null;
+  /**
+   * @minimum 0
+   * @maximum 50
+   * @nullable
+   */
+  minBathrooms?: number | null;
+  /**
+   * @minimum -5
+   * @maximum 200
+   * @nullable
+   */
+  minFloor?: number | null;
+  /**
+   * @minimum -5
+   * @maximum 200
+   * @nullable
+   */
+  maxFloor?: number | null;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
+  maxBudget?: number | null;
+  /** @nullable */
+  wantsParking?: boolean | null;
 };

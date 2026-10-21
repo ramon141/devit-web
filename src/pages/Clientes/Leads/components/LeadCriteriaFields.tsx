@@ -8,13 +8,14 @@ import { usePropertyCategoryControllerFind } from '@/api/generated/api'
 import { getLeadPurposeOptions, type LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
 import { useNeighborhoodOptions } from '@/hooks/useNeighborhoodOptions'
 import LeadRangeFields from '@/pages/Clientes/Leads/components/LeadRangeFields'
+import LeadFeatureFields from '@/pages/Clientes/Leads/components/LeadFeatureFields'
 import { STABLE_DATA } from '@/constants/queryOptions'
 
 type LeadCriteriaFieldsProps = {
   form: UseFormReturn<LeadFormValues>
 }
 
-// Critérios da richiesta: motivo, tipologia, scadenza, zonas e faixas de busca
+// Critérios da richiesta: motivo, tipologia, scadenza, zonas, faixas de busca e características
 function LeadCriteriaFields({ form }: LeadCriteriaFieldsProps) {
   const { t } = useTranslation('clientes')
   const { register, control } = form
@@ -89,6 +90,15 @@ function LeadCriteriaFields({ form }: LeadCriteriaFieldsProps) {
       <LeadRangeFields id="modal-field-roomsRange" form={form} name="Rooms" label={t('leadFormFields.roomsRange')} />
       <LeadRangeFields id="modal-field-bedroomsRange" form={form} name="Bedrooms" label={t('leadFormFields.bedroomsRange')} />
       <LeadRangeFields id="modal-field-bathroomsRange" form={form} name="Bathrooms" label={t('leadFormFields.bathroomsRange')} />
+      <LeadRangeFields
+        id="modal-field-floorRange"
+        form={form}
+        name="Floor"
+        label={t('leadFormFields.floorRange')}
+        allowNegative
+      />
+
+      <LeadFeatureFields form={form} />
     </div>
   )
 }

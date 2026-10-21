@@ -18,6 +18,7 @@ export const UserFilterFieldsOneOfTwoItem = {
   accessLevel: 'accessLevel',
   emailConfirmedAt: 'emailConfirmedAt',
   passwordChangedAt: 'passwordChangedAt',
+  sessionsRevokedAt: 'sessionsRevokedAt',
   lastLoginAt: 'lastLoginAt',
   phone: 'phone',
   brokerCode: 'brokerCode',

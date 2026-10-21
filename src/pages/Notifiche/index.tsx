@@ -6,7 +6,8 @@ import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
 import { useNotificheTour } from '@/pages/Notifiche/hooks/useNotificheTour'
 import { useNotificationList } from '@/pages/Notifiche/hooks/useNotificationList'
-import { getNotificationTypeLabels } from '@/constants/notifications'
+import { Link } from 'react-router'
+import { getNotificationLink, getNotificationTypeLabels } from '@/constants/notifications'
 import { formatDateTime } from '@/utils/formatDate'
 
 function Notifiche() {
@@ -49,6 +50,14 @@ function Notifiche() {
               <p className="truncate text-sm font-medium">{notification.title}</p>
               {notification.message && (
                 <p className="truncate text-sm text-muted-foreground">{notification.message}</p>
+              )}
+              {getNotificationLink(notification) && (
+                <Link
+                  to={getNotificationLink(notification) ?? ''}
+                  className="text-xs text-primary hover:underline"
+                >
+                  {tCommon('notificationsPopover.openLead')}
+                </Link>
               )}
               <p className="text-xs text-muted-foreground">
                 {formatDateTime(notification.createdAt)}

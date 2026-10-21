@@ -5,6 +5,7 @@ import type { Lead } from '@/api/generated/models'
 import { useLeadForm } from '@/pages/Clientes/Leads/hooks/useLeadForm'
 import LeadFormFields from '@/pages/Clientes/Leads/components/LeadFormFields'
 import LeadCriteriaFields from '@/pages/Clientes/Leads/components/LeadCriteriaFields'
+import LeadMatchesList from '@/pages/Clientes/Leads/components/LeadMatchesList'
 
 type LeadFormModalProps = {
   open: boolean
@@ -33,6 +34,8 @@ function LeadFormModal({ open, onOpenChange, lead }: LeadFormModalProps) {
 
           <LeadCriteriaFields form={form} />
         </div>
+
+        {lead?.id && <LeadMatchesList leadId={lead.id} />}
 
         <FormModalFooter
           id="modal-btn-actions"

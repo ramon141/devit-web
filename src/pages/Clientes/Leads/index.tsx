@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PlusIcon } from 'lucide-react'
 import { DndContext, DragOverlay } from '@dnd-kit/core'
@@ -12,6 +12,7 @@ import { useDeleteLead } from '@/pages/Clientes/Leads/hooks/useDeleteLead'
 import { useKanbanDragDrop } from '@/pages/Clientes/Leads/hooks/useKanbanDragDrop'
 import { useLeadsTour, MODAL_TOUR_START_STEP } from '@/pages/Clientes/Leads/hooks/useLeadsTour'
 import { useTourModalSync } from '@/hooks/useTourModalSync'
+import { useOpenLeadFromQuery } from '@/pages/Clientes/Leads/hooks/useOpenLeadFromQuery'
 import LeadColumn from '@/pages/Clientes/Leads/components/LeadColumn'
 import LeadCard from '@/pages/Clientes/Leads/components/LeadCard'
 import LeadFormModal from '@/pages/Clientes/Leads/components/LeadFormModal'
@@ -33,10 +34,12 @@ function Leads() {
     setFormOpen(true)
   }
 
-  function handleEdit(lead: LeadWithRelations) {
+  const handleEdit = useCallback((lead: LeadWithRelations) => {
     setEditingLead(lead)
     setFormOpen(true)
-  }
+  }, [])
+
+  useOpenLeadFromQuery(leads, handleEdit)
 
   function confirmDelete() {
     if (deleteTarget?.id) handleDelete(deleteTarget.id)

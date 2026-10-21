@@ -6,6 +6,9 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { LeadPropertyPartialSource } from './leadPropertyPartialSource';
+import type { LeadPropertyPartialMatchedCriteriaItem } from './leadPropertyPartialMatchedCriteriaItem';
+import type { LeadPropertyPartialUnmatchedCriteriaItem } from './leadPropertyPartialUnmatchedCriteriaItem';
+import type { LeadPropertyPartialContactStatus } from './leadPropertyPartialContactStatus';
 
 /**
  * (tsType: Partial<LeadProperty>, schemaOptions: { partial: true })
@@ -18,4 +21,26 @@ export interface LeadPropertyPartial {
   primary?: boolean | null;
   leadId?: string;
   propertyId?: string;
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
+  matchScore?: number | null;
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
+  matchTotal?: number | null;
+  matchedCriteria?: LeadPropertyPartialMatchedCriteriaItem[];
+  unmatchedCriteria?: LeadPropertyPartialUnmatchedCriteriaItem[];
+  /** @nullable */
+  contactStatus?: LeadPropertyPartialContactStatus;
+  /** @nullable */
+  contactStatusUpdatedAt?: string | null;
+  /** @nullable */
+  matchedAt?: string | null;
+  /** @nullable */
+  contactStatusUpdatedById?: string | null;
 }

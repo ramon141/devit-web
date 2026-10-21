@@ -17,4 +17,5 @@ export const NotificationPartialExcludingCreatedAtUpdatedAtType = {
   proposal_received: 'proposal_received',
   sale_completed: 'sale_completed',
   event_reminder: 'event_reminder',
+  property_match: 'property_match',
 } as const;

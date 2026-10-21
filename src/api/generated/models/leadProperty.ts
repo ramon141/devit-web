@@ -6,6 +6,9 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { LeadPropertySource } from './leadPropertySource';
+import type { LeadPropertyMatchedCriteriaItem } from './leadPropertyMatchedCriteriaItem';
+import type { LeadPropertyUnmatchedCriteriaItem } from './leadPropertyUnmatchedCriteriaItem';
+import type { LeadPropertyContactStatus } from './leadPropertyContactStatus';
 
 export interface LeadProperty {
   id?: string;
@@ -15,4 +18,26 @@ export interface LeadProperty {
   primary?: boolean | null;
   leadId: string;
   propertyId: string;
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
+  matchScore?: number | null;
+  /**
+   * @minimum 0
+   * @maximum 32767
+   * @nullable
+   */
+  matchTotal?: number | null;
+  matchedCriteria?: LeadPropertyMatchedCriteriaItem[];
+  unmatchedCriteria?: LeadPropertyUnmatchedCriteriaItem[];
+  /** @nullable */
+  contactStatus?: LeadPropertyContactStatus;
+  /** @nullable */
+  contactStatusUpdatedAt?: string | null;
+  /** @nullable */
+  matchedAt?: string | null;
+  /** @nullable */
+  contactStatusUpdatedById?: string | null;
 }

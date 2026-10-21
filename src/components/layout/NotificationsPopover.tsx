@@ -10,10 +10,29 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { useNotificationList } from '@/pages/Notifiche/hooks/useNotificationList'
-import { getNotificationTypeLabels, NOTIFICATION_POPOVER_LIMIT } from '@/constants/notifications'
+import {
+  getNotificationLink,
+  getNotificationTypeLabels,
+  NOTIFICATION_POPOVER_LIMIT,
+} from '@/constants/notifications'
 import { useUnreadNotificationsCount } from '@/hooks/useUnreadNotificationsCount'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { formatDateTime } from '@/utils/formatDate'
+
+type NotificationLeadLinkProps = {
+  link: string | null
+  label: string
+}
+
+function NotificationLeadLink({ link, label }: NotificationLeadLinkProps) {
+  if (!link) return null
+
+  return (
+    <Link to={link} className="text-xs text-primary hover:underline">
+      {label}
+    </Link>
+  )
+}
 
 // Popover com as últimas notificações, com link para a lista completa
 function NotificationsPopover() {
@@ -59,6 +78,7 @@ function NotificationsPopover() {
                 {notificationTypeLabels[notification.type] ?? notification.type}
               </p>
               <p className="truncate text-sm font-medium">{notification.title}</p>
+              <NotificationLeadLink link={getNotificationLink(notification)} label={t('notificationsPopover.openLead')} />
               <p className="text-[10px] text-muted-foreground">
                 {formatDateTime(notification.createdAt)}
               </p>

@@ -105,7 +105,8 @@
   "notificationsPopover": {
     "title": "Notificações",
     "empty": "Nenhuma notificação.",
-    "viewAll": "Ver todas"
+    "viewAll": "Ver todas",
+    "openLead": "Abrir solicitação"
   },
   "languageSwitcher": {
     "ariaLabel": "Idioma"
@@ -124,7 +125,8 @@
     "contract_expired": "Contrato vencido",
     "proposal_received": "Proposta recebida",
     "sale_completed": "Venda concluída",
-    "event_reminder": "Lembrete de evento"
+    "event_reminder": "Lembrete de evento",
+    "property_match": "Imóvel compatível"
   },
   "exportMenu": {
     "label": "Exportar",

@@ -12,4 +12,12 @@ export type LeadPropertyFilter1FieldsOneOf = {
   primary?: boolean;
   leadId?: boolean;
   propertyId?: boolean;
+  matchScore?: boolean;
+  matchTotal?: boolean;
+  matchedCriteria?: boolean;
+  unmatchedCriteria?: boolean;
+  contactStatus?: boolean;
+  contactStatusUpdatedAt?: boolean;
+  matchedAt?: boolean;
+  contactStatusUpdatedById?: boolean;
 };

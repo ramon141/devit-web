@@ -13,4 +13,5 @@ export type LeadPropertyIncludeFilterItemsRelation = typeof LeadPropertyIncludeF
 export const LeadPropertyIncludeFilterItemsRelation = {
   lead: 'lead',
   property: 'property',
+  contactStatusUpdatedBy: 'contactStatusUpdatedBy',
 } as const;
