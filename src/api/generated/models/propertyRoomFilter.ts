@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyRoomFilterOrder } from './propertyRoomFilterOrder';
+import type { PropertyRoomFilterWhere } from './propertyRoomFilterWhere';
 import type { PropertyRoomFilterFields } from './propertyRoomFilterFields';
 import type { PropertyRoomFilterIncludeItem } from './propertyRoomFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyRoomFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyRoomFilterOrder;
+  where?: PropertyRoomFilterWhere;
   fields?: PropertyRoomFilterFields;
   include?: PropertyRoomFilterIncludeItem[];
 }

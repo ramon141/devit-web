@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { ZoneFilterOrder } from './zoneFilterOrder';
+import type { ZoneFilterWhere } from './zoneFilterWhere';
 import type { ZoneFilterFields } from './zoneFilterFields';
 
 export interface ZoneFilter {
@@ -16,5 +17,6 @@ export interface ZoneFilter {
   /** @minimum 0 */
   skip?: number;
   order?: ZoneFilterOrder;
+  where?: ZoneFilterWhere;
   fields?: ZoneFilterFields;
 }

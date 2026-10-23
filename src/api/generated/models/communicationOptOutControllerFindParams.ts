@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { CommunicationOptOutFilter1 } from './communicationOptOutFilter1';
+import type { CommunicationOptOutFilter } from './communicationOptOutFilter';
 
 export type CommunicationOptOutControllerFindParams = {
-filter?: CommunicationOptOutFilter1;
+filter?: CommunicationOptOutFilter;
 };

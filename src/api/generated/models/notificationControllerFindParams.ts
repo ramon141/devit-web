@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { NotificationFilter1 } from './notificationFilter1';
+import type { NotificationFilter } from './notificationFilter';
 
 export type NotificationControllerFindParams = {
-filter?: NotificationFilter1;
+filter?: NotificationFilter;
 };

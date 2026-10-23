@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyDocumentFilter1 } from './propertyDocumentFilter1';
+import type { PropertyDocumentFilter } from './propertyDocumentFilter';
 
 export type PropertyDocumentControllerFindParams = {
-filter?: PropertyDocumentFilter1;
+filter?: PropertyDocumentFilter;
 };

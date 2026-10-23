@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyLandDetailFilterOrder } from './propertyLandDetailFilterOrder';
+import type { PropertyLandDetailFilterWhere } from './propertyLandDetailFilterWhere';
 import type { PropertyLandDetailFilterFields } from './propertyLandDetailFilterFields';
 import type { PropertyLandDetailFilterIncludeItem } from './propertyLandDetailFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyLandDetailFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyLandDetailFilterOrder;
+  where?: PropertyLandDetailFilterWhere;
   fields?: PropertyLandDetailFilterFields;
   include?: PropertyLandDetailFilterIncludeItem[];
 }

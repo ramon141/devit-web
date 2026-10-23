@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { CalendarEventFilterOrder } from './calendarEventFilterOrder';
+import type { CalendarEventFilterWhere } from './calendarEventFilterWhere';
 import type { CalendarEventFilterFields } from './calendarEventFilterFields';
 import type { CalendarEventFilterIncludeItem } from './calendarEventFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface CalendarEventFilter {
   /** @minimum 0 */
   skip?: number;
   order?: CalendarEventFilterOrder;
+  where?: CalendarEventFilterWhere;
   fields?: CalendarEventFilterFields;
   include?: CalendarEventFilterIncludeItem[];
 }

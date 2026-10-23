@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyCategoryFilter1 } from './propertyCategoryFilter1';
+import type { PropertyCategoryFilter } from './propertyCategoryFilter';
 
 export type PropertyCategoryControllerFindParams = {
-filter?: PropertyCategoryFilter1;
+filter?: PropertyCategoryFilter;
 };

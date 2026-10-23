@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { AuditLogFilter1 } from './auditLogFilter1';
+import type { AuditLogFilter } from './auditLogFilter';
 
 export type AuditLogControllerFindParams = {
-filter?: AuditLogFilter1;
+filter?: AuditLogFilter;
 };

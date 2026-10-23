@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { ContractRenewalFilterOrder } from './contractRenewalFilterOrder';
+import type { ContractRenewalFilterWhere } from './contractRenewalFilterWhere';
 import type { ContractRenewalFilterFields } from './contractRenewalFilterFields';
 import type { ContractRenewalFilterIncludeItem } from './contractRenewalFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface ContractRenewalFilter {
   /** @minimum 0 */
   skip?: number;
   order?: ContractRenewalFilterOrder;
+  where?: ContractRenewalFilterWhere;
   fields?: ContractRenewalFilterFields;
   include?: ContractRenewalFilterIncludeItem[];
 }

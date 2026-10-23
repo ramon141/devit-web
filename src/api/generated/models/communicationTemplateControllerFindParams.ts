@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { CommunicationTemplateFilter1 } from './communicationTemplateFilter1';
+import type { CommunicationTemplateFilter } from './communicationTemplateFilter';
 
 export type CommunicationTemplateControllerFindParams = {
-filter?: CommunicationTemplateFilter1;
+filter?: CommunicationTemplateFilter;
 };

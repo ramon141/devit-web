@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { SaleBuyerFilterOrder } from './saleBuyerFilterOrder';
+import type { SaleBuyerFilterWhere } from './saleBuyerFilterWhere';
 import type { SaleBuyerFilterFields } from './saleBuyerFilterFields';
 import type { SaleBuyerFilterIncludeItem } from './saleBuyerFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface SaleBuyerFilter {
   /** @minimum 0 */
   skip?: number;
   order?: SaleBuyerFilterOrder;
+  where?: SaleBuyerFilterWhere;
   fields?: SaleBuyerFilterFields;
   include?: SaleBuyerFilterIncludeItem[];
 }

@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyPhotoFilter1 } from './propertyPhotoFilter1';
+import type { PropertyPhotoFilter } from './propertyPhotoFilter';
 
 export type PropertyPhotoControllerFindParams = {
-filter?: PropertyPhotoFilter1;
+filter?: PropertyPhotoFilter;
 };

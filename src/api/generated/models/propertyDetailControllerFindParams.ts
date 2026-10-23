@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyDetailFilter1 } from './propertyDetailFilter1';
+import type { PropertyDetailFilter } from './propertyDetailFilter';
 
 export type PropertyDetailControllerFindParams = {
-filter?: PropertyDetailFilter1;
+filter?: PropertyDetailFilter;
 };

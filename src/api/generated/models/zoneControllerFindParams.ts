@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { ZoneFilter1 } from './zoneFilter1';
+import type { ZoneFilter } from './zoneFilter';
 
 export type ZoneControllerFindParams = {
-filter?: ZoneFilter1;
+filter?: ZoneFilter;
 };

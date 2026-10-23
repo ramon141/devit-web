@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PersonAttachmentFilter1 } from './personAttachmentFilter1';
+import type { PersonAttachmentFilter } from './personAttachmentFilter';
 
 export type PersonAttachmentControllerFindParams = {
-filter?: PersonAttachmentFilter1;
+filter?: PersonAttachmentFilter;
 };

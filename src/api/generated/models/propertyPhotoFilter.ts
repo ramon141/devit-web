@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyPhotoFilterOrder } from './propertyPhotoFilterOrder';
+import type { PropertyPhotoFilterWhere } from './propertyPhotoFilterWhere';
 import type { PropertyPhotoFilterFields } from './propertyPhotoFilterFields';
 import type { PropertyPhotoFilterIncludeItem } from './propertyPhotoFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyPhotoFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyPhotoFilterOrder;
+  where?: PropertyPhotoFilterWhere;
   fields?: PropertyPhotoFilterFields;
   include?: PropertyPhotoFilterIncludeItem[];
 }

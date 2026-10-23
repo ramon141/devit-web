@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { LeadPropertyFilterOrder } from './leadPropertyFilterOrder';
+import type { LeadPropertyFilterWhere } from './leadPropertyFilterWhere';
 import type { LeadPropertyFilterFields } from './leadPropertyFilterFields';
 import type { LeadPropertyFilterIncludeItem } from './leadPropertyFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface LeadPropertyFilter {
   /** @minimum 0 */
   skip?: number;
   order?: LeadPropertyFilterOrder;
+  where?: LeadPropertyFilterWhere;
   fields?: LeadPropertyFilterFields;
   include?: LeadPropertyFilterIncludeItem[];
 }

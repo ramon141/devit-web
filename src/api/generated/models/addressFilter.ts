@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { AddressFilterOrder } from './addressFilterOrder';
+import type { AddressFilterWhere } from './addressFilterWhere';
 import type { AddressFilterFields } from './addressFilterFields';
 import type { AddressFilterIncludeItem } from './addressFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface AddressFilter {
   /** @minimum 0 */
   skip?: number;
   order?: AddressFilterOrder;
+  where?: AddressFilterWhere;
   fields?: AddressFilterFields;
   include?: AddressFilterIncludeItem[];
 }

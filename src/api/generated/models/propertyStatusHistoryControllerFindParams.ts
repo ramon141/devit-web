@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyStatusHistoryFilter1 } from './propertyStatusHistoryFilter1';
+import type { PropertyStatusHistoryFilter } from './propertyStatusHistoryFilter';
 
 export type PropertyStatusHistoryControllerFindParams = {
-filter?: PropertyStatusHistoryFilter1;
+filter?: PropertyStatusHistoryFilter;
 };

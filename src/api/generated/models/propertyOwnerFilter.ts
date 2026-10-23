@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyOwnerFilterOrder } from './propertyOwnerFilterOrder';
+import type { PropertyOwnerFilterWhere } from './propertyOwnerFilterWhere';
 import type { PropertyOwnerFilterFields } from './propertyOwnerFilterFields';
 import type { PropertyOwnerFilterIncludeItem } from './propertyOwnerFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyOwnerFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyOwnerFilterOrder;
+  where?: PropertyOwnerFilterWhere;
   fields?: PropertyOwnerFilterFields;
   include?: PropertyOwnerFilterIncludeItem[];
 }

@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { LeadNeighborhoodFilter1 } from './leadNeighborhoodFilter1';
+import type { LeadNeighborhoodFilter } from './leadNeighborhoodFilter';
 
 export type LeadNeighborhoodControllerFindParams = {
-filter?: LeadNeighborhoodFilter1;
+filter?: LeadNeighborhoodFilter;
 };

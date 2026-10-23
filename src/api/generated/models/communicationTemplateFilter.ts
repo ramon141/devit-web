@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { CommunicationTemplateFilterOrder } from './communicationTemplateFilterOrder';
+import type { CommunicationTemplateFilterWhere } from './communicationTemplateFilterWhere';
 import type { CommunicationTemplateFilterFields } from './communicationTemplateFilterFields';
 import type { CommunicationTemplateFilterIncludeItem } from './communicationTemplateFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface CommunicationTemplateFilter {
   /** @minimum 0 */
   skip?: number;
   order?: CommunicationTemplateFilterOrder;
+  where?: CommunicationTemplateFilterWhere;
   fields?: CommunicationTemplateFilterFields;
   include?: CommunicationTemplateFilterIncludeItem[];
 }

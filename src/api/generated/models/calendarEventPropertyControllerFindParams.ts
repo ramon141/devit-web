@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { CalendarEventPropertyFilter1 } from './calendarEventPropertyFilter1';
+import type { CalendarEventPropertyFilter } from './calendarEventPropertyFilter';
 
 export type CalendarEventPropertyControllerFindParams = {
-filter?: CalendarEventPropertyFilter1;
+filter?: CalendarEventPropertyFilter;
 };

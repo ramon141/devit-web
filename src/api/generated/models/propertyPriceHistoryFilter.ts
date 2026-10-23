@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyPriceHistoryFilterOrder } from './propertyPriceHistoryFilterOrder';
+import type { PropertyPriceHistoryFilterWhere } from './propertyPriceHistoryFilterWhere';
 import type { PropertyPriceHistoryFilterFields } from './propertyPriceHistoryFilterFields';
 import type { PropertyPriceHistoryFilterIncludeItem } from './propertyPriceHistoryFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyPriceHistoryFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyPriceHistoryFilterOrder;
+  where?: PropertyPriceHistoryFilterWhere;
   fields?: PropertyPriceHistoryFilterFields;
   include?: PropertyPriceHistoryFilterIncludeItem[];
 }

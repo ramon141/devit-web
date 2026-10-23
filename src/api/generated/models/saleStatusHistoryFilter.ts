@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { SaleStatusHistoryFilterOrder } from './saleStatusHistoryFilterOrder';
+import type { SaleStatusHistoryFilterWhere } from './saleStatusHistoryFilterWhere';
 import type { SaleStatusHistoryFilterFields } from './saleStatusHistoryFilterFields';
 import type { SaleStatusHistoryFilterIncludeItem } from './saleStatusHistoryFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface SaleStatusHistoryFilter {
   /** @minimum 0 */
   skip?: number;
   order?: SaleStatusHistoryFilterOrder;
+  where?: SaleStatusHistoryFilterWhere;
   fields?: SaleStatusHistoryFilterFields;
   include?: SaleStatusHistoryFilterIncludeItem[];
 }

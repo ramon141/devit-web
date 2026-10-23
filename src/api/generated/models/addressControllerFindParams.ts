@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { AddressFilter1 } from './addressFilter1';
+import type { AddressFilter } from './addressFilter';
 
 export type AddressControllerFindParams = {
-filter?: AddressFilter1;
+filter?: AddressFilter;
 };

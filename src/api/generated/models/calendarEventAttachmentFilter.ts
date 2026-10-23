@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { CalendarEventAttachmentFilterOrder } from './calendarEventAttachmentFilterOrder';
+import type { CalendarEventAttachmentFilterWhere } from './calendarEventAttachmentFilterWhere';
 import type { CalendarEventAttachmentFilterFields } from './calendarEventAttachmentFilterFields';
 import type { CalendarEventAttachmentFilterIncludeItem } from './calendarEventAttachmentFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface CalendarEventAttachmentFilter {
   /** @minimum 0 */
   skip?: number;
   order?: CalendarEventAttachmentFilterOrder;
+  where?: CalendarEventAttachmentFilterWhere;
   fields?: CalendarEventAttachmentFilterFields;
   include?: CalendarEventAttachmentFilterIncludeItem[];
 }

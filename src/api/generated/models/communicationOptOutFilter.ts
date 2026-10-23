@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { CommunicationOptOutFilterOrder } from './communicationOptOutFilterOrder';
+import type { CommunicationOptOutFilterWhere } from './communicationOptOutFilterWhere';
 import type { CommunicationOptOutFilterFields } from './communicationOptOutFilterFields';
 import type { CommunicationOptOutFilterIncludeItem } from './communicationOptOutFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface CommunicationOptOutFilter {
   /** @minimum 0 */
   skip?: number;
   order?: CommunicationOptOutFilterOrder;
+  where?: CommunicationOptOutFilterWhere;
   fields?: CommunicationOptOutFilterFields;
   include?: CommunicationOptOutFilterIncludeItem[];
 }

@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { LeadNeighborhoodFilterOrder } from './leadNeighborhoodFilterOrder';
+import type { LeadNeighborhoodFilterWhere } from './leadNeighborhoodFilterWhere';
 import type { LeadNeighborhoodFilterFields } from './leadNeighborhoodFilterFields';
 import type { LeadNeighborhoodFilterIncludeItem } from './leadNeighborhoodFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface LeadNeighborhoodFilter {
   /** @minimum 0 */
   skip?: number;
   order?: LeadNeighborhoodFilterOrder;
+  where?: LeadNeighborhoodFilterWhere;
   fields?: LeadNeighborhoodFilterFields;
   include?: LeadNeighborhoodFilterIncludeItem[];
 }

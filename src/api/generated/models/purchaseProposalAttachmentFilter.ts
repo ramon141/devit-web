@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PurchaseProposalAttachmentFilterOrder } from './purchaseProposalAttachmentFilterOrder';
+import type { PurchaseProposalAttachmentFilterWhere } from './purchaseProposalAttachmentFilterWhere';
 import type { PurchaseProposalAttachmentFilterFields } from './purchaseProposalAttachmentFilterFields';
 import type { PurchaseProposalAttachmentFilterIncludeItem } from './purchaseProposalAttachmentFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PurchaseProposalAttachmentFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PurchaseProposalAttachmentFilterOrder;
+  where?: PurchaseProposalAttachmentFilterWhere;
   fields?: PurchaseProposalAttachmentFilterFields;
   include?: PurchaseProposalAttachmentFilterIncludeItem[];
 }

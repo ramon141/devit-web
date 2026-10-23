@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { CommunicationLogFilterOrder } from './communicationLogFilterOrder';
+import type { CommunicationLogFilterWhere } from './communicationLogFilterWhere';
 import type { CommunicationLogFilterFields } from './communicationLogFilterFields';
 import type { CommunicationLogFilterIncludeItem } from './communicationLogFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface CommunicationLogFilter {
   /** @minimum 0 */
   skip?: number;
   order?: CommunicationLogFilterOrder;
+  where?: CommunicationLogFilterWhere;
   fields?: CommunicationLogFilterFields;
   include?: CommunicationLogFilterIncludeItem[];
 }

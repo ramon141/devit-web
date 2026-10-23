@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyIndustrialAreaFilter1 } from './propertyIndustrialAreaFilter1';
+import type { PropertyIndustrialAreaFilter } from './propertyIndustrialAreaFilter';
 
 export type PropertyIndustrialAreaControllerFindParams = {
-filter?: PropertyIndustrialAreaFilter1;
+filter?: PropertyIndustrialAreaFilter;
 };

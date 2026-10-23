@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { CommunicationLogFilter1 } from './communicationLogFilter1';
+import type { CommunicationLogFilter } from './communicationLogFilter';
 
 export type CommunicationLogControllerFindParams = {
-filter?: CommunicationLogFilter1;
+filter?: CommunicationLogFilter;
 };

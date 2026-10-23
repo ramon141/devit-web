@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyIndustrialDetailFilterOrder } from './propertyIndustrialDetailFilterOrder';
+import type { PropertyIndustrialDetailFilterWhere } from './propertyIndustrialDetailFilterWhere';
 import type { PropertyIndustrialDetailFilterFields } from './propertyIndustrialDetailFilterFields';
 import type { PropertyIndustrialDetailFilterIncludeItem } from './propertyIndustrialDetailFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyIndustrialDetailFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyIndustrialDetailFilterOrder;
+  where?: PropertyIndustrialDetailFilterWhere;
   fields?: PropertyIndustrialDetailFilterFields;
   include?: PropertyIndustrialDetailFilterIncludeItem[];
 }

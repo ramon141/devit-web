@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyCadastralInfoFilterOrder } from './propertyCadastralInfoFilterOrder';
+import type { PropertyCadastralInfoFilterWhere } from './propertyCadastralInfoFilterWhere';
 import type { PropertyCadastralInfoFilterFields } from './propertyCadastralInfoFilterFields';
 import type { PropertyCadastralInfoFilterIncludeItem } from './propertyCadastralInfoFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyCadastralInfoFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyCadastralInfoFilterOrder;
+  where?: PropertyCadastralInfoFilterWhere;
   fields?: PropertyCadastralInfoFilterFields;
   include?: PropertyCadastralInfoFilterIncludeItem[];
 }

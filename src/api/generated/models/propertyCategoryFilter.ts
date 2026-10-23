@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyCategoryFilterOrder } from './propertyCategoryFilterOrder';
+import type { PropertyCategoryFilterWhere } from './propertyCategoryFilterWhere';
 import type { PropertyCategoryFilterFields } from './propertyCategoryFilterFields';
 
 export interface PropertyCategoryFilter {
@@ -16,5 +17,6 @@ export interface PropertyCategoryFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyCategoryFilterOrder;
+  where?: PropertyCategoryFilterWhere;
   fields?: PropertyCategoryFilterFields;
 }

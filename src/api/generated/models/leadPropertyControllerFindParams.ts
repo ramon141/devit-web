@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { LeadPropertyFilter1 } from './leadPropertyFilter1';
+import type { LeadPropertyFilter } from './leadPropertyFilter';
 
 export type LeadPropertyControllerFindParams = {
-filter?: LeadPropertyFilter1;
+filter?: LeadPropertyFilter;
 };

@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { ContractAttachmentFilterOrder } from './contractAttachmentFilterOrder';
+import type { ContractAttachmentFilterWhere } from './contractAttachmentFilterWhere';
 import type { ContractAttachmentFilterFields } from './contractAttachmentFilterFields';
 import type { ContractAttachmentFilterIncludeItem } from './contractAttachmentFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface ContractAttachmentFilter {
   /** @minimum 0 */
   skip?: number;
   order?: ContractAttachmentFilterOrder;
+  where?: ContractAttachmentFilterWhere;
   fields?: ContractAttachmentFilterFields;
   include?: ContractAttachmentFilterIncludeItem[];
 }

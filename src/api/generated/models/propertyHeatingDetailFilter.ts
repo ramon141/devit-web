@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyHeatingDetailFilterOrder } from './propertyHeatingDetailFilterOrder';
+import type { PropertyHeatingDetailFilterWhere } from './propertyHeatingDetailFilterWhere';
 import type { PropertyHeatingDetailFilterFields } from './propertyHeatingDetailFilterFields';
 import type { PropertyHeatingDetailFilterIncludeItem } from './propertyHeatingDetailFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyHeatingDetailFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyHeatingDetailFilterOrder;
+  where?: PropertyHeatingDetailFilterWhere;
   fields?: PropertyHeatingDetailFilterFields;
   include?: PropertyHeatingDetailFilterIncludeItem[];
 }

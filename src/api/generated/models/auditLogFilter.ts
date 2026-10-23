@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { AuditLogFilterOrder } from './auditLogFilterOrder';
+import type { AuditLogFilterWhere } from './auditLogFilterWhere';
 import type { AuditLogFilterFields } from './auditLogFilterFields';
 import type { AuditLogFilterIncludeItem } from './auditLogFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface AuditLogFilter {
   /** @minimum 0 */
   skip?: number;
   order?: AuditLogFilterOrder;
+  where?: AuditLogFilterWhere;
   fields?: AuditLogFilterFields;
   include?: AuditLogFilterIncludeItem[];
 }

@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { SaleBuyerFilter1 } from './saleBuyerFilter1';
+import type { SaleBuyerFilter } from './saleBuyerFilter';
 
 export type SaleBuyerControllerFindParams = {
-filter?: SaleBuyerFilter1;
+filter?: SaleBuyerFilter;
 };

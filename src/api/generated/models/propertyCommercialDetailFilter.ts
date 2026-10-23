@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyCommercialDetailFilterOrder } from './propertyCommercialDetailFilterOrder';
+import type { PropertyCommercialDetailFilterWhere } from './propertyCommercialDetailFilterWhere';
 import type { PropertyCommercialDetailFilterFields } from './propertyCommercialDetailFilterFields';
 import type { PropertyCommercialDetailFilterIncludeItem } from './propertyCommercialDetailFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyCommercialDetailFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyCommercialDetailFilterOrder;
+  where?: PropertyCommercialDetailFilterWhere;
   fields?: PropertyCommercialDetailFilterFields;
   include?: PropertyCommercialDetailFilterIncludeItem[];
 }

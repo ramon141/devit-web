@@ -9,7 +9,7 @@ import type { NewSaleStatus } from './newSaleStatus';
 import type { NewSaleBuyersItem } from './newSaleBuyersItem';
 import type { NewSaleSellersItem } from './newSaleSellersItem';
 import type { NewSaleDocumentsItem } from './newSaleDocumentsItem';
-import type { NewSaleStatusHistoryPropertyItem } from './newSaleStatusHistoryPropertyItem';
+import type { NewSaleStatusHistoryItem } from './newSaleStatusHistoryItem';
 
 export interface NewSale {
   /**
@@ -57,5 +57,5 @@ export interface NewSale {
   /** Documentos a vincular à venda (o anexo já deve existir) */
   documents?: NewSaleDocumentsItem[];
   /** Histórico de status a registrar para a venda */
-  statusHistory?: NewSaleStatusHistoryPropertyItem[];
+  statusHistory?: NewSaleStatusHistoryItem[];
 }

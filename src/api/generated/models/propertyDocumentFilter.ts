@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyDocumentFilterOrder } from './propertyDocumentFilterOrder';
+import type { PropertyDocumentFilterWhere } from './propertyDocumentFilterWhere';
 import type { PropertyDocumentFilterFields } from './propertyDocumentFilterFields';
 import type { PropertyDocumentFilterIncludeItem } from './propertyDocumentFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyDocumentFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyDocumentFilterOrder;
+  where?: PropertyDocumentFilterWhere;
   fields?: PropertyDocumentFilterFields;
   include?: PropertyDocumentFilterIncludeItem[];
 }

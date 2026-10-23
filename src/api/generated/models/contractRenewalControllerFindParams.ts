@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { ContractRenewalFilter1 } from './contractRenewalFilter1';
+import type { ContractRenewalFilter } from './contractRenewalFilter';
 
 export type ContractRenewalControllerFindParams = {
-filter?: ContractRenewalFilter1;
+filter?: ContractRenewalFilter;
 };

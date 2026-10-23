@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { ContractAttachmentFilter1 } from './contractAttachmentFilter1';
+import type { ContractAttachmentFilter } from './contractAttachmentFilter';
 
 export type ContractAttachmentControllerFindParams = {
-filter?: ContractAttachmentFilter1;
+filter?: ContractAttachmentFilter;
 };

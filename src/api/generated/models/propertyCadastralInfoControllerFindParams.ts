@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyCadastralInfoFilter1 } from './propertyCadastralInfoFilter1';
+import type { PropertyCadastralInfoFilter } from './propertyCadastralInfoFilter';
 
 export type PropertyCadastralInfoControllerFindParams = {
-filter?: PropertyCadastralInfoFilter1;
+filter?: PropertyCadastralInfoFilter;
 };

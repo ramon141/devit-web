@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { SaleStatusHistoryFilter1 } from './saleStatusHistoryFilter1';
+import type { SaleStatusHistoryFilter } from './saleStatusHistoryFilter';
 
 export type SaleStatusHistoryControllerFindParams = {
-filter?: SaleStatusHistoryFilter1;
+filter?: SaleStatusHistoryFilter;
 };

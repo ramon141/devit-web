@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PropertyFeeFilterOrder } from './propertyFeeFilterOrder';
+import type { PropertyFeeFilterWhere } from './propertyFeeFilterWhere';
 import type { PropertyFeeFilterFields } from './propertyFeeFilterFields';
 import type { PropertyFeeFilterIncludeItem } from './propertyFeeFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface PropertyFeeFilter {
   /** @minimum 0 */
   skip?: number;
   order?: PropertyFeeFilterOrder;
+  where?: PropertyFeeFilterWhere;
   fields?: PropertyFeeFilterFields;
   include?: PropertyFeeFilterIncludeItem[];
 }

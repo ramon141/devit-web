@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { NotificationFilterOrder } from './notificationFilterOrder';
+import type { NotificationFilterWhere } from './notificationFilterWhere';
 import type { NotificationFilterFields } from './notificationFilterFields';
 import type { NotificationFilterIncludeItem } from './notificationFilterIncludeItem';
 
@@ -17,6 +18,7 @@ export interface NotificationFilter {
   /** @minimum 0 */
   skip?: number;
   order?: NotificationFilterOrder;
+  where?: NotificationFilterWhere;
   fields?: NotificationFilterFields;
   include?: NotificationFilterIncludeItem[];
 }

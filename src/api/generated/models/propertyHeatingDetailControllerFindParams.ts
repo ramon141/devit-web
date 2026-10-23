@@ -5,8 +5,8 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
-import type { PropertyHeatingDetailFilter1 } from './propertyHeatingDetailFilter1';
+import type { PropertyHeatingDetailFilter } from './propertyHeatingDetailFilter';
 
 export type PropertyHeatingDetailControllerFindParams = {
-filter?: PropertyHeatingDetailFilter1;
+filter?: PropertyHeatingDetailFilter;
 };
