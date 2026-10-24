@@ -725,6 +725,10 @@ import type {
   PropertyControllerFindById422,
   PropertyControllerFindByIdParams,
   PropertyControllerFindParams,
+  PropertyControllerNextCode200,
+  PropertyControllerNextCode400,
+  PropertyControllerNextCode401,
+  PropertyControllerNextCode422,
   PropertyControllerUpdateById400,
   PropertyControllerUpdateById401,
   PropertyControllerUpdateById403,
@@ -9037,6 +9041,99 @@ export function usePropertyFacetsControllerFacets<TData = Awaited<ReturnType<typ
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPropertyFacetsControllerFacetsQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Suggest the next free property code
+ */
+export const propertyControllerNextCode = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyControllerNextCode200>(
+      {url: `/properties/next-code`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyControllerNextCodeQueryKey = () => {
+    return [
+    `/properties/next-code`
+    ] as const;
+    }
+
+    
+export const getPropertyControllerNextCodeQueryOptions = <TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyControllerNextCodeQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyControllerNextCode>>> = ({ signal }) => propertyControllerNextCode(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyControllerNextCodeQueryResult = NonNullable<Awaited<ReturnType<typeof propertyControllerNextCode>>>
+export type PropertyControllerNextCodeQueryError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>
+
+
+export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyControllerNextCode>>,
+          TError,
+          Awaited<ReturnType<typeof propertyControllerNextCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyControllerNextCode>>,
+          TError,
+          Awaited<ReturnType<typeof propertyControllerNextCode>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Suggest the next free property code
+ */
+
+export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof propertyControllerNextCode>>, TError = ErrorType<PropertyControllerNextCode400 | PropertyControllerNextCode401 | PropertyControllerNextCode422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerNextCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyControllerNextCodeQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

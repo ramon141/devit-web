@@ -19,8 +19,13 @@ Este skill cobre três frentes de caça, sempre com repro ao vivo:
 - Banco de dev é Postgres, string de conexão em `../devit-api/.env` (`DATABASE_URL`). Ler o arquivo só pra obter host/porta/db, nunca reproduzir a senha no relatório final.
 - **Nunca rodar comando git.** Nunca alterar dado em produção. Nunca matar processo já em andamento (dev server de outra sessão, seja `devit-web` ou `devit-api`) sem perguntar.
 
+## Checklist primeiro — obrigatório, sempre
+
+Antes de qualquer navegação ou hipótese, criar o arquivo `<scratchpad>/bug-hunt-checklist.md` e só então começar a testar. Detalhes e regras de execução na seção "Varredura por checklist". Sem checklist criado, não testar nada.
+
 ## Passo a passo
 
+0. **Checklist** criado e preenchido (seção acima) — os passos 1–5 abaixo valem para cada item dele.
 1. **Servidores de pé**: checar se `devit-web` (porta 5173) e `devit-api` (porta 3006) já estão rodando; se não, subir cada um com `run_in_background` na sua pasta. Não subir um segundo servidor se já tem um de pé.
 2. **Levantar hipóteses lendo código**, priorizando áreas de risco real (ver `CLAUDE.md` do projeto pras convenções esperadas):
    - Forms com `react-hook-form` + `zod` — campo `Select` que não usa `Controller` (deveria), `Input` que não usa `register`, validação client não bate com o schema do backend.
@@ -66,14 +71,16 @@ Várias telas do Devit repetem o mesmo dado (ex: dados de um imóvel aparecem em
 3. Se os valores divergem sem justificativa de negócio clara, reportar como bug de inconsistência, citando os dois arquivos de componente/hook responsáveis por cada tela e os dois valores vistos.
 4. Se a divergência é porque as duas telas usam definições diferentes de propósito e isso não está claro pro usuário final (rótulo ambíguo, sem tooltip/legenda), reportar como problema de UX/clareza, não só como bug técnico.
 
-## Varredura longa (cobertura ampla, "achar tudo")
+## Varredura por checklist (sempre, não só em pedido amplo)
 
-Quando o pedido é cobertura ampla (ex: "achar tudo", "testar sistema inteiro", "100%"), a sessão pode compactar contexto ao longo da caçada — turnos antigos viram resumo e detalhe fino (query exata rodada, campo exato conferido) pode se perder. Isso não impede rodar por muito tempo, mas exige checkpoint fora da conversa:
+Toda caçada roda por checklist em arquivo, fora da conversa — o contexto pode compactar e o arquivo é a fonte da verdade do que falta.
 
-1. Antes de começar, criar um arquivo de checklist no scratchpad da sessão (`<scratchpad>/bug-hunt-checklist.md`) listando toda rota/página em `src/pages` (ou `src/routes.tsx`) que vai entrar na varredura.
-2. Conforme cada rota é testada, atualizar o arquivo na hora (não no final) com um de três estados por linha: `[ok]` sem bug, `[bug]` com referência ao achado no relatório, `[descartado]` com motivo curto.
-3. Se o contexto compactar no meio da varredura, reabrir o checklist primeiro — ele diz exatamente onde parar e o que já foi coberto, sem precisar confiar no resumo da conversa pra isso.
-4. Mesmo com o checklist, deixar claro no relatório final que "100%" é cobertura de telas/rotas listadas, não de todas as combinações de estado (validação, edge case, permissão, paginação) — isso nunca fecha por definição.
+1. **Criar o checklist primeiro** em `<scratchpad>/bug-hunt-checklist.md`, listando **todas as funcionalidades do sistema**, não só rotas. Levantar lendo `src/routes.tsx`, `src/pages/**` (componentes, modais, hooks) e o menu lateral. Para cada tela, um item por funcionalidade testável: carregar a tela, cada filtro, busca, ordenação, paginação, criar, editar, excluir, cada modal/aba, upload/download, ações em massa, validação de cada formulário, estados vazio/erro, e valores que vêm do banco (ver "Validação contra o banco") ou se repetem em outra tela (ver "Consistência entre telas"). Formato: uma linha por item, `- [ ] <tela> › <funcionalidade>`.
+2. **Percorrer o checklist item por item, em ordem**, testando de verdade no navegador (Playwright) cada um. Ao terminar cada item, atualizar o arquivo **na hora** (não no final, não em lote) com um estado: `[ok]` sem bug, `[bug]` com referência ao achado, `[descartado]` com motivo curto.
+3. **Não parar até que todos os itens estejam marcados.** Nenhum `[ ]` pendente = única condição de fim. Não encerrar por cansaço, por "já cobri o principal" nem por achar um bug: bug encontrado é anotado e a varredura continua. Item que não dá pra testar (falta de dado, permissão, dependência externa) vira `[descartado]` com o motivo — nunca fica em branco. Parar e perguntar só em bloqueio real do Ambiente (servidor fora do ar, credencial recusada, risco de tocar produção).
+4. **Descobriu funcionalidade nova no caminho** (modal escondido, aba, ação não listada)? Adicionar ao checklist na hora e testar também.
+5. **Contexto compactou?** Reabrir o checklist primeiro; ele diz onde parar e o que já foi coberto — não confiar no resumo da conversa.
+6. **Antes do relatório final**, reler o arquivo e conferir que não sobrou `[ ]`. Incluir no relatório o resumo do checklist (quantos `[ok]`, `[bug]`, `[descartado]`). Deixar claro que cobertura é das funcionalidades listadas, não de todas as combinações de estado (edge case, permissão, volume) — isso nunca fecha por definição.
 
 ## Relatório
 
