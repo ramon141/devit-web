@@ -22,11 +22,13 @@ export interface Property {
   /**
    * @minLength 1
    * @maxLength 200
+   * @pattern \S
    */
   title: string;
   /**
    * @maxLength 220
    * @nullable
+   * @pattern ^[a-z0-9]+(?:-[a-z0-9]+)*$
    */
   slug?: string | null;
   /**

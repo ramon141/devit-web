@@ -33,7 +33,8 @@ export interface AuditLogWithRelations {
   source?: AuditLogWithRelationsSource;
   /** @nullable */
   category?: AuditLogWithRelationsCategory;
-  changes?: (AuditLogWithRelationsChangesItemItem[] | null)[];
+  /** @nullable */
+  changes?: (AuditLogWithRelationsChangesItemItem[] | null)[] | null;
   /** @nullable */
   ip?: string | null;
   /** @nullable */

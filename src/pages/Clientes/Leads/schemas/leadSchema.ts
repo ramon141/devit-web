@@ -35,6 +35,7 @@ export function getLeadSourceOptions(t: TFunction<'clientes'>) {
     { value: LeadSource.referral, label: t('leadSourceOptions.referral') },
     { value: LeadSource.social_media, label: t('leadSourceOptions.socialMedia') },
     { value: LeadSource.walk_in, label: t('leadSourceOptions.walkIn') },
+    { value: LeadSource.whatsapp_chatbot, label: t('leadSourceOptions.whatsappChatbot') },
     { value: LeadSource.other, label: t('leadSourceOptions.other') },
   ]
 }

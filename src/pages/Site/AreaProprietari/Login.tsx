@@ -19,6 +19,12 @@ function AreaProprietariLogin() {
   async function onSubmit(event: FormEvent) {
     event.preventDefault()
     setError(null)
+
+    if (!email.trim() || !pin.trim()) {
+      setError(t('areaProprietari.login.required'))
+      return
+    }
+
     setIsSubmitting(true)
 
     try {

@@ -7,9 +7,6 @@
  */
 import type { UserPartialExcludingPasswordHashCreatedAtUpdatedAtAccessLevel } from './userPartialExcludingPasswordHashCreatedAtUpdatedAtAccessLevel';
 
-/**
- * (tsType: Omit<Partial<User>, 'passwordHash' | 'createdAt' | 'updatedAt'>, schemaOptions: { partial: true, exclude: [ 'passwordHash', 'createdAt', 'updatedAt' ] })
- */
 export interface UserPartialExcludingPasswordHashCreatedAtUpdatedAt {
   id?: string;
   /**
@@ -48,4 +45,9 @@ export interface UserPartialExcludingPasswordHashCreatedAtUpdatedAt {
   avatarId?: string | null;
   /** @nullable */
   branchId?: string | null;
+  /**
+   * @minLength 8
+   * @pattern ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$
+   */
+  password?: string;
 }

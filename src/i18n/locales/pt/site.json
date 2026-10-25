@@ -86,6 +86,7 @@
       "emailLabel": "Email",
       "pinLabel": "PIN",
       "submit": "Entrar",
+      "required": "Campo obrigatório",
       "invalidCredentials": "Email ou PIN inválidos"
     },
     "dashboard": {

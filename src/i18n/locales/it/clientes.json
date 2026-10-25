@@ -121,6 +121,7 @@
     "referral": "Passaparola",
     "socialMedia": "Social media",
     "walkIn": "Visita spontanea",
+    "whatsappChatbot": "Chatbot WhatsApp",
     "other": "Altro"
   },
   "leadSchema": {

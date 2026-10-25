@@ -65,7 +65,8 @@ export function useUserForm({ open, user, onSaved }: UseUserFormProps) {
             active: user.active ?? true,
             password: '',
           }
-        : emptyValues
+        : emptyValues,
+      { keepFieldsRef: true },
     )
   }, [user, form, open])
 
@@ -83,7 +84,10 @@ export function useUserForm({ open, user, onSaved }: UseUserFormProps) {
     const avatarId = avatarFiles[0] ? (await uploadFile(avatarFiles[0], 'avatars')).id : undefined
 
     if (user?.id) {
-      return update({ id: user.id, data: { ...rest, branchId, ...(avatarId && { avatarId }) } })
+      return update({
+        id: user.id,
+        data: { ...rest, branchId, ...(password && { password }), ...(avatarId && { avatarId }) },
+      })
     }
 
     return create({ data: { ...rest, password: password ?? '', ...(avatarId && { avatarId }) } })
