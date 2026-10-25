@@ -5,32 +5,42 @@ import {
 } from '@/api/generated/api'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { useWhatsappWebhook } from '@/pages/Marketing/hooks/useWhatsappWebhook'
+import { useWhatsappWebhook, type WhatsappTarget } from '@/pages/Marketing/hooks/useWhatsappWebhook'
 
 const POLL_INTERVAL_MS = 4000
 const CONNECTED_POLL_INTERVAL_MS = 30000
 
-function WhatsappConnectionCard() {
+interface WhatsappConnectionCardProps {
+  target: WhatsappTarget
+}
+
+function WhatsappConnectionCard({ target }: WhatsappConnectionCardProps) {
   const { t } = useTranslation('marketing')
 
-  const status = useMarketingWhatsappControllerStatus({
-    query: {
-      refetchInterval: (query) =>
-        query.state.data?.connected ? CONNECTED_POLL_INTERVAL_MS : POLL_INTERVAL_MS,
+  const status = useMarketingWhatsappControllerStatus(
+    { target },
+    {
+      query: {
+        refetchInterval: (query) =>
+          query.state.data?.connected ? CONNECTED_POLL_INTERVAL_MS : POLL_INTERVAL_MS,
+      },
     },
-  })
+  )
   const connected = status.data?.connected ?? false
 
-  const webhook = useWhatsappWebhook()
+  const webhook = useWhatsappWebhook(target)
 
-  const qrCode = useMarketingWhatsappControllerQrCode({
-    query: { enabled: !connected, refetchInterval: connected ? false : POLL_INTERVAL_MS },
-  })
+  const qrCode = useMarketingWhatsappControllerQrCode(
+    { target },
+    {
+      query: { enabled: !connected, refetchInterval: connected ? false : POLL_INTERVAL_MS },
+    },
+  )
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{t('whatsappConnection.title')}</CardTitle>
+        <CardTitle>{t(`whatsappConnection.title.${target}`)}</CardTitle>
       </CardHeader>
       <CardContent className="grid gap-4">
         {status.isError && <p className="text-sm text-destructive">{t('whatsappConnection.error')}</p>}
@@ -44,10 +54,10 @@ function WhatsappConnectionCard() {
             <p className="text-sm font-medium">{t('whatsappConnection.webhookTitle')}</p>
 
             {webhook.configured ? (
-              <p className="text-sm text-emerald-600">{t('whatsappConnection.webhookConfigured')}</p>
+              <p className="text-sm text-emerald-600">{t(`whatsappConnection.webhookConfigured.${target}`)}</p>
             ) : (
               <div className="grid gap-2">
-                <p className="text-sm text-muted-foreground">{t('whatsappConnection.webhookMissing')}</p>
+                <p className="text-sm text-muted-foreground">{t(`whatsappConnection.webhookMissing.${target}`)}</p>
 
                 {webhook.expectedUrl && (
                   <p className="break-all text-xs text-muted-foreground">{webhook.expectedUrl}</p>

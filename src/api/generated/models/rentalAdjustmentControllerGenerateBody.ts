@@ -8,7 +8,7 @@
 
 export type RentalAdjustmentControllerGenerateBody = {
   /**
-   * @minimum -50
+   * @minimum 0
    * @maximum 100
    */
   indexPercent: number;

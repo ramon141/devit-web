@@ -9,6 +9,8 @@
 export type PropertiesReportControllerRecentParams = {
 /**
  * Quantidade máxima de resultados (padrão 10)
+ * @minimum 1
+ * @maximum 2147483647
  */
 limit?: number;
 };

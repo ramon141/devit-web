@@ -134,6 +134,7 @@ import type {
   BranchControllerUpdateById404,
   BranchControllerUpdateById415,
   BranchControllerUpdateById422,
+  BranchExcludingAddressIdCreatedAtUpdatedAtActiveWithRelations,
   BranchPartialExcludingCreatedAtUpdatedAt,
   BranchWithRelations,
   CalendarEvent,
@@ -420,15 +421,19 @@ import type {
   MarketingWhatsappControllerQrCode200,
   MarketingWhatsappControllerQrCode400,
   MarketingWhatsappControllerQrCode401,
+  MarketingWhatsappControllerQrCodeParams,
   MarketingWhatsappControllerRegisterWebhook200,
   MarketingWhatsappControllerRegisterWebhook400,
   MarketingWhatsappControllerRegisterWebhook401,
+  MarketingWhatsappControllerRegisterWebhookParams,
   MarketingWhatsappControllerStatus200,
   MarketingWhatsappControllerStatus400,
   MarketingWhatsappControllerStatus401,
+  MarketingWhatsappControllerStatusParams,
   MarketingWhatsappControllerWebhookStatus200,
   MarketingWhatsappControllerWebhookStatus400,
   MarketingWhatsappControllerWebhookStatus401,
+  MarketingWhatsappControllerWebhookStatusParams,
   Neighborhood,
   NeighborhoodControllerCount400,
   NeighborhoodControllerCount401,
@@ -1058,6 +1063,7 @@ import type {
   RentalAdjustmentControllerFindParams,
   RentalAdjustmentControllerGenerate400,
   RentalAdjustmentControllerGenerate401,
+  RentalAdjustmentControllerGenerate403,
   RentalAdjustmentControllerGenerate415,
   RentalAdjustmentControllerGenerate422,
   RentalAdjustmentControllerGenerateBody,
@@ -6384,13 +6390,14 @@ export const useMarketingCampaignControllerSend = <TError = ErrorType<MarketingC
  * @summary Obter QR code para conectar o WhatsApp
  */
 export const marketingWhatsappControllerQrCode = (
-    
+    params?: MarketingWhatsappControllerQrCodeParams,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
       return mutator<MarketingWhatsappControllerQrCode200>(
-      {url: `/marketing/whatsapp/qrcode`, method: 'GET', signal
+      {url: `/marketing/whatsapp/qrcode`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -6398,23 +6405,23 @@ export const marketingWhatsappControllerQrCode = (
 
 
 
-export const getMarketingWhatsappControllerQrCodeQueryKey = () => {
+export const getMarketingWhatsappControllerQrCodeQueryKey = (params?: MarketingWhatsappControllerQrCodeParams,) => {
     return [
-    `/marketing/whatsapp/qrcode`
+    `/marketing/whatsapp/qrcode`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getMarketingWhatsappControllerQrCodeQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode400 | MarketingWhatsappControllerQrCode401 | unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export const getMarketingWhatsappControllerQrCodeQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode400 | MarketingWhatsappControllerQrCode401 | unknown>>(params?: MarketingWhatsappControllerQrCodeParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerQrCodeQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerQrCodeQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>> = ({ signal }) => marketingWhatsappControllerQrCode(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>> = ({ signal }) => marketingWhatsappControllerQrCode(params, requestOptions, signal);
 
       
 
@@ -6428,7 +6435,7 @@ export type MarketingWhatsappControllerQrCodeQueryError = ErrorType<MarketingWha
 
 
 export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode400 | MarketingWhatsappControllerQrCode401 | unknown>>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>> & Pick<
+ params: undefined |  MarketingWhatsappControllerQrCodeParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>,
           TError,
@@ -6438,7 +6445,7 @@ export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode400 | MarketingWhatsappControllerQrCode401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>> & Pick<
+ params?: MarketingWhatsappControllerQrCodeParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>,
           TError,
@@ -6448,7 +6455,7 @@ export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode400 | MarketingWhatsappControllerQrCode401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: MarketingWhatsappControllerQrCodeParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -6456,11 +6463,11 @@ export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<
  */
 
 export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError = ErrorType<MarketingWhatsappControllerQrCode400 | MarketingWhatsappControllerQrCode401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: MarketingWhatsappControllerQrCodeParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerQrCode>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getMarketingWhatsappControllerQrCodeQueryOptions(options)
+  const queryOptions = getMarketingWhatsappControllerQrCodeQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -6477,13 +6484,14 @@ export function useMarketingWhatsappControllerQrCode<TData = Awaited<ReturnType<
  * @summary Verificar status de conexão do WhatsApp
  */
 export const marketingWhatsappControllerStatus = (
-    
+    params?: MarketingWhatsappControllerStatusParams,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
       return mutator<MarketingWhatsappControllerStatus200>(
-      {url: `/marketing/whatsapp/status`, method: 'GET', signal
+      {url: `/marketing/whatsapp/status`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -6491,23 +6499,23 @@ export const marketingWhatsappControllerStatus = (
 
 
 
-export const getMarketingWhatsappControllerStatusQueryKey = () => {
+export const getMarketingWhatsappControllerStatusQueryKey = (params?: MarketingWhatsappControllerStatusParams,) => {
     return [
-    `/marketing/whatsapp/status`
+    `/marketing/whatsapp/status`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getMarketingWhatsappControllerStatusQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus400 | MarketingWhatsappControllerStatus401 | unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export const getMarketingWhatsappControllerStatusQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus400 | MarketingWhatsappControllerStatus401 | unknown>>(params?: MarketingWhatsappControllerStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerStatusQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerStatusQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>> = ({ signal }) => marketingWhatsappControllerStatus(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>> = ({ signal }) => marketingWhatsappControllerStatus(params, requestOptions, signal);
 
       
 
@@ -6521,7 +6529,7 @@ export type MarketingWhatsappControllerStatusQueryError = ErrorType<MarketingWha
 
 
 export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus400 | MarketingWhatsappControllerStatus401 | unknown>>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>> & Pick<
+ params: undefined |  MarketingWhatsappControllerStatusParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>,
           TError,
@@ -6531,7 +6539,7 @@ export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus400 | MarketingWhatsappControllerStatus401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>> & Pick<
+ params?: MarketingWhatsappControllerStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>,
           TError,
@@ -6541,7 +6549,7 @@ export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus400 | MarketingWhatsappControllerStatus401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: MarketingWhatsappControllerStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -6549,11 +6557,11 @@ export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<
  */
 
 export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError = ErrorType<MarketingWhatsappControllerStatus400 | MarketingWhatsappControllerStatus401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: MarketingWhatsappControllerStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getMarketingWhatsappControllerStatusQueryOptions(options)
+  const queryOptions = getMarketingWhatsappControllerStatusQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -6567,16 +6575,17 @@ export function useMarketingWhatsappControllerStatus<TData = Awaited<ReturnType<
 
 
 /**
- * @summary Registrar webhook de status na Evolution
+ * @summary Registrar webhook da instância na Evolution
  */
 export const marketingWhatsappControllerRegisterWebhook = (
-    
+    params?: MarketingWhatsappControllerRegisterWebhookParams,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
       return mutator<MarketingWhatsappControllerRegisterWebhook200>(
-      {url: `/marketing/whatsapp/webhook`, method: 'POST', signal
+      {url: `/marketing/whatsapp/webhook`, method: 'POST',
+        params, signal
     },
       options);
     }
@@ -6584,8 +6593,8 @@ export const marketingWhatsappControllerRegisterWebhook = (
 
 
 export const getMarketingWhatsappControllerRegisterWebhookMutationOptions = <TError = ErrorType<MarketingWhatsappControllerRegisterWebhook400 | MarketingWhatsappControllerRegisterWebhook401 | unknown>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
-): UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,void, TContext> => {
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,{params?: MarketingWhatsappControllerRegisterWebhookParams}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,{params?: MarketingWhatsappControllerRegisterWebhookParams}, TContext> => {
 
 const mutationKey = ['marketingWhatsappControllerRegisterWebhook'];
 const {mutation: mutationOptions, request: requestOptions} = options ?
@@ -6597,10 +6606,10 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       
 
 
-      const mutationFn: MutationFunction<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, void> = () => {
-          
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, {params?: MarketingWhatsappControllerRegisterWebhookParams}> = (props) => {
+          const {params} = props ?? {};
 
-          return  marketingWhatsappControllerRegisterWebhook(requestOptions)
+          return  marketingWhatsappControllerRegisterWebhook(params,requestOptions)
         }
 
         
@@ -6613,14 +6622,14 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
     export type MarketingWhatsappControllerRegisterWebhookMutationError = ErrorType<MarketingWhatsappControllerRegisterWebhook400 | MarketingWhatsappControllerRegisterWebhook401 | unknown>
 
     /**
- * @summary Registrar webhook de status na Evolution
+ * @summary Registrar webhook da instância na Evolution
  */
 export const useMarketingWhatsappControllerRegisterWebhook = <TError = ErrorType<MarketingWhatsappControllerRegisterWebhook400 | MarketingWhatsappControllerRegisterWebhook401 | unknown>,
-    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,void, TContext>, request?: SecondParameter<typeof mutator>}
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>, TError,{params?: MarketingWhatsappControllerRegisterWebhookParams}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof marketingWhatsappControllerRegisterWebhook>>,
         TError,
-        void,
+        {params?: MarketingWhatsappControllerRegisterWebhookParams},
         TContext
       > => {
 
@@ -6633,13 +6642,14 @@ export const useMarketingWhatsappControllerRegisterWebhook = <TError = ErrorType
  * @summary Verificar webhook de status do WhatsApp
  */
 export const marketingWhatsappControllerWebhookStatus = (
-    
+    params?: MarketingWhatsappControllerWebhookStatusParams,
  options?: SecondParameter<typeof mutator>,signal?: AbortSignal
 ) => {
       
       
       return mutator<MarketingWhatsappControllerWebhookStatus200>(
-      {url: `/marketing/whatsapp/webhook`, method: 'GET', signal
+      {url: `/marketing/whatsapp/webhook`, method: 'GET',
+        params, signal
     },
       options);
     }
@@ -6647,23 +6657,23 @@ export const marketingWhatsappControllerWebhookStatus = (
 
 
 
-export const getMarketingWhatsappControllerWebhookStatusQueryKey = () => {
+export const getMarketingWhatsappControllerWebhookStatusQueryKey = (params?: MarketingWhatsappControllerWebhookStatusParams,) => {
     return [
-    `/marketing/whatsapp/webhook`
+    `/marketing/whatsapp/webhook`, ...(params ? [params]: [])
     ] as const;
     }
 
     
-export const getMarketingWhatsappControllerWebhookStatusQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus400 | MarketingWhatsappControllerWebhookStatus401 | unknown>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+export const getMarketingWhatsappControllerWebhookStatusQueryOptions = <TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus400 | MarketingWhatsappControllerWebhookStatus401 | unknown>>(params?: MarketingWhatsappControllerWebhookStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
 
-  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerWebhookStatusQueryKey();
+  const queryKey =  queryOptions?.queryKey ?? getMarketingWhatsappControllerWebhookStatusQueryKey(params);
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>> = ({ signal }) => marketingWhatsappControllerWebhookStatus(requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>> = ({ signal }) => marketingWhatsappControllerWebhookStatus(params, requestOptions, signal);
 
       
 
@@ -6677,7 +6687,7 @@ export type MarketingWhatsappControllerWebhookStatusQueryError = ErrorType<Marke
 
 
 export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus400 | MarketingWhatsappControllerWebhookStatus401 | unknown>>(
-  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>> & Pick<
+ params: undefined |  MarketingWhatsappControllerWebhookStatusParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>,
           TError,
@@ -6687,7 +6697,7 @@ export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<Retu
  , queryClient?: QueryClient
   ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus400 | MarketingWhatsappControllerWebhookStatus401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>> & Pick<
+ params?: MarketingWhatsappControllerWebhookStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>,
           TError,
@@ -6697,7 +6707,7 @@ export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<Retu
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus400 | MarketingWhatsappControllerWebhookStatus401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: MarketingWhatsappControllerWebhookStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient
   ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
@@ -6705,11 +6715,11 @@ export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<Retu
  */
 
 export function useMarketingWhatsappControllerWebhookStatus<TData = Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError = ErrorType<MarketingWhatsappControllerWebhookStatus400 | MarketingWhatsappControllerWebhookStatus401 | unknown>>(
-  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ params?: MarketingWhatsappControllerWebhookStatusParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof marketingWhatsappControllerWebhookStatus>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient 
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
-  const queryOptions = getMarketingWhatsappControllerWebhookStatusQueryOptions(options)
+  const queryOptions = getMarketingWhatsappControllerWebhookStatusQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -13709,7 +13719,7 @@ export const publicBranchControllerFind = (
 ) => {
       
       
-      return mutator<BranchWithRelations[]>(
+      return mutator<BranchExcludingAddressIdCreatedAtUpdatedAtActiveWithRelations[]>(
       {url: `/public/branches`, method: 'GET', signal
     },
       options);
@@ -16040,7 +16050,7 @@ export const rentalAdjustmentControllerGenerate = (
   
 
 
-export const getRentalAdjustmentControllerGenerateMutationOptions = <TError = ErrorType<RentalAdjustmentControllerGenerate400 | RentalAdjustmentControllerGenerate401 | RentalAdjustmentControllerGenerate415 | RentalAdjustmentControllerGenerate422>,
+export const getRentalAdjustmentControllerGenerateMutationOptions = <TError = ErrorType<RentalAdjustmentControllerGenerate400 | RentalAdjustmentControllerGenerate401 | RentalAdjustmentControllerGenerate403 | RentalAdjustmentControllerGenerate415 | RentalAdjustmentControllerGenerate422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerGenerate>>, TError,{data: BodyType<RentalAdjustmentControllerGenerateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
 ): UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerGenerate>>, TError,{data: BodyType<RentalAdjustmentControllerGenerateBody>}, TContext> => {
 
@@ -16067,12 +16077,12 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
     export type RentalAdjustmentControllerGenerateMutationResult = NonNullable<Awaited<ReturnType<typeof rentalAdjustmentControllerGenerate>>>
     export type RentalAdjustmentControllerGenerateMutationBody = BodyType<RentalAdjustmentControllerGenerateBody>
-    export type RentalAdjustmentControllerGenerateMutationError = ErrorType<RentalAdjustmentControllerGenerate400 | RentalAdjustmentControllerGenerate401 | RentalAdjustmentControllerGenerate415 | RentalAdjustmentControllerGenerate422>
+    export type RentalAdjustmentControllerGenerateMutationError = ErrorType<RentalAdjustmentControllerGenerate400 | RentalAdjustmentControllerGenerate401 | RentalAdjustmentControllerGenerate403 | RentalAdjustmentControllerGenerate415 | RentalAdjustmentControllerGenerate422>
 
     /**
  * @summary Gerar reajustes de aluguel em lote
  */
-export const useRentalAdjustmentControllerGenerate = <TError = ErrorType<RentalAdjustmentControllerGenerate400 | RentalAdjustmentControllerGenerate401 | RentalAdjustmentControllerGenerate415 | RentalAdjustmentControllerGenerate422>,
+export const useRentalAdjustmentControllerGenerate = <TError = ErrorType<RentalAdjustmentControllerGenerate400 | RentalAdjustmentControllerGenerate401 | RentalAdjustmentControllerGenerate403 | RentalAdjustmentControllerGenerate415 | RentalAdjustmentControllerGenerate422>,
     TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof rentalAdjustmentControllerGenerate>>, TError,{data: BodyType<RentalAdjustmentControllerGenerateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
  , queryClient?: QueryClient): UseMutationResult<
         Awaited<ReturnType<typeof rentalAdjustmentControllerGenerate>>,

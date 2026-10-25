@@ -9,22 +9,24 @@ import {
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 
-export function useWhatsappWebhook() {
+export type WhatsappTarget = 'marketing' | 'chatbot'
+
+export function useWhatsappWebhook(target: WhatsappTarget) {
   const { t } = useTranslation('marketing')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
 
-  const webhook = useMarketingWhatsappControllerWebhookStatus()
+  const webhook = useMarketingWhatsappControllerWebhookStatus({ target })
   const { mutateAsync: register, isPending } = useMarketingWhatsappControllerRegisterWebhook()
 
   function onRegister() {
-    const promise = register()
+    const promise = register({ params: { target } })
 
     promisePopup(promise, {
       pending: t('whatsappConnection.webhookPending'),
       success: () => {
         queryClient.invalidateQueries({
-          queryKey: getMarketingWhatsappControllerWebhookStatusQueryKey(),
+          queryKey: getMarketingWhatsappControllerWebhookStatusQueryKey({ target }),
         })
 
         return t('whatsappConnection.webhookSuccess')

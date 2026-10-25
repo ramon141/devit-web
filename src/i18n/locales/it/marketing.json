@@ -15,14 +15,23 @@
     "comingSoonDescription": "Area del proprietario, Customer Satisfaction, Gestim Analytics, Rivista dell'agenzia, Watermark e Gestione pubblicità."
   },
   "whatsappConnection": {
-    "title": "Connessione WhatsApp",
+    "title": {
+      "marketing": "Connessione WhatsApp Marketing",
+      "chatbot": "Connessione WhatsApp Chatbot"
+    },
     "connected": "Tutto connesso",
     "scanHint": "Scansiona il QR code con WhatsApp per collegare il numero",
     "qrCodeAlt": "QR code per connettere WhatsApp",
     "error": "Impossibile verificare lo stato della connessione WhatsApp",
     "webhookTitle": "Webhook di stato",
-    "webhookConfigured": "Webhook attivo: consegne e letture vengono registrate",
-    "webhookMissing": "Webhook non configurato: le letture dei messaggi non vengono registrate",
+    "webhookConfigured": {
+      "marketing": "Webhook attivo: consegne e letture vengono registrate",
+      "chatbot": "Webhook attivo: il chatbot riceve i messaggi dei clienti"
+    },
+    "webhookMissing": {
+      "marketing": "Webhook non configurato: le letture dei messaggi non vengono registrate",
+      "chatbot": "Webhook non configurato: il chatbot non riceve i messaggi dei clienti"
+    },
     "webhookRegister": "Crea configurazione Webhook",
     "webhookPending": "Registrazione del webhook...",
     "webhookSuccess": "Webhook registrato",

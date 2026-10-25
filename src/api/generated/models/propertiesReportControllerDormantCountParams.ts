@@ -9,6 +9,8 @@
 export type PropertiesReportControllerDormantCountParams = {
 /**
  * Dias sem atualização (padrão 180)
+ * @minimum 0
+ * @maximum 36500
  */
 days?: number;
 };

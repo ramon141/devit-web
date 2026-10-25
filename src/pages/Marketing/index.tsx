@@ -57,7 +57,8 @@ function Marketing() {
                   <CardDescription>{t('index.whatsappHint')}</CardDescription>
                 </CardHeader>
               </Card>
-              <WhatsappConnectionCard />
+              <WhatsappConnectionCard target="marketing" />
+              <WhatsappConnectionCard target="chatbot" />
               <ChannelStatusDashboard channel="whatsapp" />
             </TabsContent>
           </Tabs>
