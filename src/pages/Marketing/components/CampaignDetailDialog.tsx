@@ -1,3 +1,4 @@
+import { EyeIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
@@ -78,6 +79,7 @@ function CampaignDetailDialog({ campaignId, onClose }: CampaignDetailDialogProps
                         className="h-auto p-0"
                         onClick={() => setPreviewLog(log)}
                       >
+                        <EyeIcon data-icon="inline-start" />
                         {t('campaignDetailDialog.viewContent')}
                       </Button>
                     </TableCell>

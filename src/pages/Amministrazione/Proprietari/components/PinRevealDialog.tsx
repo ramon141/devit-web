@@ -1,3 +1,4 @@
+import { XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
@@ -21,6 +22,7 @@ function PinRevealDialog({ pin, onClose }: PinRevealDialogProps) {
         <p className="text-center text-sm text-muted-foreground">{t('proprietari.pinDialog.warning')}</p>
 
         <Button onClick={onClose} className="mt-2 w-full">
+          <XIcon data-icon="inline-start" />
           {t('proprietari.pinDialog.close')}
         </Button>
     </ModalRegister>

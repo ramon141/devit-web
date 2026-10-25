@@ -1,3 +1,4 @@
+import { SendIcon } from 'lucide-react'
 import { Controller } from 'react-hook-form'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -40,6 +41,7 @@ function ContactForm() {
       <TurnstileWidget onToken={setTurnstileToken} />
 
       <Button type="submit" disabled={isSubmitting} className="justify-self-start px-7">
+        <SendIcon data-icon="inline-start" />
         {t('contatti.submit')}
       </Button>
     </form>

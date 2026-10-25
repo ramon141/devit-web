@@ -1,3 +1,4 @@
+import { SearchIcon } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router'
 import ControlledSelectField from '@/components/ControlledSelectField'
@@ -78,6 +79,7 @@ function SearchFilters({ current, variant = 'panel' }: SearchFiltersProps) {
 
       <div className={compact ? 'flex items-end' : 'flex flex-wrap gap-3 pt-1'}>
         <Button type="submit" className="w-full">
+          <SearchIcon data-icon="inline-start" />
           {dict.search.submit}
         </Button>
         {!compact && (

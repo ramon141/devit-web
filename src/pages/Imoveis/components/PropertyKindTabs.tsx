@@ -1,6 +1,8 @@
+import { LayoutGridIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { useCategoryKinds, type PropertyCategoryKind } from '@/pages/Imoveis/hooks/useCategoryKinds'
+import { categoryKindIcons } from '@/pages/Imoveis/components/categoryKindIcons'
 import { getCategoryKindOptions } from '@/pages/Imoveis/schemas/propertySchema'
 
 type PropertyKindTabsProps = {
@@ -24,20 +26,26 @@ function PropertyKindTabs({ activeKind, onChange }: PropertyKindTabsProps) {
         variant={activeKind === '' ? 'secondary' : 'ghost'}
         onClick={() => onChange('')}
       >
+        <LayoutGridIcon data-icon="inline-start" />
         {t('kindTabs.all')}
       </Button>
 
-      {kindsPresent.map((kind) => (
-        <Button
-          key={kind}
-          type="button"
-          size="sm"
-          variant={activeKind === kind ? 'secondary' : 'ghost'}
-          onClick={() => onChange(kind)}
-        >
-          {labels[kind]}
-        </Button>
-      ))}
+      {kindsPresent.map((kind) => {
+        const KindIcon = categoryKindIcons[kind]
+
+        return (
+          <Button
+            key={kind}
+            type="button"
+            size="sm"
+            variant={activeKind === kind ? 'secondary' : 'ghost'}
+            onClick={() => onChange(kind)}
+          >
+            <KindIcon data-icon="inline-start" />
+            {labels[kind]}
+          </Button>
+        )
+      })}
     </div>
   )
 }

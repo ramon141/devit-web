@@ -1,3 +1,4 @@
+import { CalculatorIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -60,6 +61,7 @@ function AdeguamentiCanone() {
           onClick={generateAdjustments}
           disabled={!isIndexPercentValid || isGenerating}
         >
+          <CalculatorIcon data-icon="inline-start" />
           {t('locazioni.adeguamenti.index.generateButton')}
         </Button>
 

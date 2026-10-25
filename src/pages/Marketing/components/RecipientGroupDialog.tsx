@@ -1,3 +1,4 @@
+import { CheckCheckIcon, CheckIcon, XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import MultiSelectField from '@/components/MultiSelectField'
@@ -83,10 +84,12 @@ function RecipientGroupDialog({
 
           <div className="flex gap-2">
             <Button type="button" variant="outline" size="sm" onClick={group.selectAll}>
+              <CheckCheckIcon data-icon="inline-start" />
               {t('leadGroup.selectAll')}
             </Button>
 
             <Button type="button" variant="outline" size="sm" onClick={group.clearAll}>
+              <XIcon data-icon="inline-start" />
               {t('leadGroup.clearAll')}
             </Button>
           </div>
@@ -114,10 +117,12 @@ function RecipientGroupDialog({
 
         <div className="flex justify-end gap-2">
           <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <XIcon data-icon="inline-start" />
             {t('leadGroup.cancel')}
           </Button>
 
           <Button type="button" disabled={group.selectedIds.length === 0} onClick={handleConfirm}>
+            <CheckIcon data-icon="inline-start" />
             {t('leadGroup.confirm', { count: group.selectedIds.length })}
           </Button>
         </div>

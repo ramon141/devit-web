@@ -1,3 +1,4 @@
+import { ArrowLeftIcon } from 'lucide-react'
 import { Link } from 'react-router'
 import { Button } from '@/components/ui/button'
 
@@ -13,6 +14,7 @@ function NotFoundState({ message, backLabel, backTo }: NotFoundStateProps) {
       <p className="text-sm text-muted-foreground">{message}</p>
 
       <Button variant="outline" nativeButton={false} render={<Link to={backTo} />}>
+        <ArrowLeftIcon data-icon="inline-start" />
         {backLabel}
       </Button>
     </div>

@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { PropertySelect } from '@/components/RemoteSelects'
@@ -36,6 +37,7 @@ function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventProper
           />
         </div>
         <Button type="button" onClick={addProperty}>
+          <PlusIcon data-icon="inline-start" />
           {t('agenda:propertiesManager.add')}
         </Button>
       </div>

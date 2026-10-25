@@ -18,7 +18,7 @@ export type ApiErrorResponse = {
 
 export function getErrorMessageFromRequest(
   error: AxiosError<ApiErrorResponse>,
-  defaultMessage = 'Il sistema ha riscontrato un errore durante l’operazione.'
+  defaultMessage = i18n.t('error_message_default', { ns: 'errors' })
 ): string {
   const apiError = error.response?.data?.error
   const code = apiError?.code

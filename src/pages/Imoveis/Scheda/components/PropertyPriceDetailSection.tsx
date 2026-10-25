@@ -1,8 +1,10 @@
+import { InfoIcon } from 'lucide-react'
 import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { Separator } from '@/components/ui/separator'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import type { PriceDetailFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropertyPriceDetailForm'
 
@@ -16,14 +18,18 @@ function PropertyPriceDetailSection({ form }: PropertyPriceDetailSectionProps) {
   const { t } = useTranslation('imoveis')
   const { register, control } = form
 
-  const flagFields = [
-    { name: 'negotiable', label: t('scheda.priceDetailSection.flags.negotiable') },
-    { name: 'priceFrom', label: t('scheda.priceDetailSection.flags.priceFrom') },
-    { name: 'hiddenOnPrint', label: t('scheda.priceDetailSection.flags.hiddenOnPrint') },
-    { name: 'hiddenOnInternet', label: t('scheda.priceDetailSection.flags.hiddenOnInternet') },
-    { name: 'boxIncludedInPrice', label: t('scheda.priceDetailSection.flags.boxIncludedInPrice') },
-    { name: 'auction', label: t('scheda.priceDetailSection.flags.auction') },
-  ] as const
+  const flagFields = ([
+    'negotiable',
+    'priceFrom',
+    'hiddenOnPrint',
+    'hiddenOnInternet',
+    'boxIncludedInPrice',
+    'auction',
+  ] as const).map((name) => ({
+    name,
+    label: t(`scheda.priceDetailSection.flags.${name}`),
+    hint: t(`scheda.priceDetailSection.flags.${name}Hint`),
+  }))
 
   return (
     <div className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
@@ -44,6 +50,11 @@ function PropertyPriceDetailSection({ form }: PropertyPriceDetailSectionProps) {
               <label className="flex items-center gap-2 text-sm">
                 <Switch checked={field.value} onCheckedChange={field.onChange} />
                 {flag.label}
+
+                <Tooltip>
+                  <TooltipTrigger render={<InfoIcon className="size-4 text-muted-foreground" />} />
+                  <TooltipContent className="max-w-xs">{flag.hint}</TooltipContent>
+                </Tooltip>
               </label>
             )}
           />

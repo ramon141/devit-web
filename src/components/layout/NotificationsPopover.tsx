@@ -1,4 +1,4 @@
-import { Bell } from 'lucide-react'
+import { ArrowRightIcon, Bell } from 'lucide-react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -88,6 +88,7 @@ function NotificationsPopover() {
 
         <Button variant="ghost" size="sm" className="w-full" nativeButton={false} render={<Link to={`${CRM_BASE_PATH}/notifiche`} />}>
           {t('notificationsPopover.viewAll')}
+          <ArrowRightIcon data-icon="inline-end" />
         </Button>
       </PopoverContent>
     </Popover>

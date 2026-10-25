@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -52,6 +53,7 @@ function CalendarEventParticipantsDraftManager({
           />
         </div>
         <Button type="button" onClick={handleAdd}>
+          <PlusIcon data-icon="inline-start" />
           {t('agenda:participantsManager.add')}
         </Button>
       </div>

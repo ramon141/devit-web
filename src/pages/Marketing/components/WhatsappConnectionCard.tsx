@@ -1,3 +1,4 @@
+import { LinkIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import {
   useMarketingWhatsappControllerQrCode,
@@ -69,6 +70,7 @@ function WhatsappConnectionCard({ target }: WhatsappConnectionCardProps) {
                   disabled={webhook.isRegistering}
                   onClick={webhook.onRegister}
                 >
+                  <LinkIcon data-icon="inline-start" />
                   {t('whatsappConnection.webhookRegister')}
                 </Button>
               </div>

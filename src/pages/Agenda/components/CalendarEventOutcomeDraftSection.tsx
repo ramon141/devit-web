@@ -1,3 +1,4 @@
+import { SaveIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -37,6 +38,7 @@ function CalendarEventOutcomeDraftSection({
       />
       <div>
         <Button type="button" onClick={handleAdd}>
+          <SaveIcon data-icon="inline-start" />
           {t('agenda:outcomeSection.save')}
         </Button>
       </div>

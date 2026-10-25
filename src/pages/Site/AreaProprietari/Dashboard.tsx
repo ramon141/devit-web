@@ -1,3 +1,4 @@
+import { LogOutIcon } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { Navigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -48,6 +49,7 @@ function AreaProprietariDashboard() {
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">{t('areaProprietari.dashboard.title')}</h1>
           <Button variant="outline" onClick={logout}>
+            <LogOutIcon data-icon="inline-start" />
             {t('areaProprietari.dashboard.logout')}
           </Button>
         </div>

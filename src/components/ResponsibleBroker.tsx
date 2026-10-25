@@ -14,12 +14,14 @@ function ResponsibleBroker({ broker, since }: ResponsibleBrokerProps) {
   const { t } = useTranslation('imoveis')
 
   return (
-    <div className="flex items-center gap-2 rounded-md bg-primary/10 px-3 py-2 text-sm ring-1 ring-primary/30">
-      <BadgeCheckIcon className="size-4 shrink-0 text-primary" />
+    <div className="flex min-w-0 items-center gap-3 text-sm">
+      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <BadgeCheckIcon className="size-5" />
+      </div>
 
       <div className="min-w-0">
-        <p className="text-xs text-muted-foreground">{t('broker.label')}</p>
-        <p className="truncate font-semibold">{formatBroker(broker)}</p>
+        <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">{t('broker.label')}</p>
+        <p className="truncate font-semibold leading-tight">{formatBroker(broker)}</p>
         {since && <p className="text-xs text-muted-foreground">{t('broker.since', { date: formatDateTime(since) })}</p>}
       </div>
     </div>

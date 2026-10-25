@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
@@ -44,6 +45,7 @@ function WidgetSelectionModal({
               </p>
 
               <Button size="sm" onClick={() => onAddWidget(id)}>
+                <PlusIcon data-icon="inline-start" />
                 {t('widgetSelection.add')}
               </Button>
             </CardContent>

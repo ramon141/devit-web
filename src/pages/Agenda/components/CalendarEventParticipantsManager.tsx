@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { PersonSelect } from '@/components/RemoteSelects'
@@ -36,6 +37,7 @@ function CalendarEventParticipantsManager({ calendarEventId }: CalendarEventPart
           />
         </div>
         <Button type="button" onClick={addParticipant}>
+          <PlusIcon data-icon="inline-start" />
           {t('agenda:participantsManager.add')}
         </Button>
       </div>

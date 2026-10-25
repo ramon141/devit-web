@@ -1,3 +1,4 @@
+import { CheckIcon, SaveIcon, SettingsIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -52,17 +53,21 @@ function CookieBanner() {
         <div className="flex gap-2">
           {customizing ? (
             <Button variant="outline" size="sm" onClick={savePreferences}>
+              <SaveIcon data-icon="inline-start" />
               {t('cookieBanner.savePreferences')}
             </Button>
           ) : (
             <Button variant="outline" size="sm" onClick={() => setCustomizing(true)}>
+              <SettingsIcon data-icon="inline-start" />
               {t('cookieBanner.customize')}
             </Button>
           )}
           <Button variant="outline" size="sm" onClick={() => choose('rejected')}>
+            <XIcon data-icon="inline-start" />
             {t('cookieBanner.rejectAll')}
           </Button>
           <Button size="sm" onClick={() => choose('accepted')}>
+            <CheckIcon data-icon="inline-start" />
             {t('cookieBanner.acceptAll')}
           </Button>
         </div>

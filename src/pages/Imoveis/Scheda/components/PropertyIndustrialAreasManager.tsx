@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -61,7 +62,10 @@ function PropertyIndustrialAreasManager({ propertyId }: PropertyIndustrialAreasM
           placeholder={t('scheda.industrialAreasManager.heightPlaceholder')}
           className="w-32"
         />
-        <Button type="button" onClick={addArea}>{t('scheda.industrialAreasManager.add')}</Button>
+        <Button type="button" onClick={addArea}>
+          <PlusIcon data-icon="inline-start" />
+          {t('scheda.industrialAreasManager.add')}
+        </Button>
       </div>
     </div>
   )

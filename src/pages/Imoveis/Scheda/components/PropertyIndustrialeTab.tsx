@@ -21,7 +21,7 @@ function PropertyIndustrialeTab({ propertyId, onBack, onNext }: PropertyIndustri
 
   return (
     <form noValidate onSubmit={onSubmit} className="flex h-full min-h-0 flex-col">
-      <div className="grid flex-1 min-h-0 gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
         <IndustrialDetailFields form={form} />
 
         <Separator className="sm:col-span-2" />

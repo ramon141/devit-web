@@ -1,3 +1,4 @@
+import { MailIcon, MessageCircleIcon, SendIcon, UsersIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { MarketingCampaignControllerSendBodyChannel } from '@/api/generated/models/marketingCampaignControllerSendBodyChannel'
@@ -32,6 +33,7 @@ function SendCampagnaTab() {
               variant={campaign.channel === MarketingCampaignControllerSendBodyChannel.email ? 'default' : 'outline'}
               onClick={() => campaign.setChannel(MarketingCampaignControllerSendBodyChannel.email)}
             >
+              <MailIcon data-icon="inline-start" />
               {t('templateChannelOptions.email')}
             </Button>
 
@@ -40,12 +42,14 @@ function SendCampagnaTab() {
               variant={campaign.channel === MarketingCampaignControllerSendBodyChannel.whatsapp ? 'default' : 'outline'}
               onClick={() => campaign.setChannel(MarketingCampaignControllerSendBodyChannel.whatsapp)}
             >
+              <MessageCircleIcon data-icon="inline-start" />
               {t('templateChannelOptions.whatsapp')}
             </Button>
           </div>
 
           <div className="flex justify-end">
             <Button type="button" variant="outline" size="sm" onClick={() => setGroupKind('person')}>
+              <UsersIcon data-icon="inline-start" />
               {t('leadGroup.openButton')}
             </Button>
           </div>
@@ -67,6 +71,7 @@ function SendCampagnaTab() {
             <p className="text-sm font-medium">{t('sendCampaign.leadsTitle')}</p>
 
             <Button type="button" variant="outline" size="sm" onClick={() => setGroupKind('lead')}>
+              <UsersIcon data-icon="inline-start" />
               {t('leadGroup.openButton')}
             </Button>
           </div>
@@ -157,6 +162,7 @@ function SendCampagnaTab() {
               onClick={() => campaign.onSend(setLastResult)}
               className="ml-auto"
             >
+              <SendIcon data-icon="inline-start" />
               {t('sendCampaign.sendLabel')}
             </Button>
           </div>

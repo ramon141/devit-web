@@ -376,7 +376,13 @@
         "hiddenOnPrint": "Nascosto su stampati",
         "hiddenOnInternet": "Nascosto su internet",
         "boxIncludedInPrice": "Box incluso nel prezzo",
-        "auction": "Immobile all'asta"
+        "auction": "Immobile all'asta",
+        "negotiableHint": "Indica che il proprietario accetta di trattare il prezzo. L'informazione viene inviata al sito pubblico, dove il cliente vede che il prezzo è trattabile.",
+        "priceFromHint": "Il valore indicato è un prezzo minimo (\"a partire da\"), non il prezzo finale. Da usare quando il prezzo varia in base all'unità o alle condizioni.",
+        "hiddenOnPrintHint": "Indica che il prezzo non deve comparire nei materiali stampati, come schede e cataloghi.",
+        "hiddenOnInternetHint": "Indica che il prezzo non deve essere divulgato su internet. Chi consulta l'immobile online non deve vedere il valore.",
+        "boxIncludedInPriceHint": "Il box auto è già incluso nel prezzo dell'immobile, senza costi aggiuntivi.",
+        "auctionHint": "L'immobile viene venduto all'asta. Compare nel filtro \"Solo all'asta\" dell'elenco immobili."
       },
       "save": "Salva opzioni di prezzo"
     },
@@ -575,6 +581,9 @@
       "unavailable": "Non disp."
     },
     "validation": {
+      "salePriceRequired": "Inserisci il prezzo di vendita",
+      "salePriceNotAllowed": "Un immobile solo in affitto non può avere un prezzo di vendita.",
+      "rentPriceNotAllowed": "Un immobile solo in vendita non può avere un prezzo di affitto.",
       "code": "Inserisci il codice",
       "title": "Inserisci almeno 3 caratteri",
       "category": "Seleziona una categoria",
@@ -969,6 +978,10 @@
     "duplicate": {
       "title": "Immobile già esistente",
       "registeredAt": "Registrato il {{date}}",
+      "rule": {
+        "same_code": "Esiste già un immobile con lo stesso codice",
+        "same_address": "Esiste già un immobile con lo stesso indirizzo"
+      },
       "status": {
         "active": "Attivo",
         "inactive": "Inattivo"

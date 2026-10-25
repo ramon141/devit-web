@@ -107,7 +107,7 @@ function socialUrl(domain: string, message: string) {
 }
 
 export function createPropertySchema(t: TFunction<'imoveis'>) {
-  return z.object({
+  const schema = z.object({
     code: z.string().min(1, t('options.validation.code')),
     title: z.string().min(3, t('options.validation.title')),
     categoryId: z.string().min(1, t('options.validation.category')),
@@ -143,6 +143,18 @@ export function createPropertySchema(t: TFunction<'imoveis'>) {
       .string()
       .regex(/^(\d{4,10})?$/, t('options.validation.postalCode'))
       .optional(),
+  })
+
+  // Mesmas regras de preço x finalidade da API; o erro aparece no campo de preço
+  return schema.superRefine((values, ctx) => {
+    const isSaleOnly = values.purpose === PropertyPurpose.sale
+    const isRentOnly = values.purpose === PropertyPurpose.rent
+    const addPriceIssue = (field: 'salePrice' | 'rentPrice', key: string) =>
+      ctx.addIssue({ code: 'custom', path: [field], message: t(`options.validation.${key}`) })
+
+    if (!isRentOnly && !values.salePrice) addPriceIssue('salePrice', 'salePriceRequired')
+    if (isRentOnly && values.salePrice) addPriceIssue('salePrice', 'salePriceNotAllowed')
+    if (isSaleOnly && values.rentPrice) addPriceIssue('rentPrice', 'rentPriceNotAllowed')
   })
 }
 

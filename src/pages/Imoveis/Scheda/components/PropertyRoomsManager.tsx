@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -88,7 +89,10 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
           placeholder={t('scheda.roomsManager.equipmentPlaceholder')}
           className="w-40"
         />
-        <Button type="button" onClick={addRoom}>{t('scheda.roomsManager.add')}</Button>
+        <Button type="button" onClick={addRoom}>
+          <PlusIcon data-icon="inline-start" />
+          {t('scheda.roomsManager.add')}
+        </Button>
       </div>
     </div>
   )

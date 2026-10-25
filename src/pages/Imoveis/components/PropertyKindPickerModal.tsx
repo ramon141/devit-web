@@ -1,3 +1,4 @@
+import { categoryKindIcons } from '@/pages/Imoveis/components/categoryKindIcons'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
@@ -27,6 +28,7 @@ function PropertyKindPickerModal({ open, onOpenChange, onSelect }: PropertyKindP
     >
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {getCategoryKindOptions(t).map((option) => {
+            const KindIcon = categoryKindIcons[option.value]
             const hasCategory = !!categoryIdsByKind[option.value]?.length
 
             return (
@@ -37,6 +39,7 @@ function PropertyKindPickerModal({ open, onOpenChange, onSelect }: PropertyKindP
                 className="h-auto min-h-16 flex-col gap-1 px-2 py-2 text-center whitespace-normal"
                 onClick={() => handleSelect(option.value)}
               >
+                <KindIcon className="size-5" />
                 {option.label}
                 {!hasCategory && (
                   <span className="text-xs leading-tight font-normal text-muted-foreground">

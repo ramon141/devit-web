@@ -1,3 +1,4 @@
+import { XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -18,7 +19,7 @@ function Violation({ violation }: { violation: PropertyDuplicateViolation }) {
 
   return (
     <div className="grid gap-1 rounded-md p-3 text-sm ring-1 ring-border">
-      <p className="font-semibold text-destructive">{violation.ruleDescription}</p>
+      <p className="font-semibold text-destructive">{t(`broker.duplicate.rule.${violation.rule}`, { defaultValue: violation.ruleDescription })}</p>
       <p>{t('broker.duplicate.matched')}: <strong>{violation.matchedValue}</strong></p>
 
       <p>
@@ -55,7 +56,10 @@ function PropertyDuplicateModal({ info, onClose }: PropertyDuplicateModalProps) 
         {!canTransfer && <p className="text-sm text-muted-foreground">{t('broker.duplicate.transferHint')}</p>}
 
         <div className="flex justify-end">
-          <Button type="button" onClick={onClose}>{t('broker.duplicate.close')}</Button>
+          <Button type="button" onClick={onClose}>
+            <XIcon data-icon="inline-start" />
+            {t('broker.duplicate.close')}
+          </Button>
         </div>
       </div>
     </ModalRegister>

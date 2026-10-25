@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -54,6 +55,7 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
           className="w-28"
         />
         <Button type="button" onClick={addOwner}>
+          <PlusIcon data-icon="inline-start" />
           {t('scheda.ownersManager.add')}
         </Button>
       </div>

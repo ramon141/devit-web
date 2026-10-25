@@ -18,6 +18,7 @@ import PropertyFotoTab from '@/pages/Imoveis/Scheda/components/PropertyFotoTab'
 import PropertyStepFrame from '@/pages/Imoveis/components/PropertyStepFrame'
 import PropertyDocumentiTab from '@/pages/Imoveis/Scheda/components/PropertyDocumentiTab'
 import type { FormEvent } from 'react'
+import { usePropertySaveMode } from '@/pages/Imoveis/contexts/PropertySaveModeContext'
 import { createPropertySchema, type PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 import { getNextStepValue, getPreviousStepValue, getPropertySteps, stepFields } from '@/pages/Imoveis/schemas/propertySteps'
 
@@ -40,6 +41,7 @@ function PropertyFormFields({
 }: PropertyFormFieldsProps) {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
+  const saveMode = usePropertySaveMode()
 
   // Só valida os campos da etapa atual; o save completo só acontece quando o
   // formulário inteiro está válido (campos obrigatórios vivem em etapas diferentes)
@@ -60,17 +62,40 @@ function PropertyFormFields({
     const isStepValid = await form.trigger(stepFields[activeTab])
     if (!isStepValid || (await isCodeTaken())) return
 
-    const isFormComplete = createPropertySchema(t).safeParse(form.getValues()).success
+    const parsed = createPropertySchema(t).safeParse(form.getValues())
 
-    if (isFormComplete) {
+    if (parsed.success) {
       onSubmit(event)
+      return
+    }
+
+    if (saveMode?.stayRef.current) {
+      saveMode.stayRef.current = false
+      goToInvalidStep(String(parsed.error.issues[0]?.path[0]))
+      return
+    }
+
+    goToNextStep()
+  }
+
+  // Salvar com dados faltando em outra etapa: leva o usuário até o campo com erro
+  function goToInvalidStep(field: string) {
+    const stepValue = Object.entries(stepFields).find(([, fields]) => fields.some((f) => f === field))?.[0]
+
+    if (stepValue) onActiveTabChange(stepValue)
+
+    form.trigger()
+  }
+
+  // "Salvar" mantém a etapa atual aberta; "Próximo" avança
+  function goToNextStep() {
+    if (saveMode?.stayRef.current) {
+      saveMode.stayRef.current = false
       return
     }
 
     onActiveTabChange(getNextStepValue(t, activeTab))
   }
-
-  const goToNextStep = () => onActiveTabChange(getNextStepValue(t, activeTab))
 
   const steps = getPropertySteps(t)
   const isFirstStep = steps[0]?.value === activeTab
@@ -83,10 +108,10 @@ function PropertyFormFields({
     locked: step.requiresId && !propertyId,
   }))
 
-  const tabContentClassName = 'h-full min-h-0 overflow-y-auto'
+  const tabContentClassName = 'flex-1 min-h-0 overflow-y-auto'
 
   return (
-    <Tabs value={activeTab} onValueChange={(value) => onActiveTabChange(String(value))} className="h-full min-h-0">
+    <Tabs value={activeTab} onValueChange={(value) => onActiveTabChange(String(value))} className="flex-1 min-h-0">
       <Stepper steps={stepperSteps} />
 
       <TabsContent value="generale" className={tabContentClassName}>

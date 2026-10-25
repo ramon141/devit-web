@@ -1,3 +1,4 @@
+import { SendIcon } from 'lucide-react'
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Controller, useForm } from 'react-hook-form'
@@ -97,6 +98,7 @@ function FormSection() {
           />
 
           <Button type="submit" className="w-fit">
+            <SendIcon data-icon="inline-start" />
             {t('form.submit')}
           </Button>
         </form>

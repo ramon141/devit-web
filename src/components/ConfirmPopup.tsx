@@ -1,4 +1,4 @@
-import { Loader2, TriangleAlert } from 'lucide-react'
+import { Loader2, TriangleAlert, XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import {
@@ -64,6 +64,7 @@ function ConfirmPopup({
             onClick={() => onOpenChange(false)}
             disabled={loading}
           >
+            <XIcon data-icon="inline-start" />
             {resolvedCancelLabel}
           </Button>
           <Button

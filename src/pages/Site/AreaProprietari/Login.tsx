@@ -1,3 +1,4 @@
+import { LogInIcon } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { Navigate, useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -76,6 +77,7 @@ function AreaProprietariLogin() {
           {error && <p className="text-sm text-destructive">{error}</p>}
 
           <Button type="submit" disabled={isSubmitting} className="mt-2">
+            <LogInIcon data-icon="inline-start" />
             {t('areaProprietari.login.submit')}
           </Button>
         </form>

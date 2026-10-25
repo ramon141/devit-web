@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
@@ -18,8 +18,8 @@ import { usePropertyControllerFindById } from '@/api/generated/api'
 import { usePropertyForm } from '@/pages/Imoveis/hooks/usePropertyForm'
 import PropertyBrokerHeader from '@/pages/Imoveis/components/PropertyBrokerHeader'
 import PropertyDuplicateModal from '@/pages/Imoveis/components/PropertyDuplicateModal'
-import PropertyRegistrationInfo from '@/pages/Imoveis/components/PropertyRegistrationInfo'
 import PropertyFormFields from '@/pages/Imoveis/components/PropertyFormFields'
+import { PropertySaveModeContext } from '@/pages/Imoveis/contexts/PropertySaveModeContext'
 import { PropertyDraftProvider } from '@/pages/Imoveis/contexts/PropertyDraftProvider'
 import { getNextStepValue } from '@/pages/Imoveis/schemas/propertySteps'
 import {
@@ -53,12 +53,19 @@ function PropertyScheda() {
   const notFound = !isNew && !isLoading && (isError || !property)
 
   const [activeTab, setActiveTab] = useState('generale')
+  const stayRef = useRef(false)
+  const saveMode = useMemo(() => (isNew ? undefined : { stayRef }), [isNew])
 
   const { form, isSubmitting, onSubmit, duplicateInfo, closeDuplicate } = usePropertyForm({
     property,
     initialCategoryId: isNew ? (searchParams.get('categoryId') ?? undefined) : undefined,
     onSaved: (savedId) => {
       if (isNew) navigate(`/gestionale/proprieta/${savedId}`, { replace: true })
+      if (stayRef.current) {
+        stayRef.current = false
+        return
+      }
+
       setActiveTab((current) => getNextStepValue(t, current))
     },
   })
@@ -93,7 +100,7 @@ function PropertyScheda() {
 
       <PropertyDuplicateModal info={duplicateInfo} onClose={closeDuplicate} />
 
-      <div className="flex h-full min-h-0 flex-col">
+      <div className="flex h-full min-h-0 lg:-mb-20 lg:h-[calc(100%+5rem)] flex-col">
         <Breadcrumb className="mb-4 shrink-0">
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -109,7 +116,6 @@ function PropertyScheda() {
         {property && (
           <div className="mb-3 grid shrink-0 gap-2">
             <PropertyBrokerHeader property={property} />
-            <PropertyRegistrationInfo property={property} />
           </div>
         )}
 
@@ -120,14 +126,16 @@ function PropertyScheda() {
             backTo="/gestionale/proprieta"
           />
         ) : (
-          <PropertyFormFields
-            form={form}
-            onSubmit={onSubmit}
-            isSubmitting={isSubmitting}
-            propertyId={property?.id}
-            activeTab={activeTab}
-            onActiveTabChange={setActiveTab}
-          />
+          <PropertySaveModeContext.Provider value={saveMode}>
+            <PropertyFormFields
+              form={form}
+              onSubmit={onSubmit}
+              isSubmitting={isSubmitting}
+              propertyId={property?.id}
+              activeTab={activeTab}
+              onActiveTabChange={setActiveTab}
+            />
+          </PropertySaveModeContext.Provider>
         )}
       </div>
     </AppLayout>

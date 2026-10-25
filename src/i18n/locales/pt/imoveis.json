@@ -376,7 +376,13 @@
         "hiddenOnPrint": "Oculto em impressos",
         "hiddenOnInternet": "Oculto na internet",
         "boxIncludedInPrice": "Vaga inclusa no preço",
-        "auction": "Imóvel em leilão"
+        "auction": "Imóvel em leilão",
+        "negotiableHint": "Indica que o proprietário aceita negociar o valor. A informação é enviada ao site público, onde o cliente vê que o preço é negociável.",
+        "priceFromHint": "O valor informado é um preço mínimo (\"a partir de\"), e não o valor final. Use quando o preço varia conforme a unidade ou as condições.",
+        "hiddenOnPrintHint": "Marca que o preço não deve aparecer em materiais impressos, como fichas e catálogos.",
+        "hiddenOnInternetHint": "Marca que o preço não deve ser divulgado na internet. Quem consulta o imóvel online não deve ver o valor.",
+        "boxIncludedInPriceHint": "A vaga de garagem (box) já está incluída no preço do imóvel, sem custo adicional.",
+        "auctionHint": "O imóvel está sendo vendido em leilão. Ele passa a aparecer no filtro \"Só leilão\" da lista de imóveis."
       },
       "save": "Salvar opções de preço"
     },
@@ -575,6 +581,9 @@
       "unavailable": "Indisp."
     },
     "validation": {
+      "salePriceRequired": "Informe o preço de venda",
+      "salePriceNotAllowed": "Um imóvel somente para aluguel não pode ter preço de venda.",
+      "rentPriceNotAllowed": "Um imóvel somente para venda não pode ter preço de aluguel.",
       "code": "Informe o código",
       "title": "Informe pelo menos 3 caracteres",
       "category": "Selecione uma categoria",
@@ -969,6 +978,10 @@
     "duplicate": {
       "title": "Imóvel já existente",
       "registeredAt": "Cadastrado em {{date}}",
+      "rule": {
+        "same_code": "Já existe um imóvel com o mesmo código",
+        "same_address": "Já existe um imóvel com o mesmo endereço"
+      },
       "status": {
         "active": "Ativo",
         "inactive": "Inativo"

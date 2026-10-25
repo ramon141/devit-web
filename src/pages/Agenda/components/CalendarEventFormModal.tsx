@@ -1,3 +1,4 @@
+import { SaveIcon, Trash2Icon, XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
@@ -92,6 +93,7 @@ function CalendarEventFormModal({
               className="text-destructive"
               onClick={() => onRequestDelete(event)}
             >
+              <Trash2Icon data-icon="inline-start" />
               {t('agenda:formModal.delete')}
             </Button>
           ) : (
@@ -100,9 +102,11 @@ function CalendarEventFormModal({
 
           <div className="flex gap-2">
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+              <XIcon data-icon="inline-start" />
               {t('agenda:formModal.cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting}>
+              <SaveIcon data-icon="inline-start" />
               {t('agenda:formModal.save')}
             </Button>
           </div>

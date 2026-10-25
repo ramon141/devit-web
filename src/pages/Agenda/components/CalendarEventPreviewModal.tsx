@@ -1,3 +1,4 @@
+import { PencilIcon, XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import { Button } from '@/components/ui/button'
@@ -29,10 +30,12 @@ function CalendarEventPreviewModal({ event, onOpenChange, onEdit }: CalendarEven
               variant="outline"
               onClick={() => onOpenChange(false)}
             >
+              <XIcon data-icon="inline-start" />
               {t('agenda:previewModal.close')}
             </Button>
 
             <Button type="button" onClick={() => onEdit(event)}>
+              <PencilIcon data-icon="inline-start" />
               {t('agenda:previewModal.edit')}
             </Button>
           </div>

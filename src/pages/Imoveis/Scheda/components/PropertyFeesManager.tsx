@@ -1,3 +1,4 @@
+import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -75,7 +76,10 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
           placeholder={t('scheda.feesManager.notePlaceholder')}
           className="w-40"
         />
-        <Button type="button" onClick={addFee}>{t('scheda.feesManager.add')}</Button>
+        <Button type="button" onClick={addFee}>
+          <PlusIcon data-icon="inline-start" />
+          {t('scheda.feesManager.add')}
+        </Button>
       </div>
 
       {missingFields && (

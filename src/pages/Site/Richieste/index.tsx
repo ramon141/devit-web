@@ -1,3 +1,4 @@
+import { HomeIcon, SearchIcon, SendIcon } from 'lucide-react'
 import { Controller, useWatch } from 'react-hook-form'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
@@ -36,6 +37,7 @@ function Richieste() {
                   variant={field.value === 'search' ? 'default' : 'outline'}
                   onClick={() => field.onChange('search')}
                 >
+                  <SearchIcon data-icon="inline-start" />
                   {t('richieste.searchProperty')}
                 </Button>
 
@@ -47,6 +49,7 @@ function Richieste() {
                     form.setValue('maxBudget', '')
                   }}
                 >
+                  <HomeIcon data-icon="inline-start" />
                   {t('richieste.valuation')}
                 </Button>
               </>
@@ -125,6 +128,7 @@ function Richieste() {
         <TurnstileWidget onToken={setTurnstileToken} />
 
         <Button type="submit" disabled={isSubmitting} className="w-full">
+          <SendIcon data-icon="inline-start" />
           {t('richieste.submit')}
         </Button>
       </form>

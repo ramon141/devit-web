@@ -1,3 +1,4 @@
+import { SaveIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import type { Person } from '@/api/generated/models'
@@ -18,6 +19,7 @@ function SchedaDati({ person }: SchedaDatiProps) {
 
       <div className="flex justify-end">
         <Button type="submit" disabled={isSubmitting}>
+          <SaveIcon data-icon="inline-start" />
           {t('schedaDati.saveButton')}
         </Button>
       </div>

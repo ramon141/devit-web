@@ -1,3 +1,4 @@
+import { SaveIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -57,6 +58,7 @@ function Profilo() {
 
           <div id="profilo-save-btn" className="flex justify-end">
             <Button type="submit" disabled={isSubmitting}>
+              <SaveIcon data-icon="inline-start" />
               {t('index.save')}
             </Button>
           </div>
