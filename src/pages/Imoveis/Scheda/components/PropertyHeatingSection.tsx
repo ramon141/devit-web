@@ -1,3 +1,4 @@
+import FieldHint from '@/components/FieldHint'
 import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -23,6 +24,7 @@ function PropertyHeatingSection({ form }: PropertyHeatingSectionProps) {
   return (
     <div className="grid gap-4 sm:col-span-2 sm:grid-cols-2">
       <p className="text-sm font-medium sm:col-span-2">{t('scheda.heatingSection.title')}</p>
+      <FieldHint className="sm:col-span-2">{t('scheda.registryNote')}</FieldHint>
 
       <FormFieldWrapper label={t('scheda.heatingSection.typeLabel')}>
         <Controller control={control} name="heatingType" render={({ field }) => (

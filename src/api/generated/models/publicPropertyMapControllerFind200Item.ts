@@ -15,6 +15,7 @@ export type PublicPropertyMapControllerFind200Item = {
   purpose?: string;
   /** @nullable */
   price?: number | null;
+  priceFrom?: boolean;
   latitude?: number;
   longitude?: number;
   radiusMeters?: number;

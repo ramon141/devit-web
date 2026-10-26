@@ -1,9 +1,13 @@
+import { InfoIcon } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Label } from '@/components/ui/label'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/lib/utils'
 
 type FormFieldWrapperProps = {
   label: string
+  // Explicação curta (regra de negócio) exibida num tooltip ao lado do rótulo
+  hint?: string
   // Só para input/textarea de verdade: apontar para um trigger (botão do
   // SearchableSelect/Select) faz o hover do label virar hover do campo
   htmlFor?: string
@@ -30,6 +34,7 @@ const invalidFieldClasses = [
 // Wrapper padrão label + campo + erro, usado em todo formulário do sistema
 function FormFieldWrapper({
   label,
+  hint,
   htmlFor,
   required,
   error,
@@ -41,6 +46,12 @@ function FormFieldWrapper({
       <Label htmlFor={htmlFor}>
         {label}
         {required && <span className="text-destructive"> *</span>}
+        {hint && (
+          <Tooltip>
+            <TooltipTrigger render={<InfoIcon className="size-4 text-muted-foreground" />} />
+            <TooltipContent className="max-w-xs">{hint}</TooltipContent>
+          </Tooltip>
+        )}
       </Label>
 
       {children}

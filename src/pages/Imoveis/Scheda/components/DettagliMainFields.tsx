@@ -21,10 +21,6 @@ function DettagliMainFields({ form }: DettagliMainFieldsProps) {
         <Input {...register('acquisitionDate')} type="date" />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('scheda.dettagliMainFields.listingStageLabel')} error={errors.listingStage?.message}>
-        <Input {...register('listingStage')} placeholder={t('scheda.dettagliMainFields.listingStagePlaceholder')} />
-      </FormFieldWrapper>
-
       <FormFieldWrapper label={t('scheda.dettagliMainFields.ratingLabel')} error={errors.rating?.message}>
         <Controller control={control} name="rating" render={({ field }) => (
           <SelectField value={field.value} onValueChange={field.onChange} options={getRatingOptions(t)} />

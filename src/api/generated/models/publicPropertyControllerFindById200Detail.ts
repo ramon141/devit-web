@@ -25,6 +25,8 @@ export type PublicPropertyControllerFindById200Detail = {
   /** @nullable */
   estimatedValue?: number | null;
   negotiable?: boolean;
+  priceFrom?: boolean;
+  boxIncludedInPrice?: boolean;
   /** @nullable */
   condition?: string | null;
   /** @nullable */

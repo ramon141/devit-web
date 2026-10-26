@@ -46,7 +46,10 @@ function CommercialActivityFields({ form }: CommercialActivityFieldsProps) {
       <FormFieldWrapper label={t('scheda.commercialActivityFields.averageRevenueToLabel')}>
         <Input {...register('averageRevenueTo')} type="number" />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.commercialActivityFields.monthlyRentLabel')}>
+      <FormFieldWrapper
+        label={t('scheda.commercialActivityFields.monthlyRentLabel')}
+        hint={t('scheda.commercialActivityFields.monthlyRentHint')}
+      >
         <Input {...register('monthlyRent')} type="number" />
       </FormFieldWrapper>
       <FormFieldWrapper label={t('scheda.commercialActivityFields.weeklyRestDayLabel')}>

@@ -1,3 +1,4 @@
+import FieldHint from '@/components/FieldHint'
 import type { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Separator } from '@/components/ui/separator'
@@ -33,6 +34,7 @@ function PropertyCommercialeTab({ propertyId, onBack, onNext }: PropertyCommerci
   return (
     <form noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
       <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+        <FieldHint className="sm:col-span-2">{t('scheda.registryNote')}</FieldHint>
         <CommercialActivityFields form={form} />
         <CommercialAreaFields form={form} />
 

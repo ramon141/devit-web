@@ -14,9 +14,10 @@ import type { DettagliFormValues } from '@/pages/Imoveis/Scheda/hooks/usePropert
 
 type DettagliStatoFieldsProps = {
   form: UseFormReturn<DettagliFormValues>
+  canSeeInternalNote: boolean
 }
 
-function DettagliStatoFields({ form }: DettagliStatoFieldsProps) {
+function DettagliStatoFields({ form, canSeeInternalNote }: DettagliStatoFieldsProps) {
   const { t } = useTranslation('imoveis')
   const { register, control } = form
   const { errors } = useFormState({ control })
@@ -81,14 +82,24 @@ function DettagliStatoFields({ form }: DettagliStatoFieldsProps) {
         )} />
       </div>
 
-      <div className="sm:col-span-2">
-        <FormFieldWrapper label={t('scheda.dettagliStatoFields.internalNoteLabel')} error={errors.internalNote?.message}>
-          <Textarea {...register('internalNote')} rows={2} />
-        </FormFieldWrapper>
-      </div>
+      {canSeeInternalNote && (
+        <div className="sm:col-span-2">
+          <FormFieldWrapper
+            label={t('scheda.dettagliStatoFields.internalNoteLabel')}
+            hint={t('scheda.dettagliStatoFields.internalNoteHint')}
+            error={errors.internalNote?.message}
+          >
+            <Textarea {...register('internalNote')} rows={2} />
+          </FormFieldWrapper>
+        </div>
+      )}
 
       <div className="sm:col-span-2">
-        <FormFieldWrapper label={t('scheda.dettagliStatoFields.sharedNoteLabel')} error={errors.sharedNote?.message}>
+        <FormFieldWrapper
+          label={t('scheda.dettagliStatoFields.sharedNoteLabel')}
+          hint={t('scheda.dettagliStatoFields.sharedNoteHint')}
+          error={errors.sharedNote?.message}
+        >
           <Textarea {...register('sharedNote')} rows={2} />
         </FormFieldWrapper>
       </div>

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { Input } from '@/components/ui/input'
-import FormFieldWrapper from '@/components/FormFieldWrapper'
+import { useUserControllerFind } from '@/api/generated/api'
+import SearchableSelect from '@/components/SearchableSelect'
+import { formatBroker } from '@/utils/formatBroker'
 
 type BrokerCodeFilterProps = {
   id?: string
@@ -8,18 +9,27 @@ type BrokerCodeFilterProps = {
   onChange: (value: string) => void
 }
 
-// Filtro "agente responsabile" das listagens: busca pelo código do corretor do imóvel
+// Filtro "agente responsabile" das listagens: escolhe o corretor, o valor continua sendo o código
 function BrokerCodeFilter({ id, value, onChange }: BrokerCodeFilterProps) {
   const { t } = useTranslation('imoveis')
+  const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
+
+  const options = (users ?? []).flatMap((user) =>
+    user.brokerCode && user.active !== false
+      ? [{ value: user.brokerCode, label: formatBroker(user) }]
+      : [],
+  )
 
   return (
-    <FormFieldWrapper id={id} label={t('filters.brokerLabel')}>
-      <Input
+    <div id={id}>
+      <SearchableSelect
+        label={t('filters.brokerLabel')}
         value={value}
-        onChange={(event) => onChange(event.target.value)}
+        onValueChange={onChange}
+        options={options}
         placeholder={t('filters.brokerPlaceholder')}
       />
-    </FormFieldWrapper>
+    </div>
   )
 }
 

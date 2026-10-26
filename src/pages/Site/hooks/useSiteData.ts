@@ -79,13 +79,15 @@ export function useMapPins() {
   const pins = useMemo<MapPin[]>(
     () =>
       (data ?? []).map((pin) => {
-        const isRent = pin.purpose === 'rent' && toNumber(pin.price) !== null
+        const hasPrice = toNumber(pin.price) !== null
+        const isRent = pin.purpose === 'rent' && hasPrice
+        const pricePrefix = hasPrice && pin.priceFrom ? `${dict.property.priceFrom} ` : ''
 
         return {
           id: pin.id ?? '',
           href: SITE_PATHS.property(pin.slug ?? pin.id ?? ''),
           title: pin.title ?? '',
-          price: formatPrice(pin.price, locale, dict) + (isRent ? dict.property.perMonth : ''),
+          price: pricePrefix + formatPrice(pin.price, locale, dict) + (isRent ? dict.property.perMonth : ''),
           zone: pin.zone?.slug ?? '',
           zoneLabel: pin.zone?.name ?? '',
           purpose: pin.purpose ?? 'sale',

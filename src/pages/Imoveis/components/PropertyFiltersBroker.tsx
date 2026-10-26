@@ -1,6 +1,4 @@
-import { useTranslation } from 'react-i18next'
-import { Input } from '@/components/ui/input'
-import FormFieldWrapper from '@/components/FormFieldWrapper'
+import BrokerCodeFilter from '@/components/BrokerCodeFilter'
 import type { PropertyFiltersValues } from '@/pages/Imoveis/hooks/usePropertyList'
 
 type PropertyFiltersBrokerProps = {
@@ -9,16 +7,11 @@ type PropertyFiltersBrokerProps = {
 }
 
 function PropertyFiltersBroker({ filters, update }: PropertyFiltersBrokerProps) {
-  const { t } = useTranslation('imoveis')
-
   return (
-    <FormFieldWrapper label={t('filters.brokerLabel')}>
-      <Input
-        value={filters.brokerCode}
-        onChange={(event) => update({ brokerCode: event.target.value })}
-        placeholder={t('filters.brokerPlaceholder')}
-      />
-    </FormFieldWrapper>
+    <BrokerCodeFilter
+      value={filters.brokerCode}
+      onChange={(brokerCode) => update({ brokerCode })}
+    />
   )
 }
 

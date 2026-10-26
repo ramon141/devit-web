@@ -25,7 +25,6 @@ import type {
 
 export type DettagliFormValues = {
   acquisitionDate: string
-  listingStage: string
   rating: string
   mediationType: string
   mediationFeeClientPct: string
@@ -45,7 +44,6 @@ export type DettagliFormValues = {
 
 const emptyValues: DettagliFormValues = {
   acquisitionDate: '',
-  listingStage: '',
   rating: 'standard',
   mediationType: '',
   mediationFeeClientPct: '',
@@ -82,7 +80,6 @@ export function usePropertyDetailForm(propertyId: string, onSaved?: () => void) 
     if (!existing) return
     form.reset({
       acquisitionDate: existing.acquisitionDate?.slice(0, 10) ?? '',
-      listingStage: existing.listingStage ?? '',
       rating: existing.rating ?? 'standard',
       mediationType: existing.mediationType ?? '',
       mediationFeeClientPct: existing.mediationFeeClientPct != null ? String(existing.mediationFeeClientPct) : '',

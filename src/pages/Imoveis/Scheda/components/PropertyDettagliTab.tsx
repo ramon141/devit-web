@@ -5,11 +5,12 @@ import DettagliStatoFields from '@/pages/Imoveis/Scheda/components/DettagliStato
 
 type PropertyDettagliTabProps = {
   propertyId: string
+  canSeeInternalNote: boolean
   onBack?: () => void
   onNext: () => void
 }
 
-function PropertyDettagliTab({ propertyId, onBack, onNext }: PropertyDettagliTabProps) {
+function PropertyDettagliTab({ propertyId, canSeeInternalNote, onBack, onNext }: PropertyDettagliTabProps) {
   const { form, isLoading, isSubmitting, onSubmit } = usePropertyDetailForm(propertyId, onNext)
 
   if (isLoading) return null
@@ -18,7 +19,7 @@ function PropertyDettagliTab({ propertyId, onBack, onNext }: PropertyDettagliTab
     <form noValidate onSubmit={onSubmit} className="flex h-full min-h-0 flex-col">
       <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
         <DettagliMainFields form={form} />
-        <DettagliStatoFields form={form} />
+        <DettagliStatoFields form={form} canSeeInternalNote={canSeeInternalNote} />
       </div>
 
       <PropertyFormFooter

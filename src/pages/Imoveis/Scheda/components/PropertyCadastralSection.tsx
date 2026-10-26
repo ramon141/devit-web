@@ -1,3 +1,4 @@
+import FieldHint from '@/components/FieldHint'
 import type { UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -15,6 +16,7 @@ function PropertyCadastralSection({ form }: PropertyCadastralSectionProps) {
   return (
     <div className="grid gap-4 sm:col-span-2 sm:grid-cols-3">
       <p className="text-sm font-medium sm:col-span-3">{t('scheda.cadastralSection.title')}</p>
+      <FieldHint className="sm:col-span-3">{t('scheda.registryNote')}</FieldHint>
 
       <FormFieldWrapper label={t('scheda.cadastralSection.registeredAtLabel')}>
         <Input {...register('registeredAt')} />

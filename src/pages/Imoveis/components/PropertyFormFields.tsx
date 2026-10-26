@@ -1,6 +1,7 @@
 import type { UseFormReturn } from 'react-hook-form'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import { Auth, UserInfo } from '@/auth'
 import { propertyControllerFind } from '@/api/generated/api'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import Stepper from '@/components/Stepper'
@@ -27,6 +28,7 @@ type PropertyFormFieldsProps = {
   onSubmit: (event: FormEvent) => void
   isSubmitting: boolean
   propertyId?: string
+  responsibleBrokerId?: string
   activeTab: string
   onActiveTabChange: (value: string) => void
 }
@@ -36,12 +38,15 @@ function PropertyFormFields({
   onSubmit,
   isSubmitting,
   propertyId,
+  responsibleBrokerId,
   activeTab,
   onActiveTabChange,
 }: PropertyFormFieldsProps) {
   const { t } = useTranslation('imoveis')
   const navigate = useNavigate()
   const saveMode = usePropertySaveMode()
+  const canSeeInternalNote =
+    !propertyId || Auth.isAdmin() || responsibleBrokerId === UserInfo.getUserId()
 
   // Só valida os campos da etapa atual; o save completo só acontece quando o
   // formulário inteiro está válido (campos obrigatórios vivem em etapas diferentes)
@@ -118,7 +123,12 @@ function PropertyFormFields({
         <PropertyGeneralTab form={form} onSubmit={handleNext} isSubmitting={isSubmitting} propertyId={propertyId} onBack={handleBack} />
       </TabsContent>
       <TabsContent value="dettagli" className={tabContentClassName}>
-        <PropertyDettagliTab propertyId={propertyId ?? ''} onBack={handleBack} onNext={goToNextStep} />
+        <PropertyDettagliTab
+          propertyId={propertyId ?? ''}
+          canSeeInternalNote={canSeeInternalNote}
+          onBack={handleBack}
+          onNext={goToNextStep}
+        />
       </TabsContent>
       <TabsContent value="foto" className={tabContentClassName}>
         <PropertyStepFrame id="property-tab-foto-actions" onBack={handleBack} onNext={goToNextStep}>

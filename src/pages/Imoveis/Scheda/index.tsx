@@ -132,6 +132,7 @@ function PropertyScheda() {
               onSubmit={onSubmit}
               isSubmitting={isSubmitting}
               propertyId={property?.id}
+              responsibleBrokerId={property?.responsibleBrokerId ?? undefined}
               activeTab={activeTab}
               onActiveTabChange={setActiveTab}
             />

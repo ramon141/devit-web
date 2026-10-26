@@ -18,6 +18,8 @@ export type PublicPropertyControllerFindFeatured200Item = {
   purpose?: string;
   /** @nullable */
   price?: number | null;
+  priceFrom?: boolean;
+  negotiable?: boolean;
   /** @nullable */
   areaSqm?: number | null;
   /** @nullable */

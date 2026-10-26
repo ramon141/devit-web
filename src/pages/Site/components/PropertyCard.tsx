@@ -1,3 +1,4 @@
+import { NegotiableNote, PriceFromPrefix } from '@/pages/Site/components/PriceNotes'
 import { Link } from 'react-router'
 import { formatNumber, formatPrice, useSiteDict, type SiteDict } from '@/lib/site/dict'
 import { SITE_PATHS } from '@/lib/site/paths'
@@ -87,7 +88,9 @@ function FolderStats({ property, locale, dict }: StatsProps) {
 function PropertyCard({ property, priority = false }: PropertyCardProps) {
   const { dict, locale } = useSiteDict()
   const zoneName = property.zone?.name ?? property.address?.neighborhood ?? property.address?.city
-  const showPerMonth = isRentOnly(property.purpose) && toNumber(property.price) !== null
+  const hasPrice = toNumber(property.price) !== null
+  const showPriceNotes = hasPrice
+  const showPerMonth = isRentOnly(property.purpose) && hasPrice
 
   return (
     <article data-card className="folder group">
@@ -111,11 +114,13 @@ function PropertyCard({ property, priority = false }: PropertyCardProps) {
         </h3>
 
         <p className="mt-2 font-site-display text-[1.55rem] leading-none text-site-ink">
+          <PriceFromPrefix priceFrom={showPriceNotes && property.priceFrom} />
           {formatPrice(property.price, locale, dict)}
           {showPerMonth && (
             <span className="font-site-sans text-sm text-site-muted">{dict.property.perMonth}</span>
           )}
         </p>
+        <NegotiableNote negotiable={showPriceNotes && property.negotiable} />
 
         <FolderStats property={property} locale={locale} dict={dict} />
         <span className="folder-open-hint" aria-hidden>
