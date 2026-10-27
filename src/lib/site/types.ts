@@ -1,5 +1,5 @@
 import type {
-  BranchWithRelations,
+  BranchExcludingAddressIdCreatedAtUpdatedAtActiveWithRelations,
   PublicPropertyControllerFind200ItemsItem,
   PublicPropertyControllerFindById200,
   PublicPropertyMapControllerFind200Item,
@@ -17,7 +17,7 @@ export type SiteCard = PublicPropertyControllerFind200ItemsItem
 export type SiteDetail = PublicPropertyControllerFindById200
 export type SiteZone = PublicZoneControllerFind200Item
 export type SiteMapPin = PublicPropertyMapControllerFind200Item
-export type SiteBranch = BranchWithRelations
+export type SiteBranch = BranchExcludingAddressIdCreatedAtUpdatedAtActiveWithRelations
 
 export type Purpose = 'sale' | 'rent'
 
