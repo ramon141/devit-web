@@ -18,6 +18,9 @@ export function getPersonRoleOptions(t: TFunction<'clientes'>) {
 // Mesmo formato aceito pelo cadastro de imóveis e pela API
 const POSTAL_CODE_REGEX = /^(\d{4,10})?$/
 
+// Mesma faixa de datas plausíveis aceita pela API
+const MIN_PLAUSIBLE_YEAR = 1900
+
 const addressFields = [
   'street',
   'number',
@@ -31,7 +34,7 @@ const addressFields = [
 export function createPersonSchema(t: TFunction<'clientes'>) {
   return z
     .object({
-      name: z.string().min(2, t('personSchema.nameMin')),
+      name: z.string().trim().min(2, t('personSchema.nameMin')),
       role: z.enum(NewPersonRole, { error: t('personSchema.roleRequired') }),
       email: z.email(t('personSchema.emailInvalid')).optional().or(z.literal('')),
       phone: z.string().regex(PHONE_REGEX, t('personSchema.phoneInvalid')).optional().or(z.literal('')),
@@ -40,11 +43,15 @@ export function createPersonSchema(t: TFunction<'clientes'>) {
         .regex(PHONE_REGEX, t('personSchema.phoneInvalid'))
         .optional()
         .or(z.literal('')),
-      documentType: z.string().optional(),
-      documentNumber: z.string().optional(),
+      documentType: z.string().trim().optional(),
+      documentNumber: z.string().trim().optional(),
       birthDate: z
         .string()
         .refine((value) => !value || !dayjs(value).isAfter(dayjs(), 'day'), t('personSchema.birthDateFuture'))
+        .refine(
+          (value) => !value || dayjs(value).year() >= MIN_PLAUSIBLE_YEAR,
+          t('personSchema.birthDateImplausible', { year: MIN_PLAUSIBLE_YEAR })
+        )
         .optional(),
       notes: z.string().optional(),
       active: z.boolean(),
@@ -53,7 +60,7 @@ export function createPersonSchema(t: TFunction<'clientes'>) {
       number: z.string().optional(),
       complement: z.string().optional(),
       neighborhoodId: z.string().optional(),
-      city: z.string().optional(),
+      city: z.string().trim().optional(),
       region: z.string().optional(),
       postalCode: z
         .string()

@@ -7,7 +7,7 @@ const MAX_DISPLAY_ORDER = 32767
 
 export function createCategorySchema(t: TFunction<'amministrazione'>) {
   return z.object({
-    name: z.string().min(2, t('categorySchema.nameMin')),
+    name: z.string().trim().min(2, t('categorySchema.nameMin')),
     slug: z
       .string()
       .min(2, t('categorySchema.slugMin'))

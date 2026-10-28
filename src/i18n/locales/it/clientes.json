@@ -25,6 +25,7 @@
     "cityRequired": "Inserisci la città per salvare l'indirizzo",
     "phoneInvalid": "Numero di telefono non valido",
     "birthDateFuture": "La data di nascita non può essere nel futuro",
+    "birthDateImplausible": "La data di nascita deve essere dal {{year}} in poi",
     "postalCodeInvalid": "Il CAP deve contenere solo numeri (4-10 cifre)"
   },
   "personFormFields": {
