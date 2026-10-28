@@ -5,37 +5,64 @@ import {
   useSaleSellerControllerFind,
   usePropertyControllerFind,
   usePurchaseProposalBuyerControllerFind,
+  useRentalContractControllerFind,
+  useSaleControllerFind,
+  usePurchaseProposalControllerFind,
 } from '@/api/generated/api'
+import { mergeLinks } from '@/pages/Clientes/Scheda/utils/personLinks'
+import type { PersonLink } from '@/pages/Clientes/Scheda/utils/personLinks'
 
-export function usePersonProperties(personId: string) {
+// Contratos, vendas e propostas guardam a parte principal na própria linha
+// (tenantId, buyerId...) e as partes adicionais nas tabelas de vínculo:
+// é preciso ler os dois lados para não esconder nenhum vínculo
+function usePrimaryParties(personId: string) {
+  const { data: contracts } = useRentalContractControllerFind({
+    filter: { where: { or: [{ tenantId: personId }, { ownerId: personId }] } },
+  })
+  const { data: sales } = useSaleControllerFind({
+    filter: { where: { or: [{ buyerId: personId }, { sellerId: personId }] } },
+  })
+  const { data: proposals } = usePurchaseProposalControllerFind({
+    filter: { where: { buyerId: personId } },
+  })
+
+  return { contracts: contracts ?? [], sales: sales ?? [], proposals: proposals ?? [] }
+}
+
+function useLinkedParties(personId: string) {
+  const byPerson = { where: { personId } }
+
   const { data: ownerships } = usePropertyOwnerControllerFind({
-    filter: { where: { personId }, include: [{ relation: 'property' }] },
+    filter: { ...byPerson, include: [{ relation: 'property' }] },
   })
   const { data: tenancies } = useRentalContractTenantControllerFind({
-    filter: { where: { personId }, include: [{ relation: 'rentalContract' }] },
+    filter: { ...byPerson, include: [{ relation: 'rentalContract' }] },
   })
   const { data: purchases } = useSaleBuyerControllerFind({
-    filter: { where: { personId }, include: [{ relation: 'sale' }] },
+    filter: { ...byPerson, include: [{ relation: 'sale' }] },
   })
-  const { data: sales } = useSaleSellerControllerFind({
-    filter: { where: { personId }, include: [{ relation: 'sale' }] },
-  })
-  const { data: ownedProperties } = usePropertyControllerFind({
-    filter: { where: { ownerId: personId } },
+  const { data: sellings } = useSaleSellerControllerFind({
+    filter: { ...byPerson, include: [{ relation: 'sale' }] },
   })
   const { data: proposals } = usePurchaseProposalBuyerControllerFind({
-    filter: { where: { personId }, include: [{ relation: 'proposal' }] },
+    filter: { ...byPerson, include: [{ relation: 'proposal' }] },
   })
-
-  const coOwnedIds = new Set((ownerships ?? []).map((link) => link.propertyId))
-  const primaryOwned = (ownedProperties ?? []).filter((property) => !coOwnedIds.has(property.id ?? ''))
 
   return {
     ownerships: ownerships ?? [],
-    primaryOwned,
-    sales: sales ?? [],
     tenancies: tenancies ?? [],
     purchases: purchases ?? [],
+    sellings: sellings ?? [],
     proposals: proposals ?? [],
   }
+}
+
+export function usePersonProperties(personId: string): PersonLink[] {
+  const linked = useLinkedParties(personId)
+  const primary = usePrimaryParties(personId)
+  const { data: ownedProperties } = usePropertyControllerFind({
+    filter: { where: { ownerId: personId } },
+  })
+
+  return mergeLinks(personId, linked, primary, ownedProperties ?? [])
 }

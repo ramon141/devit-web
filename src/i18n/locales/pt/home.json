@@ -60,7 +60,8 @@
   "avgTimeOnMarketCard": {
     "title": "Tempo médio no mercado (dias)",
     "toSale": "até a venda ({{count}} vendas)",
-    "toRent": "até a locação ({{count}} locações)"
+    "toRent": "até a locação ({{count}} locações)",
+    "note": "São consideradas apenas vendas e locações com data posterior ao cadastro do imóvel."
   },
   "incompletePropertiesCard": {
     "title": "Imóveis com cadastro incompleto",

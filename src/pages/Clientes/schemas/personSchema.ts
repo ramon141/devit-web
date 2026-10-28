@@ -15,6 +15,9 @@ export function getPersonRoleOptions(t: TFunction<'clientes'>) {
   ]
 }
 
+// Mesmo formato aceito pelo cadastro de imóveis e pela API
+const POSTAL_CODE_REGEX = /^(\d{4,10})?$/
+
 const addressFields = [
   'street',
   'number',
@@ -52,7 +55,10 @@ export function createPersonSchema(t: TFunction<'clientes'>) {
       neighborhoodId: z.string().optional(),
       city: z.string().optional(),
       region: z.string().optional(),
-      postalCode: z.string().optional(),
+      postalCode: z
+        .string()
+        .regex(POSTAL_CODE_REGEX, t('personSchema.postalCodeInvalid'))
+        .optional(),
       country: z.string().optional(),
     })
     .superRefine((values, ctx) => {

@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { z } from 'zod'
 import type { TFunction } from 'i18next'
 import { LeadPurpose, LeadRequestType, LeadSource, LeadStatus } from '@/api/generated/models'
@@ -68,13 +69,30 @@ const MIN_MAX_PAIRS = [
 // andar pode ser negativo (interrato/seminterrato)
 const SIGNED_KEYS: ReadonlyArray<string> = ['minFloor', 'maxFloor']
 
-export function createLeadSchema(t: TFunction<'clientes'>) {
-  return z
-    .object({
-    name: z.string().min(2, t('leadSchema.nameMin')),
+// contagens e andar são números inteiros na API
+const INTEGER_KEYS: ReadonlyArray<string> = [
+  'minRooms',
+  'maxRooms',
+  'minBedrooms',
+  'maxBedrooms',
+  'minBathrooms',
+  'maxBathrooms',
+  'minFloor',
+  'maxFloor',
+]
+
+function createLeadObject(t: TFunction<'clientes'>) {
+  return z.object({
+    name: z.string().trim().min(2, t('leadSchema.nameMin')),
     phone: z.string().regex(PHONE_REGEX, t('leadSchema.phoneInvalid')).optional().or(z.literal('')),
     email: z.email(t('leadSchema.emailInvalid')).optional().or(z.literal('')),
-    firstContactAt: z.string().optional(),
+    firstContactAt: z
+      .string()
+      .refine(
+        (value) => !value || !dayjs(value).isAfter(dayjs(), 'day'),
+        t('leadSchema.firstContactFuture'),
+      )
+      .optional(),
     status: z.enum(LeadStatus, { error: t('leadSchema.statusRequired') }),
     source: z.enum(LeadSource).optional(),
     requestType: z.enum(LeadRequestType).optional(),
@@ -103,28 +121,46 @@ export function createLeadSchema(t: TFunction<'clientes'>) {
     wantsTerrace: z.boolean(),
     wantsBalcony: z.boolean(),
     neighborhoodIds: z.array(z.string()),
-    })
-    .superRefine((values, ctx) => {
-      for (const [minKey, maxKey] of MIN_MAX_PAIRS) {
-        const min = values[minKey]
-        const max = values[maxKey]
+  })
+}
 
-        for (const key of [minKey, maxKey]) {
-          if (!SIGNED_KEYS.includes(key) && Number(values[key]) < 0) {
-            ctx.addIssue({ code: 'custom', path: [key], message: t('leadSchema.negativeValue') })
-          }
-        }
+type LeadObjectValues = z.infer<ReturnType<typeof createLeadObject>>
 
-        if (!min || !max) continue
-        if (Number(min) > Number(max)) {
-          ctx.addIssue({
-            code: 'custom',
-            path: [maxKey],
-            message: t('leadSchema.minGreaterThanMax'),
-          })
-        }
+function refineLeadRanges(
+  values: LeadObjectValues,
+  ctx: z.RefinementCtx,
+  t: TFunction<'clientes'>,
+) {
+  for (const [minKey, maxKey] of MIN_MAX_PAIRS) {
+    const min = values[minKey]
+    const max = values[maxKey]
+
+    for (const key of [minKey, maxKey]) {
+      const value = values[key]
+      if (!value) continue
+
+      if (!SIGNED_KEYS.includes(key) && Number(value) < 0) {
+        ctx.addIssue({ code: 'custom', path: [key], message: t('leadSchema.negativeValue') })
       }
-    })
+
+      if (INTEGER_KEYS.includes(key) && !Number.isInteger(Number(value))) {
+        ctx.addIssue({ code: 'custom', path: [key], message: t('leadSchema.integerValue') })
+      }
+    }
+
+    if (!min || !max) continue
+    if (Number(min) > Number(max)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: [maxKey],
+        message: t('leadSchema.minGreaterThanMax'),
+      })
+    }
+  }
+}
+
+export function createLeadSchema(t: TFunction<'clientes'>) {
+  return createLeadObject(t).superRefine((values, ctx) => refineLeadRanges(values, ctx, t))
 }
 
 export type LeadFormValues = z.infer<ReturnType<typeof createLeadSchema>>

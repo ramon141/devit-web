@@ -7,7 +7,12 @@ import { toLikePattern } from '@/utils/toLikePattern'
 export function usePersonList() {
   const { search, debouncedSearch, page, setPage, pageSize, skip, onSearchChange } =
     useListPagination()
-  const [roleFilter, setRoleFilter] = useState('')
+  const [roleFilter, setRoleFilterState] = useState('')
+
+  function setRoleFilter(value: string) {
+    setRoleFilterState(value)
+    setPage(1)
+  }
 
   const conditions: Record<string, unknown>[] = []
 

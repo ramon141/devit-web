@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
 import { usePersonProperties } from '@/pages/Clientes/Scheda/hooks/usePersonProperties'
+import type { PersonLink } from '@/pages/Clientes/Scheda/utils/personLinks'
 
 type SchedaImmobiliProps = {
   personId: string
@@ -8,62 +9,33 @@ type SchedaImmobiliProps = {
 
 function SchedaImmobili({ personId }: SchedaImmobiliProps) {
   const { t } = useTranslation('clientes')
-  const { ownerships, primaryOwned, sales, tenancies, purchases, proposals } =
-    usePersonProperties(personId)
-  const hasNothing =
-    ownerships.length === 0 &&
-    primaryOwned.length === 0 &&
-    sales.length === 0 && tenancies.length === 0 && purchases.length === 0 && proposals.length === 0
+  const links = usePersonProperties(personId)
+
+  function linkText(link: PersonLink) {
+    if (link.role === 'tenant' || link.role === 'landlord') {
+      return t('schedaImmobili.contractPrefix', { number: link.text })
+    }
+
+    if (link.role === 'seller' || link.role === 'buyer') {
+      return t('schedaImmobili.salePrefix', { number: link.text })
+    }
+
+    return link.text
+  }
 
   return (
     <div id="cliente-scheda-immobili" className="grid gap-4">
-      {hasNothing && <p className="text-sm text-muted-foreground">{t('schedaImmobili.empty')}</p>}
+      {links.length === 0 && (
+        <p className="text-sm text-muted-foreground">{t('schedaImmobili.empty')}</p>
+      )}
 
-      {ownerships.map((link) => (
-        <div key={link.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
-          <Badge variant="secondary">{t('schedaImmobili.owner')}</Badge>
-          <span className="text-sm">{link.property?.code} · {link.property?.title}</span>
-        </div>
-      ))}
-
-      {primaryOwned.map((property) => (
-        <div key={property.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
-          <Badge variant="secondary">{t('schedaImmobili.owner')}</Badge>
-          <span className="text-sm">{property.code} · {property.title}</span>
-        </div>
-      ))}
-
-      {sales.map((link) => (
-        <div key={link.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
-          <Badge variant="secondary">{t('schedaImmobili.seller')}</Badge>
-          <span className="text-sm">
-            {t('schedaImmobili.salePrefix', { number: link.sale?.number })}
-          </span>
-        </div>
-      ))}
-
-      {tenancies.map((link) => (
-        <div key={link.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
-          <Badge variant="secondary">{t('schedaImmobili.tenant')}</Badge>
-          <span className="text-sm">
-            {t('schedaImmobili.contractPrefix', { number: link.rentalContract?.number })}
-          </span>
-        </div>
-      ))}
-
-      {purchases.map((link) => (
-        <div key={link.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
-          <Badge variant="secondary">{t('schedaImmobili.buyer')}</Badge>
-          <span className="text-sm">
-            {t('schedaImmobili.salePrefix', { number: link.sale?.number })}
-          </span>
-        </div>
-      ))}
-
-      {proposals.map((link) => (
-        <div key={link.id} className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border">
-          <Badge variant="secondary">{t('schedaImmobili.proposal')}</Badge>
-          <span className="text-sm">{link.proposal?.number}</span>
+      {links.map((link) => (
+        <div
+          key={`${link.role}:${link.id}`}
+          className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border"
+        >
+          <Badge variant="secondary">{t(`schedaImmobili.${link.role}`)}</Badge>
+          <span className="text-sm">{linkText(link)}</span>
         </div>
       ))}
     </div>

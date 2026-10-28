@@ -40,6 +40,10 @@ function AvgTimeOnMarketCard() {
             {t('avgTimeOnMarketCard.toRent', { count: data?.rentalsCount ?? 0 })}
           </span>
         </div>
+
+        <p className="col-span-2 text-xs text-muted-foreground">
+          {t('avgTimeOnMarketCard.note')}
+        </p>
       </CardContent>
     </Card>
   )

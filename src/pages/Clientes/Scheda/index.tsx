@@ -63,7 +63,7 @@ function Scheda() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{person?.name ?? '...'}</BreadcrumbPage>
+            <BreadcrumbPage>{person?.name ?? (notFound ? '—' : '...')}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

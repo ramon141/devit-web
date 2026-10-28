@@ -24,7 +24,8 @@
     "emailInvalid": "E-mail non valida",
     "cityRequired": "Inserisci la città per salvare l'indirizzo",
     "phoneInvalid": "Numero di telefono non valido",
-    "birthDateFuture": "La data di nascita non può essere nel futuro"
+    "birthDateFuture": "La data di nascita non può essere nel futuro",
+    "postalCodeInvalid": "Il CAP deve contenere solo numeri (4-10 cifre)"
   },
   "personFormFields": {
     "name": "Nome",
@@ -130,7 +131,9 @@
     "statusRequired": "Seleziona uno stato",
     "minGreaterThanMax": "Il valore minimo non può essere maggiore del massimo",
     "negativeValue": "Il valore non può essere negativo",
-    "phoneInvalid": "Numero di telefono non valido"
+    "phoneInvalid": "Numero di telefono non valido",
+    "firstContactFuture": "La data del primo contatto non può essere nel futuro",
+    "integerValue": "Inserisci un numero intero"
   },
   "leadFormFields": {
     "name": "Nome",
@@ -227,7 +230,8 @@
     "proposal": "Proposta",
     "contractPrefix": "Contratto {{number}}",
     "salePrefix": "Vendita {{number}}",
-    "seller": "Venditore"
+    "seller": "Venditore",
+    "landlord": "Locatore"
   },
   "usePersonAttachments": {
     "pendingUpload": "Caricamento allegati...",
