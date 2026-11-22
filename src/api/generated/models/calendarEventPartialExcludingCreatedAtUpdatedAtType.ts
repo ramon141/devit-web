@@ -20,4 +20,9 @@ export const CalendarEventPartialExcludingCreatedAtUpdatedAtType = {
   call_completed: 'call_completed',
   rental_proposal: 'rental_proposal',
   purchase_proposal: 'purchase_proposal',
+  final_deed: 'final_deed',
+  management: 'management',
+  valuation: 'valuation',
+  expiry: 'expiry',
+  sale: 'sale',
 } as const;

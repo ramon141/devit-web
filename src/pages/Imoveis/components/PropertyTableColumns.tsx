@@ -13,6 +13,7 @@ import PropertyShareButton from '@/pages/Imoveis/components/PropertyShareButton'
 import { formatDateTime } from '@/utils/formatDate'
 import { formatBroker } from '@/utils/formatBroker'
 import { lastChangeText } from '@/utils/propertyRegistration'
+import { getMediationDaysLeft } from '@/utils/mediationExpiry'
 
 function formatPropertySize(property: PropertyWithRelations, t: TFunction<'imoveis'>): string {
   const parts: string[] = []
@@ -21,6 +22,19 @@ function formatPropertySize(property: PropertyWithRelations, t: TFunction<'imove
   if (property.bathrooms) parts.push(t('table.size.bathrooms', { count: property.bathrooms }))
 
   return parts.length > 0 ? parts.join(' · ') : '—'
+}
+
+// Contrato de intermediação perto do vencimento: código em vermelho e aviso com os dias restantes
+function PropertyCodeCell({ property, t }: { property: PropertyWithRelations; t: TFunction<'imoveis'> }) {
+  const daysLeft = getMediationDaysLeft(property)
+  if (daysLeft === null) return <span className="font-medium">{property.code}</span>
+
+  return (
+    <span className="flex flex-col gap-1">
+      <span className="font-medium text-destructive">{property.code}</span>
+      <Badge variant="destructive">{t('table.mediationExpiring', { count: daysLeft })}</Badge>
+    </span>
+  )
 }
 
 type BuildPropertyTableColumnsProps = {
@@ -61,7 +75,7 @@ export function buildPropertyTableColumns({
   onDelete,
 }: BuildPropertyTableColumnsProps): DataTableColumn<PropertyWithRelations>[] {
   return [
-    { header: t('table.columns.code'), cell: (property) => <span className="font-medium">{property.code}</span> },
+    { header: t('table.columns.code'), cell: (property) => <PropertyCodeCell property={property} t={t} /> },
     { header: t('table.columns.title'), cell: (property) => property.title },
     { header: t('table.columns.category'), cell: (property) => property.category?.name ?? '—' },
     { header: t('table.columns.city'), cell: (property) => property.address?.city ?? '—' },

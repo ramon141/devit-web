@@ -98,7 +98,8 @@
       "area": "{{value, number}} m²",
       "bedrooms": "{{count}} quartos",
       "bathrooms": "{{count}} banh."
-    }
+    },
+    "mediationExpiring": "Contrato vence em {{count}} dia(s)"
   },
   "categoryOwnerFields": {
     "categoryLabel": "Categoria",
@@ -223,16 +224,23 @@
       "agentLabel": "Agente responsável",
       "agentPlaceholder": "Nenhum",
       "mediationTypeLabel": "Tipo de mediação",
+      "mediationTypeHint": "Indica o tipo de acordo com o proprietário para a venda ou o aluguel. Exclusiva: só esta imobiliária pode oferecer o imóvel. Não exclusiva: outras imobiliárias ou o proprietário também podem. Verbal: acordo não escrito. Informação: imóvel apenas indicado, sem um mandato formal. Parceria: o trabalho é feito junto com outra imobiliária.",
       "mediationTypePlaceholder": "Nenhum",
       "subtypeLabel": "Tipologia",
       "subtypePlaceholder": "Dois cômodos",
       "mediationFeeClientLabel": "% mediação cliente",
-      "mediationFeeOwnerLabel": "% mediação proprietário"
+      "mediationFeeOwnerLabel": "% mediação proprietário",
+      "mediationExpiresAtLabel": "Vencimento do contrato",
+      "mediationRenewableLabel": "Renovável",
+      "mediationRenewalMonthsLabel": "Prazo da renovação (meses)",
+      "yes": "Sim",
+      "no": "Não"
     },
     "dettagliStatoFields": {
       "availabilityLabel": "Disponibilidade",
       "availabilityPlaceholder": "Nenhuma",
       "conditionLabel": "Estado de conservação",
+      "conditionHint": "Condição geral do imóvel. Novo: nunca habitado. Bom/Habitável: pode ser usado de imediato. Reformado: já renovado. Razoável: condições aceitáveis. Em estado bruto: sem acabamento. A reformar: precisa de obras.",
       "conditionPlaceholder": "Nenhum",
       "furnishedLabel": "Mobiliado",
       "furnishedPlaceholder": "Nenhum",
@@ -723,19 +731,19 @@
     },
     "status": {
       "available": "Disponível",
-      "reserved": "Reservado",
+      "reserved": "Em negociação",
       "rented": "Alugado",
       "sold": "Vendido",
-      "underMaintenance": "Em manutenção",
-      "unavailable": "Indisponível"
+      "unavailable": "Suspenso",
+      "expired": "Vencido"
     },
     "statusShort": {
       "available": "Disp.",
-      "reserved": "Res.",
+      "reserved": "Negoc.",
       "rented": "Alug.",
       "sold": "Vend.",
-      "underMaintenance": "Manut.",
-      "unavailable": "Indisp."
+      "unavailable": "Susp.",
+      "expired": "Venc."
     },
     "validation": {
       "salePriceRequired": "Informe o preço de venda",
@@ -779,7 +787,10 @@
     },
     "mediation": {
       "exclusive": "Exclusiva",
-      "open": "Aberta"
+      "verbal": "Verbal",
+      "information": "Informação",
+      "partnership": "Parceria",
+      "open": "Não exclusiva"
     },
     "availability": {
       "available": "Livre",
@@ -788,8 +799,10 @@
     },
     "condition": {
       "new": "Novo",
-      "excellent": "Excelente",
-      "good": "Bom",
+      "good": "Bom/Habitável",
+      "renovated": "Reformado",
+      "fair": "Razoável",
+      "raw": "Em estado bruto",
       "toRenovate": "A reformar"
     },
     "furnished": {

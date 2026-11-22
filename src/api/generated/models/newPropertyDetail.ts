@@ -17,15 +17,20 @@ import type { NewPropertyDetailFurnished } from './newPropertyDetailFurnished';
 export interface NewPropertyDetail {
   /** @nullable */
   acquisitionDate?: string | null;
-  /**
-   * @maxLength 40
-   * @nullable
-   */
-  listingStage?: string | null;
   /** @nullable */
   rating?: NewPropertyDetailRating;
   /** @nullable */
   mediationType?: NewPropertyDetailMediationType;
+  /** @nullable */
+  mediationExpiresAt?: string | null;
+  /** @nullable */
+  mediationRenewable?: boolean | null;
+  /**
+   * @minimum 1
+   * @maximum 600
+   * @nullable
+   */
+  mediationRenewalMonths?: number | null;
   /**
    * @minimum 0
    * @maximum 100

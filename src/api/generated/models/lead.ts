@@ -9,6 +9,7 @@ import type { LeadPurpose } from './leadPurpose';
 import type { LeadStatus } from './leadStatus';
 import type { LeadSource } from './leadSource';
 import type { LeadRequestType } from './leadRequestType';
+import type { LeadAssignedReception } from './leadAssignedReception';
 
 export interface Lead {
   /** @nullable */
@@ -89,6 +90,20 @@ export interface Lead {
   wantsTerrace?: boolean | null;
   /** @nullable */
   wantsBalcony?: boolean | null;
+  /** @nullable */
+  wantsGarden?: boolean | null;
+  /** @nullable */
+  wantsCondominium?: boolean | null;
+  /** @nullable */
+  wantsLowFloor?: boolean | null;
+  /** @nullable */
+  wantsMidFloor?: boolean | null;
+  /** @nullable */
+  wantsHighFloor?: boolean | null;
+  /** @nullable */
+  wantsTopFloor?: boolean | null;
+  /** @nullable */
+  wantsBarrierFree?: boolean | null;
   id?: string;
   /**
    * @maxLength 120
@@ -98,6 +113,7 @@ export interface Lead {
   /**
    * @minLength 1
    * @maxLength 150
+   * @pattern \S
    */
   name: string;
   /**
@@ -154,4 +170,6 @@ export interface Lead {
   categoryId?: string | null;
   /** @nullable */
   assignedToId?: string | null;
+  /** @nullable */
+  assignedReception?: LeadAssignedReception;
 }

@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PersonPartialExcludingPhotoIdCreatedAtUpdatedAtRole } from './personPartialExcludingPhotoIdCreatedAtUpdatedAtRole';
+import type { PersonPartialExcludingPhotoIdCreatedAtUpdatedAtAcquisitionSource } from './personPartialExcludingPhotoIdCreatedAtUpdatedAtAcquisitionSource';
 import type { PersonPartialExcludingPhotoIdCreatedAtUpdatedAtPhoto } from './personPartialExcludingPhotoIdCreatedAtUpdatedAtPhoto';
 import type { PersonPartialExcludingPhotoIdCreatedAtUpdatedAtAttachmentsItem } from './personPartialExcludingPhotoIdCreatedAtUpdatedAtAttachmentsItem';
 
@@ -42,6 +43,8 @@ export interface PersonPartialExcludingPhotoIdCreatedAtUpdatedAt {
    * @nullable
    */
   documentType?: string | null;
+  /** @nullable */
+  acquisitionSource?: PersonPartialExcludingPhotoIdCreatedAtUpdatedAtAcquisitionSource;
   /**
    * @maxLength 50
    * @nullable

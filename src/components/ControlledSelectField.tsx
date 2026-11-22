@@ -6,6 +6,7 @@ type ControlledSelectFieldProps<TFieldValues extends FieldValues> = {
   control: Control<TFieldValues>
   name: Path<TFieldValues>
   label: string
+  hint?: string
   options: SelectFieldOption[]
   required?: boolean
   placeholder?: string
@@ -18,6 +19,7 @@ function ControlledSelectField<TFieldValues extends FieldValues>({
   control,
   name,
   label,
+  hint,
   options,
   required,
   placeholder,
@@ -26,7 +28,7 @@ function ControlledSelectField<TFieldValues extends FieldValues>({
   id,
 }: ControlledSelectFieldProps<TFieldValues>) {
   return (
-    <FormFieldWrapper id={id} label={label} required={required} error={error}>
+    <FormFieldWrapper id={id} label={label} hint={hint} required={required} error={error}>
       <Controller
         control={control}
         name={name}

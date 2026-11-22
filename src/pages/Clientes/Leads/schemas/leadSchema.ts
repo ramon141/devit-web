@@ -37,6 +37,8 @@ export function getLeadSourceOptions(t: TFunction<'clientes'>) {
     { value: LeadSource.social_media, label: t('leadSourceOptions.socialMedia') },
     { value: LeadSource.walk_in, label: t('leadSourceOptions.walkIn') },
     { value: LeadSource.whatsapp_chatbot, label: t('leadSourceOptions.whatsappChatbot') },
+    { value: LeadSource.showcase, label: t('leadSourceOptions.showcase') },
+    { value: LeadSource.internet, label: t('leadSourceOptions.internet') },
     { value: LeadSource.other, label: t('leadSourceOptions.other') },
   ]
 }
@@ -120,6 +122,13 @@ function createLeadObject(t: TFunction<'clientes'>) {
     wantsParking: z.boolean(),
     wantsTerrace: z.boolean(),
     wantsBalcony: z.boolean(),
+    wantsGarden: z.boolean(),
+    wantsCondominium: z.boolean(),
+    wantsLowFloor: z.boolean(),
+    wantsMidFloor: z.boolean(),
+    wantsHighFloor: z.boolean(),
+    wantsTopFloor: z.boolean(),
+    wantsBarrierFree: z.boolean(),
     neighborhoodIds: z.array(z.string()),
   })
 }

@@ -27,6 +27,9 @@ export type DettagliFormValues = {
   acquisitionDate: string
   rating: string
   mediationType: string
+  mediationExpiresAt: string
+  mediationRenewable: string
+  mediationRenewalMonths: string
   mediationFeeClientPct: string
   mediationFeeOwnerPct: string
   subtype: string
@@ -46,6 +49,9 @@ const emptyValues: DettagliFormValues = {
   acquisitionDate: '',
   rating: 'standard',
   mediationType: '',
+  mediationExpiresAt: '',
+  mediationRenewable: 'no',
+  mediationRenewalMonths: '',
   mediationFeeClientPct: '',
   mediationFeeOwnerPct: '',
   subtype: '',
@@ -82,6 +88,9 @@ export function usePropertyDetailForm(propertyId: string, onSaved?: () => void) 
       acquisitionDate: existing.acquisitionDate?.slice(0, 10) ?? '',
       rating: existing.rating ?? 'standard',
       mediationType: existing.mediationType ?? '',
+      mediationExpiresAt: existing.mediationExpiresAt?.slice(0, 10) ?? '',
+      mediationRenewable: existing.mediationRenewable ? 'yes' : 'no',
+      mediationRenewalMonths: existing.mediationRenewalMonths != null ? String(existing.mediationRenewalMonths) : '',
       mediationFeeClientPct: existing.mediationFeeClientPct != null ? String(existing.mediationFeeClientPct) : '',
       mediationFeeOwnerPct: existing.mediationFeeOwnerPct != null ? String(existing.mediationFeeOwnerPct) : '',
       subtype: existing.subtype ?? '',
@@ -122,6 +131,10 @@ export function usePropertyDetailForm(propertyId: string, onSaved?: () => void) 
       condition: cleaned.condition as PropertyDetailPartialCondition,
       furnished: cleaned.furnished as PropertyDetailPartialFurnished,
       acquisitionDate: toISODateOrNull(values.acquisitionDate),
+      mediationExpiresAt: toISODateOrNull(values.mediationExpiresAt),
+      mediationRenewable: values.mediationRenewable === 'yes',
+      mediationRenewalMonths:
+        values.mediationRenewable === 'yes' ? toNumberOrNull(values.mediationRenewalMonths) : null,
       mediationFeeClientPct: toNumberOrNull(values.mediationFeeClientPct),
       mediationFeeOwnerPct: toNumberOrNull(values.mediationFeeOwnerPct)
     }

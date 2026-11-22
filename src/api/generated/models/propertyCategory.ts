@@ -12,11 +12,13 @@ export interface PropertyCategory {
   /**
    * @minLength 1
    * @maxLength 80
+   * @pattern \S
    */
   name: string;
   /**
    * @minLength 1
    * @maxLength 80
+   * @pattern ^[a-z0-9]+(?:-[a-z0-9]+)*$
    */
   slug: string;
   /**

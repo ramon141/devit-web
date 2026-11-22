@@ -28,8 +28,8 @@ export function getStatusOptions(t: TFunction<'imoveis'>) {
     { value: PropertyStatus.reserved, label: t('options.status.reserved') },
     { value: PropertyStatus.rented, label: t('options.status.rented') },
     { value: PropertyStatus.sold, label: t('options.status.sold') },
-    { value: PropertyStatus.under_maintenance, label: t('options.status.underMaintenance') },
     { value: PropertyStatus.unavailable, label: t('options.status.unavailable') },
+    { value: PropertyStatus.expired, label: t('options.status.expired') },
   ]
 }
 
@@ -40,8 +40,8 @@ export function getShortStatusOptions(t: TFunction<'imoveis'>) {
     { value: PropertyStatus.reserved, label: t('options.statusShort.reserved') },
     { value: PropertyStatus.rented, label: t('options.statusShort.rented') },
     { value: PropertyStatus.sold, label: t('options.statusShort.sold') },
-    { value: PropertyStatus.under_maintenance, label: t('options.statusShort.underMaintenance') },
     { value: PropertyStatus.unavailable, label: t('options.statusShort.unavailable') },
+    { value: PropertyStatus.expired, label: t('options.statusShort.expired') },
   ]
 }
 

@@ -13,6 +13,7 @@ export interface NewBranch {
   /**
    * @minLength 1
    * @maxLength 150
+   * @pattern \S
    */
   name: string;
   /**

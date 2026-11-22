@@ -18,6 +18,7 @@ import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
 import { toISODateOrNull } from '@/utils/toISODateOrNull'
 import { toNumberOrNull } from '@/utils/toNumberOrNull'
 import { useLeadNeighborhoods } from '@/pages/Clientes/Leads/hooks/useLeadNeighborhoods'
+import { assigneeToPayload } from '@/pages/Clientes/Leads/schemas/leadAssignee'
 import { buildLeadCriteriaPayload } from '@/pages/Clientes/Leads/schemas/leadCriteriaPayload'
 import { createLeadSchema, type LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
 import { emptyLeadFormValues, leadToFormValues } from '@/pages/Clientes/Leads/schemas/leadFormValues'
@@ -67,6 +68,7 @@ export function useLeadForm({ open, lead, onSaved }: UseLeadFormProps) {
       expiresAt: toISODateOrNull(values.expiresAt),
       maxBudget: toNumberOrNull(values.maxBudget),
       ...buildLeadCriteriaPayload(values),
+      ...assigneeToPayload(values.assignedToId),
     }
 
     const promise = lead?.id

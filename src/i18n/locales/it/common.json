@@ -152,5 +152,10 @@
       "start": "Avvia tour guidato",
       "video": "Guarda video tutorial"
     }
+  },
+  "globalSearch": {
+    "placeholder": "Cerca nome, telefono o immobile",
+    "empty": "Nessun risultato",
+    "lead": "Richiesta"
   }
 }

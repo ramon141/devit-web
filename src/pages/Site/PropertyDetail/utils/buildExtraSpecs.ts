@@ -6,8 +6,10 @@ type PropertyLabelKey = keyof SiteDict['property']
 
 const CONDITION_LABELS: Record<string, PropertyLabelKey> = {
   new: 'conditionNew',
-  excellent: 'conditionExcellent',
   good: 'conditionGood',
+  renovated: 'conditionRenovated',
+  fair: 'conditionFair',
+  raw: 'conditionRaw',
   to_renovate: 'conditionToRenovate',
 }
 

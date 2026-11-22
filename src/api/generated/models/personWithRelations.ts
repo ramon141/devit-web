@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PersonWithRelationsRole } from './personWithRelationsRole';
+import type { PersonWithRelationsAcquisitionSource } from './personWithRelationsAcquisitionSource';
 import type { Address } from './address';
 import type { User } from './user';
 import type { Attachment } from './attachment';
@@ -47,6 +48,8 @@ export interface PersonWithRelations {
    * @nullable
    */
   documentType?: string | null;
+  /** @nullable */
+  acquisitionSource?: PersonWithRelationsAcquisitionSource;
   /**
    * @maxLength 50
    * @nullable

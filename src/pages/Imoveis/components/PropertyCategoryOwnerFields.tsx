@@ -4,6 +4,7 @@ import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import SearchableSelect from '@/components/SearchableSelect'
 import { usePropertyCategoryControllerFind } from '@/api/generated/api'
+import { PersonRole } from '@/api/generated/models'
 import { usePersonSearchOptions } from '@/hooks/usePersonSearchOptions'
 import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 import { STABLE_DATA } from '@/constants/queryOptions'
@@ -21,7 +22,7 @@ function PropertyCategoryOwnerFields({ control, errors }: PropertyCategoryOwnerF
     options: ownerOptions,
     isLoading: isLoadingOwners,
     setSearch: setOwnerSearch,
-  } = usePersonSearchOptions(ownerId)
+  } = usePersonSearchOptions(ownerId, PersonRole.owner)
 
   const categoryOptions = (categories ?? []).map((category) => ({
     value: category.id ?? '',

@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { NewPersonRole } from './newPersonRole';
+import type { NewPersonAcquisitionSource } from './newPersonAcquisitionSource';
 import type { NewPersonPhoto } from './newPersonPhoto';
 import type { NewPersonAttachmentsItem } from './newPersonAttachmentsItem';
 
@@ -41,6 +42,8 @@ export interface NewPerson {
    * @nullable
    */
   documentType?: string | null;
+  /** @nullable */
+  acquisitionSource?: NewPersonAcquisitionSource;
   /**
    * @maxLength 50
    * @nullable

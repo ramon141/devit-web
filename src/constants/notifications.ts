@@ -22,9 +22,17 @@ const NOTIFICATION_ENTITY_LEAD = 'Lead'
 
 export const LEAD_ID_SEARCH_PARAM = 'leadId'
 
-// Avisos ligados a uma richiesta abrem direto o cadastro dela
+const NOTIFICATION_ENTITY_PROPERTY = 'Property'
+
+// Avisos ligados a uma richiesta ou a um imóvel abrem direto o cadastro
 export function getNotificationLink(notification: Notification): string | null {
-  if (notification.entityType !== NOTIFICATION_ENTITY_LEAD || !notification.entityId) return null
+  if (!notification.entityId) return null
+
+  if (notification.entityType === NOTIFICATION_ENTITY_PROPERTY) {
+    return `${CRM_BASE_PATH}/proprieta/${notification.entityId}`
+  }
+
+  if (notification.entityType !== NOTIFICATION_ENTITY_LEAD) return null
 
   return `${CRM_BASE_PATH}/clienti/richieste?${LEAD_ID_SEARCH_PARAM}=${notification.entityId}`
 }

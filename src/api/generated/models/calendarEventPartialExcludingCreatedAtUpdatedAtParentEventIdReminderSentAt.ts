@@ -7,6 +7,7 @@
  */
 import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtType } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtType';
 import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtConfirmationStatus } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtConfirmationStatus';
+import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtOrigin } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtOrigin';
 import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtRecurrence } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtRecurrence';
 import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtReminder';
 import type { CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtLinkedPropertiesItem } from './calendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtLinkedPropertiesItem';
@@ -49,6 +50,8 @@ export interface CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdRem
    * @nullable
    */
   keysLocation?: string | null;
+  /** @nullable */
+  origin?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtOrigin;
   /** @nullable */
   recurrence?: CalendarEventPartialExcludingCreatedAtUpdatedAtParentEventIdReminderSentAtRecurrence;
   /** @nullable */

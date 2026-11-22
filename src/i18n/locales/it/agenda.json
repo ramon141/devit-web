@@ -9,14 +9,19 @@
   },
   "eventTypeOptions": {
     "acquisition": "Acquisizione",
-    "appointment": "Nomina",
+    "appointment": "Conferimento incarico",
     "genericAppointment": "Appuntamento generico",
     "salePreliminary": "Preliminare di vendita",
     "propertyViewing": "Visita immobile",
     "callScheduled": "Chiamata da fare",
     "callCompleted": "Chiamata effettuata",
     "rentalProposal": "Proposta di affitto",
-    "purchaseProposal": "Proposta di acquisto"
+    "purchaseProposal": "Proposta di acquisto",
+    "finalDeed": "Rogito definitivo di compravendita",
+    "management": "Gestione",
+    "valuation": "Valutazione immobiliare",
+    "expiry": "Scadenza",
+    "sale": "Vendita"
   },
   "confirmationStatusOptions": {
     "pending": "In attesa",
@@ -57,7 +62,17 @@
     "reminderRequired": "Seleziona un promemoria",
     "recurrenceRequired": "Seleziona una ricorrenza"
   },
+  "originOptions": {
+    "immobiliare_it": "IM – Immobiliare.it",
+    "social": "S – Social network",
+    "sign": "C – Cartello",
+    "showcase": "V – Vetrina",
+    "agency_proposed": "P – Proposto dall'agenzia"
+  },
   "formFields": {
+    "origin": "Origine dell'appuntamento",
+    "originPlaceholder": "Come il cliente ha trovato l'immobile",
+    "originHint": "Canale con cui il cliente ha trovato l'immobile. Sigle mostrate in agenda: IM = Immobiliare.it, S = Social network, C = Cartello, V = Vetrina, P = Proposto dall'agenzia.",
     "title": "Titolo",
     "titlePlaceholder": "Visita immobile con cliente",
     "type": "Tipo di impegno",
@@ -68,6 +83,8 @@
     "date": "Data",
     "startTime": "Ora inizio",
     "endTime": "Ora fine",
+    "duration": "Durata",
+    "durationHint": "Di default 30 minuti. Cambiando la durata, l'ora di fine viene ricalcolata; puoi anche modificare l'ora di fine a mano.",
     "confirmationStatus": "Stato di conferma",
     "reminder": "Promemoria",
     "recurrence": "Ricorrenza",
@@ -173,7 +190,8 @@
     "typePlaceholder": "Tipo evento",
     "onlyCalls": "Mostra solo telefonate",
     "visibleUsers": "Calendari da visualizzare",
-    "visibleUsersPlaceholder": "Aggiungi collega"
+    "visibleUsersPlaceholder": "Aggiungi collega",
+    "goToDate": "Vai alla data"
   },
   "hoverCard": {
     "timeRange": "{{date}} dalle {{start}} alle {{end}}",
@@ -292,6 +310,12 @@
         "content": "Clicca su Salva per registrare l'evento o su Annulla per chiudere senza salvare."
       }
     }
+  },
+  "duration": {
+    "minutes": "{{count}} min",
+    "hours": "{{hours}} h",
+    "hoursMinutes": "{{hours}} h {{minutes}} min",
+    "custom": "Personalizzata"
   },
   "hints": {
     "reminder": "Il promemoria arriva a chi crea l'appuntamento, una sola volta. Se sposti l'orario non viene rinviato.",

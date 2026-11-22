@@ -9,6 +9,7 @@ import type { LeadWithRelationsPurpose } from './leadWithRelationsPurpose';
 import type { LeadWithRelationsStatus } from './leadWithRelationsStatus';
 import type { LeadWithRelationsSource } from './leadWithRelationsSource';
 import type { LeadWithRelationsRequestType } from './leadWithRelationsRequestType';
+import type { LeadWithRelationsAssignedReception } from './leadWithRelationsAssignedReception';
 import type { PropertyCategory } from './propertyCategory';
 import type { User } from './user';
 import type { LeadProperty } from './leadProperty';
@@ -97,6 +98,20 @@ export interface LeadWithRelations {
   wantsTerrace?: boolean | null;
   /** @nullable */
   wantsBalcony?: boolean | null;
+  /** @nullable */
+  wantsGarden?: boolean | null;
+  /** @nullable */
+  wantsCondominium?: boolean | null;
+  /** @nullable */
+  wantsLowFloor?: boolean | null;
+  /** @nullable */
+  wantsMidFloor?: boolean | null;
+  /** @nullable */
+  wantsHighFloor?: boolean | null;
+  /** @nullable */
+  wantsTopFloor?: boolean | null;
+  /** @nullable */
+  wantsBarrierFree?: boolean | null;
   id?: string;
   /**
    * @maxLength 120
@@ -106,6 +121,7 @@ export interface LeadWithRelations {
   /**
    * @minLength 1
    * @maxLength 150
+   * @pattern \S
    */
   name: string;
   /**
@@ -162,6 +178,8 @@ export interface LeadWithRelations {
   categoryId?: string | null;
   /** @nullable */
   assignedToId?: string | null;
+  /** @nullable */
+  assignedReception?: LeadWithRelationsAssignedReception;
   category?: PropertyCategory;
   foreignKey?: unknown;
   assignedTo?: User;

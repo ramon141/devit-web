@@ -34,6 +34,7 @@ export interface AddressExcludingAddressIdCreatedAtUpdatedAtActive {
   /**
    * @minLength 1
    * @maxLength 120
+   * @pattern \S
    */
   city: string;
   /**
@@ -44,6 +45,7 @@ export interface AddressExcludingAddressIdCreatedAtUpdatedAtActive {
   /**
    * @maxLength 20
    * @nullable
+   * @pattern ^(\d{4,10})?$
    */
   postalCode?: string | null;
   /** @nullable */

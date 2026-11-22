@@ -14,6 +14,7 @@ export interface BranchPartialExcludingCreatedAtUpdatedAt {
   /**
    * @minLength 1
    * @maxLength 150
+   * @pattern \S
    */
   name?: string;
   /**

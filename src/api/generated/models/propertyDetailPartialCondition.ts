@@ -15,7 +15,9 @@ export type PropertyDetailPartialCondition = typeof PropertyDetailPartialConditi
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const PropertyDetailPartialCondition = {
   new: 'new',
-  excellent: 'excellent',
   good: 'good',
+  renovated: 'renovated',
+  fair: 'fair',
+  raw: 'raw',
   to_renovate: 'to_renovate',
 } as const;

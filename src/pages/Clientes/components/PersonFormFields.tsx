@@ -5,7 +5,11 @@ import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
-import { getPersonRoleOptions, type PersonFormValues } from '@/pages/Clientes/schemas/personSchema'
+import {
+  getPersonAcquisitionSourceOptions,
+  getPersonRoleOptions,
+  type PersonFormValues,
+} from '@/pages/Clientes/schemas/personSchema'
 import PersonNeighborhoodField from '@/pages/Clientes/components/PersonNeighborhoodField'
 
 type PersonFormFieldsProps = {
@@ -17,6 +21,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
   const { register, control } = form
   const { errors } = useFormState({ control })
   const personRoleOptions = getPersonRoleOptions(t)
+  const acquisitionSourceOptions = getPersonAcquisitionSourceOptions(t)
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -82,6 +87,25 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
         <Input
           {...register('secondaryPhone')}
           placeholder={t('personFormFields.phonePlaceholder')}
+        />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper
+        id="modal-field-acquisitionSource"
+        label={t('personFormFields.acquisitionSource')}
+        hint={t('personFormFields.acquisitionSourceHint')}
+        error={errors.acquisitionSource?.message}
+      >
+        <Controller
+          control={control}
+          name="acquisitionSource"
+          render={({ field }) => (
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={acquisitionSourceOptions}
+            />
+          )}
         />
       </FormFieldWrapper>
 

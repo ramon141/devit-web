@@ -316,6 +316,11 @@ import type {
   EvolutionWebhookControllerReceive415,
   EvolutionWebhookControllerReceive422,
   EvolutionWebhookControllerReceiveBody,
+  GlobalSearchControllerSearch200,
+  GlobalSearchControllerSearch400,
+  GlobalSearchControllerSearch401,
+  GlobalSearchControllerSearch422,
+  GlobalSearchControllerSearchParams,
   HomeVideoControllerCurrent200,
   HomeVideoControllerCurrent400,
   HomeVideoControllerCurrent401,
@@ -19892,6 +19897,100 @@ export function useSaleControllerFind<TData = Awaited<ReturnType<typeof saleCont
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getSaleControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Busca global por imóveis, clientes e richieste
+ */
+export const globalSearchControllerSearch = (
+    params?: GlobalSearchControllerSearchParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<GlobalSearchControllerSearch200>(
+      {url: `/search`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getGlobalSearchControllerSearchQueryKey = (params?: GlobalSearchControllerSearchParams,) => {
+    return [
+    `/search`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getGlobalSearchControllerSearchQueryOptions = <TData = Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError = ErrorType<GlobalSearchControllerSearch400 | GlobalSearchControllerSearch401 | GlobalSearchControllerSearch422>>(params?: GlobalSearchControllerSearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGlobalSearchControllerSearchQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof globalSearchControllerSearch>>> = ({ signal }) => globalSearchControllerSearch(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GlobalSearchControllerSearchQueryResult = NonNullable<Awaited<ReturnType<typeof globalSearchControllerSearch>>>
+export type GlobalSearchControllerSearchQueryError = ErrorType<GlobalSearchControllerSearch400 | GlobalSearchControllerSearch401 | GlobalSearchControllerSearch422>
+
+
+export function useGlobalSearchControllerSearch<TData = Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError = ErrorType<GlobalSearchControllerSearch400 | GlobalSearchControllerSearch401 | GlobalSearchControllerSearch422>>(
+ params: undefined |  GlobalSearchControllerSearchParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof globalSearchControllerSearch>>,
+          TError,
+          Awaited<ReturnType<typeof globalSearchControllerSearch>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGlobalSearchControllerSearch<TData = Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError = ErrorType<GlobalSearchControllerSearch400 | GlobalSearchControllerSearch401 | GlobalSearchControllerSearch422>>(
+ params?: GlobalSearchControllerSearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof globalSearchControllerSearch>>,
+          TError,
+          Awaited<ReturnType<typeof globalSearchControllerSearch>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGlobalSearchControllerSearch<TData = Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError = ErrorType<GlobalSearchControllerSearch400 | GlobalSearchControllerSearch401 | GlobalSearchControllerSearch422>>(
+ params?: GlobalSearchControllerSearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Busca global por imóveis, clientes e richieste
+ */
+
+export function useGlobalSearchControllerSearch<TData = Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError = ErrorType<GlobalSearchControllerSearch400 | GlobalSearchControllerSearch401 | GlobalSearchControllerSearch422>>(
+ params?: GlobalSearchControllerSearchParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof globalSearchControllerSearch>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGlobalSearchControllerSearchQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 

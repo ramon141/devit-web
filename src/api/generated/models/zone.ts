@@ -11,11 +11,13 @@ export interface Zone {
   /**
    * @minLength 1
    * @maxLength 120
+   * @pattern \S
    */
   name: string;
   /**
    * @minLength 1
    * @maxLength 120
+   * @pattern \S
    */
   city: string;
   /**

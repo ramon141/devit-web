@@ -31,6 +31,7 @@ export interface Address {
   /**
    * @minLength 1
    * @maxLength 120
+   * @pattern \S
    */
   city: string;
   /**
@@ -41,6 +42,7 @@ export interface Address {
   /**
    * @maxLength 20
    * @nullable
+   * @pattern ^(\d{4,10})?$
    */
   postalCode?: string | null;
   createdAt: string;

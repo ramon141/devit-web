@@ -1,4 +1,4 @@
-import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -14,6 +14,7 @@ function DettagliMainFields({ form }: DettagliMainFieldsProps) {
   const { t } = useTranslation('imoveis')
   const { register, control } = form
   const { errors } = useFormState({ control })
+  const renewable = useWatch({ control, name: 'mediationRenewable' }) === 'yes'
 
   return (
     <>
@@ -27,7 +28,11 @@ function DettagliMainFields({ form }: DettagliMainFieldsProps) {
         )} />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('scheda.dettagliMainFields.mediationTypeLabel')} error={errors.mediationType?.message}>
+      <FormFieldWrapper
+        label={t('scheda.dettagliMainFields.mediationTypeLabel')}
+        hint={t('scheda.dettagliMainFields.mediationTypeHint')}
+        error={errors.mediationType?.message}
+      >
         <Controller control={control} name="mediationType" render={({ field }) => (
           <SelectField
             value={field.value}
@@ -37,6 +42,38 @@ function DettagliMainFields({ form }: DettagliMainFieldsProps) {
           />
         )} />
       </FormFieldWrapper>
+
+      <FormFieldWrapper
+        label={t('scheda.dettagliMainFields.mediationExpiresAtLabel')}
+        error={errors.mediationExpiresAt?.message}
+      >
+        <Input {...register('mediationExpiresAt')} type="date" />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper
+        label={t('scheda.dettagliMainFields.mediationRenewableLabel')}
+        error={errors.mediationRenewable?.message}
+      >
+        <Controller control={control} name="mediationRenewable" render={({ field }) => (
+          <SelectField
+            value={field.value}
+            onValueChange={field.onChange}
+            options={[
+              { value: 'yes', label: t('scheda.dettagliMainFields.yes') },
+              { value: 'no', label: t('scheda.dettagliMainFields.no') },
+            ]}
+          />
+        )} />
+      </FormFieldWrapper>
+
+      {renewable && (
+        <FormFieldWrapper
+          label={t('scheda.dettagliMainFields.mediationRenewalMonthsLabel')}
+          error={errors.mediationRenewalMonths?.message}
+        >
+          <Input {...register('mediationRenewalMonths')} type="number" min={1} step={1} />
+        </FormFieldWrapper>
+      )}
 
       <FormFieldWrapper label={t('scheda.dettagliMainFields.subtypeLabel')} error={errors.subtype?.message}>
         <Input {...register('subtype')} placeholder={t('scheda.dettagliMainFields.subtypePlaceholder')} />

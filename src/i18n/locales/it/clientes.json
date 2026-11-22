@@ -18,6 +18,12 @@
     "contact": "Contatto",
     "supplier": "Fornitore"
   },
+  "personAcquisitionSourceOptions": {
+    "listing": "Tramite uno dei nostri annunci",
+    "social_media": "Tramite i social media",
+    "referral": "Su segnalazione di altre persone",
+    "other": "Altro"
+  },
   "personSchema": {
     "nameMin": "Inserisci almeno 2 caratteri",
     "roleRequired": "Seleziona un ruolo",
@@ -38,6 +44,8 @@
     "phone": "Telefono",
     "phonePlaceholder": "+39 333 1234567",
     "secondaryPhone": "Telefono secondario",
+    "acquisitionSource": "Come ci ha conosciuto",
+    "acquisitionSourceHint": "Indica come il cliente è venuto a conoscenza dell'agenzia: tramite un nostro annuncio, i social media, la segnalazione di altre persone o altro.",
     "documentType": "Tipo documento",
     "documentTypePlaceholder": "Carta d'identità",
     "documentNumber": "Numero documento",
@@ -124,7 +132,9 @@
     "socialMedia": "Social media",
     "walkIn": "Visita spontanea",
     "whatsappChatbot": "Chatbot WhatsApp",
-    "other": "Altro"
+    "other": "Altro",
+    "showcase": "Vetrina",
+    "internet": "Internet"
   },
   "leadSchema": {
     "nameMin": "Inserisci almeno 2 caratteri",
@@ -175,7 +185,14 @@
     "wantsElevator": "Ascensore",
     "wantsParking": "Posto auto",
     "wantsTerrace": "Terrazzo",
-    "wantsBalcony": "Balcone"
+    "wantsBalcony": "Balcone",
+    "wantsGarden": "Giardino",
+    "wantsCondominium": "Condominio o complesso residenziale",
+    "wantsLowFloor": "Piano basso",
+    "wantsMidFloor": "Piano intermedio",
+    "wantsHighFloor": "Piano alto",
+    "wantsTopFloor": "Ultimo piano",
+    "wantsBarrierFree": "Assenza di barriere architettoniche"
   },
   "leadFormModal": {
     "editTitle": "Modifica richiesta",
@@ -672,5 +689,9 @@
     "pendingStatus": "Aggiornamento dello stato...",
     "successStatus": "Stato aggiornato.",
     "errorStatus": "Impossibile aggiornare lo stato."
+  },
+  "leadReceptionOptions": {
+    "naples": "Reception Napoli",
+    "portici": "Reception Portici"
   }
 }

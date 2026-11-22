@@ -24,6 +24,13 @@ export type LeadFilter1FieldsOneOf = {
   wantsParking?: boolean;
   wantsTerrace?: boolean;
   wantsBalcony?: boolean;
+  wantsGarden?: boolean;
+  wantsCondominium?: boolean;
+  wantsLowFloor?: boolean;
+  wantsMidFloor?: boolean;
+  wantsHighFloor?: boolean;
+  wantsTopFloor?: boolean;
+  wantsBarrierFree?: boolean;
   id?: boolean;
   externalId?: boolean;
   name?: boolean;
@@ -45,4 +52,5 @@ export type LeadFilter1FieldsOneOf = {
   updatedAt?: boolean;
   categoryId?: boolean;
   assignedToId?: boolean;
+  assignedReception?: boolean;
 };

@@ -21,5 +21,7 @@ export const LeadWithRelationsSource = {
   social_media: 'social_media',
   walk_in: 'walk_in',
   whatsapp_chatbot: 'whatsapp_chatbot',
+  showcase: 'showcase',
+  internet: 'internet',
   other: 'other',
 } as const;

@@ -15,5 +15,8 @@ export type NewPropertyDetailMediationType = typeof NewPropertyDetailMediationTy
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const NewPropertyDetailMediationType = {
   exclusive: 'exclusive',
+  verbal: 'verbal',
+  information: 'information',
+  partnership: 'partnership',
   open: 'open',
 } as const;

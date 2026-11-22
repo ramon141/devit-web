@@ -19,15 +19,20 @@ export interface PropertyDetailWithRelations {
   id?: string;
   /** @nullable */
   acquisitionDate?: string | null;
-  /**
-   * @maxLength 40
-   * @nullable
-   */
-  listingStage?: string | null;
   /** @nullable */
   rating?: PropertyDetailWithRelationsRating;
   /** @nullable */
   mediationType?: PropertyDetailWithRelationsMediationType;
+  /** @nullable */
+  mediationExpiresAt?: string | null;
+  /** @nullable */
+  mediationRenewable?: boolean | null;
+  /**
+   * @minimum 1
+   * @maximum 600
+   * @nullable
+   */
+  mediationRenewalMonths?: number | null;
   /**
    * @minimum 0
    * @maximum 100

@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
 import type { CalendarEventWithRelations } from '@/api/generated/models'
 import { useCalendarEventPropertyControllerFind } from '@/api/generated/api'
-import { getEventTypeOptions } from '@/pages/Agenda/schemas/calendarEventSchema'
+import { getEventOriginOptions, getEventTypeOptions } from '@/pages/Agenda/schemas/calendarEventSchema'
 import { getEventColor } from '@/pages/Agenda/utils/eventColors'
 import dayjs from 'dayjs'
 import { formatDate, formatDateTime } from '@/utils/formatDate'
@@ -27,6 +27,7 @@ function getInitials(name: string) {
 function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
   const { t } = useTranslation('agenda')
   const eventTypeOptions = getEventTypeOptions(t)
+  const originLabel = event.origin ? getOptionLabel(getEventOriginOptions(t), event.origin) : ''
   const ownerName = event.owner?.name ?? event.createdBy?.fullName ?? ''
 
   const { data: links } = useCalendarEventPropertyControllerFind(
@@ -86,6 +87,12 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
           '—'
         )}
       </p>
+
+      {originLabel && (
+        <p className="text-sm">
+          <span className="font-semibold">{t('agenda:formFields.origin')}:</span> {originLabel}
+        </p>
+      )}
 
       <Separator />
 

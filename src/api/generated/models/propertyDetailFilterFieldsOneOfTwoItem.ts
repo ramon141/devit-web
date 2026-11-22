@@ -13,9 +13,11 @@ export type PropertyDetailFilterFieldsOneOfTwoItem = typeof PropertyDetailFilter
 export const PropertyDetailFilterFieldsOneOfTwoItem = {
   id: 'id',
   acquisitionDate: 'acquisitionDate',
-  listingStage: 'listingStage',
   rating: 'rating',
   mediationType: 'mediationType',
+  mediationExpiresAt: 'mediationExpiresAt',
+  mediationRenewable: 'mediationRenewable',
+  mediationRenewalMonths: 'mediationRenewalMonths',
   mediationFeeClientPct: 'mediationFeeClientPct',
   mediationFeeOwnerPct: 'mediationFeeOwnerPct',
   subtype: 'subtype',

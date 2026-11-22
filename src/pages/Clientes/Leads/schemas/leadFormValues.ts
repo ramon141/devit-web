@@ -1,4 +1,5 @@
 import type { Lead } from '@/api/generated/models'
+import { assigneeToFormValue } from '@/pages/Clientes/Leads/schemas/leadAssignee'
 import type { LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
 
 export const emptyLeadFormValues: LeadFormValues = {
@@ -33,6 +34,13 @@ export const emptyLeadFormValues: LeadFormValues = {
   wantsParking: false,
   wantsTerrace: false,
   wantsBalcony: false,
+  wantsGarden: false,
+  wantsCondominium: false,
+  wantsLowFloor: false,
+  wantsMidFloor: false,
+  wantsHighFloor: false,
+  wantsTopFloor: false,
+  wantsBarrierFree: false,
   neighborhoodIds: [],
 }
 
@@ -58,6 +66,13 @@ function leadCriteriaToFormValues(lead: Lead) {
     wantsParking: !!lead.wantsParking,
     wantsTerrace: !!lead.wantsTerrace,
     wantsBalcony: !!lead.wantsBalcony,
+    wantsGarden: !!lead.wantsGarden,
+    wantsCondominium: !!lead.wantsCondominium,
+    wantsLowFloor: !!lead.wantsLowFloor,
+    wantsMidFloor: !!lead.wantsMidFloor,
+    wantsHighFloor: !!lead.wantsHighFloor,
+    wantsTopFloor: !!lead.wantsTopFloor,
+    wantsBarrierFree: !!lead.wantsBarrierFree,
   }
 }
 
@@ -75,7 +90,7 @@ export function leadToFormValues(lead: Lead, neighborhoodIds: string[]): LeadFor
     subject: lead.subject ?? '',
     lossReason: lead.lossReason ?? '',
     notes: lead.notes ?? '',
-    assignedToId: lead.assignedToId ?? '',
+    assignedToId: assigneeToFormValue(lead.assignedToId, lead.assignedReception),
     purpose: lead.purpose ?? undefined,
     categoryId: lead.categoryId ?? '',
     expiresAt: lead.expiresAt?.slice(0, 10) ?? '',

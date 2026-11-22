@@ -20,5 +20,12 @@ export function buildLeadCriteriaPayload(values: LeadFormValues) {
     wantsParking: values.wantsParking || null,
     wantsTerrace: values.wantsTerrace || null,
     wantsBalcony: values.wantsBalcony || null,
+    wantsGarden: values.wantsGarden || null,
+    wantsCondominium: values.wantsCondominium || null,
+    wantsLowFloor: values.wantsLowFloor || null,
+    wantsMidFloor: values.wantsMidFloor || null,
+    wantsHighFloor: values.wantsHighFloor || null,
+    wantsTopFloor: values.wantsTopFloor || null,
+    wantsBarrierFree: values.wantsBarrierFree || null,
   }
 }

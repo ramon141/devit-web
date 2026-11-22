@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import { useUserControllerFind } from '@/api/generated/api'
+import { getReceptionOptions } from '@/pages/Clientes/Leads/schemas/leadAssignee'
 import {
   getLeadRequestTypeOptions,
   getLeadSourceOptions,
@@ -24,7 +25,10 @@ function LeadFormFields({ form }: LeadFormFieldsProps) {
   const { errors } = useFormState({ control })
   const status = useWatch({ control, name: 'status' })
   const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
-  const userOptions = (users ?? []).map((user) => ({ value: user.id ?? '', label: user.fullName }))
+  const userOptions = [
+    ...getReceptionOptions(t),
+    ...(users ?? []).map((user) => ({ value: user.id ?? '', label: user.fullName })),
+  ]
   const leadStatusOptions = getLeadStatusOptions(t)
   const leadSourceOptions = getLeadSourceOptions(t)
   const leadRequestTypeOptions = getLeadRequestTypeOptions(t)

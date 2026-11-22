@@ -15,5 +15,8 @@ export type PropertyDetailPartialExcludingCreatedAtUpdatedAtMediationType = type
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const PropertyDetailPartialExcludingCreatedAtUpdatedAtMediationType = {
   exclusive: 'exclusive',
+  verbal: 'verbal',
+  information: 'information',
+  partnership: 'partnership',
   open: 'open',
 } as const;

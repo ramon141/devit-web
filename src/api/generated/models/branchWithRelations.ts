@@ -15,6 +15,7 @@ export interface BranchWithRelations {
   /**
    * @minLength 1
    * @maxLength 150
+   * @pattern \S
    */
   name: string;
   /**

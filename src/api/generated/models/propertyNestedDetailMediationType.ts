@@ -15,5 +15,8 @@ export type PropertyNestedDetailMediationType = typeof PropertyNestedDetailMedia
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const PropertyNestedDetailMediationType = {
   exclusive: 'exclusive',
+  verbal: 'verbal',
+  information: 'information',
+  partnership: 'partnership',
   open: 'open',
 } as const;

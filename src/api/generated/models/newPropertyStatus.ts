@@ -16,8 +16,8 @@ export type NewPropertyStatus = typeof NewPropertyStatus[keyof typeof NewPropert
 export const NewPropertyStatus = {
   available: 'available',
   rented: 'rented',
-  under_maintenance: 'under_maintenance',
   unavailable: 'unavailable',
   reserved: 'reserved',
   sold: 'sold',
+  expired: 'expired',
 } as const;

@@ -14,10 +14,12 @@ import {
   getConfirmationStatusOptions,
   getReminderOptions,
   getRecurrenceOptions,
+  getEventOriginOptions,
   getBackgroundColorOptions,
   type CalendarEventFormValues,
 } from '@/pages/Agenda/schemas/calendarEventSchema'
 import { cn } from '@/lib/utils'
+import CalendarEventTimeFields from '@/pages/Agenda/components/CalendarEventTimeFields'
 
 type CalendarEventFormFieldsProps = {
   form: UseFormReturn<CalendarEventFormValues>
@@ -33,6 +35,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
   const reminderOptions = getReminderOptions(t)
   const recurrenceOptions = getRecurrenceOptions(t)
   const backgroundColorOptions = getBackgroundColorOptions(t)
+  const originOptions = getEventOriginOptions(t)
 
   const isAllDay = watch('allDay')
   const reminder = watch('reminder')
@@ -71,6 +74,26 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         />
       </FormFieldWrapper>
 
+      <FormFieldWrapper
+        id="modal-field-origin"
+        label={t('agenda:formFields.origin')}
+        hint={t('agenda:formFields.originHint')}
+        error={errors.origin?.message}
+      >
+        <Controller
+          control={control}
+          name="origin"
+          render={({ field }) => (
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={originOptions}
+              placeholder={t('agenda:formFields.originPlaceholder')}
+            />
+          )}
+        />
+      </FormFieldWrapper>
+
       <FormFieldWrapper id="modal-field-date" label={t('agenda:formFields.date')} required error={errors.startDate?.message}>
         <Input {...register('startDate')} type="date" />
       </FormFieldWrapper>
@@ -86,28 +109,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         )}
       />
 
-      {isAllDay ? (
-        <div className="hidden sm:block" />
-      ) : (
-        <div className="grid grid-cols-2 gap-4">
-          <FormFieldWrapper
-            id="modal-field-startTime"
-            label={t('agenda:formFields.startTime')}
-            required
-            error={errors.startTime?.message}
-          >
-            <Input {...register('startTime')} type="time" />
-          </FormFieldWrapper>
-          <FormFieldWrapper
-            id="modal-field-endTime"
-            label={t('agenda:formFields.endTime')}
-            required
-            error={errors.endTime?.message}
-          >
-            <Input {...register('endTime')} type="time" />
-          </FormFieldWrapper>
-        </div>
-      )}
+      {!isAllDay && <CalendarEventTimeFields form={form} />}
 
       <FormFieldWrapper id="modal-field-client" label={t('agenda:formFields.client')} error={errors.leadId?.message}>
         <Controller

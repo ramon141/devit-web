@@ -10,9 +10,10 @@ import type { CalendarEventFilters } from '@/pages/Agenda/hooks/useCalendarEvent
 type AgendaFiltersProps = {
   filters: CalendarEventFilters
   onChange: (filters: CalendarEventFilters) => void
+  onGoToDate: (date: string) => void
 }
 
-function AgendaFilters({ filters, onChange }: AgendaFiltersProps) {
+function AgendaFilters({ filters, onChange, onGoToDate }: AgendaFiltersProps) {
   const { t } = useTranslation('agenda')
   const { data: users } = useUserControllerFind()
   const userOptions = (users ?? []).map((user) => ({ value: user.id ?? '', label: user.fullName }))
@@ -29,6 +30,15 @@ function AgendaFilters({ filters, onChange }: AgendaFiltersProps) {
         placeholder={t('agenda:filters.searchPlaceholder')}
         value={filters.search}
         onChange={(event) => update({ search: event.target.value })}
+      />
+
+      <Input
+        id="agenda-goto-date"
+        type="date"
+        className="w-40"
+        aria-label={t('agenda:filters.goToDate')}
+        title={t('agenda:filters.goToDate')}
+        onChange={(event) => event.target.value && onGoToDate(event.target.value)}
       />
 
       <div id="agenda-type-filter">

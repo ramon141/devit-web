@@ -9,9 +9,11 @@
 export type PropertyDetailFilterFieldsOneOf = {
   id?: boolean;
   acquisitionDate?: boolean;
-  listingStage?: boolean;
   rating?: boolean;
   mediationType?: boolean;
+  mediationExpiresAt?: boolean;
+  mediationRenewable?: boolean;
+  mediationRenewalMonths?: boolean;
   mediationFeeClientPct?: boolean;
   mediationFeeOwnerPct?: boolean;
   subtype?: boolean;

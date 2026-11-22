@@ -10,6 +10,9 @@ export function getRatingOptions(t: TFunction<'imoveis'>) {
 export function getMediationOptions(t: TFunction<'imoveis'>) {
   return [
     { value: 'exclusive', label: t('options.mediation.exclusive') },
+    { value: 'verbal', label: t('options.mediation.verbal') },
+    { value: 'information', label: t('options.mediation.information') },
+    { value: 'partnership', label: t('options.mediation.partnership') },
     { value: 'open', label: t('options.mediation.open') },
   ]
 }
@@ -25,8 +28,10 @@ export function getAvailabilityOptions(t: TFunction<'imoveis'>) {
 export function getConditionOptions(t: TFunction<'imoveis'>) {
   return [
     { value: 'new', label: t('options.condition.new') },
-    { value: 'excellent', label: t('options.condition.excellent') },
     { value: 'good', label: t('options.condition.good') },
+    { value: 'renovated', label: t('options.condition.renovated') },
+    { value: 'fair', label: t('options.condition.fair') },
+    { value: 'raw', label: t('options.condition.raw') },
     { value: 'to_renovate', label: t('options.condition.toRenovate') },
   ]
 }

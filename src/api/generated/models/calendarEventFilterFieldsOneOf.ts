@@ -20,6 +20,7 @@ export type CalendarEventFilterFieldsOneOf = {
   confirmationStatus?: boolean;
   private?: boolean;
   keysLocation?: boolean;
+  origin?: boolean;
   recurrence?: boolean;
   reminder?: boolean;
   createdAt?: boolean;

@@ -98,7 +98,8 @@
       "area": "{{value, number}} m²",
       "bedrooms": "{{count}} cam.",
       "bathrooms": "{{count}} bg."
-    }
+    },
+    "mediationExpiring": "Mandato in scadenza tra {{count}} giorno/i"
   },
   "categoryOwnerFields": {
     "categoryLabel": "Categoria",
@@ -223,16 +224,23 @@
       "agentLabel": "Agente responsabile",
       "agentPlaceholder": "Nessuno",
       "mediationTypeLabel": "Tipo di mediazione",
+      "mediationTypeHint": "Indica il tipo di accordo con il proprietario per la vendita o l'affitto. Esclusiva: solo questa agenzia può proporre l'immobile. Non esclusiva: possono farlo anche altre agenzie o il proprietario. Verbale: accordo non scritto. Informazione: immobile solo segnalato, senza un incarico formale. Collaborazione: si lavora insieme a un'altra agenzia.",
       "mediationTypePlaceholder": "Nessuno",
       "subtypeLabel": "Tipologia",
       "subtypePlaceholder": "Bilocale",
       "mediationFeeClientLabel": "% mediazione cliente",
-      "mediationFeeOwnerLabel": "% mediazione proprietario"
+      "mediationFeeOwnerLabel": "% mediazione proprietario",
+      "mediationExpiresAtLabel": "Scadenza del mandato",
+      "mediationRenewableLabel": "Rinnovabile",
+      "mediationRenewalMonthsLabel": "Durata del rinnovo (mesi)",
+      "yes": "Sì",
+      "no": "No"
     },
     "dettagliStatoFields": {
       "availabilityLabel": "Disponibilità",
       "availabilityPlaceholder": "Nessuna",
       "conditionLabel": "Stato di conservazione",
+      "conditionHint": "Condizione generale dell'immobile. Nuovo: mai abitato. Buono/Abitabile: utilizzabile subito. Ristrutturato: già rinnovato. Discreto: condizioni accettabili. Allo stato grezzo: senza finiture. Da ristrutturare: richiede lavori.",
       "conditionPlaceholder": "Nessuno",
       "furnishedLabel": "Arredato",
       "furnishedPlaceholder": "Nessuno",
@@ -723,19 +731,19 @@
     },
     "status": {
       "available": "Disponibile",
-      "reserved": "Riservato",
+      "reserved": "In trattativa",
       "rented": "Affittato",
       "sold": "Venduto",
-      "underMaintenance": "In manutenzione",
-      "unavailable": "Non disponibile"
+      "unavailable": "Sospeso",
+      "expired": "Scaduto"
     },
     "statusShort": {
       "available": "Disp.",
-      "reserved": "Ris.",
+      "reserved": "Tratt.",
       "rented": "Aff.",
       "sold": "Vend.",
-      "underMaintenance": "Manut.",
-      "unavailable": "Non disp."
+      "unavailable": "Sosp.",
+      "expired": "Scad."
     },
     "validation": {
       "salePriceRequired": "Inserisci il prezzo di vendita",
@@ -779,7 +787,10 @@
     },
     "mediation": {
       "exclusive": "Esclusiva",
-      "open": "Aperta"
+      "verbal": "Verbale",
+      "information": "Informazione",
+      "partnership": "Collaborazione",
+      "open": "Non esclusiva"
     },
     "availability": {
       "available": "Libero",
@@ -788,8 +799,10 @@
     },
     "condition": {
       "new": "Nuovo",
-      "excellent": "Ottimo",
-      "good": "Buono",
+      "good": "Buono/Abitabile",
+      "renovated": "Ristrutturato",
+      "fair": "Discreto",
+      "raw": "Allo stato grezzo",
       "toRenovate": "Da ristrutturare"
     },
     "furnished": {

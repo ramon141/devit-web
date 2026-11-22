@@ -11,6 +11,7 @@ export interface Branch {
   /**
    * @minLength 1
    * @maxLength 150
+   * @pattern \S
    */
   name: string;
   /**

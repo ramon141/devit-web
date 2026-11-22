@@ -53,6 +53,7 @@ function Agenda() {
   const hoverCloseTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const hoverOpenTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const overCard = useRef(false)
+  const calendarRef = useRef<FullCalendar>(null)
   const { run, stepIndex, tourKey, steps, handleJoyrideCallback, startTour, stopTour } =
     useAgendaTour()
 
@@ -195,10 +196,15 @@ function Agenda() {
       />
       <TourFab onClick={startTour} />
 
-      <AgendaFilters filters={filters} onChange={setFilters} />
+      <AgendaFilters
+        filters={filters}
+        onChange={setFilters}
+        onGoToDate={(date) => calendarRef.current?.getApi().gotoDate(date)}
+      />
 
       <div id="agenda-calendar" className="devit-calendar rounded-xl bg-card p-3">
         <FullCalendar
+          ref={calendarRef}
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
           initialView="dayGridMonth"
           headerToolbar={{

@@ -37,6 +37,7 @@ function DettagliStatoFields({ form, canSeeInternalNote }: DettagliStatoFieldsPr
         control={control}
         name="condition"
         label={t('scheda.dettagliStatoFields.conditionLabel')}
+        hint={t('scheda.dettagliStatoFields.conditionHint')}
         options={getConditionOptions(t)}
         placeholder={t('scheda.dettagliStatoFields.conditionPlaceholder')}
         error={errors.condition?.message}

@@ -5,6 +5,7 @@ import {
   CalendarEventConfirmationStatus,
   CalendarEventReminder,
   CalendarEventRecurrence,
+  CalendarEventOrigin,
 } from '@/api/generated/models'
 
 export function getEventTypeOptions(t: TFunction) {
@@ -30,7 +31,27 @@ export function getEventTypeOptions(t: TFunction) {
       value: CalendarEventType.purchase_proposal,
       label: t('agenda:eventTypeOptions.purchaseProposal'),
     },
+    { value: CalendarEventType.final_deed, label: t('agenda:eventTypeOptions.finalDeed') },
+    { value: CalendarEventType.management, label: t('agenda:eventTypeOptions.management') },
+    { value: CalendarEventType.valuation, label: t('agenda:eventTypeOptions.valuation') },
+    { value: CalendarEventType.expiry, label: t('agenda:eventTypeOptions.expiry') },
+    { value: CalendarEventType.sale, label: t('agenda:eventTypeOptions.sale') },
   ]
+}
+
+export const EVENT_ORIGIN_ACRONYM = {
+  [CalendarEventOrigin.immobiliare_it]: 'IM',
+  [CalendarEventOrigin.social]: 'S',
+  [CalendarEventOrigin.sign]: 'C',
+  [CalendarEventOrigin.showcase]: 'V',
+  [CalendarEventOrigin.agency_proposed]: 'P',
+} as const
+
+export function getEventOriginOptions(t: TFunction) {
+  return Object.values(CalendarEventOrigin).map((origin) => ({
+    value: origin,
+    label: t(`agenda:originOptions.${origin}`),
+  }))
 }
 
 export function getConfirmationStatusOptions(t: TFunction) {
@@ -97,6 +118,7 @@ export function createCalendarEventSchema(t: TFunction) {
       reminder: z.enum(CalendarEventReminder, { error: t('agenda:schema.reminderRequired') }),
       recurrence: z.enum(CalendarEventRecurrence, { error: t('agenda:schema.recurrenceRequired') }),
       keysLocation: z.string().optional(),
+      origin: z.union([z.enum(CalendarEventOrigin), z.literal('')]).optional(),
       backgroundColor: z.string().optional(),
       private: z.boolean(),
       description: z.string().optional(),

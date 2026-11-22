@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import { z } from 'zod'
 import type { TFunction } from 'i18next'
-import { NewPersonRole } from '@/api/generated/models'
+import { NewPersonAcquisitionSource, NewPersonRole } from '@/api/generated/models'
 import { PHONE_REGEX } from '@/utils/phoneRegex'
 
 export function getPersonRoleOptions(t: TFunction<'clientes'>) {
@@ -13,6 +13,12 @@ export function getPersonRoleOptions(t: TFunction<'clientes'>) {
     { value: NewPersonRole.contact, label: t('personRoleOptions.contact') },
     { value: 'supplier', label: t('personRoleOptions.supplier') },
   ]
+}
+
+export function getPersonAcquisitionSourceOptions(t: TFunction<'clientes'>) {
+  return Object.values(NewPersonAcquisitionSource)
+    .filter((value): value is NonNullable<typeof value> => value !== null)
+    .map((value) => ({ value, label: t(`personAcquisitionSourceOptions.${value}`) }))
 }
 
 // Mesmo formato aceito pelo cadastro de imóveis e pela API
@@ -43,6 +49,7 @@ export function createPersonSchema(t: TFunction<'clientes'>) {
         .regex(PHONE_REGEX, t('personSchema.phoneInvalid'))
         .optional()
         .or(z.literal('')),
+      acquisitionSource: z.enum(NewPersonAcquisitionSource).optional().or(z.literal('')),
       documentType: z.string().trim().optional(),
       documentNumber: z.string().trim().optional(),
       birthDate: z

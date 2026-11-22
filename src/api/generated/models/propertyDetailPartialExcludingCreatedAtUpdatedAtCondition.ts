@@ -15,7 +15,9 @@ export type PropertyDetailPartialExcludingCreatedAtUpdatedAtCondition = typeof P
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const PropertyDetailPartialExcludingCreatedAtUpdatedAtCondition = {
   new: 'new',
-  excellent: 'excellent',
   good: 'good',
+  renovated: 'renovated',
+  fair: 'fair',
+  raw: 'raw',
   to_renovate: 'to_renovate',
 } as const;

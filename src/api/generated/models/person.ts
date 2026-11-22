@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.0.1
  */
 import type { PersonRole } from './personRole';
+import type { PersonAcquisitionSource } from './personAcquisitionSource';
 
 export interface Person {
   id?: string;
@@ -40,6 +41,8 @@ export interface Person {
    * @nullable
    */
   documentType?: string | null;
+  /** @nullable */
+  acquisitionSource?: PersonAcquisitionSource;
   /**
    * @maxLength 50
    * @nullable

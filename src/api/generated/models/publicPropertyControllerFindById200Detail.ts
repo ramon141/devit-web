@@ -11,10 +11,6 @@
  */
 export type PublicPropertyControllerFindById200Detail = {
   /** @nullable */
-  rating?: string | null;
-  /** @nullable */
-  mediationType?: string | null;
-  /** @nullable */
   subtype?: string | null;
   bareOwnership?: boolean;
   prestige?: boolean;
@@ -22,8 +18,6 @@ export type PublicPropertyControllerFindById200Detail = {
   /** @nullable */
   availability?: string | null;
   availableImmediately?: boolean;
-  /** @nullable */
-  estimatedValue?: number | null;
   negotiable?: boolean;
   priceFrom?: boolean;
   boxIncludedInPrice?: boolean;

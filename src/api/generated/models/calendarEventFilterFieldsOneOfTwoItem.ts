@@ -24,6 +24,7 @@ export const CalendarEventFilterFieldsOneOfTwoItem = {
   confirmationStatus: 'confirmationStatus',
   private: 'private',
   keysLocation: 'keysLocation',
+  origin: 'origin',
   recurrence: 'recurrence',
   reminder: 'reminder',
   createdAt: 'createdAt',

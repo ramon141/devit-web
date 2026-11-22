@@ -4,9 +4,34 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import type { LeadFormValues } from '@/pages/Clientes/Leads/schemas/leadSchema'
 
-type FeatureName = 'wantsElevator' | 'wantsParking' | 'wantsTerrace' | 'wantsBalcony'
+type FeatureName = keyof Pick<
+  LeadFormValues,
+  | 'wantsElevator'
+  | 'wantsParking'
+  | 'wantsTerrace'
+  | 'wantsBalcony'
+  | 'wantsGarden'
+  | 'wantsCondominium'
+  | 'wantsLowFloor'
+  | 'wantsMidFloor'
+  | 'wantsHighFloor'
+  | 'wantsTopFloor'
+  | 'wantsBarrierFree'
+>
 
-const FEATURES: FeatureName[] = ['wantsElevator', 'wantsParking', 'wantsTerrace', 'wantsBalcony']
+const FEATURES: FeatureName[] = [
+  'wantsElevator',
+  'wantsParking',
+  'wantsTerrace',
+  'wantsBalcony',
+  'wantsGarden',
+  'wantsCondominium',
+  'wantsLowFloor',
+  'wantsMidFloor',
+  'wantsHighFloor',
+  'wantsTopFloor',
+  'wantsBarrierFree',
+]
 
 type LeadFeatureFieldsProps = {
   form: UseFormReturn<LeadFormValues>

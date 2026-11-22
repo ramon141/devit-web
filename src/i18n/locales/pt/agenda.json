@@ -9,14 +9,19 @@
   },
   "eventTypeOptions": {
     "acquisition": "Aquisição",
-    "appointment": "Nomeação",
+    "appointment": "Atribuição de mandato",
     "genericAppointment": "Compromisso genérico",
     "salePreliminary": "Preliminar de venda",
     "propertyViewing": "Visita ao imóvel",
     "callScheduled": "Chamada a fazer",
     "callCompleted": "Chamada realizada",
     "rentalProposal": "Proposta de aluguel",
-    "purchaseProposal": "Proposta de compra"
+    "purchaseProposal": "Proposta de compra",
+    "finalDeed": "Escritura definitiva de compra e venda",
+    "management": "Gestão",
+    "valuation": "Avaliação imobiliária",
+    "expiry": "Vencimento",
+    "sale": "Venda"
   },
   "confirmationStatusOptions": {
     "pending": "Aguardando",
@@ -57,7 +62,17 @@
     "reminderRequired": "Selecione um lembrete",
     "recurrenceRequired": "Selecione uma recorrência"
   },
+  "originOptions": {
+    "immobiliare_it": "IM – Immobiliare.it",
+    "social": "S – Redes sociais",
+    "sign": "C – Placa",
+    "showcase": "V – Vitrine",
+    "agency_proposed": "P – Proposto pela imobiliária"
+  },
   "formFields": {
+    "origin": "Origem do compromisso",
+    "originPlaceholder": "Por qual canal o cliente encontrou o imóvel",
+    "originHint": "Canal pelo qual o cliente encontrou o imóvel. Siglas exibidas na agenda: IM = Immobiliare.it, S = Redes sociais, C = Placa, V = Vitrine, P = Proposto pela imobiliária.",
     "title": "Título",
     "titlePlaceholder": "Visita ao imóvel com cliente",
     "type": "Tipo de compromisso",
@@ -68,6 +83,8 @@
     "date": "Data",
     "startTime": "Hora de início",
     "endTime": "Hora de término",
+    "duration": "Duração",
+    "durationHint": "O padrão é 30 minutos. Ao mudar a duração, o horário de término é recalculado; também é possível editar o término à mão.",
     "confirmationStatus": "Status de confirmação",
     "reminder": "Lembrete",
     "recurrence": "Recorrência",
@@ -173,7 +190,8 @@
     "typePlaceholder": "Tipo de evento",
     "onlyCalls": "Mostrar só ligações",
     "visibleUsers": "Calendários a visualizar",
-    "visibleUsersPlaceholder": "Adicionar colega"
+    "visibleUsersPlaceholder": "Adicionar colega",
+    "goToDate": "Ir para a data"
   },
   "hoverCard": {
     "timeRange": "{{date}} das {{start}} às {{end}}",
@@ -292,6 +310,12 @@
         "content": "Clique em Salvar para gravar o evento ou em Cancelar para fechar sem salvar."
       }
     }
+  },
+  "duration": {
+    "minutes": "{{count}} min",
+    "hours": "{{hours}} h",
+    "hoursMinutes": "{{hours}} h {{minutes}} min",
+    "custom": "Personalizada"
   },
   "hints": {
     "reminder": "O lembrete vai para quem cria o compromisso, uma única vez. Se mudar o horário, não é reenviado.",

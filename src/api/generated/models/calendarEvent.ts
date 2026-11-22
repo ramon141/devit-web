@@ -7,6 +7,7 @@
  */
 import type { CalendarEventType } from './calendarEventType';
 import type { CalendarEventConfirmationStatus } from './calendarEventConfirmationStatus';
+import type { CalendarEventOrigin } from './calendarEventOrigin';
 import type { CalendarEventRecurrence } from './calendarEventRecurrence';
 import type { CalendarEventReminder } from './calendarEventReminder';
 
@@ -45,6 +46,8 @@ export interface CalendarEvent {
    * @nullable
    */
   keysLocation?: string | null;
+  /** @nullable */
+  origin?: CalendarEventOrigin;
   /** @nullable */
   recurrence?: CalendarEventRecurrence;
   /** @nullable */

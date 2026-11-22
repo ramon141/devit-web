@@ -9,6 +9,7 @@ import type { NewLeadPurpose } from './newLeadPurpose';
 import type { NewLeadStatus } from './newLeadStatus';
 import type { NewLeadSource } from './newLeadSource';
 import type { NewLeadRequestType } from './newLeadRequestType';
+import type { NewLeadAssignedReception } from './newLeadAssignedReception';
 
 /**
  * (tsType: Omit<Lead, 'id' | 'createdAt' | 'updatedAt'>, schemaOptions: { title: 'NewLead', exclude: [ 'id', 'createdAt', 'updatedAt' ] })
@@ -92,6 +93,20 @@ export interface NewLead {
   wantsTerrace?: boolean | null;
   /** @nullable */
   wantsBalcony?: boolean | null;
+  /** @nullable */
+  wantsGarden?: boolean | null;
+  /** @nullable */
+  wantsCondominium?: boolean | null;
+  /** @nullable */
+  wantsLowFloor?: boolean | null;
+  /** @nullable */
+  wantsMidFloor?: boolean | null;
+  /** @nullable */
+  wantsHighFloor?: boolean | null;
+  /** @nullable */
+  wantsTopFloor?: boolean | null;
+  /** @nullable */
+  wantsBarrierFree?: boolean | null;
   /**
    * @maxLength 120
    * @nullable
@@ -100,6 +115,7 @@ export interface NewLead {
   /**
    * @minLength 1
    * @maxLength 150
+   * @pattern \S
    */
   name: string;
   /**
@@ -154,4 +170,6 @@ export interface NewLead {
   categoryId?: string | null;
   /** @nullable */
   assignedToId?: string | null;
+  /** @nullable */
+  assignedReception?: NewLeadAssignedReception;
 }

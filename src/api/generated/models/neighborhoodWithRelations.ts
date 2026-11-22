@@ -15,6 +15,7 @@ export interface NeighborhoodWithRelations {
   /**
    * @minLength 1
    * @maxLength 120
+   * @pattern \S
    */
   name: string;
   /** @nullable */

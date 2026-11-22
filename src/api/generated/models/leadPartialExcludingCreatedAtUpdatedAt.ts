@@ -9,6 +9,7 @@ import type { LeadPartialExcludingCreatedAtUpdatedAtPurpose } from './leadPartia
 import type { LeadPartialExcludingCreatedAtUpdatedAtStatus } from './leadPartialExcludingCreatedAtUpdatedAtStatus';
 import type { LeadPartialExcludingCreatedAtUpdatedAtSource } from './leadPartialExcludingCreatedAtUpdatedAtSource';
 import type { LeadPartialExcludingCreatedAtUpdatedAtRequestType } from './leadPartialExcludingCreatedAtUpdatedAtRequestType';
+import type { LeadPartialExcludingCreatedAtUpdatedAtAssignedReception } from './leadPartialExcludingCreatedAtUpdatedAtAssignedReception';
 
 /**
  * (tsType: Omit<Partial<Lead>, 'createdAt' | 'updatedAt'>, schemaOptions: { partial: true, exclude: [ 'createdAt', 'updatedAt' ] })
@@ -92,6 +93,20 @@ export interface LeadPartialExcludingCreatedAtUpdatedAt {
   wantsTerrace?: boolean | null;
   /** @nullable */
   wantsBalcony?: boolean | null;
+  /** @nullable */
+  wantsGarden?: boolean | null;
+  /** @nullable */
+  wantsCondominium?: boolean | null;
+  /** @nullable */
+  wantsLowFloor?: boolean | null;
+  /** @nullable */
+  wantsMidFloor?: boolean | null;
+  /** @nullable */
+  wantsHighFloor?: boolean | null;
+  /** @nullable */
+  wantsTopFloor?: boolean | null;
+  /** @nullable */
+  wantsBarrierFree?: boolean | null;
   id?: string;
   /**
    * @maxLength 120
@@ -101,6 +116,7 @@ export interface LeadPartialExcludingCreatedAtUpdatedAt {
   /**
    * @minLength 1
    * @maxLength 150
+   * @pattern \S
    */
   name?: string;
   /**
@@ -155,4 +171,6 @@ export interface LeadPartialExcludingCreatedAtUpdatedAt {
   categoryId?: string | null;
   /** @nullable */
   assignedToId?: string | null;
+  /** @nullable */
+  assignedReception?: LeadPartialExcludingCreatedAtUpdatedAtAssignedReception;
 }

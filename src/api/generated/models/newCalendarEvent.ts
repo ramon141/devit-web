@@ -7,6 +7,7 @@
  */
 import type { NewCalendarEventType } from './newCalendarEventType';
 import type { NewCalendarEventConfirmationStatus } from './newCalendarEventConfirmationStatus';
+import type { NewCalendarEventOrigin } from './newCalendarEventOrigin';
 import type { NewCalendarEventRecurrence } from './newCalendarEventRecurrence';
 import type { NewCalendarEventReminder } from './newCalendarEventReminder';
 import type { NewCalendarEventLinkedPropertiesItem } from './newCalendarEventLinkedPropertiesItem';
@@ -48,6 +49,8 @@ export interface NewCalendarEvent {
    * @nullable
    */
   keysLocation?: string | null;
+  /** @nullable */
+  origin?: NewCalendarEventOrigin;
   /** @nullable */
   recurrence?: NewCalendarEventRecurrence;
   /** @nullable */

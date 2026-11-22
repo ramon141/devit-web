@@ -3,6 +3,7 @@ import { UserPlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import NotificationsPopover from '@/components/layout/NotificationsPopover'
+import GlobalSearch from '@/components/layout/GlobalSearch'
 import PersonFormModal from '@/pages/Clientes/components/PersonFormModal'
 
 type HeaderActionsProps = {
@@ -16,6 +17,8 @@ function HeaderActions({ className }: HeaderActionsProps) {
 
   return (
     <div className={className}>
+      <GlobalSearch />
+
       <Button
         variant="ghost"
         size="icon"

@@ -11,6 +11,7 @@ import {
   useCalendarEventControllerUpdateById,
 } from '@/api/generated/api'
 import type { CalendarEventWithRelations } from '@/api/generated/models'
+import { DEFAULT_DURATION_MINUTES } from '@/constants/agenda'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
@@ -46,7 +47,9 @@ function getDefaultSlot(defaultDate?: string) {
   return {
     startDate: base.format('YYYY-MM-DD'),
     startTime: hasTime ? base.format('HH:mm') : '09:00',
-    endTime: hasTime ? base.add(1, 'hour').format('HH:mm') : '10:00',
+    endTime: hasTime
+      ? base.add(DEFAULT_DURATION_MINUTES, 'minute').format('HH:mm')
+      : '09:30',
   }
 }
 
@@ -63,6 +66,7 @@ function emptyValues(defaultDate?: string): CalendarEventFormValues {
     reminder: 'none',
     recurrence: 'none',
     keysLocation: '',
+    origin: '',
     backgroundColor: '',
     private: false,
     description: '',
@@ -84,6 +88,7 @@ function eventToFormValues(event: CalendarEventWithRelations): CalendarEventForm
     reminder: event.reminder ?? 'none',
     recurrence: event.recurrence ?? 'none',
     keysLocation: event.keysLocation ?? '',
+    origin: event.origin ?? '',
     backgroundColor: event.backgroundColor ?? '',
     private: event.private ?? false,
     description: event.description ?? '',
@@ -139,6 +144,7 @@ export function useCalendarEventForm({ event, defaultDate, onSaved }: UseCalenda
       place: cleaned.place,
       description: cleaned.description,
       keysLocation: cleaned.keysLocation,
+      origin: values.origin || null,
       backgroundColor: cleaned.backgroundColor,
       startAt: start.toISOString(),
       endAt: end.toISOString(),

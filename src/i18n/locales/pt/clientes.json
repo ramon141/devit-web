@@ -18,6 +18,12 @@
     "contact": "Contato",
     "supplier": "Fornecedor"
   },
+  "personAcquisitionSourceOptions": {
+    "listing": "Por meio de um dos nossos anúncios",
+    "social_media": "Pelas redes sociais",
+    "referral": "Por indicação de outras pessoas",
+    "other": "Outro"
+  },
   "personSchema": {
     "nameMin": "Digite pelo menos 2 caracteres",
     "roleRequired": "Selecione um papel",
@@ -38,6 +44,8 @@
     "phone": "Telefone",
     "phonePlaceholder": "+39 333 1234567",
     "secondaryPhone": "Telefone secundário",
+    "acquisitionSource": "Como conheceu a imobiliária",
+    "acquisitionSourceHint": "Indica como o cliente ficou conhecendo a imobiliária: por um dos nossos anúncios, pelas redes sociais, por indicação de outras pessoas ou outro meio.",
     "documentType": "Tipo de documento",
     "documentTypePlaceholder": "Carteira de identidade",
     "documentNumber": "Número do documento",
@@ -124,7 +132,9 @@
     "socialMedia": "Redes sociais",
     "walkIn": "Visita espontânea",
     "whatsappChatbot": "Chatbot WhatsApp",
-    "other": "Outro"
+    "other": "Outro",
+    "showcase": "Vitrine",
+    "internet": "Internet"
   },
   "leadSchema": {
     "nameMin": "Digite pelo menos 2 caracteres",
@@ -175,7 +185,14 @@
     "wantsElevator": "Elevador",
     "wantsParking": "Vaga de garagem",
     "wantsTerrace": "Terraço",
-    "wantsBalcony": "Varanda"
+    "wantsBalcony": "Varanda",
+    "wantsGarden": "Jardim",
+    "wantsCondominium": "Condomínio ou complexo residencial",
+    "wantsLowFloor": "Andar baixo",
+    "wantsMidFloor": "Andar intermediário",
+    "wantsHighFloor": "Andar alto",
+    "wantsTopFloor": "Último andar",
+    "wantsBarrierFree": "Ausência de barreiras arquitetônicas"
   },
   "leadFormModal": {
     "editTitle": "Editar solicitação",
@@ -672,5 +689,9 @@
     "pendingStatus": "Atualizando o status...",
     "successStatus": "Status atualizado.",
     "errorStatus": "Não foi possível atualizar o status."
+  },
+  "leadReceptionOptions": {
+    "naples": "Recepção Nápoles",
+    "portici": "Recepção Portici"
   }
 }

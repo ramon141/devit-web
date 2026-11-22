@@ -16,8 +16,8 @@ export type PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSinceStatus = t
 export const PropertyPartialExcludingCreatedAtUpdatedAtResponsibleSinceStatus = {
   available: 'available',
   rented: 'rented',
-  under_maintenance: 'under_maintenance',
   unavailable: 'unavailable',
   reserved: 'reserved',
   sold: 'sold',
+  expired: 'expired',
 } as const;

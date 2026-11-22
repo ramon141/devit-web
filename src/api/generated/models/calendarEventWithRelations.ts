@@ -7,6 +7,7 @@
  */
 import type { CalendarEventWithRelationsType } from './calendarEventWithRelationsType';
 import type { CalendarEventWithRelationsConfirmationStatus } from './calendarEventWithRelationsConfirmationStatus';
+import type { CalendarEventWithRelationsOrigin } from './calendarEventWithRelationsOrigin';
 import type { CalendarEventWithRelationsRecurrence } from './calendarEventWithRelationsRecurrence';
 import type { CalendarEventWithRelationsReminder } from './calendarEventWithRelationsReminder';
 import type { User } from './user';
@@ -56,6 +57,8 @@ export interface CalendarEventWithRelations {
    * @nullable
    */
   keysLocation?: string | null;
+  /** @nullable */
+  origin?: CalendarEventWithRelationsOrigin;
   /** @nullable */
   recurrence?: CalendarEventWithRelationsRecurrence;
   /** @nullable */
