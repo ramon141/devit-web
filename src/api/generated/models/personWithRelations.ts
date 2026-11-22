@@ -11,6 +11,7 @@ import type { Address } from './address';
 import type { User } from './user';
 import type { Attachment } from './attachment';
 import type { PersonAttachment } from './personAttachment';
+import type { PersonPhone } from './personPhone';
 
 /**
  * (tsType: PersonWithRelations, schemaOptions: { includeRelations: true })
@@ -27,6 +28,11 @@ export interface PersonWithRelations {
    * @maxLength 150
    */
   name: string;
+  /**
+   * @maxLength 150
+   * @nullable
+   */
+  lastName?: string | null;
   role: PersonWithRelationsRole;
   /**
    * @maxLength 255
@@ -68,10 +74,14 @@ export interface PersonWithRelations {
   /** @nullable */
   createdById?: string | null;
   /** @nullable */
+  responsibleBrokerId?: string | null;
+  /** @nullable */
   photoId?: string | null;
   address?: Address;
   foreignKey?: unknown;
   createdBy?: User;
+  responsibleBroker?: User;
   photo?: Attachment;
   personAttachments?: PersonAttachment[];
+  phones?: PersonPhone[];
 }

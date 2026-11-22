@@ -21,6 +21,8 @@ export const PropertyFilter1FieldsOneOfTwoItem = {
   rentPrice: 'rentPrice',
   salePrice: 'salePrice',
   condoFee: 'condoFee',
+  buildingFee: 'buildingFee',
+  totalFee: 'totalFee',
   bedrooms: 'bedrooms',
   bathrooms: 'bathrooms',
   parkingSpots: 'parkingSpots',

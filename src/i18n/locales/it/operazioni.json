@@ -647,23 +647,23 @@
     "adeguamenti": {
       "title": {
         "title": "Adeguamento canone",
-        "content": "Qui generi gli adeguamenti del canone in blocco in base a una percentuale indice."
+        "content": "L'adeguamento del canone aggiorna una volta l'anno l'affitto dei contratti di locazione attivi, applicando la percentuale di rivalutazione (in Italia, l'indice ISTAT). Usalo alla data di aggiornamento prevista nel contratto. I contratti risolti o conclusi non ricevono l'adeguamento."
       },
       "indexPercent": {
         "title": "Indice di adeguamento (%)",
-        "content": "Inserisci la percentuale dell'indice da applicare al valore attuale dei contratti selezionati."
+        "content": "Inserisci la percentuale dell'anno (ad esempio 2,5). L'indice non viene calcolato dal sistema: va preso dalla pubblicazione ufficiale ISTAT. Sono ammessi valori tra 0% e 100%."
       },
       "generateBtn": {
         "title": "Genera adeguamenti",
-        "content": "Applica la percentuale inserita ai contratti selezionati nella tabella sottostante e crea gli adeguamenti."
+        "content": "Applica la percentuale ai contratti selezionati, calcola il nuovo canone, registra l'adeguamento e invia all'inquilino la comunicazione con il nuovo importo. Solo gli amministratori possono generarlo."
       },
       "eligibleTable": {
         "title": "Contratti idonei",
-        "content": "Seleziona i contratti che devono ricevere l'adeguamento tramite la casella su ogni riga."
+        "content": "Seleziona i contratti che devono ricevere l'adeguamento con la casella su ogni riga. Un contratto già adeguato negli ultimi 330 giorni viene rifiutato, per evitare due adeguamenti nello stesso anno."
       },
       "generatedTable": {
         "title": "Adeguamenti generati",
-        "content": "Dopo la generazione, gli adeguamenti applicati compaiono qui con il valore precedente e il nuovo valore."
+        "content": "Storico degli adeguamenti applicati, con data, percentuale, canone precedente e nuovo canone. Puoi consultarlo ed esportarlo."
       }
     },
     "scadenziario": {

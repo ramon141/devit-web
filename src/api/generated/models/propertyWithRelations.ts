@@ -75,6 +75,18 @@ export interface PropertyWithRelations {
   condoFee?: number | null;
   /**
    * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
+  buildingFee?: number | null;
+  /**
+   * @minimum 0
+   * @maximum 999999999999
+   * @nullable
+   */
+  totalFee?: number | null;
+  /**
+   * @minimum 0
    * @maximum 32767
    * @nullable
    */

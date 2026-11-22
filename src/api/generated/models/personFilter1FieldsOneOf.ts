@@ -10,6 +10,7 @@ export type PersonFilter1FieldsOneOf = {
   id?: boolean;
   externalId?: boolean;
   name?: boolean;
+  lastName?: boolean;
   role?: boolean;
   email?: boolean;
   phone?: boolean;
@@ -24,5 +25,6 @@ export type PersonFilter1FieldsOneOf = {
   updatedAt?: boolean;
   addressId?: boolean;
   createdById?: boolean;
+  responsibleBrokerId?: boolean;
   photoId?: boolean;
 };

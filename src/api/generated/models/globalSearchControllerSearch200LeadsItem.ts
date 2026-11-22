@@ -10,7 +10,10 @@ export type GlobalSearchControllerSearch200LeadsItem = {
   id: string;
   name: string;
   /** @nullable */
+  lastName?: string | null;
+  /** @nullable */
   phone?: string | null;
   /** @nullable */
   email?: string | null;
+  phones?: string[];
 };

@@ -17,6 +17,8 @@ export type PropertyFilterFieldsOneOf = {
   rentPrice?: boolean;
   salePrice?: boolean;
   condoFee?: boolean;
+  buildingFee?: boolean;
+  totalFee?: boolean;
   bedrooms?: boolean;
   bathrooms?: boolean;
   parkingSpots?: boolean;

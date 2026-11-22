@@ -68,6 +68,8 @@ export interface CalendarEventWithRelations {
   /** @nullable */
   createdById?: string | null;
   /** @nullable */
+  brokerId?: string | null;
+  /** @nullable */
   leadId?: string | null;
   /** @nullable */
   addressId?: string | null;
@@ -79,6 +81,7 @@ export interface CalendarEventWithRelations {
   reminderSentAt?: string | null;
   createdBy?: User;
   foreignKey?: unknown;
+  broker?: User;
   lead?: Lead;
   address?: Address;
   owner?: Person;

@@ -22,6 +22,11 @@ export interface PersonPartialExcludingPhotoIdCreatedAtUpdatedAt {
    * @maxLength 150
    */
   name?: string;
+  /**
+   * @maxLength 150
+   * @nullable
+   */
+  lastName?: string | null;
   role?: PersonPartialExcludingPhotoIdCreatedAtUpdatedAtRole;
   /**
    * @maxLength 255
@@ -60,6 +65,8 @@ export interface PersonPartialExcludingPhotoIdCreatedAtUpdatedAt {
   addressId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** @nullable */
+  responsibleBrokerId?: string | null;
   /** Foto de perfil da pessoa a enviar para o MinIO e vincular */
   photo?: PersonPartialExcludingPhotoIdCreatedAtUpdatedAtPhoto;
   /** Anexos da pessoa a enviar para o MinIO e vincular */

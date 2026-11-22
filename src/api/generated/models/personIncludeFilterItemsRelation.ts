@@ -13,6 +13,8 @@ export type PersonIncludeFilterItemsRelation = typeof PersonIncludeFilterItemsRe
 export const PersonIncludeFilterItemsRelation = {
   address: 'address',
   createdBy: 'createdBy',
+  responsibleBroker: 'responsibleBroker',
   photo: 'photo',
   personAttachments: 'personAttachments',
+  phones: 'phones',
 } as const;

@@ -12,6 +12,7 @@ export type CalendarEventIncludeFilterItemsRelation = typeof CalendarEventInclud
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const CalendarEventIncludeFilterItemsRelation = {
   createdBy: 'createdBy',
+  broker: 'broker',
   lead: 'lead',
   address: 'address',
   owner: 'owner',

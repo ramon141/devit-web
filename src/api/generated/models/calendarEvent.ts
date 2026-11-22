@@ -57,6 +57,8 @@ export interface CalendarEvent {
   /** @nullable */
   createdById?: string | null;
   /** @nullable */
+  brokerId?: string | null;
+  /** @nullable */
   leadId?: string | null;
   /** @nullable */
   addressId?: string | null;

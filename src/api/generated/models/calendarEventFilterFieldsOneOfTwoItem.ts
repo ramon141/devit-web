@@ -30,6 +30,7 @@ export const CalendarEventFilterFieldsOneOfTwoItem = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   createdById: 'createdById',
+  brokerId: 'brokerId',
   leadId: 'leadId',
   addressId: 'addressId',
   ownerId: 'ownerId',

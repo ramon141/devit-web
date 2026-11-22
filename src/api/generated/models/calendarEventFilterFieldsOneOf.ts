@@ -26,6 +26,7 @@ export type CalendarEventFilterFieldsOneOf = {
   createdAt?: boolean;
   updatedAt?: boolean;
   createdById?: boolean;
+  brokerId?: boolean;
   leadId?: boolean;
   addressId?: boolean;
   ownerId?: boolean;

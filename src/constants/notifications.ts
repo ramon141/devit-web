@@ -25,7 +25,9 @@ export const LEAD_ID_SEARCH_PARAM = 'leadId'
 const NOTIFICATION_ENTITY_PROPERTY = 'Property'
 
 // Avisos ligados a uma richiesta ou a um imóvel abrem direto o cadastro
-export function getNotificationLink(notification: Notification): string | null {
+export function getNotificationLink(
+  notification: Pick<Notification, 'entityId' | 'entityType'>,
+): string | null {
   if (!notification.entityId) return null
 
   if (notification.entityType === NOTIFICATION_ENTITY_PROPERTY) {

@@ -647,23 +647,23 @@
     "adeguamenti": {
       "title": {
         "title": "Reajuste de aluguel",
-        "content": "Aqui você gera reajustes de aluguel em lote com base num índice percentual."
+        "content": "O reajuste atualiza, uma vez por ano, o aluguel dos contratos de locação ativos, aplicando o percentual de correção (na Itália, o índice ISTAT). Use na data de atualização prevista no contrato. Contratos rescindidos ou encerrados não recebem reajuste."
       },
       "indexPercent": {
         "title": "Índice de reajuste (%)",
-        "content": "Informe o percentual do índice a aplicar sobre o valor atual dos contratos selecionados."
+        "content": "Informe o percentual do ano (por exemplo, 2,5). O sistema não calcula o índice: ele deve ser tirado da publicação oficial do ISTAT. São aceitos valores entre 0% e 100%."
       },
       "generateBtn": {
         "title": "Gerar reajustes",
-        "content": "Aplica o percentual informado aos contratos selecionados na tabela abaixo e cria os reajustes."
+        "content": "Aplica o percentual aos contratos selecionados, calcula o novo aluguel, registra o reajuste e envia ao inquilino a comunicação com o novo valor. Só administradores podem gerar."
       },
       "eligibleTable": {
         "title": "Contratos elegíveis",
-        "content": "Marque os contratos que devem receber o reajuste usando a caixa de seleção em cada linha."
+        "content": "Marque os contratos que devem receber o reajuste na caixa de cada linha. Contrato já reajustado nos últimos 330 dias é recusado, para evitar dois reajustes no mesmo ano."
       },
       "generatedTable": {
         "title": "Reajustes gerados",
-        "content": "Depois de gerar, os reajustes aplicados aparecem aqui com o valor anterior e o novo valor."
+        "content": "Histórico dos reajustes aplicados, com data, percentual, aluguel anterior e novo aluguel. Pode ser consultado e exportado."
       }
     },
     "scadenziario": {

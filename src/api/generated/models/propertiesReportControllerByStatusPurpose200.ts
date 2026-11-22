@@ -11,4 +11,5 @@ import type { PropertiesReportControllerByStatusPurpose200ByPurposeItem } from '
 export type PropertiesReportControllerByStatusPurpose200 = {
   byStatus?: PropertiesReportControllerByStatusPurpose200ByStatusItem[];
   byPurpose?: PropertiesReportControllerByStatusPurpose200ByPurposeItem[];
+  expiredMediationCount?: number;
 };

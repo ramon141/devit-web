@@ -18,4 +18,5 @@ export const NotificationWithRelationsType = {
   sale_completed: 'sale_completed',
   event_reminder: 'event_reminder',
   property_match: 'property_match',
+  property_available_again: 'property_available_again',
 } as const;

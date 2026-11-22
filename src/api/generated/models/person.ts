@@ -20,6 +20,11 @@ export interface Person {
    * @maxLength 150
    */
   name: string;
+  /**
+   * @maxLength 150
+   * @nullable
+   */
+  lastName?: string | null;
   role: PersonRole;
   /**
    * @maxLength 255
@@ -60,6 +65,8 @@ export interface Person {
   addressId?: string | null;
   /** @nullable */
   createdById?: string | null;
+  /** @nullable */
+  responsibleBrokerId?: string | null;
   /** @nullable */
   photoId?: string | null;
 }

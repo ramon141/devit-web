@@ -14,6 +14,7 @@ import type { NewCalendarEventLinkedPropertiesItem } from './newCalendarEventLin
 import type { NewCalendarEventAttachmentsItem } from './newCalendarEventAttachmentsItem';
 import type { NewCalendarEventParticipantsItem } from './newCalendarEventParticipantsItem';
 import type { NewCalendarEventOutcomesItem } from './newCalendarEventOutcomesItem';
+import type { NewCalendarEventClient } from './newCalendarEventClient';
 
 export interface NewCalendarEvent {
   /**
@@ -58,6 +59,8 @@ export interface NewCalendarEvent {
   /** @nullable */
   createdById?: string | null;
   /** @nullable */
+  brokerId?: string | null;
+  /** @nullable */
   leadId?: string | null;
   /** @nullable */
   addressId?: string | null;
@@ -71,4 +74,6 @@ export interface NewCalendarEvent {
   participants?: NewCalendarEventParticipantsItem[];
   /** Resultados (outcomes) a registrar para o compromisso */
   outcomes?: NewCalendarEventOutcomesItem[];
+  /** Clientes novos a cadastrar e vincular como participantes do compromisso */
+  newClients?: NewCalendarEventClient[];
 }

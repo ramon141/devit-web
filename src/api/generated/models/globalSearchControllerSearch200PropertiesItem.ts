@@ -5,6 +5,7 @@
  * Devit API
  * OpenAPI spec version: 0.0.1
  */
+import type { GlobalSearchControllerSearch200PropertiesItemOwnersItem } from './globalSearchControllerSearch200PropertiesItemOwnersItem';
 
 export type GlobalSearchControllerSearch200PropertiesItem = {
   id: string;
@@ -21,4 +22,5 @@ export type GlobalSearchControllerSearch200PropertiesItem = {
   number?: string | null;
   /** @nullable */
   coverAttachmentId?: string | null;
+  owners?: GlobalSearchControllerSearch200PropertiesItemOwnersItem[];
 };

@@ -20,4 +20,5 @@ export const PropertyStatusHistoryWithRelationsPreviousStatus = {
   reserved: 'reserved',
   sold: 'sold',
   expired: 'expired',
+  to_republish: 'to_republish',
 } as const;

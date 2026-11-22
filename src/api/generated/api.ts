@@ -208,6 +208,23 @@ import type {
   CalendarEventPropertyControllerFind422,
   CalendarEventPropertyControllerFindParams,
   CalendarEventPropertyWithRelations,
+  CalendarEventShareControllerExportEventIcal400,
+  CalendarEventShareControllerExportEventIcal401,
+  CalendarEventShareControllerExportEventIcal404,
+  CalendarEventShareControllerExportEventIcal422,
+  CalendarEventShareControllerExportIcal400,
+  CalendarEventShareControllerExportIcal401,
+  CalendarEventShareControllerExportIcal422,
+  CalendarEventShareControllerExportIcalParams,
+  CalendarEventShareControllerShare200,
+  CalendarEventShareControllerShare400,
+  CalendarEventShareControllerShare401,
+  CalendarEventShareControllerShare404,
+  CalendarEventShareControllerShare422,
+  CalendarEventSymbolsControllerFind200,
+  CalendarEventSymbolsControllerFind400,
+  CalendarEventSymbolsControllerFind401,
+  CalendarEventSymbolsControllerFind422,
   CalendarEventWithRelations,
   ChatbotLeadControllerUpsert200,
   ChatbotLeadControllerUpsert400,
@@ -226,6 +243,34 @@ import type {
   ChatbotPropertyControllerFindById404,
   ChatbotPropertyControllerFindById422,
   ChatbotPropertyControllerFindParams,
+  ClientFeedback,
+  ClientFeedbackControllerCount400,
+  ClientFeedbackControllerCount401,
+  ClientFeedbackControllerCount422,
+  ClientFeedbackControllerCountParams,
+  ClientFeedbackControllerCreate400,
+  ClientFeedbackControllerCreate401,
+  ClientFeedbackControllerCreate415,
+  ClientFeedbackControllerCreate422,
+  ClientFeedbackControllerDeleteById400,
+  ClientFeedbackControllerDeleteById401,
+  ClientFeedbackControllerDeleteById404,
+  ClientFeedbackControllerDeleteById422,
+  ClientFeedbackControllerFind400,
+  ClientFeedbackControllerFind401,
+  ClientFeedbackControllerFind422,
+  ClientFeedbackControllerFindById400,
+  ClientFeedbackControllerFindById401,
+  ClientFeedbackControllerFindById404,
+  ClientFeedbackControllerFindById422,
+  ClientFeedbackControllerFindParams,
+  ClientFeedbackControllerUpdateById400,
+  ClientFeedbackControllerUpdateById401,
+  ClientFeedbackControllerUpdateById404,
+  ClientFeedbackControllerUpdateById415,
+  ClientFeedbackControllerUpdateById422,
+  ClientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId,
+  ClientFeedbackWithRelations,
   CommunicationLogControllerFind400,
   CommunicationLogControllerFind401,
   CommunicationLogControllerFind422,
@@ -363,6 +408,18 @@ import type {
   LeadMatchControllerRun401,
   LeadMatchControllerRun404,
   LeadMatchControllerRun422,
+  LeadMatchSendControllerPreview200,
+  LeadMatchSendControllerPreview400,
+  LeadMatchSendControllerPreview401,
+  LeadMatchSendControllerPreview404,
+  LeadMatchSendControllerPreview422,
+  LeadMatchSendControllerSend200,
+  LeadMatchSendControllerSend400,
+  LeadMatchSendControllerSend401,
+  LeadMatchSendControllerSend404,
+  LeadMatchSendControllerSend415,
+  LeadMatchSendControllerSend422,
+  LeadMatchSendControllerSendBody,
   LeadNeighborhood,
   LeadNeighborhoodControllerCreate400,
   LeadNeighborhoodControllerCreate401,
@@ -470,6 +527,7 @@ import type {
   NewCalendarEventOutcome,
   NewCalendarEventParticipant,
   NewCalendarEventProperty,
+  NewClientFeedback,
   NewCommunicationOptOut,
   NewCommunicationTemplate,
   NewContractAttachment,
@@ -479,6 +537,7 @@ import type {
   NewNeighborhood,
   NewPerson,
   NewPersonAttachment,
+  NewPersonPhone,
   NewProperty,
   NewPropertyAdditionalDetail,
   NewPropertyCadastralInfo,
@@ -488,6 +547,7 @@ import type {
   NewPropertyDocument,
   NewPropertyFeature,
   NewPropertyFee,
+  NewPropertyFloorPlan,
   NewPropertyHeatingDetail,
   NewPropertyIndustrialArea,
   NewPropertyIndustrialDetail,
@@ -548,6 +608,12 @@ import type {
   OwnerPortalControllerMyProperties400,
   OwnerPortalControllerMyProperties422,
   Person,
+  PersonActivityControllerFindActivities200,
+  PersonActivityControllerFindActivities400,
+  PersonActivityControllerFindActivities401,
+  PersonActivityControllerFindActivities404,
+  PersonActivityControllerFindActivities422,
+  PersonActivityControllerFindActivitiesParams,
   PersonAttachment,
   PersonAttachmentControllerCreate400,
   PersonAttachmentControllerCreate401,
@@ -593,6 +659,21 @@ import type {
   PersonControllerUpdateById415,
   PersonControllerUpdateById422,
   PersonPartialExcludingPhotoIdCreatedAtUpdatedAt,
+  PersonPhone,
+  PersonPhoneControllerCreate400,
+  PersonPhoneControllerCreate401,
+  PersonPhoneControllerCreate404,
+  PersonPhoneControllerCreate415,
+  PersonPhoneControllerCreate422,
+  PersonPhoneControllerDeleteById400,
+  PersonPhoneControllerDeleteById401,
+  PersonPhoneControllerDeleteById404,
+  PersonPhoneControllerDeleteById422,
+  PersonPhoneControllerFind400,
+  PersonPhoneControllerFind401,
+  PersonPhoneControllerFind422,
+  PersonPhoneControllerFindParams,
+  PersonPhoneWithRelations,
   PersonWithRelations,
   PingControllerPing400,
   PingControllerPing422,
@@ -735,6 +816,9 @@ import type {
   PropertyControllerFindById422,
   PropertyControllerFindByIdParams,
   PropertyControllerFindParams,
+  PropertyControllerFindToRepublish400,
+  PropertyControllerFindToRepublish401,
+  PropertyControllerFindToRepublish422,
   PropertyControllerNextCode200,
   PropertyControllerNextCode400,
   PropertyControllerNextCode401,
@@ -808,6 +892,26 @@ import type {
   PropertyFeeControllerFind422,
   PropertyFeeControllerFindParams,
   PropertyFeeWithRelations,
+  PropertyFloorPlan,
+  PropertyFloorPlanControllerCreate400,
+  PropertyFloorPlanControllerCreate401,
+  PropertyFloorPlanControllerCreate415,
+  PropertyFloorPlanControllerCreate422,
+  PropertyFloorPlanControllerDeleteById400,
+  PropertyFloorPlanControllerDeleteById401,
+  PropertyFloorPlanControllerDeleteById404,
+  PropertyFloorPlanControllerDeleteById422,
+  PropertyFloorPlanControllerFind400,
+  PropertyFloorPlanControllerFind401,
+  PropertyFloorPlanControllerFind422,
+  PropertyFloorPlanControllerFindParams,
+  PropertyFloorPlanControllerUpdateById400,
+  PropertyFloorPlanControllerUpdateById401,
+  PropertyFloorPlanControllerUpdateById404,
+  PropertyFloorPlanControllerUpdateById415,
+  PropertyFloorPlanControllerUpdateById422,
+  PropertyFloorPlanPartial,
+  PropertyFloorPlanWithRelations,
   PropertyHeatingDetail,
   PropertyHeatingDetailControllerCreate400,
   PropertyHeatingDetailControllerCreate401,
@@ -946,6 +1050,10 @@ import type {
   PropertyStatusHistoryControllerFind422,
   PropertyStatusHistoryControllerFindParams,
   PropertyStatusHistoryWithRelations,
+  PropertySummaryControllerSummaryPdf400,
+  PropertySummaryControllerSummaryPdf401,
+  PropertySummaryControllerSummaryPdf404,
+  PropertySummaryControllerSummaryPdf422,
   PropertyWithRelations,
   PublicAttachmentControllerRedirectToFile400,
   PublicAttachmentControllerRedirectToFile404,
@@ -1233,6 +1341,16 @@ import type {
   UserControllerUpdateById422,
   UserExcludingPasswordHash,
   UserExcludingPasswordHashWithRelations,
+  UserHomeWidgetControllerList200,
+  UserHomeWidgetControllerList400,
+  UserHomeWidgetControllerList401,
+  UserHomeWidgetControllerList422,
+  UserHomeWidgetControllerReplace200,
+  UserHomeWidgetControllerReplace400,
+  UserHomeWidgetControllerReplace401,
+  UserHomeWidgetControllerReplace415,
+  UserHomeWidgetControllerReplace422,
+  UserHomeWidgetControllerReplaceBody,
   UserPartialExcludingPasswordHashCreatedAtUpdatedAt,
   Zone,
   ZoneControllerCount400,
@@ -3720,6 +3838,381 @@ export function useCalendarEventPropertyControllerFind<TData = Awaited<ReturnTyp
 
 
 /**
+ * @summary List calendar event types and origins with their symbols
+ */
+export const calendarEventSymbolsControllerFind = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<CalendarEventSymbolsControllerFind200>(
+      {url: `/calendar-event-symbols`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCalendarEventSymbolsControllerFindQueryKey = () => {
+    return [
+    `/calendar-event-symbols`
+    ] as const;
+    }
+
+    
+export const getCalendarEventSymbolsControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError = ErrorType<CalendarEventSymbolsControllerFind400 | CalendarEventSymbolsControllerFind401 | CalendarEventSymbolsControllerFind422>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCalendarEventSymbolsControllerFindQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>> = ({ signal }) => calendarEventSymbolsControllerFind(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CalendarEventSymbolsControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>>
+export type CalendarEventSymbolsControllerFindQueryError = ErrorType<CalendarEventSymbolsControllerFind400 | CalendarEventSymbolsControllerFind401 | CalendarEventSymbolsControllerFind422>
+
+
+export function useCalendarEventSymbolsControllerFind<TData = Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError = ErrorType<CalendarEventSymbolsControllerFind400 | CalendarEventSymbolsControllerFind401 | CalendarEventSymbolsControllerFind422>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCalendarEventSymbolsControllerFind<TData = Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError = ErrorType<CalendarEventSymbolsControllerFind400 | CalendarEventSymbolsControllerFind401 | CalendarEventSymbolsControllerFind422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCalendarEventSymbolsControllerFind<TData = Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError = ErrorType<CalendarEventSymbolsControllerFind400 | CalendarEventSymbolsControllerFind401 | CalendarEventSymbolsControllerFind422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List calendar event types and origins with their symbols
+ */
+
+export function useCalendarEventSymbolsControllerFind<TData = Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError = ErrorType<CalendarEventSymbolsControllerFind400 | CalendarEventSymbolsControllerFind401 | CalendarEventSymbolsControllerFind422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventSymbolsControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCalendarEventSymbolsControllerFindQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Esporta gli appuntamenti in formato calendario (.ics) per Google Calendar
+ */
+export const calendarEventShareControllerExportIcal = (
+    params?: CalendarEventShareControllerExportIcalParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/calendar-events/ical`, method: 'GET',
+        params,
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCalendarEventShareControllerExportIcalQueryKey = (params?: CalendarEventShareControllerExportIcalParams,) => {
+    return [
+    `/calendar-events/ical`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getCalendarEventShareControllerExportIcalQueryOptions = <TData = Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError = ErrorType<CalendarEventShareControllerExportIcal400 | CalendarEventShareControllerExportIcal401 | CalendarEventShareControllerExportIcal422>>(params?: CalendarEventShareControllerExportIcalParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCalendarEventShareControllerExportIcalQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>> = ({ signal }) => calendarEventShareControllerExportIcal(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CalendarEventShareControllerExportIcalQueryResult = NonNullable<Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>>
+export type CalendarEventShareControllerExportIcalQueryError = ErrorType<CalendarEventShareControllerExportIcal400 | CalendarEventShareControllerExportIcal401 | CalendarEventShareControllerExportIcal422>
+
+
+export function useCalendarEventShareControllerExportIcal<TData = Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError = ErrorType<CalendarEventShareControllerExportIcal400 | CalendarEventShareControllerExportIcal401 | CalendarEventShareControllerExportIcal422>>(
+ params: undefined |  CalendarEventShareControllerExportIcalParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>,
+          TError,
+          Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCalendarEventShareControllerExportIcal<TData = Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError = ErrorType<CalendarEventShareControllerExportIcal400 | CalendarEventShareControllerExportIcal401 | CalendarEventShareControllerExportIcal422>>(
+ params?: CalendarEventShareControllerExportIcalParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>,
+          TError,
+          Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCalendarEventShareControllerExportIcal<TData = Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError = ErrorType<CalendarEventShareControllerExportIcal400 | CalendarEventShareControllerExportIcal401 | CalendarEventShareControllerExportIcal422>>(
+ params?: CalendarEventShareControllerExportIcalParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Esporta gli appuntamenti in formato calendario (.ics) per Google Calendar
+ */
+
+export function useCalendarEventShareControllerExportIcal<TData = Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError = ErrorType<CalendarEventShareControllerExportIcal400 | CalendarEventShareControllerExportIcal401 | CalendarEventShareControllerExportIcal422>>(
+ params?: CalendarEventShareControllerExportIcalParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportIcal>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCalendarEventShareControllerExportIcalQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Esporta un appuntamento in formato calendario (.ics) per Google Calendar
+ */
+export const calendarEventShareControllerExportEventIcal = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/calendar-events/${id}/ical`, method: 'GET',
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCalendarEventShareControllerExportEventIcalQueryKey = (id?: string,) => {
+    return [
+    `/calendar-events/${id}/ical`
+    ] as const;
+    }
+
+    
+export const getCalendarEventShareControllerExportEventIcalQueryOptions = <TData = Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError = ErrorType<CalendarEventShareControllerExportEventIcal400 | CalendarEventShareControllerExportEventIcal401 | CalendarEventShareControllerExportEventIcal404 | CalendarEventShareControllerExportEventIcal422>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCalendarEventShareControllerExportEventIcalQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>> = ({ signal }) => calendarEventShareControllerExportEventIcal(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CalendarEventShareControllerExportEventIcalQueryResult = NonNullable<Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>>
+export type CalendarEventShareControllerExportEventIcalQueryError = ErrorType<CalendarEventShareControllerExportEventIcal400 | CalendarEventShareControllerExportEventIcal401 | CalendarEventShareControllerExportEventIcal404 | CalendarEventShareControllerExportEventIcal422>
+
+
+export function useCalendarEventShareControllerExportEventIcal<TData = Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError = ErrorType<CalendarEventShareControllerExportEventIcal400 | CalendarEventShareControllerExportEventIcal401 | CalendarEventShareControllerExportEventIcal404 | CalendarEventShareControllerExportEventIcal422>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>,
+          TError,
+          Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCalendarEventShareControllerExportEventIcal<TData = Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError = ErrorType<CalendarEventShareControllerExportEventIcal400 | CalendarEventShareControllerExportEventIcal401 | CalendarEventShareControllerExportEventIcal404 | CalendarEventShareControllerExportEventIcal422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>,
+          TError,
+          Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCalendarEventShareControllerExportEventIcal<TData = Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError = ErrorType<CalendarEventShareControllerExportEventIcal400 | CalendarEventShareControllerExportEventIcal401 | CalendarEventShareControllerExportEventIcal404 | CalendarEventShareControllerExportEventIcal422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Esporta un appuntamento in formato calendario (.ics) per Google Calendar
+ */
+
+export function useCalendarEventShareControllerExportEventIcal<TData = Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError = ErrorType<CalendarEventShareControllerExportEventIcal400 | CalendarEventShareControllerExportEventIcal401 | CalendarEventShareControllerExportEventIcal404 | CalendarEventShareControllerExportEventIcal422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerExportEventIcal>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCalendarEventShareControllerExportEventIcalQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Scheda dell'appuntamento pronta per la condivisione su WhatsApp
+ */
+export const calendarEventShareControllerShare = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<CalendarEventShareControllerShare200>(
+      {url: `/calendar-events/${id}/share`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCalendarEventShareControllerShareQueryKey = (id?: string,) => {
+    return [
+    `/calendar-events/${id}/share`
+    ] as const;
+    }
+
+    
+export const getCalendarEventShareControllerShareQueryOptions = <TData = Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError = ErrorType<CalendarEventShareControllerShare400 | CalendarEventShareControllerShare401 | CalendarEventShareControllerShare404 | CalendarEventShareControllerShare422>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCalendarEventShareControllerShareQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof calendarEventShareControllerShare>>> = ({ signal }) => calendarEventShareControllerShare(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CalendarEventShareControllerShareQueryResult = NonNullable<Awaited<ReturnType<typeof calendarEventShareControllerShare>>>
+export type CalendarEventShareControllerShareQueryError = ErrorType<CalendarEventShareControllerShare400 | CalendarEventShareControllerShare401 | CalendarEventShareControllerShare404 | CalendarEventShareControllerShare422>
+
+
+export function useCalendarEventShareControllerShare<TData = Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError = ErrorType<CalendarEventShareControllerShare400 | CalendarEventShareControllerShare401 | CalendarEventShareControllerShare404 | CalendarEventShareControllerShare422>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof calendarEventShareControllerShare>>,
+          TError,
+          Awaited<ReturnType<typeof calendarEventShareControllerShare>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCalendarEventShareControllerShare<TData = Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError = ErrorType<CalendarEventShareControllerShare400 | CalendarEventShareControllerShare401 | CalendarEventShareControllerShare404 | CalendarEventShareControllerShare422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof calendarEventShareControllerShare>>,
+          TError,
+          Awaited<ReturnType<typeof calendarEventShareControllerShare>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCalendarEventShareControllerShare<TData = Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError = ErrorType<CalendarEventShareControllerShare400 | CalendarEventShareControllerShare401 | CalendarEventShareControllerShare404 | CalendarEventShareControllerShare422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Scheda dell'appuntamento pronta per la condivisione su WhatsApp
+ */
+
+export function useCalendarEventShareControllerShare<TData = Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError = ErrorType<CalendarEventShareControllerShare400 | CalendarEventShareControllerShare401 | CalendarEventShareControllerShare404 | CalendarEventShareControllerShare422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof calendarEventShareControllerShare>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCalendarEventShareControllerShareQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Update a Calendar Event by id
  */
 export const calendarEventControllerUpdateById = (
@@ -3993,6 +4486,479 @@ export function useCalendarEventControllerFind<TData = Awaited<ReturnType<typeof
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getCalendarEventControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Count Client Feedbacks
+ */
+export const clientFeedbackControllerCount = (
+    params?: ClientFeedbackControllerCountParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LoopbackCount>(
+      {url: `/client-feedbacks/count`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getClientFeedbackControllerCountQueryKey = (params?: ClientFeedbackControllerCountParams,) => {
+    return [
+    `/client-feedbacks/count`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getClientFeedbackControllerCountQueryOptions = <TData = Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError = ErrorType<ClientFeedbackControllerCount400 | ClientFeedbackControllerCount401 | ClientFeedbackControllerCount422>>(params?: ClientFeedbackControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getClientFeedbackControllerCountQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof clientFeedbackControllerCount>>> = ({ signal }) => clientFeedbackControllerCount(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ClientFeedbackControllerCountQueryResult = NonNullable<Awaited<ReturnType<typeof clientFeedbackControllerCount>>>
+export type ClientFeedbackControllerCountQueryError = ErrorType<ClientFeedbackControllerCount400 | ClientFeedbackControllerCount401 | ClientFeedbackControllerCount422>
+
+
+export function useClientFeedbackControllerCount<TData = Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError = ErrorType<ClientFeedbackControllerCount400 | ClientFeedbackControllerCount401 | ClientFeedbackControllerCount422>>(
+ params: undefined |  ClientFeedbackControllerCountParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof clientFeedbackControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof clientFeedbackControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useClientFeedbackControllerCount<TData = Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError = ErrorType<ClientFeedbackControllerCount400 | ClientFeedbackControllerCount401 | ClientFeedbackControllerCount422>>(
+ params?: ClientFeedbackControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof clientFeedbackControllerCount>>,
+          TError,
+          Awaited<ReturnType<typeof clientFeedbackControllerCount>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useClientFeedbackControllerCount<TData = Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError = ErrorType<ClientFeedbackControllerCount400 | ClientFeedbackControllerCount401 | ClientFeedbackControllerCount422>>(
+ params?: ClientFeedbackControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Count Client Feedbacks
+ */
+
+export function useClientFeedbackControllerCount<TData = Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError = ErrorType<ClientFeedbackControllerCount400 | ClientFeedbackControllerCount401 | ClientFeedbackControllerCount422>>(
+ params?: ClientFeedbackControllerCountParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerCount>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getClientFeedbackControllerCountQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Client Feedback by id
+ */
+export const clientFeedbackControllerUpdateById = (
+    id: string,
+    clientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId: BodyType<ClientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/client-feedbacks/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: clientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId
+    },
+      options);
+    }
+  
+
+
+export const getClientFeedbackControllerUpdateByIdMutationOptions = <TError = ErrorType<ClientFeedbackControllerUpdateById400 | ClientFeedbackControllerUpdateById401 | ClientFeedbackControllerUpdateById404 | ClientFeedbackControllerUpdateById415 | ClientFeedbackControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerUpdateById>>, TError,{id: string;data: BodyType<ClientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerUpdateById>>, TError,{id: string;data: BodyType<ClientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId>}, TContext> => {
+
+const mutationKey = ['clientFeedbackControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof clientFeedbackControllerUpdateById>>, {id: string;data: BodyType<ClientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  clientFeedbackControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ClientFeedbackControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof clientFeedbackControllerUpdateById>>>
+    export type ClientFeedbackControllerUpdateByIdMutationBody = BodyType<ClientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId>
+    export type ClientFeedbackControllerUpdateByIdMutationError = ErrorType<ClientFeedbackControllerUpdateById400 | ClientFeedbackControllerUpdateById401 | ClientFeedbackControllerUpdateById404 | ClientFeedbackControllerUpdateById415 | ClientFeedbackControllerUpdateById422>
+
+    /**
+ * @summary Update a Client Feedback by id
+ */
+export const useClientFeedbackControllerUpdateById = <TError = ErrorType<ClientFeedbackControllerUpdateById400 | ClientFeedbackControllerUpdateById401 | ClientFeedbackControllerUpdateById404 | ClientFeedbackControllerUpdateById415 | ClientFeedbackControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerUpdateById>>, TError,{id: string;data: BodyType<ClientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof clientFeedbackControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<ClientFeedbackPartialExcludingIdCreatedAtUpdatedAtCreatedByIdPersonId>},
+        TContext
+      > => {
+
+      const mutationOptions = getClientFeedbackControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Get a Client Feedback by id
+ */
+export const clientFeedbackControllerFindById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ClientFeedbackWithRelations>(
+      {url: `/client-feedbacks/${id}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getClientFeedbackControllerFindByIdQueryKey = (id?: string,) => {
+    return [
+    `/client-feedbacks/${id}`
+    ] as const;
+    }
+
+    
+export const getClientFeedbackControllerFindByIdQueryOptions = <TData = Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError = ErrorType<ClientFeedbackControllerFindById400 | ClientFeedbackControllerFindById401 | ClientFeedbackControllerFindById404 | ClientFeedbackControllerFindById422>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getClientFeedbackControllerFindByIdQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof clientFeedbackControllerFindById>>> = ({ signal }) => clientFeedbackControllerFindById(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ClientFeedbackControllerFindByIdQueryResult = NonNullable<Awaited<ReturnType<typeof clientFeedbackControllerFindById>>>
+export type ClientFeedbackControllerFindByIdQueryError = ErrorType<ClientFeedbackControllerFindById400 | ClientFeedbackControllerFindById401 | ClientFeedbackControllerFindById404 | ClientFeedbackControllerFindById422>
+
+
+export function useClientFeedbackControllerFindById<TData = Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError = ErrorType<ClientFeedbackControllerFindById400 | ClientFeedbackControllerFindById401 | ClientFeedbackControllerFindById404 | ClientFeedbackControllerFindById422>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof clientFeedbackControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof clientFeedbackControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useClientFeedbackControllerFindById<TData = Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError = ErrorType<ClientFeedbackControllerFindById400 | ClientFeedbackControllerFindById401 | ClientFeedbackControllerFindById404 | ClientFeedbackControllerFindById422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof clientFeedbackControllerFindById>>,
+          TError,
+          Awaited<ReturnType<typeof clientFeedbackControllerFindById>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useClientFeedbackControllerFindById<TData = Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError = ErrorType<ClientFeedbackControllerFindById400 | ClientFeedbackControllerFindById401 | ClientFeedbackControllerFindById404 | ClientFeedbackControllerFindById422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get a Client Feedback by id
+ */
+
+export function useClientFeedbackControllerFindById<TData = Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError = ErrorType<ClientFeedbackControllerFindById400 | ClientFeedbackControllerFindById401 | ClientFeedbackControllerFindById404 | ClientFeedbackControllerFindById422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFindById>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getClientFeedbackControllerFindByIdQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Delete a Client Feedback by id
+ */
+export const clientFeedbackControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/client-feedbacks/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getClientFeedbackControllerDeleteByIdMutationOptions = <TError = ErrorType<ClientFeedbackControllerDeleteById400 | ClientFeedbackControllerDeleteById401 | ClientFeedbackControllerDeleteById404 | ClientFeedbackControllerDeleteById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['clientFeedbackControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof clientFeedbackControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  clientFeedbackControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ClientFeedbackControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof clientFeedbackControllerDeleteById>>>
+    
+    export type ClientFeedbackControllerDeleteByIdMutationError = ErrorType<ClientFeedbackControllerDeleteById400 | ClientFeedbackControllerDeleteById401 | ClientFeedbackControllerDeleteById404 | ClientFeedbackControllerDeleteById422>
+
+    /**
+ * @summary Delete a Client Feedback by id
+ */
+export const useClientFeedbackControllerDeleteById = <TError = ErrorType<ClientFeedbackControllerDeleteById400 | ClientFeedbackControllerDeleteById401 | ClientFeedbackControllerDeleteById404 | ClientFeedbackControllerDeleteById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof clientFeedbackControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getClientFeedbackControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Registra um feedback, pedido ou passagem de um cliente
+ */
+export const clientFeedbackControllerCreate = (
+    newClientFeedback: BodyType<NewClientFeedback>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ClientFeedback>(
+      {url: `/client-feedbacks`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newClientFeedback, signal
+    },
+      options);
+    }
+  
+
+
+export const getClientFeedbackControllerCreateMutationOptions = <TError = ErrorType<ClientFeedbackControllerCreate400 | ClientFeedbackControllerCreate401 | ClientFeedbackControllerCreate415 | ClientFeedbackControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerCreate>>, TError,{data: BodyType<NewClientFeedback>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerCreate>>, TError,{data: BodyType<NewClientFeedback>}, TContext> => {
+
+const mutationKey = ['clientFeedbackControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof clientFeedbackControllerCreate>>, {data: BodyType<NewClientFeedback>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  clientFeedbackControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type ClientFeedbackControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof clientFeedbackControllerCreate>>>
+    export type ClientFeedbackControllerCreateMutationBody = BodyType<NewClientFeedback>
+    export type ClientFeedbackControllerCreateMutationError = ErrorType<ClientFeedbackControllerCreate400 | ClientFeedbackControllerCreate401 | ClientFeedbackControllerCreate415 | ClientFeedbackControllerCreate422>
+
+    /**
+ * @summary Registra um feedback, pedido ou passagem de um cliente
+ */
+export const useClientFeedbackControllerCreate = <TError = ErrorType<ClientFeedbackControllerCreate400 | ClientFeedbackControllerCreate401 | ClientFeedbackControllerCreate415 | ClientFeedbackControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof clientFeedbackControllerCreate>>, TError,{data: BodyType<NewClientFeedback>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof clientFeedbackControllerCreate>>,
+        TError,
+        {data: BodyType<NewClientFeedback>},
+        TContext
+      > => {
+
+      const mutationOptions = getClientFeedbackControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Lista feedbacks e pedidos (filtre por personId, propertyId, leadId ou type)
+ */
+export const clientFeedbackControllerFind = (
+    params?: ClientFeedbackControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<ClientFeedbackWithRelations[]>(
+      {url: `/client-feedbacks`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getClientFeedbackControllerFindQueryKey = (params?: ClientFeedbackControllerFindParams,) => {
+    return [
+    `/client-feedbacks`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getClientFeedbackControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError = ErrorType<ClientFeedbackControllerFind400 | ClientFeedbackControllerFind401 | ClientFeedbackControllerFind422>>(params?: ClientFeedbackControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getClientFeedbackControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof clientFeedbackControllerFind>>> = ({ signal }) => clientFeedbackControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type ClientFeedbackControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof clientFeedbackControllerFind>>>
+export type ClientFeedbackControllerFindQueryError = ErrorType<ClientFeedbackControllerFind400 | ClientFeedbackControllerFind401 | ClientFeedbackControllerFind422>
+
+
+export function useClientFeedbackControllerFind<TData = Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError = ErrorType<ClientFeedbackControllerFind400 | ClientFeedbackControllerFind401 | ClientFeedbackControllerFind422>>(
+ params: undefined |  ClientFeedbackControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof clientFeedbackControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof clientFeedbackControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useClientFeedbackControllerFind<TData = Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError = ErrorType<ClientFeedbackControllerFind400 | ClientFeedbackControllerFind401 | ClientFeedbackControllerFind422>>(
+ params?: ClientFeedbackControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof clientFeedbackControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof clientFeedbackControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useClientFeedbackControllerFind<TData = Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError = ErrorType<ClientFeedbackControllerFind400 | ClientFeedbackControllerFind401 | ClientFeedbackControllerFind422>>(
+ params?: ClientFeedbackControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Lista feedbacks e pedidos (filtre por personId, propertyId, leadId ou type)
+ */
+
+export function useClientFeedbackControllerFind<TData = Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError = ErrorType<ClientFeedbackControllerFind400 | ClientFeedbackControllerFind401 | ClientFeedbackControllerFind422>>(
+ params?: ClientFeedbackControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof clientFeedbackControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getClientFeedbackControllerFindQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -5718,6 +6684,165 @@ export function useLeadNeighborhoodControllerFind<TData = Awaited<ReturnType<typ
 
 
 /**
+ * @summary Mensagem predefinida para enviar o imóvel compatível ao cliente
+ */
+export const leadMatchSendControllerPreview = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadMatchSendControllerPreview200>(
+      {url: `/lead-properties/${id}/match-message`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getLeadMatchSendControllerPreviewQueryKey = (id?: string,) => {
+    return [
+    `/lead-properties/${id}/match-message`
+    ] as const;
+    }
+
+    
+export const getLeadMatchSendControllerPreviewQueryOptions = <TData = Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError = ErrorType<LeadMatchSendControllerPreview400 | LeadMatchSendControllerPreview401 | LeadMatchSendControllerPreview404 | LeadMatchSendControllerPreview422>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getLeadMatchSendControllerPreviewQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof leadMatchSendControllerPreview>>> = ({ signal }) => leadMatchSendControllerPreview(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type LeadMatchSendControllerPreviewQueryResult = NonNullable<Awaited<ReturnType<typeof leadMatchSendControllerPreview>>>
+export type LeadMatchSendControllerPreviewQueryError = ErrorType<LeadMatchSendControllerPreview400 | LeadMatchSendControllerPreview401 | LeadMatchSendControllerPreview404 | LeadMatchSendControllerPreview422>
+
+
+export function useLeadMatchSendControllerPreview<TData = Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError = ErrorType<LeadMatchSendControllerPreview400 | LeadMatchSendControllerPreview401 | LeadMatchSendControllerPreview404 | LeadMatchSendControllerPreview422>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadMatchSendControllerPreview>>,
+          TError,
+          Awaited<ReturnType<typeof leadMatchSendControllerPreview>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadMatchSendControllerPreview<TData = Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError = ErrorType<LeadMatchSendControllerPreview400 | LeadMatchSendControllerPreview401 | LeadMatchSendControllerPreview404 | LeadMatchSendControllerPreview422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof leadMatchSendControllerPreview>>,
+          TError,
+          Awaited<ReturnType<typeof leadMatchSendControllerPreview>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useLeadMatchSendControllerPreview<TData = Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError = ErrorType<LeadMatchSendControllerPreview400 | LeadMatchSendControllerPreview401 | LeadMatchSendControllerPreview404 | LeadMatchSendControllerPreview422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Mensagem predefinida para enviar o imóvel compatível ao cliente
+ */
+
+export function useLeadMatchSendControllerPreview<TData = Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError = ErrorType<LeadMatchSendControllerPreview400 | LeadMatchSendControllerPreview401 | LeadMatchSendControllerPreview404 | LeadMatchSendControllerPreview422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof leadMatchSendControllerPreview>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getLeadMatchSendControllerPreviewQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Enviar o imóvel compatível ao cliente por e-mail ou WhatsApp
+ */
+export const leadMatchSendControllerSend = (
+    id: string,
+    leadMatchSendControllerSendBody: BodyType<LeadMatchSendControllerSendBody>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<LeadMatchSendControllerSend200>(
+      {url: `/lead-properties/${id}/send`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: leadMatchSendControllerSendBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getLeadMatchSendControllerSendMutationOptions = <TError = ErrorType<LeadMatchSendControllerSend400 | LeadMatchSendControllerSend401 | LeadMatchSendControllerSend404 | LeadMatchSendControllerSend415 | LeadMatchSendControllerSend422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadMatchSendControllerSend>>, TError,{id: string;data: BodyType<LeadMatchSendControllerSendBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof leadMatchSendControllerSend>>, TError,{id: string;data: BodyType<LeadMatchSendControllerSendBody>}, TContext> => {
+
+const mutationKey = ['leadMatchSendControllerSend'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof leadMatchSendControllerSend>>, {id: string;data: BodyType<LeadMatchSendControllerSendBody>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  leadMatchSendControllerSend(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type LeadMatchSendControllerSendMutationResult = NonNullable<Awaited<ReturnType<typeof leadMatchSendControllerSend>>>
+    export type LeadMatchSendControllerSendMutationBody = BodyType<LeadMatchSendControllerSendBody>
+    export type LeadMatchSendControllerSendMutationError = ErrorType<LeadMatchSendControllerSend400 | LeadMatchSendControllerSend401 | LeadMatchSendControllerSend404 | LeadMatchSendControllerSend415 | LeadMatchSendControllerSend422>
+
+    /**
+ * @summary Enviar o imóvel compatível ao cliente por e-mail ou WhatsApp
+ */
+export const useLeadMatchSendControllerSend = <TError = ErrorType<LeadMatchSendControllerSend400 | LeadMatchSendControllerSend401 | LeadMatchSendControllerSend404 | LeadMatchSendControllerSend415 | LeadMatchSendControllerSend422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof leadMatchSendControllerSend>>, TError,{id: string;data: BodyType<LeadMatchSendControllerSendBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof leadMatchSendControllerSend>>,
+        TError,
+        {id: string;data: BodyType<LeadMatchSendControllerSendBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getLeadMatchSendControllerSendMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
  * @summary Update a Lead Property by id
  */
 export const leadPropertyControllerUpdateById = (
@@ -6818,6 +7943,163 @@ export function useMarketingCampaignControllerList<TData = Awaited<ReturnType<ty
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getMarketingCampaignControllerListQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Salvar ordem, tamanho e estado (expandido/recolhido) dos widgets
+ */
+export const userHomeWidgetControllerReplace = (
+    userHomeWidgetControllerReplaceBody: BodyType<UserHomeWidgetControllerReplaceBody>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<UserHomeWidgetControllerReplace200>(
+      {url: `/me/home-widgets`, method: 'PUT',
+      headers: {'Content-Type': 'application/json', },
+      data: userHomeWidgetControllerReplaceBody
+    },
+      options);
+    }
+  
+
+
+export const getUserHomeWidgetControllerReplaceMutationOptions = <TError = ErrorType<UserHomeWidgetControllerReplace400 | UserHomeWidgetControllerReplace401 | UserHomeWidgetControllerReplace415 | UserHomeWidgetControllerReplace422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof userHomeWidgetControllerReplace>>, TError,{data: BodyType<UserHomeWidgetControllerReplaceBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof userHomeWidgetControllerReplace>>, TError,{data: BodyType<UserHomeWidgetControllerReplaceBody>}, TContext> => {
+
+const mutationKey = ['userHomeWidgetControllerReplace'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof userHomeWidgetControllerReplace>>, {data: BodyType<UserHomeWidgetControllerReplaceBody>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  userHomeWidgetControllerReplace(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type UserHomeWidgetControllerReplaceMutationResult = NonNullable<Awaited<ReturnType<typeof userHomeWidgetControllerReplace>>>
+    export type UserHomeWidgetControllerReplaceMutationBody = BodyType<UserHomeWidgetControllerReplaceBody>
+    export type UserHomeWidgetControllerReplaceMutationError = ErrorType<UserHomeWidgetControllerReplace400 | UserHomeWidgetControllerReplace401 | UserHomeWidgetControllerReplace415 | UserHomeWidgetControllerReplace422>
+
+    /**
+ * @summary Salvar ordem, tamanho e estado (expandido/recolhido) dos widgets
+ */
+export const useUserHomeWidgetControllerReplace = <TError = ErrorType<UserHomeWidgetControllerReplace400 | UserHomeWidgetControllerReplace401 | UserHomeWidgetControllerReplace415 | UserHomeWidgetControllerReplace422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof userHomeWidgetControllerReplace>>, TError,{data: BodyType<UserHomeWidgetControllerReplaceBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof userHomeWidgetControllerReplace>>,
+        TError,
+        {data: BodyType<UserHomeWidgetControllerReplaceBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getUserHomeWidgetControllerReplaceMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Disposição dos widgets da página inicial do usuário
+ */
+export const userHomeWidgetControllerList = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<UserHomeWidgetControllerList200>(
+      {url: `/me/home-widgets`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getUserHomeWidgetControllerListQueryKey = () => {
+    return [
+    `/me/home-widgets`
+    ] as const;
+    }
+
+    
+export const getUserHomeWidgetControllerListQueryOptions = <TData = Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError = ErrorType<UserHomeWidgetControllerList400 | UserHomeWidgetControllerList401 | UserHomeWidgetControllerList422>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getUserHomeWidgetControllerListQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof userHomeWidgetControllerList>>> = ({ signal }) => userHomeWidgetControllerList(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type UserHomeWidgetControllerListQueryResult = NonNullable<Awaited<ReturnType<typeof userHomeWidgetControllerList>>>
+export type UserHomeWidgetControllerListQueryError = ErrorType<UserHomeWidgetControllerList400 | UserHomeWidgetControllerList401 | UserHomeWidgetControllerList422>
+
+
+export function useUserHomeWidgetControllerList<TData = Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError = ErrorType<UserHomeWidgetControllerList400 | UserHomeWidgetControllerList401 | UserHomeWidgetControllerList422>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof userHomeWidgetControllerList>>,
+          TError,
+          Awaited<ReturnType<typeof userHomeWidgetControllerList>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useUserHomeWidgetControllerList<TData = Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError = ErrorType<UserHomeWidgetControllerList400 | UserHomeWidgetControllerList401 | UserHomeWidgetControllerList422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof userHomeWidgetControllerList>>,
+          TError,
+          Awaited<ReturnType<typeof userHomeWidgetControllerList>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useUserHomeWidgetControllerList<TData = Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError = ErrorType<UserHomeWidgetControllerList400 | UserHomeWidgetControllerList401 | UserHomeWidgetControllerList422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Disposição dos widgets da página inicial do usuário
+ */
+
+export function useUserHomeWidgetControllerList<TData = Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError = ErrorType<UserHomeWidgetControllerList400 | UserHomeWidgetControllerList401 | UserHomeWidgetControllerList422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof userHomeWidgetControllerList>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getUserHomeWidgetControllerListQueryOptions(options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
@@ -8092,6 +9374,107 @@ export function usePersonControllerExport<TData = Awaited<ReturnType<typeof pers
 
 
 /**
+ * @summary Atividades e comunicações do cliente reunidas por categoria
+ */
+export const personActivityControllerFindActivities = (
+    id: string,
+    params?: PersonActivityControllerFindActivitiesParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PersonActivityControllerFindActivities200>(
+      {url: `/people/${id}/activities`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPersonActivityControllerFindActivitiesQueryKey = (id?: string,
+    params?: PersonActivityControllerFindActivitiesParams,) => {
+    return [
+    `/people/${id}/activities`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPersonActivityControllerFindActivitiesQueryOptions = <TData = Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError = ErrorType<PersonActivityControllerFindActivities400 | PersonActivityControllerFindActivities401 | PersonActivityControllerFindActivities404 | PersonActivityControllerFindActivities422>>(id: string,
+    params?: PersonActivityControllerFindActivitiesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPersonActivityControllerFindActivitiesQueryKey(id,params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof personActivityControllerFindActivities>>> = ({ signal }) => personActivityControllerFindActivities(id,params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PersonActivityControllerFindActivitiesQueryResult = NonNullable<Awaited<ReturnType<typeof personActivityControllerFindActivities>>>
+export type PersonActivityControllerFindActivitiesQueryError = ErrorType<PersonActivityControllerFindActivities400 | PersonActivityControllerFindActivities401 | PersonActivityControllerFindActivities404 | PersonActivityControllerFindActivities422>
+
+
+export function usePersonActivityControllerFindActivities<TData = Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError = ErrorType<PersonActivityControllerFindActivities400 | PersonActivityControllerFindActivities401 | PersonActivityControllerFindActivities404 | PersonActivityControllerFindActivities422>>(
+ id: string,
+    params: undefined |  PersonActivityControllerFindActivitiesParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof personActivityControllerFindActivities>>,
+          TError,
+          Awaited<ReturnType<typeof personActivityControllerFindActivities>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePersonActivityControllerFindActivities<TData = Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError = ErrorType<PersonActivityControllerFindActivities400 | PersonActivityControllerFindActivities401 | PersonActivityControllerFindActivities404 | PersonActivityControllerFindActivities422>>(
+ id: string,
+    params?: PersonActivityControllerFindActivitiesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof personActivityControllerFindActivities>>,
+          TError,
+          Awaited<ReturnType<typeof personActivityControllerFindActivities>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePersonActivityControllerFindActivities<TData = Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError = ErrorType<PersonActivityControllerFindActivities400 | PersonActivityControllerFindActivities401 | PersonActivityControllerFindActivities404 | PersonActivityControllerFindActivities422>>(
+ id: string,
+    params?: PersonActivityControllerFindActivitiesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Atividades e comunicações do cliente reunidas por categoria
+ */
+
+export function usePersonActivityControllerFindActivities<TData = Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError = ErrorType<PersonActivityControllerFindActivities400 | PersonActivityControllerFindActivities401 | PersonActivityControllerFindActivities404 | PersonActivityControllerFindActivities422>>(
+ id: string,
+    params?: PersonActivityControllerFindActivitiesParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personActivityControllerFindActivities>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPersonActivityControllerFindActivitiesQueryOptions(id,params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Update a Person by id
  */
 export const personControllerUpdateById = (
@@ -8700,6 +10083,227 @@ export function usePersonAttachmentControllerFind<TData = Awaited<ReturnType<typ
 
 
 /**
+ * @summary Rimuove un telefono aggiuntivo
+ */
+export const personPhoneControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/person-phones/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getPersonPhoneControllerDeleteByIdMutationOptions = <TError = ErrorType<PersonPhoneControllerDeleteById400 | PersonPhoneControllerDeleteById401 | PersonPhoneControllerDeleteById404 | PersonPhoneControllerDeleteById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personPhoneControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof personPhoneControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['personPhoneControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personPhoneControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  personPhoneControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PersonPhoneControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof personPhoneControllerDeleteById>>>
+    
+    export type PersonPhoneControllerDeleteByIdMutationError = ErrorType<PersonPhoneControllerDeleteById400 | PersonPhoneControllerDeleteById401 | PersonPhoneControllerDeleteById404 | PersonPhoneControllerDeleteById422>
+
+    /**
+ * @summary Rimuove un telefono aggiuntivo
+ */
+export const usePersonPhoneControllerDeleteById = <TError = ErrorType<PersonPhoneControllerDeleteById400 | PersonPhoneControllerDeleteById401 | PersonPhoneControllerDeleteById404 | PersonPhoneControllerDeleteById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personPhoneControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof personPhoneControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getPersonPhoneControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Aggiunge un telefono a una persona
+ */
+export const personPhoneControllerCreate = (
+    newPersonPhone: BodyType<NewPersonPhone>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PersonPhone>(
+      {url: `/person-phones`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newPersonPhone, signal
+    },
+      options);
+    }
+  
+
+
+export const getPersonPhoneControllerCreateMutationOptions = <TError = ErrorType<PersonPhoneControllerCreate400 | PersonPhoneControllerCreate401 | PersonPhoneControllerCreate404 | PersonPhoneControllerCreate415 | PersonPhoneControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personPhoneControllerCreate>>, TError,{data: BodyType<NewPersonPhone>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof personPhoneControllerCreate>>, TError,{data: BodyType<NewPersonPhone>}, TContext> => {
+
+const mutationKey = ['personPhoneControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof personPhoneControllerCreate>>, {data: BodyType<NewPersonPhone>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  personPhoneControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PersonPhoneControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof personPhoneControllerCreate>>>
+    export type PersonPhoneControllerCreateMutationBody = BodyType<NewPersonPhone>
+    export type PersonPhoneControllerCreateMutationError = ErrorType<PersonPhoneControllerCreate400 | PersonPhoneControllerCreate401 | PersonPhoneControllerCreate404 | PersonPhoneControllerCreate415 | PersonPhoneControllerCreate422>
+
+    /**
+ * @summary Aggiunge un telefono a una persona
+ */
+export const usePersonPhoneControllerCreate = <TError = ErrorType<PersonPhoneControllerCreate400 | PersonPhoneControllerCreate401 | PersonPhoneControllerCreate404 | PersonPhoneControllerCreate415 | PersonPhoneControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof personPhoneControllerCreate>>, TError,{data: BodyType<NewPersonPhone>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof personPhoneControllerCreate>>,
+        TError,
+        {data: BodyType<NewPersonPhone>},
+        TContext
+      > => {
+
+      const mutationOptions = getPersonPhoneControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Elenca i telefoni aggiuntivi delle persone
+ */
+export const personPhoneControllerFind = (
+    params?: PersonPhoneControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PersonPhoneWithRelations[]>(
+      {url: `/person-phones`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPersonPhoneControllerFindQueryKey = (params?: PersonPhoneControllerFindParams,) => {
+    return [
+    `/person-phones`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPersonPhoneControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof personPhoneControllerFind>>, TError = ErrorType<PersonPhoneControllerFind400 | PersonPhoneControllerFind401 | PersonPhoneControllerFind422>>(params?: PersonPhoneControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personPhoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPersonPhoneControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof personPhoneControllerFind>>> = ({ signal }) => personPhoneControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof personPhoneControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PersonPhoneControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof personPhoneControllerFind>>>
+export type PersonPhoneControllerFindQueryError = ErrorType<PersonPhoneControllerFind400 | PersonPhoneControllerFind401 | PersonPhoneControllerFind422>
+
+
+export function usePersonPhoneControllerFind<TData = Awaited<ReturnType<typeof personPhoneControllerFind>>, TError = ErrorType<PersonPhoneControllerFind400 | PersonPhoneControllerFind401 | PersonPhoneControllerFind422>>(
+ params: undefined |  PersonPhoneControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof personPhoneControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof personPhoneControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof personPhoneControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePersonPhoneControllerFind<TData = Awaited<ReturnType<typeof personPhoneControllerFind>>, TError = ErrorType<PersonPhoneControllerFind400 | PersonPhoneControllerFind401 | PersonPhoneControllerFind422>>(
+ params?: PersonPhoneControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personPhoneControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof personPhoneControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof personPhoneControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePersonPhoneControllerFind<TData = Awaited<ReturnType<typeof personPhoneControllerFind>>, TError = ErrorType<PersonPhoneControllerFind400 | PersonPhoneControllerFind401 | PersonPhoneControllerFind422>>(
+ params?: PersonPhoneControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personPhoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Elenca i telefoni aggiuntivi delle persone
+ */
+
+export function usePersonPhoneControllerFind<TData = Awaited<ReturnType<typeof personPhoneControllerFind>>, TError = ErrorType<PersonPhoneControllerFind400 | PersonPhoneControllerFind401 | PersonPhoneControllerFind422>>(
+ params?: PersonPhoneControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof personPhoneControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPersonPhoneControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Health check
  */
 export const pingControllerPing = (
@@ -9162,6 +10766,99 @@ export function usePropertyControllerNextCode<TData = Awaited<ReturnType<typeof 
 
 
 /**
+ * @summary List properties waiting to be republished
+ */
+export const propertyControllerFindToRepublish = (
+    
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyWithRelations[]>(
+      {url: `/properties/to-republish`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyControllerFindToRepublishQueryKey = () => {
+    return [
+    `/properties/to-republish`
+    ] as const;
+    }
+
+    
+export const getPropertyControllerFindToRepublishQueryOptions = <TData = Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError = ErrorType<PropertyControllerFindToRepublish400 | PropertyControllerFindToRepublish401 | PropertyControllerFindToRepublish422>>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyControllerFindToRepublishQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyControllerFindToRepublish>>> = ({ signal }) => propertyControllerFindToRepublish(requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyControllerFindToRepublishQueryResult = NonNullable<Awaited<ReturnType<typeof propertyControllerFindToRepublish>>>
+export type PropertyControllerFindToRepublishQueryError = ErrorType<PropertyControllerFindToRepublish400 | PropertyControllerFindToRepublish401 | PropertyControllerFindToRepublish422>
+
+
+export function usePropertyControllerFindToRepublish<TData = Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError = ErrorType<PropertyControllerFindToRepublish400 | PropertyControllerFindToRepublish401 | PropertyControllerFindToRepublish422>>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyControllerFindToRepublish>>,
+          TError,
+          Awaited<ReturnType<typeof propertyControllerFindToRepublish>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyControllerFindToRepublish<TData = Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError = ErrorType<PropertyControllerFindToRepublish400 | PropertyControllerFindToRepublish401 | PropertyControllerFindToRepublish422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyControllerFindToRepublish>>,
+          TError,
+          Awaited<ReturnType<typeof propertyControllerFindToRepublish>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyControllerFindToRepublish<TData = Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError = ErrorType<PropertyControllerFindToRepublish400 | PropertyControllerFindToRepublish401 | PropertyControllerFindToRepublish422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List properties waiting to be republished
+ */
+
+export function usePropertyControllerFindToRepublish<TData = Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError = ErrorType<PropertyControllerFindToRepublish400 | PropertyControllerFindToRepublish401 | PropertyControllerFindToRepublish422>>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyControllerFindToRepublish>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyControllerFindToRepublishQueryOptions(options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
  * @summary Storico delle modifiche dell'immobile (chi, quando e cosa), dalla più recente alla più vecchia
  */
 export const propertyHistoryControllerHistory = (
@@ -9328,6 +11025,100 @@ export const usePropertyBrokerControllerTransfer = <TError = ErrorType<PropertyB
       return useMutation(mutationOptions, queryClient);
     }
     
+/**
+ * @summary Print property summary with visit history
+ */
+export const propertySummaryControllerSummaryPdf = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Blob>(
+      {url: `/properties/${id}/summary-pdf`, method: 'GET',
+        responseType: 'blob', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertySummaryControllerSummaryPdfQueryKey = (id?: string,) => {
+    return [
+    `/properties/${id}/summary-pdf`
+    ] as const;
+    }
+
+    
+export const getPropertySummaryControllerSummaryPdfQueryOptions = <TData = Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError = ErrorType<PropertySummaryControllerSummaryPdf400 | PropertySummaryControllerSummaryPdf401 | PropertySummaryControllerSummaryPdf404 | PropertySummaryControllerSummaryPdf422>>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertySummaryControllerSummaryPdfQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>> = ({ signal }) => propertySummaryControllerSummaryPdf(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertySummaryControllerSummaryPdfQueryResult = NonNullable<Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>>
+export type PropertySummaryControllerSummaryPdfQueryError = ErrorType<PropertySummaryControllerSummaryPdf400 | PropertySummaryControllerSummaryPdf401 | PropertySummaryControllerSummaryPdf404 | PropertySummaryControllerSummaryPdf422>
+
+
+export function usePropertySummaryControllerSummaryPdf<TData = Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError = ErrorType<PropertySummaryControllerSummaryPdf400 | PropertySummaryControllerSummaryPdf401 | PropertySummaryControllerSummaryPdf404 | PropertySummaryControllerSummaryPdf422>>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>,
+          TError,
+          Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertySummaryControllerSummaryPdf<TData = Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError = ErrorType<PropertySummaryControllerSummaryPdf400 | PropertySummaryControllerSummaryPdf401 | PropertySummaryControllerSummaryPdf404 | PropertySummaryControllerSummaryPdf422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>,
+          TError,
+          Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertySummaryControllerSummaryPdf<TData = Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError = ErrorType<PropertySummaryControllerSummaryPdf400 | PropertySummaryControllerSummaryPdf401 | PropertySummaryControllerSummaryPdf404 | PropertySummaryControllerSummaryPdf422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Print property summary with visit history
+ */
+
+export function usePropertySummaryControllerSummaryPdf<TData = Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError = ErrorType<PropertySummaryControllerSummaryPdf400 | PropertySummaryControllerSummaryPdf401 | PropertySummaryControllerSummaryPdf404 | PropertySummaryControllerSummaryPdf422>>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertySummaryControllerSummaryPdf>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertySummaryControllerSummaryPdfQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
 /**
  * @summary Update a Property by id
  */
@@ -11642,6 +13433,292 @@ export function usePropertyFeeControllerFind<TData = Awaited<ReturnType<typeof p
  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
   const queryOptions = getPropertyFeeControllerFindQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+
+
+/**
+ * @summary Update a Property Floor Plan by id
+ */
+export const propertyFloorPlanControllerUpdateById = (
+    id: string,
+    propertyFloorPlanPartial: BodyType<PropertyFloorPlanPartial>,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/property-floor-plans/${id}`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: propertyFloorPlanPartial
+    },
+      options);
+    }
+  
+
+
+export const getPropertyFloorPlanControllerUpdateByIdMutationOptions = <TError = ErrorType<PropertyFloorPlanControllerUpdateById400 | PropertyFloorPlanControllerUpdateById401 | PropertyFloorPlanControllerUpdateById404 | PropertyFloorPlanControllerUpdateById415 | PropertyFloorPlanControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyFloorPlanPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyFloorPlanPartial>}, TContext> => {
+
+const mutationKey = ['propertyFloorPlanControllerUpdateById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyFloorPlanControllerUpdateById>>, {id: string;data: BodyType<PropertyFloorPlanPartial>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  propertyFloorPlanControllerUpdateById(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyFloorPlanControllerUpdateByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyFloorPlanControllerUpdateById>>>
+    export type PropertyFloorPlanControllerUpdateByIdMutationBody = BodyType<PropertyFloorPlanPartial>
+    export type PropertyFloorPlanControllerUpdateByIdMutationError = ErrorType<PropertyFloorPlanControllerUpdateById400 | PropertyFloorPlanControllerUpdateById401 | PropertyFloorPlanControllerUpdateById404 | PropertyFloorPlanControllerUpdateById415 | PropertyFloorPlanControllerUpdateById422>
+
+    /**
+ * @summary Update a Property Floor Plan by id
+ */
+export const usePropertyFloorPlanControllerUpdateById = <TError = ErrorType<PropertyFloorPlanControllerUpdateById400 | PropertyFloorPlanControllerUpdateById401 | PropertyFloorPlanControllerUpdateById404 | PropertyFloorPlanControllerUpdateById415 | PropertyFloorPlanControllerUpdateById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerUpdateById>>, TError,{id: string;data: BodyType<PropertyFloorPlanPartial>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyFloorPlanControllerUpdateById>>,
+        TError,
+        {id: string;data: BodyType<PropertyFloorPlanPartial>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyFloorPlanControllerUpdateByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Delete a Property Floor Plan by id
+ */
+export const propertyFloorPlanControllerDeleteById = (
+    id: string,
+ options?: SecondParameter<typeof mutator>,) => {
+      
+      
+      return mutator<unknown>(
+      {url: `/property-floor-plans/${id}`, method: 'DELETE'
+    },
+      options);
+    }
+  
+
+
+export const getPropertyFloorPlanControllerDeleteByIdMutationOptions = <TError = ErrorType<PropertyFloorPlanControllerDeleteById400 | PropertyFloorPlanControllerDeleteById401 | PropertyFloorPlanControllerDeleteById404 | PropertyFloorPlanControllerDeleteById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerDeleteById>>, TError,{id: string}, TContext> => {
+
+const mutationKey = ['propertyFloorPlanControllerDeleteById'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyFloorPlanControllerDeleteById>>, {id: string}> = (props) => {
+          const {id} = props ?? {};
+
+          return  propertyFloorPlanControllerDeleteById(id,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyFloorPlanControllerDeleteByIdMutationResult = NonNullable<Awaited<ReturnType<typeof propertyFloorPlanControllerDeleteById>>>
+    
+    export type PropertyFloorPlanControllerDeleteByIdMutationError = ErrorType<PropertyFloorPlanControllerDeleteById400 | PropertyFloorPlanControllerDeleteById401 | PropertyFloorPlanControllerDeleteById404 | PropertyFloorPlanControllerDeleteById422>
+
+    /**
+ * @summary Delete a Property Floor Plan by id
+ */
+export const usePropertyFloorPlanControllerDeleteById = <TError = ErrorType<PropertyFloorPlanControllerDeleteById400 | PropertyFloorPlanControllerDeleteById401 | PropertyFloorPlanControllerDeleteById404 | PropertyFloorPlanControllerDeleteById422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerDeleteById>>, TError,{id: string}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyFloorPlanControllerDeleteById>>,
+        TError,
+        {id: string},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyFloorPlanControllerDeleteByIdMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary Create a new Property Floor Plan
+ */
+export const propertyFloorPlanControllerCreate = (
+    newPropertyFloorPlan: BodyType<NewPropertyFloorPlan>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyFloorPlan>(
+      {url: `/property-floor-plans`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: newPropertyFloorPlan, signal
+    },
+      options);
+    }
+  
+
+
+export const getPropertyFloorPlanControllerCreateMutationOptions = <TError = ErrorType<PropertyFloorPlanControllerCreate400 | PropertyFloorPlanControllerCreate401 | PropertyFloorPlanControllerCreate415 | PropertyFloorPlanControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerCreate>>, TError,{data: BodyType<NewPropertyFloorPlan>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerCreate>>, TError,{data: BodyType<NewPropertyFloorPlan>}, TContext> => {
+
+const mutationKey = ['propertyFloorPlanControllerCreate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyFloorPlanControllerCreate>>, {data: BodyType<NewPropertyFloorPlan>}> = (props) => {
+          const {data} = props ?? {};
+
+          return  propertyFloorPlanControllerCreate(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyFloorPlanControllerCreateMutationResult = NonNullable<Awaited<ReturnType<typeof propertyFloorPlanControllerCreate>>>
+    export type PropertyFloorPlanControllerCreateMutationBody = BodyType<NewPropertyFloorPlan>
+    export type PropertyFloorPlanControllerCreateMutationError = ErrorType<PropertyFloorPlanControllerCreate400 | PropertyFloorPlanControllerCreate401 | PropertyFloorPlanControllerCreate415 | PropertyFloorPlanControllerCreate422>
+
+    /**
+ * @summary Create a new Property Floor Plan
+ */
+export const usePropertyFloorPlanControllerCreate = <TError = ErrorType<PropertyFloorPlanControllerCreate400 | PropertyFloorPlanControllerCreate401 | PropertyFloorPlanControllerCreate415 | PropertyFloorPlanControllerCreate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerCreate>>, TError,{data: BodyType<NewPropertyFloorPlan>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyFloorPlanControllerCreate>>,
+        TError,
+        {data: BodyType<NewPropertyFloorPlan>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyFloorPlanControllerCreateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
+/**
+ * @summary List Property Floor Plans
+ */
+export const propertyFloorPlanControllerFind = (
+    params?: PropertyFloorPlanControllerFindParams,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<PropertyFloorPlanWithRelations[]>(
+      {url: `/property-floor-plans`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getPropertyFloorPlanControllerFindQueryKey = (params?: PropertyFloorPlanControllerFindParams,) => {
+    return [
+    `/property-floor-plans`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getPropertyFloorPlanControllerFindQueryOptions = <TData = Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError = ErrorType<PropertyFloorPlanControllerFind400 | PropertyFloorPlanControllerFind401 | PropertyFloorPlanControllerFind422>>(params?: PropertyFloorPlanControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getPropertyFloorPlanControllerFindQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>> = ({ signal }) => propertyFloorPlanControllerFind(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type PropertyFloorPlanControllerFindQueryResult = NonNullable<Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>>
+export type PropertyFloorPlanControllerFindQueryError = ErrorType<PropertyFloorPlanControllerFind400 | PropertyFloorPlanControllerFind401 | PropertyFloorPlanControllerFind422>
+
+
+export function usePropertyFloorPlanControllerFind<TData = Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError = ErrorType<PropertyFloorPlanControllerFind400 | PropertyFloorPlanControllerFind401 | PropertyFloorPlanControllerFind422>>(
+ params: undefined |  PropertyFloorPlanControllerFindParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyFloorPlanControllerFind<TData = Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError = ErrorType<PropertyFloorPlanControllerFind400 | PropertyFloorPlanControllerFind401 | PropertyFloorPlanControllerFind422>>(
+ params?: PropertyFloorPlanControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>,
+          TError,
+          Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function usePropertyFloorPlanControllerFind<TData = Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError = ErrorType<PropertyFloorPlanControllerFind400 | PropertyFloorPlanControllerFind401 | PropertyFloorPlanControllerFind422>>(
+ params?: PropertyFloorPlanControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary List Property Floor Plans
+ */
+
+export function usePropertyFloorPlanControllerFind<TData = Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError = ErrorType<PropertyFloorPlanControllerFind400 | PropertyFloorPlanControllerFind401 | PropertyFloorPlanControllerFind422>>(
+ params?: PropertyFloorPlanControllerFindParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof propertyFloorPlanControllerFind>>, TError, TData>>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getPropertyFloorPlanControllerFindQueryOptions(params,options)
 
   const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
 
