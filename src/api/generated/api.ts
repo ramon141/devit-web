@@ -860,6 +860,13 @@ import type {
   PropertyDocumentControllerFind422,
   PropertyDocumentControllerFindParams,
   PropertyDocumentWithRelations,
+  PropertyDuplicateControllerDuplicate400,
+  PropertyDuplicateControllerDuplicate401,
+  PropertyDuplicateControllerDuplicate403,
+  PropertyDuplicateControllerDuplicate404,
+  PropertyDuplicateControllerDuplicate415,
+  PropertyDuplicateControllerDuplicate422,
+  PropertyDuplicateControllerDuplicateBody,
   PropertyFacetsControllerFacets200,
   PropertyFacetsControllerFacets400,
   PropertyFacetsControllerFacets401,
@@ -10858,6 +10865,72 @@ export function usePropertyControllerFindToRepublish<TData = Awaited<ReturnType<
 
 
 
+/**
+ * @summary Duplicate a Property listing
+ */
+export const propertyDuplicateControllerDuplicate = (
+    id: string,
+    propertyDuplicateControllerDuplicateBody?: BodyType<PropertyDuplicateControllerDuplicateBody>,
+ options?: SecondParameter<typeof mutator>,signal?: AbortSignal
+) => {
+      
+      
+      return mutator<Property>(
+      {url: `/properties/${id}/duplicate`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: propertyDuplicateControllerDuplicateBody, signal
+    },
+      options);
+    }
+  
+
+
+export const getPropertyDuplicateControllerDuplicateMutationOptions = <TError = ErrorType<PropertyDuplicateControllerDuplicate400 | PropertyDuplicateControllerDuplicate401 | PropertyDuplicateControllerDuplicate403 | PropertyDuplicateControllerDuplicate404 | PropertyDuplicateControllerDuplicate415 | PropertyDuplicateControllerDuplicate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDuplicateControllerDuplicate>>, TError,{id: string;data: BodyType<PropertyDuplicateControllerDuplicateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+): UseMutationOptions<Awaited<ReturnType<typeof propertyDuplicateControllerDuplicate>>, TError,{id: string;data: BodyType<PropertyDuplicateControllerDuplicateBody>}, TContext> => {
+
+const mutationKey = ['propertyDuplicateControllerDuplicate'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof propertyDuplicateControllerDuplicate>>, {id: string;data: BodyType<PropertyDuplicateControllerDuplicateBody>}> = (props) => {
+          const {id,data} = props ?? {};
+
+          return  propertyDuplicateControllerDuplicate(id,data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type PropertyDuplicateControllerDuplicateMutationResult = NonNullable<Awaited<ReturnType<typeof propertyDuplicateControllerDuplicate>>>
+    export type PropertyDuplicateControllerDuplicateMutationBody = BodyType<PropertyDuplicateControllerDuplicateBody>
+    export type PropertyDuplicateControllerDuplicateMutationError = ErrorType<PropertyDuplicateControllerDuplicate400 | PropertyDuplicateControllerDuplicate401 | PropertyDuplicateControllerDuplicate403 | PropertyDuplicateControllerDuplicate404 | PropertyDuplicateControllerDuplicate415 | PropertyDuplicateControllerDuplicate422>
+
+    /**
+ * @summary Duplicate a Property listing
+ */
+export const usePropertyDuplicateControllerDuplicate = <TError = ErrorType<PropertyDuplicateControllerDuplicate400 | PropertyDuplicateControllerDuplicate401 | PropertyDuplicateControllerDuplicate403 | PropertyDuplicateControllerDuplicate404 | PropertyDuplicateControllerDuplicate415 | PropertyDuplicateControllerDuplicate422>,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof propertyDuplicateControllerDuplicate>>, TError,{id: string;data: BodyType<PropertyDuplicateControllerDuplicateBody>}, TContext>, request?: SecondParameter<typeof mutator>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof propertyDuplicateControllerDuplicate>>,
+        TError,
+        {id: string;data: BodyType<PropertyDuplicateControllerDuplicateBody>},
+        TContext
+      > => {
+
+      const mutationOptions = getPropertyDuplicateControllerDuplicateMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    
 /**
  * @summary Storico delle modifiche dell'immobile (chi, quando e cosa), dalla più recente alla più vecchia
  */

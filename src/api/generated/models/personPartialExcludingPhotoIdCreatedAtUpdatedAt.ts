@@ -51,6 +51,11 @@ export interface PersonPartialExcludingPhotoIdCreatedAtUpdatedAt {
   /** @nullable */
   acquisitionSource?: PersonPartialExcludingPhotoIdCreatedAtUpdatedAtAcquisitionSource;
   /**
+   * @maxLength 200
+   * @nullable
+   */
+  acquisitionSourceOther?: string | null;
+  /**
    * @maxLength 50
    * @nullable
    */

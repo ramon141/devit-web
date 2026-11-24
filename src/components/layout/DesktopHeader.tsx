@@ -1,3 +1,4 @@
+import GlobalSearch from '@/components/layout/GlobalSearch'
 import HeaderActions from '@/components/layout/HeaderActions'
 import SessionInfo from '@/components/layout/SessionInfo'
 
@@ -20,8 +21,12 @@ function DesktopHeader({ title, description }: DesktopHeaderProps) {
         )}
       </div>
 
+      <div className="flex flex-1 justify-center px-2">
+        <GlobalSearch />
+      </div>
+
       <SessionInfo className="text-right" />
-      <HeaderActions className="flex items-center gap-1" />
+      <HeaderActions hideSearch className="flex items-center gap-1" />
     </div>
   )
 }

@@ -21,6 +21,7 @@ export const PersonFilterFieldsOneOfTwoItem = {
   secondaryPhone: 'secondaryPhone',
   documentType: 'documentType',
   acquisitionSource: 'acquisitionSource',
+  acquisitionSourceOther: 'acquisitionSourceOther',
   documentNumber: 'documentNumber',
   birthDate: 'birthDate',
   notes: 'notes',

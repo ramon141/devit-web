@@ -8,16 +8,17 @@ import PersonFormModal from '@/pages/Clientes/components/PersonFormModal'
 
 type HeaderActionsProps = {
   className?: string
+  hideSearch?: boolean
 }
 
 // Ações fixas do header (nuovo contatto, notifiche), reusadas no desktop e no mobile
-function HeaderActions({ className }: HeaderActionsProps) {
+function HeaderActions({ className, hideSearch }: HeaderActionsProps) {
   const { t } = useTranslation('common')
   const [newContactOpen, setNewContactOpen] = useState(false)
 
   return (
     <div className={className}>
-      <GlobalSearch />
+      {!hideSearch && <GlobalSearch />}
 
       <Button
         variant="ghost"

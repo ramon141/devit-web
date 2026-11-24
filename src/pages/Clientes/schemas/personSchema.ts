@@ -50,6 +50,7 @@ export function createPersonSchema(t: TFunction<'clientes'>) {
         .optional()
         .or(z.literal('')),
       acquisitionSource: z.enum(NewPersonAcquisitionSource).optional().or(z.literal('')),
+      acquisitionSourceOther: z.string().trim().max(200).optional(),
       documentType: z.string().trim().optional(),
       documentNumber: z.string().trim().optional(),
       birthDate: z

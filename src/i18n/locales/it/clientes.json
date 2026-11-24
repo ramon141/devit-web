@@ -46,6 +46,8 @@
     "secondaryPhone": "Telefono secondario",
     "acquisitionSource": "Come ci ha conosciuto",
     "acquisitionSourceHint": "Indica come il cliente è venuto a conoscenza dell'agenzia: tramite un nostro annuncio, i social media, la segnalazione di altre persone o altro.",
+    "acquisitionSourceOther": "Come è stato?",
+    "acquisitionSourceOtherPlaceholder": "Descrivi come ci ha conosciuto",
     "documentType": "Tipo documento",
     "documentTypePlaceholder": "Carta d'identità",
     "documentNumber": "Numero documento",

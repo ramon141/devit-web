@@ -49,6 +49,11 @@ export interface Person {
   /** @nullable */
   acquisitionSource?: PersonAcquisitionSource;
   /**
+   * @maxLength 200
+   * @nullable
+   */
+  acquisitionSourceOther?: string | null;
+  /**
    * @maxLength 50
    * @nullable
    */

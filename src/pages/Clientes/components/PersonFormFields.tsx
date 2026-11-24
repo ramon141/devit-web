@@ -1,4 +1,4 @@
-import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
+import { Controller, useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -20,6 +20,8 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
   const { t } = useTranslation('clientes')
   const { register, control } = form
   const { errors } = useFormState({ control })
+  const acquisitionSource = useWatch({ control, name: 'acquisitionSource' })
+  const isAcquisitionOther = acquisitionSource === 'other'
   const personRoleOptions = getPersonRoleOptions(t)
   const acquisitionSourceOptions = getPersonAcquisitionSourceOptions(t)
 
@@ -120,13 +122,31 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper
-        id="modal-field-documentNumber"
-        label={t('personFormFields.documentNumber')}
-        error={errors.documentNumber?.message}
-      >
-        <Input {...register('documentNumber')} />
-      </FormFieldWrapper>
+      {isAcquisitionOther && (
+        <div className="sm:col-span-2">
+          <FormFieldWrapper
+            id="modal-field-acquisitionSourceOther"
+            label={t('personFormFields.acquisitionSourceOther')}
+            error={errors.acquisitionSourceOther?.message}
+          >
+            <Input
+              {...register('acquisitionSourceOther')}
+              maxLength={200}
+              placeholder={t('personFormFields.acquisitionSourceOtherPlaceholder')}
+            />
+          </FormFieldWrapper>
+        </div>
+      )}
+
+      <div className="sm:col-span-2">
+        <FormFieldWrapper
+          id="modal-field-documentNumber"
+          label={t('personFormFields.documentNumber')}
+          error={errors.documentNumber?.message}
+        >
+          <Input {...register('documentNumber')} />
+        </FormFieldWrapper>
+      </div>
 
       <div className="sm:col-span-2">
         <FormFieldWrapper id="modal-field-notes" label={t('personFormFields.notes')} error={errors.notes?.message}>

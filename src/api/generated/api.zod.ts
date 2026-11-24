@@ -318,6 +318,8 @@ export const calendarEventControllerCreateBodyNewClientsItemSecondaryPhoneMax = 
 
 export const calendarEventControllerCreateBodyNewClientsItemDocumentTypeMax = 30;
 
+export const calendarEventControllerCreateBodyNewClientsItemAcquisitionSourceOtherMax = 200;
+
 export const calendarEventControllerCreateBodyNewClientsItemDocumentNumberMax = 50;
 
 
@@ -369,6 +371,7 @@ export const calendarEventControllerCreateBody = zod.strictObject({
   "secondaryPhone": zod.string().max(calendarEventControllerCreateBodyNewClientsItemSecondaryPhoneMax).nullish(),
   "documentType": zod.string().max(calendarEventControllerCreateBodyNewClientsItemDocumentTypeMax).nullish(),
   "acquisitionSource": zod.union([zod.literal('listing'),zod.literal('social_media'),zod.literal('referral'),zod.literal('other'),zod.literal(null)]).nullish(),
+  "acquisitionSourceOther": zod.string().max(calendarEventControllerCreateBodyNewClientsItemAcquisitionSourceOtherMax).nullish(),
   "documentNumber": zod.string().max(calendarEventControllerCreateBodyNewClientsItemDocumentNumberMax).nullish(),
   "notes": zod.string().nullish(),
   "responsibleBrokerId": zod.string().nullish()
@@ -911,6 +914,8 @@ export const personControllerUpdateByIdBodySecondaryPhoneMax = 30;
 
 export const personControllerUpdateByIdBodyDocumentTypeMax = 30;
 
+export const personControllerUpdateByIdBodyAcquisitionSourceOtherMax = 200;
+
 export const personControllerUpdateByIdBodyDocumentNumberMax = 50;
 
 
@@ -926,6 +931,7 @@ export const personControllerUpdateByIdBody = zod.strictObject({
   "secondaryPhone": zod.string().max(personControllerUpdateByIdBodySecondaryPhoneMax).nullish(),
   "documentType": zod.string().max(personControllerUpdateByIdBodyDocumentTypeMax).nullish(),
   "acquisitionSource": zod.union([zod.literal('listing'),zod.literal('social_media'),zod.literal('referral'),zod.literal('other'),zod.literal(null)]).nullish(),
+  "acquisitionSourceOther": zod.string().max(personControllerUpdateByIdBodyAcquisitionSourceOtherMax).nullish(),
   "documentNumber": zod.string().max(personControllerUpdateByIdBodyDocumentNumberMax).nullish(),
   "birthDate": zod.iso.datetime({}).nullish(),
   "notes": zod.string().nullish(),
@@ -964,6 +970,8 @@ export const personControllerCreateBodySecondaryPhoneMax = 30;
 
 export const personControllerCreateBodyDocumentTypeMax = 30;
 
+export const personControllerCreateBodyAcquisitionSourceOtherMax = 200;
+
 export const personControllerCreateBodyDocumentNumberMax = 50;
 
 
@@ -978,6 +986,7 @@ export const personControllerCreateBody = zod.strictObject({
   "secondaryPhone": zod.string().max(personControllerCreateBodySecondaryPhoneMax).nullish(),
   "documentType": zod.string().max(personControllerCreateBodyDocumentTypeMax).nullish(),
   "acquisitionSource": zod.union([zod.literal('listing'),zod.literal('social_media'),zod.literal('referral'),zod.literal('other'),zod.literal(null)]).nullish(),
+  "acquisitionSourceOther": zod.string().max(personControllerCreateBodyAcquisitionSourceOtherMax).nullish(),
   "documentNumber": zod.string().max(personControllerCreateBodyDocumentNumberMax).nullish(),
   "birthDate": zod.iso.datetime({}).nullish(),
   "notes": zod.string().nullish(),
@@ -1027,6 +1036,25 @@ export const personPhoneControllerCreateBody = zod.strictObject({
   "label": zod.string().max(personPhoneControllerCreateBodyLabelMax).nullish(),
   "personId": zod.string()
 }).describe('(tsType: Omit<PersonPhone, \'id\'>, schemaOptions: { title: \'NewPersonPhone\', exclude: [ \'id\' ] })')
+
+
+/**
+ * @summary Duplicate a Property listing
+ */
+export const propertyDuplicateControllerDuplicateBodySalePriceMin = 0;
+
+export const propertyDuplicateControllerDuplicateBodyRentPriceMin = 0;
+
+export const propertyDuplicateControllerDuplicateBodyTitleMax = 160;
+
+
+
+export const propertyDuplicateControllerDuplicateBody = zod.strictObject({
+  "purpose": zod.enum(['rent', 'sale', 'rent_or_sale']).optional().describe('Tipo de operação do novo anúncio'),
+  "salePrice": zod.number().min(propertyDuplicateControllerDuplicateBodySalePriceMin).optional().describe('Preço de venda do novo anúncio'),
+  "rentPrice": zod.number().min(propertyDuplicateControllerDuplicateBodyRentPriceMin).optional().describe('Preço de aluguel do novo anúncio'),
+  "title": zod.string().max(propertyDuplicateControllerDuplicateBodyTitleMax).optional().describe('Título do novo anúncio')
+})
 
 
 /**

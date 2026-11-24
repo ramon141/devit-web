@@ -27,6 +27,7 @@ export const emptyPersonValues: PersonFormValues = {
   phone: '',
   secondaryPhone: '',
   acquisitionSource: '',
+  acquisitionSourceOther: '',
   documentType: '',
   documentNumber: '',
   birthDate: '',
@@ -55,6 +56,7 @@ export function personToFormValues(person: PersonWithRelations): PersonFormValue
     phone: person.phone ?? '',
     secondaryPhone: person.secondaryPhone ?? '',
     acquisitionSource: person.acquisitionSource ?? '',
+    acquisitionSourceOther: person.acquisitionSourceOther ?? '',
     documentType: person.documentType ?? '',
     documentNumber: person.documentNumber ?? '',
     // a API devolve ISO completo; <input type="date"> exige "YYYY-MM-DD"
@@ -162,6 +164,8 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
     const payload = {
       ...data,
       acquisitionSource: values.acquisitionSource || null,
+      acquisitionSourceOther:
+        values.acquisitionSource === 'other' ? values.acquisitionSourceOther?.trim() || null : null,
       // a API espera date-time ISO completo para birthDate; o
       // <input type="date"> só devolve "YYYY-MM-DD" e era enviado cru, o
       // que a API rejeitava com 422 (formato inválido)

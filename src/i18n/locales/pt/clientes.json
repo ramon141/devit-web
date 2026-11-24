@@ -46,6 +46,8 @@
     "secondaryPhone": "Telefone secundário",
     "acquisitionSource": "Como conheceu a imobiliária",
     "acquisitionSourceHint": "Indica como o cliente ficou conhecendo a imobiliária: por um dos nossos anúncios, pelas redes sociais, por indicação de outras pessoas ou outro meio.",
+    "acquisitionSourceOther": "Como foi?",
+    "acquisitionSourceOtherPlaceholder": "Descreva como conheceu a imobiliária",
     "documentType": "Tipo de documento",
     "documentTypePlaceholder": "Carteira de identidade",
     "documentNumber": "Número do documento",

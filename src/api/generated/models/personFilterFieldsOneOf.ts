@@ -17,6 +17,7 @@ export type PersonFilterFieldsOneOf = {
   secondaryPhone?: boolean;
   documentType?: boolean;
   acquisitionSource?: boolean;
+  acquisitionSourceOther?: boolean;
   documentNumber?: boolean;
   birthDate?: boolean;
   notes?: boolean;

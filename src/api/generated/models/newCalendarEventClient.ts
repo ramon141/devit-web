@@ -46,6 +46,11 @@ export interface NewCalendarEventClient {
   /** @nullable */
   acquisitionSource?: NewCalendarEventClientAcquisitionSource;
   /**
+   * @maxLength 200
+   * @nullable
+   */
+  acquisitionSourceOther?: string | null;
+  /**
    * @maxLength 50
    * @nullable
    */

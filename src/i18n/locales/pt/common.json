@@ -155,7 +155,16 @@
   },
   "globalSearch": {
     "placeholder": "Buscar nome, telefone ou imóvel",
-    "empty": "Nenhum resultado",
-    "lead": "Solicitação"
+    "empty": "Nenhum resultado para \"{{query}}\"",
+    "loading": "Buscando...",
+    "lead": "Solicitação",
+    "groupProperties": "Imóveis",
+    "groupPeople": "Pessoas",
+    "groupLeads": "Solicitações",
+    "groupNav": "Navegação",
+    "groupRecents": "Recentes",
+    "chipProperty": "Imóvel",
+    "chipPerson": "Cliente",
+    "tip": "Dica: use <b>Cmd/Ctrl + K</b> para abrir"
   }
 }
