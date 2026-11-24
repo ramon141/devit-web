@@ -9,8 +9,6 @@ function CategoriePage() {
     <SectionPage
       title={t('categoriePage.title')}
       description={t('categoriePage.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/amministrazione/utenti"
     >
       <Categorie />
     </SectionPage>

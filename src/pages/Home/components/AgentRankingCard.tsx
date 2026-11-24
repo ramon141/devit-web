@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import DashboardListItem from '@/pages/Home/components/DashboardListItem'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
 import { useSalesRentalsReportControllerByAgent } from '@/api/generated/api'
 import { formatAmount } from '@/utils/formatAmount'
@@ -19,14 +20,13 @@ function AgentRankingCard() {
       )}
 
       {agents.map((agent, index) => (
-        <div
-          key={agent.agentId}
-          className="flex items-center justify-between gap-3 rounded-lg px-2 py-2 hover:bg-accent hover:text-accent-foreground"
-        >
-          <div className="min-w-0">
-            <p className="truncate text-sm font-medium">
-              {index + 1}. {agent.agentName}
-            </p>
+        <DashboardListItem key={agent.agentId}>
+          <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold">
+            {index + 1}
+          </span>
+
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-medium">{agent.agentName}</p>
 
             <p className="truncate text-xs text-muted-foreground">
               {t('agentRankingCard.detail', {
@@ -39,7 +39,7 @@ function AgentRankingCard() {
           <span className="shrink-0 text-sm font-medium">
             {formatAmount(agent.salesAmount)}
           </span>
-        </div>
+        </DashboardListItem>
       ))}
     </DashboardCard>
   )

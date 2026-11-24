@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
+import { FilePlus2Icon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import ExportMenu from '@/components/ExportMenu'
+import PageHeaderAction from '@/components/layout/PageHeaderAction'
 import TablePagination from '@/components/TablePagination'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
@@ -54,7 +56,6 @@ function Proposte() {
     <AppLayout
       title={t('page.title')}
       description={t('page.description')}
-      breadcrumbItems={[{ label: t('page.breadcrumb') }]}
     >
       <JoyrideWrapper
         steps={steps}
@@ -65,16 +66,23 @@ function Proposte() {
       />
       <TourFab onClick={startTour} />
 
+      <PageHeaderAction>
+        <ExportMenu
+          path="/purchase-proposals/export"
+          params={{ filter: { where }, ...brokerParams }}
+        />
+      </PageHeaderAction>
+
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder={t('page.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('page.newLabel')}
+        newIcon={FilePlus2Icon}
         searchWrapperId="proposte-search-filter"
         newButtonId="proposte-new-btn"
         filters={<ProposalFilters filters={filters} onChange={setFilters} />}
-        actions={<ExportMenu path="/purchase-proposals/export" params={{ filter: { where }, ...brokerParams }} />}
       />
 
       <ProposalTable proposals={proposals} isLoading={isLoading} onEdit={openEdit} />

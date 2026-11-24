@@ -83,8 +83,6 @@
     "date": "Data",
     "startTime": "Ora inizio",
     "endTime": "Ora fine",
-    "duration": "Durata",
-    "durationHint": "Di default 30 minuti. Cambiando la durata, l'ora di fine viene ricalcolata; puoi anche modificare l'ora di fine a mano.",
     "confirmationStatus": "Stato di conferma",
     "reminder": "Promemoria",
     "recurrence": "Ricorrenza",
@@ -97,7 +95,10 @@
     "clientSearchPlaceholder": "Cerca un cliente...",
     "owner": "Proprietario",
     "ownerPlaceholder": "Seleziona un proprietario",
-    "ownerSearchPlaceholder": "Cerca un proprietario..."
+    "ownerSearchPlaceholder": "Cerca un proprietario...",
+    "broker": "Agente",
+    "brokerPlaceholder": "Seleziona agente",
+    "brokerHint": "Scegliendo l'agente, l'appuntamento riceve il suo colore in agenda."
   },
   "formModal": {
     "editTitle": "Modifica impegno",
@@ -109,19 +110,23 @@
   "outcomeSection": {
     "title": "Esito dell’impegno",
     "placeholder": "Descrivi come è andata la visita/chiamata...",
-    "save": "Registra esito"
+    "save": "Registra esito",
+    "label": "Esito"
   },
   "participantsManager": {
     "title": "Clienti/proprietari collegati",
     "placeholder": "Seleziona un cliente",
     "searchPlaceholder": "Cerca un cliente...",
-    "add": "Aggiungi"
+    "add": "Aggiungi",
+    "label": "Partecipante",
+    "newClient": "Nuovo cliente"
   },
   "propertiesManager": {
     "title": "Immobili collegati",
     "placeholder": "Seleziona un immobile",
     "searchPlaceholder": "Cerca un immobile...",
-    "add": "Aggiungi"
+    "add": "Aggiungi",
+    "label": "Immobile"
   },
   "attachmentsManager": {
     "title": "Scheda di visualizzazione",
@@ -186,8 +191,12 @@
     }
   },
   "filters": {
+    "search": "Cerca",
+    "type": "Tipo evento",
+    "calls": "Telefonate",
     "searchPlaceholder": "Cerca per titolo",
     "typePlaceholder": "Tipo evento",
+    "typeDisabledReason": "Questa opzione non è disponibile perché il filtro \"Mostra solo telefonate\" è selezionato.",
     "onlyCalls": "Mostra solo telefonate",
     "visibleUsers": "Calendari da visualizzare",
     "visibleUsersPlaceholder": "Aggiungi collega",
@@ -320,5 +329,21 @@
   "hints": {
     "reminder": "Il promemoria arriva a chi crea l'appuntamento, una sola volta. Se sposti l'orario non viene rinviato.",
     "recurrence": "Verranno create 24 occorrenze future. Modificare l'originale non le aggiorna."
+  },
+  "eventTypeDescriptions": {
+    "acquisition": "Visita per acquisire un nuovo immobile o proprietario.",
+    "appointment": "Il proprietario firma autorizzando l'agenzia a vendere o affittare il suo immobile.",
+    "genericAppointment": "Qualsiasi altro impegno non previsto dalle opzioni.",
+    "salePreliminary": "Firma del contratto preliminare tra acquirente e venditore.",
+    "propertyViewing": "Il cliente visita l'immobile.",
+    "callScheduled": "Telefonata da fare.",
+    "callCompleted": "Telefonata già fatta.",
+    "rentalProposal": "Presentazione o risposta a una proposta di affitto.",
+    "purchaseProposal": "Presentazione o risposta a una proposta di acquisto.",
+    "finalDeed": "Firma dell'atto di compravendita dal notaio.",
+    "management": "Seguito di un immobile amministrato dall'agenzia.",
+    "valuation": "Visita per stimare il valore dell'immobile.",
+    "expiry": "Data limite, come fine contratto, incarico o pagamento.",
+    "sale": "Chiusura di una vendita."
   }
 }

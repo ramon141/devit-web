@@ -9,8 +9,6 @@ function ProprietariPage() {
     <SectionPage
       title={t('proprietariPage.title')}
       description={t('proprietariPage.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/amministrazione/utenti"
     >
       <Proprietari />
     </SectionPage>

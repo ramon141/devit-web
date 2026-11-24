@@ -1,3 +1,4 @@
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -39,7 +40,7 @@ function ProposalDatesAndNotesFields({ form }: ProposalDatesAndNotesFieldsProps)
           control={control}
           name="financed"
           render={({ field }) => (
-            <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+            <label className={toggleBoxEndClass}>
               <Switch checked={field.value} onCheckedChange={field.onChange} />
               {t('datesAndNotesFields.financedLabel')}
             </label>

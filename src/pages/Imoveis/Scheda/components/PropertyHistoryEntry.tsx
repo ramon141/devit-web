@@ -7,7 +7,14 @@ type HistoryEntryProps = {
 }
 
 export function HistoryEntry({ item }: HistoryEntryProps) {
-  const { t } = useTranslation('imoveis')
+  const { t, i18n } = useTranslation('imoveis')
+
+  // Campos técnicos (identificadores sem nome amigável) não dizem nada ao usuário
+  const visibleChanges = item.changes.filter(
+    (change) =>
+      !change.field.endsWith('Id') ||
+      i18n.exists(`imoveis:scheda.storicoTab.fields.${change.field}`),
+  )
   const author = item.user?.name ?? t('scheda.storicoTab.unknownOrigin')
 
   return (
@@ -18,7 +25,7 @@ export function HistoryEntry({ item }: HistoryEntryProps) {
       <p className="text-xs text-muted-foreground">
         {item.occurredAtLocal} · {author} · {t(`scheda.storicoTab.sources.${item.source}`)}
       </p>
-      {item.changes.map((change) => (
+      {visibleChanges.map((change) => (
         <p key={change.field} className="text-sm">
           <span className="text-muted-foreground">{t(`scheda.storicoTab.fields.${change.field}`, change.field)}:</span>{' '}
           {formatHistoryValue(t, change.field, change.previous)} →{' '}

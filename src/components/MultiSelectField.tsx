@@ -1,8 +1,7 @@
-import { XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import SearchableSelect, { type SearchableSelectOption } from '@/components/SearchableSelect'
+import Select, { type MultiValue } from 'react-select'
+import type { SearchableSelectOption } from '@/components/SearchableSelect'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
-import { Badge } from '@/components/ui/badge'
 
 type MultiSelectFieldProps = {
   options: SearchableSelectOption[]
@@ -18,7 +17,7 @@ type MultiSelectFieldProps = {
   isLoading?: boolean
 }
 
-// Seleção múltipla: SearchableSelect para adicionar + chips removíveis para os selecionados
+// Seleção múltipla com react-select: chips dentro do campo
 function MultiSelectField({
   options,
   values,
@@ -26,54 +25,54 @@ function MultiSelectField({
   label,
   required,
   placeholder,
-  searchPlaceholder,
   error,
-  triggerVariant = 'outline',
   onSearchChange,
   isLoading,
 }: MultiSelectFieldProps) {
   const { t } = useTranslation('common')
 
-  const available = options.filter((option) => !values.includes(option.value))
-  const selectedOptions = values
+  const selected = values
     .map((value) => options.find((option) => option.value === value))
     .filter((option): option is SearchableSelectOption => !!option)
 
-  function add(value: string) {
-    if (value && !values.includes(value)) {
-      onChange([...values, value])
-    }
-  }
-
-  function remove(value: string) {
-    onChange(values.filter((current) => current !== value))
+  function handleChange(next: MultiValue<SearchableSelectOption>) {
+    onChange(next.map((option) => option.value))
   }
 
   return (
     <FormFieldWrapper label={label} required={required} error={error}>
-      <SearchableSelect
-        options={available}
-        value={undefined}
-        onValueChange={add}
+      <Select<SearchableSelectOption, true>
+        isMulti
+        options={options}
+        value={selected}
+        onChange={handleChange}
         placeholder={placeholder ?? t('multiSelectField.placeholder')}
-        searchPlaceholder={searchPlaceholder}
-        triggerVariant={triggerVariant}
-        onSearchChange={onSearchChange}
         isLoading={isLoading}
+        onInputChange={(input) => onSearchChange?.(input)}
+        filterOption={onSearchChange ? () => true : undefined}
+        closeMenuOnSelect={false}
+        noOptionsMessage={() => t('searchableSelect.emptyText')}
+        loadingMessage={() => t('searchableSelect.loading')}
+        classNames={{
+          control: ({ isFocused }) =>
+            [
+              '!min-h-10 !rounded-lg !bg-card !text-sm !shadow-none',
+              '!transition-[border-color,box-shadow] !duration-200 !ease-out',
+              isFocused
+                ? '!border-ring !ring-3 !ring-ring/50'
+                : '!border-input',
+            ].join(' '),
+          multiValue: () =>
+            '!rounded-md !border !border-amber-300 !bg-amber-100 !text-sm',
+          multiValueLabel: () => '!px-2 !py-0.5 !text-sm !font-medium !text-foreground',
+          multiValueRemove: () =>
+            '!rounded-r-md !px-1.5 !text-foreground hover:!bg-amber-300 hover:!text-foreground',
+          option: ({ isFocused, isSelected }) =>
+            `!text-sm ${isFocused || isSelected ? '!bg-accent !text-foreground' : ''}`,
+        }}
+        menuPortalTarget={document.body}
+        styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
       />
-
-      {selectedOptions.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {selectedOptions.map((option) => (
-            <Badge key={option.value} variant="secondary" className="gap-1">
-              {option.label}
-              <button type="button" onClick={() => remove(option.value)} aria-label={t('multiSelectField.remove')}>
-                <XIcon className="size-3" />
-              </button>
-            </Badge>
-          ))}
-        </div>
-      )}
     </FormFieldWrapper>
   )
 }

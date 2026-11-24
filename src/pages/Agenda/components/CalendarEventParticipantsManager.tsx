@@ -36,7 +36,7 @@ function CalendarEventParticipantsManager({ calendarEventId }: CalendarEventPart
             searchPlaceholder={t('agenda:participantsManager.searchPlaceholder')}
           />
         </div>
-        <Button type="button" onClick={addParticipant}>
+        <Button type="button" className="h-10" onClick={addParticipant}>
           <PlusIcon data-icon="inline-start" />
           {t('agenda:participantsManager.add')}
         </Button>

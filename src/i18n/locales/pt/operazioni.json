@@ -36,7 +36,7 @@
     "adeguamenti": {
       "page": {
         "title": "Reajuste de aluguel",
-        "description": "Gere as comunicações de reajuste do valor de locação"
+        "description": "Atualiza uma vez por ano o aluguel dos contratos ativos, conforme o índice de correção"
       },
       "index": {
         "description": "Selecione os contratos ativos a reajustar (deixe tudo desmarcado para aplicar a todos os contratos ativos), informe a variação percentual e gere as comunicações.",
@@ -215,10 +215,8 @@
       "all": "Todos",
       "ownerLabel": "Proprietário",
       "tenantLabel": "Inquilino",
-      "stipulaDateFromLabel": "Data de assinatura de",
-      "stipulaDateToLabel": "Data de assinatura até",
-      "startDateFromLabel": "Data de início de",
-      "startDateToLabel": "Data de início até",
+      "stipulaDateFromLabel": "Data de assinatura",
+      "startDateFromLabel": "Data de início",
       "onlyMine": "Somente meus"
     }
   },
@@ -327,7 +325,8 @@
     "documentsManager": {
       "typePlaceholder": "Tipo de documento (opcional)",
       "uploadLabel": "Enviar documento",
-      "emptyMessage": "Nenhum documento enviado."
+      "emptyMessage": "Nenhum documento enviado.",
+      "typeLabel": "Tipo de documento"
     },
     "hooks": {
       "form": {
@@ -357,8 +356,7 @@
       "statusLabel": "Status",
       "sellerLabel": "Vendedor",
       "buyerLabel": "Comprador",
-      "saleDateFromLabel": "Data de assinatura de",
-      "saleDateToLabel": "Data de assinatura até",
+      "saleDateFromLabel": "Data de assinatura",
       "onlyMine": "Somente as minhas",
       "all": "Todos"
     }
@@ -651,7 +649,7 @@
       },
       "indexPercent": {
         "title": "Índice de reajuste (%)",
-        "content": "Informe o percentual do ano (por exemplo, 2,5). O sistema não calcula o índice: ele deve ser tirado da publicação oficial do ISTAT. São aceitos valores entre 0% e 100%."
+        "content": "Informe o percentual do ano (por exemplo, 2,5). O sistema não calcula o índice: ele deve ser tirado da publicação oficial do ISTAT. São aceitos valores entre -50% e +100%, diferentes de 0."
       },
       "generateBtn": {
         "title": "Gerar reajustes",

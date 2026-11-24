@@ -1,7 +1,6 @@
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import type { FormEvent } from 'react'
-import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import ControlledInput from '@/components/ControlledInput'
@@ -16,19 +15,18 @@ import { getPurposeOptions, getStatusOptions, type PropertyFormValues } from '@/
 type PropertyGeneralTabProps = {
   form: UseFormReturn<PropertyFormValues>
   onSubmit: (event: FormEvent) => void
-  isSubmitting: boolean
   propertyId?: string
-  onBack?: () => void
 }
 
-function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId, onBack }: PropertyGeneralTabProps) {
+function PropertyGeneralTab({ form, onSubmit, propertyId }: PropertyGeneralTabProps) {
   const { t } = useTranslation('imoveis')
   const { control } = form
   const { errors } = useFormState({ control })
+  const showBroker = Auth.isAdmin() && !propertyId
 
   return (
-    <form noValidate onSubmit={onSubmit} className="flex h-full min-h-0 flex-col">
-      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+    <form id="property-tab-form-generale" noValidate onSubmit={onSubmit} className="flex h-full min-h-0 flex-col">
+      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 pb-16 sm:grid-cols-2">
         <FormFieldWrapper id="property-field-code" label={t('generalTab.codeLabel')} required error={errors.code?.message}>
           <PropertyCodeField form={form} />
         </FormFieldWrapper>
@@ -39,7 +37,7 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId, onBack }
 
         <PropertyCategoryOwnerFields control={control} errors={errors} />
 
-        {Auth.isAdmin() && !propertyId && <PropertyResponsibleBrokerField control={control} errors={errors} />}
+        {showBroker && <PropertyResponsibleBrokerField control={control} errors={errors} />}
 
         <FormFieldWrapper id="property-field-purpose" label={t('generalTab.purposeLabel')} required error={errors.purpose?.message}>
           <Controller
@@ -51,22 +49,22 @@ function PropertyGeneralTab({ form, onSubmit, isSubmitting, propertyId, onBack }
           />
         </FormFieldWrapper>
 
-        <FormFieldWrapper id="property-field-status" label={t('generalTab.statusLabel')} required error={errors.status?.message}>
-          <Controller
-            control={control}
-            name="status"
-            render={({ field }) => (
-              <SelectField value={field.value} onValueChange={field.onChange} options={getStatusOptions(t)} />
-            )}
-          />
-        </FormFieldWrapper>
+        <div className={showBroker ? 'sm:col-span-2' : undefined}>
+          <FormFieldWrapper id="property-field-status" label={t('generalTab.statusLabel')} required error={errors.status?.message}>
+            <Controller
+              control={control}
+              name="status"
+              render={({ field }) => (
+                <SelectField value={field.value} onValueChange={field.onChange} options={getStatusOptions(t)} />
+              )}
+            />
+          </FormFieldWrapper>
+        </div>
 
         <PropertyFlagsRow control={control} />
 
         <PropertyOwnersManager propertyId={propertyId ?? ''} />
       </div>
-
-      <PropertyFormFooter id="property-tab-generale-actions" isSubmitting={isSubmitting} onBack={onBack} />
     </form>
   )
 }

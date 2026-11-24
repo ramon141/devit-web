@@ -1,4 +1,4 @@
-import { LockIcon } from 'lucide-react'
+import { LockIcon, type LucideIcon } from 'lucide-react'
 import { TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 
@@ -6,11 +6,24 @@ type StepperStep = {
   value: string
   label: string
   step: number
+  icon?: LucideIcon
   locked?: boolean
 }
 
 type StepperProps = {
   steps: StepperStep[]
+}
+
+function renderStepContent(step: StepperStep) {
+  if (step.locked) return <LockIcon className="size-3.5" />
+
+  if (step.icon) {
+    const Icon = step.icon
+
+    return <Icon className="size-4" />
+  }
+
+  return step.step
 }
 
 function Stepper({ steps }: StepperProps) {
@@ -38,7 +51,7 @@ function Stepper({ steps }: StepperProps) {
               'group-data-active:border-primary group-data-active:bg-primary group-data-active:text-primary-foreground'
             )}
           >
-            {step.locked ? <LockIcon className="size-3.5" /> : step.step}
+            {renderStepContent(step)}
           </span>
           <span className="text-center text-[11px] leading-tight font-medium whitespace-normal text-muted-foreground group-data-active:text-foreground">
             {step.label}

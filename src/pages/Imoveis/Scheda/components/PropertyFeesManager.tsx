@@ -1,3 +1,4 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -53,30 +54,36 @@ function PropertyFeesManager({ propertyId }: PropertyFeesManagerProps) {
       </div>
 
       <div className="mt-2 flex flex-wrap items-end gap-2">
-        <Input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder={t('scheda.feesManager.namePlaceholder')}
-          className="w-40"
-        />
-        <div className="w-32">
-          <InputMoney value={amount} setValue={setAmount} name="feeAmount" />
-        </div>
-        <div className="min-w-40">
-          <SelectField
-            value={frequency}
-            onValueChange={(value) => setFrequency(value as NewPropertyFeeFrequency)}
-            options={feeFrequencyOptions}
-            placeholder={t('scheda.feesManager.frequencyPlaceholder')}
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.feesManager.nameLabel')}>
+          <Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder={t('scheda.feesManager.namePlaceholder')}
           />
+        </FormFieldWrapper>
+        <div className="min-w-32 flex-1">
+          <FormFieldWrapper label={t('scheda.feesManager.amountLabel')}>
+            <InputMoney value={amount} setValue={setAmount} name="feeAmount" />
+          </FormFieldWrapper>
         </div>
-        <Input
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          placeholder={t('scheda.feesManager.notePlaceholder')}
-          className="w-40"
-        />
-        <Button type="button" onClick={addFee}>
+        <div className="min-w-40 flex-1">
+          <FormFieldWrapper label={t('scheda.feesManager.frequencyLabel')}>
+            <SelectField
+              value={frequency}
+              onValueChange={(value) => setFrequency(value as NewPropertyFeeFrequency)}
+              options={feeFrequencyOptions}
+              placeholder={t('scheda.feesManager.frequencyPlaceholder')}
+            />
+          </FormFieldWrapper>
+        </div>
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.feesManager.noteLabel')}>
+          <Input
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder={t('scheda.feesManager.notePlaceholder')}
+          />
+        </FormFieldWrapper>
+        <Button type="button" className="h-10" onClick={addFee}>
           <PlusIcon data-icon="inline-start" />
           {t('scheda.feesManager.add')}
         </Button>

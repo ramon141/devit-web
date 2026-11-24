@@ -14,8 +14,13 @@
     "whatsapp": "WhatsApp"
   },
   "notFound": {
-    "message": "Pagina non trovata.",
-    "backHome": "Torna alla home"
+    "title": "Pagina non trovata",
+    "message": "L'indirizzo che hai cercato non esiste o è stato spostato.",
+    "back": "Indietro",
+    "goDashboard": "Vai alla bacheca",
+    "goOwnerArea": "Vai alla mia area",
+    "goLogin": "Vai al login",
+    "goSite": "Vai al sito"
   },
   "auth": {
     "tokenMissing": "Token mancante. Prova a effettuare nuovamente il login."
@@ -64,11 +69,20 @@
   "selectField": {
     "placeholder": "Seleziona"
   },
+  "dateRangePicker": {
+    "placeholder": "Dal – Al",
+    "choose": "Scegli periodo",
+    "previousMonth": "Mese precedente",
+    "nextMonth": "Mese successivo",
+    "mask": "GG/MM/AAAA – GG/MM/AAAA"
+  },
   "multiSelectField": {
     "placeholder": "Seleziona",
     "remove": "Rimuovi"
   },
   "tablePagination": {
+    "previous": "Pagina precedente",
+    "next": "Pagina successiva",
     "summary_one": "Pagina {{page}} di {{totalPages}} · {{count}} risultato",
     "summary_other": "Pagina {{page}} di {{totalPages}} · {{count}} risultati",
     "summary_many": "Pagina {{page}} di {{totalPages}} · {{count}} risultati"
@@ -99,7 +113,8 @@
       "componenti": "Componenti",
       "proprietari": "Proprietari",
       "zone": "Zone",
-      "videoHome": "Video home"
+      "videoHome": "Video home",
+      "feedback": "Feedback e richieste"
     }
   },
   "notificationsPopover": {
@@ -132,6 +147,9 @@
     "label": "Esporta",
     "excel": "Excel",
     "pdf": "PDF",
+    "print": "Stampa",
+    "printPending": "Preparazione della stampa in corso...",
+    "printSuccess": "Stampa aperta",
     "pending": "Esportazione del file in corso...",
     "success": "File esportato con successo"
   },

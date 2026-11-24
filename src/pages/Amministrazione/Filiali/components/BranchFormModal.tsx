@@ -1,3 +1,4 @@
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
@@ -47,10 +48,10 @@ function BranchFormModal({ open, onOpenChange, branch }: BranchFormModalProps) {
           control={control}
           name="active"
           render={({ field }) => (
-            <div id="modal-field-active" className="flex items-center gap-2">
+            <label id="modal-field-active" className={toggleBoxClass}>
               <Switch checked={field.value} onCheckedChange={field.onChange} />
               <span className="text-sm">{t('branchFormModal.activeLabel')}</span>
-            </div>
+            </label>
           )}
         />
 

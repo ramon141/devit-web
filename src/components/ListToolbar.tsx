@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
-import { PlusIcon, SearchIcon } from 'lucide-react'
+import { PlusIcon, SearchIcon, type LucideIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { cn } from '@/lib/utils'
+import { filterPanelClass } from '@/lib/filterPanel'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
@@ -11,6 +13,7 @@ type ListToolbarProps = {
   searchPlaceholder?: string
   onNewClick?: () => void
   newLabel?: string
+  newIcon?: LucideIcon
   filters?: ReactNode
   actions?: ReactNode
   searchWrapperId?: string
@@ -24,6 +27,7 @@ function ListToolbar({
   searchPlaceholder,
   onNewClick,
   newLabel,
+  newIcon: NewIcon = PlusIcon,
   filters,
   actions,
   searchWrapperId,
@@ -35,7 +39,12 @@ function ListToolbar({
 
   return (
     <div className="mb-4 flex flex-col gap-3">
-      <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+      <div
+        className={cn(
+          'flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end',
+          filterPanelClass
+        )}
+      >
         <div id={searchWrapperId} className="w-full sm:max-w-xs">
           <FormFieldWrapper label={t('listToolbar.searchLabel')}>
             <div className="relative">
@@ -57,8 +66,12 @@ function ListToolbar({
         {actions}
 
         {onNewClick && (
-          <Button id={newButtonId} onClick={onNewClick} className="gap-1.5">
-            <PlusIcon className="size-4" />
+          <Button
+            id={newButtonId}
+            onClick={onNewClick}
+            className="h-10 gap-2 rounded-lg px-4 text-sm font-medium shadow-none"
+          >
+            <NewIcon className="size-5" />
             {resolvedNewLabel}
           </Button>
         )}

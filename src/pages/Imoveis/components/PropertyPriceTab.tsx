@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useWatch, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import type { FormEvent } from 'react'
-import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import InputMoney from '@/components/InputMoney'
 import PropertyPriceDetailSection from '@/pages/Imoveis/Scheda/components/PropertyPriceDetailSection'
 import { usePropertyPriceDetailForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyPriceDetailForm'
@@ -12,12 +11,10 @@ import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 type PropertyPriceTabProps = {
   form: UseFormReturn<PropertyFormValues>
   onSubmit: (event: FormEvent) => void
-  isSubmitting: boolean
   propertyId?: string
-  onBack?: () => void
 }
 
-function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId, onBack }: PropertyPriceTabProps) {
+function PropertyPriceTab({ form, onSubmit, propertyId }: PropertyPriceTabProps) {
   const { t } = useTranslation('imoveis')
   const { control, setValue, formState } = form
   const { errors } = formState
@@ -45,8 +42,8 @@ function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId, onBack }: 
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
-      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+    <form id="property-tab-form-prezzo" noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
+      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 pb-16 sm:grid-cols-2">
         {showSalePrice && (
           <div id="property-field-salePrice">
             <InputMoney
@@ -71,7 +68,10 @@ function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId, onBack }: 
           </div>
         )}
 
-        <div id="property-field-condoFee">
+        <div
+          id="property-field-condoFee"
+          className={showSalePrice && showRentPrice ? 'sm:col-span-2' : undefined}
+        >
           <InputMoney
             name="condoFee"
             label={t('priceTab.condoFeeLabel')}
@@ -83,12 +83,6 @@ function PropertyPriceTab({ form, onSubmit, isSubmitting, propertyId, onBack }: 
 
         {!priceDetail.isLoading && <PropertyPriceDetailSection form={priceDetail.form} />}
       </div>
-
-      <PropertyFormFooter
-        id="property-tab-prezzo-actions"
-        isSubmitting={isSubmitting || priceDetail.isSubmitting}
-        onBack={onBack}
-      />
     </form>
   )
 }

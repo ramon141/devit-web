@@ -185,7 +185,6 @@ function Agenda() {
     <AppLayout
       title={t('agenda:page.title')}
       description={t('agenda:page.description')}
-      breadcrumbItems={[{ label: t('agenda:page.breadcrumb') }]}
     >
       <JoyrideWrapper
         steps={steps}

@@ -27,4 +27,5 @@ export const UserFilter1FieldsOneOfTwoItem = {
   updatedAt: 'updatedAt',
   avatarId: 'avatarId',
   branchId: 'branchId',
+  calendarColor: 'calendarColor',
 } as const;

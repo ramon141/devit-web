@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import PropertyCodeLink from '@/pages/Clientes/Scheda/components/PropertyCodeLink'
 import { Badge } from '@/components/ui/badge'
 import { usePersonProperties } from '@/pages/Clientes/Scheda/hooks/usePersonProperties'
 import type { PersonLink } from '@/pages/Clientes/Scheda/utils/personLinks'
@@ -35,7 +36,11 @@ function SchedaImmobili({ personId }: SchedaImmobiliProps) {
           className="flex items-center gap-2 rounded-lg px-3 py-2 ring-1 ring-border"
         >
           <Badge variant="secondary">{t(`schedaImmobili.${link.role}`)}</Badge>
-          <span className="text-sm">{linkText(link)}</span>
+          {link.property ? (
+            <PropertyCodeLink property={link.property} />
+          ) : (
+            <span className="text-sm">{linkText(link)}</span>
+          )}
         </div>
       ))}
     </div>

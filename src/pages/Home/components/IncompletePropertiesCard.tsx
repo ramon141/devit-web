@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
+import DashboardListItem from '@/pages/Home/components/DashboardListItem'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
 import {
   usePropertiesReportControllerIncomplete,
@@ -23,10 +24,7 @@ function IncompletePropertiesCard() {
       )}
 
       {properties.map((property) => (
-        <div
-          key={property.id}
-          className="flex items-center justify-between gap-3 rounded-lg px-2 py-2 hover:bg-accent hover:text-accent-foreground"
-        >
+        <DashboardListItem key={property.id}>
           <div className="min-w-0">
             <p className="truncate text-sm font-medium">{property.code}</p>
             <p className="truncate text-xs text-muted-foreground">{property.title}</p>
@@ -43,7 +41,7 @@ function IncompletePropertiesCard() {
               <Badge variant="destructive">{t('incompletePropertiesCard.missingPhotos')}</Badge>
             )}
           </div>
-        </div>
+        </DashboardListItem>
       ))}
     </DashboardCard>
   )

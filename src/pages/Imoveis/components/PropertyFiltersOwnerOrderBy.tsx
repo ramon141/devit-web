@@ -23,7 +23,7 @@ function PropertyFiltersOwnerOrderBy({ filters, update }: PropertyFiltersOwnerOr
 
   return (
     <>
-      <div className="sm:col-span-2">
+      <div className="col-span-2">
         <FormFieldWrapper label={t('filters.ownerLabel')}>
           <PersonSelect
             value={filters.ownerId}

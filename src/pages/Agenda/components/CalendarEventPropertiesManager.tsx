@@ -36,7 +36,7 @@ function CalendarEventPropertiesManager({ calendarEventId }: CalendarEventProper
             searchPlaceholder={t('agenda:propertiesManager.searchPlaceholder')}
           />
         </div>
-        <Button type="button" onClick={addProperty}>
+        <Button type="button" className="h-10" onClick={addProperty}>
           <PlusIcon data-icon="inline-start" />
           {t('agenda:propertiesManager.add')}
         </Button>

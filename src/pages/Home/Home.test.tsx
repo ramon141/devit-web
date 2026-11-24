@@ -7,11 +7,16 @@ import {
   getPropertiesReportControllerIncompleteCountMockHandler,
   getPropertiesReportControllerIncompleteMockHandler,
   getPropertiesReportControllerRecentMockHandler,
+  getUserHomeWidgetControllerListMockHandler,
+  getUserHomeWidgetControllerReplaceMockHandler,
 } from '@/api/generated/api.msw'
 import { apiError, renderWithProviders, screen, server, userEvent, waitFor, within } from '@/test'
+import type {
+  UserHomeWidgetControllerReplace200WidgetsItem,
+  UserHomeWidgetControllerReplaceBody,
+} from '@/api/generated/models'
 import Home from '@/pages/Home'
 
-const ACTIVE_WIDGETS_KEY = 'dashboard.activeWidgets'
 const DORMANT_DAYS_KEY = 'dashboard.dormantDays'
 
 const DEFAULT_TITLES = [
@@ -21,8 +26,17 @@ const DEFAULT_TITLES = [
   'Provenienza richieste',
 ]
 
+function mockSavedWidgets(keys: string[]) {
+  server.use(
+    getUserHomeWidgetControllerListMockHandler({
+      widgets: keys.map((widgetKey) => ({ widgetKey, size: 'small', collapsed: false })),
+    }),
+  )
+}
+
 function mockEmptyDashboard() {
   server.use(
+    getUserHomeWidgetControllerListMockHandler({ widgets: [] }),
     getLeadsReportControllerTodayAppointmentsMockHandler([]),
     getPropertiesReportControllerRecentMockHandler([]),
     getPropertiesReportControllerDormantMockHandler([]),
@@ -62,7 +76,7 @@ describe('Painel inicial (Home)', () => {
     expect(await screen.findByText('Nessun immobile dormiente.')).toBeInTheDocument()
     expect(await screen.findByText('Nessun immobile modificato di recente.')).toBeInTheDocument()
     expect(await screen.findByText('Nessun risultato.')).toBeInTheDocument()
-    expect(screen.getByText('Totale: 0')).toBeInTheDocument()
+    expect(screen.getByText('Provenienza richieste')).toBeInTheDocument()
     expect(container.textContent).not.toMatch(/NaN|undefined|null/)
   })
 
@@ -88,10 +102,7 @@ describe('Painel inicial (Home)', () => {
       ]),
       getPropertiesReportControllerIncompleteCountMockHandler({ count: 12 }),
     )
-    localStorage.setItem(
-      ACTIVE_WIDGETS_KEY,
-      JSON.stringify(['dormantProperties', 'incompleteProperties']),
-    )
+    mockSavedWidgets(['dormantProperties', 'incompleteProperties'])
 
     renderWithProviders(<Home />)
 
@@ -149,10 +160,7 @@ describe('Painel inicial (Home)', () => {
 
     it('T267 com 2 cartões escolhidos mostra só esses', async () => {
       mockEmptyDashboard()
-      localStorage.setItem(
-        ACTIVE_WIDGETS_KEY,
-        JSON.stringify(['todayAppointments', 'dormantProperties']),
-      )
+      mockSavedWidgets(['todayAppointments', 'dormantProperties'])
 
       renderWithProviders(<Home />)
 
@@ -162,23 +170,9 @@ describe('Painel inicial (Home)', () => {
       expect(screen.queryByText('Ultimi immobili modificati')).not.toBeInTheDocument()
     })
 
-    it('T267 valor guardado inválido volta aos 4 padrão', async () => {
-      mockEmptyDashboard()
-      localStorage.setItem(ACTIVE_WIDGETS_KEY, '{nao-e-json')
-
-      renderWithProviders(<Home />)
-
-      for (const title of DEFAULT_TITLES) {
-        expect(await screen.findByText(title)).toBeInTheDocument()
-      }
-    })
-
     it('T267 cartão inexistente guardado é ignorado', async () => {
       mockEmptyDashboard()
-      localStorage.setItem(
-        ACTIVE_WIDGETS_KEY,
-        JSON.stringify(['cartaoFantasma', 'dormantProperties', 42]),
-      )
+      mockSavedWidgets(['cartaoFantasma', 'dormantProperties'])
 
       renderWithProviders(<Home />)
 
@@ -206,8 +200,49 @@ describe('Painel inicial (Home)', () => {
       expect(requestedDays).not.toContain('180')
     })
 
+    it('T267 recolher é guardado e o cartão recolhido esconde o conteúdo', async () => {
+      mockEmptyDashboard()
+
+      let saved: UserHomeWidgetControllerReplace200WidgetsItem[] = []
+
+      server.use(
+        getUserHomeWidgetControllerReplaceMockHandler(async ({ request }) => {
+          const body = (await request.json()) as UserHomeWidgetControllerReplaceBody
+          saved = body.widgets
+
+          return body
+        }),
+      )
+
+      const user = userEvent.setup()
+
+      renderWithProviders(<Home />)
+      await screen.findByText('Nessun immobile dormiente.')
+
+      const card = document.getElementById('home-card-dormantProperties') as HTMLElement
+
+      await user.click(within(card).getByRole('button', { name: 'Opzioni del widget' }))
+      await user.click(await screen.findByText('Comprimi'))
+
+      expect(screen.getByText('Nessun immobile dormiente.').closest('[inert]')).not.toBeNull()
+      await waitFor(() =>
+        expect(saved.find((w) => w.widgetKey === 'dormantProperties')?.collapsed).toBe(true),
+      )
+    })
+
     it('T267 remover um cartão guarda a escolha para o próximo acesso', async () => {
       mockEmptyDashboard()
+
+      let savedKeys: string[] = []
+
+      server.use(
+        getUserHomeWidgetControllerReplaceMockHandler(async ({ request }) => {
+          const body = (await request.json()) as UserHomeWidgetControllerReplaceBody
+          savedKeys = body.widgets.map((w) => w.widgetKey)
+
+          return body
+        }),
+      )
 
       const user = userEvent.setup()
 
@@ -216,12 +251,14 @@ describe('Painel inicial (Home)', () => {
 
       const card = document.getElementById('home-card-dormantProperties') as HTMLElement
 
-      await user.click(within(card).getByRole('button', { name: 'Rimuovi widget' }))
+      await user.click(within(card).getByRole('button', { name: 'Opzioni del widget' }))
+      await user.click(await screen.findByText('Rimuovi widget'))
 
-      expect(screen.queryByText('Immobili dormienti')).not.toBeInTheDocument()
-      expect(JSON.parse(localStorage.getItem(ACTIVE_WIDGETS_KEY) ?? '[]')).not.toContain(
-        'dormantProperties',
+      await waitFor(() =>
+        expect(screen.queryByText('Immobili dormienti')).not.toBeInTheDocument(),
       )
+      await waitFor(() => expect(savedKeys.length).toBeGreaterThan(0))
+      expect(savedKeys).not.toContain('dormantProperties')
     })
   })
 

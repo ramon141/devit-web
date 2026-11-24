@@ -14,8 +14,13 @@
     "whatsapp": "WhatsApp"
   },
   "notFound": {
-    "message": "Página não encontrada.",
-    "backHome": "Voltar para a home"
+    "title": "Página não encontrada",
+    "message": "O endereço que você tentou acessar não existe ou foi movido.",
+    "back": "Voltar",
+    "goDashboard": "Ir para o painel",
+    "goOwnerArea": "Ir para a minha área",
+    "goLogin": "Ir para o login",
+    "goSite": "Ir para o site"
   },
   "auth": {
     "tokenMissing": "Token inexistente. Tente fazer login novamente."
@@ -64,11 +69,20 @@
   "selectField": {
     "placeholder": "Selecione"
   },
+  "dateRangePicker": {
+    "placeholder": "De – Até",
+    "choose": "Escolher período",
+    "previousMonth": "Mês anterior",
+    "nextMonth": "Próximo mês",
+    "mask": "DD/MM/AAAA – DD/MM/AAAA"
+  },
   "multiSelectField": {
     "placeholder": "Selecione",
     "remove": "Remover"
   },
   "tablePagination": {
+    "previous": "Página anterior",
+    "next": "Próxima página",
     "summary_one": "Página {{page}} de {{totalPages}} · {{count}} resultado",
     "summary_many": "Página {{page}} de {{totalPages}} · {{count}} resultados",
     "summary_other": "Página {{page}} de {{totalPages}} · {{count}} resultados"
@@ -99,7 +113,8 @@
       "componenti": "Componentes",
       "proprietari": "Proprietários",
       "zone": "Zonas",
-      "videoHome": "Vídeo da home"
+      "videoHome": "Vídeo da home",
+      "feedback": "Feedback e pedidos"
     }
   },
   "notificationsPopover": {
@@ -132,6 +147,9 @@
     "label": "Exportar",
     "excel": "Excel",
     "pdf": "PDF",
+    "print": "Imprimir",
+    "printPending": "Preparando impressão...",
+    "printSuccess": "Impressão aberta",
     "pending": "Exportando arquivo...",
     "success": "Arquivo exportado com sucesso"
   },

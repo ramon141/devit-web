@@ -1,3 +1,4 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -38,6 +39,7 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
       <div className="flex flex-wrap items-end gap-2">
         <div className="min-w-52 flex-1">
           <SearchableSelect
+            label={t('scheda.ownersManager.ownerLabel')}
             value={personId}
             onValueChange={setPersonId}
             options={personOptions}
@@ -47,14 +49,15 @@ function PropertyOwnersManager({ propertyId }: PropertyOwnersManagerProps) {
             searchPlaceholder={t('scheda.ownersManager.searchClientPlaceholder')}
           />
         </div>
-        <Input
-          value={percent}
-          onChange={(event) => setPercent(event.target.value)}
-          type="number"
-          placeholder={t('scheda.ownersManager.percentPlaceholder')}
-          className="w-28"
-        />
-        <Button type="button" onClick={addOwner}>
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.ownersManager.percentLabel')}>
+          <Input
+            value={percent}
+            onChange={(event) => setPercent(event.target.value)}
+            type="number"
+            placeholder={t('scheda.ownersManager.percentPlaceholder')}
+          />
+        </FormFieldWrapper>
+        <Button type="button" className="h-10" onClick={addOwner}>
           <PlusIcon data-icon="inline-start" />
           {t('scheda.ownersManager.add')}
         </Button>

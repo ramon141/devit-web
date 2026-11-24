@@ -14,6 +14,7 @@ type ModalRegisterProps = {
   description?: string
   children: ReactNode
   wide?: boolean
+  widthClassName?: string
 }
 
 const DEFAULT_WIDTH_CLASS = 'w-full sm:max-w-full md:max-w-[700px]'
@@ -28,10 +29,11 @@ function ModalRegister({
   description,
   children,
   wide = false,
+  widthClassName,
 }: ModalRegisterProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={wide ? WIDE_WIDTH_CLASS : DEFAULT_WIDTH_CLASS}>
+      <DialogContent className={widthClassName ?? (wide ? WIDE_WIDTH_CLASS : DEFAULT_WIDTH_CLASS)}>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           {description && <DialogDescription>{description}</DialogDescription>}

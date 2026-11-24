@@ -9,8 +9,6 @@ function VenditePage() {
     <SectionPage
       title={t('vendite.page.title')}
       description={t('vendite.page.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/operazioni/vendite"
     >
       <Vendite />
     </SectionPage>

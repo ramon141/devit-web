@@ -1,3 +1,5 @@
+import { filterPanelClass } from '@/lib/filterPanel'
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import { SearchIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -27,7 +29,7 @@ function LeadFilters({ filters, onChange }: LeadFiltersProps) {
   }
 
   return (
-    <div className="mb-4 grid w-full grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className={`mb-4 grid w-full grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-5 ${filterPanelClass}`}>
       <FormFieldWrapper id="leads-search-filter" label={t('common:listToolbar.searchLabel')}>
         <div className="relative">
           <SearchIcon className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
@@ -58,7 +60,11 @@ function LeadFilters({ filters, onChange }: LeadFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <FormFieldWrapper id="leads-assignedTo-filter" label={t('leads.filters.assignedToPlaceholder')}>
+      <FormFieldWrapper
+        id="leads-assignedTo-filter"
+        label={t('leads.filters.assignedToPlaceholder')}
+        disabledReason={filters.onlyMine ? t('leads.filters.assignedToDisabledReason') : undefined}
+      >
         <SearchableSelect
           value={filters.assignedToId}
           onValueChange={(value) => update({ assignedToId: value, onlyMine: false })}
@@ -68,7 +74,10 @@ function LeadFilters({ filters, onChange }: LeadFiltersProps) {
         />
       </FormFieldWrapper>
 
-      <label id="leads-onlyMine-filter" className="flex h-9 items-center gap-2 text-sm">
+      <label
+        id="leads-onlyMine-filter"
+        className={`${toggleBoxEndClass} sm:col-span-2 lg:col-span-1`}
+      >
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true, assignedToId: '' })}

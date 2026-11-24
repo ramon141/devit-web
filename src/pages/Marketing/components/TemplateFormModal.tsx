@@ -1,3 +1,4 @@
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import { Controller } from 'react-hook-form'
 import FieldHint from '@/components/FieldHint'
 import { useTranslation } from 'react-i18next'
@@ -91,7 +92,7 @@ function TemplateFormModal({ open, onOpenChange, template }: TemplateFormModalPr
           control={control}
           name="active"
           render={({ field }) => (
-            <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+            <label className={toggleBoxEndClass}>
               <Switch checked={field.value} onCheckedChange={field.onChange} />
               {t('templateFormModal.activeLabel')}
             </label>

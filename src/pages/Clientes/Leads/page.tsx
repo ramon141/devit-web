@@ -9,8 +9,6 @@ function LeadsPage() {
     <SectionPage
       title={t('leadsPage.title')}
       description={t('leadsPage.description')}
-      parentLabel={t('leadsPage.parentLabel')}
-      parentPath="/gestionale/clienti"
     >
       <Leads />
     </SectionPage>

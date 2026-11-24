@@ -84,7 +84,19 @@
   },
   "upcomingRenewalsCard": {
     "title": "Contratos de aluguel a vencer",
-    "empty": "Nenhum contrato de aluguel chega ao fim nos próximos 30 dias."
+    "empty": "Nenhum contrato de aluguel chega ao fim nos próximos 30 dias.",
+    "urgency": {
+      "overdue": "Vencido",
+      "today": "Vence hoje",
+      "tomorrow": "Vence amanhã",
+      "inDays": "Em {{count}} dias"
+    }
+  },
+  "widgetMenu": {
+    "resize": "Arraste para redimensionar",
+    "label": "Opções do widget",
+    "expand": "Expandir",
+    "collapse": "Recolher"
   },
   "widgetSelection": {
     "title": "Seleção de widgets",

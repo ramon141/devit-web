@@ -9,8 +9,6 @@ function VideoHomePage() {
     <SectionPage
       title={t('videoHomePage.title')}
       description={t('videoHomePage.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/amministrazione/utenti"
     >
       <VideoHome />
     </SectionPage>

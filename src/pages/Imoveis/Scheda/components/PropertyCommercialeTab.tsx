@@ -2,7 +2,6 @@ import FieldHint from '@/components/FieldHint'
 import type { FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Separator } from '@/components/ui/separator'
-import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import { usePropertyCommercialForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyCommercialForm'
 import { usePropertyHeatingForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyHeatingForm'
 import CommercialActivityFields from '@/pages/Imoveis/Scheda/components/CommercialActivityFields'
@@ -14,13 +13,12 @@ import { getAmenityOptions, getIndustrialFeatureOptions } from '@/pages/Imoveis/
 
 type PropertyCommercialeTabProps = {
   propertyId: string
-  onBack?: () => void
   onNext: () => void
 }
 
-function PropertyCommercialeTab({ propertyId, onBack, onNext }: PropertyCommercialeTabProps) {
+function PropertyCommercialeTab({ propertyId, onNext }: PropertyCommercialeTabProps) {
   const { t } = useTranslation('imoveis')
-  const { form, isLoading, isSubmitting, onSubmit } = usePropertyCommercialForm(propertyId, onNext)
+  const { form, isLoading, onSubmit } = usePropertyCommercialForm(propertyId, onNext)
   const heating = usePropertyHeatingForm(propertyId)
 
   // Um único "Próximo" grava os dados comerciais e o aquecimento juntos
@@ -32,8 +30,8 @@ function PropertyCommercialeTab({ propertyId, onBack, onNext }: PropertyCommerci
   if (isLoading || heating.isLoading) return null
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
-      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+    <form id="property-tab-form-commerciale" noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
+      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 pb-16 sm:grid-cols-2">
         <FieldHint className="sm:col-span-2">{t('scheda.registryNote')}</FieldHint>
         <CommercialActivityFields form={form} />
         <CommercialAreaFields form={form} />
@@ -58,12 +56,6 @@ function PropertyCommercialeTab({ propertyId, onBack, onNext }: PropertyCommerci
           options={getIndustrialFeatureOptions(t)}
         />
       </div>
-
-      <PropertyFormFooter
-        id="property-tab-commerciale-actions"
-        isSubmitting={isSubmitting || heating.isSubmitting}
-        onBack={onBack}
-      />
     </form>
   )
 }

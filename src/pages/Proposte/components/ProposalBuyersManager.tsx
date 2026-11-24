@@ -40,6 +40,7 @@ function ProposalBuyersManager({ proposalId }: ProposalBuyersManagerProps) {
       <div className="flex flex-wrap items-end gap-2">
         <div className="min-w-52 flex-1">
           <SearchableSelect
+            label={t('buyersManager.buyerLabel')}
             value={personId}
             onValueChange={setPersonId}
             options={personOptions}
@@ -49,7 +50,7 @@ function ProposalBuyersManager({ proposalId }: ProposalBuyersManagerProps) {
             searchPlaceholder={t('propertyBuyerFields.buyerSearchPlaceholder')}
           />
         </div>
-        <Button type="button" onClick={handleAdd}>
+        <Button type="button" className="h-10" onClick={handleAdd}>
           <PlusIcon data-icon="inline-start" />
           {t('buyersManager.add')}
         </Button>

@@ -18,7 +18,7 @@ function PropertyBrokerHeader({ property }: PropertyBrokerHeaderProps) {
   const [transferOpen, setTransferOpen] = useState(false)
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 shadow-xs">
+    <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <ResponsibleBroker broker={property.responsibleBroker} since={property.responsibleSince} />
 

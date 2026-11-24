@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { PlusIcon } from 'lucide-react'
+import { TargetIcon } from 'lucide-react'
 import { DndContext, DragOverlay } from '@dnd-kit/core'
 import { Button } from '@/components/ui/button'
 import ConfirmPopup from '@/components/ConfirmPopup'
@@ -73,8 +73,12 @@ function Leads() {
       <TourFab onClick={startTour} />
 
       <div className="mb-4 flex justify-end">
-        <Button id="leads-new-btn" onClick={handleNew} className="gap-1.5">
-          <PlusIcon className="size-4" />
+        <Button
+          id="leads-new-btn"
+          onClick={handleNew}
+          className="h-10 gap-2 rounded-lg px-4 text-sm font-medium shadow-none"
+        >
+          <TargetIcon className="size-5" />
           {t('leads.newButton')}
         </Button>
       </div>

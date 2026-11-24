@@ -53,18 +53,18 @@ function buildStepDefs(): { defs: StepDef[]; tabRanges: Record<string, [number, 
 
   for (const [tabValue, fields] of coreTabs) {
     const start = defs.length
-    defs.push({ target: `#stepper-tab-${tabValue}`, placement: 'bottom', key: `tab${capitalize(tabValue)}` })
+    defs.push({ target: `#stepper-tab-${tabValue}`, placement: 'left', key: `tab${capitalize(tabValue)}` })
     defs.push(...fieldSteps(fields))
     defs.push({
-      target: `#property-tab-${tabValue}-actions`,
-      placement: 'top',
+      target: '#property-sidebar-actions',
+      placement: 'left',
       key: 'actions',
     })
     tabRanges[tabValue] = [start, defs.length]
   }
 
   for (const tabValue of OTHER_TAB_VALUES) {
-    defs.push({ target: `#stepper-tab-${tabValue}`, placement: 'bottom', key: `tab${capitalize(tabValue)}` })
+    defs.push({ target: `#stepper-tab-${tabValue}`, placement: 'left', key: `tab${capitalize(tabValue)}` })
   }
 
   return { defs, tabRanges }

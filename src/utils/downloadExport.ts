@@ -24,3 +24,29 @@ export async function downloadExport(
   link.click()
   URL.revokeObjectURL(url)
 }
+
+// Busca o mesmo PDF do export e abre a impressão direto, sem baixar o arquivo.
+export async function printExport(
+  path: string,
+  params: Record<string, unknown> = {},
+): Promise<void> {
+  const response = await api.get<Blob>(path, {
+    params: { ...params, format: 'pdf' },
+    responseType: 'blob',
+  })
+
+  const url = URL.createObjectURL(response.data)
+  const frame = document.createElement('iframe')
+  frame.style.display = 'none'
+  frame.src = url
+
+  frame.onload = () => {
+    frame.contentWindow?.print()
+    setTimeout(() => {
+      frame.remove()
+      URL.revokeObjectURL(url)
+    }, 60_000)
+  }
+
+  document.body.appendChild(frame)
+}

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { useLocation } from 'react-router'
 import Sidebar from '@/components/layout/Sidebar'
 import DesktopHeader from '@/components/layout/DesktopHeader'
+import SectionTitleBox from '@/components/layout/SectionTitleBox'
 
 type DesktopLayoutProps = {
   title: string
@@ -17,12 +18,14 @@ function DesktopLayout({ title, description, children }: DesktopLayoutProps) {
       <Sidebar />
 
       <div className="flex min-w-0 flex-1 flex-col px-5">
-        <DesktopHeader title={title} description={description} />
+        <DesktopHeader />
 
         <div
           key={pathname}
-          className="mb-4 flex-1 overflow-y-auto overflow-x-hidden px-1 -mx-1 pb-20 animate-in fade-in slide-in-from-bottom-2 duration-300"
+          className="mb-4 flex flex-1 flex-col overflow-y-auto overflow-x-hidden px-1 -mx-1 pb-20 animate-in fade-in slide-in-from-bottom-2 duration-300"
         >
+          <SectionTitleBox title={title} description={description} />
+
           {children}
         </div>
       </div>

@@ -9,8 +9,6 @@ function ClientiPage() {
     <SectionPage
       title={t('page.title')}
       description={t('page.description')}
-      parentLabel={t('page.parentLabel')}
-      parentPath="/gestionale/clienti"
     >
       <Anagrafica />
     </SectionPage>

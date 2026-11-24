@@ -39,9 +39,11 @@ function PropertyCadastralSection({ form }: PropertyCadastralSectionProps) {
       <FormFieldWrapper label={t('scheda.cadastralSection.subalternoLabel')}>
         <Input {...register('subalterno')} />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.cadastralSection.renditaLabel')}>
-        <Input {...register('rendita')} type="number" />
-      </FormFieldWrapper>
+      <div className="sm:col-span-2">
+        <FormFieldWrapper label={t('scheda.cadastralSection.renditaLabel')}>
+          <Input {...register('rendita')} type="number" />
+        </FormFieldWrapper>
+      </div>
     </div>
   )
 }

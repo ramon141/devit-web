@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { UserCogIcon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
@@ -52,6 +53,7 @@ function Utenti() {
         searchPlaceholder={t('utenti.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('utenti.newLabel')}
+        newIcon={UserCogIcon}
         searchWrapperId="utenti-search-filter"
         newButtonId="utenti-new-btn"
       />

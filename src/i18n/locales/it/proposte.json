@@ -118,13 +118,12 @@
   },
   "filters": {
     "statusLabel": "Stato",
-    "financedLabel": "Vincolata a mutuo",
+    "financedLabel": "Vincolata al finanziamento?",
     "financedYes": "Sì",
     "financedNo": "No",
     "propertyLabel": "Immobile",
     "buyerLabel": "Acquirente",
-    "proposalDateFromLabel": "Periodo dal",
-    "proposalDateToLabel": "Periodo al",
+    "proposalDateFromLabel": "Periodo",
     "onlyMine": "Solo le mie",
     "all": "Tutti"
   },
@@ -137,7 +136,8 @@
     "addError": "Errore durante l'aggiunta dell'acquirente.",
     "removing": "Rimozione in corso...",
     "removeSuccess": "Acquirente rimosso con successo!",
-    "removeError": "Errore durante la rimozione dell'acquirente."
+    "removeError": "Errore durante la rimozione dell'acquirente.",
+    "buyerLabel": "Acquirente"
   },
   "tour": {
     "page": {

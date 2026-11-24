@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { keepPreviousData } from '@tanstack/react-query'
 import { useGlobalSearchControllerSearch } from '@/api/generated/api'
 import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import PropertyThumb from '@/components/layout/PropertyThumb'
@@ -8,7 +9,8 @@ import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 import { LEAD_ID_SEARCH_PARAM } from '@/constants/notifications'
 
 const MIN_CHARS = 2
-const DEBOUNCE_MS = 250
+const DEBOUNCE_MS = 120
+const CACHE_MS = 30_000
 // Monta os grupos exibidos no modal: atalhos do menu (e recentes) + resultados do servidor
 export function useGlobalSearchGroups(open: boolean, text: string, onNavigate: (path: string) => void) {
   const { t } = useTranslation('common')
@@ -16,7 +18,10 @@ export function useGlobalSearchGroups(open: boolean, text: string, onNavigate: (
   const term = text.trim().toLowerCase()
   const query = useDebouncedValue(text.trim(), DEBOUNCE_MS)
   const enabled = open && query.length >= MIN_CHARS && term.length >= MIN_CHARS
-  const { data, isFetching } = useGlobalSearchControllerSearch({ q: query }, { query: { enabled } })
+  const { data, isFetching } = useGlobalSearchControllerSearch({ q: query }, {
+    // mantém os resultados anteriores até chegar o novo e reaproveita buscas repetidas
+    query: { enabled, placeholderData: keepPreviousData, staleTime: CACHE_MS },
+  })
 
   function navRow(option: NavOption, prefix: string): SearchRow {
     const Icon = option.icon

@@ -45,6 +45,7 @@ function CalendarEventPropertiesDraftManager({
       <div className="flex flex-wrap items-end gap-2">
         <div className="min-w-52 flex-1">
           <SearchableSelect
+            label={t('agenda:propertiesManager.label')}
             value={propertyId}
             onValueChange={setPropertyId}
             options={options}
@@ -54,7 +55,7 @@ function CalendarEventPropertiesDraftManager({
             searchPlaceholder={t('agenda:propertiesManager.searchPlaceholder')}
           />
         </div>
-        <Button type="button" onClick={handleAdd}>
+        <Button type="button" className="h-10" onClick={handleAdd}>
           <PlusIcon data-icon="inline-start" />
           {t('agenda:propertiesManager.add')}
         </Button>

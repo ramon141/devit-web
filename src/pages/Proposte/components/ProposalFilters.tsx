@@ -1,5 +1,7 @@
+import { cn } from '@/lib/utils'
+import DateRangeTextPicker from '@/components/DateRangePicker/DateRangeTextPicker'
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import { useTranslation } from 'react-i18next'
-import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import SelectField from '@/components/SelectField'
@@ -67,23 +69,15 @@ function ProposalFilters({ filters, onChange }: ProposalFiltersProps) {
         onChange={(value) => update({ brokerCode: value })}
       />
 
-      <FormFieldWrapper id="proposte-dateFrom-filter" label={t('filters.proposalDateFromLabel')}>
-        <Input
-          type="date"
-          value={filters.proposalDateFrom}
-          onChange={(event) => update({ proposalDateFrom: event.target.value })}
-        />
-      </FormFieldWrapper>
+      <DateRangeTextPicker
+        id="proposte-date-filter"
+        label={t('filters.proposalDateFromLabel')}
+        from={filters.proposalDateFrom}
+        to={filters.proposalDateTo}
+        onChange={(from, to) => update({ proposalDateFrom: from, proposalDateTo: to })}
+      />
 
-      <FormFieldWrapper id="proposte-dateTo-filter" label={t('filters.proposalDateToLabel')}>
-        <Input
-          type="date"
-          value={filters.proposalDateTo}
-          onChange={(event) => update({ proposalDateTo: event.target.value })}
-        />
-      </FormFieldWrapper>
-
-      <Label id="proposte-onlyMine-filter" className="flex items-center gap-2 pb-2 text-sm font-normal">
+      <Label id="proposte-onlyMine-filter" className={cn(toggleBoxEndClass, 'col-span-2')}>
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true })}

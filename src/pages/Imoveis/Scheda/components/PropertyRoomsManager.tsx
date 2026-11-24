@@ -1,3 +1,4 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -54,42 +55,48 @@ function PropertyRoomsManager({ propertyId }: PropertyRoomsManagerProps) {
       </div>
 
       <div className="mt-2 flex flex-wrap items-end gap-2">
-        <div className="min-w-40">
-          <SelectField
-            value={roomType}
-            onValueChange={(value) => setRoomType(value as PropertyRoomRoomType)}
-            options={roomTypeOptions}
-            placeholder={t('scheda.roomsManager.roomTypePlaceholder')}
-          />
+        <div className="min-w-40 flex-1">
+          <FormFieldWrapper label={t('scheda.roomsManager.roomTypeLabel')}>
+            <SelectField
+              value={roomType}
+              onValueChange={(value) => setRoomType(value as PropertyRoomRoomType)}
+              options={roomTypeOptions}
+              placeholder={t('scheda.roomsManager.roomTypePlaceholder')}
+            />
+          </FormFieldWrapper>
         </div>
-        <Input
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          type="number"
-          placeholder={t('scheda.roomsManager.quantityPlaceholder')}
-          className="w-24"
-        />
-        <Input
-          value={widthM}
-          onChange={(e) => setWidthM(e.target.value)}
-          type="number"
-          placeholder={t('scheda.roomsManager.widthPlaceholder')}
-          className="w-32"
-        />
-        <Input
-          value={lengthM}
-          onChange={(e) => setLengthM(e.target.value)}
-          type="number"
-          placeholder={t('scheda.roomsManager.lengthPlaceholder')}
-          className="w-32"
-        />
-        <Input
-          value={equipment}
-          onChange={(e) => setEquipment(e.target.value)}
-          placeholder={t('scheda.roomsManager.equipmentPlaceholder')}
-          className="w-40"
-        />
-        <Button type="button" onClick={addRoom}>
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.roomsManager.quantityLabel')}>
+          <Input
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            type="number"
+            placeholder={t('scheda.roomsManager.quantityPlaceholder')}
+          />
+        </FormFieldWrapper>
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.roomsManager.widthLabel')}>
+          <Input
+            value={widthM}
+            onChange={(e) => setWidthM(e.target.value)}
+            type="number"
+            placeholder={t('scheda.roomsManager.widthPlaceholder')}
+          />
+        </FormFieldWrapper>
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.roomsManager.lengthLabel')}>
+          <Input
+            value={lengthM}
+            onChange={(e) => setLengthM(e.target.value)}
+            type="number"
+            placeholder={t('scheda.roomsManager.lengthPlaceholder')}
+          />
+        </FormFieldWrapper>
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.roomsManager.equipmentLabel')}>
+          <Input
+            value={equipment}
+            onChange={(e) => setEquipment(e.target.value)}
+            placeholder={t('scheda.roomsManager.equipmentPlaceholder')}
+          />
+        </FormFieldWrapper>
+        <Button type="button" className="h-10" onClick={addRoom}>
           <PlusIcon data-icon="inline-start" />
           {t('scheda.roomsManager.add')}
         </Button>

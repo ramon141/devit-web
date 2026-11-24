@@ -45,6 +45,7 @@
     "react-i18next": "^17.0.12",
     "react-joyride": "^3.2.0",
     "react-router": "^7.18.2",
+    "react-select": "^5.10.2",
     "recharts": "^3.10.1",
     "shadcn": "^4.19.0",
     "tailwind-merge": "^3.6.0",

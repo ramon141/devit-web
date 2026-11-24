@@ -9,6 +9,8 @@ type PageHeader = {
 type PageHeaderContextValue = {
   header: PageHeader
   setPageHeader: (header: PageHeader) => void
+  actionSlot: HTMLElement | null
+  setActionSlot: (slot: HTMLElement | null) => void
 }
 
 const emptyHeader: PageHeader = { title: '' }
@@ -20,7 +22,12 @@ const PageHeaderContext = createContext<PageHeaderContextValue | undefined>(unde
 function PageHeaderProvider({ children }: { children: ReactNode }) {
   const [header, setHeader] = useState<PageHeader>(emptyHeader)
 
-  const value = useMemo(() => ({ header, setPageHeader: setHeader }), [header])
+  const [actionSlot, setActionSlot] = useState<HTMLElement | null>(null)
+
+  const value = useMemo(
+    () => ({ header, setPageHeader: setHeader, actionSlot, setActionSlot }),
+    [header, actionSlot],
+  )
 
   return <PageHeaderContext.Provider value={value}>{children}</PageHeaderContext.Provider>
 }

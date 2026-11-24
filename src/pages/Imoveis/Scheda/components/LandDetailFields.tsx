@@ -1,3 +1,4 @@
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -47,9 +48,11 @@ function LandDetailFields({ form }: LandDetailFieldsProps) {
       <FormFieldWrapper label={t('scheda.landDetailFields.rightOfWayLabel')}>
         <Input {...register('rightOfWay')} />
       </FormFieldWrapper>
-      <FormFieldWrapper label={t('scheda.landDetailFields.preemptionRightsLabel')}>
-        <Input {...register('preemptionRights')} />
-      </FormFieldWrapper>
+      <div className="sm:col-span-2">
+        <FormFieldWrapper label={t('scheda.landDetailFields.preemptionRightsLabel')}>
+          <Input {...register('preemptionRights')} />
+        </FormFieldWrapper>
+      </div>
 
       <div className="sm:col-span-2">
         <FormFieldWrapper label={t('scheda.landDetailFields.plantationsLabel')}>
@@ -59,13 +62,13 @@ function LandDetailFields({ form }: LandDetailFieldsProps) {
 
       <div className="flex items-center gap-4 sm:col-span-2">
         <Controller control={control} name="hasExistingConstruction" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.landDetailFields.hasExistingConstruction')}
           </label>
         )} />
         <Controller control={control} name="projectApproved" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.landDetailFields.projectApproved')}
           </label>

@@ -31,7 +31,7 @@ function PropertyFilters({ filters, onChange }: PropertyFiltersProps) {
   }
 
   return (
-    <div className="mb-4 grid gap-2">
+    <div className="grid w-full gap-2">
       <div className="grid grid-cols-2 items-end gap-2 sm:grid-cols-6">
         <PropertyFiltersCategoryPurposeStatus filters={filters} categoryOptions={categoryOptions} update={update} />
         <PropertyFiltersPriceRangeToggle

@@ -1,3 +1,4 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { PlusIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -40,29 +41,33 @@ function PropertyIndustrialAreasManager({ propertyId }: PropertyIndustrialAreasM
       </div>
 
       <div className="mt-2 flex flex-wrap items-end gap-2">
-        <div className="min-w-40">
-          <SelectField
-            value={areaType}
-            onValueChange={(value) => setAreaType(value as PropertyIndustrialAreaAreaType)}
-            options={industrialAreaTypeOptions}
-            placeholder={t('scheda.industrialAreasManager.areaTypePlaceholder')}
-          />
+        <div className="min-w-40 flex-1">
+          <FormFieldWrapper label={t('scheda.industrialAreasManager.areaTypeLabel')}>
+            <SelectField
+              value={areaType}
+              onValueChange={(value) => setAreaType(value as PropertyIndustrialAreaAreaType)}
+              options={industrialAreaTypeOptions}
+              placeholder={t('scheda.industrialAreasManager.areaTypePlaceholder')}
+            />
+          </FormFieldWrapper>
         </div>
-        <Input
-          value={areaSqm}
-          onChange={(e) => setAreaSqm(e.target.value)}
-          type="number"
-          placeholder={t('scheda.industrialAreasManager.areaPlaceholder')}
-          className="w-28"
-        />
-        <Input
-          value={heightM}
-          onChange={(e) => setHeightM(e.target.value)}
-          type="number"
-          placeholder={t('scheda.industrialAreasManager.heightPlaceholder')}
-          className="w-32"
-        />
-        <Button type="button" onClick={addArea}>
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.industrialAreasManager.areaLabel')}>
+          <Input
+            value={areaSqm}
+            onChange={(e) => setAreaSqm(e.target.value)}
+            type="number"
+            placeholder={t('scheda.industrialAreasManager.areaPlaceholder')}
+          />
+        </FormFieldWrapper>
+        <FormFieldWrapper className="min-w-28 flex-1" label={t('scheda.industrialAreasManager.heightLabel')}>
+          <Input
+            value={heightM}
+            onChange={(e) => setHeightM(e.target.value)}
+            type="number"
+            placeholder={t('scheda.industrialAreasManager.heightPlaceholder')}
+          />
+        </FormFieldWrapper>
+        <Button type="button" className="h-10" onClick={addArea}>
           <PlusIcon data-icon="inline-start" />
           {t('scheda.industrialAreasManager.add')}
         </Button>

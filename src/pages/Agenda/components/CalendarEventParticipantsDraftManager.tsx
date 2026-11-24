@@ -1,4 +1,4 @@
-import { PlusIcon } from 'lucide-react'
+import { PlusIcon, UserPlusIcon } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -11,12 +11,14 @@ type CalendarEventParticipantsDraftManagerProps = {
   participants: DraftParticipant[]
   onAdd: (participant: DraftParticipant) => void
   onRemove: (personId: string) => void
+  onNewClient: () => void
 }
 
 function CalendarEventParticipantsDraftManager({
   participants,
   onAdd,
   onRemove,
+  onNewClient,
 }: CalendarEventParticipantsDraftManagerProps) {
   const { t } = useTranslation('agenda')
   const [personId, setPersonId] = useState('')
@@ -43,6 +45,7 @@ function CalendarEventParticipantsDraftManager({
       <div className="flex flex-wrap items-end gap-2">
         <div className="min-w-52 flex-1">
           <SearchableSelect
+            label={t('agenda:participantsManager.label')}
             value={personId}
             onValueChange={setPersonId}
             options={options}
@@ -52,9 +55,13 @@ function CalendarEventParticipantsDraftManager({
             searchPlaceholder={t('agenda:participantsManager.searchPlaceholder')}
           />
         </div>
-        <Button type="button" onClick={handleAdd}>
+        <Button type="button" className="h-10" onClick={handleAdd}>
           <PlusIcon data-icon="inline-start" />
           {t('agenda:participantsManager.add')}
+        </Button>
+        <Button type="button" variant="outline" className="h-10" onClick={onNewClient}>
+          <UserPlusIcon data-icon="inline-start" />
+          {t('agenda:participantsManager.newClient')}
         </Button>
       </div>
     </div>

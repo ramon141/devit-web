@@ -1,3 +1,4 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
@@ -55,14 +56,16 @@ function LeadMatchItem({ match, onStatusChange }: LeadMatchItemProps) {
         ))}
       </div>
 
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-end gap-3">
         <div className="w-56">
-          <SelectField
-            value={match.contactStatus ?? undefined}
-            onValueChange={handleStatusChange}
-            options={getLeadContactStatusOptions(t)}
-            placeholder={t('leadMatches.statusPlaceholder')}
-          />
+          <FormFieldWrapper label={t('leadMatches.statusLabel')}>
+            <SelectField
+              value={match.contactStatus ?? undefined}
+              onValueChange={handleStatusChange}
+              options={getLeadContactStatusOptions(t)}
+              placeholder={t('leadMatches.statusPlaceholder')}
+            />
+          </FormFieldWrapper>
         </div>
 
         {match.contactStatusUpdatedAt && (

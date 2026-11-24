@@ -16,6 +16,7 @@ export type PersonLink = {
   role: PersonLinkRole
   id: string
   text: string
+  property?: PropertyWithRelations
 }
 
 type LinkedParties = {
@@ -42,6 +43,7 @@ function fromLinked(linked: LinkedParties): PersonLink[] {
       role: 'owner' as const,
       id: link.propertyId,
       text: propertyText(link.property),
+      property: link.property,
     })),
     ...linked.sellings.map((link) => ({
       role: 'seller' as const,
@@ -97,6 +99,7 @@ export function mergeLinks(
     role: 'owner' as const,
     id: property.id ?? '',
     text: propertyText(property),
+    property,
   }))
 
   const all = [...fromLinked(linked), ...owned, ...fromPrimary(personId, primary)]

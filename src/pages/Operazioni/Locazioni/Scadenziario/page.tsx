@@ -9,8 +9,6 @@ function ScadenziarioPage() {
     <SectionPage
       title={t('locazioni.scadenziario.page.title')}
       description={t('locazioni.scadenziario.page.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/operazioni/vendite"
     >
       <Scadenziario />
     </SectionPage>

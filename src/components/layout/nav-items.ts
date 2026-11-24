@@ -2,13 +2,26 @@ import type { LucideIcon } from 'lucide-react'
 import {
   BarChart3,
   Building2,
+  CalendarClock,
   CalendarDays,
+  ClipboardList,
   FileText,
+  MessageSquareText,
   Handshake,
+  History,
+  KeyRound,
   LayoutDashboard,
+  MapPin,
   Megaphone,
+  Play,
   ShieldCheck,
+  Tag,
+  TrendingUp,
+  UserCog,
   Users,
+  UserSearch,
+  Layers,
+  Store,
 } from 'lucide-react'
 import { Auth } from '@/auth'
 import { CRM_BASE_PATH } from '@/lib/crmBasePath'
@@ -16,6 +29,7 @@ import { CRM_BASE_PATH } from '@/lib/crmBasePath'
 export type NavChild = {
   label: string
   path: string
+  icon: LucideIcon
 }
 
 export type NavItem = {
@@ -53,8 +67,9 @@ const allNavItems: NavItem[] = [
     path: crmPath('/clienti'),
     icon: Users,
     children: [
-      { label: 'sidebar.nav.clienti', path: crmPath('/clienti') },
-      { label: 'sidebar.nav.richieste', path: crmPath('/clienti/richieste') },
+      { label: 'sidebar.nav.clienti', path: crmPath('/clienti'), icon: Users },
+      { label: 'sidebar.nav.richieste', path: crmPath('/clienti/richieste'), icon: ClipboardList },
+      { label: 'sidebar.nav.feedback', path: crmPath('/clienti/feedback'), icon: MessageSquareText },
     ],
   },
   {
@@ -67,10 +82,10 @@ const allNavItems: NavItem[] = [
     path: crmPath('/operazioni'),
     icon: Handshake,
     children: [
-      { label: 'sidebar.nav.vendite', path: crmPath('/operazioni/vendite') },
-      { label: 'sidebar.nav.locazioni', path: crmPath('/operazioni/locazioni') },
-      { label: 'sidebar.nav.adeguamentoCanone', path: crmPath('/operazioni/adeguamenti-canone') },
-      { label: 'sidebar.nav.scadenziario', path: crmPath('/operazioni/scadenziario') },
+      { label: 'sidebar.nav.vendite', path: crmPath('/operazioni/vendite'), icon: Tag },
+      { label: 'sidebar.nav.locazioni', path: crmPath('/operazioni/locazioni'), icon: KeyRound },
+      { label: 'sidebar.nav.adeguamentoCanone', path: crmPath('/operazioni/adeguamenti-canone'), icon: TrendingUp },
+      { label: 'sidebar.nav.scadenziario', path: crmPath('/operazioni/scadenziario'), icon: CalendarClock },
     ],
   },
   {
@@ -89,13 +104,13 @@ const allNavItems: NavItem[] = [
     icon: ShieldCheck,
     adminOnly: true,
     children: [
-      { label: 'sidebar.nav.utenti', path: crmPath('/amministrazione/utenti') },
-      { label: 'sidebar.nav.filiali', path: crmPath('/amministrazione/filiali') },
-      { label: 'sidebar.nav.categorie', path: crmPath('/amministrazione/categorie') },
-      { label: 'sidebar.nav.zone', path: crmPath('/amministrazione/zone') },
-      { label: 'sidebar.nav.videoHome', path: crmPath('/amministrazione/video-home') },
-      { label: 'sidebar.nav.auditLog', path: crmPath('/amministrazione/audit') },
-      { label: 'sidebar.nav.proprietari', path: crmPath('/amministrazione/proprietari') },
+      { label: 'sidebar.nav.utenti', path: crmPath('/amministrazione/utenti'), icon: UserCog },
+      { label: 'sidebar.nav.filiali', path: crmPath('/amministrazione/filiali'), icon: Store },
+      { label: 'sidebar.nav.categorie', path: crmPath('/amministrazione/categorie'), icon: Layers },
+      { label: 'sidebar.nav.zone', path: crmPath('/amministrazione/zone'), icon: MapPin },
+      { label: 'sidebar.nav.videoHome', path: crmPath('/amministrazione/video-home'), icon: Play },
+      { label: 'sidebar.nav.auditLog', path: crmPath('/amministrazione/audit'), icon: History },
+      { label: 'sidebar.nav.proprietari', path: crmPath('/amministrazione/proprietari'), icon: UserSearch },
     ],
   },
 ]

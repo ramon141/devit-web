@@ -46,6 +46,12 @@ export interface UserPartialExcludingPasswordHashCreatedAtUpdatedAt {
   /** @nullable */
   branchId?: string | null;
   /**
+   * @maxLength 7
+   * @nullable
+   * @pattern ^#[0-9A-Fa-f]{6}$
+   */
+  calendarColor?: string | null;
+  /**
    * @minLength 8
    * @pattern ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$
    */

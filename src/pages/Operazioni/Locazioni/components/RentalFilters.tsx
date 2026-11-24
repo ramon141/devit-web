@@ -1,6 +1,8 @@
+import { cn } from '@/lib/utils'
+import DateRangeTextPicker from '@/components/DateRangePicker/DateRangeTextPicker'
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import { useTranslation } from 'react-i18next'
 import type { TFunction } from 'i18next'
-import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import SelectField from '@/components/SelectField'
@@ -54,39 +56,23 @@ function RentalFilters({ filters, onChange }: RentalFiltersProps) {
         onChange={(value) => update({ brokerCode: value })}
       />
 
-      <FormFieldWrapper id="locazioni-stipulaDateFrom-filter" label={t('locazioni.filters.stipulaDateFromLabel')}>
-        <Input
-          type="date"
-          value={filters.stipulaDateFrom}
-          onChange={(event) => update({ stipulaDateFrom: event.target.value })}
-        />
-      </FormFieldWrapper>
+      <DateRangeTextPicker
+        id="locazioni-stipulaDate-filter"
+        label={t('locazioni.filters.stipulaDateFromLabel')}
+        from={filters.stipulaDateFrom}
+        to={filters.stipulaDateTo}
+        onChange={(from, to) => update({ stipulaDateFrom: from, stipulaDateTo: to })}
+      />
 
-      <FormFieldWrapper id="locazioni-stipulaDateTo-filter" label={t('locazioni.filters.stipulaDateToLabel')}>
-        <Input
-          type="date"
-          value={filters.stipulaDateTo}
-          onChange={(event) => update({ stipulaDateTo: event.target.value })}
-        />
-      </FormFieldWrapper>
+      <DateRangeTextPicker
+        id="locazioni-startDate-filter"
+        label={t('locazioni.filters.startDateFromLabel')}
+        from={filters.startDateFrom}
+        to={filters.startDateTo}
+        onChange={(from, to) => update({ startDateFrom: from, startDateTo: to })}
+      />
 
-      <FormFieldWrapper id="locazioni-startDateFrom-filter" label={t('locazioni.filters.startDateFromLabel')}>
-        <Input
-          type="date"
-          value={filters.startDateFrom}
-          onChange={(event) => update({ startDateFrom: event.target.value })}
-        />
-      </FormFieldWrapper>
-
-      <FormFieldWrapper id="locazioni-startDateTo-filter" label={t('locazioni.filters.startDateToLabel')}>
-        <Input
-          type="date"
-          value={filters.startDateTo}
-          onChange={(event) => update({ startDateTo: event.target.value })}
-        />
-      </FormFieldWrapper>
-
-      <Label id="locazioni-onlyMine-filter" className="flex items-center gap-2 pb-2 text-sm font-normal">
+      <Label id="locazioni-onlyMine-filter" className={cn(toggleBoxEndClass, 'col-span-2')}>
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true })}

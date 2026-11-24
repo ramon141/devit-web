@@ -83,9 +83,11 @@ function DettagliMainFields({ form }: DettagliMainFieldsProps) {
         <Input {...register('mediationFeeClientPct')} type="number" step="0.01" />
       </FormFieldWrapper>
 
-      <FormFieldWrapper label={t('scheda.dettagliMainFields.mediationFeeOwnerLabel')} error={errors.mediationFeeOwnerPct?.message}>
-        <Input {...register('mediationFeeOwnerPct')} type="number" step="0.01" />
-      </FormFieldWrapper>
+      <div className={renewable ? 'sm:col-span-2' : undefined}>
+        <FormFieldWrapper label={t('scheda.dettagliMainFields.mediationFeeOwnerLabel')} error={errors.mediationFeeOwnerPct?.message}>
+          <Input {...register('mediationFeeOwnerPct')} type="number" step="0.01" />
+        </FormFieldWrapper>
+      </div>
     </>
   )
 }

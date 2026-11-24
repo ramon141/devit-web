@@ -1,3 +1,4 @@
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { Controller, useFormState, useWatch, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -10,6 +11,7 @@ import {
   getPersonRoleOptions,
   type PersonFormValues,
 } from '@/pages/Clientes/schemas/personSchema'
+import { useBrokerOptions } from '@/hooks/useBrokerOptions'
 import PersonNeighborhoodField from '@/pages/Clientes/components/PersonNeighborhoodField'
 
 type PersonFormFieldsProps = {
@@ -24,6 +26,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
   const isAcquisitionOther = acquisitionSource === 'other'
   const personRoleOptions = getPersonRoleOptions(t)
   const acquisitionSourceOptions = getPersonAcquisitionSourceOptions(t)
+  const brokerOptions = useBrokerOptions()
 
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -122,6 +125,24 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
         />
       </FormFieldWrapper>
 
+      <FormFieldWrapper
+        id="modal-field-responsibleBrokerId"
+        label={t('personFormFields.responsibleBroker')}
+        error={errors.responsibleBrokerId?.message}
+      >
+        <Controller
+          control={control}
+          name="responsibleBrokerId"
+          render={({ field }) => (
+            <SelectField
+              value={field.value}
+              onValueChange={field.onChange}
+              options={brokerOptions}
+            />
+          )}
+        />
+      </FormFieldWrapper>
+
       {isAcquisitionOther && (
         <div className="sm:col-span-2">
           <FormFieldWrapper
@@ -159,7 +180,7 @@ function PersonFormFields({ form }: PersonFormFieldsProps) {
           control={control}
           name="active"
           render={({ field }) => (
-            <label className="flex items-center gap-2 text-sm">
+            <label className={toggleBoxClass}>
               <Switch checked={field.value} onCheckedChange={field.onChange} />
               {t('personFormFields.active')}
             </label>

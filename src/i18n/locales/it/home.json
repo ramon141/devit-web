@@ -84,7 +84,19 @@
   },
   "upcomingRenewalsCard": {
     "title": "Contratti di locazione in scadenza",
-    "empty": "Nessun contratto di locazione termina nei prossimi 30 giorni."
+    "empty": "Nessun contratto di locazione termina nei prossimi 30 giorni.",
+    "urgency": {
+      "overdue": "Scaduto",
+      "today": "Scade oggi",
+      "tomorrow": "Scade domani",
+      "inDays": "Tra {{count}} giorni"
+    }
+  },
+  "widgetMenu": {
+    "resize": "Trascina per ridimensionare",
+    "label": "Opzioni del widget",
+    "expand": "Espandi",
+    "collapse": "Comprimi"
   },
   "widgetSelection": {
     "title": "Selezione widget",

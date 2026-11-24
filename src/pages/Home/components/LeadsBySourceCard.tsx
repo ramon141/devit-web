@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import DashboardCard from '@/pages/Home/components/DashboardCard'
 import DonutChart from '@/components/charts/DonutChart'
 import ChartSkeleton from '@/pages/Home/components/ChartSkeleton'
 import { useLeadsReportControllerBySource } from '@/api/generated/api'
@@ -25,28 +25,21 @@ function LeadsBySourceCard() {
   const total = rows.reduce((sum, row) => sum + (row.total ?? 0), 0)
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{t('leadsBySourceCard.title')}</CardTitle>
-        <p className="text-sm text-muted-foreground">
-          {t('leadsBySourceCard.total', { count: total })}
-        </p>
-        <DashboardWindowSelect value={days} onChange={setDays} allowAll />
-      </CardHeader>
-      <CardContent>
-        {isLoading ? (
-          <div className="flex justify-center">
-            <ChartSkeleton />
-          </div>
-        ) : (
-          <DonutChart
-            labels={rows.map((row) => sourceLabels[row.source ?? ''] ?? row.source ?? '')}
-            values={rows.map((row) => row.total ?? 0)}
-            height={220}
-          />
-        )}
-      </CardContent>
-    </Card>
+    <DashboardCard title={t('leadsBySourceCard.title')} count={total}>
+      <DashboardWindowSelect value={days} onChange={setDays} allowAll />
+
+      {isLoading ? (
+        <div className="flex justify-center">
+          <ChartSkeleton />
+        </div>
+      ) : (
+        <DonutChart
+          labels={rows.map((row) => sourceLabels[row.source ?? ''] ?? row.source ?? '')}
+          values={rows.map((row) => row.total ?? 0)}
+          height={220}
+        />
+      )}
+    </DashboardCard>
   )
 }
 

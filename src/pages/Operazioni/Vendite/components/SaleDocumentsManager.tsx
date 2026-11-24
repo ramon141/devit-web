@@ -1,3 +1,4 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -31,12 +32,14 @@ function SaleDocumentsManager({ saleId }: SaleDocumentsManagerProps) {
   return (
     <div className="grid gap-4">
       <div className="flex flex-wrap items-end gap-2">
-        <Input
-          value={type}
-          onChange={(event) => setType(event.target.value)}
-          placeholder={t('vendite.documentsManager.typePlaceholder')}
-          className="max-w-64"
-        />
+        <FormFieldWrapper label={t('vendite.documentsManager.typeLabel')}>
+          <Input
+            value={type}
+            onChange={(event) => setType(event.target.value)}
+            placeholder={t('vendite.documentsManager.typePlaceholder')}
+            className="w-64"
+          />
+        </FormFieldWrapper>
       </div>
 
       <AttachmentListManager

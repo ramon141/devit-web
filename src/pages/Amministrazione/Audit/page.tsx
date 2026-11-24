@@ -9,8 +9,6 @@ function AuditPage() {
     <SectionPage
       title={t('auditPage.title')}
       description={t('auditPage.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/amministrazione/utenti"
     >
       <Audit />
     </SectionPage>

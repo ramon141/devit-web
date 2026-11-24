@@ -1,5 +1,5 @@
 import { isAxiosError } from 'axios'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import AppRoutes from '@/routes'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { ToastProvider } from '@/contexts/ToastContext'
@@ -17,6 +17,13 @@ function shouldRetryQuery(failureCount: number, error: Error) {
 }
 
 const queryClient = new QueryClient({
+  // toda gravação pode ter efeitos em outras telas (histórico, status do imóvel,
+  // notificações, relatórios, contadores): invalida tudo; só as queries ativas recarregam
+  mutationCache: new MutationCache({
+    onSuccess: () => {
+      queryClient.invalidateQueries()
+    },
+  }),
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,

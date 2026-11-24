@@ -1,3 +1,4 @@
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -36,13 +37,13 @@ function IndustrialDetailFields({ form }: IndustrialDetailFieldsProps) {
 
       <div className="flex items-center gap-4 sm:col-span-2">
         <Controller control={control} name="hasOverheadCrane" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.industrialDetailFields.hasOverheadCrane')}
           </label>
         )} />
         <Controller control={control} name="hasAlarm" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.industrialDetailFields.hasAlarm')}
           </label>

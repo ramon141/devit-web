@@ -16,6 +16,9 @@ type CalendarEventDetailsProps = {
   event: CalendarEventWithRelations
 }
 
+const linkClass =
+  'font-medium text-foreground underline decoration-primary decoration-2 underline-offset-4 hover:bg-accent'
+
 function getInitials(name: string) {
   return name
     .split(' ')
@@ -44,9 +47,14 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
     <div className="grid w-full gap-3">
       <div className="flex items-start justify-between gap-3">
         <span
-          className="rounded-md px-3 py-1.5 text-sm font-medium text-white"
-          style={{ backgroundColor: getEventColor(event) }}
+          className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-semibold text-foreground"
+          style={{ backgroundColor: `color-mix(in srgb, ${getEventColor(event)} 18%, white)` }}
         >
+          <span
+            className="size-2.5 rounded-full"
+            style={{ backgroundColor: getEventColor(event) }}
+          />
+
           {getOptionLabel(eventTypeOptions, event.type)}
         </span>
 
@@ -61,7 +69,7 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
         )}
       </div>
 
-      <p className="text-sm font-medium">
+      <p className="text-base font-semibold">
         {t('agenda:hoverCard.timeRange', {
           date: formatDate(event.startAt),
           start: dayjs(event.startAt).format('HH:mm'),
@@ -74,11 +82,11 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
       <Separator />
 
       <p className="text-sm">
-        <span className="font-semibold">{t('agenda:hoverCard.clientLabel')}</span>{' '}
+        <span className="text-muted-foreground">{t('agenda:hoverCard.clientLabel')}</span>{' '}
         {event.lead?.id ? (
           <Link
             to={`${CRM_BASE_PATH}/clienti/${event.lead.id}`}
-            className="text-primary hover:underline"
+            className={linkClass}
           >
             {event.lead.externalId ? `${event.lead.externalId} - ` : ''}
             {event.lead.name}
@@ -90,14 +98,14 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
 
       {originLabel && (
         <p className="text-sm">
-          <span className="font-semibold">{t('agenda:formFields.origin')}:</span> {originLabel}
+          <span className="text-muted-foreground">{t('agenda:formFields.origin')}:</span> {originLabel}
         </p>
       )}
 
       <Separator />
 
       <div className="grid gap-1 text-sm">
-        <span className="font-semibold">{t('agenda:hoverCard.propertiesLabel')}</span>
+        <span className="text-muted-foreground">{t('agenda:hoverCard.propertiesLabel')}</span>
 
         {(links ?? []).length === 0 && <span className="text-muted-foreground">—</span>}
 
@@ -105,7 +113,7 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
           <Link
             key={link.id}
             to={`${CRM_BASE_PATH}/proprieta/${link.propertyId}`}
-            className="text-primary hover:underline"
+            className={linkClass}
           >
             {t('agenda:hoverCard.refLabel')} {link.property?.code} - {link.property?.title} ·{' '}
             {formatPropertyBroker(link.property)}
@@ -115,17 +123,21 @@ function CalendarEventDetails({ event }: CalendarEventDetailsProps) {
 
       <Separator />
 
-      <p className="text-right text-sm">
+      <p className="text-right text-xs text-muted-foreground">
         <span className="font-semibold">{t('agenda:hoverCard.createdByLabel')}</span>{' '}
         {event.createdBy?.fullName ?? '—'} {t('agenda:hoverCard.createdAtConnector')}{' '}
         {formatDateTime(event.createdAt)}
       </p>
 
-      <div className="min-h-24 rounded-md border bg-muted/40 p-3 text-sm whitespace-pre-wrap">
-        {event.description || (
-          <span className="text-muted-foreground">{t('agenda:hoverCard.noDescription')}</span>
-        )}
-      </div>
+      {event.description ? (
+        <div className="rounded-md border bg-muted/40 p-3 text-sm whitespace-pre-wrap">
+          {event.description}
+        </div>
+      ) : (
+        <p className="text-sm italic text-muted-foreground">
+          {t('agenda:hoverCard.noDescription')}
+        </p>
+      )}
     </div>
   )
 }

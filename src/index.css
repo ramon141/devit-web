@@ -23,7 +23,7 @@
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -40,7 +40,7 @@
   --devit-navy: #0b0b0b;
   --devit-navy-dark: #0b0b0b;
 
-  --background: #fbf7ef;
+  --background: #f5f5f1;
 
   --foreground: #0b0b0b;
 
@@ -60,7 +60,7 @@
 
   --secondary-foreground: #fbf7ef;
 
-  --muted: #f4efe6;
+  --muted: #ecece6;
 
   --muted-foreground: #8b8478;
 
@@ -418,4 +418,22 @@ body {
 
 .thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+/* Lista rolável sobre fundo escuro (es. tooltip): barra fina, discreta mas visível */
+.visible-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.45) transparent;
+}
+
+.visible-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.visible-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.visible-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 9999px;
 }

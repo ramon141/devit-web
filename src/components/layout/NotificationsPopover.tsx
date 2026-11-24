@@ -28,7 +28,7 @@ function NotificationLeadLink({ link, label }: NotificationLeadLinkProps) {
   if (!link) return null
 
   return (
-    <Link to={link} className="text-xs text-primary hover:underline">
+    <Link to={link} className="text-xs font-medium text-foreground underline underline-offset-2">
       {label}
     </Link>
   )
@@ -74,12 +74,12 @@ function NotificationsPopover() {
               key={notification.id}
               className="grid gap-0.5 rounded-lg px-2 py-1.5 hover:bg-accent hover:text-accent-foreground"
             >
-              <p className="text-xs font-medium text-primary">
+              <p className="text-xs font-semibold text-muted-foreground">
                 {notificationTypeLabels[notification.type] ?? notification.type}
               </p>
               <p className="truncate text-sm font-medium">{notification.title}</p>
               <NotificationLeadLink link={getNotificationLink(notification)} label={t('notificationsPopover.openLead')} />
-              <p className="text-[10px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground">
                 {formatDateTime(notification.createdAt)}
               </p>
             </div>

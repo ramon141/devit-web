@@ -42,7 +42,7 @@ function PropertyFiltersPriceRangeToggle({
         id="proprieta-advanced-filters-btn"
         type="button"
         variant="secondary"
-        className="gap-1.5"
+        className="h-10 gap-1.5"
         onClick={onToggleAdvanced}
       >
         <SlidersHorizontalIcon className="size-4" />

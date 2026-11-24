@@ -9,8 +9,6 @@ function LocazioniPage() {
     <SectionPage
       title={t('locazioni.page.title')}
       description={t('locazioni.page.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/operazioni/vendite"
     >
       <Locazioni />
     </SectionPage>

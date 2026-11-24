@@ -24,6 +24,7 @@ const emptyValues: UserFormValues = {
   email: '',
   accessLevel: 'broker',
   branchId: '',
+  calendarColor: '',
   active: true,
   password: '',
 }
@@ -62,6 +63,7 @@ export function useUserForm({ open, user, onSaved }: UseUserFormProps) {
             email: user.email,
             accessLevel: user.accessLevel,
             branchId: user.branchId ?? '',
+            calendarColor: user.calendarColor ?? '',
             active: user.active ?? true,
             password: '',
           }

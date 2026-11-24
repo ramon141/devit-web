@@ -26,7 +26,7 @@ export interface NewCalendarEvent {
   /** @nullable */
   description?: string | null;
   startAt: string;
-  endAt: string;
+  endAt?: string;
   /** @nullable */
   allDay?: boolean | null;
   /** @nullable */

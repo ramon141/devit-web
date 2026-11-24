@@ -1,7 +1,6 @@
 import dayjs from 'dayjs'
 import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
 import {
   getConfirmationStatusOptions,
@@ -32,58 +31,67 @@ function TodayAppointmentsCard({ appointments, isLoading }: TodayAppointmentsCar
         <p className="text-sm text-muted-foreground">{t('todayAppointmentsCard.empty')}</p>
       )}
 
-      {appointments.map((appointment, index) => (
-        <div key={appointment.id}>
-          {index > 0 && <Separator className="my-1" />}
-
-          <div className="rounded-lg px-2 py-2 hover:bg-accent hover:text-accent-foreground">
-            <div className="flex items-center gap-2">
-              <span className="text-base font-semibold text-primary">
+      <div className="flex flex-col gap-2">
+        {appointments.map((appointment) => (
+          <div
+            key={appointment.id}
+            className="flex gap-3 rounded-lg border border-l-4 border-l-primary bg-card p-3 transition-colors hover:bg-accent/40"
+          >
+            <div className="flex w-14 shrink-0 flex-col items-start">
+              <span className="text-lg font-semibold leading-tight text-foreground">
                 {appointment.startAt && dayjs(appointment.startAt).format('HH:mm')}
               </span>
 
-              <p className="truncate text-sm font-medium">
-                {appointment.place ?? appointment.title}
-              </p>
+              {appointment.endAt && (
+                <span className="text-xs text-muted-foreground">
+                  {`– ${dayjs(appointment.endAt).format('HH:mm')}`}
+                </span>
+              )}
             </div>
 
-            <div className="mt-1 flex flex-wrap items-center gap-2">
-              {appointment.confirmationStatus && (
-                <Badge
-                  variant={
-                    appointment.confirmationStatus === CalendarEventConfirmationStatus.confirmed
-                      ? 'default'
-                      : 'secondary'
-                  }
-                >
-                  {getOptionLabel(confirmationOptions, appointment.confirmationStatus)}
-                </Badge>
-              )}
+            <div className="flex min-w-0 flex-1 flex-col gap-1">
+              <div className="flex items-start justify-between gap-2">
+                <p className="truncate text-sm font-medium">
+                  {appointment.place ?? appointment.title}
+                </p>
 
-              <span className="text-xs text-muted-foreground">
-                {appointment.endAt && `${dayjs(appointment.endAt).format('HH:mm')} · `}
+                {appointment.confirmationStatus && (
+                  <Badge
+                    variant={
+                      appointment.confirmationStatus === CalendarEventConfirmationStatus.confirmed
+                        ? 'default'
+                        : 'secondary'
+                    }
+                    className="shrink-0"
+                  >
+                    {getOptionLabel(confirmationOptions, appointment.confirmationStatus)}
+                  </Badge>
+                )}
+              </div>
+
+              <p className="truncate text-xs text-muted-foreground">
                 {t('todayAppointmentsCard.type', {
                   type: getOptionLabel(typeOptions, appointment.type),
                 })}
-              </span>
+              </p>
+
+              {appointment.personName && (
+                <p className="truncate text-xs text-muted-foreground">
+                  {[appointment.personName, appointment.personPhone].filter(Boolean).join(' · ')}
+                </p>
+              )}
+
+              {appointment.propertyCodes && appointment.propertyCodes.length > 0 && (
+                <p className="truncate text-xs text-muted-foreground">
+                  {t('todayAppointmentsCard.propertyCodes', {
+                    codes: appointment.propertyCodes.join(', '),
+                  })}
+                </p>
+              )}
             </div>
-
-            {appointment.personName && (
-              <p className="truncate text-xs text-muted-foreground">
-                {[appointment.personName, appointment.personPhone].filter(Boolean).join(' ')}
-              </p>
-            )}
-
-            {appointment.propertyCodes && appointment.propertyCodes.length > 0 && (
-              <p className="truncate text-xs text-muted-foreground">
-                {t('todayAppointmentsCard.propertyCodes', {
-                  codes: appointment.propertyCodes.join(', '),
-                })}
-              </p>
-            )}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </DashboardCard>
   )
 }

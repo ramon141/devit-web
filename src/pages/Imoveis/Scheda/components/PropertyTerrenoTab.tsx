@@ -1,7 +1,6 @@
 import FieldHint from '@/components/FieldHint'
 import { useTranslation } from 'react-i18next'
 import { Separator } from '@/components/ui/separator'
-import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import { usePropertyLandForm } from '@/pages/Imoveis/Scheda/hooks/usePropertyLandForm'
 import LandDetailFields from '@/pages/Imoveis/Scheda/components/LandDetailFields'
 import PropertyFeaturesSection from '@/pages/Imoveis/Scheda/components/PropertyFeaturesSection'
@@ -9,19 +8,18 @@ import { getLandFeatureOptions } from '@/pages/Imoveis/Scheda/schemas/featureOpt
 
 type PropertyTerrenoTabProps = {
   propertyId: string
-  onBack?: () => void
   onNext: () => void
 }
 
-function PropertyTerrenoTab({ propertyId, onBack, onNext }: PropertyTerrenoTabProps) {
+function PropertyTerrenoTab({ propertyId, onNext }: PropertyTerrenoTabProps) {
   const { t } = useTranslation('imoveis')
-  const { form, isLoading, isSubmitting, onSubmit } = usePropertyLandForm(propertyId, onNext)
+  const { form, isLoading, onSubmit } = usePropertyLandForm(propertyId, onNext)
 
   if (isLoading) return null
 
   return (
-    <form noValidate onSubmit={onSubmit} className="flex h-full min-h-0 flex-col">
-      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+    <form id="property-tab-form-terreno" noValidate onSubmit={onSubmit} className="flex h-full min-h-0 flex-col">
+      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 pb-16 sm:grid-cols-2">
         <FieldHint className="sm:col-span-2">{t('scheda.registryNote')}</FieldHint>
         <LandDetailFields form={form} />
 
@@ -33,12 +31,6 @@ function PropertyTerrenoTab({ propertyId, onBack, onNext }: PropertyTerrenoTabPr
           options={getLandFeatureOptions(t)}
         />
       </div>
-
-      <PropertyFormFooter
-        id="property-tab-terreno-actions"
-        isSubmitting={isSubmitting}
-        onBack={onBack}
-      />
     </form>
   )
 }

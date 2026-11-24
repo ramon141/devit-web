@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { StarIcon } from 'lucide-react'
 import ConfirmDeleteButton from '@/components/ConfirmDeleteButton'
 import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import FileUpload from '@/components/FileUpload'
+import PropertyFloorPlans from '@/pages/Imoveis/Scheda/components/PropertyFloorPlans'
 import { usePropertyPhotos } from '@/pages/Imoveis/Scheda/hooks/usePropertyPhotos'
 
 type PhotoCardItem = {
@@ -90,11 +92,19 @@ function PropertyFotoTab({ propertyId }: PropertyFotoTabProps) {
       {photos.length === 0 ? (
         <p className="text-sm text-muted-foreground">{t('scheda.fotoTab.empty')}</p>
       ) : (
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {photos.map((photo) => (
             <PhotoCard key={photo.id} photo={photo} onSetCover={setCover} onRemove={removePhoto} />
           ))}
         </div>
+      )}
+
+      <Separator />
+
+      {propertyId ? (
+        <PropertyFloorPlans propertyId={propertyId} />
+      ) : (
+        <p className="text-sm text-muted-foreground">{t('scheda.floorPlans.saveFirst')}</p>
       )}
     </div>
   )

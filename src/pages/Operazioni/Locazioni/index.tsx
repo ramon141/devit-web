@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
+import { KeyRoundIcon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import ExportMenu from '@/components/ExportMenu'
+import PageHeaderAction from '@/components/layout/PageHeaderAction'
 import TablePagination from '@/components/TablePagination'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
@@ -67,16 +69,23 @@ function Locazioni() {
       />
       <TourFab onClick={startTour} />
 
+      <PageHeaderAction>
+        <ExportMenu
+          path="/rental-contracts/export"
+          params={{ filter: { where }, ...brokerParams }}
+        />
+      </PageHeaderAction>
+
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder={t('locazioni.index.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('locazioni.index.newLabel')}
+        newIcon={KeyRoundIcon}
         searchWrapperId="locazioni-search-filter"
         newButtonId="locazioni-new-btn"
         filters={<RentalFilters filters={filters} onChange={setFilters} />}
-        actions={<ExportMenu path="/rental-contracts/export" params={{ filter: { where }, ...brokerParams }} />}
       />
 
       <RentalTable contracts={contracts} isLoading={isLoading} onEdit={openEdit} />

@@ -33,7 +33,7 @@ export function usePersonList() {
       order: ['createdAt DESC'],
       limit: pageSize,
       skip,
-      include: [{ relation: 'address' }],
+      include: [{ relation: 'address' }, { relation: 'responsibleBroker' }],
     },
   }, KEEP_PREVIOUS_DATA)
 

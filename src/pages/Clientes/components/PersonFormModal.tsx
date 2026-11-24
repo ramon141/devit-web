@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
-import type { PersonWithRelations } from '@/api/generated/models'
+import type { Person, PersonWithRelations } from '@/api/generated/models'
 import {
   usePersonForm,
   personToFormValues,
@@ -14,13 +14,15 @@ type PersonFormModalProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   person?: PersonWithRelations | null
+  onCreated?: (created: Person) => void
 }
 
-function PersonFormModal({ open, onOpenChange, person }: PersonFormModalProps) {
+function PersonFormModal({ open, onOpenChange, person, onCreated }: PersonFormModalProps) {
   const { t } = useTranslation('clientes')
   const { form, isSubmitting, onSubmit } = usePersonForm({
     person,
     onSaved: () => onOpenChange(false),
+    onCreated,
   })
 
   useEffect(() => {

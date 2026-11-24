@@ -9,8 +9,6 @@ function ZonePageWrapper() {
     <SectionPage
       title={t('zonePage.title')}
       description={t('zonePage.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/amministrazione/utenti"
     >
       <ZonePage />
     </SectionPage>

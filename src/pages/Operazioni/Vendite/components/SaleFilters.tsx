@@ -1,6 +1,8 @@
+import { cn } from '@/lib/utils'
+import DateRangeTextPicker from '@/components/DateRangePicker/DateRangeTextPicker'
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
-import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import SelectField from '@/components/SelectField'
@@ -55,23 +57,17 @@ function SaleFilters({ filters, onChange }: SaleFiltersProps) {
         onChange={(value) => update({ brokerCode: value })}
       />
 
-      <FormFieldWrapper id="vendite-saleDateFrom-filter" label={t('vendite.filters.saleDateFromLabel')}>
-        <Input
-          type="date"
-          value={filters.saleDateFrom}
-          onChange={(event) => update({ saleDateFrom: event.target.value })}
+      <div className="col-span-2">
+        <DateRangeTextPicker
+          id="vendite-saleDate-filter"
+          label={t('vendite.filters.saleDateFromLabel')}
+          from={filters.saleDateFrom}
+          to={filters.saleDateTo}
+          onChange={(from, to) => update({ saleDateFrom: from, saleDateTo: to })}
         />
-      </FormFieldWrapper>
+      </div>
 
-      <FormFieldWrapper id="vendite-saleDateTo-filter" label={t('vendite.filters.saleDateToLabel')}>
-        <Input
-          type="date"
-          value={filters.saleDateTo}
-          onChange={(event) => update({ saleDateTo: event.target.value })}
-        />
-      </FormFieldWrapper>
-
-      <Label id="vendite-onlyMine-filter" className="flex items-center gap-2 pb-2 text-sm font-normal">
+      <Label id="vendite-onlyMine-filter" className={cn(toggleBoxEndClass, 'col-span-2')}>
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true })}

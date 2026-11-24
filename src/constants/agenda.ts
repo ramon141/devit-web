@@ -1,3 +1,1 @@
 export const DEFAULT_DURATION_MINUTES = 30
-export const DURATION_STEP_MINUTES = 15
-export const MAX_DURATION_MINUTES = 480

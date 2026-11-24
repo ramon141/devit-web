@@ -38,8 +38,8 @@ function SelectField({
   const showClear = clearable && !!value && !disabled
 
   return (
-    <div className="grid content-start gap-1.5">
-      <div className="relative">
+    <div className="grid min-w-0 grid-cols-1 content-start gap-1.5">
+      <div className="relative min-w-0">
         <Select
           value={value}
           onValueChange={(newValue) => onValueChange(newValue ?? '')}

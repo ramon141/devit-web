@@ -158,10 +158,18 @@ const LIST_INCLUDE: NonNullable<PropertyControllerFindParams['filter']>['include
   { relation: 'lastChangedBy' },
 ]
 
-export function usePropertyList() {
+type UsePropertyListProps = {
+  // Filtros já aplicados ao abrir (ex.: imóveis de um cliente)
+  initialFilters?: Partial<PropertyFiltersValues>
+}
+
+export function usePropertyList({ initialFilters }: UsePropertyListProps = {}) {
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
-  const [filters, setFiltersState] = useState<PropertyFiltersValues>(emptyPropertyFilters)
+  const [filters, setFiltersState] = useState<PropertyFiltersValues>({
+    ...emptyPropertyFilters,
+    ...initialFilters,
+  })
   const debouncedSearch = useDebouncedValue(search)
   const { categoryIdsByKind } = useCategoryKinds()
   const queryClient = useQueryClient()

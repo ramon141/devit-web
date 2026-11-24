@@ -1,8 +1,7 @@
-import { PlusIcon } from 'lucide-react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
+import WidgetOptionCard from '@/pages/Home/components/WidgetOptionCard'
 import { WIDGET_CATALOG } from '@/pages/Home/components/widgetCatalog'
 import type { WidgetId } from '@/pages/Home/hooks/useDashboardWidgets'
 
@@ -13,6 +12,8 @@ type WidgetSelectionModalProps = {
   onAddWidget: (id: WidgetId) => void
 }
 
+const REMOVE_ANIMATION_MS = 350
+
 // Modal "SELEÇÃO DE WIDGETS": grid com os widgets ainda não adicionados ao painel
 function WidgetSelectionModal({
   open,
@@ -21,6 +22,19 @@ function WidgetSelectionModal({
   onAddWidget,
 }: WidgetSelectionModalProps) {
   const { t } = useTranslation('home')
+  const [addingId, setAddingId] = useState<WidgetId | null>(null)
+
+  // Anima o cartão saindo antes de efetivar a adição
+  function handleAdd(id: WidgetId) {
+    if (addingId) return
+
+    setAddingId(id)
+
+    setTimeout(() => {
+      onAddWidget(id)
+      setAddingId(null)
+    }, REMOVE_ANIMATION_MS)
+  }
 
   const options = WIDGET_CATALOG.filter((entry) => inactiveWidgets.includes(entry.id))
 
@@ -30,26 +44,17 @@ function WidgetSelectionModal({
       onOpenChange={onOpenChange}
       title={t('widgetSelection.title')}
       description={t('widgetSelection.description')}
-      wide
+      widthClassName="w-full sm:max-w-[1000px]"
     >
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {options.map(({ id, icon: Icon }) => (
-          <Card key={id}>
-            <CardContent className="flex h-full flex-col gap-2">
-              <Icon className="size-5 text-muted-foreground" />
-
-              <p className="font-medium">{t(`tour.${id}.title`)}</p>
-
-              <p className="flex-1 text-sm text-muted-foreground">
-                {t(`tour.${id}.content`)}
-              </p>
-
-              <Button size="sm" onClick={() => onAddWidget(id)}>
-                <PlusIcon data-icon="inline-start" />
-                {t('widgetSelection.add')}
-              </Button>
-            </CardContent>
-          </Card>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {options.map(({ id, icon }) => (
+          <WidgetOptionCard
+            key={id}
+            id={id}
+            icon={icon}
+            isAdding={addingId === id}
+            onAdd={handleAdd}
+          />
         ))}
 
         {options.length === 0 && (

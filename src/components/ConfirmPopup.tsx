@@ -40,27 +40,36 @@ function ConfirmPopup({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-sm">
-        <DialogHeader>
+      <DialogContent
+        className={cn(
+          'sm:max-w-sm',
+          variant === 'destructive' && 'border-t-4 border-destructive'
+        )}
+        showCloseButton={false}
+      >
+        <DialogHeader className="items-center gap-3 pt-2 text-center">
           <div
             className={cn(
-              'flex size-10 items-center justify-center rounded-full',
+              'flex size-14 items-center justify-center rounded-full ring-8',
               variant === 'destructive'
-                ? 'bg-destructive/10 text-destructive'
-                : 'bg-accent text-primary'
+                ? 'bg-destructive text-white ring-destructive/15'
+                : 'bg-accent text-primary ring-accent/50'
             )}
           >
-            <TriangleAlert className="size-5" />
+            <TriangleAlert className="size-6" />
           </div>
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle className="text-base font-semibold">
+            {title}
+          </DialogTitle>
           {description && (
             <DialogDescription>{description}</DialogDescription>
           )}
         </DialogHeader>
 
-        <DialogFooter>
+        <DialogFooter className="mx-0 mb-0 grid grid-cols-2 gap-3 border-0 bg-transparent p-0 pt-2">
           <Button
             variant="outline"
+            className="h-10"
             onClick={() => onOpenChange(false)}
             disabled={loading}
           >
@@ -69,6 +78,11 @@ function ConfirmPopup({
           </Button>
           <Button
             variant={variant === 'destructive' ? 'destructive' : 'default'}
+            className={cn(
+              'h-10',
+              variant === 'destructive' &&
+                'bg-destructive text-white shadow-sm hover:bg-destructive/90'
+            )}
             onClick={onConfirm}
             disabled={loading}
           >

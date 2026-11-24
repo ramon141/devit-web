@@ -63,6 +63,7 @@ export function createPersonSchema(t: TFunction<'clientes'>) {
         .optional(),
       notes: z.string().optional(),
       active: z.boolean(),
+      responsibleBrokerId: z.string().optional(),
 
       street: z.string().optional(),
       number: z.string().optional(),

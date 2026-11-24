@@ -24,6 +24,7 @@ export function createUserSchema(t: TFunction<'amministrazione'>, isNewUser = fa
       error: t('userSchema.accessLevelRequired'),
     }),
     branchId: z.string().optional(),
+    calendarColor: z.string().optional(),
     active: z.boolean(),
     password,
   })

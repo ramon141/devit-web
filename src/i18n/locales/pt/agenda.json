@@ -83,8 +83,6 @@
     "date": "Data",
     "startTime": "Hora de início",
     "endTime": "Hora de término",
-    "duration": "Duração",
-    "durationHint": "O padrão é 30 minutos. Ao mudar a duração, o horário de término é recalculado; também é possível editar o término à mão.",
     "confirmationStatus": "Status de confirmação",
     "reminder": "Lembrete",
     "recurrence": "Recorrência",
@@ -97,7 +95,10 @@
     "clientSearchPlaceholder": "Buscar um cliente...",
     "owner": "Proprietário",
     "ownerPlaceholder": "Selecione um proprietário",
-    "ownerSearchPlaceholder": "Buscar um proprietário..."
+    "ownerSearchPlaceholder": "Buscar um proprietário...",
+    "broker": "Corretor",
+    "brokerPlaceholder": "Selecione o corretor",
+    "brokerHint": "Ao escolher o corretor, o compromisso recebe a cor dele na agenda."
   },
   "formModal": {
     "editTitle": "Editar compromisso",
@@ -109,19 +110,23 @@
   "outcomeSection": {
     "title": "Resultado do compromisso",
     "placeholder": "Descreva como foi a visita/chamada...",
-    "save": "Registrar resultado"
+    "save": "Registrar resultado",
+    "label": "Resultado"
   },
   "participantsManager": {
     "title": "Clientes/proprietários vinculados",
     "placeholder": "Selecione um cliente",
     "searchPlaceholder": "Buscar um cliente...",
-    "add": "Adicionar"
+    "add": "Adicionar",
+    "label": "Participante",
+    "newClient": "Novo cliente"
   },
   "propertiesManager": {
     "title": "Imóveis vinculados",
     "placeholder": "Selecione um imóvel",
     "searchPlaceholder": "Buscar um imóvel...",
-    "add": "Adicionar"
+    "add": "Adicionar",
+    "label": "Imóvel"
   },
   "attachmentsManager": {
     "title": "Ficha de visualização",
@@ -186,8 +191,12 @@
     }
   },
   "filters": {
+    "search": "Buscar",
+    "type": "Tipo de evento",
+    "calls": "Ligações",
     "searchPlaceholder": "Buscar por título",
     "typePlaceholder": "Tipo de evento",
+    "typeDisabledReason": "Esta opção está indisponível pois o filtro \"Mostrar só ligações\" está marcado.",
     "onlyCalls": "Mostrar só ligações",
     "visibleUsers": "Calendários a visualizar",
     "visibleUsersPlaceholder": "Adicionar colega",
@@ -320,5 +329,21 @@
   "hints": {
     "reminder": "O lembrete vai para quem cria o compromisso, uma única vez. Se mudar o horário, não é reenviado.",
     "recurrence": "Serão criadas 24 ocorrências futuras. Editar o original não as atualiza."
+  },
+  "eventTypeDescriptions": {
+    "acquisition": "Visita para conquistar um novo imóvel ou proprietário.",
+    "appointment": "O proprietário assina autorizando a imobiliária a vender ou alugar o imóvel dele.",
+    "genericAppointment": "Qualquer outro compromisso que não se encaixe nas opções.",
+    "salePreliminary": "Assinatura do contrato preliminar entre comprador e vendedor.",
+    "propertyViewing": "O cliente visita o imóvel.",
+    "callScheduled": "Ligação marcada para ser feita.",
+    "callCompleted": "Ligação que já foi feita.",
+    "rentalProposal": "Apresentação ou resposta a uma proposta de aluguel.",
+    "purchaseProposal": "Apresentação ou resposta a uma proposta de compra.",
+    "finalDeed": "Assinatura da escritura de compra e venda no cartório.",
+    "management": "Acompanhamento de um imóvel administrado pela imobiliária.",
+    "valuation": "Visita para estimar o valor do imóvel.",
+    "expiry": "Data limite, como fim de contrato, mandato ou pagamento.",
+    "sale": "Fechamento de uma venda."
   }
 }

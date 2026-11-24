@@ -1,7 +1,6 @@
 import { useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import type { FormEvent } from 'react'
-import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import { Separator } from '@/components/ui/separator'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import ControlledInput from '@/components/ControlledInput'
@@ -15,12 +14,10 @@ import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 type PropertyDescriptionTabProps = {
   form: UseFormReturn<PropertyFormValues>
   onSubmit: (event: FormEvent) => void
-  isSubmitting: boolean
   propertyId?: string
-  onBack?: () => void
 }
 
-function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId, onBack }: PropertyDescriptionTabProps) {
+function PropertyDescriptionTab({ form, onSubmit, propertyId }: PropertyDescriptionTabProps) {
   const { t } = useTranslation('imoveis')
   const { control } = form
   const { errors } = useFormState({ control })
@@ -38,8 +35,8 @@ function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId, onBa
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
-      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+    <form id="property-tab-form-descrizione" noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
+      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 pb-16 sm:grid-cols-2">
         <FormFieldWrapper id="property-field-areaSqm" label={t('descriptionTab.areaLabel')} error={errors.areaSqm?.message}>
           <ControlledInput control={control} name="areaSqm" type="number" placeholder="90" />
         </FormFieldWrapper>
@@ -81,12 +78,6 @@ function PropertyDescriptionTab({ form, onSubmit, isSubmitting, propertyId, onBa
           />
         </div>
       </div>
-
-      <PropertyFormFooter
-        id="property-tab-descrizione-actions"
-        isSubmitting={isSubmitting || additional.isSubmitting || heating.isSubmitting || cadastral.isSubmitting}
-        onBack={onBack}
-      />
     </form>
   )
 }

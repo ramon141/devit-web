@@ -1,3 +1,4 @@
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { InfoIcon } from 'lucide-react'
 import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -36,9 +37,11 @@ function PropertyPriceDetailSection({ form }: PropertyPriceDetailSectionProps) {
       <Separator className="sm:col-span-2" />
       <p className="text-sm font-medium sm:col-span-2">{t('scheda.priceDetailSection.title')}</p>
 
-      <FormFieldWrapper label={t('scheda.priceDetailSection.estimatedValueLabel')}>
-        <Input {...register('estimatedValue')} type="number" />
-      </FormFieldWrapper>
+      <div className="sm:col-span-2">
+        <FormFieldWrapper label={t('scheda.priceDetailSection.estimatedValueLabel')}>
+          <Input {...register('estimatedValue')} type="number" />
+        </FormFieldWrapper>
+      </div>
 
       <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
         {flagFields.map((flag) => (
@@ -47,7 +50,7 @@ function PropertyPriceDetailSection({ form }: PropertyPriceDetailSectionProps) {
             control={control}
             name={flag.name}
             render={({ field }) => (
-              <label className="flex items-center gap-2 text-sm">
+              <label className={toggleBoxClass}>
                 <Switch checked={field.value} onCheckedChange={field.onChange} />
                 {flag.label}
 

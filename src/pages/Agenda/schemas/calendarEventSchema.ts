@@ -111,6 +111,7 @@ export function createCalendarEventSchema(t: TFunction) {
       allDay: z.boolean(),
       leadId: z.string().optional(),
       ownerId: z.string().optional(),
+      brokerId: z.string().optional(),
       place: z.string().optional(),
       confirmationStatus: z.enum(CalendarEventConfirmationStatus, {
         error: t('agenda:schema.confirmationStatusRequired'),

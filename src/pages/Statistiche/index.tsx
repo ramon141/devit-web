@@ -62,7 +62,6 @@ function Statistiche() {
     <AppLayout
       title={t('page.title')}
       description={t('page.description')}
-      breadcrumbItems={[{ label: t('page.breadcrumb') }]}
     >
       <JoyrideWrapper
         steps={steps}

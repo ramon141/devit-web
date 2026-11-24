@@ -21,7 +21,6 @@ function Notifiche() {
     <AppLayout
       title={t('notificheList.title')}
       description={t('notificheList.description')}
-      breadcrumbItems={[{ label: t('notificheList.breadcrumb') }]}
     >
       <JoyrideWrapper
         steps={steps}

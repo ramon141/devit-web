@@ -1,3 +1,5 @@
+import { toggleBoxEndClass } from '@/lib/toggleBox'
+import { cn } from '@/lib/utils'
 import FieldHint from '@/components/FieldHint'
 import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -47,7 +49,7 @@ function PropertyHeatingSection({ form }: PropertyHeatingSectionProps) {
       </FormFieldWrapper>
 
       <Controller control={control} name="hasRadiators" render={({ field }) => (
-        <label className="flex items-center gap-2 self-end pb-1.5 text-sm">
+        <label className={cn(toggleBoxEndClass, 'sm:col-span-2')}>
           <Switch checked={field.value} onCheckedChange={field.onChange} />
           {t('scheda.heatingSection.hasRadiators')}
         </label>

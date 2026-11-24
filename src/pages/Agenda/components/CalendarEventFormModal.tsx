@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { SaveIcon, Trash2Icon, XIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
@@ -14,6 +15,7 @@ import CalendarEventParticipantsDraftManager from '@/pages/Agenda/components/Cal
 import CalendarEventPropertiesDraftManager from '@/pages/Agenda/components/CalendarEventPropertiesDraftManager'
 import CalendarEventAttachmentsDraftManager from '@/pages/Agenda/components/CalendarEventAttachmentsDraftManager'
 import CalendarEventOutcomeDraftSection from '@/pages/Agenda/components/CalendarEventOutcomeDraftSection'
+import PersonFormModal from '@/pages/Clientes/components/PersonFormModal'
 
 type CalendarEventFormModalProps = {
   open: boolean
@@ -31,6 +33,7 @@ function CalendarEventFormModal({
   onRequestDelete,
 }: CalendarEventFormModalProps) {
   const { t } = useTranslation('agenda')
+  const [newClientOpen, setNewClientOpen] = useState(false)
   const { form, draft, isSubmitting, onSubmit } = useCalendarEventForm({
     event,
     defaultDate,
@@ -64,6 +67,7 @@ function CalendarEventFormModal({
               participants={draft.participants}
               onAdd={draft.addParticipant}
               onRemove={draft.removeParticipant}
+              onNewClient={() => setNewClientOpen(true)}
             />
             <Separator />
             <CalendarEventPropertiesDraftManager
@@ -112,6 +116,17 @@ function CalendarEventFormModal({
           </div>
         </div>
       </form>
+
+      {/* fora do <form>: o submit do cadastro borbulha pelo portal e enviaria o compromisso */}
+      <PersonFormModal
+        open={newClientOpen}
+        onOpenChange={setNewClientOpen}
+        onCreated={(created) => {
+          if (!created.id) return
+
+          draft.addParticipant({ personId: created.id, personName: created.name })
+        }}
+      />
     </ModalRegister>
   )
 }

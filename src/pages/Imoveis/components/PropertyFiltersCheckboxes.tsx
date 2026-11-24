@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils'
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import { useTranslation } from 'react-i18next'
 import { Checkbox } from '@/components/ui/checkbox'
 import type { PropertyFiltersValues } from '@/pages/Imoveis/hooks/usePropertyList'
@@ -12,7 +14,7 @@ function PropertyFiltersCheckboxes({ filters, update }: PropertyFiltersCheckboxe
 
   return (
     <>
-      <label className="flex min-w-0 items-center gap-2 self-end pb-2 text-sm leading-tight">
+      <label className={toggleBoxEndClass}>
         <Checkbox
           checked={filters.onlyMine}
           onCheckedChange={(checked) => update({ onlyMine: checked === true })}
@@ -20,7 +22,7 @@ function PropertyFiltersCheckboxes({ filters, update }: PropertyFiltersCheckboxe
         {t('filters.onlyMine')}
       </label>
 
-      <label className="flex min-w-0 items-center gap-2 self-end pb-2 text-sm leading-tight">
+      <label className={cn(toggleBoxEndClass, 'sm:col-span-3')}>
         <Checkbox
           checked={filters.onlyPrestige}
           onCheckedChange={(checked) => update({ onlyPrestige: checked === true })}
@@ -28,7 +30,7 @@ function PropertyFiltersCheckboxes({ filters, update }: PropertyFiltersCheckboxe
         {t('filters.onlyPrestige')}
       </label>
 
-      <label className="flex min-w-0 items-center gap-2 self-end pb-2 text-sm leading-tight">
+      <label className={cn(toggleBoxEndClass, 'sm:col-span-3')}>
         <Checkbox
           checked={filters.onlyAuction}
           onCheckedChange={(checked) => update({ onlyAuction: checked === true })}

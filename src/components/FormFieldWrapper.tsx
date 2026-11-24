@@ -7,14 +7,17 @@ import { cn } from '@/lib/utils'
 type FormFieldWrapperProps = {
   label: string
   // Explicação curta (regra de negócio) exibida num tooltip ao lado do rótulo
-  hint?: string
+  hint?: ReactNode
   // Só para input/textarea de verdade: apontar para um trigger (botão do
   // SearchableSelect/Select) faz o hover do label virar hover do campo
   htmlFor?: string
   required?: boolean
   error?: string
+  // Quando informado, o campo está bloqueado: o motivo aparece num tooltip ao passar o mouse
+  disabledReason?: string
   children: ReactNode
   id?: string
+  className?: string
 }
 
 // Espelha o visual de aria-invalid nos campos filhos quando há erro,
@@ -38,23 +41,34 @@ function FormFieldWrapper({
   htmlFor,
   required,
   error,
+  disabledReason,
   children,
   id,
+  className,
 }: FormFieldWrapperProps) {
   return (
-    <div id={id} className={cn('grid min-w-0 content-start gap-1.5', error && invalidFieldClasses)}>
+    <div id={id} className={cn('grid min-w-0 content-start gap-1.5', error && invalidFieldClasses, className)}>
       <Label htmlFor={htmlFor}>
         {label}
         {required && <span className="text-destructive"> *</span>}
         {hint && (
           <Tooltip>
             <TooltipTrigger render={<InfoIcon className="size-4 text-muted-foreground" />} />
-            <TooltipContent className="max-w-xs">{hint}</TooltipContent>
+            <TooltipContent className={typeof hint === 'string' ? 'max-w-xs' : 'max-w-sm'}>{hint}</TooltipContent>
           </Tooltip>
         )}
       </Label>
 
-      {children}
+      {disabledReason ? (
+        <Tooltip>
+          <TooltipTrigger render={<div className="cursor-not-allowed" />}>
+            {children}
+          </TooltipTrigger>
+          <TooltipContent>{disabledReason}</TooltipContent>
+        </Tooltip>
+      ) : (
+        children
+      )}
 
       {error && <p className="text-sm text-destructive">{error}</p>}
     </div>

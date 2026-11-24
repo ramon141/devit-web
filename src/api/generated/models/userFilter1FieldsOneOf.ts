@@ -23,4 +23,5 @@ export type UserFilter1FieldsOneOf = {
   updatedAt?: boolean;
   avatarId?: boolean;
   branchId?: boolean;
+  calendarColor?: boolean;
 };

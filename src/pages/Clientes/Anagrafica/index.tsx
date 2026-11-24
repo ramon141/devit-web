@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
+import { UserPlusIcon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import ExportMenu from '@/components/ExportMenu'
+import PageHeaderAction from '@/components/layout/PageHeaderAction'
 import SelectField from '@/components/SelectField'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import TablePagination from '@/components/TablePagination'
@@ -60,15 +62,22 @@ function Anagrafica() {
       />
       <TourFab onClick={startTour} />
 
+      <PageHeaderAction>
+        <ExportMenu
+          path="/people/export"
+          params={{ filter: { where } }}
+        />
+      </PageHeaderAction>
+
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder={t('anagrafica.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('anagrafica.newLabel')}
+        newIcon={UserPlusIcon}
         searchWrapperId="clienti-search-filter"
         newButtonId="clienti-new-btn"
-        actions={<ExportMenu path="/people/export" params={{ filter: { where } }} />}
         filters={
           <div className="w-full sm:w-48">
             <FormFieldWrapper id="clienti-role-filter" label={t('anagrafica.roleFilterLabel')}>

@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { LayoutTemplateIcon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import type { CommunicationTemplate } from '@/api/generated/models'
@@ -23,6 +24,7 @@ function ModelliTab() {
         searchPlaceholder={t('modelliTab.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('modelliTab.newLabel')}
+        newIcon={LayoutTemplateIcon}
       />
 
       <TemplateTable templates={templates} isLoading={isLoading} onEdit={openEdit} />

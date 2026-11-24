@@ -1,7 +1,6 @@
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import type { FormEvent } from 'react'
-import PropertyFormFooter from '@/pages/Imoveis/components/PropertyFormFooter'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import ControlledInput from '@/components/ControlledInput'
 import ControlledSelectField from '@/components/ControlledSelectField'
@@ -15,12 +14,10 @@ import type { PropertyFormValues } from '@/pages/Imoveis/schemas/propertySchema'
 type PropertyLocationTabProps = {
   form: UseFormReturn<PropertyFormValues>
   onSubmit: (event: FormEvent) => void
-  isSubmitting: boolean
   propertyId?: string
-  onBack?: () => void
 }
 
-function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId, onBack }: PropertyLocationTabProps) {
+function PropertyLocationTab({ form, onSubmit, propertyId }: PropertyLocationTabProps) {
   const { t } = useTranslation('imoveis')
   const { control } = form
   const { errors } = useFormState({ control })
@@ -33,8 +30,8 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId, onBack 
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
-      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 sm:grid-cols-2">
+    <form id="property-tab-form-localizzazione" noValidate onSubmit={handleSubmit} className="flex h-full min-h-0 flex-col">
+      <div className="grid flex-1 min-h-0 content-start gap-4 overflow-y-auto p-1 pb-16 sm:grid-cols-2">
         <ControlledSelectField
           id="property-field-country"
           control={control}
@@ -99,12 +96,6 @@ function PropertyLocationTab({ form, onSubmit, isSubmitting, propertyId, onBack 
 
         {!locationDetail.isLoading && <PropertyLocationDetailSection form={locationDetail.form} />}
       </div>
-
-      <PropertyFormFooter
-        id="property-tab-localizzazione-actions"
-        isSubmitting={isSubmitting || locationDetail.isSubmitting}
-        onBack={onBack}
-      />
     </form>
   )
 }

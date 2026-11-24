@@ -1,15 +1,7 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
@@ -22,6 +14,7 @@ import SchedaAllegati from '@/pages/Clientes/Scheda/components/SchedaAllegati'
 import SchedaImmobili from '@/pages/Clientes/Scheda/components/SchedaImmobili'
 import SchedaAgenda from '@/pages/Clientes/Scheda/components/SchedaAgenda'
 import SchedaComunicazioni from '@/pages/Clientes/Scheda/components/SchedaComunicazioni'
+import SchedaFeedback from '@/pages/Clientes/Scheda/components/SchedaFeedback'
 
 function Scheda() {
   const { t } = useTranslation('clientes')
@@ -54,20 +47,6 @@ function Scheda() {
       />
       <TourFab onClick={startTour} />
 
-      <Breadcrumb className="mb-4">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink render={<Link to="/gestionale/clienti" />}>
-              {t('scheda.breadcrumbClients')}
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{person?.name ?? (notFound ? '—' : '...')}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       {notFound && (
         <NotFoundState
           message={t('scheda.notFound')}
@@ -94,6 +73,9 @@ function Scheda() {
             <TabsTrigger id="cliente-scheda-tab-comunicazioni" value="comunicazioni">
               {t('scheda.tabComunicazioni')}
             </TabsTrigger>
+            <TabsTrigger id="cliente-scheda-tab-feedback" value="feedback">
+              {t('scheda.tabFeedback')}
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="dati">
@@ -110,6 +92,9 @@ function Scheda() {
           </TabsContent>
           <TabsContent value="comunicazioni">
             <SchedaComunicazioni personId={personId} />
+          </TabsContent>
+          <TabsContent value="feedback">
+            <SchedaFeedback personId={personId} />
           </TabsContent>
         </Tabs>
       )}

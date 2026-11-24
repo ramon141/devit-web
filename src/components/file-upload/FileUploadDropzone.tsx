@@ -50,19 +50,36 @@ function FileUploadDropzone({
       onDragLeave={() => setIsDragging(false)}
       onDrop={handleDrop}
       className={cn(
-        'flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-input bg-transparent px-4 py-8 text-center transition-colors',
-        'hover:border-ring hover:bg-accent/40',
-        isDragging && 'border-ring bg-accent/60',
+        'group flex cursor-pointer flex-col items-center justify-center gap-3',
+        'rounded-xl border-2 border-dashed border-border bg-muted/30 px-4 py-10 text-center',
+        'transition-all duration-200 outline-none',
+        'hover:border-primary hover:bg-accent',
+        'focus-visible:border-primary focus-visible:ring-3 focus-visible:ring-ring/40',
+        isDragging && 'scale-[1.01] border-primary bg-accent',
         disabled && 'pointer-events-none opacity-50',
-        error && 'border-destructive'
+        error && 'border-destructive bg-destructive/5'
       )}
     >
-      <CloudUpload className="size-6 text-muted-foreground" />
+      <div
+        className={cn(
+          'flex size-14 items-center justify-center rounded-full bg-background shadow-sm',
+          'ring-1 ring-border transition-transform duration-200 group-hover:-translate-y-0.5',
+          isDragging && '-translate-y-1 ring-primary'
+        )}
+      >
+        <CloudUpload className="size-7 text-primary" />
+      </div>
       <p className="text-sm text-foreground">
-        <span className="font-medium text-primary">{t('fileUpload.clickToUpload')}</span>{' '}
+        <span className="font-semibold text-primary underline-offset-4 group-hover:underline">
+          {t('fileUpload.clickToUpload')}
+        </span>{' '}
         {t('fileUpload.dragHint')}
       </p>
-      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
+      {hint && (
+        <p className="rounded-full bg-background px-3 py-1 text-xs text-muted-foreground ring-1 ring-border">
+          {hint}
+        </p>
+      )}
 
       <input
         id={inputId}

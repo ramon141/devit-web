@@ -1,3 +1,4 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import { SaveIcon } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
@@ -17,12 +18,14 @@ function CalendarEventOutcomeSection({ calendarEventId }: CalendarEventOutcomeSe
     <div className="grid gap-3">
       <p className="text-sm font-medium">{t('agenda:outcomeSection.title')}</p>
 
-      <Textarea
-        value={outcome}
-        onChange={(event) => setOutcome(event.target.value)}
-        placeholder={t('agenda:outcomeSection.placeholder')}
-        rows={3}
-      />
+      <FormFieldWrapper label={t('agenda:outcomeSection.label')}>
+        <Textarea
+          value={outcome}
+          onChange={(event) => setOutcome(event.target.value)}
+          placeholder={t('agenda:outcomeSection.placeholder')}
+          rows={3}
+        />
+      </FormFieldWrapper>
       <div>
         <Button type="button" onClick={saveOutcome} disabled={isSaving}>
           <SaveIcon data-icon="inline-start" />

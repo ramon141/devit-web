@@ -1,3 +1,4 @@
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { Controller, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -52,7 +53,7 @@ function LeadFeatureFields({ form }: LeadFeatureFieldsProps) {
             control={form.control}
             name={feature}
             render={({ field }) => (
-              <Label className="flex items-center gap-2 font-normal">
+              <Label className={toggleBoxClass}>
                 <Checkbox
                   checked={field.value}
                   onCheckedChange={(checked) => field.onChange(checked === true)}

@@ -12,6 +12,11 @@ import {
 import { mergeLinks } from '@/pages/Clientes/Scheda/utils/personLinks'
 import type { PersonLink } from '@/pages/Clientes/Scheda/utils/personLinks'
 
+// Endereço e categoria alimentam o balão do código do imóvel
+const PROPERTY_SCOPE = {
+  include: [{ relation: 'address' as const }, { relation: 'category' as const }],
+}
+
 // Contratos, vendas e propostas guardam a parte principal na própria linha
 // (tenantId, buyerId...) e as partes adicionais nas tabelas de vínculo:
 // é preciso ler os dois lados para não esconder nenhum vínculo
@@ -33,7 +38,7 @@ function useLinkedParties(personId: string) {
   const byPerson = { where: { personId } }
 
   const { data: ownerships } = usePropertyOwnerControllerFind({
-    filter: { ...byPerson, include: [{ relation: 'property' }] },
+    filter: { ...byPerson, include: [{ relation: 'property', scope: PROPERTY_SCOPE }] },
   })
   const { data: tenancies } = useRentalContractTenantControllerFind({
     filter: { ...byPerson, include: [{ relation: 'rentalContract' }] },
@@ -61,7 +66,7 @@ export function usePersonProperties(personId: string): PersonLink[] {
   const linked = useLinkedParties(personId)
   const primary = usePrimaryParties(personId)
   const { data: ownedProperties } = usePropertyControllerFind({
-    filter: { where: { ownerId: personId } },
+    filter: { where: { ownerId: personId }, include: PROPERTY_SCOPE.include },
   })
 
   return mergeLinks(personId, linked, primary, ownedProperties ?? [])

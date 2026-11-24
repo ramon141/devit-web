@@ -4,6 +4,8 @@ import ConfirmPopup from '@/components/ConfirmPopup'
 import DataTable from '@/components/DataTable'
 import type { PersonWithRelations } from '@/api/generated/models'
 import { useDeletePerson } from '@/pages/Clientes/hooks/useDeletePerson'
+import PersonFeedbackModal from '@/pages/Clientes/components/PersonFeedbackModal'
+import PersonPropertiesModal from '@/pages/Clientes/components/PersonPropertiesModal'
 import { buildPersonTableColumns } from '@/pages/Clientes/components/PersonTableColumns'
 
 type PersonTableProps = {
@@ -15,6 +17,8 @@ type PersonTableProps = {
 function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
   const { t } = useTranslation('clientes')
   const [deleteTarget, setDeleteTarget] = useState<PersonWithRelations | null>(null)
+  const [feedbackTarget, setFeedbackTarget] = useState<PersonWithRelations | null>(null)
+  const [propertiesTarget, setPropertiesTarget] = useState<PersonWithRelations | null>(null)
   const { handleDelete } = useDeletePerson()
 
   function confirmDelete() {
@@ -22,7 +26,15 @@ function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
     setDeleteTarget(null)
   }
 
-  const columns = buildPersonTableColumns({ t, onEdit, onDelete: setDeleteTarget })
+  const columns = buildPersonTableColumns({
+    t,
+    handlers: {
+      onEdit,
+      onDelete: setDeleteTarget,
+      onViewFeedback: setFeedbackTarget,
+      onViewProperties: setPropertiesTarget,
+    },
+  })
 
   return (
     <>
@@ -35,6 +47,16 @@ function PersonTable({ people, isLoading, onEdit }: PersonTableProps) {
           emptyMessage={t('personTable.emptyMessage')}
         />
       </div>
+
+      <PersonFeedbackModal
+        person={feedbackTarget}
+        onOpenChange={(open) => !open && setFeedbackTarget(null)}
+      />
+
+      <PersonPropertiesModal
+        person={propertiesTarget}
+        onOpenChange={(open) => !open && setPropertiesTarget(null)}
+      />
 
       <ConfirmPopup
         open={!!deleteTarget}

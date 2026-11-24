@@ -1,7 +1,11 @@
+import { filterPanelClass } from '@/lib/filterPanel'
+import { toggleBoxClass } from '@/lib/toggleBox'
+import { cn } from '@/lib/utils'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import SelectField from '@/components/SelectField'
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import MultiSelectField from '@/components/MultiSelectField'
 import { useUserControllerFind } from '@/api/generated/api'
 import { getEventTypeOptions } from '@/pages/Agenda/schemas/calendarEventSchema'
@@ -23,25 +27,31 @@ function AgendaFilters({ filters, onChange, onGoToDate }: AgendaFiltersProps) {
   }
 
   return (
-    <div className="mb-3 flex flex-wrap items-end gap-3">
-      <Input
-        id="agenda-search-filter"
-        className="w-56"
-        placeholder={t('agenda:filters.searchPlaceholder')}
-        value={filters.search}
-        onChange={(event) => update({ search: event.target.value })}
-      />
+    <div
+      className={cn('mb-3 grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-4', filterPanelClass)}
+    >
+      <FormFieldWrapper label={t('agenda:filters.search')} htmlFor="agenda-search-filter">
+        <Input
+          id="agenda-search-filter"
+          placeholder={t('agenda:filters.searchPlaceholder')}
+          value={filters.search}
+          onChange={(event) => update({ search: event.target.value })}
+        />
+      </FormFieldWrapper>
 
-      <Input
-        id="agenda-goto-date"
-        type="date"
-        className="w-40"
-        aria-label={t('agenda:filters.goToDate')}
-        title={t('agenda:filters.goToDate')}
-        onChange={(event) => event.target.value && onGoToDate(event.target.value)}
-      />
+      <FormFieldWrapper label={t('agenda:filters.goToDate')} htmlFor="agenda-goto-date">
+        <Input
+          id="agenda-goto-date"
+          type="date"
+          onChange={(event) => event.target.value && onGoToDate(event.target.value)}
+        />
+      </FormFieldWrapper>
 
-      <div id="agenda-type-filter">
+      <FormFieldWrapper
+        id="agenda-type-filter"
+        label={t('agenda:filters.type')}
+        disabledReason={filters.onlyCalls ? t('agenda:filters.typeDisabledReason') : undefined}
+      >
         <SelectField
           value={filters.type}
           onValueChange={(value) => update({ type: value })}
@@ -49,17 +59,19 @@ function AgendaFilters({ filters, onChange, onGoToDate }: AgendaFiltersProps) {
           placeholder={t('agenda:filters.typePlaceholder')}
           disabled={filters.onlyCalls}
         />
-      </div>
+      </FormFieldWrapper>
 
-      <label id="agenda-onlyCalls-filter" className="flex items-center gap-2 text-sm">
-        <Checkbox
-          checked={filters.onlyCalls}
-          onCheckedChange={(checked) => update({ onlyCalls: checked === true, type: '' })}
-        />
-        {t('agenda:filters.onlyCalls')}
-      </label>
+      <FormFieldWrapper id="agenda-onlyCalls-filter" label={t('agenda:filters.calls')}>
+        <label className={cn(toggleBoxClass, 'h-10')}>
+          <Checkbox
+            checked={filters.onlyCalls}
+            onCheckedChange={(checked) => update({ onlyCalls: checked === true, type: '' })}
+          />
+          {t('agenda:filters.onlyCalls')}
+        </label>
+      </FormFieldWrapper>
 
-      <div id="agenda-visibleUsers-filter" className="w-64">
+      <div id="agenda-visibleUsers-filter" className="sm:col-span-2 lg:col-span-4">
         <MultiSelectField
           label={t('agenda:filters.visibleUsers')}
           placeholder={t('agenda:filters.visibleUsersPlaceholder')}

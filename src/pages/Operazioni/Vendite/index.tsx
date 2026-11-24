@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
+import { HandCoinsIcon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import ExportMenu from '@/components/ExportMenu'
+import PageHeaderAction from '@/components/layout/PageHeaderAction'
 import TablePagination from '@/components/TablePagination'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
@@ -65,16 +67,23 @@ function Vendite() {
       />
       <TourFab onClick={startTour} />
 
+      <PageHeaderAction>
+        <ExportMenu
+          path="/sales/export"
+          params={{ filter: { where }, ...brokerParams }}
+        />
+      </PageHeaderAction>
+
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder={t('vendite.index.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('vendite.index.newLabel')}
+        newIcon={HandCoinsIcon}
         searchWrapperId="vendite-search-filter"
         newButtonId="vendite-new-btn"
         filters={<SaleFilters filters={filters} onChange={setFilters} />}
-        actions={<ExportMenu path="/sales/export" params={{ filter: { where }, ...brokerParams }} />}
       />
 
       <SaleTable sales={sales} isLoading={isLoading} onEdit={openEdit} />

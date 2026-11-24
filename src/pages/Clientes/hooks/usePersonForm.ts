@@ -13,7 +13,7 @@ import {
   usePersonControllerCreate,
   usePersonControllerUpdateById,
 } from '@/api/generated/api'
-import type { PersonWithRelations } from '@/api/generated/models'
+import type { Person, PersonWithRelations } from '@/api/generated/models'
 import { usePromisePopup } from '@/contexts/PromisePopupContext'
 import { getErrorMessageFromRequest, type ApiErrorResponse } from '@/utils/getErrorMessageFromRequest'
 import { emptyStringsToNull } from '@/utils/emptyStringsToNull'
@@ -33,6 +33,7 @@ export const emptyPersonValues: PersonFormValues = {
   birthDate: '',
   notes: '',
   active: true,
+  responsibleBrokerId: '',
   country: '',
   street: '',
   number: '',
@@ -46,6 +47,7 @@ export const emptyPersonValues: PersonFormValues = {
 type UsePersonFormProps = {
   person?: PersonWithRelations | null
   onSaved: () => void
+  onCreated?: (created: Person) => void
 }
 
 export function personToFormValues(person: PersonWithRelations): PersonFormValues {
@@ -63,6 +65,7 @@ export function personToFormValues(person: PersonWithRelations): PersonFormValue
     birthDate: person.birthDate?.slice(0, 10) ?? '',
     notes: person.notes ?? '',
     active: person.active ?? true,
+    responsibleBrokerId: person.responsibleBrokerId ?? '',
     country: person.address?.country ?? '',
     street: person.address?.street ?? '',
     number: person.address?.number ?? '',
@@ -87,7 +90,7 @@ function hasAddressData(values: PersonFormValues) {
   )
 }
 
-export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
+export function usePersonForm({ person, onSaved, onCreated }: UsePersonFormProps) {
   const { t } = useTranslation('clientes')
   const queryClient = useQueryClient()
   const { promisePopup } = usePromisePopup()
@@ -170,10 +173,16 @@ export function usePersonForm({ person, onSaved }: UsePersonFormProps) {
       // <input type="date"> só devolve "YYYY-MM-DD" e era enviado cru, o
       // que a API rejeitava com 422 (formato inválido)
       birthDate: toISODateOrNull(values.birthDate),
+      responsibleBrokerId: values.responsibleBrokerId || null,
     }
 
     try {
-      return await (person?.id ? update({ id: person.id, data: payload }) : create({ data: payload }))
+      if (person?.id) return await update({ id: person.id, data: payload })
+
+      const created = await create({ data: payload })
+      onCreated?.(created)
+
+      return created
     } catch (error) {
       // endereço recém-criado ficava órfão quando a criação da pessoa
       // falhava depois (ex: documento duplicado) — compensa desfazendo o endereço

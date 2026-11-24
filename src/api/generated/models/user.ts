@@ -49,4 +49,10 @@ export interface User {
   avatarId?: string | null;
   /** @nullable */
   branchId?: string | null;
+  /**
+   * @maxLength 7
+   * @nullable
+   * @pattern ^#[0-9A-Fa-f]{6}$
+   */
+  calendarColor?: string | null;
 }

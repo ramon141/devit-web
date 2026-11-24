@@ -7,6 +7,7 @@ import { DEFAULT_COUNTRY } from '@/constants/cities'
 import type { AxiosError } from 'axios'
 import {
   getPropertyControllerCountQueryKey,
+  getPropertyControllerFindByIdQueryKey,
   getPropertyControllerFindQueryKey,
   getPropertyPriceHistoryControllerFindQueryKey,
   getPropertyStatusHistoryControllerFindQueryKey,
@@ -123,7 +124,8 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
     if (property) form.reset(propertyToFormValues(property))
   }, [property, form])
 
-  function invalidateList() {
+  function invalidateList(savedId: string) {
+    queryClient.invalidateQueries({ queryKey: getPropertyControllerFindByIdQueryKey(savedId) })
     queryClient.invalidateQueries({ queryKey: getPropertyControllerFindQueryKey() })
     queryClient.invalidateQueries({ queryKey: getPropertyControllerCountQueryKey() })
     // a aba Storico ficava com o cache antigo até recarregar a página
@@ -224,7 +226,7 @@ export function usePropertyForm({ property, initialCategoryId, onSaved }: UsePro
     promisePopup(saveProperty(values), {
       pending: property ? t('toasts.saveProperty.pendingUpdate') : t('toasts.saveProperty.pendingCreate'),
       success: (savedId) => {
-        invalidateList()
+        invalidateList(savedId)
         onSaved(savedId)
         return property ? t('toasts.saveProperty.successUpdate') : t('toasts.saveProperty.successCreate')
       },

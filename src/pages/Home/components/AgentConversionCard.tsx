@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
+import DashboardListItem from '@/pages/Home/components/DashboardListItem'
 import DashboardCard from '@/pages/Home/components/DashboardCard'
 import { useLeadsReportControllerByAgent } from '@/api/generated/api'
 
@@ -25,10 +26,7 @@ function AgentConversionCard() {
       )}
 
       {agents.map((agent) => (
-        <div
-          key={agent.agentId}
-          className="flex items-center justify-between gap-3 rounded-lg px-2 py-2 hover:bg-accent hover:text-accent-foreground"
-        >
+        <DashboardListItem key={agent.agentId}>
           <div className="min-w-0">
             <p className="truncate text-sm font-medium">{agent.agentName}</p>
 
@@ -43,7 +41,7 @@ function AgentConversionCard() {
           <Badge className="shrink-0 bg-accent text-accent-foreground">
             {conversionRate(agent.total, agent.converted)}%
           </Badge>
-        </div>
+        </DashboardListItem>
       ))}
     </DashboardCard>
   )

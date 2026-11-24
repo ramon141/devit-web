@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { Building2Icon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
@@ -51,6 +52,7 @@ function Filiali() {
         searchPlaceholder={t('filiali.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('filiali.newLabel')}
+        newIcon={Building2Icon}
         searchWrapperId="filiali-search-filter"
         newButtonId="filiali-new-btn"
       />

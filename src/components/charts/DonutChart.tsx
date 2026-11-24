@@ -24,7 +24,11 @@ function DonutChart({ labels, values, height = 260 }: DonutChartProps) {
   }))
 
   function renderLegendLabel(value: string, entry: { payload?: { value?: number } }) {
-    return `${value} (${entry.payload?.value ?? 0})`
+    return (
+      <span className="text-sm text-foreground">
+        {value} <span className="text-muted-foreground">({entry.payload?.value ?? 0})</span>
+      </span>
+    )
   }
 
   return (

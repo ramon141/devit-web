@@ -17,7 +17,7 @@ function AvgTimeOnMarketCard() {
         <CardTitle>{t('avgTimeOnMarketCard.title')}</CardTitle>
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col items-center gap-1 py-4">
+        <div className="flex flex-col items-center gap-1 rounded-lg border bg-card py-5">
           {isLoading ? (
             <Skeleton className="h-9 w-20" />
           ) : (
@@ -29,7 +29,7 @@ function AvgTimeOnMarketCard() {
           </span>
         </div>
 
-        <div className="flex flex-col items-center gap-1 py-4">
+        <div className="flex flex-col items-center gap-1 rounded-lg border bg-card py-5">
           {isLoading ? (
             <Skeleton className="h-9 w-20" />
           ) : (

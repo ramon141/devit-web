@@ -9,8 +9,6 @@ function AdeguamentiCanonePage() {
     <SectionPage
       title={t('locazioni.adeguamenti.page.title')}
       description={t('locazioni.adeguamenti.page.description')}
-      parentLabel={t('common.parentLabel')}
-      parentPath="/gestionale/operazioni/vendite"
     >
       <AdeguamentiCanone />
     </SectionPage>

@@ -28,7 +28,6 @@ function Profilo() {
     <AppLayout
       title={t('index.title')}
       description={t('index.description')}
-      breadcrumbItems={[{ label: t('index.breadcrumb') }]}
     >
       <JoyrideWrapper
         steps={steps}

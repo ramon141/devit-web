@@ -35,6 +35,7 @@
     "postalCodeInvalid": "Il CAP deve contenere solo numeri (4-10 cifre)"
   },
   "personFormFields": {
+    "responsibleBroker": "Agente responsabile",
     "name": "Nome",
     "namePlaceholder": "Mario Rossi",
     "role": "Ruolo",
@@ -82,12 +83,24 @@
     "deleteDescription": "Questa azione eliminerà definitivamente \"{{name}}\".",
     "deleteConfirm": "Elimina"
   },
+  "personPropertiesModal": {
+    "title": "Immobili di {{name}}"
+  },
+  "personFeedbackModal": {
+    "title": "Feedback di {{name}}"
+  },
   "personTableColumns": {
+    "responsibleBroker": "Agente responsabile",
     "name": "Nome",
     "role": "Ruolo",
     "email": "E-mail",
     "phone": "Telefono",
-    "actions": "Azioni"
+    "actions": "Azioni",
+    "properties": "Immobili",
+    "feedback": "Vedi feedback",
+    "view": "Vedi dettagli",
+    "edit": "Modifica",
+    "delete": "Elimina"
   },
   "usePersonForm": {
     "pendingUpdate": "Salvataggio cliente...",
@@ -116,6 +129,7 @@
       "sourcePlaceholder": "Provenienza",
       "requestTypePlaceholder": "Tipo richiesta",
       "assignedToPlaceholder": "Assegnatario",
+      "assignedToDisabledReason": "Questa opzione non è disponibile perché il filtro \"Solo le mie\" è selezionato.",
       "onlyMine": "Solo le mie"
     }
   },
@@ -227,7 +241,8 @@
     "tabAllegati": "Allegati",
     "tabImmobili": "Immobili",
     "tabAgenda": "Agenda",
-    "tabComunicazioni": "Comunicazioni"
+    "tabComunicazioni": "Comunicazioni",
+    "tabFeedback": "Feedback"
   },
   "schedaAgenda": {
     "empty": "Nessun impegno collegato."
@@ -241,6 +256,11 @@
   },
   "schedaDati": {
     "saveButton": "Salva modifiche"
+  },
+  "propertyCodeLink": {
+    "code": "Codice: {{value}}",
+    "type": "Tipologia: {{value}}",
+    "region": "Zona: {{value}}"
   },
   "schedaImmobili": {
     "empty": "Nessun immobile collegato.",
@@ -690,10 +710,82 @@
     "updatedBy": "Aggiornato da {{name}} il {{date}}",
     "pendingStatus": "Aggiornamento dello stato...",
     "successStatus": "Stato aggiornato.",
-    "errorStatus": "Impossibile aggiornare lo stato."
+    "errorStatus": "Impossibile aggiornare lo stato.",
+    "statusLabel": "Stato del contatto"
   },
   "leadReceptionOptions": {
     "naples": "Reception Napoli",
     "portici": "Reception Portici"
+  },
+  "feedbackPage": {
+    "title": "Feedback e richieste",
+    "description": "Preferenze, richieste, feedback dalle visite e passaggi in ufficio dei clienti",
+    "parentLabel": "Clienti"
+  },
+  "feedback": {
+    "searchPlaceholder": "Cerca nel contenuto...",
+    "newLabel": "Nuovo feedback"
+  },
+  "feedbackTypeOptions": {
+    "preference": "Preferenza",
+    "request": "Richiesta",
+    "visit_feedback": "Feedback dalla visita",
+    "office_visit": "Passaggio in ufficio"
+  },
+  "feedbackSchema": {
+    "typeRequired": "Seleziona il tipo",
+    "contentRequired": "Il contenuto è obbligatorio",
+    "personRequired": "Seleziona il cliente"
+  },
+  "feedbackFilters": {
+    "type": "Tipo",
+    "typeAll": "Tutti i tipi",
+    "property": "Immobile",
+    "propertyAll": "Tutti gli immobili",
+    "lead": "Richiesta",
+    "leadAll": "Tutte le richieste"
+  },
+  "feedbackFormModal": {
+    "newTitle": "Nuovo feedback",
+    "editTitle": "Modifica feedback",
+    "description": "Registra preferenze, richieste e feedback del cliente",
+    "type": "Tipo",
+    "person": "Cliente",
+    "personPlaceholder": "Seleziona il cliente",
+    "personSearch": "Cerca cliente...",
+    "property": "Immobile",
+    "propertyPlaceholder": "Nessun immobile",
+    "propertySearch": "Cerca per codice o titolo...",
+    "lead": "Richiesta",
+    "leadPlaceholder": "Nessuna richiesta",
+    "leadSearch": "Cerca richiesta...",
+    "content": "Contenuto"
+  },
+  "feedbackTable": {
+    "emptyMessage": "Nessun feedback trovato.",
+    "deleteTitle": "Elimina feedback",
+    "deleteDescription": "Vuoi davvero eliminare questo feedback? L'operazione non può essere annullata.",
+    "deleteConfirm": "Elimina"
+  },
+  "feedbackTableColumns": {
+    "date": "Data",
+    "person": "Cliente",
+    "type": "Tipo",
+    "property": "Immobile",
+    "content": "Contenuto",
+    "createdBy": "Registrato da",
+    "actions": "Azioni"
+  },
+  "useFeedbackForm": {
+    "pendingCreate": "Registrazione del feedback...",
+    "pendingUpdate": "Aggiornamento del feedback...",
+    "successCreate": "Feedback registrato",
+    "successUpdate": "Feedback aggiornato",
+    "error": "Impossibile salvare il feedback"
+  },
+  "useDeleteFeedback": {
+    "pending": "Eliminazione del feedback...",
+    "success": "Feedback eliminato",
+    "error": "Impossibile eliminare il feedback"
   }
 }

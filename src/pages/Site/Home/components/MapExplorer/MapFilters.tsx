@@ -1,3 +1,4 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import { useSiteDict } from '@/lib/site/dict'
 import type { Purpose } from '@/lib/site/types'
@@ -28,14 +29,16 @@ function MapFilters({ zone, contract, count, onZoneChange, onContractChange }: M
   ]
 
   return (
-    <div className="mb-5 flex flex-wrap items-center gap-2">
+    <div className="mb-5 flex flex-wrap items-end gap-2">
       <div className="w-56">
-        <SelectField
-          value={zone}
-          onValueChange={onZoneChange}
-          options={(zones ?? []).map((item) => ({ value: item.slug ?? '', label: item.name ?? '' }))}
-          placeholder={dict.search.allZones}
-        />
+        <FormFieldWrapper label={dict.search.zone}>
+          <SelectField
+            value={zone}
+            onValueChange={onZoneChange}
+            options={(zones ?? []).map((item) => ({ value: item.slug ?? '', label: item.name ?? '' }))}
+            placeholder={dict.search.allZones}
+          />
+        </FormFieldWrapper>
       </div>
 
       <div className="flex gap-2" role="group" aria-label={dict.search.contract}>

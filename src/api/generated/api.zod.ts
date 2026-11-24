@@ -329,7 +329,7 @@ export const calendarEventControllerCreateBody = zod.strictObject({
   "type": zod.enum(['acquisition', 'appointment', 'generic_appointment', 'sale_preliminary', 'property_viewing', 'call_scheduled', 'call_completed', 'rental_proposal', 'purchase_proposal', 'final_deed', 'management', 'valuation', 'expiry', 'sale']),
   "description": zod.string().nullish(),
   "startAt": zod.iso.datetime({}),
-  "endAt": zod.iso.datetime({}),
+  "endAt": zod.iso.datetime({}).optional(),
   "allDay": zod.boolean().nullish(),
   "occurred": zod.boolean().nullish(),
   "place": zod.string().max(calendarEventControllerCreateBodyPlaceMax).nullish(),
@@ -3261,6 +3261,10 @@ export const userControllerUpdateByIdBodyPhoneMax = 30;
 
 export const userControllerUpdateByIdBodyBrokerCodeMax = 20;
 
+export const userControllerUpdateByIdBodyCalendarColorMax = 7;
+
+
+export const userControllerUpdateByIdBodyCalendarColorRegExp = new RegExp('^#[0-9A-Fa-f]{6}$');
 export const userControllerUpdateByIdBodyPasswordMin = 8;
 
 
@@ -3281,6 +3285,7 @@ export const userControllerUpdateByIdBody = zod.strictObject({
   "active": zod.boolean().nullish(),
   "avatarId": zod.string().nullish(),
   "branchId": zod.string().nullish(),
+  "calendarColor": zod.string().max(userControllerUpdateByIdBodyCalendarColorMax).regex(userControllerUpdateByIdBodyCalendarColorRegExp).nullish(),
   "password": zod.string().min(userControllerUpdateByIdBodyPasswordMin).regex(userControllerUpdateByIdBodyPasswordRegExp).optional()
 })
 

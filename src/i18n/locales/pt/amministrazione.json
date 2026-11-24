@@ -157,7 +157,9 @@
     "branchPlaceholder": "Nenhuma filial",
     "passwordEditLabel": "Nova senha (opcional)",
     "passwordLabel": "Senha",
-    "activeLabel": "Usuário ativo"
+    "activeLabel": "Usuário ativo",
+    "calendarColorLabel": "Cor na agenda",
+    "calendarColorHint": "Cor usada nos compromissos deste corretor na agenda. Ao escolher o corretor num compromisso, a cor dele é aplicada automaticamente."
   },
   "userFormModal": {
     "editTitle": "Editar usuário",
@@ -616,5 +618,18 @@
       "duration": "O vídeo excede a duração máxima de 60 segundos.",
       "unreadable": "Não foi possível ler o vídeo: o arquivo pode estar corrompido."
     }
+  },
+  "brokerColors": {
+    "red": "Vermelho",
+    "lightGreen": "Verde-claro",
+    "lightBlue": "Azul-claro",
+    "darkGreen": "Verde-escuro",
+    "yellow": "Amarelo",
+    "pink": "Rosa",
+    "hotPink": "Rosa-choque",
+    "black": "Preto",
+    "brown": "Marrom",
+    "orange": "Laranja",
+    "blue": "Azul"
   }
 }

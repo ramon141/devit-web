@@ -26,7 +26,7 @@ function RecentPropertiesCard({ properties, isLoading }: RecentPropertiesCardPro
         <p className="text-sm text-muted-foreground">{t('recentPropertiesCard.empty')}</p>
       )}
 
-      <div className="divide-y divide-border">
+      <div className="flex flex-col gap-2">
         {properties.map((property) => (
           <PropertySummaryItem
             key={property.id}

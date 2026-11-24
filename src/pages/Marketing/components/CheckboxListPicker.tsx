@@ -1,3 +1,5 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
@@ -31,9 +33,17 @@ function CheckboxListPicker({
   searchPlaceholder,
   emptyMessage,
 }: CheckboxListPickerProps) {
+  const { t } = useTranslation('common')
+
   return (
     <div className="grid grid-cols-1 gap-2">
-      <Input value={search} onChange={(event) => onSearchChange(event.target.value)} placeholder={searchPlaceholder} />
+      <FormFieldWrapper label={t('listToolbar.searchLabel')}>
+        <Input
+          value={search}
+          onChange={(event) => onSearchChange(event.target.value)}
+          placeholder={searchPlaceholder}
+        />
+      </FormFieldWrapper>
 
       <div className="grid max-h-56 grid-cols-1 gap-1 overflow-y-auto overflow-x-hidden rounded-md border p-2">
         {items.length === 0 && <p className="py-4 text-center text-sm text-muted-foreground">{emptyMessage}</p>}

@@ -2,21 +2,11 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import AppLayout from '@/components/layout/AppLayout'
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
-import { Link } from 'react-router'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
 import NotFoundState from '@/components/NotFoundState'
 import { usePropertyControllerFindById } from '@/api/generated/api'
 import { usePropertyForm } from '@/pages/Imoveis/hooks/usePropertyForm'
-import PropertyBrokerHeader from '@/pages/Imoveis/components/PropertyBrokerHeader'
 import PropertyDuplicateModal from '@/pages/Imoveis/components/PropertyDuplicateModal'
 import PropertyFormFields from '@/pages/Imoveis/components/PropertyFormFields'
 import { PropertySaveModeContext } from '@/pages/Imoveis/contexts/PropertySaveModeContext'
@@ -96,29 +86,11 @@ function PropertyScheda() {
         tourKey={tourKey}
         onEvent={handleJoyrideCallback}
       />
-      <TourFab onClick={startTour} className="bottom-24 lg:bottom-6" />
+      <TourFab onClick={startTour} className="bottom-24 lg:right-[20.5rem] lg:bottom-6" />
 
       <PropertyDuplicateModal info={duplicateInfo} onClose={closeDuplicate} />
 
-      <div className="flex h-full min-h-0 lg:-mb-20 lg:h-[calc(100%+5rem)] flex-col">
-        <Breadcrumb className="mb-4 shrink-0">
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink render={<Link to="/gestionale/proprieta" />}>{t('scheda.breadcrumbList')}</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>{property?.title ?? t('scheda.pageTitle')}</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-
-        {property && (
-          <div className="mb-3 grid shrink-0 gap-2">
-            <PropertyBrokerHeader property={property} />
-          </div>
-        )}
-
+      <div className="flex h-full min-h-0 flex-col lg:-mb-16 lg:h-auto lg:flex-1">
         {notFound ? (
           <NotFoundState
             message={t('scheda.notFound')}
@@ -132,6 +104,7 @@ function PropertyScheda() {
               onSubmit={onSubmit}
               isSubmitting={isSubmitting}
               propertyId={property?.id}
+              property={property}
               responsibleBrokerId={property?.responsibleBrokerId ?? undefined}
               activeTab={activeTab}
               onActiveTabChange={setActiveTab}

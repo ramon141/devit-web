@@ -127,7 +127,15 @@ function SearchableSelect({
                 disabled={disabled}
                 aria-invalid={!!error}
                 className={cn(
-                  'w-full justify-between font-normal',
+                  'h-10 w-full justify-between font-normal',
+                  'aria-expanded:border-ring aria-expanded:ring-3',
+                  'aria-expanded:ring-ring/50',
+                  triggerVariant === 'outline' &&
+                    'hover:bg-card aria-expanded:bg-card',
+                  triggerVariant === 'outline' &&
+                    (selected
+                      ? 'hover:text-foreground aria-expanded:text-foreground'
+                      : 'hover:text-muted-foreground aria-expanded:text-muted-foreground'),
                   showClear && 'pr-8',
                   !selected &&
                     (triggerVariant === 'secondary'

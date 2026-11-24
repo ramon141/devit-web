@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import SidebarNavCollapsedGroup from '@/components/layout/SidebarNavCollapsedGroup'
 import type { NavItem } from '@/components/layout/nav-items'
 
 type SidebarNavItemProps = {
@@ -72,13 +73,14 @@ function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
                   onClick={onNavigate}
                   className={({ isActive }) =>
                     cn(
-                      'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                      'flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                       isActive
                         ? 'bg-primary text-primary-foreground'
                         : 'text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
                     )
                   }
                 >
+                  <child.icon className="size-4 shrink-0" />
                   {t(child.label)}
                 </NavLink>
               ))}
@@ -102,6 +104,10 @@ function SidebarNavItem({ item, expanded, onNavigate }: SidebarNavItemProps) {
   )
 
   if (expanded) return link
+
+  if (hasChildren) {
+    return <SidebarNavCollapsedGroup item={item} trigger={link} onNavigate={onNavigate} />
+  }
 
   return (
     <Tooltip>

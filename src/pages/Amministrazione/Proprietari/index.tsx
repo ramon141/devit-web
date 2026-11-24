@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { UserRoundPlusIcon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import DataTable from '@/components/DataTable'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
@@ -58,6 +59,7 @@ function Proprietari() {
         onSearchChange={() => {}}
         onNewClick={() => setFormOpen(true)}
         newLabel={t('proprietari.newLabel')}
+        newIcon={UserRoundPlusIcon}
         newButtonId="proprietari-new-btn"
       />
 

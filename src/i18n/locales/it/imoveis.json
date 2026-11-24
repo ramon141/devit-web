@@ -123,7 +123,8 @@
     "featuredOrderPlaceholder": "Ordine in evidenza",
     "publishedOnSite": "Pubblicato sul sito",
     "active": "Attivo",
-    "useInChatbot": "Usa nel ChatBot WhatsApp"
+    "useInChatbot": "Usa nel ChatBot WhatsApp",
+    "featuredOrderLabel": "Ordine in evidenza"
   },
   "generalTab": {
     "codeExists": "Esiste già un immobile con questo codice.",
@@ -163,6 +164,11 @@
     "save": "Salva prezzo"
   },
   "formFields": {
+    "sectionsHint": "Clicca sulla sezione che vuoi aprire per continuare.",
+    "sectionsTitle": "Sezioni",
+    "sectionComplete": "Completa",
+    "requiredFields": "Campi obbligatori",
+    "sectionProgress": "{{done}}/{{total}} obbligatori",
     "cancel": "Annulla",
     "back": "Indietro",
     "next": "Avanti",
@@ -179,6 +185,7 @@
       "industrial": "Industriale",
       "land": "Terreno",
       "taxes": "Tasse",
+      "transfer": "Trasferisci",
       "history": "Storico",
       "photos": "Foto",
       "documents": "Documenti"
@@ -320,7 +327,11 @@
       "namePlaceholder": "Nome tassa",
       "frequencyPlaceholder": "Frequenza",
       "notePlaceholder": "Note",
-      "add": "Aggiungi"
+      "add": "Aggiungi",
+      "nameLabel": "Nome della spesa",
+      "amountLabel": "Importo",
+      "frequencyLabel": "Frequenza",
+      "noteLabel": "Note"
     },
     "heatingSection": {
       "title": "Riscaldamento",
@@ -344,7 +355,10 @@
       "areaTypePlaceholder": "Tipo area",
       "areaPlaceholder": "M²",
       "heightPlaceholder": "Altezza (m)",
-      "add": "Aggiungi"
+      "add": "Aggiungi",
+      "areaTypeLabel": "Tipo di area",
+      "areaLabel": "Superficie (m²)",
+      "heightLabel": "Altezza (m)"
     },
     "industrialeTab": {
       "save": "Salva dati industriali",
@@ -375,7 +389,9 @@
       "ownerPlaceholder": "Seleziona un proprietario",
       "searchClientPlaceholder": "Cerca un cliente...",
       "percentPlaceholder": "% quota",
-      "add": "Aggiungi"
+      "add": "Aggiungi",
+      "ownerLabel": "Proprietario",
+      "percentLabel": "Quota (%)"
     },
     "priceDetailSection": {
       "title": "Opzioni di prezzo",
@@ -403,7 +419,12 @@
       "widthPlaceholder": "Larghezza (m)",
       "lengthPlaceholder": "Lunghezza (m)",
       "equipmentPlaceholder": "Dotazioni",
-      "add": "Aggiungi"
+      "add": "Aggiungi",
+      "roomTypeLabel": "Tipo di ambiente",
+      "quantityLabel": "Quantità",
+      "widthLabel": "Larghezza (m)",
+      "lengthLabel": "Lunghezza (m)",
+      "equipmentLabel": "Dotazioni"
     },
     "storicoTab": {
       "emptyHistory": "Nessuna modifica registrata.",
@@ -611,6 +632,18 @@
       "pendingCover": "Aggiornamento copertina in corso...",
       "successCover": "Copertina aggiornata",
       "errorCover": "Errore durante l'aggiornamento della copertina"
+    },
+    "floorPlans": {
+      "title": "Planimetrie",
+      "uploadLabel": "Carica planimetrie",
+      "empty": "Nessuna planimetria caricata",
+      "saveFirst": "Salva l'immobile per poter caricare le planimetrie",
+      "pendingUpload": "Caricamento planimetrie in corso...",
+      "successUpload": "Planimetrie caricate",
+      "errorUpload": "Errore durante il caricamento delle planimetrie",
+      "pendingDelete": "Rimozione planimetria in corso...",
+      "successDelete": "Planimetria rimossa",
+      "errorDelete": "Errore durante la rimozione della planimetria"
     },
     "documentiTab": {
       "uploadLabel": "Carica documenti",

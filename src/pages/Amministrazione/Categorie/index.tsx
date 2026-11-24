@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { TagsIcon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
@@ -54,6 +55,7 @@ function Categorie() {
         searchPlaceholder={t('categorie.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('categorie.newLabel')}
+        newIcon={TagsIcon}
         searchWrapperId="categorie-search-filter"
         newButtonId="categorie-new-btn"
       />

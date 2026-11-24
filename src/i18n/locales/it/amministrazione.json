@@ -157,7 +157,9 @@
     "branchPlaceholder": "Nessuna filiale",
     "passwordEditLabel": "Nuova password (opzionale)",
     "passwordLabel": "Password",
-    "activeLabel": "Utente attivo"
+    "activeLabel": "Utente attivo",
+    "calendarColorLabel": "Colore in agenda",
+    "calendarColorHint": "Colore usato per gli appuntamenti di questo agente in agenda. Scegliendo l'agente in un appuntamento, il suo colore viene applicato automaticamente."
   },
   "userFormModal": {
     "editTitle": "Modifica utente",
@@ -616,5 +618,18 @@
       "duration": "Il video supera la durata massima di 60 secondi.",
       "unreadable": "Impossibile leggere il video: il file potrebbe essere danneggiato."
     }
+  },
+  "brokerColors": {
+    "red": "Rosso",
+    "lightGreen": "Verde chiaro",
+    "lightBlue": "Azzurro",
+    "darkGreen": "Verde scuro",
+    "yellow": "Giallo",
+    "pink": "Rosa",
+    "hotPink": "Fucsia",
+    "black": "Nero",
+    "brown": "Marrone",
+    "orange": "Arancione",
+    "blue": "Blu"
   }
 }

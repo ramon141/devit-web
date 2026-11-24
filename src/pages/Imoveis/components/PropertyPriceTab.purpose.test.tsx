@@ -16,7 +16,7 @@ function Harness() {
 
   return (
     <PropertyDraftProvider>
-      <PropertyPriceTab form={form} onSubmit={(event) => event.preventDefault()} isSubmitting={false} />
+      <PropertyPriceTab form={form} onSubmit={(event) => event.preventDefault()} />
       <button type="button" onClick={() => form.setValue('purpose', 'rent', { shouldValidate: true })}>
         to-rent
       </button>

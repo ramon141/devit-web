@@ -36,7 +36,7 @@
     "adeguamenti": {
       "page": {
         "title": "Adeguamento canone",
-        "description": "Genera le comunicazioni di adeguamento del canone di locazione"
+        "description": "Aggiorna una volta l'anno il canone dei contratti attivi, secondo l'indice di rivalutazione"
       },
       "index": {
         "description": "Seleziona i contratti attivi da adeguare (lascia tutto deselezionato per applicare a tutti i contratti attivi), inserisci la variazione percentuale ISTAT e genera le comunicazioni.",
@@ -215,10 +215,8 @@
       "all": "Tutti",
       "ownerLabel": "Proprietario",
       "tenantLabel": "Inquilino",
-      "stipulaDateFromLabel": "Data stipula dal",
-      "stipulaDateToLabel": "Data stipula al",
-      "startDateFromLabel": "Data inizio dal",
-      "startDateToLabel": "Data inizio al",
+      "stipulaDateFromLabel": "Data stipula",
+      "startDateFromLabel": "Data inizio",
       "onlyMine": "Solo i miei"
     }
   },
@@ -327,7 +325,8 @@
     "documentsManager": {
       "typePlaceholder": "Tipo di documento (facoltativo)",
       "uploadLabel": "Carica documento",
-      "emptyMessage": "Nessun documento caricato."
+      "emptyMessage": "Nessun documento caricato.",
+      "typeLabel": "Tipo di documento"
     },
     "hooks": {
       "form": {
@@ -357,8 +356,7 @@
       "statusLabel": "Stato",
       "sellerLabel": "Venditore",
       "buyerLabel": "Acquirente",
-      "saleDateFromLabel": "Data stipula dal",
-      "saleDateToLabel": "Data stipula al",
+      "saleDateFromLabel": "Data stipula",
       "onlyMine": "Solo le mie",
       "all": "Tutti"
     }
@@ -651,7 +649,7 @@
       },
       "indexPercent": {
         "title": "Indice di adeguamento (%)",
-        "content": "Inserisci la percentuale dell'anno (ad esempio 2,5). L'indice non viene calcolato dal sistema: va preso dalla pubblicazione ufficiale ISTAT. Sono ammessi valori tra 0% e 100%."
+        "content": "Inserisci la percentuale dell'anno (ad esempio 2,5). L'indice non viene calcolato dal sistema: va preso dalla pubblicazione ufficiale ISTAT. Sono ammessi valori tra -50% e +100%, diversi da 0."
       },
       "generateBtn": {
         "title": "Genera adeguamenti",

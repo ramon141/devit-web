@@ -118,13 +118,12 @@
   },
   "filters": {
     "statusLabel": "Situação",
-    "financedLabel": "Vinculada a financiamento",
+    "financedLabel": "Vinculada ao financiamento?",
     "financedYes": "Sim",
     "financedNo": "Não",
     "propertyLabel": "Imóvel",
     "buyerLabel": "Comprador",
-    "proposalDateFromLabel": "Período de",
-    "proposalDateToLabel": "Período até",
+    "proposalDateFromLabel": "Período",
     "onlyMine": "Somente as minhas",
     "all": "Todos"
   },
@@ -137,7 +136,8 @@
     "addError": "Erro ao adicionar comprador.",
     "removing": "Removendo...",
     "removeSuccess": "Comprador removido com sucesso!",
-    "removeError": "Erro ao remover comprador."
+    "removeError": "Erro ao remover comprador.",
+    "buyerLabel": "Comprador"
   },
   "tour": {
     "page": {

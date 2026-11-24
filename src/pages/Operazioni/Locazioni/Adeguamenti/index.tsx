@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import ExportMenu from '@/components/ExportMenu'
+import PageHeaderAction from '@/components/layout/PageHeaderAction'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
 import { useRentalAdjustments } from '@/pages/Operazioni/Locazioni/Adeguamenti/hooks/useRentalAdjustments'
@@ -58,6 +59,7 @@ function AdeguamentiCanone() {
         </div>
         <Button
           id="adeguamenti-generate-btn"
+          className="h-10"
           onClick={generateAdjustments}
           disabled={!isIndexPercentValid || isGenerating}
         >
@@ -65,7 +67,9 @@ function AdeguamentiCanone() {
           {t('locazioni.adeguamenti.index.generateButton')}
         </Button>
 
-        <ExportMenu path="/rental-adjustments/export" />
+        <PageHeaderAction>
+          <ExportMenu path="/rental-adjustments/export" />
+        </PageHeaderAction>
       </div>
 
       <EligibleContractsTable

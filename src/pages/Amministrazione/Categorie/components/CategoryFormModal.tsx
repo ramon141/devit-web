@@ -1,3 +1,4 @@
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import { Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import ModalRegister from '@/components/ModalRegister'
@@ -90,7 +91,7 @@ function CategoryFormModal({ open, onOpenChange, category }: CategoryFormModalPr
           control={control}
           name="active"
           render={({ field }) => (
-            <label id="modal-field-active" className="flex items-center gap-2 self-end pb-1.5 text-sm">
+            <label id="modal-field-active" className={toggleBoxEndClass}>
               <Switch checked={field.value} onCheckedChange={field.onChange} />
               {t('categoryFormModal.activeLabel')}
             </label>

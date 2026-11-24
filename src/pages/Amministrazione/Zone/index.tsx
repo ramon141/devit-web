@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { MapPinPlusIcon } from 'lucide-react'
 import ListToolbar from '@/components/ListToolbar'
 import TablePagination from '@/components/TablePagination'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
@@ -54,6 +55,7 @@ function ZonePage() {
         searchPlaceholder={t('zone.searchPlaceholder')}
         onNewClick={openNew}
         newLabel={t('zone.newLabel')}
+        newIcon={MapPinPlusIcon}
         searchWrapperId="zone-search-filter"
         newButtonId="zone-new-btn"
       />

@@ -1,3 +1,5 @@
+import FormFieldWrapper from '@/components/FormFieldWrapper'
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { Controller, useWatch, type Control } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Switch } from '@/components/ui/switch'
@@ -24,7 +26,7 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
         control={control}
         name="featured"
         render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('flagsRow.featured')}
           </label>
@@ -35,12 +37,14 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
           control={control}
           name="featuredOrder"
           render={({ field }) => (
-            <Input
-              {...field}
-              type="number"
-              placeholder={t('flagsRow.featuredOrderPlaceholder')}
-              className="w-40"
-            />
+            <FormFieldWrapper label={t('flagsRow.featuredOrderLabel')}>
+              <Input
+                {...field}
+                type="number"
+                placeholder={t('flagsRow.featuredOrderPlaceholder')}
+                className="w-40"
+              />
+            </FormFieldWrapper>
           )}
         />
       )}
@@ -48,7 +52,7 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
         control={control}
         name="publishedOnSite"
         render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('flagsRow.publishedOnSite')}
           </label>
@@ -58,7 +62,7 @@ function PropertyFlagsRow({ control }: PropertyFlagsRowProps) {
         control={control}
         name="useInChatbot"
         render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('flagsRow.useInChatbot')}
           </label>

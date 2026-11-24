@@ -1,3 +1,4 @@
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { Controller, useWatch, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -81,22 +82,24 @@ function PropertyLocationDetailSection({ form }: PropertyLocationDetailSectionPr
       >
         <Input {...register('totalUnitsInBuilding')} type="number" />
       </FormFieldWrapper>
-      <FormFieldWrapper
-        label={t('scheda.locationDetailSection.usableAreaLabel')}
-        error={errors.usableAreaSqm?.message}
-      >
-        <Input {...register('usableAreaSqm')} type="number" />
-      </FormFieldWrapper>
+      <div className="sm:col-span-2">
+        <FormFieldWrapper
+          label={t('scheda.locationDetailSection.usableAreaLabel')}
+          error={errors.usableAreaSqm?.message}
+        >
+          <Input {...register('usableAreaSqm')} type="number" />
+        </FormFieldWrapper>
+      </div>
 
       <div className="flex items-center gap-4 sm:col-span-2">
         <Controller control={control} name="hasElevator" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.locationDetailSection.hasElevator')}
           </label>
         )} />
         <Controller control={control} name="hasArchitecturalBarriers" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.locationDetailSection.hasArchitecturalBarriers')}
           </label>

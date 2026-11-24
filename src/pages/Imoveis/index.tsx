@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useTranslation } from 'react-i18next'
-import { LayoutGridIcon, MapIcon, TableIcon } from 'lucide-react'
+import { LayoutGridIcon, MapIcon, TableIcon, HousePlusIcon } from 'lucide-react'
 import AppLayout from '@/components/layout/AppLayout'
 import ListToolbar from '@/components/ListToolbar'
 import ExportMenu from '@/components/ExportMenu'
+import PageHeaderAction from '@/components/layout/PageHeaderAction'
 import TablePagination from '@/components/TablePagination'
 import JoyrideWrapper from '@/components/JoyrideWrapper'
 import TourFab from '@/components/TourFab'
@@ -43,7 +44,6 @@ function Imoveis() {
     <AppLayout
       title={t('list.pageTitle')}
       description={t('list.pageDescription')}
-      breadcrumbItems={[{ label: t('list.breadcrumb') }]}
     >
       <JoyrideWrapper
         steps={steps}
@@ -54,15 +54,32 @@ function Imoveis() {
       />
       <TourFab onClick={startTour} />
 
+      <PageHeaderAction>
+        <ExportMenu
+          path="/properties/export"
+          params={{ filter: { where } }}
+        />
+      </PageHeaderAction>
+
       <ListToolbar
         search={search}
         onSearchChange={onSearchChange}
         searchPlaceholder={t('list.searchPlaceholder')}
         onNewClick={() => setKindPickerOpen(true)}
         newLabel={t('list.newLabel')}
+        newIcon={HousePlusIcon}
         searchWrapperId="proprieta-search-filter"
         newButtonId="proprieta-new-btn"
-        actions={<ExportMenu path="/properties/export" params={{ filter: { where } }} />}
+        filters={
+          <div className="grid w-full gap-3">
+            <PropertyKindTabs
+              activeKind={filters.kind}
+              onChange={(kind) => setFilters({ ...filters, kind })}
+            />
+
+            <PropertyFilters filters={filters} onChange={setFilters} />
+          </div>
+        }
       />
 
       <PropertyKindPickerModal
@@ -76,13 +93,6 @@ function Imoveis() {
           )
         }
       />
-
-      <PropertyKindTabs
-        activeKind={filters.kind}
-        onChange={(kind) => setFilters({ ...filters, kind })}
-      />
-
-      <PropertyFilters filters={filters} onChange={setFilters} />
 
       <div id="proprieta-view-toggle" className="mb-3 flex justify-end gap-1">
         <Button

@@ -39,7 +39,7 @@ function DataTableGridRow<TRow>({
       className={cn(onRowClick && 'cursor-pointer')}
     >
       {columns.map((column, index) => (
-        <TableCell key={index} className={column.cellClassName}>
+        <TableCell key={index} className={cn('px-4', column.cellClassName)}>
           {column.isActions ? (
             column.cell(row)
           ) : (
@@ -79,19 +79,22 @@ function DataTableGrid<TRow>({
   onRowClick,
 }: DataTableGridProps<TRow>) {
   return (
-    <div className="overflow-hidden rounded-xl bg-card ring-1 ring-border">
+    <div className="overflow-hidden rounded-xl border border-[#E0E0E0] bg-white">
       <Table>
-        <TableHeader>
-          <TableRow>
+        <TableHeader className="bg-primary/20">
+          <TableRow className="border-0 hover:bg-transparent">
             {columns.map((column, index) => (
-              <TableHead key={index} className={column.headerClassName}>
+              <TableHead
+                key={index}
+                className={cn('h-10 px-4 font-medium', column.headerClassName)}
+              >
                 {column.header}
               </TableHead>
             ))}
           </TableRow>
         </TableHeader>
 
-        <TableBody>
+        <TableBody className="[&_tr:nth-child(even):not(:hover)]:bg-[#E9E8E1]">
           {isLoading && data.length === 0 && (
             <DataTableGridSkeletonRows columnCount={columns.length} />
           )}

@@ -1,3 +1,4 @@
+import { toggleBoxClass } from '@/lib/toggleBox'
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
@@ -58,25 +59,25 @@ function DettagliStatoFields({ form, canSeeInternalNote }: DettagliStatoFieldsPr
 
       <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
         <Controller control={control} name="bareOwnership" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.dettagliStatoFields.bareOwnership')}
           </label>
         )} />
         <Controller control={control} name="prestige" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.dettagliStatoFields.prestige')}
           </label>
         )} />
         <Controller control={control} name="newConstruction" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.dettagliStatoFields.newConstruction')}
           </label>
         )} />
         <Controller control={control} name="availableImmediately" render={({ field }) => (
-          <label className="flex items-center gap-2 text-sm">
+          <label className={toggleBoxClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('scheda.dettagliStatoFields.availableImmediately')}
           </label>

@@ -14,6 +14,7 @@ const Componentes = lazy(() => import('@/pages/Componentes'))
 const Agenda = lazy(() => import('@/pages/Agenda'))
 const ClientiPage = lazy(() => import('@/pages/Clientes/page'))
 const LeadsPage = lazy(() => import('@/pages/Clientes/Leads/page'))
+const FeedbackPage = lazy(() => import('@/pages/Clientes/Feedback/page'))
 const ClienteScheda = lazy(() => import('@/pages/Clientes/Scheda'))
 const Imoveis = lazy(() => import('@/pages/Imoveis'))
 const ImovelScheda = lazy(() => import('@/pages/Imoveis/Scheda'))
@@ -82,6 +83,7 @@ const routes: RouteConfig[] = [
   { path: '/agenda', element: <Agenda /> },
   { path: '/clienti', element: <ClientiPage /> },
   { path: '/clienti/richieste', element: <LeadsPage /> },
+  { path: '/clienti/feedback', element: <FeedbackPage /> },
   { path: '/clienti/:id', element: <ClienteScheda /> },
   { path: '/proprieta', element: <Imoveis /> },
   { path: '/proprieta/nuovo', element: <ImovelScheda /> },

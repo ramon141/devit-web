@@ -8,7 +8,6 @@ import SearchableSelectSection from '@/pages/Componentes/components/SearchableSe
 import InputMoneySection from '@/pages/Componentes/components/InputMoneySection'
 import FileUploadSection from '@/pages/Componentes/components/FileUploadSection'
 import FormSection from '@/pages/Componentes/components/FormSection'
-import BreadcrumbSection from '@/pages/Componentes/components/BreadcrumbSection'
 import ConfirmPopupSection from '@/pages/Componentes/components/ConfirmPopupSection'
 import TableSection from '@/pages/Componentes/components/TableSection'
 
@@ -29,7 +28,6 @@ function Componentes() {
         <InputMoneySection />
         <FileUploadSection />
         <FormSection />
-        <BreadcrumbSection />
         <ConfirmPopupSection />
         <TableSection />
       </div>

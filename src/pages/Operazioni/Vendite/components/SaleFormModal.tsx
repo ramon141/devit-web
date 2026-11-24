@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FileTextIcon, HistoryIcon, HomeIcon, WalletIcon } from 'lucide-react'
 import ModalRegister from '@/components/ModalRegister'
 import FormModalFooter from '@/components/FormModalFooter'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
@@ -45,10 +46,10 @@ function SaleFormModal({ open, onOpenChange, sale, tourActiveTab }: SaleFormModa
   }, [tourActiveTab])
 
   const steps = [
-    { value: 'generale', label: t('vendite.formModal.generalStep'), step: 1 },
-    { value: 'pagamento', label: t('vendite.formModal.paymentStep'), step: 2 },
-    { value: 'documenti', label: t('vendite.formModal.documentsStep'), step: 3, locked: !sale?.id },
-    { value: 'storico', label: t('vendite.formModal.historyStep'), step: 4, locked: !sale?.id },
+    { value: 'generale', label: t('vendite.formModal.generalStep'), step: 1, icon: HomeIcon },
+    { value: 'pagamento', label: t('vendite.formModal.paymentStep'), step: 2, icon: WalletIcon },
+    { value: 'documenti', label: t('vendite.formModal.documentsStep'), step: 3, icon: FileTextIcon, locked: !sale?.id },
+    { value: 'storico', label: t('vendite.formModal.historyStep'), step: 4, icon: HistoryIcon, locked: !sale?.id },
   ]
   const isDataStep = activeStep === 'generale' || activeStep === 'pagamento'
 

@@ -1,3 +1,4 @@
+import { toggleBoxEndClass } from '@/lib/toggleBox'
 import { Controller, useFormState, type UseFormReturn } from 'react-hook-form'
 import FieldHint from '@/components/FieldHint'
 import { CalendarEventReminder, CalendarEventRecurrence } from '@/api/generated/models'
@@ -5,6 +6,8 @@ import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
+import { useUserControllerFind } from '@/api/generated/api'
+import { formatBroker } from '@/utils/formatBroker'
 import FormFieldWrapper from '@/components/FormFieldWrapper'
 import SelectField from '@/components/SelectField'
 import { LeadSelect, PersonSelect } from '@/components/RemoteSelects'
@@ -19,6 +22,7 @@ import {
   type CalendarEventFormValues,
 } from '@/pages/Agenda/schemas/calendarEventSchema'
 import { cn } from '@/lib/utils'
+import EventTypeHint from '@/pages/Agenda/components/EventTypeHint'
 import CalendarEventTimeFields from '@/pages/Agenda/components/CalendarEventTimeFields'
 
 type CalendarEventFormFieldsProps = {
@@ -27,7 +31,7 @@ type CalendarEventFormFieldsProps = {
 
 function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
   const { t } = useTranslation('agenda')
-  const { register, control, watch } = form
+  const { register, control, watch, setValue } = form
   const { errors } = useFormState({ control })
 
   const eventTypeOptions = getEventTypeOptions(t)
@@ -36,6 +40,13 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
   const recurrenceOptions = getRecurrenceOptions(t)
   const backgroundColorOptions = getBackgroundColorOptions(t)
   const originOptions = getEventOriginOptions(t)
+
+  const { data: users } = useUserControllerFind({ filter: { order: ['fullName ASC'] } })
+  const brokers = (users ?? []).flatMap((user) =>
+    user.id && user.accessLevel === 'broker' && user.active !== false
+      ? [{ value: user.id, label: formatBroker(user), color: user.calendarColor ?? undefined }]
+      : [],
+  )
 
   const isAllDay = watch('allDay')
   const reminder = watch('reminder')
@@ -49,7 +60,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         </FormFieldWrapper>
       </div>
 
-      <FormFieldWrapper id="modal-field-type" label={t('agenda:formFields.type')} required error={errors.type?.message}>
+      <FormFieldWrapper id="modal-field-type" label={t('agenda:formFields.type')} hint={<EventTypeHint />} required error={errors.type?.message}>
         <Controller
           control={control}
           name="type"
@@ -102,7 +113,10 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         control={control}
         name="allDay"
         render={({ field }) => (
-          <label id="modal-field-allDay" className="flex items-center gap-2 self-end pb-1.5 text-sm">
+          <label
+            id="modal-field-allDay"
+            className={toggleBoxEndClass}
+          >
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('agenda:formFields.allDay')}
           </label>
@@ -121,6 +135,31 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
               onValueChange={field.onChange}
               placeholder={t('agenda:formFields.clientPlaceholder')}
               searchPlaceholder={t('agenda:formFields.clientSearchPlaceholder')}
+            />
+          )}
+        />
+      </FormFieldWrapper>
+
+      <FormFieldWrapper
+        id="modal-field-broker"
+        label={t('agenda:formFields.broker')}
+        hint={t('agenda:formFields.brokerHint')}
+        error={errors.brokerId?.message}
+      >
+        <Controller
+          control={control}
+          name="brokerId"
+          render={({ field }) => (
+            <SelectField
+              value={field.value}
+              onValueChange={(value) => {
+                field.onChange(value)
+                const color = brokers.find((broker) => broker.value === value)?.color
+
+                if (color) setValue('backgroundColor', color)
+              }}
+              options={brokers}
+              placeholder={t('agenda:formFields.brokerPlaceholder')}
             />
           )}
         />
@@ -223,7 +262,7 @@ function CalendarEventFormFields({ form }: CalendarEventFormFieldsProps) {
         control={control}
         name="private"
         render={({ field }) => (
-          <label id="modal-field-privateEvent" className="flex items-center gap-2 self-end pb-1.5 text-sm">
+          <label id="modal-field-privateEvent" className={toggleBoxEndClass}>
             <Switch checked={field.value} onCheckedChange={field.onChange} />
             {t('agenda:formFields.privateEvent')}
           </label>

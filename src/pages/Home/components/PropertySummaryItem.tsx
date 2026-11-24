@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
+import DashboardListItem from '@/pages/Home/components/DashboardListItem'
 import { getPurposeOptions } from '@/pages/Imoveis/schemas/propertySchema'
 import { getOptionLabel } from '@/utils/getOptionLabel'
 import { formatDateTime } from '@/utils/formatDate'
@@ -27,7 +28,7 @@ function PropertySummaryItem({ property, date, dateLabel, action }: PropertySumm
   const typology = [property.categoryName, purposeLabel].filter(Boolean).join(' · ')
 
   return (
-    <div className="flex items-start justify-between gap-3 rounded-lg px-2 py-2 hover:bg-accent hover:text-accent-foreground">
+    <DashboardListItem>
       <div className="min-w-0">
         <p className="truncate text-sm font-medium">{property.code}</p>
 
@@ -50,7 +51,7 @@ function PropertySummaryItem({ property, date, dateLabel, action }: PropertySumm
 
         {action}
       </div>
-    </div>
+    </DashboardListItem>
   )
 }
 
